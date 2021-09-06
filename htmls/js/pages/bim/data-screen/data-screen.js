@@ -338,16 +338,17 @@ layui.use([], function () {
       },
       legend: {
         orient: 'vertical',
-        right: 10,
-        top: 70,
-        bottom: 20,
-        color: '#fff'
+        right: 20,
+        top: 55,
+        textStyle: {
+          color: '#7bbfff'
+        }
       },
       series: [
         {
           name: '设备管理',
           type: 'pie',
-          radius: ['76%', '86%'],
+          radius: ['60%', '86%'],
           center: ['30%', '55%'],
           avoidLabelOverlap: false,
           label: {
