@@ -128,7 +128,7 @@ layui.use(['LuUtilsTemplate', 'echarts'], function () {
     block5Template() {
       const title = this.commTitle('质量管理')
       return `${title}
-      <div id='chr2' style='height: 350px'></div> 
+      <div id='chr2' style='height: 350px'></div>
       `
     }
 

@@ -137,12 +137,46 @@ layui.use([], function () {
     }
 
     block4Template(data) {
-      return `<div class='block-title'>进度情况</div>`
+      const percent = (data.schedule * 100).toFixed(2)
+      return `<div class='block-title'>进度情况</div>
+              <div class='percent-title'>
+                <div>
+                  <span class='title-item'>合同工期进度</span>
+                  <span class='percent'>${percent}%</span>
+                </div>
+                <div class='line-box'>
+                  <div class='line-inner' style='width: ${percent}%'></div>
+                </div>
+              </div>
+              <div class='percent-bottom'>
+                <div class='left'>
+                  <div class='left-item'>
+                    <span class='left-item-val'>${data.pending}</span>
+                    <span class='left-item-key'>未完成任务</span>
+                  </div>
+                  <div class='left-item'>
+                    <span class='left-item-val'>${data.res}</span>
+                    <span class='left-item-key'>已完成任务</span>
+                  </div>
+                  <div class='left-item'>
+                    <span class='left-item-val'>${data.rej}</span>
+                    <span class='left-item-key'>逾期生产任务</span>
+                  </div>
+                </div>
+                <div id='chr1'></div>
+              </div>`
+    }
+
+    block6Template(data) {
+      return `<div class='block-title'>设备情况</div>
+              <div class='info-text'><span class='info-item'>在线设备：${data.value1}</span><span class='info-item'>离线设备：${data.value2}</span></div>
+              <div id='chr2' style='height: 230px'></div>`
     }
   }
 
   const pt = new PageTemplate()
-  !(() => {
+  let echartsObj1, echartsObj2, echartsObj3
+  !(async () => {
     renderHeader()
     renderContent()
   })()
@@ -163,7 +197,7 @@ layui.use([], function () {
 
   setInterval(setTimer, 1000)
 
-  function renderContent() {
+  async function renderContent() {
     // block1
     const data1 = {
       title: '项目概况',
@@ -182,6 +216,7 @@ layui.use([], function () {
     }
     const h1 = pt.block1Template(data1)
     $('.block-1').html(h1)
+    // block2
     const data2 = [
       'https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg',
       'https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg',
@@ -219,9 +254,176 @@ layui.use([], function () {
     const h3 = pt.block3Template(data3)
     $('.block-3').html(h3)
     // block4
-    const data4 = {}
+    const data4 = { schedule: 0.2, pending: 25, res: 13, rej: 5 }
     const h4 = pt.block4Template(data4)
     $('.block-4').html(h4)
+    // block5
+    // block6
+    const date6 = {value1: 20, value2: 3}
+    const h6 = pt.block6Template(date6)
+    $('.block-6').html(h6)
+    // block7
+    $('.block-7').html(`<div class='block-title'>质量情况</div><div id='chr3' style='height: 240px'></div>`)
+    await renderECharts()
+  }
+
+  async function renderECharts() {
+    // chart1
+    const opts1 = {
+      series: [
+        {
+          type: 'pie',
+          radius: ['53%', '55%'],
+          labelLine: {
+            show: false,
+          },
+          data: [{ value: 100 }],
+          label: {
+            show: true,
+            position: 'center',
+            formatter: '进度差异分析',
+            color: '#fff',
+            fontSize: 14,
+          },
+          hoverAnimation: false,
+        },
+        {
+          name: '进度管理',
+          type: 'pie',
+          radius: ['63%', '74%'],
+          labelLine: {
+            show: false,
+          },
+          label: {
+            formatter: '{b}\n({c}%)',
+          },
+          data: [
+            {
+              value: 35,
+              name: '正常完工',
+              label: {
+                color: '#1BE9C3',
+              },
+            },
+            {
+              value: 45,
+              name: '提前完工',
+              label: {
+                color: '#52FF8F',
+              },
+            },
+            {
+              value: 25,
+              name: '延期完工',
+              label: {
+                color: '#E9AC19',
+              },
+            },
+          ],
+          itemStyle: {
+            borderRadius: 30,
+            color(params) {
+              return ['#1BE9C3', '#52FF8F', '#E9AC19'][params.dataIndex]
+            },
+          },
+        },
+      ],
+    }
+    echartsObj1 = echarts.init(document.querySelector('#chr1'), opts1)
+    echartsObj1.setOption(opts1)
+    // chart2
+    const opts2 = {
+      tooltip: {
+        trigger: 'item',
+      },
+      legend: {
+        orient: 'vertical',
+        right: 10,
+        top: 70,
+        bottom: 20,
+        color: '#fff'
+      },
+      series: [
+        {
+          name: '设备管理',
+          type: 'pie',
+          radius: ['76%', '86%'],
+          center: ['30%', '55%'],
+          avoidLabelOverlap: false,
+          label: {
+            show: true,
+            position: 'center',
+            formatter: ['{a|设备总数}', '', '{b|35台}'].join('\n'),
+            rich: {
+              a: { fontSize: 16, color: '#007fff' },
+              b: { fontSize: 24, color: '#007fff' },
+            },
+          },
+          labelLine: {
+            show: false,
+          },
+          data: [
+            { value: 12, name: '球形视频监控机' },
+            { value: 10, name: '半球式视频监控' },
+            { value: 6, name: '环境监测器t01' },
+            { value: 8, name: '环境仪器t02' },
+            { value: 3, name: '桥梁位移监测' },
+            { value: 5, name: '桥梁加速度监测' },
+          ],
+          itemStyle: {
+            color(params) {
+              return ['#e9631b', '#47ceff', '#bcffae', '#E9AC19', '#52FF8F', '#b36cff', '#096ce3'][params.dataIndex]
+            },
+          },
+        },
+      ],
+    }
+    echartsObj2 = echarts.init(document.querySelector('#chr2'), opts2)
+    echartsObj2.setOption(opts2)
+    // chart3
+    const opts3 = {
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow',
+        },
+      },
+      grid: {
+        left: 0,
+        right: 0,
+        top: 20,
+        height: 210,
+        containLabel: true,
+      },
+      yAxis: {
+        type: 'value',
+        axisLabel: { color: '#0beeec' },
+        splitLine: {
+          lineStyle: {
+            color: 'rgba(255,255,255,0.15)',
+          },
+        },
+      },
+      xAxis: {
+        type: 'category',
+        axisLabel: { color: '#fff' },
+        data: ['累计检查', '待复查', '待整改', '超期隐患', '运营期养护'],
+      },
+      series: [
+        {
+          type: 'bar',
+          data: [584, 356, 378, 256, 395],
+          itemStyle: {
+            color(params) {
+              return ['#1BE9C3', '#E9AC19', '#52FF8F', '#900013', '#096ce3'][params.dataIndex]
+            },
+          },
+          barWidth: 15,
+        },
+      ],
+    }
+    echartsObj3 = echarts.init(document.querySelector('#chr3'), opts3)
+    echartsObj3.setOption(opts3)
   }
 
   $lulib.methodProxy.bindMethodProxy([
