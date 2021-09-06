@@ -1,0 +1,76 @@
+<link rel='stylesheet' href='/htmls/css/pages/bsite.css'>
+<div class='inner-body video-surveillance'>
+  <div class='page-header luPageHeader'></div>
+  <div class='page-container clearFix'>
+    <div class="left fl">
+      <div class="select-box">
+        <form class="layui-form" lay-filter="search-form">
+          <div class="layui-inline">
+            <label class="layui-form-label">视频回放：</label>
+            <div class="layui-input-inline">
+              <input type="text"
+                     name="name"
+                     autocomplete="off"
+                     class="layui-input"
+                     id="dateInput"
+                     placeholder="请选择时间区域搜索">
+            </div>
+          </div>
+          <div class="layui-inline">
+            <button type="button" class="layui-btn btn-weaken" id="searchBtn">查询</button>
+          </div>
+        </form>
+        <div class="btn-box">
+          <button class="layui-btn">初始视频</button>
+          <button class="layui-btn">开始录像</button>
+          <button class="layui-btn btn-primary-dep">停止录像</button>
+          <button class="layui-btn btn-primary-sec">倍速播放</button>
+        </div>
+      </div>
+      <div class="video-box">
+        <div class="video-title"></div>
+      </div>
+      <div class="ctrl-box">
+        <div class="btn-box">
+          <div class="b-left fl">
+            <button class="btn-item">放大</button>
+            <button class="btn-item">缩小</button>
+          </div>
+          <div class="b-mid fl">
+            <div class="b-m-top b-p"></div>
+            <div class="b-m-mid">
+              <div class="btn-mb-l fl b-p"></div>
+              <div class="btn-mb-m fl b-p"></div>
+              <div class="btn-mb-r fl b-p"></div>
+            </div>
+            <div class="b-m-bottom b-p"></div>
+          </div>
+          <div class="b-right fl">
+            <button class="btn-item">变焦+</button>
+            <button class="btn-item">变焦-</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right fl">
+      <div class="right-content">
+        <div class="arrow up">
+          <span class="iconfont icon-bofang"></span>
+        </div>
+        <div class="content">
+          <div class="content-slide"></div>
+        </div>
+        <div class="arrow down">
+          <span class="iconfont icon-bofang"></span>
+        </div>
+      </div>
+      <div class="btn-box">
+        <button class="layui-btn fr" id="moreBtn">
+          <span class="iconfont icon-xiangmuliebiao"></span>
+          <span>查看更多</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src='/htmls/js/pages/bsite/safety-manage/video-surveillance.js' charset='utf-8'></script>

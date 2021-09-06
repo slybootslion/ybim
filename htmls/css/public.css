@@ -1,0 +1,197 @@
+@import "./iconfont/iconfont.css";
+.layui-header .header-logo {
+  width: 420px;
+  height: 65px;
+  position: relative;
+}
+.layui-header .header-logo img {
+  width: 100%;
+}
+.layui-header .header-logo::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: -7px;
+  top: 14px;
+  width: 1px;
+  height: 40px;
+  background-color: #ffffff;
+  margin-right: 20px;
+}
+.layui-header .header-content {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.layui-header .header-content .header-content-left {
+  font-size: 16px;
+}
+.layui-header .header-content .header-content-left .iconfont {
+  cursor: pointer;
+}
+.layui-header .header-content .header-content-left .iconfont.icon-tucengzhanshifangshipeizhi {
+  margin-right: 20px;
+}
+.layui-header .header-content .header-content-left .left2-text {
+  border: 1px solid #fff;
+  border-radius: 30px;
+  font-size: 12px;
+  box-sizing: border-box;
+  padding: 2px 5px;
+  position: relative;
+  top: -2px;
+}
+.layui-header .header-content .header-content-right {
+  width: 460px;
+  height: 31px;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.layui-header .header-content .header-content-right .time-box {
+  margin: 0 20px;
+}
+.layui-header .header-content .header-content-right .user-setting {
+  cursor: pointer;
+}
+.layui-header .header-content .header-content-right .user-setting .iconfont {
+  margin-right: 5px;
+}
+.layui-header .header-content .header-content-right .username-box .iconfont {
+  margin-right: 5px;
+}
+.layui-header .header-content .header-content-right .username-box a {
+  color: #ffffff;
+}
+.layui-header .header-content .header-content-right::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border: 23px solid transparent;
+  border-left: 23px solid rgba(0, 0, 0, 0.4);
+  transform: rotate(315deg);
+  display: block;
+  position: absolute;
+  left: -23px;
+  top: -23px;
+}
+
+.loader-content {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #ffffff;
+  z-index: 9999;
+}
+.loader-content .loader-pic {
+  width: 128px;
+  height: 128px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -64px;
+  margin-top: -64px;
+}
+
+.stretch-btn-box {
+  width: 200px;
+  height: 35px;
+  background-color: #242d3c;
+  transition: width 0.3s;
+  position: relative;
+  z-index: 901;
+}
+.stretch-btn-box .sidebar-back,
+.stretch-btn-box .stretch-a {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  color: #ffffff;
+  text-align: center;
+  line-height: 35px;
+}
+.stretch-btn-box .sidebar-back span,
+.stretch-btn-box .stretch-a span {
+  color: rgba(255, 255, 255, 0.7);
+}
+.stretch-btn-box .sidebar-back:hover,
+.stretch-btn-box .stretch-a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.stretch-btn-box .sidebar-back:hover .iconfont,
+.stretch-btn-box .stretch-a:hover .iconfont {
+  color: #fff;
+}
+.stretch-btn-box .sidebar-back .iconfont,
+.stretch-btn-box .stretch-a .iconfont {
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.body-iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.body-one-page {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.body-one-page .content-page-in-stack {
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.iframe-animation {
+  animation: bounceInLeft 0.3s;
+}
+
+@keyframes bounceInLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(3000px, 0, 0);
+  }
+  100% {
+    transform: none;
+  }
+}
+.content-load {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  z-index: 20210617;
+}
+
+.content-page-inner {
+  padding: 10px;
+}
+
+.txt-overflow {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/*# sourceMappingURL=public.css.map */

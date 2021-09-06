@@ -1,0 +1,50 @@
+[
+  {
+    "name": "田鹏",
+    "idNum": "610582187905167896",
+    "gender": "男",
+    "company": "参建单位",
+    "position": "电工部",
+    "age": "35",
+    "phone": "18629784569",
+    "type": "电工",
+    "team": "班组1",
+    "inTime": "2020-10-30",
+    "outTime": "",
+    "status": "进场",
+    "regType": "人脸",
+    "issAuthority": "西安高新唐延路公安局"
+  },
+  {
+    "name": "田鹏",
+    "idNum": "610582187905167896",
+    "gender": "男",
+    "company": "参建单位",
+    "position": "电工部",
+    "age": "35",
+    "phone": "18629784569",
+    "type": "电工",
+    "team": "班组2",
+    "inTime": "2020-10-30",
+    "outTime": "2020-11-30",
+    "status": "已退场",
+    "regType": "指纹",
+    "issAuthority": "西安高新唐延路公安局"
+  },
+  {
+    "name": "田鹏",
+    "idNum": "610582187905167896",
+    "gender": "女",
+    "company": "参建单位",
+    "position": "电工部",
+    "age": "35",
+    "phone": "18629784569",
+    "type": "电工",
+    "team": "班组3",
+    "inTime": "2020-10-30",
+    "outTime": "",
+    "status": "进场",
+    "regType": "人脸",
+    "issAuthority": "西安高新唐延路公安局"
+  }
+]

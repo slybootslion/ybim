@@ -1,0 +1,508 @@
+<link rel='stylesheet' href='/htmls/css/pages/bsite.css'>
+<div class='inner-body personnel-registration-step'>
+  <div class='page-header luPageHeader'></div>
+  <div class="page-container size-1">
+    <div class="step-top">
+      <div class="step-top-item s1 active"></div>
+      <div class="step-top-arror">
+        <img src="/htmls/images/page/bsite/arrow.png" alt="">
+      </div>
+      <div class="step-top-item s2"></div>
+      <div class="step-top-arror">
+        <img src="/htmls/images/page/bsite/arrow.png" alt="">
+      </div>
+      <div class="step-top-item s3"></div>
+    </div>
+    <div class="layui-carousel" id="stepForm" lay-filter="stepForm">
+      <div carousel-item>
+        <div>
+          <form class="layui-form" lay-filter="step-form-1">
+            <div class="step-content-1">
+              <div class="left">
+                <div class="layui-btn btn">读取身份证信息</div>
+                <span class="weaken-txt">点击可读取身份证信息自动填写</span>
+                <div class="pic-box">
+                  <img id="avatar-pic"
+                       class="centerXY"
+                       src="/htmls/images/page/bsite/avatar-def.png" alt="">
+                  <span class="tag-txt">编辑</span>
+                  <input type="file" id="avatar-input" accept="image/png, image/jpeg, image/gif, image/jpg">
+                  <label class="avatar-input-label" for="avatar-input"></label>
+                  <div class="loading-mask">上传中...</div>
+                </div>
+                <p class="left-name">李朝阳</p>
+              </div>
+              <div class="right">
+                <div class="r-block">
+                  <div class="layui-form-item">
+                    <label class="layui-form-label required">
+                      <span>姓名：</span>
+                    </label>
+                    <div class="layui-input-block">
+                      <input type="text"
+                             name="n1"
+                             lay-verify="required"
+                             autocomplete="off"
+                             placeholder="请输入姓名"
+                             class="layui-input">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label required">
+                      <span>身份证号：</span>
+                    </label>
+                    <div class="layui-input-block">
+                      <input type="text"
+                             lay-verify="required|identity"
+                             autocomplete="off"
+                             placeholder="请输入身份证号"
+                             class="layui-input">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label required">
+                      <span>出生日期：</span>
+                    </label>
+                    <div class="layui-input-block">
+                      <input type="text"
+                             lay-verify="required"
+                             autocomplete="off"
+                             placeholder="请选择出生日期"
+                             id="briDate"
+                             class="layui-input">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label required">
+                      <span>手机号码：</span>
+                    </label>
+                    <div class="layui-input-block">
+                      <input type="text"
+                             lay-verify="require|phone"
+                             autocomplete="off"
+                             placeholder="请输入手机号码"
+                             class="layui-input">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label required">
+                      <span>工种：</span>
+                    </label>
+                    <div class="layui-input-block">
+                      <select lay-verify="required">
+                        <option value="">选择工种</option>
+                        <option value="test1">建筑工</option>
+                        <option value="test2">通风工</option>
+                        <option value="test3">钢筋工</option>
+                        <option value="test4">木工</option>
+                        <option value="test5">杂工</option>
+                        <option value="test7">建筑工1</option>
+                        <option value="test7">通风工2</option>
+                        <option value="test8">钢筋工3</option>
+                        <option value="test9">木工4</option>
+                        <option value="test10">杂工5</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label required">
+                      <span>发证机关：</span>
+                    </label>
+                    <div class="layui-input-block">
+                      <input type="text"
+                             lay-verify="required"
+                             autocomplete="off"
+                             placeholder="请输入发证机关"
+                             class="layui-input">
+                    </div>
+                  </div>
+                </div>
+                <div class="r-block">
+                  <div class="layui-form-item">
+                    <label class="layui-form-label required">
+                      <span>性别：</span>
+                    </label>
+                    <div class="layui-input-block">
+                      <select lay-verify="required">
+                        <option value="">请选择</option>
+                        <option value="test1">男</option>
+                        <option value="test2">女</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label required">
+                      <span>民族：</span>
+                    </label>
+                    <div class="layui-input-block">
+                      <input type="text"
+                             lay-verify="required"
+                             autocomplete="off"
+                             placeholder="请输入民族"
+                             class="layui-input">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">
+                      <span>籍贯：</span>
+                    </label>
+                    <div class="layui-input-block">
+                      <input type="text"
+                             autocomplete="off"
+                             placeholder="请输入籍贯"
+                             class="layui-input">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label required">
+                      <span>工人角色：</span>
+                    </label>
+                    <div class="layui-input-block">
+                      <select lay-verify="required">
+                        <option value="">请选择</option>
+                        <option value="test1">管理人员</option>
+                        <option value="test2">建筑工人</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">
+                      <span>文化程度：</span>
+                    </label>
+                    <div class="layui-input-block">
+                      <select>
+                        <option value="">选择文化程度</option>
+                        <option value="test1">小学</option>
+                        <option value="test2">初中</option>
+                        <option value="test3">高中</option>
+                        <option value="test4">中专</option>
+                        <option value="test5">大专</option>
+                        <option value="test7">本科</option>
+                        <option value="test7">硕士</option>
+                        <option value="test8">博士</option>
+                        <option value="test9">其它</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">
+                      <span>住址：</span>
+                    </label>
+                    <div class="layui-input-block">
+                    <textarea placeholder="请输入住址"
+                              class="layui-textarea"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="layui-form-item btn-box">
+              <button class="layui-btn btn-primary-sec" type="button">
+                <span class="iconfont iconbaocun"></span>
+                <span>保存</span>
+              </button>
+              <button class="layui-btn"
+                      type="button"
+                      lay-submit
+                      lay-filter="stepNextBtn">
+                <span>下一步</span>
+              </button>
+            </div>
+          </form>
+        </div>
+        <div>
+          <form class="layui-form" lay-filter="step-form-2">
+            <div class="step-content-2">
+              <div class="right">
+                <div class="r-block">
+                  <div class="layui-form-item">
+                    <label class="layui-form-label required">
+                      <span>所属参建单位：</span>
+                    </label>
+                    <div class="layui-input-block">
+                      <select lay-verify="required">
+                        <option value="">选择参建单位</option>
+                        <option value="test1">单位1</option>
+                        <option value="test2">单位2</option>
+                        <option value="test3">单位3</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label required">
+                      <span>人员进场：</span>
+                    </label>
+                    <div class="layui-input-block">
+                      <select lay-verify="required">
+                        <option value="">请选择</option>
+                        <option value="test1">是</option>
+                        <option value="test2">否</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">
+                      <span>住宿类型：</span>
+                    </label>
+                    <div class="layui-input-block">
+                      <select>
+                        <option value="">请选择</option>
+                        <option value="test1">场外</option>
+                        <option value="test2">场内</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">
+                      <span>考勤卡号：</span>
+                    </label>
+                    <div class="layui-input-block">
+                      <input type="cardNum"
+                             autocomplete="off"
+                             placeholder="请输入考勤卡号"
+                             class="layui-input">
+                    </div>
+                  </div>
+                </div>
+                <div class="r-block">
+                  <div class="layui-form-item">
+                    <label class="layui-form-label required">
+                      <span>班组：</span>
+                    </label>
+                    <div class="layui-input-block">
+                      <select lay-verify="required">
+                        <option value="">请选择班组</option>
+                        <option value="test1">班组1</option>
+                        <option value="test2">班组2</option>
+                        <option value="test2">班组3</option>
+                      </select>
+                      <p class="weaken-txt">注：班组信息请在班组管理中进行添加</p>
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">
+                      <span>设置职务：</span>
+                    </label>
+                    <div class="layui-input-block">
+                      <select>
+                        <option value="">选择文化程度</option>
+                        <option value="test1">质检员</option>
+                        <option value="test2">安全员</option>
+                        <option value="test3">资料员</option>
+                        <option value="test4">预算员</option>
+                        <option value="test5">施工员</option>
+                        <option value="test7">测量员</option>
+                        <option value="test7">工程师</option>
+                        <option value="test8">监理</option>
+                        <option value="test8">主管</option>
+                        <option value="test8">总监</option>
+                        <option value="test8">经理</option>
+                        <option value="test8">项目经理</option>
+                        <option value="test9">其它</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">
+                      <span>考勤类型：</span>
+                    </label>
+                    <div class="layui-input-block">
+                      <select>
+                        <option value="">请选择</option>
+                        <option value="test1">正式工</option>
+                        <option value="test2">临时工</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="layui-form-item btn-box">
+              <button class="layui-btn btn-primary-sec" type="button">
+                <span class="iconfont iconbaocun"></span>
+                <span>保存</span>
+              </button>
+              <button class="btn-prev layui-btn"
+                      type="button">
+                <span>上一步</span>
+              </button>
+              <button class="layui-btn"
+                      type="button"
+                      lay-submit
+                      lay-filter="stepNextBtn">
+                <span>下一步</span>
+              </button>
+            </div>
+          </form>
+        </div>
+        <div>
+          <form class="layui-form" lay-filter="step-form-3">
+            <div class="step-content-3">
+              <div class="left">
+                <div class="layui-form-item">
+                  <label class="layui-form-label">
+                    <span>设备类型：</span>
+                  </label>
+                  <div class="layui-input-block">
+                    <select>
+                      <option value="">请选择设备类型</option>
+                      <option value="test1">人脸</option>
+                      <option value="test2">指纹</option>
+                      <option value="test3">虹膜</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">
+                    <span>选择设备：</span>
+                  </label>
+                  <div class="layui-input-block">
+                    <select>
+                      <option value="">选择设备</option>
+                      <option value="test1">设备1</option>
+                      <option value="test2">设备2</option>
+                    </select>
+                  </div>
+                </div>
+                <p class="weaken-txt">请先选择请先选择请先选择请先选择请先选择请先选择</p>
+              </div>
+              <div class="right">
+                <div class="r-content">
+                  <div class="t">信息采集</div>
+                  <div class="content"></div>
+                </div>
+                <div class="r-block">
+                  <div class="layui-btn btn-primary-sec" type="button">启动设备</div>
+                  <div class="layui-btn" type="button">确定</div>
+                </div>
+              </div>
+            </div>
+            <div class="layui-form-item btn-box">
+              <button class="btn-prev layui-btn"
+                      type="button">
+                <span>上一步</span>
+              </button>
+              <button class="layui-btn"
+                      type="button"
+                      lay-submit
+                      lay-filter="stepNextBtn">
+                <span>提交</span>
+              </button>
+            </div>
+          </form>
+        </div>
+        <div>
+          <div class="step-content-4">
+            <div class="top">
+              <div class="c-title">工人基本信息</div>
+              <div class="content-box">
+                <div class="col-1">
+                  <img class="avatar"
+                       src="/htmls/images/page/bsite/avatar-def.png" alt="">
+                </div>
+                <div class="col-2">
+                  <div class="col-item clearFix">
+                    <div class="label">姓名：</div>
+                    <div class="desc">马系统</div>
+                  </div>
+                  <div class="col-item clearFix">
+                    <div class="label">身份证号：</div>
+                    <div class="desc">61232719309286443</div>
+                  </div>
+                  <div class="col-item clearFix">
+                    <div class="label">出生日期：</div>
+                    <div class="desc">1973-09-28</div>
+                  </div>
+                  <div class="col-item clearFix">
+                    <div class="label">手机号码：</div>
+                    <div class="desc">15771666854</div>
+                  </div>
+                  <div class="col-item clearFix">
+                    <div class="label">工种：</div>
+                    <div class="desc">钢筋工</div>
+                  </div>
+                  <div class="col-item clearFix">
+                    <div class="label">发证机关：</div>
+                    <div class="desc">略阳县公安局</div>
+                  </div>
+                </div>
+                <div class="col-2">
+                  <div class="col-item clearFix">
+                    <div class="label">性别：</div>
+                    <div class="desc">女</div>
+                  </div>
+                  <div class="col-item clearFix">
+                    <div class="label">民族：</div>
+                    <div class="desc">汉族</div>
+                  </div>
+                  <div class="col-item clearFix">
+                    <div class="label">籍贯：</div>
+                    <div class="desc">陕西省</div>
+                  </div>
+                  <div class="col-item clearFix">
+                    <div class="label">工人角色：</div>
+                    <div class="desc">建筑工人</div>
+                  </div>
+                  <div class="col-item clearFix">
+                    <div class="label">文化程度：</div>
+                    <div class="desc">初中</div>
+                  </div>
+                  <div class="col-item clearFix">
+                    <div class="label">住址：</div>
+                    <div class="desc">山西省略阳县郭镇干河坝村张家院社 文字长度文字长度文字长度文字长度</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bottom">
+              <div class="left">
+                <div class="c-title">工作信息</div>
+                <div class="content-box">
+                  <div class="col-2">
+                    <div class="col-item clearFix">
+                      <div class="label">参建单位：</div>
+                      <div class="desc">西安市户县建筑工程总公</div>
+                    </div>
+                    <div class="col-item clearFix">
+                      <div class="label">人员进场：</div>
+                      <div class="desc">是</div>
+                    </div>
+                    <div class="col-item clearFix">
+                      <div class="label">住宿类型：</div>
+                      <div class="desc">场内</div>
+                    </div>
+                    <div class="col-item clearFix">
+                      <div class="label">考勤卡号：</div>
+                      <div class="desc">4287785066</div>
+                    </div>
+                  </div>
+                  <div class="col-2">
+                    <div class="col-item clearFix">
+                      <div class="label">班组：</div>
+                      <div class="desc">钢筋工</div>
+                    </div>
+                    <div class="col-item clearFix">
+                      <div class="label">设置职务：</div>
+                      <div class="desc">安全员</div>
+                    </div>
+                    <div class="col-item clearFix">
+                      <div class="label">考勤类型：</div>
+                      <div class="desc">正式</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="right">
+                <div class="c-title">生物特征</div>
+                <div class="content-box">
+                  <div class="content"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/htmls/js/pages/bsite/person-manage/personnel-registration-step.js" charset="utf-8"></script>

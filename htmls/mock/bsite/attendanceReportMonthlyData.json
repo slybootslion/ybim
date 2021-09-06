@@ -1,0 +1,23 @@
+[
+  {
+    "name": "田鹏",
+    "team": "电工班组",
+    "workDaysCount": "35",
+    "date": "2020-07-23",
+    "states": [true,true,true,false,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,false,true,true,true,true,true]
+  },
+  {
+    "name": "姜艳",
+    "team": "电工班组",
+    "workDaysCount": "35",
+    "date": "2020-07-23",
+    "states": [true,true,true,false,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,false,false,false,true,true,true,true,true,true,true,true,true]
+  },
+  {
+    "name": "不认识",
+    "team": "电工班组",
+    "workDaysCount": "33",
+    "date": "2020-07-23",
+    "states": [true,false,true,true,true,true,true,true,true,true,true,false,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true]
+  }
+]

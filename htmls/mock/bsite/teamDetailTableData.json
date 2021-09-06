@@ -1,0 +1,38 @@
+[
+  {
+    "name": "田鹏",
+    "id": "",
+    "idNum": "610582187905167896",
+    "type": "电工",
+    "personType": "建筑工人",
+    "age": "35",
+    "gender": "男",
+    "inTime": "2020-10-30",
+    "outTime": "2020-11-22",
+    "isTeamLeader": false
+  },
+  {
+    "name": "田鹏",
+    "id": "",
+    "idNum": "610582187905167896",
+    "type": "电工",
+    "personType": "建筑工人",
+    "age": "35",
+    "gender": "男",
+    "inTime": "2020-10-30",
+    "outTime": "2020-11-22",
+    "isTeamLeader": false
+  },
+  {
+    "name": "田鹏",
+    "id": "",
+    "idNum": "610582187905167896",
+    "type": "电工",
+    "personType": "建筑工人",
+    "age": "35",
+    "gender": "男",
+    "inTime": "2020-10-30",
+    "outTime": "2020-11-22",
+    "isTeamLeader": false
+  }
+]

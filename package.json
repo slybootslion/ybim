@@ -1,0 +1,19 @@
+{
+  "name": "web-static",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "live-server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^2.2.1",
+    "sass": "^1.38.0"
+  },
+  "dependencies": {
+    "dayjs": "^1.10.5"
+  }
+}

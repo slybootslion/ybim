@@ -1,0 +1,66 @@
+[
+  {
+    "id": "",
+    "recordName": "电工班组8月份工资",
+    "company": "陕西三秦路桥有限公司",
+    "endDate": "2020-07",
+    "payedNum": {
+      "done": 2,
+      "count": 15
+    },
+    "payedMoney": {
+      "done": "2121.56",
+      "count": "1,578,121.56"
+    },
+    "status": false,
+    "date": "/"
+  },
+  {
+    "id": "",
+    "recordName": "电工班组8月份工资",
+    "company": "陕西三秦路桥有限公司",
+    "endDate": "2020-07",
+    "payedNum": {
+      "done": 15,
+      "count": 15
+    },
+    "payedMoney": {
+      "done": "1,578,121.56",
+      "count": "1,578,121.56"
+    },
+    "status": true,
+    "date": "2020-11-12"
+  },
+  {
+    "id": "",
+    "recordName": "电工班组8月份工资",
+    "company": "陕西三秦路桥有限公司",
+    "endDate": "2020-07",
+    "payedNum": {
+      "done": 2,
+      "count": 15
+    },
+    "payedMoney": {
+      "done": "2567",
+      "count": "1,578,121.56"
+    },
+    "status": true,
+    "date": "2020-11-12"
+  },
+  {
+    "id": "",
+    "recordName": "电工班组8月份工资",
+    "company": "陕西三秦路桥有限公司",
+    "endDate": "2020-07",
+    "payedNum": {
+      "done": 4,
+      "count": 15
+    },
+    "payedMoney": {
+      "done": "3,2567",
+      "count": "1,578,121.56"
+    },
+    "status": true,
+    "date": "2020-11-12"
+  }
+]

@@ -1,0 +1,32 @@
+<link rel='stylesheet' href='/htmls/css/pages/bim.css'>
+<link rel='stylesheet' href='/htmls/js/luLayui/z-tree/zTreeStyle.css'>
+<style>
+  .file-box {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .file-box .layui-btn.btn-weaken {
+    width: 120px;
+  }
+
+  .file-box .desc-txt {
+    color: #a9a7a7;
+  }
+</style>
+<div class='inner-body file-manage'>
+  <div class='page-header luPageHeader'></div>
+  <div class='main'>
+    <div class='left leftDom'>
+      <div class="files-box">
+        <ul id="fileList" class="ztree"></ul>
+      </div>
+    </div>
+    <div class='right rightDom page-container'>
+      <div class="title">当前位置：<span id="treeId">全部类别</span></div>
+      <div class='select-box luSearchBox'></div>
+      <div class='content-table luTable'></div>
+    </div>
+  </div>
+</div>
+<script src="/htmls/js/pages/bim/document-manage/document-manage.js" charset="utf-8"></script>
