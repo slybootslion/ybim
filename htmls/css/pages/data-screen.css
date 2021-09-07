@@ -600,5 +600,30 @@ html, body {
 .data-screen-container .screen-content .row.row-2 .info-text .info-item {
   margin-right: 20px;
 }
+.data-screen-container .screen-content .row.row-2 .block-5 .top-data {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.data-screen-container .screen-content .row.row-2 .block-5 .top-data .top-block-item {
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+  color: #23b5df;
+}
+.data-screen-container .screen-content .row.row-2 .block-5 .top-data .top-block-item .block-num {
+  font-size: 20px;
+  font-weight: 700;
+  color: #007fff;
+}
+.data-screen-container .screen-content .row.row-2 .block-5 .bottom-data {
+  height: 200px;
+  margin-top: 5px;
+  display: flex;
+}
+.data-screen-container .screen-content .row.row-2 .block-5 .bottom-data .bottom-block-item {
+  flex: 1;
+}
 
 /*# sourceMappingURL=data-screen.css.map */

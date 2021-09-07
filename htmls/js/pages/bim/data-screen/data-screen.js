@@ -167,6 +167,21 @@ layui.use([], function () {
               </div>`
     }
 
+    block5Template(data) {
+      return `<div class='block-title'>人员班组情况</div>
+              <div class='top-data'>
+                <span class='top-block-item'>在册人数：<span class='block-num'>${data.t1}</span>人</span>
+                <span class='top-block-item'>进场人员：<span class='block-num'>${data.t2}</span>人</span>
+                <span class='top-block-item'>退场人员：<span class='block-num'>${data.t3}</span>人</span>
+                <span class='top-block-item'>共计班组：<span class='block-num'>${data.t4}</span>人</span>
+              </div>
+              <div class='bottom-data'>
+                <div class='left-block bottom-block-item'></div>
+                <div class='right-block bottom-block-item' id='chr4-3'></div>
+              </div>
+      `
+    }
+
     block6Template(data) {
       return `<div class='block-title'>设备情况</div>
               <div class='info-text'><span class='info-item'>在线设备：${data.value1}</span><span class='info-item'>离线设备：${data.value2}</span></div>
@@ -175,7 +190,7 @@ layui.use([], function () {
   }
 
   const pt = new PageTemplate()
-  let echartsObj1, echartsObj2, echartsObj3
+  let echartsObj1, echartsObj2, echartsObj3, echartsObj41, echartsObj42, echartsObj43
   !(async () => {
     renderHeader()
     renderContent()
@@ -258,8 +273,13 @@ layui.use([], function () {
     const h4 = pt.block4Template(data4)
     $('.block-4').html(h4)
     // block5
+    const data5 = {
+      t1: 2578, t2: 1895, t3: 65, t4: 15
+    }
+    const h5 = pt.block5Template(data5)
+    $('.block-5').html(h5)
     // block6
-    const date6 = {value1: 20, value2: 3}
+    const date6 = { value1: 20, value2: 3 }
     const h6 = pt.block6Template(date6)
     $('.block-6').html(h6)
     // block7
@@ -341,8 +361,8 @@ layui.use([], function () {
         right: 20,
         top: 55,
         textStyle: {
-          color: '#7bbfff'
-        }
+          color: '#7bbfff',
+        },
       },
       series: [
         {
@@ -425,6 +445,39 @@ layui.use([], function () {
     }
     echartsObj3 = echarts.init(document.querySelector('#chr3'), opts3)
     echartsObj3.setOption(opts3)
+    // chart4 group
+    const opts43 = {
+      dataset: {
+        source: [
+          ['score', 'amount', 'product'],
+          [89.3, 58212, 'Matcha Latte'],
+          [57.1, 78254, 'Milk Tea'],
+          [74.4, 41032, 'Cheese Cocoa'],
+          [50.1, 12755, 'Cheese Brownie'],
+          [89.7, 20145, 'Matcha Cocoa'],
+          [68.1, 79146, 'Tea'],
+          [19.6, 91852, 'Orange Juice'],
+          [10.6, 101852, 'Lemon Juice'],
+          [32.7, 20112, 'Walnut Brownie']
+        ]
+      },
+      grid: {containLabel: true},
+      xAxis: {name: 'amount'},
+      yAxis: {type: 'category'},
+      series: [
+        {
+          type: 'bar',
+          encode: {
+            // Map the "amount" column to X axis.
+            x: 'amount',
+            // Map the "product" column to Y axis
+            y: 'product'
+          }
+        }
+      ]
+    }
+    echartsObj43 = echarts.init(document.querySelector('#chr4-3'), opts43)
+    echartsObj43.setOption(opts43)
   }
 
   $lulib.methodProxy.bindMethodProxy([
