@@ -437,8 +437,81 @@ html, body {
             margin-top: 5px;
             display: flex;
 
+            .left-block,
             .bottom-block-item {
               flex: 1;
+            }
+
+            .left-block {
+              display: flex;
+            }
+          }
+        }
+      }
+
+      &.row-3 {
+        .block-8 {
+          .top-block {
+            width: 260px;
+            height: 30px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            border: 1px solid #0beeec;
+            border-radius: 30px;
+
+            .label {
+              width: 50%;
+              height: 100%;
+              display: flex;
+              background-color: #0beeec;
+              color: #242d3c;
+              border-top-left-radius: 30px;
+              border-bottom-left-radius: 30px;
+              align-items: center;
+              justify-content: center;
+            }
+
+            .top-data {
+              width: 50%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-size: 20px;
+
+              span {
+                color: #23b5df;
+                font-size: 14px;
+                margin-left: 10px;
+              }
+            }
+          }
+
+          .block-table {
+            .table-line,
+            .table-header {
+              color: #0beeec;
+              background-color: rgba(0, 0, 0, .6);
+              display: flex;
+              align-items: center;
+              height: 30px;
+              margin-bottom: 5px;
+            }
+
+            .table-line {
+              color: #fff;
+            }
+
+            .table-item {
+              flex: 1;
+              text-align: center;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+
+              &.red {
+                color: #ff0000;
+              }
             }
           }
         }

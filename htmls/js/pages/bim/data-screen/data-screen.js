@@ -176,7 +176,10 @@ layui.use([], function () {
                 <span class='top-block-item'>共计班组：<span class='block-num'>${data.t4}</span>人</span>
               </div>
               <div class='bottom-data'>
-                <div class='left-block bottom-block-item'></div>
+                <div class='left-block'>
+                  <div class='bottom-block-item' id='chr4-1'></div>
+                  <div class='bottom-block-item' id='chr4-2'></div>
+                </div>
                 <div class='right-block bottom-block-item' id='chr4-3'></div>
               </div>
       `
@@ -186,6 +189,40 @@ layui.use([], function () {
       return `<div class='block-title'>设备情况</div>
               <div class='info-text'><span class='info-item'>在线设备：${data.value1}</span><span class='info-item'>离线设备：${data.value2}</span></div>
               <div id='chr2' style='height: 230px'></div>`
+    }
+
+    block8Template(data) {
+      let h = ''
+      for (let i = 0; i < data.list.length; i++) {
+        const item = data.list[i]
+        h += `<div class='table-line'>
+                  <div class='table-item'>${item.i1}</div>
+                  <div class='table-item'>${item.i2}</div>
+                  <div class='table-item'>${item.i3}</div>
+                  <div class='table-item'>${item.i4}</div>
+                  <div class='table-item red'>${item.i5}</div>
+                  <div class='table-item'>${item.i6}</div>
+              </div>`
+      }
+      // <div class='table-line'></div>
+      return `<div class='block-title'>物料库存预警</div>
+              <div class='top-block'><div class='label'>当前库存种类：</div><div class='top-data'>${data.topData}<span>种</span></div></div>
+              <div class='block-table'>
+                <div class='table-header'>
+                  <div class='table-item'>货品名称</div>
+                  <div class='table-item'>规格型号</div>
+                  <div class='table-item'>当前库存</div>
+                  <div class='table-item'>单位</div>
+                  <div class='table-item'>超储或短缺</div>
+                  <div class='table-item'>更新时间</div>
+                </div>
+                ${h}
+              </div>
+`
+    }
+
+    block9Template(data) {
+      return `<div class='block-title'>视频监控</div>`
     }
   }
 
@@ -288,6 +325,21 @@ layui.use([], function () {
     // block7
     $('.block-7').html(`<div class='block-title'>质量情况</div><div id='chr3' style='height: 240px'></div>`)
     await renderECharts()
+    // block8
+    const data8 = {
+      topData: 256,
+      list: [
+        { i1: 'SDF安全阀', i2: 'SDF', i3: 56, i4: '个', i5: '-398', i6: '2021/02/13' },
+        { i1: 'SDF安全阀', i2: 'SDF', i3: 56, i4: '个', i5: '+25', i6: '2021/02/13' },
+        { i1: 'SDF安全阀', i2: 'SDF', i3: 56, i4: '个', i5: '-398', i6: '2021/02/13' },
+        { i1: 'SDF安全阀', i2: 'SDF', i3: 56, i4: '个', i5: '+25', i6: '2021/02/13' },
+      ],
+    }
+    const h8 = pt.block8Template(data8)
+    $('.block-8').html(h8)
+    const data9 = {}
+    const h9 = pt.block9Template(data9)
+    $('.block-9').html(h9)
   }
 
   async function renderECharts() {
@@ -366,7 +418,7 @@ layui.use([], function () {
           name: '设备管理',
           type: 'pie',
           radius: ['60%', '86%'],
-          center: ['30%', '55%'],
+          center: ['30%', '50%'],
           avoidLabelOverlap: false,
           label: {
             show: true,
@@ -443,6 +495,88 @@ layui.use([], function () {
     echartsObj3 = echarts.init(document.querySelector('#chr3'), opts3)
     echartsObj3.setOption(opts3)
     // chart4 group
+    const opts41 = {
+      tooltip: {
+        trigger: 'item',
+      },
+      legend: {
+        orient: 'vertical',
+        bottom: 0,
+        textStyle: {
+          color: '#7bbfff',
+        },
+      },
+      series: [
+        {
+          type: 'pie',
+          radius: ['58%', '66%'],
+          center: ['50%', '30%'],
+          avoidLabelOverlap: false,
+          label: {
+            show: true,
+            position: 'center',
+            formatter: '{a|年龄}',
+            rich: {
+              a: { fontSize: 24, color: '#fff' },
+            },
+          },
+          labelLine: {
+            show: false,
+          },
+          data: [
+            { value: 99, name: '20-40岁' },
+            { value: 40, name: '40-60岁' },
+            { value: 2, name: '60岁以上' },
+          ],
+          itemStyle: {
+            color(params) {
+              return ['#47ceff', '#bcffae', '#E9AC19'][params.dataIndex]
+            },
+          },
+        },
+      ],
+    }
+    const opts42 = {
+      tooltip: {
+        trigger: 'item',
+      },
+      legend: {
+        orient: 'vertical',
+        bottom: 0,
+        textStyle: {
+          color: '#7bbfff',
+        },
+      },
+      series: [
+        {
+          type: 'pie',
+          radius: ['58%', '66%'],
+          center: ['50%', '30%'],
+          avoidLabelOverlap: false,
+          label: {
+            show: true,
+            position: 'center',
+            formatter: '{a|学历}',
+            rich: {
+              a: { fontSize: 24, color: '#fff' },
+            },
+          },
+          labelLine: {
+            show: false,
+          },
+          data: [
+            { value: 33, name: '高中及以下' },
+            { value: 44, name: '大专' },
+            { value: 22, name: '本科及以上' },
+          ],
+          itemStyle: {
+            color(params) {
+              return ['#47ceff', '#bcffae', '#E9AC19'][params.dataIndex]
+            },
+          },
+        },
+      ],
+    }
     const opts43 = {
       grid: {
         right: 5,
@@ -474,12 +608,16 @@ layui.use([], function () {
           },
           label: {
             show: true,
-            position: 'inside'
+            position: 'inside',
           },
         },
       ],
     }
+    echartsObj41 = echarts.init(document.querySelector('#chr4-1'), opts41)
+    echartsObj42 = echarts.init(document.querySelector('#chr4-2'), opts42)
     echartsObj43 = echarts.init(document.querySelector('#chr4-3'), opts43)
+    echartsObj41.setOption(opts41)
+    echartsObj42.setOption(opts42)
     echartsObj43.setOption(opts43)
   }
 
