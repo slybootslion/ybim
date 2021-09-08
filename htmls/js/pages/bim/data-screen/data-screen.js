@@ -193,7 +193,7 @@ layui.use([], function () {
   let echartsObj1, echartsObj2, echartsObj3, echartsObj41, echartsObj42, echartsObj43
   !(async () => {
     renderHeader()
-    renderContent()
+    await renderContent()
   })()
 
   const setTimer = () => {
@@ -274,7 +274,10 @@ layui.use([], function () {
     $('.block-4').html(h4)
     // block5
     const data5 = {
-      t1: 2578, t2: 1895, t3: 65, t4: 15
+      t1: 2578,
+      t2: 1895,
+      t3: 65,
+      t4: 15,
     }
     const h5 = pt.block5Template(data5)
     $('.block-5').html(h5)
@@ -321,23 +324,17 @@ layui.use([], function () {
             {
               value: 35,
               name: '正常完工',
-              label: {
-                color: '#1BE9C3',
-              },
+              label: { color: '#1BE9C3' },
             },
             {
               value: 45,
               name: '提前完工',
-              label: {
-                color: '#52FF8F',
-              },
+              label: { color: '#52FF8F' },
             },
             {
               value: 25,
               name: '延期完工',
-              label: {
-                color: '#E9AC19',
-              },
+              label: { color: '#E9AC19' },
             },
           ],
           itemStyle: {
@@ -447,34 +444,40 @@ layui.use([], function () {
     echartsObj3.setOption(opts3)
     // chart4 group
     const opts43 = {
-      dataset: {
-        source: [
-          ['score', 'amount', 'product'],
-          [89.3, 58212, 'Matcha Latte'],
-          [57.1, 78254, 'Milk Tea'],
-          [74.4, 41032, 'Cheese Cocoa'],
-          [50.1, 12755, 'Cheese Brownie'],
-          [89.7, 20145, 'Matcha Cocoa'],
-          [68.1, 79146, 'Tea'],
-          [19.6, 91852, 'Orange Juice'],
-          [10.6, 101852, 'Lemon Juice'],
-          [32.7, 20112, 'Walnut Brownie']
-        ]
+      grid: {
+        right: 5,
+        top: 10,
+        height: 200,
+        containLabel: true,
       },
-      grid: {containLabel: true},
-      xAxis: {name: 'amount'},
-      yAxis: {type: 'category'},
+      // color: ['#ff0000','#ff9018','#ffa54f','#0beeec'],
+      xAxis: {
+        show: false,
+      },
+      yAxis: {
+        type: 'category',
+        splitLine: { show: false },
+        axisLine: { show: false },
+        axisTick: { show: false },
+        axisLabel: { color: '#23b5df' },
+        // data: ['土工班组', '混凝土班组', '设备班组', '瓦工班组', '木工班组', '电工班组', '其他班组'],
+        data: ['其他班组', '电工班组', '木工班组', '瓦工班组', '设备班组', '混凝土班组', '土工班组'],
+      },
       series: [
         {
           type: 'bar',
-          encode: {
-            // Map the "amount" column to X axis.
-            x: 'amount',
-            // Map the "product" column to Y axis
-            y: 'product'
-          }
-        }
-      ]
+          barWidth: 15,
+          // data: [1546, 569, 369, 263, 236, 156, 56],
+          data: [56, 156, 236, 263, 369, 569, 1546],
+          itemStyle: {
+            color: params => ['#0beeec', '#0beeec', '#0beeec', '#0beeec', '#ffb56d', '#ff9018', '#ff0000'][params.dataIndex],
+          },
+          label: {
+            show: true,
+            position: 'inside'
+          },
+        },
+      ],
     }
     echartsObj43 = echarts.init(document.querySelector('#chr4-3'), opts43)
     echartsObj43.setOption(opts43)
