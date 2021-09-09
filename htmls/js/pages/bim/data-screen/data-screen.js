@@ -241,14 +241,6 @@ layui.use([], function () {
     }
   }
 
-  $lulib.methodProxy.bindMethodProxy([
-    { dom: 'body', domStr: '.video-item .mask', method: submit }
-  ])
-
-  function submit(e) {
-    console.log($(this))
-  }
-
   const pt = new PageTemplate()
   let echartsObj1, echartsObj2, echartsObj3, echartsObj41, echartsObj42, echartsObj43
   !(async () => {
@@ -653,10 +645,7 @@ layui.use([], function () {
   }
 
   $lulib.methodProxy.bindMethodProxy([
-    {
-      dom: 'body',
-      domStr: '.head-link',
-      method: () => $lulib.pageReplace('/htmls'),
-    },
+    { dom: 'body', domStr: '.head-link', method: () => $lulib.pageReplace('/htmls') },
+    { dom: 'body', domStr: '.video-item .mask', method: () => $lulib.pageReplace('/htmls/#/bim/safety-manage/video-surveillance') },
   ])
 })
