@@ -222,8 +222,31 @@ layui.use([], function () {
     }
 
     block9Template(data) {
-      return `<div class='block-title'>视频监控</div>`
+      let h = ''
+      for (let i = 0; i < data.list.length; i++) {
+        const item = data.list[i]
+        h += `<div class='video-item'>
+                <div class='img-box'>
+                  <img src='${item.pic}' alt=''>
+                  <div class='mask'><span class='iconfont icon-bofang3'></span></div>
+                </div>
+                <span class='video-item-text'>${item.title}</span>  
+              </div>`
+      }
+      return `<div class='block-title'>视频监控</div>
+              <div class='video-box'>
+                ${h}
+              </div>
+      `
     }
+  }
+
+  $lulib.methodProxy.bindMethodProxy([
+    { dom: 'body', domStr: '.video-item .mask', method: submit }
+  ])
+
+  function submit(e) {
+    console.log($(this))
   }
 
   const pt = new PageTemplate()
@@ -337,13 +360,21 @@ layui.use([], function () {
     }
     const h8 = pt.block8Template(data8)
     $('.block-8').html(h8)
-    const data9 = {}
+    // block9
+    const data9 = {
+      list: [
+        { title: 'A区域门口视频监控', pic: 'http://www.maxfort.net.cn/uploadfile/2015/1229/20151229165250.jpg' },
+        { title: 'A区域门口视频监控', pic: 'http://www.maxfort.net.cn/uploadfile/2015/1229/20151229165250.jpg' },
+        { title: 'A区域门口视频监控', pic: 'http://www.maxfort.net.cn/uploadfile/2015/1229/20151229165250.jpg' },
+        { title: 'A区域门口视频监控', pic: 'http://www.maxfort.net.cn/uploadfile/2015/1229/20151229165250.jpg' },
+      ],
+    }
     const h9 = pt.block9Template(data9)
     $('.block-9').html(h9)
   }
 
   async function renderECharts() {
-    // chart1
+    // chart1 进度情况
     const opts1 = {
       series: [
         {
@@ -400,7 +431,7 @@ layui.use([], function () {
     }
     echartsObj1 = echarts.init(document.querySelector('#chr1'), opts1)
     echartsObj1.setOption(opts1)
-    // chart2
+    // chart2 设备情况
     const opts2 = {
       tooltip: {
         trigger: 'item',
@@ -450,7 +481,7 @@ layui.use([], function () {
     }
     echartsObj2 = echarts.init(document.querySelector('#chr2'), opts2)
     echartsObj2.setOption(opts2)
-    // chart3
+    // chart3 质量情况
     const opts3 = {
       tooltip: {
         trigger: 'axis',
@@ -494,7 +525,7 @@ layui.use([], function () {
     }
     echartsObj3 = echarts.init(document.querySelector('#chr3'), opts3)
     echartsObj3.setOption(opts3)
-    // chart4 group
+    // chart4 group 人员班组
     const opts41 = {
       tooltip: {
         trigger: 'item',
