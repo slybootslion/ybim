@@ -99,7 +99,7 @@
             <div class="nav-item">行业资讯</div>
             <div class="nav-item">通知公告</div>
           </div>
-          <div class="news-nav-right">MORE</div>
+          <div class="tag-more">MORE</div>
         </div>
         <div class="news-content">
           <div class="left newsPicBox">
@@ -108,7 +108,22 @@
           <ul class="right newsListBox"></ul>
         </div>
       </div>
-      <div class="top-group-right"></div>
+      <div class="top-group-right">
+        <div class="video-title">
+          <div class="title">视频中心/<span>Video Center</span></div>
+          <div class="tag-more">MORE</div>
+        </div>
+        <div class="videobox-new">
+          <video class="video-js vjs-default-skin"
+                 controls preload="none"
+                 poster="./images/1541033907.jpg"
+                 data-setup='{}'
+                 src="http://www.baijiagroup.com/upload/video/20181101/e94b7edad81ec429cd49c6acfa2aed43.mp4"
+                 width="425"
+                 height="268">
+          </video>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -132,7 +147,7 @@ $(function () {
     'autoPlay': true,
     'autoPage': true,
     'trigger': 'click'
-  });
+  })
 
   let newsList, current
   const newListMethods = (index = 0) => {
@@ -256,7 +271,7 @@ $(function () {
     const index = $(this).index()
     $(this).addClass('active').siblings('.nav-item').removeClass('active')
     newListMethods(index)
-  });
+  })
 
   $('.newsListBox').on('mouseenter', '.news-item a', function () {
     const c = $(this).parents('.news-item')
@@ -264,9 +279,9 @@ $(function () {
     c.siblings('.news-item').removeClass('active')
     const picture = current[index].picture
     $('.newsPicBox img').attr({ src: picture })
-  });
+  })
 
-});
+})
 </script>
 </body>
 </html>
