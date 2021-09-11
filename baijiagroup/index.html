@@ -75,7 +75,8 @@
           <a href="javascript:void(0)">我司总裁应邀出席在京召开的2019世界交通运输大会 【2019-06-17】<span class="more">了解更多 ></span></a>
         </li>
         <li>
-          <a href="javascript:void(0)">深度合作 携手出海 ——柏嘉交科与中设股份、西安建工就国际工程项目 签署合作备忘录 【2019-06-06】<span class="more">了解更多 ></span></a>
+          <a href="javascript:void(0)">深度合作 携手出海 ——柏嘉交科与中设股份、西安建工就国际工程项目 签署合作备忘录 【2019-06-06】<span
+              class="more">了解更多 ></span></a>
         </li>
         <li>
           <a href="javascript:void(0)">柏嘉交科与中设股份建立战略合作伙伴关系 【2019-06-06】<span class="more">了解更多 ></span></a>
@@ -87,11 +88,35 @@
     </div>
   </div>
 </div>
+<div class="container">
+  <div class="wrap">
+    <div class="top-group">
+      <div class="top-group-left">
+        <div class="news-nav">
+          <div class="news-nav-left">
+            <div class="nav-item active">所有新闻</div>
+            <div class="nav-item">企业要闻</div>
+            <div class="nav-item">行业资讯</div>
+            <div class="nav-item">通知公告</div>
+          </div>
+          <div class="news-nav-right">MORE</div>
+        </div>
+        <div class="news-content">
+          <div class="left newsPicBox">
+            <img src="http://www.baijiagroup.com/upload/images/20210622/20210622915651.jpg" alt="">
+          </div>
+          <ul class="right newsListBox"></ul>
+        </div>
+      </div>
+      <div class="top-group-right"></div>
+    </div>
+  </div>
+</div>
 <script src="./js/jquery.min.js" charset="utf-8"></script>
 <script src="./js/jquery.SuperSlide.2.1.1.js" charset="utf-8"></script>
 <script src="./js/video.js" charset="utf-8"></script>
 <script type="text/javascript">
-$(function ($) {
+$(function () {
   $('#lubo').slide({
     'titCell': '.cir_box li',
     'mainCell': '.lubo_box ul',
@@ -108,6 +133,139 @@ $(function ($) {
     'autoPage': true,
     'trigger': 'click'
   });
+
+  let newsList, current
+  const newListMethods = (index = 0) => {
+    // mock
+    newsList = [
+      [
+        {
+          picture: 'http://www.baijiagroup.com/upload/images/20210622/20210622915651.jpg',
+          txt: '我司总裁应邀出席在京召开的2019世界交通运输大会【2019-06-17】'
+        },
+        {
+          picture: 'http://www.baijiagroup.com/upload/images/20201215/20201215298785.jpg',
+          txt: '深度合作 携手出海 ——柏嘉交科与中设股份、西安建工就国...【2019-06-06】'
+        },
+        {
+          picture: 'http://www.baijiagroup.com/upload/images/20201201/20201201576164.jpg',
+          txt: '柏嘉交科与中设股份建立战略合作伙伴关系【2019-06-06】'
+        },
+        {
+          picture: 'http://www.baijiagroup.com/upload/images/20201117/20201117876643.jpeg',
+          txt: '企学界共议“数字经济人才培养” 助力西安...【2019-05-30】'
+        },
+        {
+          picture: 'http://www.baijiagroup.com/upload/images/20201027/20201027286070.jpg',
+          txt: '合安高铁全线最大连续梁拱桥成功合龙 2020年建成通车【2019-04-20】'
+        },
+        {
+          picture: 'http://www.baijiagroup.com/upload/images/20201027/20201027258840.png',
+          txt: '聚力创新 迎战2019 柏嘉集团举行年度动员大会暨工作目标...【2019-02-26】'
+        },
+      ],
+      [
+        {
+          picture: 'http://www.baijiagroup.com/upload/images/20201201/20201201576164.jpg',
+          txt: '柏嘉交科与中设股份建立战略合作伙伴关系【2019-06-06】'
+        },
+        {
+          picture: 'http://www.baijiagroup.com/upload/images/20201117/20201117876643.jpeg',
+          txt: '企学界共议“数字经济人才培养” 助力西安...【2019-05-30】'
+        },
+        {
+          picture: 'http://www.baijiagroup.com/upload/images/20210622/20210622915651.jpg',
+          txt: '我司总裁应邀出席在京召开的2019世界交通运输大会【2019-06-17】'
+        },
+        {
+          picture: 'http://www.baijiagroup.com/upload/images/20201215/20201215298785.jpg',
+          txt: '深度合作 携手出海 ——柏嘉交科与中设股份、西安建工就国...【2019-06-06】'
+        },
+        {
+          picture: 'http://www.baijiagroup.com/upload/images/20201027/20201027286070.jpg',
+          txt: '合安高铁全线最大连续梁拱桥成功合龙 2020年建成通车【2019-04-20】'
+        },
+        {
+          picture: 'http://www.baijiagroup.com/upload/images/20201027/20201027258840.png',
+          txt: '聚力创新 迎战2019 柏嘉集团举行年度动员大会暨工作目标...【2019-02-26】'
+        },
+      ],
+      [
+        {
+          picture: 'http://www.baijiagroup.com/upload/images/20210622/20210622915651.jpg',
+          txt: '合安高铁全线最大连续梁拱桥成功合龙 2020年建成通车【2019-04-20】'
+        },
+        {
+          picture: 'http://www.baijiagroup.com/upload/images/20201215/20201215298785.jpg',
+          txt: '全国将建2442公里红色旅游公路【2017-08-18】'
+        },
+        {
+          picture: 'http://www.baijiagroup.com/upload/images/20201201/20201201576164.jpg',
+          txt: '我国PPP市场达16.4万亿 市政交通环保项目占六成【2017-08-11】'
+        },
+        {
+          picture: 'http://www.baijiagroup.com/upload/images/20201117/20201117876643.jpeg',
+          txt: '中国高铁首座钢管混凝土转体拱桥主体建成【2017-08-05】'
+        },
+        {
+          picture: 'http://www.baijiagroup.com/upload/images/20201027/20201027286070.jpg',
+          txt: '合安高铁全线最大连续梁拱桥成功合龙 2020年建成通车【2019-04-20】'
+        },
+        {
+          picture: 'http://www.baijiagroup.com/upload/images/20201027/20201027258840.png',
+          txt: '中国铁建中国中铁多项工程偷工减料 遭国铁局处罚【2017-07-28】'
+        },
+      ],
+      [
+        {
+          picture: 'http://www.baijiagroup.com/upload/images/20210622/20210622915651.jpg',
+          txt: '【土木极客】杂志正式上线【2016-09-29】'
+        },
+        {
+          picture: 'http://www.baijiagroup.com/upload/images/20201215/20201215298785.jpg',
+          txt: '柏嘉集团官网全新改版上线公告【2016-08-03】'
+        },
+      ]
+    ]
+    let h = ''
+    const list = newsList[index]
+    for (let i = 0; i < list.length; i++) {
+      if (i === 0) {
+        h += `<li class="news-item active txt-overflow">
+              <a href="javascript:void(0)">
+                <span class="dian"></span>
+                <span>${list[i].txt}</span>
+              </a>
+            </li>`
+      } else {
+        h += `<li class="news-item txt-overflow">
+              <a href="javascript:void(0)">
+                <span class="dian"></span>
+                <span>${list[i].txt}</span>
+              </a>
+            </li>`
+      }
+    }
+    current = newsList[index]
+    $(".newsPicBox img").attr({ src: list[0].picture })
+    $(".newsListBox").html(h)
+  }
+  newListMethods()
+
+  $('.news-nav-left .nav-item').on('click', function () {
+    const index = $(this).index()
+    $(this).addClass('active').siblings('.nav-item').removeClass('active')
+    newListMethods(index)
+  });
+
+  $('.newsListBox').on('mouseenter', '.news-item a', function () {
+    const c = $(this).parents('.news-item')
+    const index = c.addClass('active').index()
+    c.siblings('.news-item').removeClass('active')
+    const picture = current[index].picture
+    $('.newsPicBox img').attr({ src: picture })
+  });
+
 });
 </script>
 </body>
