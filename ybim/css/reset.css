@@ -1,0 +1,476 @@
+/*reset*/
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+li,
+ol,
+dl,
+dt,
+dd,
+a,
+i,
+em,
+b,
+strong,
+img,
+input,
+button,
+div,
+footer,
+nav,
+header {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+}
+
+i,
+em {
+  font-style: normal;
+}
+
+b,
+strong {
+  font-weight: normal;
+}
+
+input {
+  border: none;
+  background: none;
+  outline: none;
+}
+
+img,
+select,
+input {
+  vertical-align: middle;
+  border: none;
+}
+
+textarea {
+  outline: none;
+  resize: none;
+}
+
+img {
+  display: block;
+  border: none;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+/*————public————*/
+
+html {
+  height: 100%;
+}
+
+body {
+  font: 16px/1.5 Helvetica Neue, Helvetica, Arial, Microsoft Yahei, Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
+  font-family: 'Source Sans Pro', "Microsoft YaHei";
+  color: #333;
+  line-height: 150%;
+  min-height: 100%;
+}
+
+@media only screen and (min-width: 1366px) {
+  .wrap {
+    width: 1580px;
+    margin: 0 auto;
+    min-width: 1580px;
+  }
+}
+
+@media only screen and (max-width: 1366px) {
+  .wrap {
+    width: 1280px;
+    margin: 0 auto;
+    min-width: 1280px;
+  }
+}
+
+.wrap_relative {
+  width: 1200px;
+  min-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/*清除浮动*/
+.clearFix:after {
+  content: '';
+  clear: both;
+  display: block;
+}
+
+.clearFix {
+  zoom: 1;
+}
+
+/*左右浮动*/
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+/*默认a标签颜色*/
+a {
+  color: #666;
+}
+
+/*默认字体,文字颜色, 背景颜色*/
+/*————居中————*/
+
+.centerX {
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+}
+
+.centerY {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.centerXY {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/*文本框默认文字颜色或字体*/
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: #c0c0c0;
+}
+
+input:-moz-placeholder, textarea:-moz-placeholder {
+  color: #c0c0c0;
+}
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+  color: #c0c0c0;
+}
+
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+  color: #c0c0c0;
+}
+
+/*
+---自定义滚动条---
+::-webkit-scrollbar{width:9px;background-color:#333}
+::-webkit-scrollbar-thumb{border:solid 2px #333;width:5px;border-radius:4px;background-color:#fc6}
+::-webkit-scrollbar-thumb:hover{background-color:#ff9}
+::-webkit-scrollbar-corner{background-color:#333}
+::-webkit-scrollbar:horizontal{height:9px}
+ 没有滚动条依旧可以滚动，仅限webkit内核
+::-webkit-scrollbar {display:none}
+ html{overflow-x:hidden;overflow-y:auto;}
+*/
+
+/*修饰溢出滚动条*/
+.scrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/*定义滚动条的轨道，内阴影及圆角*/
+.scrollbar::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(200, 0, 0, 0.3);
+  border-radius: 0;
+  background-color: #002f43;
+}
+
+/*定义滑块，内阴影及圆角*/
+.scrollbar::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(200, 0, 0, 0.3);
+  background-color: #4d4d4d;
+}
+
+/*c3动画*/
+@keyframes up-and-down {
+  from {
+    transform: translate(0, 0)
+  }
+  to {
+    transform: translate(0, 12px)
+  }
+}
+
+@keyframes progressbar {
+  from {
+    width: 0
+  }
+  to {
+    width: 100%
+  }
+}
+
+/* 文字溢出隐藏 */
+.txt-overflow {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/*1px边框*/
+.border,
+.border-top,
+.border-right,
+.border-bottom,
+.border-left,
+.border-topbottom,
+.border-rightleft,
+.border-topleft,
+.border-rightbottom,
+.border-topright,
+.border-bottomleft {
+  position: relative;
+}
+
+.border::before,
+.border-top::before,
+.border-right::before,
+.border-bottom::before,
+.border-left::before,
+.border-topbottom::before,
+.border-topbottom::after,
+.border-rightleft::before,
+.border-rightleft::after,
+.border-topleft::before,
+.border-topleft::after,
+.border-rightbottom::before,
+.border-rightbottom::after,
+.border-topright::before,
+.border-topright::after,
+.border-bottomleft::before,
+.border-bottomleft::after {
+  content: "\0020";
+  overflow: hidden;
+  position: absolute;
+  z-index: 1;
+}
+
+/* border
+ * 因，边框是由伪元素区域遮盖在父级
+ * 故，子级若有交互，需要对子级设置
+ * 定位 及 z轴
+ */
+.border::before {
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border: 1px solid #9fd0eb;
+  transform-origin: 0 0;
+}
+
+.border-top::before,
+.border-bottom::before,
+.border-topbottom::before,
+.border-topbottom::after,
+.border-topleft::before,
+.border-rightbottom::after,
+.border-topright::before,
+.border-bottomleft::before {
+  left: 0;
+  width: 100%;
+  height: 1px;
+}
+
+.border-right::before,
+.border-left::before,
+.border-rightleft::before,
+.border-rightleft::after,
+.border-topleft::after,
+.border-rightbottom::before,
+.border-topright::after,
+.border-bottomleft::after {
+  top: 0;
+  width: 1px;
+  height: 100%;
+}
+
+.border-top::before,
+.border-topbottom::before,
+.border-topleft::before,
+.border-topright::before {
+  border-top: 1px solid #9fd0eb;
+  transform-origin: 0 0;
+}
+
+.border-right::before,
+.border-rightbottom::before,
+.border-rightleft::before,
+.border-topright::after {
+  border-right: 1px solid #9fd0eb;
+  transform-origin: 100% 0;
+}
+
+.border-bottom::before,
+.border-topbottom::after,
+.border-rightbottom::after,
+.border-bottomleft::before {
+  border-bottom: 1px solid #9fd0eb;
+  transform-origin: 0 100%;
+}
+
+.border-left::before,
+.border-topleft::after,
+.border-rightleft::after,
+.border-bottomleft::after {
+  border-left: 1px solid #9fd0eb;
+  transform-origin: 0 0;
+}
+
+.border-top::before,
+.border-topbottom::before,
+.border-topleft::before,
+.border-topright::before {
+  top: 0;
+}
+
+.border-right::before,
+.border-rightleft::after,
+.border-rightbottom::before,
+.border-topright::after {
+  right: 0;
+}
+
+.border-bottom::before,
+.border-topbottom::after,
+.border-rightbottom::after,
+.border-bottomleft::after {
+  bottom: 0;
+}
+
+.border-left::before,
+.border-rightleft::before,
+.border-topleft::after,
+.border-bottomleft::before {
+  left: 0;
+}
+
+
+/*
+字体图标
+*/
+@font-face {
+  font-family: "iconfont"; /* Project id 1292865 */
+  src: url('iconfont.woff?t=1631262336051') format('woff');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-gonggao:before {
+  content: "\e606";
+}
+
+.icon-zhiliang:before {
+  content: "\e7bd";
+}
+
+.icon-guanli:before {
+  content: "\e69b";
+}
+
+.icon-yuanjing:before {
+  content: "\e645";
+}
+
+.icon-fuwu:before {
+  content: "\e876";
+}
+
+.icon-jingyinglinian:before {
+  content: "\e8aa";
+}
+
+.icon-gongsilinian:before {
+  content: "\e655";
+}
+
+.icon-qiyeshiming:before {
+  content: "\e6da";
+}
+
+.icon-rencai-moren:before {
+  content: "\e631";
+}
+
+.icon-xiangmuguanli1:before {
+  content: "\e605";
+}
+
+.icon-touzi:before {
+  content: "\e604";
+}
+
+.icon-jianli:before {
+  content: "\e613";
+}
+
+.icon-touzi-copy:before {
+  content: "\e600";
+}
+
+.icon-gongchengkancha:before {
+  content: "\e601";
+}
+
+.icon-gongchengsheji:before {
+  content: "\e602";
+}
+
+.icon-xiangmuguanli:before {
+  content: "\e61f";
+}
+
+.icon-chengxiangguihua:before {
+  content: "\e6a2";
+}
+
+.icon-gongchengzixun:before {
+  content: "\e611";
+}
+
+.icon-jianshexuke_jianzheng:before {
+  content: "\e603";
+}
