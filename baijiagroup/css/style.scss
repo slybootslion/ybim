@@ -94,6 +94,21 @@ $moreColor: #9a9a9a;
   }
 }
 
+.common-footer {
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 30px 0;
+  font-size: 14px;
+
+  .line {
+    span {
+      margin: 0 10px;
+    }
+  }
+}
 
 .index-page {
   /* banner */
@@ -368,8 +383,125 @@ $moreColor: #9a9a9a;
       }
 
       .videobox-new {
-        width: 425px;
+        height: 268px;
         margin: 20px auto 0;
+      }
+
+      .video-js {
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+
+    .scene-1 {
+      margin: 30px 0 60px;
+
+      .scene-title {
+        text-align: center;
+        margin-bottom: 30px;
+
+        h3 {
+          font-size: 24px;
+          font-weight: 700;
+        }
+
+        .eng {
+          margin-top: 5px;
+          font-style: italic;
+          color: $primaryColor;
+          font-weight: 700;
+        }
+      }
+
+      .content-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .content-item {
+          width: 23%;
+          border: 1px solid $primaryColor;
+          padding: 5px;
+          box-sizing: content-box;
+          cursor: pointer;
+
+          &:hover {
+            color: #ffffff;
+            background-color: $primaryColor;
+
+            .content-item-title {
+              .eng {
+                color: #ffffff;
+              }
+            }
+
+            .icon-box {
+              .iconfont {
+                color: #ffffff;
+              }
+            }
+          }
+
+          .content-item-title {
+            margin-top: 18px;
+            text-align: center;
+            .eng {
+              color: $moreColor;
+              font-size: 14px;
+              line-height: 1;
+            }
+            h4 {
+              font-size: 20px;
+            }
+          }
+
+          .icon-box {
+            margin: 50px 0;
+            text-align: center;
+
+            .iconfont {
+              font-size: 56px;
+              color: $primaryColor;
+            }
+          }
+
+          img {
+            width: 100%;
+            height: 200px;
+          }
+        }
+      }
+    }
+
+    .scene-2 {
+      height: 260px;
+      color: #ffffff;
+      background-image: url('../images/index-s4-1.png');
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      overflow: hidden;
+
+      .scene-title {
+        text-align: center;
+        margin: 30px 0;
+
+        h3 {
+          font-size: 24px;
+          font-weight: 700;
+        }
+
+        .eng {
+          margin-top: 5px;
+          font-style: italic;
+          font-weight: 700;
+        }
+      }
+
+      .slogan {
+        font-size: 36px;
+        text-align: center;
+        margin-top: 50px;
       }
     }
   }

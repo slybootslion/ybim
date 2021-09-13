@@ -118,15 +118,80 @@
                  controls preload="none"
                  poster="./images/1541033907.jpg"
                  data-setup='{}'
-                 src="http://www.baijiagroup.com/upload/video/20181101/e94b7edad81ec429cd49c6acfa2aed43.mp4"
-                 width="425"
-                 height="268">
+                 src="http://www.baijiagroup.com/upload/video/20181101/e94b7edad81ec429cd49c6acfa2aed43.mp4">
           </video>
         </div>
       </div>
     </div>
+    <div class="scene-1">
+      <div class="scene-title">
+        <h3>主营业务</h3>
+        <div class="eng">Main business</div>
+      </div>
+      <div class="content-box">
+        <div class="content-item">
+          <div class="content-item-title">
+            <div class="eng">Survey and design consultation</div>
+            <h4>勘察设计咨询</h4>
+          </div>
+          <div class="icon-box">
+            <span class="iconfont icon-gongchengzixun"></span>
+          </div>
+          <img src="./images/1541033907.jpg" alt="">
+        </div>
+        <div class="content-item">
+          <div class="content-item-title">
+            <div class="eng">Intelligent operation service</div>
+            <h4>智慧运营服务</h4>
+          </div>
+          <div class="icon-box">
+            <span class="iconfont icon-touzi"></span>
+          </div>
+          <img src="./images/1541033907.jpg" alt="">
+        </div>
+        <div class="content-item">
+          <div class="content-item-title">
+            <div class="eng">Intelligent material equipment</div>
+            <h4>智能材料装备</h4>
+          </div>
+          <div class="icon-box">
+            <span class="iconfont icon-xiangmuguanli1"></span>
+          </div>
+          <img src="./images/1541033907.jpg" alt="">
+        </div>
+        <div class="content-item">
+          <div class="content-item-title">
+            <div class="eng">Intelligent construction</div>
+            <h4>投资施工建造</h4>
+          </div>
+          <div class="icon-box">
+            <span class="iconfont icon-jianshexuke_jianzheng"></span>
+          </div>
+          <img src="./images/1541033907.jpg" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="scene-2">
+      <div class="scene-title">
+        <h3>企业愿景</h3>
+        <div class="eng">Enterprise vision</div>
+      </div>
+      <div class="slogan">让道路更通畅、让城镇更宜居、让生活更美好</div>
+    </div>
   </div>
 </div>
+<footer class="common-footer">
+  <div class="line">
+    <span>运营管理：柏嘉交科企划宣传部</span>
+    <span>技术开发：柏嘉交科智慧事业部</span>
+  </div>
+  <div class="line">
+    <span>版权所有：柏嘉交通科技集团有限公司（2014-2019）</span>
+  </div>
+  <div class="line">
+    <a href="javascript:void(0)">备案号：陕ICP15002980号-1</a>
+  </div>
+</footer>
 <script src="./js/jquery.min.js" charset="utf-8"></script>
 <script src="./js/jquery.SuperSlide.2.1.1.js" charset="utf-8"></script>
 <script src="./js/video.js" charset="utf-8"></script>
@@ -280,6 +345,7 @@ $(function () {
     const picture = current[index].picture
     $('.newsPicBox img').attr({ src: picture })
   })
+  $("div.video-js").css({ width: '100%', height: '100%' })
 
 })
 </script>

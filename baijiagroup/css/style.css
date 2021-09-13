@@ -79,6 +79,19 @@
   margin: 5px 0 0 10px;
 }
 
+.common-footer {
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 30px 0;
+  font-size: 14px;
+}
+.common-footer .line span {
+  margin: 0 10px;
+}
+
 .index-page {
   /* banner */
   /* 滚动新闻 */
@@ -315,8 +328,102 @@
   font-size: 12px;
 }
 .index-page .container .top-group .videobox-new {
-  width: 425px;
+  height: 268px;
   margin: 20px auto 0;
+}
+.index-page .container .top-group .video-js {
+  width: 100% !important;
+  height: 100% !important;
+}
+.index-page .container .scene-1 {
+  margin: 30px 0 60px;
+}
+.index-page .container .scene-1 .scene-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.index-page .container .scene-1 .scene-title h3 {
+  font-size: 24px;
+  font-weight: 700;
+}
+.index-page .container .scene-1 .scene-title .eng {
+  margin-top: 5px;
+  font-style: italic;
+  color: #3477c8;
+  font-weight: 700;
+}
+.index-page .container .scene-1 .content-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.index-page .container .scene-1 .content-box .content-item {
+  width: 23%;
+  border: 1px solid #3477c8;
+  padding: 5px;
+  box-sizing: content-box;
+  cursor: pointer;
+}
+.index-page .container .scene-1 .content-box .content-item:hover {
+  color: #ffffff;
+  background-color: #3477c8;
+}
+.index-page .container .scene-1 .content-box .content-item:hover .content-item-title .eng {
+  color: #ffffff;
+}
+.index-page .container .scene-1 .content-box .content-item:hover .icon-box .iconfont {
+  color: #ffffff;
+}
+.index-page .container .scene-1 .content-box .content-item .content-item-title {
+  margin-top: 18px;
+  text-align: center;
+}
+.index-page .container .scene-1 .content-box .content-item .content-item-title .eng {
+  color: #9a9a9a;
+  font-size: 14px;
+  line-height: 1;
+}
+.index-page .container .scene-1 .content-box .content-item .content-item-title h4 {
+  font-size: 20px;
+}
+.index-page .container .scene-1 .content-box .content-item .icon-box {
+  margin: 50px 0;
+  text-align: center;
+}
+.index-page .container .scene-1 .content-box .content-item .icon-box .iconfont {
+  font-size: 56px;
+  color: #3477c8;
+}
+.index-page .container .scene-1 .content-box .content-item img {
+  width: 100%;
+  height: 200px;
+}
+.index-page .container .scene-2 {
+  height: 260px;
+  color: #ffffff;
+  background-image: url("../images/index-s4-1.png");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+.index-page .container .scene-2 .scene-title {
+  text-align: center;
+  margin: 30px 0;
+}
+.index-page .container .scene-2 .scene-title h3 {
+  font-size: 24px;
+  font-weight: 700;
+}
+.index-page .container .scene-2 .scene-title .eng {
+  margin-top: 5px;
+  font-style: italic;
+  font-weight: 700;
+}
+.index-page .container .scene-2 .slogan {
+  font-size: 36px;
+  text-align: center;
+  margin-top: 50px;
 }
 
 /*# sourceMappingURL=style.css.map */
