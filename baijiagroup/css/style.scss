@@ -1,7 +1,8 @@
-$primaryColor: #3477c8;
+$primaryColor: #134786;
 $backgroundClearColor: #f1f1f1;
 $linkColor: #d8dadb;
 $moreColor: #9a9a9a;
+$primaryLightColor: #c1dcec;
 
 .icon {
   background: url("../images/icon.png") no-repeat;
@@ -102,6 +103,11 @@ $moreColor: #9a9a9a;
   justify-content: space-around;
   padding: 30px 0;
   font-size: 14px;
+  background-color: $backgroundClearColor;
+
+  &.light {
+    background-color: #fff;
+  }
 
   .line {
     span {
@@ -110,147 +116,271 @@ $moreColor: #9a9a9a;
   }
 }
 
-.index-page {
-  /* banner */
-  .banner {
+/* banner */
+.banner {
+  width: 100%;
+  height: 580px;
+  min-width: 1200px;
+  overflow: hidden;
+  clear: both;
+  position: relative;
+
+  .lubo {
     width: 100%;
-    height: 580px;
-    min-width: 1200px;
-    overflow: hidden;
+    min-width: 1000px;
     clear: both;
     position: relative;
+    height: 580px;
 
-    .lubo {
-      width: 100%;
-      min-width: 1000px;
-      clear: both;
+    .lubo_box {
       position: relative;
+      width: 100%;
       height: 580px;
 
-      .lubo_box {
-        position: relative;
-        width: 100%;
+      .lubo_item {
+        float: left;
+        width: 100% !important;
         height: 580px;
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
 
-        .lubo_item {
-          float: left;
-          width: 100% !important;
-          height: 580px;
-          background-position: center center;
-          background-size: cover;
-          background-repeat: no-repeat;
-
-          a {
-            display: block;
-            width: 100%;
-            height: 100%;
-          }
-        }
-      }
-
-      .cir_box {
-        overflow: hidden;
-        position: absolute;
-        z-index: 100;
-        left: 50%;
-        margin-left: -80px;
-        bottom: 10%;
-
-        li {
-          float: left;
-          width: 30px;
-          height: 5px;
-          margin: 0 5px;
-          cursor: pointer;
-          background: #fff;
-          opacity: 0.8;
-          filter: alpha(opacity=80);
-
-          &.on {
-            background: #000 !important;
-          }
-        }
-      }
-
-      .lubo_btn {
-        position: absolute;
-        width: 100%;
-        top: 270px;
-        font-family: "宋体";
-
-        .prev,
-        .next {
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          background: #000;
-          opacity: 0.2;
-          filter: alpha(opacity=20);
-          cursor: pointer;
-          color: #fff;
-          line-height: 50px;
-          font-size: 30px;
-          text-align: center;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-
-          &:hover {
-            opacity: 0.8;
-            filter: alpha(opacity=80);
-          }
-        }
-
-        .prev {
-          float: left;
-          margin-left: 100px;
-        }
-
-        .next {
-          float: right;
-          margin-right: 100px
+        a {
+          display: block;
+          width: 100%;
+          height: 100%;
         }
       }
     }
-  }
 
-  /* 滚动新闻 */
-  .notice {
-    background-color: $backgroundClearColor;
-    height: 38px;
-    line-height: 38px;
-    z-index: 99;
-    overflow: hidden;
-
-    .notice-box {
-      display: flex;
-
-      .icon-gonggao {
-        margin-right: 10px;
-        color: $primaryColor;
-      }
-
-      .more {
-        color: #ffbd1a;
-      }
-    }
-
-    li {
-      height: 38px;
-      line-height: 38px;
+    .cir_box {
       overflow: hidden;
+      position: absolute;
+      z-index: 100;
+      left: 50%;
+      margin-left: -80px;
+      bottom: 10%;
 
-      a {
-        color: #333;
+      li {
+        float: left;
+        width: 30px;
+        height: 5px;
+        margin: 0 5px;
+        cursor: pointer;
+        background: #fff;
+        opacity: 0.8;
+        filter: alpha(opacity=80);
+
+        &.on {
+          background: #000 !important;
+        }
+      }
+    }
+
+    .lubo_btn {
+      position: absolute;
+      width: 100%;
+      top: 270px;
+      font-family: "宋体";
+
+      .prev,
+      .next {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #000;
+        opacity: 0.2;
+        filter: alpha(opacity=20);
+        cursor: pointer;
+        color: #fff;
+        line-height: 50px;
+        font-size: 30px;
+        text-align: center;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
 
         &:hover {
-          color: $primaryColor;
+          opacity: 0.8;
+          filter: alpha(opacity=80);
         }
+      }
+
+      .prev {
+        float: left;
+        margin-left: 100px;
+      }
+
+      .next {
+        float: right;
+        margin-right: 100px
+      }
+    }
+  }
+}
+
+/* 滚动新闻 */
+.notice {
+  background-color: $backgroundClearColor;
+  height: 38px;
+  line-height: 38px;
+  z-index: 99;
+  overflow: hidden;
+
+  .notice-box {
+    display: flex;
+
+    .icon-gonggao {
+      margin-right: 10px;
+      color: $primaryColor;
+    }
+
+    .more {
+      color: #ffbd1a;
+    }
+  }
+
+  li {
+    height: 38px;
+    line-height: 38px;
+    overflow: hidden;
+
+    a {
+      color: #333;
+
+      &:hover {
+        color: $primaryColor;
+      }
+    }
+  }
+}
+
+.mainnav {
+  margin: 30px 0;
+  font-size: 0;
+  display: flex;
+  justify-content: center;
+
+  &.tc {
+    text-align: center;
+
+    li a {
+      padding: 0;
+    }
+  }
+
+  a {
+    border: 1px solid #ccc;
+    margin-right: -1px;
+    background: 0;
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 40px;
+    font-size: 14px;
+
+    &.active,
+    &:hover {
+      background: $primaryColor;
+      color: #fff;
+      border: 1px solid $primaryColor;
+    }
+  }
+}
+
+.about-us {
+  .scene-1 {
+    display: flex;
+
+    .left {
+      width: 527px;
+      height: 315px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .right {
+      flex: 1;
+      background-color: $primaryLightColor;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .item {
+        color: $primaryColor;
+        font-weight: 700;
+        line-height: 1.8;
       }
     }
   }
 
+  .scene-2 {
+    margin: 40px 0 10px;
+
+    .scene-title {
+      text-align: center;
+      margin-bottom: 20px;
+
+      h3 {
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .eng {
+        margin-top: 5px;
+        font-weight: 700;
+        color: $moreColor;
+      }
+    }
+
+    .rczp-content {
+      .tab-title {
+        height: 60px;
+        background-color: #e2f4fe;
+        overflow-x: auto;
+
+        .tab-title-ul {
+          display: flex;
+
+          li {
+            flex: 1;
+            font-weight: 700;
+            line-height: 60px;
+            cursor: pointer;
+            text-align: center;
+            background-color: $primaryColor;
+            color: #ffffff;
+          }
+        }
+      }
+
+      .tab-content {
+        padding: 28px 44px;
+        background-color: $backgroundClearColor;
+        border-bottom: 7px solid #e2f4fe;
+
+        li {
+          display: none;
+
+          &.active {
+            display: block;
+          }
+
+          p {
+            margin-bottom: 0;
+            line-height: 1.8;
+          }
+        }
+      }
+    }
+  }
+}
+
+.index-page {
   .container {
     /* 新闻视频 */
     .top-group {
@@ -421,8 +551,8 @@ $moreColor: #9a9a9a;
         .content-item {
           width: 23%;
           border: 1px solid $primaryColor;
-          padding: 5px;
-          box-sizing: content-box;
+          padding: 15px;
+          box-sizing: border-box;
           cursor: pointer;
 
           &:hover {
@@ -452,6 +582,7 @@ $moreColor: #9a9a9a;
             }
             h4 {
               font-size: 20px;
+              margin-top: 5px;
             }
           }
 
