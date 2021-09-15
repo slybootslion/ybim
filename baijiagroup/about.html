@@ -13,7 +13,7 @@
 <header class="common-header"></header>
 <div class="bannerPlaceholder"></div>
 <div class="container">
-  <div class="wrap">
+  <div class="wrap-short">
     <div class="mainnav clearFix tc"></div>
     <div class="scene-1">
       <div class="left">
@@ -116,6 +116,17 @@
         </ul>
       </div>
     </div>
+    <div class="scene-3">
+      <div class="block-3-item">
+        <div class="block-3-title">基本素质</div>
+        <div class="block-3-content">
+          <p class="block-3-content-item">认同柏嘉企业文化</p>
+          <p class="block-3-content-item">工作责任心强</p>
+          <p class="block-3-content-item">具备良好的团队合作精神</p>
+          <p class="block-3-content-item">善于学习、创新</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <div class="footerPlaceholder"></div>
@@ -144,9 +155,9 @@ $(function () {
   $luCommon.renderBanner(data)
   $luCommon.renderFooter('.footerPlaceholder')
   $(".mainnav").html($luCommon.contentLinkTemplate([
-    { link: 'javascript:void(0)', text: '人才招聘', active: true },
-    { link: 'javascript:void(0)', text: '联系我们' },
-    { link: 'javascript:void(0)', text: '版权声明' },
+    { link: './about.html', text: '人才招聘', active: true },
+    { link: './about-1.html', text: '联系我们' },
+    { link: './about-2.html', text: '版权声明' },
   ]))
 
   $(".rczp-content .tab-title-ul li").on('click', function () {
@@ -154,6 +165,43 @@ $(function () {
     $(this).addClass('active').siblings('li').removeClass('active');
     $(".tab-content li").eq(index).addClass('active').siblings('li').removeClass('active');
   })
+
+  const scene3Data = [
+    { title: '基本素质', contentList: ['认同柏嘉企业文化', '工作责任心强', '具备良好的团队合作精神', '善于学习、创新'], centerType: 'center' },
+    {
+      title: '招聘流程',
+      contentList: ['1.投递个人简历至HR@BaijiaGroup.com', '2.等待电话面试', '3.电话面试通过者，参加我公司的招聘面试', '4.通过面试者进入试用期', '5.试用合格者成为柏嘉正式员工']
+    },
+    {
+      title: '应聘材料',
+      contentList: ['1.个人简历：内容包括本人基本信息及教育背景，社会实践经历，科研课题。', '2.证书扫描件：包括毕业证、学位证等各类技术、资格证书及获奖证书等。', '3.应届生需提供成绩单扫描件。']
+    },
+  ]
+
+  function renderScene3Data () {
+    let h = ''
+    for (let i = 0; i < scene3Data.length; i++) {
+      const block = scene3Data[i]
+      let pList = ''
+      if (block.contentList.length) {
+        for (let i = 0; i < block.contentList.length; i++) {
+          const pItem = block.contentList[i]
+          pList += `<p class="block-3-content-item">${pItem}</p>`
+        }
+      }
+      let className
+      if (block.centerType) className = 'center'
+      else  className = ''
+      h += `<div class="block-3-item">
+              <div class="block-3-title">${block.title}</div>
+              <div class="block-3-content ${className}">
+                ${pList}
+              </div>
+            </div>`
+    }
+    $(".scene-3").html(h)
+  }
+  renderScene3Data()
 })
 </script>
 </body>

@@ -101,17 +101,23 @@ body {
 @media only screen and (min-width: 1366px) {
   .wrap {
     width: 1580px;
-    margin: 0 auto;
     min-width: 1580px;
+    margin: 0 auto;
   }
 }
 
 @media only screen and (max-width: 1366px) {
   .wrap {
     width: 1280px;
-    margin: 0 auto;
     min-width: 1280px;
+    margin: 0 auto;
   }
+}
+
+.wrap-short {
+  width: 1280px;
+  min-width: 1280px;
+  margin: 0 auto;
 }
 
 .wrap_relative {
