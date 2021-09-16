@@ -12,13 +12,13 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
     await renderTable()
   })()
 
-  function renderInnerHeader() {
+  function renderInnerHeader () {
     luInnerHeader = new LuInnerHeader({
       title: '班组考勤',
     })
   }
 
-  function renderSearchForm() {
+  function renderSearchForm () {
     // mock
     const bData = [
       { value: 1, key: '班组1' },
@@ -36,14 +36,14 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
         { label: '所属公司', type: 'select', selectData: cData, name: 's3' },
       ],
       {
-        submit(data) {
+        submit (data) {
           console.log(data)
         },
       },
     )
   }
 
-  async function renderTable() {
+  async function renderTable () {
     // mock
     const data = await $lulib.getMockData('/htmls/mock/bsite/teamAttendanceTableData.json', 8, '', false)
     const tableOptions = {
@@ -61,8 +61,10 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
       ],
       ctrlData: [{ eventStr: 'info', iconStr: 'icon-chakanxiangqing', txtStr: '查看工人考勤' }],
       methods: {
-        info(data) {
+        info (data) {
           console.log(data)
+          const { id } = data
+          $lulib.pagePushHash('bim/person-manage/worker-attendance', { id })
         },
       },
     }
