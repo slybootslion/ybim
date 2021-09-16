@@ -62,9 +62,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
       ctrlData: [{ eventStr: 'info', iconStr: 'icon-chakanxiangqing', txtStr: '查看工人考勤' }],
       methods: {
         info (data) {
-          console.log(data)
-          const { id } = data
-          $lulib.pagePushHash('bim/person-manage/worker-attendance', { id })
+          $lulib.pagePushHash('bim/person-manage/worker-attendance', { id: data.id })
         },
       },
     }

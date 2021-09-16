@@ -1,0 +1,311 @@
+@charset "UTF-8";
+.layui-form-checked[lay-skin=primary] i {
+  border-color: #007fff !important;
+  background-color: #007fff;
+  color: #fff;
+}
+
+.layui-btn {
+  border-radius: 3px;
+  background-color: #007fff;
+}
+
+.layui-form-select dl dd.layui-this {
+  background-color: #007fff;
+}
+
+.layui-table-page .layui-laypage {
+  float: right;
+}
+.layui-table-page .layui-laypage input:focus,
+.layui-table-page .layui-laypage elect:focus {
+  border-color: #007fff !important;
+}
+.layui-table-page .layui-laypage a:hover {
+  color: #007fff;
+}
+.layui-table-page .layui-laypage .layui-laypage-curr .layui-laypage-em {
+  background-color: #007fff;
+}
+
+.layui-table th {
+  color: #094581;
+  font-weight: 700;
+}
+
+.layui-table[lay-even] tr:nth-child(even) {
+  background-color: #f0f7ff;
+}
+
+.inner-body {
+  padding: 10px;
+  /*按钮*/
+  /* tab */
+  /* layer */
+  /* 表格 */
+  /* 分页 */
+  /* 标签 */
+}
+.inner-body .page-header {
+  height: 42px;
+  border-bottom: 2px solid #007fff;
+  padding: 0 15px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.inner-body .page-header.no-border {
+  border-bottom: none;
+}
+.inner-body .page-header .title {
+  position: relative;
+}
+.inner-body .page-header .title::before {
+  content: "";
+  width: 5px;
+  height: 16px;
+  position: absolute;
+  display: block;
+  background-color: #007fff;
+  top: 2px;
+  left: -8px;
+}
+.inner-body .page-header .right {
+  display: flex;
+}
+.inner-body .page-header .right .btn {
+  height: 35px;
+  display: flex;
+  align-items: center;
+  padding: 0 13px;
+  border-radius: 3px;
+}
+.inner-body .page-header .right .btn.btn-weaken {
+  color: #333333;
+  background-color: #b7d5f4;
+}
+.inner-body .page-header .right .btn.btn-weaken .iconfont {
+  color: #333;
+}
+.inner-body .page-header .right .btn .iconfont {
+  font-size: 20px;
+  margin-right: 5px;
+}
+.inner-body .page-container {
+  margin-top: 10px;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  padding: 20px 32px;
+}
+.inner-body .page-container .select-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+.inner-body .page-container .select-box .layui-inline {
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+.inner-body .page-container .select-box .layui-inline .layui-form-label {
+  width: auto;
+  padding-left: 0;
+  padding-top: 6px;
+}
+.inner-body .page-container .select-box .layui-inline .layui-input-inline.inner-input-w155 .layui-input {
+  width: 155px;
+}
+.inner-body .page-container .select-box .layui-inline .layui-input-inline .layui-input.w155 {
+  width: 155px;
+}
+.inner-body .page-container .select-box .layui-btn {
+  height: 35px;
+  line-height: 35px;
+}
+.inner-body .page-container .content-table {
+  margin-top: 26px;
+}
+.inner-body .table-tool-link {
+  margin-right: 10px;
+  color: #5e81a5;
+}
+.inner-body .table-tool-link:hover {
+  color: #007fff;
+}
+.inner-body .btn-primary-sec {
+  background-color: #23b5df;
+}
+.inner-body .btn-primary-dep {
+  background-color: #454545;
+}
+.inner-body .btn-tb-create {
+  height: 25px;
+  line-height: 25px;
+  background-color: #fff;
+  color: #007fff;
+  border: 1px solid #007fff;
+  border-radius: 5px;
+}
+.inner-body .layui-tab-brief > .layui-tab-title .layui-this {
+  color: #007fff;
+}
+.inner-body .layui-tab-brief > .layui-tab-title .layui-this::after {
+  border-bottom-color: #007fff;
+}
+.inner-body .layui-layer.layui-layer-page .layui-layer-title {
+  background-color: #f0f0f0;
+}
+.inner-body .layui-layer.layui-layer-page .layui-layer-btn {
+  background-color: #f0f0f0;
+}
+.inner-body .layui-layer.layui-layer-page .layui-layer-btn .layui-layer-btn0 {
+  background-color: #007fff;
+}
+.inner-body .layui-layer.layui-layer-page .layui-layer-btn .layui-layer-btn1 {
+  color: #ffffff;
+  background-color: #23b5df;
+}
+.inner-body .layui-laypage .layui-laypage-curr .layui-laypage-em {
+  background-color: #007fff;
+}
+.inner-body .layui-badge {
+  background-color: #ff0b0b;
+}
+.inner-body .layui-badge.layui-bg-green {
+  background-color: #1ec004 !important;
+}
+
+/* 输入框 */
+.layui-input, .layui-select, .layui-textarea {
+  height: 35px;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.layui-textarea {
+  resize: none;
+}
+
+.layui-form-label.required span {
+  position: relative;
+}
+.layui-form-label.required span::before {
+  content: "*";
+  color: #ff0000;
+  position: absolute;
+  left: -10px;
+  top: 0;
+}
+
+.layui-input.disabled {
+  background-color: #f5f5f5;
+  color: #888888;
+}
+
+.btn-weaken {
+  background-color: #b7d5f4;
+  color: #333;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+.login-body {
+  position: relative;
+}
+.login-body .bg {
+  height: 100%;
+}
+.login-body .bg .top, .login-body .bg .bottom {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.login-body .bg .top {
+  background-image: url(../../images/page/login/login1.jpg);
+  height: 50%;
+  position: relative;
+}
+.login-body .bg .bottom {
+  background-image: url(../../images/page/login/login2.jpg);
+  height: 50%;
+}
+.login-body .login-form {
+  width: 459px;
+  height: 297px;
+  background-image: url(../../images/page/login/login3.png);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -229px;
+  margin-top: -148px;
+  box-sizing: border-box;
+  padding: 0 56px;
+}
+.login-body .login-form::after {
+  content: "";
+  width: 461px;
+  height: 121px;
+  background-image: url(../../images/page/login/login4.png);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: -124px;
+  left: 0;
+}
+.login-body .login-form .login-title {
+  width: 594px;
+  height: 53px;
+  background-image: url(../../images/page/login/login-logl.png);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 50%;
+  margin-left: -297px;
+  top: -150px;
+}
+.login-body .login-form .form-title {
+  font-size: 16px;
+  text-align: center;
+  margin: 30px 0 25px;
+  font-weight: 700;
+}
+
+.layui-form-item.t-right {
+  display: flex;
+  justify-content: flex-end;
+}
+.layui-form-item.t-right .layui-form-checkbox[lay-skin=primary] {
+  margin-top: 0;
+}
+.layui-form-item.t-right .alink-box a {
+  color: #007fff;
+}
+.layui-form-item.btn-box {
+  text-align: center;
+}
+.layui-form-item.btn-box .layui-btn {
+  width: 261px;
+  height: 43px;
+}
+.layui-form-item .layui-form-label {
+  width: 63px;
+  text-align: left;
+  box-sizing: border-box;
+  padding: 9px 0;
+}
+.layui-form-item .layui-input-block {
+  margin-left: 63px;
+}
+.layui-form-item .layui-input-block .layui-input {
+  width: 262px;
+  height: 35px;
+}
+
+/*# sourceMappingURL=login.css.map */
