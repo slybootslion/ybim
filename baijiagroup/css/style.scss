@@ -423,6 +423,69 @@ $primaryLightColor: #c1dcec;
       }
     }
   }
+
+  .scene-address {
+    height: 260px;
+    padding: 30px 60px;
+    background-image: url(../images/address-bg.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+
+    .left, .right {
+      width: 50%;
+    }
+
+    .left {
+      .title {
+        font-size: 26px;
+        margin-bottom: 20px;
+      }
+    }
+
+    .right {
+      .qrcode-block {
+        background-color: #fff;
+        padding: 10px 30px;
+        box-sizing: border-box;
+        display: flex;
+
+        .qrcode {
+          width: 143px;
+          height: 143px;
+          margin-right: 20px;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        .text {
+          .title {
+            font-size: 26px;
+            margin: 5px 0 20px;
+            color: $primaryColor;
+          }
+
+          .right-item {
+            margin-bottom: 5px;
+            color: $moreColor;
+          }
+        }
+      }
+    }
+  }
+
+  .scene-map {
+    margin: 40px 0 60px;
+    height: 368px;
+    img {
+      width: 100%;
+    }
+  }
 }
 
 .index-page {

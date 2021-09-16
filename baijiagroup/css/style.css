@@ -355,6 +355,55 @@
   font-size: 14px;
   list-style: disc;
 }
+.about-us .scene-address {
+  height: 260px;
+  padding: 30px 60px;
+  background-image: url(../images/address-bg.jpg);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+.about-us .scene-address .left, .about-us .scene-address .right {
+  width: 50%;
+}
+.about-us .scene-address .left .title {
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+.about-us .scene-address .right .qrcode-block {
+  background-color: #fff;
+  padding: 10px 30px;
+  box-sizing: border-box;
+  display: flex;
+}
+.about-us .scene-address .right .qrcode-block .qrcode {
+  width: 143px;
+  height: 143px;
+  margin-right: 20px;
+}
+.about-us .scene-address .right .qrcode-block .qrcode img {
+  width: 100%;
+  height: 100%;
+}
+.about-us .scene-address .right .qrcode-block .text .title {
+  font-size: 26px;
+  margin: 5px 0 20px;
+  color: #134786;
+}
+.about-us .scene-address .right .qrcode-block .text .right-item {
+  margin-bottom: 5px;
+  color: #9a9a9a;
+}
+.about-us .scene-map {
+  margin: 40px 0 60px;
+  height: 368px;
+}
+.about-us .scene-map img {
+  width: 100%;
+}
 
 .index-page .container {
   /* 新闻视频 */
