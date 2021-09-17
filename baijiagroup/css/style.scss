@@ -116,6 +116,29 @@ $primaryLightColor: #c1dcec;
   }
 }
 
+.container-box {
+  margin-bottom: 90px;
+
+  p.container-txt {
+    line-height: 1.8;
+    text-indent: 2em;
+    margin-bottom: 20px;
+  }
+
+  h5.container-title {
+    color: $primaryColor;
+  }
+
+  .picture-box {
+    display: flex;
+    justify-content: space-between;
+
+    .container-picture {
+      width: 24%;
+    }
+  }
+}
+
 /* banner */
 .banner {
   width: 100%;

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/video-js.css">
+  <link rel="Shortcut Icon" href="./images/baijia.ico" type="image/x-icon">
+  <link rel="Bookmark" href="./images/baijia.ico">
+  <title>柏嘉交科集团 - 主营业务</title>
+</head>
+<body class="business">
+<header class="common-header"></header>
+<div class="bannerPlaceholder"></div>
+<div class="container">
+  <div class="wrap-short">
+    <div class="mainnav clearFix tc"></div>
+    <div class="scene-1 container-box">
+      <p class="container-txt">作为以工程技术服务为主业发展起步的规模化企业，拥有优秀的工程专业技术技能、规范的标准化作业流程、完整
+        的生产经营管理体系，积累了丰富的国内外工程项目实战经验，资质荣誉和业绩成果丰硕。在交通市政工程(尤其是高等级公路、桥梁结构工程、建筑与景观工程)相关项目的规划研究、勘察设计、维养管理及工程全过程咨询等方面优势显著；在城市综合开发领域(尤其是片区综合开发、产业园区建设、特色地产投资)相关项目的规划咨询、策划定位、设计研究、运营管理等方面特色明显；在国际标准(含法国标准、美国标准、英国标准)的研究应用及海外项目的勘设咨询、设计施工总承包及项目管理等方面，居业内领先水平，具有较强的能力优势，已成为国际化工程咨询公司。</p>
+      <h5 class="container-title">代表业绩</h5>
+      <p class="container-txt">青藏高速、平天高速、陇漳高速、银百高速、昌吉高速、吴华高速、紫望高速、杭金衢高速、甬台温高速复线、濮阳高速、乐西高速、丹宁高速、杭绍甬高速、乐黄公路、京北公路、潍青公路、新疆S18公路、关中环线旅游公路、汉中陕飞大道、韩城太史大街、泾阳自贸大道、安康平利大桥、瓯江口新区景观桥、重庆嘉陵江大桥、舟山小干二桥、洞头鹿西隧道、延安宝塔物流通道、百色北环线、黔张常铁路、西阎城际铁路、中交科技城、宁陕兴隆产业园、秦岭科技产业园、陕西长美国际、西安万象汇CROSS、宝鸡轩苑天元东府、西咸新区黄冈学府城、岚皋县文化艺术中心、龙港双河社区安置房、江苏滨海医养产业园、库尔勒普惠花海、泸州大旺竹海文旅产业园、大荔生态影视基地、潇水两岸生态治理、新疆沙漠生态修复、大中田园农文旅综合体、温州西河边田园综合体，以及中尼边防公路、斯里兰卡南部高速、阿尔及利亚东西高速、科特迪瓦阿比让四桥、加纳阿克拉-库马西公路、埃塞普希金广场公路、格鲁吉亚E60(F3)高速、俄罗斯库图佐夫大街北辅线工程、塞内加尔M-K高速公路、阿尔及利亚贝佳亚高速公路等。</p>
+      <div class="picture-box">
+        <img class="container-picture" src="./images/business1-1.jpg" alt="">
+        <img class="container-picture" src="./images/business1-2.jpg" alt="">
+        <img class="container-picture" src="./images/business1-3.jpg" alt="">
+        <img class="container-picture" src="./images/business1-4.jpg" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footerPlaceholder"></div>
+<script src="./js/jquery.min.js" charset="utf-8"></script>
+<script src="./js/jquery.SuperSlide.2.1.1.js" charset="utf-8"></script>
+<script src="./js/video.js" charset="utf-8"></script>
+<script src="./js/common.js" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".common-header").html($luCommon.headerTemplate(3))
+  // mock
+  const data = {
+    banner: [
+      { pic: './images/1551255535481.jpg', link: 'javascript:void(0)' },
+      { pic: './images/1469583762983.jpg', link: 'javascript:void(0)' },
+      { pic: './images/1494574148711.jpg', link: 'javascript:void(0)' },
+    ],
+    notice: [
+      { link: 'javascript:void(0)', text: '柏嘉交科与中设股份建立战略合作伙伴关系 【2019-06-06】' },
+      { link: 'javascript:void(0)', text: '我司总裁应邀出席在京召开的2019世界交通运输大会 【2019-06-17】' },
+      { link: 'javascript:void(0)', text: '深度合作 携手出海 ——柏嘉交科与中设股份、西安建工就国际工程项目 签署合作备忘录 【2019-06-06】' },
+      { link: 'javascript:void(0)', text: '柏嘉交科与中设股份建立战略合作伙伴关系 【2019-06-06】' },
+      { link: 'javascript:void(0)', text: '我司总裁应邀出席在京召开的2019世界交通运输大会 【2019-06-17】' },
+    ]
+  }
+  $luCommon.renderBanner(data)
+  $luCommon.renderFooter('.footerPlaceholder')
+  $(".mainnav").html($luCommon.contentLinkTemplate([
+    { link: './business.html', text: '勘察设计咨询', active: true },
+    { link: './business-1.html', text: '智慧运营服务' },
+    { link: './business-2.html', text: '投资施工建造' },
+    { link: './business-3.html', text: '智能材料装备' },
+  ]))
+})
+</script>
+</body>
+</html>

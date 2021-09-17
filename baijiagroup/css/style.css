@@ -96,6 +96,25 @@
   margin: 0 10px;
 }
 
+.container-box {
+  margin-bottom: 90px;
+}
+.container-box p.container-txt {
+  line-height: 1.8;
+  text-indent: 2em;
+  margin-bottom: 20px;
+}
+.container-box h5.container-title {
+  color: #134786;
+}
+.container-box .picture-box {
+  display: flex;
+  justify-content: space-between;
+}
+.container-box .picture-box .container-picture {
+  width: 24%;
+}
+
 /* banner */
 .banner {
   width: 100%;

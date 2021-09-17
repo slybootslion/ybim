@@ -7,42 +7,24 @@
   <link rel="stylesheet" href="./css/video-js.css">
   <link rel="Shortcut Icon" href="./images/baijia.ico" type="image/x-icon">
   <link rel="Bookmark" href="./images/baijia.ico">
-  <title>柏嘉交科集团 - 关于我们</title>
+  <title>柏嘉交科集团 - 主营业务</title>
 </head>
-<body class="about-us">
+<body class="business">
 <header class="common-header"></header>
 <div class="bannerPlaceholder"></div>
 <div class="container">
   <div class="wrap-short">
     <div class="mainnav clearFix tc"></div>
-    <div class="scene-4">
-      <ul class="list-origin">
-        <li>
-          所有来源标注为“柏嘉交科”或旗下相关机构的内容，版权均为本站（含子站）所有，若您需要引用、转载，只需要注明来源及原文链接即可，如涉及大面积转载，请来信告知，获取授权。
-        </li>
-        <li>
-          本站所提供的部分内容来源为第三方作者（含机构作者、昵名网友）提供推荐的，或从互联网整理而来的（如部分报媒/平媒内容转载自网络合作媒体），仅供学习参考，如有侵犯您的版权，请联系我们，本站将在三个工作日内予以处理。
-        </li>
-        <li>
-          本站无法保证所有内容、信息、资源的准确性和完整性，请您在阅读及使用过程中自行确认，本站亦不承担上述内容信息对您或您的网站造成的任何形式的损失。
-        </li>
-        <li>
-          未经本站允许，不得盗链、盗用本站（含子站）资源；不得复制或仿造本网站，不得在非本站（www.BaijiaGroup.com）所属的服务器上建立镜像，本站对其自行开发的或和他人共同开发的所有内容、技术手段和服务拥有全部知识产权，任何人不得侵害或破坏，也不得擅自使用。
-        </li>
-        <li>
-          互联网的本质是自由与分享，我们真诚的希望，每一份有价值的正能量能够在互联网中自由传播，能够为每一个企业提供发展动力。
-        </li>
-      </ul>
-    </div>
   </div>
 </div>
 <div class="footerPlaceholder"></div>
 <script src="./js/jquery.min.js" charset="utf-8"></script>
 <script src="./js/jquery.SuperSlide.2.1.1.js" charset="utf-8"></script>
+<script src="./js/video.js" charset="utf-8"></script>
 <script src="./js/common.js" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
 $(function () {
-  $(".common-header").html($luCommon.headerTemplate(5))
+  $(".common-header").html($luCommon.headerTemplate(3))
   // mock
   const data = {
     banner: [
@@ -61,9 +43,10 @@ $(function () {
   $luCommon.renderBanner(data)
   $luCommon.renderFooter('.footerPlaceholder')
   $(".mainnav").html($luCommon.contentLinkTemplate([
-    { link: './about.html', text: '人才招聘' },
-    { link: './about-1.html', text: '联系我们' },
-    { link: './about-2.html', text: '版权声明', active: true },
+    { link: './business.html', text: '勘察设计咨询' },
+    { link: './business-1.html', text: '智慧运营服务', active: true },
+    { link: './business-2.html', text: '投资施工建造' },
+    { link: './business-3.html', text: '智能材料装备' },
   ]))
 })
 </script>
