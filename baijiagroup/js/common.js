@@ -6,7 +6,7 @@
         { txt: '走进柏嘉', link: 'javascript:void(0)' },
         { txt: '新闻中心', link: 'javascript:void(0)' },
         { txt: '主营业务', link: './business.html' },
-        { txt: '技术产品', link: 'javascript:void(0)' },
+        { txt: '技术产品', link: './technique.html' },
         { txt: '关于我们', link: './about.html' },
       ]
       let h = ''

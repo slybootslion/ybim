@@ -99,12 +99,12 @@
 .container-box {
   margin-bottom: 90px;
 }
-.container-box p.container-txt {
+.container-box p {
   line-height: 1.8;
   text-indent: 2em;
   margin-bottom: 20px;
 }
-.container-box h5.container-title {
+.container-box h5 {
   color: #134786;
 }
 .container-box .picture-box {

@@ -35,7 +35,7 @@
 <script src="./js/common.js" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
 $(function () {
-  $(".common-header").html($luCommon.headerTemplate(3))
+  $(".common-header").html($luCommon.headerTemplate(4))
   // mock
   const data = {
     banner: [
@@ -54,10 +54,10 @@ $(function () {
   $luCommon.renderBanner(data)
   $luCommon.renderFooter('.footerPlaceholder')
   $(".mainnav").html($luCommon.contentLinkTemplate([
-    { link: './business.html', text: '勘察设计咨询', active: true },
-    { link: './business-1.html', text: '智慧运营服务' },
-    { link: './business-2.html', text: '投资施工建造' },
-    { link: './business-3.html', text: '智能材料装备' },
+    { link: './technique.html', text: '嘉云BIM', active: true },
+    { link: './technique-1.html', text: '交慧链' },
+    { link: './technique-2.html', text: '智慧交通' },
+    { link: './technique-3.html', text: '智慧构件' },
   ]))
 })
 </script>
