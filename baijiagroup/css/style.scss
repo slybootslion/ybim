@@ -1,4 +1,4 @@
-$primaryColor: #134786;
+$primaryColor: #3477c8;
 $backgroundClearColor: #f1f1f1;
 $linkColor: #d8dadb;
 $moreColor: #9a9a9a;
@@ -122,19 +122,20 @@ $primaryLightColor: #c1dcec;
   p {
     line-height: 1.8;
     text-indent: 2em;
-    margin-bottom: 20px;
   }
 
   h5 {
     color: $primaryColor;
+    margin-top: 20px;
   }
 
   .picture-box {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    flex-wrap: wrap;
 
     .container-picture {
-      width: 24%;
+      margin: 0 18px 10px 0;
     }
   }
 }
@@ -764,6 +765,75 @@ $primaryLightColor: #c1dcec;
         font-size: 36px;
         text-align: center;
         margin-top: 50px;
+      }
+    }
+  }
+}
+
+.news-body {
+  .newspage {
+    width: 900px;
+    margin: 0 auto;
+
+    &.news_list {
+      margin-bottom: 40px;
+
+      .dot {
+        display: block;
+        background: #656565;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        float: left;
+        margin: 17px 10px 0 0;
+      }
+
+      li {
+        line-height: 40px;
+        border-bottom: 1px dashed #ccc;
+        padding-left: 5px;
+
+        a {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .page {
+    text-align: center;
+    margin-top: -40px;
+
+    ul {
+      display: inline-block;
+      margin-top: 10px;
+
+      li {
+        overflow: hidden;
+        border-radius: 3px;
+        margin: 30px 5px;
+        border: 1px solid #ddd;
+        float: left;
+        padding: 0 8px;
+        color: #005098;
+
+        &:hover {
+          background: #005098;
+          border: 1px solid #005098;
+
+          a {
+            color: #fff;
+          }
+        }
+
+        &.page.selected {
+          background: #005098;
+          border: 1px solid #005098;
+
+          a {
+            color: #fff;
+          }
+        }
       }
     }
   }
