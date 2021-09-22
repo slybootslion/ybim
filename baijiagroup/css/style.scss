@@ -838,3 +838,25 @@ $primaryLightColor: #c1dcec;
     }
   }
 }
+
+.introduce-body {
+  .title-box {
+    margin: 20px 0;
+
+    .introduce-title {
+      line-height: 2;
+      font-weight: 700;
+      text-align: center;
+      font-size: 19px;
+    }
+  }
+
+  .container-box {
+    p.content-line-3 {
+      line-height: 3;
+      span {
+        font-weight: 700;
+      }
+    }
+  }
+}

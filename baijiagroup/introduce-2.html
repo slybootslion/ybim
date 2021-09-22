@@ -9,22 +9,14 @@
   <link rel="Bookmark" href="./images/baijia.ico">
   <title>柏嘉交科集团 - 主营业务</title>
 </head>
-<body class="business">
+<body class="introduce-body">
 <header class="common-header"></header>
 <div class="bannerPlaceholder"></div>
 <div class="container">
   <div class="wrap-short">
     <div class="mainnav clearFix tc"></div>
     <div class="scene-1 container-box">
-      <p>【交慧链】立足工程产品采购供应信息化服务领域，融合“智慧交通”的概念，为工程产品采购商提供采购、生产、物流、质检、售后等工程产品采购供应链相关环节的全过程监管服务，帮助企业降低采购成本，提高采购效率，保障采购进度和供应质量。</p>
-      <p>交慧链通过科学的技术手段为工程产品采购商提供全面周到的供应链各环节智慧监管服务，实现在线协同一体化采购、在线实时全面监管；建立供应/生产监管服务体系、物流运输的实时监管、项目质检验收跟踪、售后服务跟踪；实现采购数据一体化共享服务、助力全流程降本增效；实现采购供应链所有数据的可监测、可追踪、可查询、可利用的理念。</p>
-      <p>【交慧链】首个版本重点架构“国际物流环节”的监管需求，着力开发该环节的各项监管功能，涵盖下单、备货、封箱、出库、订舱、港口交货、进舱、验收等细分功能和监管流程，实现对供应商、发运货物、货代公司的实时监管，真正为采购商节省时间成本、人力成本、物资成本，提高配送效率，把关货物质量，服务工程质量。</p>
-      <div class="picture-box">
-        <img class="container-picture" src="./images/business1-1.jpg" alt="">
-        <img class="container-picture" src="./images/business1-2.jpg" alt="">
-        <img class="container-picture" src="./images/business1-3.jpg" alt="">
-        <img class="container-picture" src="./images/business1-4.jpg" alt="">
-      </div>
+      <p><img src="./images/20210420427290.jpg" title="20210414柏嘉交通科技集团宣传册.jpg" alt="20210414柏嘉交通科技集团宣传册.jpg" style="width: 1179px; height: 502px; margin: 0 auto;"></p>
     </div>
   </div>
 </div>
@@ -34,7 +26,7 @@
 <script src="./js/common.js" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
 $(function () {
-  $(".common-header").html($luCommon.headerTemplate(4))
+  $(".common-header").html($luCommon.headerTemplate(1))
   // mock
   const data = {
     banner: [
@@ -53,10 +45,11 @@ $(function () {
   $luCommon.renderBanner(data)
   $luCommon.renderFooter('.footerPlaceholder')
   $(".mainnav").html($luCommon.contentLinkTemplate([
-    { link: './technique.html', text: '嘉云BIM' },
-    { link: './technique-1.html', text: '交慧链', active: true },
-    { link: './technique-2.html', text: '智慧交通' },
-    { link: './technique-3.html', text: '智慧构件' },
+    { link: './introduce.html', text: '集团简介' },
+    { link: './introduce-1.html', text: '总裁寄语' },
+    { link: './introduce-2.html', text: '组织机构', active: true },
+    { link: './introduce-3.html', text: '企业文化' },
+    { link: './introduce-4.html', text: '人才建设' },
   ]))
 })
 </script>

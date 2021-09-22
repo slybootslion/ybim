@@ -9,22 +9,19 @@
   <link rel="Bookmark" href="./images/baijia.ico">
   <title>柏嘉交科集团 - 主营业务</title>
 </head>
-<body class="business">
+<body class="introduce-body">
 <header class="common-header"></header>
 <div class="bannerPlaceholder"></div>
 <div class="container">
   <div class="wrap-short">
     <div class="mainnav clearFix tc"></div>
     <div class="scene-1 container-box">
-      <p>【交慧链】立足工程产品采购供应信息化服务领域，融合“智慧交通”的概念，为工程产品采购商提供采购、生产、物流、质检、售后等工程产品采购供应链相关环节的全过程监管服务，帮助企业降低采购成本，提高采购效率，保障采购进度和供应质量。</p>
-      <p>交慧链通过科学的技术手段为工程产品采购商提供全面周到的供应链各环节智慧监管服务，实现在线协同一体化采购、在线实时全面监管；建立供应/生产监管服务体系、物流运输的实时监管、项目质检验收跟踪、售后服务跟踪；实现采购数据一体化共享服务、助力全流程降本增效；实现采购供应链所有数据的可监测、可追踪、可查询、可利用的理念。</p>
-      <p>【交慧链】首个版本重点架构“国际物流环节”的监管需求，着力开发该环节的各项监管功能，涵盖下单、备货、封箱、出库、订舱、港口交货、进舱、验收等细分功能和监管流程，实现对供应商、发运货物、货代公司的实时监管，真正为采购商节省时间成本、人力成本、物资成本，提高配送效率，把关货物质量，服务工程质量。</p>
-      <div class="picture-box">
-        <img class="container-picture" src="./images/business1-1.jpg" alt="">
-        <img class="container-picture" src="./images/business1-2.jpg" alt="">
-        <img class="container-picture" src="./images/business1-3.jpg" alt="">
-        <img class="container-picture" src="./images/business1-4.jpg" alt="">
+      <div class="title-box">
+        <p class="introduce-title">诚信义仁论修为，高专精深谋发展！</p>
+        <p class="introduce-title">大刀阔斧争百强，稳扎稳打求万年！</p>
       </div>
+      <p>行商自古便有“以诚待人”、“以信接物”、“以义为利”、“以仁为质”的商业道德规范和准则，柏嘉自诩“贞松劲柏、嘉业长青”，效古人之商道，觅自升之良策，唯有立足行业、深耕产业、迎合政策、服务客户、贡献经社，乃为行企之大任！</p>
+      <p>柏嘉集团置身大土木、大交通、大市政工程领域，始终坚持秉承“致力于成为交通市政工程与城市综合开发领域全过程咨询、全产业链建设运营集成供应服务商”的企业使命，坚持“耕耘工程行业、创新交通科技、服务城市建设”的发展理念，致力于“知识供应链的良性循环”和“企业价值链的持续增溢”的服务宗旨，努力构建工程领域“研-产-销-服-用”全产业链发展模式，努力成为领域内标杆型集成供应服务商，做跨产业国际化工程集团公司。</p>
     </div>
   </div>
 </div>
@@ -34,7 +31,7 @@
 <script src="./js/common.js" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
 $(function () {
-  $(".common-header").html($luCommon.headerTemplate(4))
+  $(".common-header").html($luCommon.headerTemplate(1))
   // mock
   const data = {
     banner: [
@@ -53,10 +50,11 @@ $(function () {
   $luCommon.renderBanner(data)
   $luCommon.renderFooter('.footerPlaceholder')
   $(".mainnav").html($luCommon.contentLinkTemplate([
-    { link: './technique.html', text: '嘉云BIM' },
-    { link: './technique-1.html', text: '交慧链', active: true },
-    { link: './technique-2.html', text: '智慧交通' },
-    { link: './technique-3.html', text: '智慧构件' },
+    { link: './introduce.html', text: '集团简介' },
+    { link: './introduce-1.html', text: '总裁寄语', active: true },
+    { link: './introduce-2.html', text: '组织机构' },
+    { link: './introduce-3.html', text: '企业文化' },
+    { link: './introduce-4.html', text: '人才建设' },
   ]))
 })
 </script>
