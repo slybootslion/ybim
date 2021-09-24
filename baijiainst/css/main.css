@@ -301,6 +301,76 @@ body a,body em,body i,body span,body b{font-style:normal;font-family:"Microsoft 
 .contact-row:last-child {border-bottom: none;}
 .contact-new-item.img-figure{position: absolute;left: 0;top: 16px;bottom: 16px;background-image: url(../images/bj-concat-bg.jpg);background-repeat: no-repeat;background-position: -8px -62px;}
 
+/*
+新的 特色服务
+*/
+.service_main_cnt .tab-box {
+    display: flex;
+    margin-top: 40px;
+}
+.service_main_cnt .tab-box .tab-title{
+    width: 27%;
+    box-sizing: border-box;
+}
+.service_main_cnt .tab-box .tab-title .tab-title-item{
+    height: 75px;
+    border: 1px solid #0d74d0;
+    margin-top: -1px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.service_main_cnt .tab-box .tab-title .tab-title-item span{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.service_main_cnt .tab-box .tab-title .tab-title-item.active{
+    background-color: #0d74d0;
+    color: #ffffff;
+}
+.service_main_cnt .tab-box .tab-content{
+    width: 73%;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid #0d74d0;
+    margin-left: -1px;
+}
+.service_main_cnt .tab-box .tab-content .tab-content-item{
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+.service_main_cnt .tab-box .tab-content .tab-content-item.active{
+    display: block;
+}
+.service_main_cnt .tab-box .tab-content .tab-content-item h3{
+    text-align: center;
+    line-height: 2;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+.service_main_cnt .tab-box .tab-content .tab-content-item p{
+    text-indent: 2em;
+    line-height: 1.8;
+}
+.service_main_cnt .tab-box .tab-content .tab-content-item .img_border{
+    width: 100%;
+    text-align: center;
+    height: 200px;
+    line-height: 200px;
+    margin: 20px auto 0;
+}
+.service_main_cnt .tab-box .tab-content .tab-content-item .img_border .aimg-item{
+  vertical-align: middle;
+  max-height: 200px;
+  margin-right: 20px;
+}
 
 
 
