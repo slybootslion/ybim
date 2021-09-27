@@ -3,11 +3,29 @@ layui.use(['LuUtilsTemplate', 'echarts'], function () {
   const echarts = layui.echarts
 
   class PageTemplate {
-    commTitle(title) {
+    commTitle (title) {
       return `<h4 class='block-title'>${title}</h4>`
     }
 
-    block1Template(data) {
+    top1Template (data) {
+      let h = ''
+      for (let i = 0; i < data.length; i++) {
+        const item = data[i]
+        h += `<div class="top-1-item">
+                <div class="label">${item.label}：</div>
+                <div class="top-1-num">${item.num}人</div>
+              </div>`
+      }
+      return h
+    }
+
+    top2Template (data) {
+      let h = '------'
+
+      return h
+    }
+
+    block1Template (data) {
       const title = this.commTitle('项目概况')
       const list = data.list
         .map(item => `<div class='block-1-item'><span>${item.key}</span>：<span>${item.value}</span></div>`)
@@ -21,7 +39,7 @@ layui.use(['LuUtilsTemplate', 'echarts'], function () {
       `
     }
 
-    block2Template(data) {
+    block2Template (data) {
       const title = this.commTitle('当前环境')
       const { topData, list } = data
       const picDist = {
@@ -68,7 +86,7 @@ layui.use(['LuUtilsTemplate', 'echarts'], function () {
       `
     }
 
-    block3Template(data) {
+    block3Template (data) {
       const title = this.commTitle('视频监控')
       const { list } = data
 
@@ -91,7 +109,7 @@ layui.use(['LuUtilsTemplate', 'echarts'], function () {
       `
     }
 
-    block4Template(data) {
+    block4Template (data) {
       const title = this.commTitle('进度管理')
       // { schedule: 0.2, pending: 25, res: 13, rej: 5 }
       const percent = (data.schedule * 100).toFixed(2)
@@ -125,14 +143,14 @@ layui.use(['LuUtilsTemplate', 'echarts'], function () {
       `
     }
 
-    block5Template() {
+    block5Template () {
       const title = this.commTitle('质量管理')
       return `${title}
       <div id='chr2' style='height: 350px'></div>
       `
     }
 
-    block6Template(data) {
+    block6Template (data) {
       const title = this.commTitle('设备管理')
       return `${title}
       <div class='chr-title'>
@@ -147,6 +165,8 @@ layui.use(['LuUtilsTemplate', 'echarts'], function () {
   const pt = new PageTemplate()
   let echartsObj1, echartsObj2, echartsObj3
   ;(() => {
+    top1()
+    top2()
     block1()
     block2()
     block3()
@@ -157,7 +177,34 @@ layui.use(['LuUtilsTemplate', 'echarts'], function () {
     })
   })()
 
-  function block1() {
+  function top1 () {
+    // mock
+    const data = [
+      { label: '在册人数：', num: 56 },
+      { label: '进场人员：', num: 32 },
+      { label: '今日出勤：', num: 65 },
+    ]
+
+    $('#top-1').html(pt.top1Template(data))
+  }
+
+  function top2() {
+    // mock
+    const data = {
+      topData: { w1: 1, w2: '25℃', w3: 'c2', pm2: '56ug/m3', pm10: '75.00ug/m3' },
+      list: [
+        { id: 1, key: '温度', value: '31.05℃', icon: 'icon-wendu' },
+        { id: 2, key: '湿度', value: '91.60%RH', icon: 'icon-icontubiao' },
+        { id: 3, key: 'TSP', value: '0ug/m3', icon: 'icon-TSP' },
+        { id: 4, key: '风速', value: '0.00KM/H', icon: 'icon-fengsu' },
+        { id: 5, key: '噪音', value: '57.20db', icon: 'icon-zaoyin' },
+        { id: 6, key: '气压', value: '0KPA', icon: 'icon-qiya' },
+      ],
+    }
+    $("#top-2").html(pt.top2Template(data))
+  }
+
+  function block1 () {
     // mock
     const data = {
       list: [
@@ -179,7 +226,7 @@ layui.use(['LuUtilsTemplate', 'echarts'], function () {
     $('#r1-1').html(pt.block1Template(data))
   }
 
-  function block2() {
+  function block2 () {
     // mock
     const data = {
       topData: { w1: 1, w2: '25℃', w3: 'c2', pm2: '56ug/m3', pm10: '75.00ug/m3' },
@@ -195,7 +242,7 @@ layui.use(['LuUtilsTemplate', 'echarts'], function () {
     $('#r1-2').html(pt.block2Template(data))
   }
 
-  function block3() {
+  function block3 () {
     // mock
     const data = {
       list: [
@@ -208,7 +255,7 @@ layui.use(['LuUtilsTemplate', 'echarts'], function () {
     $('#r1-3').html(pt.block3Template(data))
   }
 
-  function block4() {
+  function block4 () {
     // mock
     const data = { schedule: 0.2, pending: 25, res: 13, rej: 5 }
     $('#r2-1').html(pt.block4Template(data))
@@ -233,7 +280,7 @@ layui.use(['LuUtilsTemplate', 'echarts'], function () {
             borderRadius: 100,
             borderColor: '#fff',
             borderWidth: 4,
-            color(params) {
+            color (params) {
               return ['#1BE9C3', '#52FF8F', '#E9AC19'][params.dataIndex]
             },
           },
@@ -244,7 +291,7 @@ layui.use(['LuUtilsTemplate', 'echarts'], function () {
     echartsObj1.setOption(opts)
   }
 
-  function block5() {
+  function block5 () {
     $('#r2-2').html(pt.block5Template())
     const el = document.querySelector('#chr2')
     // mock
@@ -272,7 +319,7 @@ layui.use(['LuUtilsTemplate', 'echarts'], function () {
           type: 'bar',
           data: [584, 356, 378, 256, 395],
           itemStyle: {
-            color(params) {
+            color (params) {
               return ['#1BE9C3', '#E9AC19', '#52FF8F', '#900013', '#096ce3'][params.dataIndex]
             },
           },
@@ -284,7 +331,7 @@ layui.use(['LuUtilsTemplate', 'echarts'], function () {
     echartsObj2.setOption(echartsOptions)
   }
 
-  function block6() {
+  function block6 () {
     // mock
     const data = { on: 20, off: 3 }
     $('#r2-3').html(pt.block6Template(data))
@@ -327,7 +374,7 @@ layui.use(['LuUtilsTemplate', 'echarts'], function () {
             { value: 5, name: '桥梁加速度监测' },
           ],
           itemStyle: {
-            color(params) {
+            color (params) {
               return ['#e9631b', '#47ceff', '#bcffae', '#E9AC19', '#52FF8F', '#b36cff', '#096ce3'][params.dataIndex]
             },
           },

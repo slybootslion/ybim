@@ -24,11 +24,11 @@ layui.define(['laytpl', 'dropdown'], function (exports) {
             <span class='txt'">{{d.projectName}}</span>
             <span class='iconfont icon-tucengzhanshifangshipeizhi' 
                   id='headerLeft1'></span>
-            <span>
-              <span class='iconfont icon-yingyong' 
-                    id='headerLeft2'></span>
-              <span class='left2-text'>{{d.modelName}}</span>
-            </span>
+<!--            <span>-->
+<!--              <span class='iconfont icon-yingyong' -->
+<!--                    id='headerLeft2'></span>-->
+<!--              <span class='left2-text'>{{d.modelName}}</span>-->
+<!--            </span>-->
           </div>
           <div class='header-content-right'>
             <div class='user-setting' 
