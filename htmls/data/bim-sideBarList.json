@@ -96,6 +96,12 @@
             "href": "person-manage/record-work-order"
           },
           {
+            "id": "13-3-5",
+            "title": "记工单",
+            "href": "person-manage/record-work-order-issue",
+            "hide": true
+          },
+          {
             "id": "13-3-2",
             "title": "工资单",
             "href": "person-manage/payroll"

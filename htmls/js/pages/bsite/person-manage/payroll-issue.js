@@ -28,7 +28,6 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
           )
         else harr.push(`<div class='list-item'><div class='label'>${dict[key]}：</div><div class='desc'>${data[key]}</div></div>`)
       })
-      let h = ''
       let html1 = ''
       let html2 = ''
       let html3 = ''

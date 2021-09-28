@@ -10,7 +10,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
   const LuLayer = layui.LuLayer
 
   class PageTemplate {
-    renderForm(editData) {
+    renderForm (editData) {
       let data = {
         recordName: '',
         company: '',
@@ -96,7 +96,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
       `
     }
 
-    renderRecordWorkOrderFormInner(data) {
+    renderRecordWorkOrderFormInner (data) {
       return `
         <div class="table-box">
           <div class="top">
@@ -153,14 +153,14 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
     await tableRender()
   })()
 
-  function initInnerHeader() {
+  function initInnerHeader () {
     luInnerHeader = new LuInnerHeader({
       title: '记工单',
       rightHtml: [{ txt: '新建' }],
     })
   }
 
-  function searchFormRender() {
+  function searchFormRender () {
     const selectData = [
       { value: 1, key: '一月' },
       { value: 2, key: '二月' },
@@ -176,9 +176,9 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
       { value: 12, key: '十二月' },
     ]
     const selectData2 = [
-      {value: 1, key: '参建公司1'},
-      {value: 2, key: '哇哈哈营养快线参建公司'},
-      {value: 3, key: '陕西三秦路桥有限责任公司'},
+      { value: 1, key: '参建公司1' },
+      { value: 2, key: '哇哈哈营养快线参建公司' },
+      { value: 3, key: '陕西三秦路桥有限责任公司' },
     ]
     new LuSearchForm(
       [
@@ -187,14 +187,14 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
         { label: '填单日期', type: 'date-s', name: 's3' },
       ],
       {
-        submit(data) {
+        submit (data) {
           console.log(data)
         },
       },
     )
   }
 
-  async function tableRender() {
+  async function tableRender () {
     const data = await $lulib.getMockData('/htmls/mock/bsite/recordWorkOrderData.json', 12, '', false)
     const html = `<span>
                     <a href='javascript:void(0)' class='table-tool-link' lay-event='edit'>
@@ -235,21 +235,21 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
     luTable = new LuTable(data, opts)
   }
 
-  async function edit(data) {
+  async function edit (data) {
     await formMethod(data)
   }
 
-  function del(_, obj) {
+  function del (_, obj) {
     LuLayer.confirm('确定删除？', () => obj.del())
   }
 
-  function info(data) {
-    console.log(data)
+  function info (data) {
+    $lulib.pagePushHash('bim/person-manage/record-work-order-issue', { id: data.id })
   }
 
   $lulib.bindMethod([{ dom: luInnerHeader.rightBtns[0], method: formMethod }])
 
-  async function formMethod(editData) {
+  async function formMethod (editData) {
     // mock
     const data = {
       companies: ['参建公司1', '哇哈哈营养快线参建公司', '陕西三秦路桥有限责任公司'],
@@ -300,7 +300,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
     innerLuTable.tableOn()
   }
 
-  function moneyInput(data, obj) {
+  function moneyInput (data, obj) {
     const content = pt.renderRecordWorkOrderFormInner(data)
     const opts = {
       title: '填写工日工时',
@@ -325,11 +325,11 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
     },
   ])
 
-  function closeInnerLayer() {
+  function closeInnerLayer () {
     luLayerInner.close()
   }
 
-  function calculatePay() {
+  function calculatePay () {
     const sumArr = $('[data-lu-method-input]').map((idx, ele) => (ele.value ? +ele.value : 0))
     const s = Array.from(sumArr)
     const sum = s[0] * s[1] + s[2] - s[3]
