@@ -3,7 +3,6 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
   const util = layui.util
   const form = layui.form
   const laydate = layui.laydate
-  const table = layui.table
 
   const LuInnerHeader = layui.LuInnerHeader
   const LuSearchForm = layui.LuSearchForm
@@ -176,9 +175,14 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
       { value: 11, key: '十一月' },
       { value: 12, key: '十二月' },
     ]
+    const selectData2 = [
+      {value: 1, key: '参建公司1'},
+      {value: 2, key: '哇哈哈营养快线参建公司'},
+      {value: 3, key: '陕西三秦路桥有限责任公司'},
+    ]
     new LuSearchForm(
       [
-        { label: '参建公司', type: 'text', name: 's1' },
+        { label: '参建公司', type: 'select', selectData: selectData2, name: 's1' },
         { label: '记工单截止月份', type: 'select', selectData, name: 's2' },
         { label: '填单日期', type: 'date-s', name: 's3' },
       ],
