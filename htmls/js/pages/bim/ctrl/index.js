@@ -20,27 +20,6 @@ layui.use(['LuUtilsTemplate', 'echarts'], function () {
     }
 
     top2Template (data) {
-      let h = '------'
-
-      return h
-    }
-
-    block1Template (data) {
-      const title = this.commTitle('项目概况')
-      const list = data.list
-        .map(item => `<div class='block-1-item'><span>${item.key}</span>：<span>${item.value}</span></div>`)
-        .join('')
-      const remark = `<div class='block-1-remark'>${data.remark}</div>`
-      return `${title}
-      <div class='block-content block-1'>
-         ${list}
-         ${remark}
-      </div>
-      `
-    }
-
-    block2Template (data) {
-      const title = this.commTitle('当前环境')
       const { topData, list } = data
       const picDist = {
         1: { t: '晴', icon: 'p1' },
@@ -62,25 +41,62 @@ layui.use(['LuUtilsTemplate', 'echarts'], function () {
                 </div>
               </div>`
       }
+      return `<div class="top-2-left">
+                <div class='pic'>
+                  <img src='/htmls/images/page/bim/${picDist[topData.w1].icon}.png' alt='${picDist[topData.w1].t}'>
+                </div>
+                <div class='desc'>
+                  <div class='desc-top'>
+                    <div class='txt fl'>${picDist[topData.w1].t} ${topData.w2}</div>
+                    <div class='tag fl ${topData.w3}'>${desDist[topData.w3]}</div>
+                  </div>
+                  <div class='desc-bottom'>
+                    <div class='b-item'>PM2.5：<span>${topData.pm2}</span></div>
+                    <div class='b-item'>PM10：<span>${topData.pm10}</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="top-2-right">${h}</div>`
+    }
+
+    block1Template (data) {
+      const title = this.commTitle('项目概况')
+      const list = data.list
+        .map(item => `<div class='block-1-item'><span>${item.key}</span>：<span>${item.value}</span></div>`)
+        .join('')
+      const remark = `<div class='block-1-remark'>${data.remark}</div>`
+      return `${title}
+        <div class='block-content block-1'>
+           ${list}
+           ${remark}
+        </div>
+      `
+    }
+
+    block2Template (data) {
+      const title = this.commTitle('物料管理')
+      let h = ''
+      for (let i = 0; i < data.warning.length; i++) {
+        const w = data.warning[i]
+        h += `<div class="item">${w.name} 剩余${w.num}${w.unit}</div>`
+      }
+
       return `${title}
       <div class='block-content block-2'>
-        <div class='top'>
-          <div class='pic'>
-            <img src='/htmls/images/page/bim/${picDist[topData.w1].icon}.png' alt='${picDist[topData.w1].t}'>
-          </div>
-          <div class='desc'>
-            <div class='desc-top'>
-              <div class='txt fl'>${picDist[topData.w1].t} ${topData.w2}</div>
-              <div class='tag fl ${topData.w3}'>${desDist[topData.w3]}</div>
-            </div>
-            <div class='desc-bottom'>
-              <div class='b-item'>PM2.5：<span>${topData.pm2}</span></div>
-              <div class='b-item'>PM10：<span>${topData.pm10}</span></div>
-            </div>
+        <div class="top">
+          <div class="circle">
+            <span>货品库存</span>
+            <span class="count-num">${data.count}种</span>
           </div>
         </div>
-        <div class='bottom'>
-          ${h}
+        <div class="bottom">
+          <div class="bottom-item">
+            <div class="title">库存预警：</div>
+            ${h}
+          </div>
+          <div class="bottom-item">
+            <div class="title">本周领料：${data.receive}次</div>
+          </div>
         </div>
       </div>
       `
@@ -188,7 +204,7 @@ layui.use(['LuUtilsTemplate', 'echarts'], function () {
     $('#top-1').html(pt.top1Template(data))
   }
 
-  function top2() {
+  function top2 () {
     // mock
     const data = {
       topData: { w1: 1, w2: '25℃', w3: 'c2', pm2: '56ug/m3', pm10: '75.00ug/m3' },
@@ -229,15 +245,13 @@ layui.use(['LuUtilsTemplate', 'echarts'], function () {
   function block2 () {
     // mock
     const data = {
-      topData: { w1: 1, w2: '25℃', w3: 'c2', pm2: '56ug/m3', pm10: '75.00ug/m3' },
-      list: [
-        { id: 1, key: '温度', value: '31.05℃', icon: 'icon-wendu' },
-        { id: 2, key: '湿度', value: '91.60%RH', icon: 'icon-icontubiao' },
-        { id: 3, key: 'TSP', value: '0ug/m3', icon: 'icon-TSP' },
-        { id: 4, key: '风速', value: '0.00KM/H', icon: 'icon-fengsu' },
-        { id: 5, key: '噪音', value: '57.20db', icon: 'icon-zaoyin' },
-        { id: 6, key: '气压', value: '0KPA', icon: 'icon-qiya' },
+      count: 999,
+      warning: [
+        { name: '安全阀', num: '25', unit: '' },
+        { name: '水泥', num: '1', unit: '吨' },
+        { name: '钢筋', num: '0.2', unit: '' },
       ],
+      receive: 10,
     }
     $('#r1-2').html(pt.block2Template(data))
   }
