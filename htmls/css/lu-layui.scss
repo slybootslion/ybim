@@ -79,6 +79,25 @@ $bodyBgc: #ebf2fc;
     background-color: $bodyBgc;
     padding-bottom: 0;
   }
+
+  .lu-header-ql {
+    height: 70px;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url('/htmls/images/page/qljc/top.png');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: $paramColor;
+
+    .middle {
+      font-size: 30px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+  }
 }
 
 .lu-layout-all {

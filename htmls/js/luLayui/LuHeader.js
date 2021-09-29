@@ -2,19 +2,17 @@ layui.define(['util', 'LuHeaderTemplate'], function (exports) {
   const $ = layui.jquery
   const util = layui.util
   const LuHeaderTemplate = layui.LuHeaderTemplate
+  const LuHeaderTemplateQL = layui.LuHeaderTemplateQL
 
   const loginUrl = '/htmls/pages/login.html'
 
-  function setTime() {
-    return util.toDateString(new Date(), 'yyyy年MM月dd日 HH:mm:ss')
-  }
-
-  function renderTime() {
-    $('#headerTime').html(setTime())
+  function setTime (type = '') {
+    if (type === 'QL') return $lulib.dayjs().format('YYYY年MM月DD日 dddd')
+    return $lulib.dayjs().format('YYYY年MM月DD日 HH:mm:ss')
   }
 
   class LuHeader {
-    constructor(username, projectList) {
+    constructor (username, projectList) {
       this.username = username
       this.projectList = projectList
       this.timeboxTimer = null
@@ -22,7 +20,7 @@ layui.define(['util', 'LuHeaderTemplate'], function (exports) {
       this.init()
     }
 
-    init() {
+    init () {
       const { username, projectList } = this
       const time = setTime()
       const projectName = projectList.length ? projectList[0].name : '项目名称'
@@ -35,27 +33,27 @@ layui.define(['util', 'LuHeaderTemplate'], function (exports) {
       this.renderTime()
     }
 
-    renderTime() {
+    renderTime () {
       if (this.timeboxTimer) clearInterval(this.timeboxTimer)
       const headerTime = $('#headerTime')
       this.timeboxTimer = setInterval(() => headerTime.html(setTime()), 1000)
     }
 
-    renderTemplate(username, projectName, time, modelName) {
+    renderTemplate (username, projectName, time, modelName) {
       this.lhTemplate = new LuHeaderTemplate({ username, projectName, time, modelName })
       this.lhTemplate.renderHeader()
     }
 
-    renderProjectList() {
+    renderProjectList () {
       const list = this.projectList
       if (list.length) this.lhTemplate.renderProjectList(list)
     }
 
-    renderBlockList() {
+    renderBlockList () {
       this.lhTemplate.renderBLock()
     }
 
-    bindListeners() {
+    bindListeners () {
       const headerEle = $('.lu-header')
 
       headerEle.on('click', '#username', function () {
@@ -76,6 +74,8 @@ layui.define(['util', 'LuHeaderTemplate'], function (exports) {
 
       headerEle.on('click', '#ldjsc', () => $lulib.pagePush('/htmls/pages/bim/data-screen'))
 
+      headerEle.on('click', '#headerLeft2', () => $lulib.pagePush('/htmls/pages/qljc'))
+
       $lulib.eventBus.on('backModelHash', () => {
         if (!this.beforeHash) $lulib.pageReplace('/htmls')
         else {
@@ -88,5 +88,28 @@ layui.define(['util', 'LuHeaderTemplate'], function (exports) {
     }
   }
 
+  class LuHeaderQL {
+    constructor (username, projectList, weather) {
+      this.username = username
+      this.projectList = projectList
+      this.weather = weather
+      this.init()
+    }
+
+    init () {
+      const { username, projectList, weather } = this
+      const projectName = projectList.length ? projectList[0].name : '项目名称'
+      const time = setTime('QL')
+      this.renderTemplate(username, projectName, time, weather)
+    }
+
+    renderTemplate (username, projectName, time, weather) {
+      this.lhTemplate = new LuHeaderTemplateQL({ username, projectName, time, weather })
+      this.lhTemplate.renderHeader()
+    }
+
+  }
+
   exports('LuHeader', LuHeader)
+  exports('LuHeaderQL', LuHeaderQL)
 })

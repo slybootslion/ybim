@@ -102,7 +102,7 @@ layui.define(['laytpl', 'element'], function (exports) {
     }
 
     renderBodyContent({ animation, href, title }) {
-      const TITLE_SUFFIX = 'BIM智慧工地综合管理平台'
+      const TITLE_SUFFIX = '嘉云BIM智慧建设管理系统'
       $('title').html(`${title} - ${TITLE_SUFFIX}`)
       this.animation = animation
       return this.renderPageContent(href)

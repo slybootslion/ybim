@@ -4,7 +4,7 @@ layui.define(['laytpl', 'dropdown'], function (exports) {
   const dropdown = layui.dropdown
 
   class HeaderTemplate {
-    constructor(data) {
+    constructor (data) {
       this.data = data
       this.blockData = [
         { title: 'BIM管理平台', icon: 'bim', id: 1, path: 'bim/ctrl/index' },
@@ -14,7 +14,7 @@ layui.define(['laytpl', 'dropdown'], function (exports) {
       ]
     }
 
-    renderHeader() {
+    renderHeader () {
       const headerHtml = `
         <div class='header-logo'>
           <img src='/htmls/images/public/logo.png' alt=''>
@@ -24,6 +24,9 @@ layui.define(['laytpl', 'dropdown'], function (exports) {
             <span class='txt'">{{d.projectName}}</span>
             <span class='iconfont icon-tucengzhanshifangshipeizhi' 
                   id='headerLeft1'></span>
+            <span id="headerLeft2">
+              <span class="iconfont icon-yingyong"></span><span>桥梁检测</span>
+            </span>
 <!--            <span>-->
 <!--              <span class='iconfont icon-yingyong' -->
 <!--                    id='headerLeft2'></span>-->
@@ -62,15 +65,15 @@ layui.define(['laytpl', 'dropdown'], function (exports) {
       $('.lu-header').html(html)
     }
 
-    updateProjectName(name) {
+    updateProjectName (name) {
       $('.header-content .header-content-left .txt').html(name)
     }
 
-    updateBlockName(name) {
-      $('.header-content .header-content-left .left2-text').html(name)
-    }
+    // updateBlockName (name) {
+    //   $('.header-content .header-content-left .left2-text').html(name)
+    // }
 
-    renderProjectList(list) {
+    renderProjectList (list) {
       const data = list.map(item => {
         item.title = item.name
         delete item.name
@@ -87,8 +90,8 @@ layui.define(['laytpl', 'dropdown'], function (exports) {
       })
     }
 
-    renderBLock() {
-      let h = ``
+    renderBLock () {
+      /*let h = ``
       $.each(this.blockData, (idx, item) => {
         h += `<div class='header-dd-b-item' data-index='${idx}'>
                  <img class='h-dd-b-i-pic' src='/htmls/images/public/${item.icon}.png' alt=''>
@@ -96,7 +99,6 @@ layui.define(['laytpl', 'dropdown'], function (exports) {
               </div>`
       })
       const content = `<div class='header-dropdown-block'>${h}</div>`
-
       dropdown.render({
         elem: '#headerLeft2',
         content,
@@ -115,9 +117,28 @@ layui.define(['laytpl', 'dropdown'], function (exports) {
 
           dom.on('click', '.header-dd-b-item', fn)
         },
-      })
+      })*/
+    }
+  }
+
+  class HeaderTemplateQL {
+    constructor (data) {
+      this.data = data
+    }
+
+    renderHeader () {
+      const data = this.data
+      console.log(data)
+      const picDist = {
+        1: { t: '晴', icon: 'p1' },
+        2: { t: '雪', icon: 'p2' },
+        3: { t: '阴', icon: 'p3' },
+        4: { t: '雨', icon: 'p4' },
+      }
+      const desDist = { c0: '优', c1: '良', c2: '轻度污染', c3: '中度污染', c4: '重度污染', c5: '严重污染' }
     }
   }
 
   exports('LuHeaderTemplate', HeaderTemplate)
+  exports('LuHeaderTemplateQL', HeaderTemplateQL)
 })
