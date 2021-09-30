@@ -4,17 +4,6 @@ $sideBarBgc: #242d3c;
 $bodyBgc: #ebf2fc;
 
 .layui-layout-admin {
-  .lu-header {
-    height: 65px;
-    position: relative;
-    background-image: url(../images/public/top.jpg);
-    background-position: center center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    color: #ffffff;
-  }
 
   .lu-menu {
     .menu-child-level1 {
@@ -95,7 +84,7 @@ $bodyBgc: #ebf2fc;
     .right,
     .left {
       width: 260px;
-      height:70px;
+      height: 70px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -125,7 +114,10 @@ $bodyBgc: #ebf2fc;
     }
 
     .right {
-      width: 200px;
+      .username {
+        position: relative;
+        left: 30px;
+      }
     }
 
     .middle {

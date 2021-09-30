@@ -1,0 +1,21 @@
+[
+  {
+    "id": "1",
+    "title": "首页概况",
+    "href": "index",
+    "icon": "icon-shouye",
+    "active": true
+  },
+  {
+    "id": "2",
+    "title": "BIM展示",
+    "href": "bim",
+    "icon": "icon-BIM"
+  },
+  {
+    "id": "3",
+    "title": "桥梁监测",
+    "href": "bridge-monitoring",
+    "icon": "icon-jiance"
+  }
+]

@@ -9,6 +9,8 @@ layui
     version: true,
     debug: true,
   })
+  .extend({
+  })
   // .extend({
   //   LuHeaderTemplate: 'template/LuHeaderTemplate',
   //   LuBodyContentTemplate: 'template/LuBodyContentTemplate',
@@ -23,4 +25,5 @@ layui
 const appConfig = {
   loadingTime: 0,
   bodyAnimation: true, // 滑入动画
+  sideBarPath: '/qljcs/data/sideBarList.json'
 }

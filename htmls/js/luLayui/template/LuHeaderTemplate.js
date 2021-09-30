@@ -128,7 +128,6 @@ layui.define(['laytpl', 'dropdown'], function (exports) {
 
     renderHeader () {
       const data = this.data
-      console.log(data)
       const picDist = {
         1: { t: '晴', icon: 'p1' },
         2: { t: '雪', icon: 'p2' },

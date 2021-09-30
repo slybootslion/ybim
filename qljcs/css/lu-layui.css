@@ -1,14 +1,3 @@
-.layui-layout-admin .lu-header {
-  height: 65px;
-  position: relative;
-  background-image: url(../images/public/top.jpg);
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  display: flex;
-  align-items: center;
-  color: #ffffff;
-}
 .layui-layout-admin .lu-menu .menu-child-level1 {
   margin-left: 30px;
 }
@@ -88,8 +77,9 @@
   position: absolute;
   right: -200px;
 }
-.layui-layout-admin .lu-header-ql .right {
-  width: 200px;
+.layui-layout-admin .lu-header-ql .right .username {
+  position: relative;
+  left: 30px;
 }
 .layui-layout-admin .lu-header-ql .middle {
   font-size: 30px;
