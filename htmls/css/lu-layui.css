@@ -62,6 +62,16 @@
   background-repeat: no-repeat;
   color: #007fff;
 }
+.layui-layout-admin .lu-header-ql .right,
+.layui-layout-admin .lu-header-ql .left {
+  width: 200px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: -5px;
+}
 .layui-layout-admin .lu-header-ql .middle {
   font-size: 30px;
   font-weight: 700;

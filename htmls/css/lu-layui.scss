@@ -92,6 +92,17 @@ $bodyBgc: #ebf2fc;
     background-repeat: no-repeat;
     color: $paramColor;
 
+    .right,
+    .left {
+      width: 200px;
+      height:70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      top: -5px;
+    }
+
     .middle {
       font-size: 30px;
       font-weight: 700;
