@@ -94,13 +94,30 @@ $bodyBgc: #ebf2fc;
 
     .right,
     .left {
-      width: 200px;
+      width: 260px;
       height:70px;
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
       top: -5px;
+    }
+
+    .left {
+      .icon {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .project-box {
+        position: absolute;
+        right: -200px;
+      }
     }
 
     .middle {

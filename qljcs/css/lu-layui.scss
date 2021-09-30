@@ -1,0 +1,316 @@
+$paramColor: #007fff;
+$paramColorHov: #3794ff;
+$sideBarBgc: #242d3c;
+$bodyBgc: #ebf2fc;
+
+.layui-layout-admin {
+  .lu-header {
+    height: 65px;
+    position: relative;
+    background-image: url(../images/public/top.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+  }
+
+  .lu-menu {
+    .menu-child-level1 {
+      margin-left: 30px;
+    }
+
+    .children-menu-3 {
+      margin-left: 20px;
+    }
+  }
+
+  .lu-side {
+    background-color: $sideBarBgc !important;
+    transition: width .3s;
+
+    .layui-side-scroll {
+
+      .lu-nav-item {
+        background-color: $sideBarBgc;
+
+        .iconfont {
+          margin-right: 10px;
+        }
+
+        .menu-title-child {
+          margin-left: 30px;
+        }
+
+        .lu-nav-child {
+          dd {
+            //height: 45px;
+
+            a {
+              height: 45px;
+            }
+          }
+        }
+      }
+
+      .layui-this {
+        background-color: $paramColor;
+
+        a {
+          background-color: $paramColor;
+
+          &:hover {
+            background-color: $paramColorHov;
+          }
+        }
+      }
+
+      .layui-nav-bar {
+        background-color: $paramColor;
+      }
+    }
+  }
+
+  .lu-body {
+    top: 65px;
+    bottom: 0;
+    transition: left .3s;
+    background-color: $bodyBgc;
+    padding-bottom: 0;
+  }
+
+  .lu-header-ql {
+    height: 70px;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url('/htmls/images/page/qljc/top.png');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: $paramColor;
+
+    .right,
+    .left {
+      width: 260px;
+      height:70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      top: -5px;
+    }
+
+    .left {
+      .icon {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .left-date {
+        font-size: 12px;
+      }
+
+      .project-box {
+        position: absolute;
+        right: -200px;
+      }
+    }
+
+    .right {
+      width: 200px;
+    }
+
+    .middle {
+      font-size: 30px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+  }
+}
+
+.lu-layout-all {
+
+}
+
+.lu-sidebar-hover-ul {
+  .lu-menu-li {
+    &.layui-menu-item-checked {
+      background-color: rgba(0, 0, 0, .6) !important;
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, .6);
+    }
+
+    .lu-menu-item {
+      height: 45px;
+      line-height: 45px;
+      box-sizing: border-box;
+
+      a {
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+.lu-layout-mini {
+
+  .stretch-btn-box {
+    width: 60px;
+    transform: rotate(180deg);
+
+    .shousuo-txt {
+      display: none;
+    }
+  }
+
+  .lu-side {
+    width: 60px;
+
+    .lu-nav-item {
+      width: 100px;
+
+      &.layui-nav-itemed {
+        a {
+          color: rgba(255, 255, 255, .7) !important;
+        }
+      }
+
+      .menu-title {
+        display: none;
+      }
+
+      .layui-nav-more {
+        display: none;
+      }
+
+      .layui-nav-child {
+        display: none;
+      }
+    }
+  }
+
+  .lu-body {
+    left: 60px;
+  }
+
+  .popup-tips {
+    .layui-layer-content {
+      background-color: transparent;
+      padding: 0;
+      box-shadow: none;
+
+      .layui-layer-TipsG {
+        display: none;
+      }
+
+      .lu-layui-nav-zoom {
+        dd {
+          &.layui-this {
+            a {
+              background-color: #007fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.header-dropdown-block {
+  width: 370px;
+  padding: 0 15px;
+  box-shadow: 1px 1px 30px rgb(0 0 0 / 12%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .header-dd-b-item {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    .h-dd-b-i-pic {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+// 文件上传
+.upload-file-content {
+  width: 255px;
+  margin-top: 5px;
+
+  &.pic-type {
+    float: left;
+    width: 120px;
+    margin-right: 20px;
+  }
+
+  .file-box {
+    width: 100%;
+    color: $paramColor;
+    position: relative;
+    margin-bottom: 5px;
+
+    .filename {
+      width: 100%;
+    }
+
+    .del-file-icon {
+      position: absolute;
+      right: -20px;
+      top: -5px;
+      font-size: 26px;
+      cursor: pointer;
+    }
+
+    &.file-box-img {
+      width: 120px;
+      height: 120px;
+      margin: 0;
+
+      .layui-progress {
+        width: 100%;
+      }
+
+      .file-img {
+        width: 100%;
+        height: 100%;
+        background-position: center center;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+
+      .del-file-icon {
+        top: 0;
+        right: 0;
+      }
+    }
+  }
+}
+
+.upload-input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  left: -10000px;
+  z-index: -1;
+}

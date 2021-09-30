@@ -64,13 +64,26 @@
 }
 .layui-layout-admin .lu-header-ql .right,
 .layui-layout-admin .lu-header-ql .left {
-  width: 200px;
+  width: 260px;
   height: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   top: -5px;
+}
+.layui-layout-admin .lu-header-ql .left .icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+.layui-layout-admin .lu-header-ql .left .icon img {
+  width: 100%;
+  height: 100%;
+}
+.layui-layout-admin .lu-header-ql .left .project-box {
+  position: absolute;
+  right: -200px;
 }
 .layui-layout-admin .lu-header-ql .middle {
   font-size: 30px;

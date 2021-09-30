@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>结构物安全检测系统</title>
+  <link rel="stylesheet" href="/qljcs/lib/layui/css/layui.css">
+  <link rel="stylesheet" href="/qljcs/css/lu-layui.css">
+  <link rel="stylesheet" href="/qljcs/css/public.css">
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      color: #fff;
+      background-image: url('/qljcs/images/page/qljc/bg.jpg');
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+  </style>
+</head>
+<body class="layui-layout-body lu-layout-body lu-layout-all">
+<div class="layui-layout layui-layout-admin">
+  <!--render loading-->
+  <div class="loader-content">
+    <img src="/qljcs/images/public/loading.gif" alt="" class="loader-pic">
+  </div>
+  <!--header-->
+  <div class="layui-header lu-header-ql">
+    <div class="left">
+      <div class="icon">
+        <img src="/qljcs/images/page/bim/p4.png" alt="">
+      </div>
+      <div class="left-date">
+        <div class="date-text">2021年05月12日 星期一</div>
+        <div class="left-date-weather">晴转多云 15℃</div>
+      </div>
+      <div class="project-box">
+        <span class="iconfont icon"></span>
+        <span>S107关中环线大中修项目</span>
+      </div>
+    </div>
+    <div class="middle">结构物安全检测系统</div>
+    <div class="right">fengjiajia</div>
+  </div>
+</div>
+</body>
+<script src="/qljcs/lib/layui/layui.js" charset="utf-8"></script>
+<script src='/qljcs/js/LuLibrary.js' charset="utf-8"></script>
+<script src="/qljcs/js/baseConfig.js" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+layui.use(['LuAdmin'], async function () {
+  const $ = layui.$
+
+  const LuAdmin = layui.LuAdmin
+  const config = {
+    ...appConfig
+  }
+  // mock
+  config.username = 'fengjiajia'
+  config.projectName = 'S107关中环线大中修项目'
+  config.weather = { w1: 1, w2: '25℃', w3: 'c2' }
+  new LuAdmin(config)
+})
+</script>
+</html>
