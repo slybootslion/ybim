@@ -1,6 +1,6 @@
+@import "reset-layui";
 $paramColor: #007fff;
 $paramColorHov: #3794ff;
-$sideBarBgc: #242d3c;
 $bodyBgc: #ebf2fc;
 
 .layui-layout-admin {
@@ -16,16 +16,59 @@ $bodyBgc: #ebf2fc;
   }
 
   .lu-side {
-    background-color: $sideBarBgc !important;
+    width: 100px;
     transition: width .3s;
+    top: 100px;
+    bottom: auto;
+    background-color: transparent !important;
 
-    .layui-side-scroll {
+    .stretch-btn-box {
+      width: 100px;
+      height: 30px;
+      transition: width .3s;
+      z-index: 901;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-      .lu-nav-item {
-        background-color: $sideBarBgc;
+      .stretch-btn {
+        width: 60%;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        background-color: rgba(255, 255, 255, .05);
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        cursor: pointer;
 
         .iconfont {
-          margin-right: 10px;
+          font-size: 12px;
+          color: $paramColor;
+        }
+      }
+    }
+
+
+    .layui-side-scroll {
+      width: 100px;
+      background-color: rgba(255, 255, 255, .1) !important;
+      height: auto;
+
+      .lu-nav-item {
+        width: 100px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        cursor: pointer;
+
+        .iconfont {
+          font-size: 30px;
+          margin-bottom: 10px;
+          background-image: linear-gradient(to bottom, #3ad1ed, #2775e6);
+          -webkit-background-clip: text;
+          color: transparent;
         }
 
         .menu-title-child {
@@ -45,13 +88,8 @@ $bodyBgc: #ebf2fc;
 
       .layui-this {
         background-color: $paramColor;
-
-        a {
-          background-color: $paramColor;
-
-          &:hover {
-            background-color: $paramColorHov;
-          }
+        .iconfont {
+          color: #fff;
         }
       }
 
@@ -128,10 +166,6 @@ $bodyBgc: #ebf2fc;
   }
 }
 
-.lu-layout-all {
-
-}
-
 .lu-sidebar-hover-ul {
   .lu-menu-li {
     &.layui-menu-item-checked {
@@ -156,37 +190,34 @@ $bodyBgc: #ebf2fc;
 
 .lu-layout-mini {
 
-  .stretch-btn-box {
-    width: 60px;
-    transform: rotate(180deg);
-
-    .shousuo-txt {
-      display: none;
-    }
-  }
-
   .lu-side {
     width: 60px;
 
-    .lu-nav-item {
-      width: 100px;
+    .stretch-btn-box {
+      width: 60px;
+      transform: rotate(180deg);
 
-      &.layui-nav-itemed {
-        a {
-          color: rgba(255, 255, 255, .7) !important;
+      .stretch-btn {
+        width: 100%;
+        border-radius: 0;
+      }
+    }
+
+    .layui-side-scroll {
+      width: 60px;
+
+      .lu-nav-item {
+        width: 60px;
+        height: 60px;
+
+        .iconfont {
+          margin-bottom: 0;
+          font-size: 26px;
         }
-      }
 
-      .menu-title {
-        display: none;
-      }
-
-      .layui-nav-more {
-        display: none;
-      }
-
-      .layui-nav-child {
-        display: none;
+        .side-icon-txt {
+          display: none;
+        }
       }
     }
   }

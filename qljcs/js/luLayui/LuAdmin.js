@@ -10,7 +10,8 @@ layui.define(['LuHeader', 'LuSideBar'], function (exports) {
       const { loadingTime, projectName, weather, username, sideBarPath } = this.options
       await $lulib.delay(loadingTime)
       await (new LuHeader()).init({ projectName, weather, username })
-      await (new LuSideBar()).init(sideBarPath)
+      const sidebarData = await $lulib.ajax(sideBarPath, 'json')
+      await (new LuSideBar(sidebarData)).init()
       this.deleteLoader()
     }
 

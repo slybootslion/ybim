@@ -136,42 +136,6 @@ html, body {
   }
 }
 
-.stretch-btn-box {
-  width: 200px;
-  height: 35px;
-  background-color: $sideBarBgc;
-  transition: width .3s;
-  position: relative;
-  z-index: 901;
-
-  .sidebar-back,
-  .stretch-a {
-    width: 100%;
-    height: 100%;
-    display: inline-block;
-    color: #ffffff;
-    text-align: center;
-    line-height: 35px;
-
-    span {
-      color: rgba(255, 255, 255, .7);
-    }
-
-    &:hover {
-      background-color: rgba(255, 255, 255, .1);
-
-      .iconfont {
-        color: #fff;
-      }
-    }
-
-    .iconfont {
-      font-size: 14px;
-      margin-right: 10px;
-    }
-  }
-}
-
 .body-iframe {
   width: 100%;
   height: 100%;

@@ -1,3 +1,256 @@
+@charset "UTF-8";
+.layui-form-checked[lay-skin=primary] i {
+  border-color: #007fff !important;
+  background-color: #007fff;
+  color: #fff;
+}
+
+.layui-btn {
+  border-radius: 3px;
+  background-color: #007fff;
+}
+
+.layui-form-select dl dd.layui-this {
+  background-color: #007fff;
+}
+
+.layui-table-page .layui-laypage {
+  float: right;
+}
+.layui-table-page .layui-laypage input:focus,
+.layui-table-page .layui-laypage elect:focus {
+  border-color: #007fff !important;
+}
+.layui-table-page .layui-laypage a:hover {
+  color: #007fff;
+}
+.layui-table-page .layui-laypage .layui-laypage-curr .layui-laypage-em {
+  background-color: #007fff;
+}
+
+.layui-table th {
+  color: #094581;
+  font-weight: 700;
+}
+
+.layui-table[lay-even] tr:nth-child(even) {
+  background-color: #f0f7ff;
+}
+
+.inner-body {
+  padding: 10px;
+  /*按钮*/
+  /* tab */
+  /* layer */
+  /* 表格 */
+  /* 分页 */
+  /* 标签 */
+}
+.inner-body .page-header {
+  height: 42px;
+  border-bottom: 2px solid #007fff;
+  padding: 0 15px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.inner-body .page-header.no-border {
+  border-bottom: none;
+}
+.inner-body .page-header .title {
+  position: relative;
+}
+.inner-body .page-header .title::before {
+  content: "";
+  width: 5px;
+  height: 16px;
+  position: absolute;
+  display: block;
+  background-color: #007fff;
+  top: 2px;
+  left: -8px;
+}
+.inner-body .page-header .right {
+  display: flex;
+}
+.inner-body .page-header .right .btn {
+  height: 35px;
+  display: flex;
+  align-items: center;
+  padding: 0 13px;
+  border-radius: 3px;
+}
+.inner-body .page-header .right .btn.btn-weaken {
+  color: #333333;
+  background-color: #b7d5f4;
+}
+.inner-body .page-header .right .btn.btn-weaken .iconfont {
+  color: #333;
+}
+.inner-body .page-header .right .btn .iconfont {
+  font-size: 20px;
+  margin-right: 5px;
+}
+.inner-body .page-container {
+  margin-top: 10px;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  padding: 20px 32px;
+}
+.inner-body .page-container .select-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+.inner-body .page-container .select-box .layui-inline {
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+.inner-body .page-container .select-box .layui-inline .layui-form-label {
+  width: auto;
+  padding-left: 0;
+  padding-top: 6px;
+}
+.inner-body .page-container .select-box .layui-inline .layui-input-inline.inner-input-w155 .layui-input {
+  width: 155px;
+}
+.inner-body .page-container .select-box .layui-inline .layui-input-inline .layui-input.w155 {
+  width: 155px;
+}
+.inner-body .page-container .select-box .layui-btn {
+  height: 35px;
+  line-height: 35px;
+}
+.inner-body .page-container .content-table {
+  margin-top: 26px;
+}
+.inner-body .table-tool-link {
+  margin-right: 10px;
+  color: #5e81a5;
+}
+.inner-body .table-tool-link:hover {
+  color: #007fff;
+}
+.inner-body .btn-primary-sec {
+  background-color: #23b5df;
+}
+.inner-body .btn-primary-dep {
+  background-color: #454545;
+}
+.inner-body .btn-tb-create {
+  height: 25px;
+  line-height: 25px;
+  background-color: #fff;
+  color: #007fff;
+  border: 1px solid #007fff;
+  border-radius: 5px;
+}
+.inner-body .layui-tab-brief > .layui-tab-title .layui-this {
+  color: #007fff;
+}
+.inner-body .layui-tab-brief > .layui-tab-title .layui-this::after {
+  border-bottom-color: #007fff;
+}
+.inner-body .layui-layer.layui-layer-page .layui-layer-title {
+  background-color: #f0f0f0;
+}
+.inner-body .layui-layer.layui-layer-page .layui-layer-btn {
+  background-color: #f0f0f0;
+}
+.inner-body .layui-layer.layui-layer-page .layui-layer-btn .layui-layer-btn0 {
+  background-color: #007fff;
+}
+.inner-body .layui-layer.layui-layer-page .layui-layer-btn .layui-layer-btn1 {
+  color: #ffffff;
+  background-color: #23b5df;
+}
+.inner-body .layui-laypage .layui-laypage-curr .layui-laypage-em {
+  background-color: #007fff;
+}
+.inner-body .layui-badge {
+  background-color: #ff0b0b;
+}
+.inner-body .layui-badge.layui-bg-green {
+  background-color: #1ec004 !important;
+}
+
+/* 输入框 */
+.layui-input, .layui-select, .layui-textarea {
+  height: 35px;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.layui-textarea {
+  resize: none;
+}
+
+.layui-form-label.required span {
+  position: relative;
+}
+.layui-form-label.required span::before {
+  content: "*";
+  color: #ff0000;
+  position: absolute;
+  left: -10px;
+  top: 0;
+}
+
+.layui-input.disabled {
+  background-color: #f5f5f5;
+  color: #888888;
+}
+
+.btn-weaken {
+  background-color: #b7d5f4;
+  color: #333;
+}
+
+.clearFix:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.clearFix {
+  zoom: 1;
+}
+
+.fl {
+  float: left;
+  display: inline;
+}
+
+.fr {
+  float: right;
+  display: inline;
+}
+
+.centerX {
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+}
+
+.centerY {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.centerXY {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.txt-overflow {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .layui-layout-admin .lu-menu .menu-child-level1 {
   margin-left: 30px;
 }
@@ -5,14 +258,55 @@
   margin-left: 20px;
 }
 .layui-layout-admin .lu-side {
-  background-color: #242d3c !important;
+  width: 100px;
   transition: width 0.3s;
+  top: 100px;
+  bottom: auto;
+  background-color: transparent !important;
+}
+.layui-layout-admin .lu-side .stretch-btn-box {
+  width: 100px;
+  height: 30px;
+  transition: width 0.3s;
+  z-index: 901;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.layui-layout-admin .lu-side .stretch-btn-box .stretch-btn {
+  width: 60%;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  cursor: pointer;
+}
+.layui-layout-admin .lu-side .stretch-btn-box .stretch-btn .iconfont {
+  font-size: 12px;
+  color: #007fff;
+}
+.layui-layout-admin .lu-side .layui-side-scroll {
+  width: 100px;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  height: auto;
 }
 .layui-layout-admin .lu-side .layui-side-scroll .lu-nav-item {
-  background-color: #242d3c;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
 }
 .layui-layout-admin .lu-side .layui-side-scroll .lu-nav-item .iconfont {
-  margin-right: 10px;
+  font-size: 30px;
+  margin-bottom: 10px;
+  background-image: linear-gradient(to bottom, #3ad1ed, #2775e6);
+  -webkit-background-clip: text;
+  color: transparent;
 }
 .layui-layout-admin .lu-side .layui-side-scroll .lu-nav-item .menu-title-child {
   margin-left: 30px;
@@ -23,11 +317,8 @@
 .layui-layout-admin .lu-side .layui-side-scroll .layui-this {
   background-color: #007fff;
 }
-.layui-layout-admin .lu-side .layui-side-scroll .layui-this a {
-  background-color: #007fff;
-}
-.layui-layout-admin .lu-side .layui-side-scroll .layui-this a:hover {
-  background-color: #3794ff;
+.layui-layout-admin .lu-side .layui-side-scroll .layui-this .iconfont {
+  color: #fff;
 }
 .layui-layout-admin .lu-side .layui-side-scroll .layui-nav-bar {
   background-color: #007fff;
@@ -102,29 +393,29 @@
   color: #ffffff;
 }
 
-.lu-layout-mini .stretch-btn-box {
-  width: 60px;
-  transform: rotate(180deg);
-}
-.lu-layout-mini .stretch-btn-box .shousuo-txt {
-  display: none;
-}
 .lu-layout-mini .lu-side {
   width: 60px;
 }
-.lu-layout-mini .lu-side .lu-nav-item {
-  width: 100px;
+.lu-layout-mini .lu-side .stretch-btn-box {
+  width: 60px;
+  transform: rotate(180deg);
 }
-.lu-layout-mini .lu-side .lu-nav-item.layui-nav-itemed a {
-  color: rgba(255, 255, 255, 0.7) !important;
+.lu-layout-mini .lu-side .stretch-btn-box .stretch-btn {
+  width: 100%;
+  border-radius: 0;
 }
-.lu-layout-mini .lu-side .lu-nav-item .menu-title {
-  display: none;
+.lu-layout-mini .lu-side .layui-side-scroll {
+  width: 60px;
 }
-.lu-layout-mini .lu-side .lu-nav-item .layui-nav-more {
-  display: none;
+.lu-layout-mini .lu-side .layui-side-scroll .lu-nav-item {
+  width: 60px;
+  height: 60px;
 }
-.lu-layout-mini .lu-side .lu-nav-item .layui-nav-child {
+.lu-layout-mini .lu-side .layui-side-scroll .lu-nav-item .iconfont {
+  margin-bottom: 0;
+  font-size: 26px;
+}
+.lu-layout-mini .lu-side .layui-side-scroll .lu-nav-item .side-icon-txt {
   display: none;
 }
 .lu-layout-mini .lu-body {

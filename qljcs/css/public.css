@@ -112,41 +112,6 @@ html, body {
   margin-top: -64px;
 }
 
-.stretch-btn-box {
-  width: 200px;
-  height: 35px;
-  background-color: #242d3c;
-  transition: width 0.3s;
-  position: relative;
-  z-index: 901;
-}
-.stretch-btn-box .sidebar-back,
-.stretch-btn-box .stretch-a {
-  width: 100%;
-  height: 100%;
-  display: inline-block;
-  color: #ffffff;
-  text-align: center;
-  line-height: 35px;
-}
-.stretch-btn-box .sidebar-back span,
-.stretch-btn-box .stretch-a span {
-  color: rgba(255, 255, 255, 0.7);
-}
-.stretch-btn-box .sidebar-back:hover,
-.stretch-btn-box .stretch-a:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-.stretch-btn-box .sidebar-back:hover .iconfont,
-.stretch-btn-box .stretch-a:hover .iconfont {
-  color: #fff;
-}
-.stretch-btn-box .sidebar-back .iconfont,
-.stretch-btn-box .stretch-a .iconfont {
-  font-size: 14px;
-  margin-right: 10px;
-}
-
 .body-iframe {
   width: 100%;
   height: 100%;
