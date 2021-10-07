@@ -153,8 +153,8 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
-  z-index: 20210617;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 20211007;
 }
 
 .content-page-inner {

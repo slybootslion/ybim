@@ -2,6 +2,7 @@
 $paramColor: #007fff;
 $paramColorHov: #3794ff;
 $bodyBgc: #ebf2fc;
+$sideBarBgc: rgba(25, 121, 187, 0.5);
 
 .layui-layout-admin {
 
@@ -18,7 +19,7 @@ $bodyBgc: #ebf2fc;
   .lu-side {
     width: 100px;
     transition: width .3s;
-    top: 100px;
+    top: 86px;
     bottom: auto;
     background-color: transparent !important;
 
@@ -36,7 +37,7 @@ $bodyBgc: #ebf2fc;
         height: 30px;
         line-height: 30px;
         text-align: center;
-        background-color: rgba(255, 255, 255, .05);
+        background-color: $sideBarBgc;
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
         cursor: pointer;
@@ -51,7 +52,7 @@ $bodyBgc: #ebf2fc;
 
     .layui-side-scroll {
       width: 100px;
-      background-color: rgba(255, 255, 255, .1) !important;
+      background-color: $sideBarBgc !important;
       height: auto;
 
       .lu-nav-item {
@@ -100,11 +101,23 @@ $bodyBgc: #ebf2fc;
   }
 
   .lu-body {
-    top: 65px;
+    top: 57px;
     bottom: 0;
+    right: 0;
+    left: 0;
     transition: left .3s;
-    background-color: $bodyBgc;
+    background-color: transparent;
     padding-bottom: 0;
+
+    .body-one-page {
+      .inner-body {
+        position: absolute;
+        top: 30px;
+        left: 120px;
+        right: 20px;
+        height: 100px;
+      }
+    }
   }
 
   .lu-header-ql {
@@ -223,7 +236,11 @@ $bodyBgc: #ebf2fc;
   }
 
   .lu-body {
-    left: 60px;
+    .body-one-page {
+      .inner-body {
+        left: 70px;
+      }
+    }
   }
 
   .popup-tips {

@@ -11,14 +11,14 @@ layui.define([], function (exports) {
     async init (path) {
       $(window).on('hashchange', async () => {
         await this.handleHash()
-        this.renderHash()
+        await this.renderHash()
       })
 
       if (await this.handleHash()) this.renderHash()
       this.bindListeners()
     }
 
-    renderHash () {
+    async renderHash () {
       const item = this.findItemByHash()
       if (!item) {
         this.to404()
@@ -26,7 +26,7 @@ layui.define([], function (exports) {
       }
       this.currentData = item
       this.renderSideBar()
-      this.dispatchContentRender()
+      await this.dispatchContentRender()
     }
 
     async handleHash () {
@@ -48,7 +48,6 @@ layui.define([], function (exports) {
       const layoutBody = $('.lu-layout-body')
       const instance = this
       layoutBody.on('click', '[data-lu-menuid]', function () {
-        console.log('in bind listeners method')
         const thisDom = $(this)
         const id = thisDom.attr('data-lu-menuid')
         if (!id) return
@@ -78,8 +77,18 @@ layui.define([], function (exports) {
       $lulib.pageReplace(error404Url)
     }
 
-    dispatchContentRender() {
-
+    async dispatchContentRender () {
+      $lulib.contentLoad('.lu-body')
+      let contentEl = $('#bodyOnePage')
+      contentEl.html('')
+      const item = this.currentData
+      await $lulib.delay(500)
+      if (!item) {
+        $lulib.pageReplace(error404Url)
+        return
+      }
+      const { title, href } = item
+      $lulib.eventBus.emit('bodyContentChange', { title, href })
     }
   }
 

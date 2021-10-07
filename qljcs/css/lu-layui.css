@@ -260,7 +260,7 @@
 .layui-layout-admin .lu-side {
   width: 100px;
   transition: width 0.3s;
-  top: 100px;
+  top: 86px;
   bottom: auto;
   background-color: transparent !important;
 }
@@ -278,7 +278,7 @@
   height: 30px;
   line-height: 30px;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(25, 121, 187, 0.5);
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   cursor: pointer;
@@ -289,7 +289,7 @@
 }
 .layui-layout-admin .lu-side .layui-side-scroll {
   width: 100px;
-  background-color: rgba(255, 255, 255, 0.1) !important;
+  background-color: rgba(25, 121, 187, 0.5) !important;
   height: auto;
 }
 .layui-layout-admin .lu-side .layui-side-scroll .lu-nav-item {
@@ -324,11 +324,20 @@
   background-color: #007fff;
 }
 .layui-layout-admin .lu-body {
-  top: 65px;
+  top: 57px;
   bottom: 0;
+  right: 0;
+  left: 0;
   transition: left 0.3s;
-  background-color: #ebf2fc;
+  background-color: transparent;
   padding-bottom: 0;
+}
+.layui-layout-admin .lu-body .body-one-page .inner-body {
+  position: absolute;
+  top: 30px;
+  left: 120px;
+  right: 20px;
+  height: 100px;
 }
 .layui-layout-admin .lu-header-ql {
   height: 70px;
@@ -418,8 +427,8 @@
 .lu-layout-mini .lu-side .layui-side-scroll .lu-nav-item .side-icon-txt {
   display: none;
 }
-.lu-layout-mini .lu-body {
-  left: 60px;
+.lu-layout-mini .lu-body .body-one-page .inner-body {
+  left: 70px;
 }
 .lu-layout-mini .popup-tips .layui-layer-content {
   background-color: transparent;

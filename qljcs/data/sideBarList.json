@@ -17,5 +17,35 @@
     "title": "桥梁监测",
     "href": "bridge-monitoring",
     "icon": "icon-jiance"
+  },
+  {
+    "id": "4",
+    "title": "视频监控",
+    "href": "video-control",
+    "icon": "icon-shipinjiankong"
+  },
+  {
+    "id": "5",
+    "title": "报警信息",
+    "href": "warning-message",
+    "icon": "icon-baojingxinxi"
+  },
+  {
+    "id": "6",
+    "title": "分析评估",
+    "href": "analysis-evaluation",
+    "icon": "icon-fenxipinggu"
+  },
+  {
+    "id": "7",
+    "title": "巡检养护",
+    "href": "inspection-maintenance",
+    "icon": "icon-xunjianjianyan"
+  },
+  {
+    "id": "8",
+    "title": "设备管理",
+    "href": "equipment-management",
+    "icon": "icon-xitongguanlicopyx"
   }
 ]
