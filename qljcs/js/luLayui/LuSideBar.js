@@ -8,7 +8,7 @@ layui.define([], function (exports) {
       this.currentData = sidebarData[0]
     }
 
-    async init (path) {
+    async init () {
       $(window).on('hashchange', async () => {
         await this.handleHash()
         await this.renderHash()
