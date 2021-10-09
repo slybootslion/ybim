@@ -709,4 +709,51 @@
   font-weight: 700;
 }
 
+.video-body .videoplay {
+  margin: 30px;
+}
+.video-body .videoplay .video-text {
+  font-size: 18px;
+}
+.video-body .videoplay .video {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+}
+.video-body .videonum .videolist {
+  margin: 0 -35px;
+}
+.video-body .videonum .videolist li {
+  background: url(../images/thumb-videobg.jpg) no-repeat;
+  margin: 20px 35px;
+  padding: 10px 0 0 10px;
+  position: relative;
+  text-align: center;
+  width: 169px;
+  display: inline-block;
+}
+.video-body .videonum .videolist li a {
+  position: absolute;
+  width: 100%;
+  height: 109px;
+  display: block;
+}
+.video-body .videonum .videolist li a img {
+  vertical-align: 150%;
+  display: inline-block;
+}
+.video-body .videonum .videolist li a i {
+  display: inline-block;
+  height: 100%;
+}
+.video-body .videonum .videolist li > img {
+  width: 169px;
+  height: 109px;
+}
+.video-body .videonum .videolist li p {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
 /*# sourceMappingURL=style.css.map */

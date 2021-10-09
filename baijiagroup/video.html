@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/video-js.css">
+  <link rel="Shortcut Icon" href="./images/baijia.ico" type="image/x-icon">
+  <link rel="Bookmark" href="./images/baijia.ico">
+  <title>柏嘉交科集团 - 视频</title>
+</head>
+<body class="video-body">
+<header class="common-header"></header>
+<div class="bannerPlaceholder"></div>
+<div class="container">
+  <div class="wrap-short">
+    <div class="videoplay">
+      <h3 class="video-text">官宣|柏嘉交科集团BIM技术中心整装待发</h3>
+      <div class="video">
+        <video class="video-js vjs-default-skin"
+               controls preload="none"
+               width="780" height="364"
+               data-setup='{}'
+               poster="./images/1541033907.jpg"
+               src="http://www.baijiagroup.com/upload/video/20181101/e94b7edad81ec429cd49c6acfa2aed43.mp4">
+        </video>
+      </div>
+    </div>
+    <div class="videonum">
+      <ul class="videolist">
+        <li>
+          <a href="javascript:void(0)">
+            <img src="./images/videoicon.png" alt="">
+            <i></i>
+          </a>
+          <img src="./images/1541033907.jpg" alt="官宣|柏嘉交科集团BIM技术中心整装待发">
+          <p>官宣|柏嘉交科集团BIM...</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="footerPlaceholder"></div>
+<script src="./js/jquery.min.js" charset="utf-8"></script>
+<script src="./js/jquery.SuperSlide.2.1.1.js" charset="utf-8"></script>
+<script src="./js/video.js" charset="utf-8"></script>
+<script src="./js/common.js" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".common-header").html($luCommon.headerTemplate())
+  // mock
+  const data = {
+    banner: [
+      { pic: './images/1551255535481.jpg', link: 'javascript:void(0)' },
+      { pic: './images/1469583762983.jpg', link: 'javascript:void(0)' },
+      { pic: './images/1494574148711.jpg', link: 'javascript:void(0)' },
+    ],
+    notice: [
+      { link: 'javascript:void(0)', text: '柏嘉交科与中设股份建立战略合作伙伴关系 【2019-06-06】' },
+      { link: 'javascript:void(0)', text: '我司总裁应邀出席在京召开的2019世界交通运输大会 【2019-06-17】' },
+      { link: 'javascript:void(0)', text: '深度合作 携手出海 ——柏嘉交科与中设股份、西安建工就国际工程项目 签署合作备忘录 【2019-06-06】' },
+      { link: 'javascript:void(0)', text: '柏嘉交科与中设股份建立战略合作伙伴关系 【2019-06-06】' },
+      { link: 'javascript:void(0)', text: '我司总裁应邀出席在京召开的2019世界交通运输大会 【2019-06-17】' },
+    ]
+  }
+  $luCommon.renderBanner(data)
+  $luCommon.renderFooter('.footerPlaceholder')
+})
+</script>
+</body>
+</html>

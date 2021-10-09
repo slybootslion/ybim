@@ -261,7 +261,10 @@ $(function () {
     const picture = current[index].picture
     $('.newsPicBox img').attr({ src: picture })
   })
+
   $("div.video-js").css({ width: '100%', height: '100%' })
+
+  $(".video-title .tag-more").on('click', () => location.href = './video.html')
 
 })
 </script>

@@ -860,3 +860,63 @@ $primaryLightColor: #c1dcec;
     }
   }
 }
+
+.video-body {
+  .videoplay {
+    margin: 30px;
+
+    .video-text {
+      font-size: 18px;
+    }
+
+    .video {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 20px auto;
+    }
+  }
+
+  .videonum {
+    .videolist {
+      margin: 0 -35px;
+
+      li {
+        background: url(../images/thumb-videobg.jpg) no-repeat;
+        margin: 20px 35px;
+        padding: 10px 0 0 10px;
+        position: relative;
+        text-align: center;
+        width: 169px;
+        display: inline-block;
+
+        a {
+          position: absolute;
+          width: 100%;
+          height: 109px;
+          display: block;
+
+          img {
+            vertical-align: 150%;
+            display: inline-block;
+          }
+
+          i {
+            display: inline-block;
+            height: 100%;
+          }
+        }
+
+        >img {
+          width: 169px;
+          height: 109px;
+        }
+
+        p {
+          font-size: 14px;
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+}
