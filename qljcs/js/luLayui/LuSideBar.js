@@ -13,8 +13,7 @@ layui.define([], function (exports) {
         await this.handleHash()
         await this.renderHash()
       })
-
-      if (await this.handleHash()) this.renderHash()
+      if (await this.handleHash()) await this.renderHash()
       this.bindListeners()
     }
 
@@ -99,9 +98,10 @@ function sideBarTemplate (list, current) {
   let h = ''
   for (let i = 0; i < list.length; i++) {
     const item = list[i]
+    if (item.hide) continue
     let activeClass = ''
     if (current.id === item.id) activeClass = 'layui-this'
-    h += `<div class="lu-nav-item ${activeClass}" data-lu-menuid="${item.id}"><span class="iconfont ${item.icon}"></span><span class="side-icon-txt">${item.title}</span></div>`
+    h += `<div class="lu-nav-item ${activeClass}" title="${item.title}" data-lu-menuid="${item.id}"><span class="iconfont ${item.icon}"></span><span class="side-icon-txt">${item.title}</span></div>`
   }
   return h
 }

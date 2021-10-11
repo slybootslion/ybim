@@ -2,50 +2,50 @@
   {
     "id": "1",
     "title": "首页概况",
-    "href": "index",
+    "href": "index/index",
     "icon": "icon-shouye",
     "active": true
   },
   {
     "id": "2",
     "title": "BIM展示",
-    "href": "bim",
+    "href": "bim/index",
     "icon": "icon-BIM"
   },
   {
     "id": "3",
     "title": "桥梁监测",
-    "href": "bridge-monitoring",
+    "href": "bridge-monitoring/index",
     "icon": "icon-jiance"
   },
   {
     "id": "4",
     "title": "视频监控",
-    "href": "video-control",
+    "href": "video-control/index",
     "icon": "icon-shipinjiankong"
   },
   {
     "id": "5",
     "title": "报警信息",
-    "href": "warning-message",
+    "href": "warning-message/index",
     "icon": "icon-baojingxinxi"
   },
   {
     "id": "6",
     "title": "分析评估",
-    "href": "analysis-evaluation",
+    "href": "analysis-evaluation/index",
     "icon": "icon-fenxipinggu"
   },
   {
     "id": "7",
     "title": "巡检养护",
-    "href": "inspection-maintenance",
+    "href": "inspection-maintenance/index",
     "icon": "icon-xunjianjianyan"
   },
   {
     "id": "8",
     "title": "设备管理",
-    "href": "equipment-management",
+    "href": "equipment-management/index",
     "icon": "icon-xitongguanlicopyx"
   }
 ]

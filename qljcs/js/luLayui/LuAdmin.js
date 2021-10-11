@@ -9,13 +9,11 @@ layui.define(['LuHeader', 'LuSideBar'], function (exports) {
       const { loadingTime, projectName, weather, username, sideBarPath } = this.options
       await $lulib.delay(loadingTime)
       await (new LuHeader()).init({ projectName, weather, username })
+      $lulib.eventBus.on('bodyContentChange', data => this.renderBodyContent(data))
       const sidebarData = await $lulib.ajax(sideBarPath, 'json')
       await (new LuSideBar(sidebarData)).init()
       const loaderDom = $('.loader-content')
       loaderDom && loaderDom.length && loaderDom.fadeOut()
-      $lulib.eventBus.on('bodyContentChange', data => {
-        this.renderBodyContent(data)
-      })
     }
 
     async renderBodyContent (data) {
@@ -31,7 +29,7 @@ layui.define(['LuHeader', 'LuSideBar'], function (exports) {
       const TITLE_SUFFIX = '结构物安全检测系统'
       $('title').html(`${title} - ${TITLE_SUFFIX}`)
       const idUrl = href.replace(/\//g, '').toUpperCase()
-      const url = '/qljcs/pages/' + href + '/index.html'
+      const url = '/qljcs/pages/' + href + '.html'
       return $lulib.ajax(url)
     }
   }
