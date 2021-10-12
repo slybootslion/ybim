@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="./css/video-js.css">
   <link rel="Shortcut Icon" href="./images/baijia.ico" type="image/x-icon">
   <link rel="Bookmark" href="./images/baijia.ico">
-  <title>柏嘉交科集团 - 主营业务</title>
+  <title>柏嘉交科集团 - 新闻</title>
 </head>
 <body class="news-body">
 <header class="common-header"></header>
@@ -61,10 +61,10 @@ $(function () {
   $luCommon.renderBanner(data)
   $luCommon.renderFooter('.footerPlaceholder')
   $(".mainnav").html($luCommon.contentLinkTemplate([
-    { link: './news.html', text: '所有新闻' },
+    { link: './news.html', text: '所有新闻', active: true },
     { link: './news-1.html', text: '企业要闻' },
     { link: './news-2.html', text: '行业资讯' },
-    { link: './news-3.html', text: '通知公告', active: true },
+    { link: './news-3.html', text: '通知公告' },
   ]))
 })
 </script>

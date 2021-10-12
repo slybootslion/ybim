@@ -1,0 +1,15 @@
+.inner-body.equipment-management {
+  .nav {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-sizing: border-box;
+    align-items: center;
+    margin-bottom: 5px;
+
+    .left {
+      font-size: 16px;
+    }
+  }
+}

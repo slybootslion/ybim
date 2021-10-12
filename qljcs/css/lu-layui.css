@@ -92,19 +92,15 @@
   font-size: 20px;
   margin-right: 5px;
 }
-.inner-body .page-container {
-  margin-top: 10px;
-  background-color: #ffffff;
-  box-sizing: border-box;
-  padding: 20px 32px;
-}
 .inner-body .page-container .select-box {
   display: flex;
   flex-wrap: wrap;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 .inner-body .page-container .select-box .layui-inline {
-  margin-right: 15px;
-  margin-bottom: 10px;
+  margin-right: 40px;
 }
 .inner-body .page-container .select-box .layui-inline .layui-form-label {
   width: auto;
@@ -120,6 +116,21 @@
 .inner-body .page-container .select-box .layui-btn {
   height: 35px;
   line-height: 35px;
+}
+.inner-body .page-container .select-box .layui-btn.btn-weaken {
+  background-color: #ccc;
+}
+.inner-body .page-container .select-box .layui-form-select dl dd {
+  color: #333;
+}
+.inner-body .page-container .select-box .layui-form-select dl dd.layui-this {
+  color: #ffffff;
+}
+.inner-body .page-container .select-box .layui-form-select dl dd.layui-select-tips {
+  color: #999;
+}
+.inner-body .page-container .select-box .layui-form-select dl dd.layui-select-tips.layui-this {
+  color: #ffffff;
 }
 .inner-body .page-container .content-table {
   margin-top: 26px;
@@ -337,7 +348,6 @@
   top: 30px;
   left: 120px;
   right: 20px;
-  height: 100px;
 }
 .layui-layout-admin .lu-header-ql {
   height: 70px;
