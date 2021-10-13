@@ -8,7 +8,7 @@ $weakenColor: #a9a7a7;
 $tableBgColor: #f0f7ff;
 $tableThColor: #094581;
 $borderColor: #ededed;
-$tableLinkColor: #5e81a5;
+$tableLinkColor: #2372a9;
 $contentTableHead: #f2f2f2;
 $greenColor: #0bab30;
 $orangeColor: #ff9018;
@@ -33,36 +33,6 @@ $redDeepColor: #c0451b;
       }
     }
   }
-}
-
-.layui-table-page {
-  .layui-laypage {
-    float: right;
-
-    input:focus,
-    elect:focus {
-      border-color: $paramColor !important;
-    }
-
-    a:hover {
-      color: $paramColor;
-    }
-
-    .layui-laypage-curr {
-      .layui-laypage-em {
-        background-color: $paramColor;
-      }
-    }
-  }
-}
-
-.layui-table th {
-  color: $tableThColor;
-  font-weight: 700;
-}
-
-.layui-table[lay-even] tr:nth-child(even) {
-  background-color: $tableBgColor;
 }
 
 .inner-body {
@@ -185,16 +155,82 @@ $redDeepColor: #c0451b;
     }
 
     .content-table {
-      margin-top: 26px;
+      margin-top: 10px;
     }
   }
 
-  .table-tool-link {
-    margin-right: 10px;
-    color: $tableLinkColor;
+  .layui-table-page {
+    color: #fff;
 
-    &:hover {
-      color: $paramColor;
+    .layui-laypage {
+      float: right;
+
+      input:focus,
+      elect:focus {
+        border-color: $paramColor !important;
+      }
+
+      a {
+        background-color: rgba(0, 165, 255, .1);
+        color: #fff;
+        margin: 0 5px;
+        &:hover {
+          color: $paramColor;
+        }
+      }
+
+      .layui-laypage-count {
+        margin: 0 3px;
+        color: #fff;
+        background-color: rgba(0, 165, 255, .1);
+        padding: 0 10px;
+        box-sizing: border-box;
+      }
+
+      .layui-laypage-curr {
+        margin: 0 3px;
+        .layui-laypage-em {
+          background-color: $paramColor;
+        }
+      }
+    }
+  }
+
+  .content-table {
+    .layui-table tbody tr:hover, .layui-table thead tr, .layui-table-click, .layui-table-header, .layui-table-hover, .layui-table-mend, .layui-table-patch, .layui-table-tool, .layui-table-total, .layui-table-total tr, .layui-table[lay-even] tr:nth-child(even) {
+      background-color: transparent;
+    }
+
+    .layui-table-page,
+    .layui-table-header,
+    .layui-table-view {
+      border-color: transparent;
+    }
+
+    .layui-table {
+      background-color: transparent;
+      color: #fff;
+
+      td {
+        border-color: transparent;
+        background-color: rgba(0, 165, 255, .1);
+      }
+
+      th {
+        color: $blinkColorSec;
+        font-weight: 700;
+        border-color: transparent;
+        background-color: rgba(0, 165, 255, .3);
+      }
+    }
+
+    .table-tool-link {
+      margin-right: 10px;
+      color: $tableLinkColor;
+
+      &:hover {
+        color: $paramColor;
+      }
     }
   }
 
@@ -257,15 +293,6 @@ $redDeepColor: #c0451b;
       td,
       th {
         //border: 1px dotted #ededed;
-      }
-    }
-  }
-
-  /* 分页 */
-  .layui-laypage {
-    .layui-laypage-curr {
-      .layui-laypage-em {
-        background-color: $paramColor;
       }
     }
   }

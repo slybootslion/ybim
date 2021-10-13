@@ -1,6 +1,59 @@
 layui.define([], function (exports) {
   const $ = layui.$
   const $form = layui.form
+  const $table = layui.table
+
+  const $layer = layui.layer
+
+  const areaSize = {
+    b: '1000px',
+    m: '800px',
+    s: '600px',
+  }
+
+  class LuLayer {
+    constructor(config) {
+      this.config = config
+      if (config?.areaSize) {
+        config.area = Object.keys(areaSize).includes(config.areaSize) ? areaSize[config.areaSize] : areaSize.b
+      }
+      this.layerIdx = null
+      this.open()
+    }
+
+    open() {
+      const config = {
+        type: 1,
+        title: '标题',
+        closeBtn: true,
+        area: areaSize.b,
+        shade: 0.6,
+        id: 'layerId' + $lulib.randomStr(3),
+        btnAlign: 'c',
+        moveType: 1, //拖拽
+        ...this.config,
+      }
+      this.layerIdx = $layer.open(config)
+      // 修复框架显示bug
+      $('.layui-layer-ico.layui-layer-close.layui-layer-closetrue')
+        .css({
+          background: 'none',
+          fontSize: '16px',
+        })
+        .html('×')
+    }
+
+    close (idx = this.layerIdx) {
+      $layer.close(idx)
+    }
+
+    static confirm(content, fn, title = '注意', icon = 7) {
+      $layer.confirm(content, { icon, title }, function (index) {
+        fn && fn()
+        $layer.close(index)
+      })
+    }
+  }
 
   class LuSearchForm {
     constructor (data, options = {}) {
@@ -55,8 +108,97 @@ layui.define([], function (exports) {
     }
   }
 
+  class LuTable {
+    constructor (data, options = {}) {
+      if (!data) throw new Error('表格渲染需要传入数据')
+      this.data = data
+      this.table = $table
+      this.queue = []
+      const index = $layer.load(2)
+      const opts = {
+        id: 'tb',
+        elem: '#tb',
+        even: true,
+        filter: 'table',
+        page: {
+          layout: ['prev', 'page', 'next', 'count'],
+        },
+        loading: true,
+        limit: 15,
+        limits: [15, 30, 45, 60],
+        done() {
+          $layer.close(index)
+        },
+        data,
+      }
+
+      if (options.hideHeadCheck) this.queue.push(hideHeadCheck)
+      this.options = {
+        ...opts,
+        ...options,
+      }
+      this.containerEl = this.options.el || $('.luTable')
+      if (this.options.methods && this.options.ctrlData) {
+        if (!Array.isArray(this.options.ctrlData) && this.options.ctrlData.data) this.options.ctrlData = this.options.ctrlData.data
+        const html = this.tableCtrlTpl()
+        this.options.cols[0].push({
+          title: this.options.ctrlData.title || '操作',
+          minWidth: this.options.ctrlData.minWidth || 220,
+          toolbar: html,
+          align: 'center',
+        })
+        this.tableOn()
+      }
+      this.containerEl.html(`<table class='layui-hide' id='${this.options.id}' lay-filter='${this.options.filter}'></table>`)
+      this.table.render(this.options)
+      this.queue.length && this.queue.forEach(fn => typeof fn === 'function' && fn())
+    }
+
+    on(queryStr, cb) {
+      this.table.on(queryStr, cb)
+    }
+
+    tableOn() {
+      this.table.on(`tool(${this.options.filter})`, this.tableEventBind.bind(this))
+    }
+
+    tableEventBind(obj) {
+      const { methods } = this.options
+      if (!methods) return false
+      methods[obj.event] && methods[obj.event](obj.data, obj)
+    }
+
+    tableCtrlTpl() {
+       const list = this.options.ctrlData
+      let html = ''
+      let i = 0
+      let len = list.length
+      for (; i < len; i++) {
+        const { eventStr, iconStr, txtStr, title } = list[i]
+        const t = title ? 'title=' + title : ''
+        html += `<a href='javascript:void(0)' class='table-tool-link' lay-event='${eventStr}' ${t}>
+                <span class='iconfont ${iconStr}'></span>
+                <span>${txtStr || ''}</span>
+              </a>`
+      }
+      return `<span>${html}</span>`
+    }
+
+    reload(data) {
+      this.options.data = data
+      this.table.reload(this.options.id, this.options)
+    }
+
+    checkStatus(id = this.options.id) {
+      return this.table.checkStatus(id)
+    }
+  }
+
   exports('LuCommonTemplate')
+  exports('LuLayer', LuLayer)
   exports('LuSearchForm', LuSearchForm)
+  exports('LuTable', LuTable)
+
 })
 
 function textTemplate (data) {
