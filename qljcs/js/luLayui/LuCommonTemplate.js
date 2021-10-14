@@ -114,7 +114,7 @@ layui.define([], function (exports) {
       this.data = data
       this.table = $table
       this.queue = []
-      const index = $layer.load(2)
+      const index = $layer.load(1)
       const opts = {
         id: 'tb',
         elem: '#tb',
@@ -126,7 +126,8 @@ layui.define([], function (exports) {
         loading: true,
         limit: 15,
         limits: [15, 30, 45, 60],
-        done() {
+        async done () {
+          await $lulib.delay(500)
           $layer.close(index)
         },
         data,

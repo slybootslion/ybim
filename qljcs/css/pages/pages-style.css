@@ -1,0 +1,72 @@
+.inner-body.equipment-management .nav {
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-sizing: border-box;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.inner-body.equipment-management .nav .left {
+  font-size: 16px;
+}
+
+.inner-body.warning-message .nav {
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-sizing: border-box;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.inner-body.warning-message .nav .left {
+  display: flex;
+  color: #3794ff;
+}
+.inner-body.warning-message .nav .left .warning-sample {
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+}
+.inner-body.warning-message .nav .right {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+.inner-body.warning-message .nav .right .btn-item {
+  background-color: rgba(0, 165, 255, 0.1);
+  padding: 10px 20px;
+  border: 1px solid rgba(25, 121, 187, 0.5);
+  margin-left: 10px;
+  cursor: pointer;
+}
+.inner-body.warning-message .nav .right .btn-item.active {
+  background-color: #007fff;
+}
+.inner-body.warning-message .nav .right .setting-warning {
+  margin-right: 20px;
+  color: #3794ff;
+  cursor: pointer;
+}
+.inner-body.warning-message .nav .right .setting-warning .iconfont {
+  margin-right: 5px;
+}
+.inner-body.warning-message .iconfont.icon-yujing {
+  font-size: 20px;
+  margin-right: 5px;
+}
+.inner-body.warning-message .iconfont.icon-yujing.red {
+  color: red;
+}
+.inner-body.warning-message .iconfont.icon-yujing.orange {
+  color: orange;
+}
+.inner-body.warning-message .iconfont.icon-yujing.yellow {
+  color: yellow;
+}
+.inner-body.warning-message .iconfont.icon-yujing.blue {
+  color: #0051ff;
+}
+
+/*# sourceMappingURL=pages-style.css.map */

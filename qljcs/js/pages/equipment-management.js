@@ -1,6 +1,4 @@
 layui.use(['LuCommonTemplate'], function () {
-  const $ = layui.$
-
   const LuSearchForm = layui.LuSearchForm
   const LuTable = layui.LuTable
   let luTable

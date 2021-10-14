@@ -1,0 +1,90 @@
+$paramColor: #007fff;
+$paramColorHov: #3794ff;
+$bodyBgc: #ebf2fc;
+$sideBarBgc: rgba(25, 121, 187, 0.5);
+$alpBgc: rgba(0, 165, 255, .1);
+
+.inner-body.equipment-management {
+  .nav {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-sizing: border-box;
+    align-items: center;
+    margin-bottom: 5px;
+
+    .left {
+      font-size: 16px;
+    }
+  }
+}
+
+.inner-body.warning-message {
+  .nav {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-sizing: border-box;
+    align-items: center;
+    margin-bottom: 5px;
+
+    .left {
+      display: flex;
+      color: $paramColorHov;
+
+      .warning-sample {
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+
+      .btn-item {
+        background-color: $alpBgc;
+        padding: 10px 20px;
+        border: 1px solid $sideBarBgc;
+        margin-left: 10px;
+        cursor: pointer;
+
+        &.active {
+          background-color: $paramColor;
+        }
+      }
+
+      .setting-warning {
+        margin-right: 20px;
+        color: $paramColorHov;
+        cursor: pointer;
+
+        .iconfont {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+
+  .iconfont.icon-yujing {
+    font-size: 20px;
+    margin-right: 5px;
+
+    &.red {
+      color: red;
+    }
+    &.orange {
+      color: orange;
+    }
+    &.yellow {
+      color: yellow;
+    }
+    &.blue {
+      color: #0051ff;
+    }
+  }
+}
