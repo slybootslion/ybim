@@ -18,7 +18,6 @@
   padding: 10px;
   /*按钮*/
   /* tab */
-  /* layer */
   /* 表格 */
   /* 标签 */
 }
@@ -191,19 +190,6 @@
 .inner-body .layui-tab-brief > .layui-tab-title .layui-this::after {
   border-bottom-color: #007fff;
 }
-.inner-body .layui-layer.layui-layer-page .layui-layer-title {
-  background-color: #f0f0f0;
-}
-.inner-body .layui-layer.layui-layer-page .layui-layer-btn {
-  background-color: #f0f0f0;
-}
-.inner-body .layui-layer.layui-layer-page .layui-layer-btn .layui-layer-btn0 {
-  background-color: #007fff;
-}
-.inner-body .layui-layer.layui-layer-page .layui-layer-btn .layui-layer-btn1 {
-  color: #ffffff;
-  background-color: #23b5df;
-}
 .inner-body .layui-badge {
   background-color: #ff0b0b;
 }
@@ -231,6 +217,35 @@
   position: absolute;
   left: -10px;
   top: 0;
+}
+
+/* layer */
+.layui-layer.layui-layer-page {
+  color: #fff;
+  border: 1px solid #2372a9;
+}
+.layui-layer.layui-layer-page .layui-layer-close {
+  color: #007fff;
+  font-size: 24px !important;
+  top: -6px;
+}
+.layui-layer.layui-layer-page .layui-layer-title {
+  background-image: linear-gradient(#04365f, #002041);
+  color: #fff;
+  border-bottom: 1px solid #2372a9;
+}
+.layui-layer.layui-layer-page .layui-layer-content {
+  background-image: linear-gradient(#04365f, #002041);
+}
+.layui-layer.layui-layer-page .layui-layer-btn {
+  background-color: #f0f0f0;
+}
+.layui-layer.layui-layer-page .layui-layer-btn .layui-layer-btn0 {
+  background-color: #007fff;
+}
+.layui-layer.layui-layer-page .layui-layer-btn .layui-layer-btn1 {
+  color: #ffffff;
+  background-color: #23b5df;
 }
 
 .layui-input.disabled {

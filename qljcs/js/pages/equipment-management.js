@@ -1,10 +1,23 @@
 layui.use(['LuCommonTemplate'], function () {
+  const $ = layui.$
   const LuSearchForm = layui.LuSearchForm
   const LuTable = layui.LuTable
-  let luTable
-  (() => {
+  const LuLayer = layui.LuLayer
+  let luTable, luLayer
+  const form = layui.form
+
+  class PageTemplate {
+    formTemplate (data) {
+      return `<div>form content</div>`
+    }
+  }
+
+  const pt = new PageTemplate
+
+  !(() => {
     renderTable()
   })()
+
   const luSearchForm = new LuSearchForm([
     { label: '设备属性', type: 'select', selectData: [], name: 's1' },
     { label: '设备类型', type: 'select', selectData: [], name: 's2' },
@@ -40,7 +53,7 @@ layui.use(['LuCommonTemplate'], function () {
       ],
       methods: {
         edit (data) {
-          console.log(data)
+          renderForm(data)
         },
         del (_, obj) {
           obj.del()
@@ -50,4 +63,24 @@ layui.use(['LuCommonTemplate'], function () {
     }
     luTable = new LuTable(data, tableOptions)
   }
+
+  $(".add").on('click', () => renderForm());
+
+  function renderForm (editData) {
+    const data = {}
+    const opts = {
+      title: '添加设备',
+      id: 'addEquipmentForm',
+      area: ['578px', '468px'],
+    }
+    if (!editData) {
+      opts.content = pt.formTemplate(data)
+    } else {
+      data.editData = editData
+      opts.content = pt.formTemplate(data)
+      opts.title = '编辑设备'
+    }
+    luLayer = new LuLayer(opts)
+  }
+  renderForm()
 })

@@ -265,27 +265,6 @@ $redDeepColor: #c0451b;
     }
   }
 
-  /* layer */
-  .layui-layer.layui-layer-page {
-
-    .layui-layer-title {
-      background-color: #f0f0f0;
-    }
-
-    .layui-layer-btn {
-      background-color: #f0f0f0;
-
-      .layui-layer-btn0 {
-        background-color: $paramColor;
-      }
-
-      .layui-layer-btn1 {
-        color: #ffffff;
-        background-color: $paramColorSec;
-      }
-    }
-  }
-
   /* 表格 */
   .layui-table-box {
 
@@ -334,6 +313,42 @@ $redDeepColor: #c0451b;
     }
   }
 }
+
+/* layer */
+.layui-layer.layui-layer-page {
+  color: #fff;
+  border: 1px solid $tableLinkColor;
+
+  .layui-layer-close {
+    color: $paramColor;
+    font-size: 24px !important;
+    top: -6px;
+  }
+
+  .layui-layer-title {
+    background-image: linear-gradient(#04365f, #002041);
+    color: #fff;
+    border-bottom: 1px solid $tableLinkColor;
+  }
+
+  .layui-layer-content {
+    background-image: linear-gradient(#04365f, #002041);
+  }
+
+  .layui-layer-btn {
+    background-color: #f0f0f0;
+
+    .layui-layer-btn0 {
+      background-color: $paramColor;
+    }
+
+    .layui-layer-btn1 {
+      color: #ffffff;
+      background-color: $paramColorSec;
+    }
+  }
+}
+
 
 .layui-input {
   &.disabled {

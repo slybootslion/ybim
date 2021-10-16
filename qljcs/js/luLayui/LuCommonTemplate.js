@@ -2,7 +2,6 @@ layui.define([], function (exports) {
   const $ = layui.$
   const $form = layui.form
   const $table = layui.table
-
   const $layer = layui.layer
 
   const areaSize = {
