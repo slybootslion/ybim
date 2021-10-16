@@ -5,10 +5,81 @@ layui.use(['LuCommonTemplate'], function () {
   const LuLayer = layui.LuLayer
   let luTable, luLayer
   const form = layui.form
+  const laydate = layui.laydate
 
   class PageTemplate {
     formTemplate (data) {
-      return `<div>form content</div>`
+      let select1 = '<option value="">请选择</option>'
+      let select2 = '<option value="">请选择</option>'
+      for (let i = 0; i < data.select1.length; i++) {
+        const item = data.select1[i]
+        if (data.editData && item.key === data.editData.t1) select1 += `<option value='${item.value}' selected>${item.key}</option>`
+        else select1 += `<option value='${item.value}'>${item.key}</option>`
+      }
+      for (let i = 0; i < data.select2.length; i++) {
+        const item = data.select2[i]
+        if (data.editData && item.key === data.editData.t2) select2 += `<option value='${item.value}' selected>${item.key}</option>`
+        else select2 += `<option value='${item.value}'>${item.key}</option>`
+      }
+
+      return `<form  class='layui-form layer-form layer-form-flex-colm team-add-form' lay-filter='addForm' action=''>
+                <div class='layui-inline'>
+                  <label class='layui-form-label'>
+                    <span>设备属性：</span>
+                  </label>
+                  <div class='layui-input-inline'>
+                    <select name="f1">
+                      ${select1}
+                    </select>
+                  </div>
+                </div>
+                <div class='layui-inline'>
+                  <label class='layui-form-label'>
+                    <span>设备类型：</span>
+                  </label>
+                  <div class='layui-input-inline'>
+                    <select name="f2">
+                      ${select2}
+                    </select>
+                  </div>
+                </div>
+                <div class='layui-inline'>
+                  <label class='layui-form-label'>
+                    <span>设备名称：</span>
+                  </label>
+                  <div class='layui-input-inline'>
+                    <input type='text' value='${(data.editData && data.editData.t3) || ''}' name='f3' placeholder='请输入' autocomplete='off' class='layui-input'>
+                  </div>
+                </div>
+                <div class='layui-inline'>
+                  <label class='layui-form-label'>
+                    <span>设备编号：</span>
+                  </label>
+                  <div class='layui-input-inline'>
+                    <input type='text' value='' name='f4' placeholder='请输入' autocomplete='off' class='layui-input'>
+                  </div>
+                </div>
+                <div class='layui-inline'>
+                  <label class='layui-form-label'>
+                    <span>安装位置：</span>
+                  </label>
+                  <div class='layui-input-inline'>
+                    <input type='text' value='${(data.editData && data.editData.t4) || ''}' name='f5' placeholder='请输入' autocomplete='off' class='layui-input'>
+                  </div>
+                </div>
+                <div class='layui-inline'>
+                  <label class='layui-form-label'>
+                    <span>安装时间：</span>
+                  </label>
+                  <div class='layui-input-inline'>
+                    <input type='text' id='formDate' value='${(data.editData && data.editData.t5) || ''}' name='f6' placeholder='请输入' autocomplete='off' class='layui-input'>
+                  </div>
+                </div>
+                <div class='layui-inline btn-box'>
+                  <button type='button' lay-submit lay-filter='submit' class='layui-btn layui-layer-btn0'>确定</button>
+                  <button type='button' lay-submit lay-filter='clear' class='layui-btn layui-layer-btn1 btn-weaken'>取消</button>
+                </div>
+              </form>`
     }
   }
 
@@ -67,7 +138,17 @@ layui.use(['LuCommonTemplate'], function () {
   $(".add").on('click', () => renderForm());
 
   function renderForm (editData) {
-    const data = {}
+    const data = {
+      select1: [
+        { key: '传感器', value: 1 },
+        { key: '监控器', value: 2 },
+      ],
+      select2: [
+        { key: '位移计', value: 1 },
+        { key: '温度计', value: 2 },
+        { key: 'fg1501', value: 3 },
+      ]
+    }
     const opts = {
       title: '添加设备',
       id: 'addEquipmentForm',
@@ -81,6 +162,19 @@ layui.use(['LuCommonTemplate'], function () {
       opts.title = '编辑设备'
     }
     luLayer = new LuLayer(opts)
+    form.render()
+    laydate.render({
+      elem: '#formDate',
+      theme: '#007fff',
+    })
   }
-  renderForm()
+
+  form.on('submit(submit)', function (data) {
+    console.log(data.field)
+    luLayer.close()
+  })
+
+  form.on('submit(clear)', function (data) {
+    luLayer.close()
+  })
 })

@@ -167,4 +167,38 @@ html, body {
   text-overflow: ellipsis;
 }
 
+/* form */
+.layer-form.team-add-form {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.layer-form.team-add-form .layui-inline {
+  margin-bottom: 10px;
+}
+.layer-form.team-add-form .layui-inline input {
+  width: 320px;
+}
+.layer-form.team-add-form .layui-inline.btn-box {
+  margin-top: 30px;
+}
+.layer-form.team-add-form .layui-inline.btn-box .layui-btn {
+  margin: 0 20px;
+}
+
+.layui-form-select dl dd {
+  color: #333;
+}
+.layui-form-select dl dd.layui-this {
+  color: #ffffff;
+}
+.layui-form-select dl dd.layui-select-tips {
+  color: #999;
+}
+.layui-form-select dl dd.layui-select-tips.layui-this {
+  color: #ffffff;
+}
+
 /*# sourceMappingURL=public.css.map */

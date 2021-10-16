@@ -95,18 +95,6 @@
 .inner-body .page-container .select-box .layui-btn.btn-weaken {
   background-color: #ccc;
 }
-.inner-body .page-container .select-box .layui-form-select dl dd {
-  color: #333;
-}
-.inner-body .page-container .select-box .layui-form-select dl dd.layui-this {
-  color: #ffffff;
-}
-.inner-body .page-container .select-box .layui-form-select dl dd.layui-select-tips {
-  color: #999;
-}
-.inner-body .page-container .select-box .layui-form-select dl dd.layui-select-tips.layui-this {
-  color: #ffffff;
-}
 .inner-body .page-container .content-table {
   margin-top: 10px;
 }

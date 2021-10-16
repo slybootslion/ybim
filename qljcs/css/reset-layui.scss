@@ -135,23 +135,6 @@ $redDeepColor: #c0451b;
           background-color: #ccc;
         }
       }
-
-      .layui-form-select {
-        dl {
-          dd {
-            &.layui-this {
-              color: #ffffff;
-            }
-            &.layui-select-tips {
-              color: #999;
-              &.layui-this {
-                color: #ffffff;
-              }
-            }
-            color: #333;
-          }
-        }
-      }
     }
 
     .content-table {
