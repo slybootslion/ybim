@@ -315,6 +315,7 @@ $redDeepColor: #c0451b;
   }
 
   .layui-layer-content {
+    color: #fff;
     background-image: linear-gradient(#04365f, #002041);
   }
 
@@ -332,6 +333,9 @@ $redDeepColor: #c0451b;
   }
 }
 
+.layui-layer-content {
+  color: #333;
+}
 
 .layui-input {
   &.disabled {

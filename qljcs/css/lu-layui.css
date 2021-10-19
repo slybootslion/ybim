@@ -223,6 +223,7 @@
   border-bottom: 1px solid #2372a9;
 }
 .layui-layer.layui-layer-page .layui-layer-content {
+  color: #fff;
   background-image: linear-gradient(#04365f, #002041);
 }
 .layui-layer.layui-layer-page .layui-layer-btn {
@@ -234,6 +235,10 @@
 .layui-layer.layui-layer-page .layui-layer-btn .layui-layer-btn1 {
   color: #ffffff;
   background-color: #23b5df;
+}
+
+.layui-layer-content {
+  color: #333;
 }
 
 .layui-input.disabled {

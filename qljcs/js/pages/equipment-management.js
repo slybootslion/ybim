@@ -127,8 +127,7 @@ layui.use(['LuCommonTemplate'], function () {
           renderForm(data)
         },
         del (_, obj) {
-          obj.del()
-          // LuLayer.confirm('确定删除？', () => obj.del())
+          LuLayer.confirm('确定删除？', () => obj.del())
         },
       },
     }

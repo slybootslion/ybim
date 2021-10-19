@@ -9,7 +9,7 @@ layui.define([], function (exports) {
   }
 
   class LuLayer {
-    constructor(config) {
+    constructor (config) {
       this.config = config
       if (config?.areaSize) {
         config.area = Object.keys(areaSize).includes(config.areaSize) ? areaSize[config.areaSize] : areaSize.b
@@ -18,7 +18,7 @@ layui.define([], function (exports) {
       this.open()
     }
 
-    open() {
+    open () {
       const config = {
         type: 1,
         title: '标题',
@@ -28,6 +28,7 @@ layui.define([], function (exports) {
         id: 'layerId' + $lulib.randomStr(3),
         btnAlign: 'c',
         moveType: 1, //拖拽
+        resize: false,
         ...this.config,
       }
       this.layerIdx = layer.open(config)
@@ -44,7 +45,7 @@ layui.define([], function (exports) {
       layer.close(idx)
     }
 
-    static confirm(content, fn, title = '注意', icon = 7) {
+    static confirm (content, fn, title = '注意', icon = 7) {
       layer.confirm(content, { icon, title }, function (index) {
         fn && fn()
         layer.close(index)

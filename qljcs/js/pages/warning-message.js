@@ -37,8 +37,11 @@ layui.use(['LuCommonTemplate'], function () {
           { field: 't7', title: '告警时间', width: 140 },
         ]),
       ],
+      limit: 18,
     }
     const data = await getTableData()
     luTable = new LuTable(data, tableOptions)
   }
+
+  $(".setting-warning").on('click',() => $lulib.pagePushHash('warning-message/warning-setting'));
 })

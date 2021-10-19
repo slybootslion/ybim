@@ -50,7 +50,7 @@ layui.define([], function (exports) {
         const thisDom = $(this)
         const id = thisDom.attr('data-lu-menuid')
         if (!id) return
-        if (instance.currentData.id === id) return false
+        // if (instance.currentData.id === id) return false
         const hash = instance.findItemById(id).href
         $lulib.pagePushHash(hash)
       })

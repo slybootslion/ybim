@@ -88,3 +88,108 @@ $alpBgc: rgba(0, 165, 255, .1);
     }
   }
 }
+
+.inner-body.warning-setting {
+  .nav {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-sizing: border-box;
+    align-items: center;
+    margin-bottom: 5px;
+
+    .left {
+      display: flex;
+      font-size: 18px;
+
+      .warning-sample {
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+
+      .btn-item {
+        background-color: $alpBgc;
+        padding: 10px 20px;
+        border: 1px solid $sideBarBgc;
+        margin-left: 10px;
+        cursor: pointer;
+
+        &.active {
+          background-color: $paramColor;
+        }
+      }
+
+      .setting-warning {
+        margin-right: 20px;
+        color: $paramColorHov;
+        cursor: pointer;
+
+        .iconfont {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+
+  .form-box {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, .3);
+
+    .layui-form {
+      display: flex;
+      align-items: center;
+
+      .left {
+        width: 1350px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 0 80px;
+        box-sizing: border-box;
+
+        .layui-inline {
+          margin: 10px 0;
+        }
+
+        .layui-form-label {
+          width: 90px;
+        }
+
+        .layui-input {
+          width: 234px;
+        }
+      }
+
+      .right {
+        flex: 1;
+      }
+    }
+  }
+}
+
+#selectPeopleName {
+  .search-name-input {
+    width: 220px;
+    height: 30px;
+    margin: 10px;
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, .3);
+    border: none;
+    outline: none;
+    padding: 0 20px;
+    color: #fff;
+  }
+
+  .luTableInner {
+    padding: 0 10px;
+  }
+}

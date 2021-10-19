@@ -11,7 +11,7 @@ layui.define([], function (exports) {
   }
 
   class LuLayer {
-    constructor(config) {
+    constructor (config) {
       this.config = config
       if (config?.areaSize) {
         config.area = Object.keys(areaSize).includes(config.areaSize) ? areaSize[config.areaSize] : areaSize.b
@@ -20,7 +20,7 @@ layui.define([], function (exports) {
       this.open()
     }
 
-    open() {
+    open () {
       const config = {
         type: 1,
         title: '标题',
@@ -30,6 +30,7 @@ layui.define([], function (exports) {
         id: 'layerId' + $lulib.randomStr(3),
         btnAlign: 'c',
         moveType: 1, //拖拽
+        resize: false,
         ...this.config,
       }
       this.layerIdx = $layer.open(config)
@@ -46,7 +47,7 @@ layui.define([], function (exports) {
       $layer.close(idx)
     }
 
-    static confirm(content, fn, title = '注意', icon = 7) {
+    static confirm (content, fn, title = '注意', icon = 7) {
       $layer.confirm(content, { icon, title }, function (index) {
         fn && fn()
         $layer.close(index)
@@ -78,10 +79,10 @@ layui.define([], function (exports) {
         const item = data[i]
         switch (item.type) {
           case 'text':
-            h += textTemplate(item)
+            h += LuSearchForm.textTemplate(item)
             break
           case 'select':
-            h += selectTemplate(item)
+            h += LuSearchForm.selectTemplate(item)
             break
         }
       }
@@ -102,7 +103,42 @@ layui.define([], function (exports) {
       return this.form
     }
 
-    bindSubmit() {
+    static textTemplate (data) {
+      const placeholder = data.placeholder || '请输入'
+      const w155 = data.w155 ? 'inner-input-w155' : ''
+      return `<div class='layui-inline'>
+              <label class='layui-form-label ${w155}'>${data.label}：</label>
+              <div class='layui-input-inline'>
+                <input type='text' 
+                       name='${data.name}'
+                       autocomplete='off' 
+                       class='layui-input' 
+                       placeholder='${placeholder}'>
+              </div>
+            </div>`
+    }
+
+    static selectTemplate (data) {
+      let optionStr = "<option value=''>请选择</option>"
+      const len = data.selectData.length
+      let i = 0
+      for (; i < len; i++) {
+        const item = data.selectData[i]
+        const s = item.selected ? 'selected' : ''
+        optionStr += `<option value='${item.value}' ${s}>${item.key}</option>`
+      }
+      return `<div class='layui-inline'>
+              <label class='layui-form-label'>${data.label}：</label>
+              <div class='layui-input-inline inner-input-w155'>
+                <select name='${data.name}'>
+                  ${optionStr}
+                </select>
+              </div>
+            </div>`
+    }
+
+
+    bindSubmit () {
       this.form.on(`submit(${this.submitFilter})`, () => this.submit && this.submit.call(this, this.form.val(this.filterStr)))
     }
   }
@@ -149,27 +185,28 @@ layui.define([], function (exports) {
         })
         this.tableOn()
       }
+      console.log(this.containerEl)
       this.containerEl.html(`<table class='layui-hide' id='${this.options.id}' lay-filter='${this.options.filter}'></table>`)
       this.table.render(this.options)
       this.queue.length && this.queue.forEach(fn => typeof fn === 'function' && fn())
     }
 
-    on(queryStr, cb) {
+    on (queryStr, cb) {
       this.table.on(queryStr, cb)
     }
 
-    tableOn() {
+    tableOn () {
       this.table.on(`tool(${this.options.filter})`, this.tableEventBind.bind(this))
     }
 
-    tableEventBind(obj) {
+    tableEventBind (obj) {
       const { methods } = this.options
       if (!methods) return false
       methods[obj.event] && methods[obj.event](obj.data, obj)
     }
 
-    tableCtrlTpl() {
-       const list = this.options.ctrlData
+    tableCtrlTpl () {
+      const list = this.options.ctrlData
       let html = ''
       let i = 0
       let len = list.length
@@ -184,12 +221,12 @@ layui.define([], function (exports) {
       return `<span>${html}</span>`
     }
 
-    reload(data) {
+    reload (data) {
       this.options.data = data
       this.table.reload(this.options.id, this.options)
     }
 
-    checkStatus(id = this.options.id) {
+    checkStatus (id = this.options.id) {
       return this.table.checkStatus(id)
     }
   }
@@ -200,37 +237,3 @@ layui.define([], function (exports) {
   exports('LuTable', LuTable)
 
 })
-
-function textTemplate (data) {
-  const placeholder = data.placeholder || '请输入'
-  const w155 = data.w155 ? 'inner-input-w155' : ''
-  return `<div class='layui-inline'>
-              <label class='layui-form-label ${w155}'>${data.label}：</label>
-              <div class='layui-input-inline'>
-                <input type='text' 
-                       name='${data.name}'
-                       autocomplete='off' 
-                       class='layui-input' 
-                       placeholder='${placeholder}'>
-              </div>
-            </div>`
-}
-
-function selectTemplate (data) {
-  let optionStr = "<option value=''>请选择</option>"
-  const len = data.selectData.length
-  let i = 0
-  for (; i < len; i++) {
-    const item = data.selectData[i]
-    const s = item.selected ? 'selected' : ''
-    optionStr += `<option value='${item.value}' ${s}>${item.key}</option>`
-  }
-  return `<div class='layui-inline'>
-              <label class='layui-form-label'>${data.label}：</label>
-              <div class='layui-input-inline inner-input-w155'>
-                <select name='${data.name}'>
-                  ${optionStr}
-                </select>
-              </div>
-            </div>`
-}

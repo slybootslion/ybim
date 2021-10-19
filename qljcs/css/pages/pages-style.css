@@ -69,4 +69,90 @@
   color: #0051ff;
 }
 
+.inner-body.warning-setting .nav {
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-sizing: border-box;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.inner-body.warning-setting .nav .left {
+  display: flex;
+  font-size: 18px;
+}
+.inner-body.warning-setting .nav .left .warning-sample {
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+}
+.inner-body.warning-setting .nav .right {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+.inner-body.warning-setting .nav .right .btn-item {
+  background-color: rgba(0, 165, 255, 0.1);
+  padding: 10px 20px;
+  border: 1px solid rgba(25, 121, 187, 0.5);
+  margin-left: 10px;
+  cursor: pointer;
+}
+.inner-body.warning-setting .nav .right .btn-item.active {
+  background-color: #007fff;
+}
+.inner-body.warning-setting .nav .right .setting-warning {
+  margin-right: 20px;
+  color: #3794ff;
+  cursor: pointer;
+}
+.inner-body.warning-setting .nav .right .setting-warning .iconfont {
+  margin-right: 5px;
+}
+.inner-body.warning-setting .form-box {
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.inner-body.warning-setting .form-box .layui-form {
+  display: flex;
+  align-items: center;
+}
+.inner-body.warning-setting .form-box .layui-form .left {
+  width: 1350px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 80px;
+  box-sizing: border-box;
+}
+.inner-body.warning-setting .form-box .layui-form .left .layui-inline {
+  margin: 10px 0;
+}
+.inner-body.warning-setting .form-box .layui-form .left .layui-form-label {
+  width: 90px;
+}
+.inner-body.warning-setting .form-box .layui-form .left .layui-input {
+  width: 234px;
+}
+.inner-body.warning-setting .form-box .layui-form .right {
+  flex: 1;
+}
+
+#selectPeopleName .search-name-input {
+  width: 220px;
+  height: 30px;
+  margin: 10px;
+  border-radius: 30px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: none;
+  outline: none;
+  padding: 0 20px;
+  color: #fff;
+}
+#selectPeopleName .luTableInner {
+  padding: 0 10px;
+}
+
 /*# sourceMappingURL=pages-style.css.map */

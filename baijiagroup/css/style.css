@@ -44,7 +44,7 @@
   display: block;
   width: 100%;
   height: 4px;
-  background-color: #3477c8;
+  background-color: #004da5;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -104,7 +104,7 @@
   text-indent: 2em;
 }
 .container-box h5 {
-  color: #3477c8;
+  color: #004da5;
   margin-top: 20px;
 }
 .container-box .picture-box {
@@ -169,7 +169,7 @@
   filter: alpha(opacity=80);
 }
 .banner .lubo .cir_box li.on {
-  background: #000 !important;
+  background: #004da5 !important;
 }
 .banner .lubo .lubo_btn {
   position: absolute;
@@ -222,7 +222,7 @@
 }
 .notice .notice-box .icon-gonggao {
   margin-right: 10px;
-  color: #3477c8;
+  color: #004da5;
 }
 .notice .notice-box .more {
   color: #ffbd1a;
@@ -236,7 +236,7 @@
   color: #333;
 }
 .notice li a:hover {
-  color: #3477c8;
+  color: #004da5;
 }
 
 .mainnav {
@@ -262,9 +262,9 @@
   font-size: 14px;
 }
 .mainnav a.active, .mainnav a:hover {
-  background: #3477c8;
+  background: #004da5;
   color: #fff;
-  border: 1px solid #3477c8;
+  border: 1px solid #004da5;
 }
 
 .about-us .scene-1 {
@@ -287,7 +287,7 @@
   align-items: center;
 }
 .about-us .scene-1 .right .item {
-  color: #3477c8;
+  color: #004da5;
   font-weight: 700;
   line-height: 1.8;
 }
@@ -321,7 +321,7 @@
   line-height: 60px;
   cursor: pointer;
   text-align: center;
-  background-color: #3477c8;
+  background-color: #004da5;
   color: #ffffff;
 }
 .about-us .scene-2 .rczp-content .tab-content {
@@ -347,13 +347,13 @@
 .about-us .scene-3 .block-3-item {
   width: 350px;
   height: 327px;
-  border: 1px solid #3477c8;
+  border: 1px solid #004da5;
 }
 .about-us .scene-3 .block-3-item .block-3-title {
   text-align: center;
   margin: 40px 0 50px;
   font-size: 24px;
-  color: #3477c8;
+  color: #004da5;
 }
 .about-us .scene-3 .block-3-item .block-3-content {
   padding: 0 20px;
@@ -411,7 +411,7 @@
 .about-us .scene-address .right .qrcode-block .text .title {
   font-size: 26px;
   margin: 5px 0 20px;
-  color: #3477c8;
+  color: #004da5;
 }
 .about-us .scene-address .right .qrcode-block .text .right-item {
   margin-bottom: 5px;
@@ -454,7 +454,7 @@
   cursor: pointer;
 }
 .index-page .container .top-group .top-group-left .news-nav .news-nav-left .nav-item.active {
-  background-color: #3477c8;
+  background-color: #004da5;
   color: #ffffff;
 }
 .index-page .container .top-group .top-group-left .news-content {
@@ -486,13 +486,13 @@
   margin-left: 30px;
 }
 .index-page .container .top-group .top-group-left .news-content .right .news-item.active a {
-  color: #3477c8;
+  color: #004da5;
 }
 .index-page .container .top-group .top-group-left .news-content .right .news-item a {
   font-size: 18px;
 }
 .index-page .container .top-group .top-group-left .news-content .right .news-item a:hover {
-  color: #3477c8;
+  color: #004da5;
 }
 .index-page .container .top-group .top-group-left .news-content .right .news-item .dian {
   display: inline-block;
@@ -509,7 +509,7 @@
   flex: 1;
   height: 375px;
   margin-left: 30px;
-  background-color: #3477c8;
+  background-color: #004da5;
   padding: 20px;
   color: #fff;
 }
@@ -559,7 +559,7 @@
 .index-page .container .scene-1 .scene-title .eng {
   margin-top: 5px;
   font-style: italic;
-  color: #3477c8;
+  color: #004da5;
   font-weight: 700;
 }
 .index-page .container .scene-1 .content-box {
@@ -569,14 +569,14 @@
 }
 .index-page .container .scene-1 .content-box .content-item {
   width: 23%;
-  border: 1px solid #3477c8;
+  border: 1px solid #004da5;
   padding: 15px;
   box-sizing: border-box;
   cursor: pointer;
 }
 .index-page .container .scene-1 .content-box .content-item:hover {
   color: #ffffff;
-  background-color: #3477c8;
+  background-color: #004da5;
 }
 .index-page .container .scene-1 .content-box .content-item:hover .content-item-title .eng {
   color: #ffffff;
@@ -603,7 +603,7 @@
 }
 .index-page .container .scene-1 .content-box .content-item .icon-box .iconfont {
   font-size: 56px;
-  color: #3477c8;
+  color: #004da5;
 }
 .index-page .container .scene-1 .content-box .content-item img {
   width: 100%;

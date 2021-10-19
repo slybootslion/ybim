@@ -1,4 +1,4 @@
-$primaryColor: #3477c8;
+$primaryColor: #004da5;
 $backgroundClearColor: #f1f1f1;
 $linkColor: #d8dadb;
 $moreColor: #9a9a9a;
@@ -196,7 +196,7 @@ $primaryLightColor: #c1dcec;
         filter: alpha(opacity=80);
 
         &.on {
-          background: #000 !important;
+          background: $primaryColor !important;
         }
       }
     }

@@ -31,6 +31,18 @@
     "icon": "icon-baojingxinxi"
   },
   {
+    "id": "5",
+    "title": "报警设置",
+    "href": "warning-message/warning-setting",
+    "hide": true
+  },
+  {
+    "id": "5",
+    "title": "报警设置",
+    "href": "warning-message/warning-form",
+    "hide": true
+  },
+  {
     "id": "6",
     "title": "分析评估",
     "href": "analysis-evaluation/index",
