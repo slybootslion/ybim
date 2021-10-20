@@ -158,6 +158,12 @@ $alpBgc: rgba(0, 165, 255, .1);
 
         .layui-inline {
           margin: 10px 0;
+
+          .name-layer {
+            color: #777;
+            display: flex;
+            align-items: center;
+          }
         }
 
         .layui-form-label {
@@ -167,10 +173,34 @@ $alpBgc: rgba(0, 165, 255, .1);
         .layui-input {
           width: 234px;
         }
-      }
 
-      .right {
-        flex: 1;
+        .name-list-placeholder {
+          min-width: 130px;
+          margin-top: 10px;
+          position: relative;
+          left: 120px;
+          top: -10px;
+          display: inline-block;
+
+          .name-item {
+            width: max-content;
+            background-color: $sideBarBgc;
+            margin-bottom: 5px;
+            box-sizing: border-box;
+            padding: 0 5px;
+            font-size: 12px;
+
+            span {
+              margin-right: 10px;
+
+              &.icon-guanbi {
+                cursor: pointer;
+                margin: 0;
+                font-size: 12px;
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -191,5 +221,35 @@ $alpBgc: rgba(0, 165, 255, .1);
 
   .luTableInner {
     padding: 0 10px;
+
+    .layui-table-header, .layui-table-view, th, td {
+      border-color: transparent;
+    }
+
+    .layui-table {
+      color: #ffffff;
+
+      thead {
+        background-color: rgba(0, 0, 0, .5);
+      }
+
+      tr {
+        background-color: rgba(0, 0, 0, .2);
+      }
+    }
+
+    .layui-table,
+    .layui-table tbody tr:hover,
+    .layui-table thead tr,
+    .layui-table-click,
+    .layui-table-header,
+    .layui-table-hover,
+    .layui-table-mend,
+    .layui-table-patch,
+    .layui-table-tool,
+    .layui-table-total,
+    .layui-table-total tr {
+      background-color: transparent;
+    }
   }
 }

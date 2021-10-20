@@ -130,14 +130,40 @@
 .inner-body.warning-setting .form-box .layui-form .left .layui-inline {
   margin: 10px 0;
 }
+.inner-body.warning-setting .form-box .layui-form .left .layui-inline .name-layer {
+  color: #777;
+  display: flex;
+  align-items: center;
+}
 .inner-body.warning-setting .form-box .layui-form .left .layui-form-label {
   width: 90px;
 }
 .inner-body.warning-setting .form-box .layui-form .left .layui-input {
   width: 234px;
 }
-.inner-body.warning-setting .form-box .layui-form .right {
-  flex: 1;
+.inner-body.warning-setting .form-box .layui-form .left .name-list-placeholder {
+  min-width: 130px;
+  margin-top: 10px;
+  position: relative;
+  left: 120px;
+  top: -10px;
+  display: inline-block;
+}
+.inner-body.warning-setting .form-box .layui-form .left .name-list-placeholder .name-item {
+  width: max-content;
+  background-color: rgba(25, 121, 187, 0.5);
+  margin-bottom: 5px;
+  box-sizing: border-box;
+  padding: 0 5px;
+  font-size: 12px;
+}
+.inner-body.warning-setting .form-box .layui-form .left .name-list-placeholder .name-item span {
+  margin-right: 10px;
+}
+.inner-body.warning-setting .form-box .layui-form .left .name-list-placeholder .name-item span.icon-guanbi {
+  cursor: pointer;
+  margin: 0;
+  font-size: 12px;
 }
 
 #selectPeopleName .search-name-input {
@@ -153,6 +179,31 @@
 }
 #selectPeopleName .luTableInner {
   padding: 0 10px;
+}
+#selectPeopleName .luTableInner .layui-table-header, #selectPeopleName .luTableInner .layui-table-view, #selectPeopleName .luTableInner th, #selectPeopleName .luTableInner td {
+  border-color: transparent;
+}
+#selectPeopleName .luTableInner .layui-table {
+  color: #ffffff;
+}
+#selectPeopleName .luTableInner .layui-table thead {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#selectPeopleName .luTableInner .layui-table tr {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+#selectPeopleName .luTableInner .layui-table,
+#selectPeopleName .luTableInner .layui-table tbody tr:hover,
+#selectPeopleName .luTableInner .layui-table thead tr,
+#selectPeopleName .luTableInner .layui-table-click,
+#selectPeopleName .luTableInner .layui-table-header,
+#selectPeopleName .luTableInner .layui-table-hover,
+#selectPeopleName .luTableInner .layui-table-mend,
+#selectPeopleName .luTableInner .layui-table-patch,
+#selectPeopleName .luTableInner .layui-table-tool,
+#selectPeopleName .luTableInner .layui-table-total,
+#selectPeopleName .luTableInner .layui-table-total tr {
+  background-color: transparent;
 }
 
 /*# sourceMappingURL=pages-style.css.map */

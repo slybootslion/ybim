@@ -185,7 +185,6 @@ layui.define([], function (exports) {
         })
         this.tableOn()
       }
-      console.log(this.containerEl)
       this.containerEl.html(`<table class='layui-hide' id='${this.options.id}' lay-filter='${this.options.filter}'></table>`)
       this.table.render(this.options)
       this.queue.length && this.queue.forEach(fn => typeof fn === 'function' && fn())
@@ -236,4 +235,7 @@ layui.define([], function (exports) {
   exports('LuSearchForm', LuSearchForm)
   exports('LuTable', LuTable)
 
+  function hideHeadCheck() {
+    $('.layui-table-header .laytable-cell-checkbox').empty()
+  }
 })
