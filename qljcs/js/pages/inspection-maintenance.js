@@ -1,0 +1,11 @@
+layui.use(['LuCommonTemplate'], function () {
+  const $ = layui.$
+
+  $(".selectBridge .btn-item").on('click', async function () {
+    const isActive = $(this).hasClass('active')
+    if (isActive) return
+    $(this).addClass('active').siblings('.btn-item').removeClass('active')
+    // do something
+
+  });
+})

@@ -20,6 +20,7 @@ $alpBgc: rgba(0, 165, 255, .1);
   }
 }
 
+.inner-body.inspection-maintenance,
 .inner-body.warning-message {
   .nav {
     height: 40px;
@@ -85,6 +86,28 @@ $alpBgc: rgba(0, 165, 255, .1);
     }
     &.blue {
       color: #0051ff;
+    }
+  }
+}
+
+.inner-body.inspection-maintenance {
+  .content {
+    display: flex;
+    height: 945px;
+    .content-left {
+      width: 15%;
+      background-image: url("/qljcs/images/page/qljc/inspection-bg-l.png");
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    .content-right {
+      flex: 1;
+      margin-left: 10px;
+      background-image: url("/qljcs/images/page/qljc/inspection-bg-r.png");
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
     }
   }
 }

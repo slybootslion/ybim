@@ -11,6 +11,7 @@
   font-size: 16px;
 }
 
+.inner-body.inspection-maintenance .nav,
 .inner-body.warning-message .nav {
   height: 40px;
   display: flex;
@@ -20,20 +21,24 @@
   align-items: center;
   margin-bottom: 5px;
 }
+.inner-body.inspection-maintenance .nav .left,
 .inner-body.warning-message .nav .left {
   display: flex;
   color: #3794ff;
 }
+.inner-body.inspection-maintenance .nav .left .warning-sample,
 .inner-body.warning-message .nav .left .warning-sample {
   margin-right: 20px;
   display: flex;
   align-items: center;
 }
+.inner-body.inspection-maintenance .nav .right,
 .inner-body.warning-message .nav .right {
   display: flex;
   align-items: center;
   font-size: 16px;
 }
+.inner-body.inspection-maintenance .nav .right .btn-item,
 .inner-body.warning-message .nav .right .btn-item {
   background-color: rgba(0, 165, 255, 0.1);
   padding: 10px 20px;
@@ -41,32 +46,60 @@
   margin-left: 10px;
   cursor: pointer;
 }
+.inner-body.inspection-maintenance .nav .right .btn-item.active,
 .inner-body.warning-message .nav .right .btn-item.active {
   background-color: #007fff;
 }
+.inner-body.inspection-maintenance .nav .right .setting-warning,
 .inner-body.warning-message .nav .right .setting-warning {
   margin-right: 20px;
   color: #3794ff;
   cursor: pointer;
 }
+.inner-body.inspection-maintenance .nav .right .setting-warning .iconfont,
 .inner-body.warning-message .nav .right .setting-warning .iconfont {
   margin-right: 5px;
 }
+.inner-body.inspection-maintenance .iconfont.icon-yujing,
 .inner-body.warning-message .iconfont.icon-yujing {
   font-size: 20px;
   margin-right: 5px;
 }
+.inner-body.inspection-maintenance .iconfont.icon-yujing.red,
 .inner-body.warning-message .iconfont.icon-yujing.red {
   color: red;
 }
+.inner-body.inspection-maintenance .iconfont.icon-yujing.orange,
 .inner-body.warning-message .iconfont.icon-yujing.orange {
   color: orange;
 }
+.inner-body.inspection-maintenance .iconfont.icon-yujing.yellow,
 .inner-body.warning-message .iconfont.icon-yujing.yellow {
   color: yellow;
 }
+.inner-body.inspection-maintenance .iconfont.icon-yujing.blue,
 .inner-body.warning-message .iconfont.icon-yujing.blue {
   color: #0051ff;
+}
+
+.inner-body.inspection-maintenance .content {
+  display: flex;
+  height: 945px;
+}
+.inner-body.inspection-maintenance .content .content-left {
+  width: 15%;
+  background-image: url("/qljcs/images/page/qljc/inspection-bg-l.png");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.inner-body.inspection-maintenance .content .content-right {
+  flex: 1;
+  margin-left: 10px;
+  background-image: url("/qljcs/images/page/qljc/inspection-bg-r.png");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .inner-body.warning-setting .nav {
