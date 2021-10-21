@@ -1,0 +1,101 @@
+[
+  {
+    "title" : "上部结构",
+    "spread": true,
+    "children": [
+      {
+        "title": "上部承重结构",
+        "spread": true,
+        "children": [
+          {
+            "title": "空心板001"
+          },
+          {
+            "title": "空心板002"
+          }
+        ]
+      },
+      {
+        "title": "上部一般结构",
+        "spread": true,
+        "children": [
+          {
+            "title": "湿接缝"
+          }
+        ]
+      },
+      {
+        "title": "支座",
+        "spread": true,
+        "children": [
+          {
+            "title": "支座001"
+          },
+          {
+            "title": "支座002"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title" : "下部结构",
+    "spread": true,
+    "children": [
+      {
+        "title": "翼墙耳墙"
+      },
+      {
+        "title": "锥坡护坡"
+      },
+      {
+        "title": "桥墩",
+        "spread": true,
+        "children": [
+          {
+            "title": "盖梁"
+          },
+          {
+            "title": "立柱"
+          }
+        ]
+      },
+      {
+        "title": "桥台"
+      },
+      {
+        "title": "墩台基础"
+      },
+      {
+        "title": "河床"
+      },
+      {
+        "title": "调治构造物"
+      }
+    ]
+  },
+  {
+    "title" : "桥面",
+    "spread": true,
+    "children": [
+      {
+        "title": "桥面铺装"
+      },
+      {
+        "title": "锥伸缩缝装置"
+      },
+      {
+        "title": "人行道"
+      },
+      {
+        "title": "栏杆、护栏"
+      },
+      {
+        "title": "排水系统"
+      },
+      {
+        "title": "照明标志"
+      }
+    ]
+  }
+]
