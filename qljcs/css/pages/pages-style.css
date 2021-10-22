@@ -126,6 +126,75 @@
   flex: 1;
   margin-left: 10px;
   background-image: url("/qljcs/images/page/qljc/inspection-bg-r.png");
+  padding: 20px 50px;
+  box-sizing: border-box;
+}
+.inner-body.inspection-maintenance .content .content-right .content-right-title {
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px dotted rgba(25, 121, 187, 0.5);
+  text-align: center;
+  position: relative;
+}
+.inner-body.inspection-maintenance .content .content-right .content-right-title h1 {
+  font-weight: 700;
+}
+.inner-body.inspection-maintenance .content .content-right .content-right-title .score {
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid #007fff;
+  color: #007fff;
+  padding: 0 20px;
+  font-size: 22px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.inner-body.inspection-maintenance .content .content-right .content-nav {
+  height: 40px;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+.inner-body.inspection-maintenance .content .content-right .content-nav .content-nav-item {
+  width: 120px;
+  line-height: 40px;
+  text-align: center;
+}
+.inner-body.inspection-maintenance .content .content-right .right-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.inner-body.inspection-maintenance .content .content-right .right-content .content-right-item {
+  width: 47%;
+  margin-bottom: 20px;
+}
+.inner-body.inspection-maintenance .content .content-right .right-content .content-right-item .content-right-item-block {
+  display: flex;
+  margin-bottom: 6px;
+}
+.inner-body.inspection-maintenance .content .content-right .right-content .content-right-item .content-right-item-block .label {
+  width: 90px;
+  color: #3794ff;
+  text-align: right;
+}
+.inner-body.inspection-maintenance .content .content-right .right-content .content-right-item .content-right-item-block .text {
+  flex: 1;
+}
+.inner-body.inspection-maintenance .content .content-right .right-content .content-right-item .content-right-item-top {
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+.inner-body.inspection-maintenance .content .content-right .right-content .content-right-item .content-right-item-bottom {
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 .inner-body.inspection-maintenance .layui-tree .layui-tree-txt {
   color: #fff;

@@ -292,6 +292,15 @@
       return { sH, sW }
     }
 
+    domWidthHeight (dom) {
+      if (typeof dom === 'string') dom = document.querySelector(dom)
+      if (dom instanceof HTMLElement) {
+        const r = dom.getBoundingClientRect()
+        return { height: r.height, width: r.width }
+      }
+      return { height: 0, width: 0 }
+    }
+
     getFormatTime (formatStr = 'YYYY年MM月DD日 HH:mm:ss', date = new Date()) {
       return dayjs(date).format(formatStr)
     }

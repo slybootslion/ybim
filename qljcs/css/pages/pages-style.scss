@@ -141,6 +141,87 @@ $alpBgc: rgba(0, 165, 255, .1);
       flex: 1;
       margin-left: 10px;
       background-image: url("/qljcs/images/page/qljc/inspection-bg-r.png");
+      padding: 20px 50px;
+      box-sizing: border-box;
+
+      .content-right-title {
+        height: 50px;
+        line-height: 50px;
+        border-bottom: 1px dotted $sideBarBgc;
+        text-align: center;
+        position: relative;
+
+        h1 {
+          font-weight: 700;
+        }
+
+        .score {
+          height: 40px;
+          line-height: 40px;
+          border: 1px solid $paramColor;
+          color: $paramColor;
+          padding: 0 20px;
+          font-size: 22px;
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+      }
+
+      .content-nav {
+        height: 40px;
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 20px;
+
+        .content-nav-item {
+          width: 120px;
+          line-height: 40px;
+          text-align: center;
+        }
+      }
+
+      .right-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+
+        .content-right-item {
+          width: 47%;
+          margin-bottom: 20px;
+
+          .content-right-item-block {
+            display: flex;
+            margin-bottom: 6px;
+
+            .label {
+              width: 90px;
+              color: $paramColorHov;
+              text-align: right;
+            }
+
+            .text {
+              flex: 1;
+            }
+          }
+
+          .content-right-item-top {
+            height: 40px;
+            background-color: rgba(0, 0, 0, .5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+          }
+
+          .content-right-item-bottom {
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: rgba(0, 0, 0, .3);
+          }
+        }
+      }
     }
   }
 
