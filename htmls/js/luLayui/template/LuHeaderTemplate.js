@@ -17,7 +17,7 @@ layui.define(['laytpl', 'dropdown'], function (exports) {
     renderHeader () {
       const headerHtml = `
         <div class='header-logo'>
-          <img src='/htmls/images/public/logo.png' alt=''>
+          <img src='/htmls/images/public/top.png' alt='' class="centerXY">
         </div>
         <div class='header-content'>
           <div class='header-content-left'>

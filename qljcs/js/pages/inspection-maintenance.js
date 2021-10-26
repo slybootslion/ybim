@@ -62,6 +62,10 @@ layui.use(['LuCommonTemplate'], function () {
     await treeNodeClick()
   })()
 
+  $lulib.methodProxy.bindMethodProxy([
+    { dom: '.nav-box', domStr: '.content-nav-item', method: handleNavItem },
+  ])
+
   $(".selectBridge .btn-item").on('click', async function () {
     const isActive = $(this).hasClass('active')
     if (isActive) return
@@ -69,6 +73,13 @@ layui.use(['LuCommonTemplate'], function () {
     // do something
     await treeNodeClick()
   })
+
+  function handleNavItem () {
+    const $this = $(this)
+    const isActive = $this.hasClass('active')
+    if (isActive) return
+    $this.addClass('active').siblings('.content-nav-item').removeClass('active')
+  }
 
   function computedContentHeight () {
     const { height } = $lulib.domWidthHeight('#bodyOnePage')

@@ -261,20 +261,26 @@ html, body {
 }
 .login-body .bg {
   height: 100%;
-}
-.login-body .bg .top, .login-body .bg .bottom {
+  background-image: url(../../images/page/login/logon-bg.jpg);
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
-}
-.login-body .bg .top {
-  background-image: url(../../images/page/login/login1.jpg);
-  height: 50%;
-  position: relative;
-}
-.login-body .bg .bottom {
-  background-image: url(../../images/page/login/login2.jpg);
-  height: 50%;
+  /*.top, .bottom {
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .top {
+    background-image: url(../../images/page/login/login1.jpg);
+    height: 50%;
+    position: relative;
+  }
+
+  .bottom {
+    background-image: url(../../images/page/login/login2.jpg);
+    height: 50%;
+  }*/
 }
 .login-body .login-form {
   width: 459px;
@@ -304,15 +310,15 @@ html, body {
   left: 0;
 }
 .login-body .login-form .login-title {
-  width: 594px;
-  height: 53px;
-  background-image: url(../../images/page/login/login-logl.png);
+  width: 883px;
+  height: 73px;
+  background-image: url(../../images/page/login/logon.png);
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
   position: absolute;
   left: 50%;
-  margin-left: -297px;
+  margin-left: -442px;
   top: -150px;
 }
 .login-body .login-form .form-title {

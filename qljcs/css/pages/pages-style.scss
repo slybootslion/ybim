@@ -20,6 +20,7 @@ $alpBgc: rgba(0, 165, 255, .1);
   }
 }
 
+.bim-body,
 .inner-body.inspection-maintenance,
 .inner-body.warning-message {
   .nav {
@@ -90,6 +91,14 @@ $alpBgc: rgba(0, 165, 255, .1);
   }
 }
 
+.bim-body {
+  .nav {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+}
+
 .inner-body.inspection-maintenance {
   .content {
     display: flex;
@@ -105,7 +114,7 @@ $alpBgc: rgba(0, 165, 255, .1);
 
     .content-left {
       width: 15%;
-      background-image: url("/qljcs/images/page/qljc/inspection-bg-l.png");
+      background-image: url("../../images/page/qljc/inspection-bg-l.png");
 
       .left-title {
         height: 40px;
@@ -140,7 +149,7 @@ $alpBgc: rgba(0, 165, 255, .1);
     .content-right {
       flex: 1;
       margin-left: 10px;
-      background-image: url("/qljcs/images/page/qljc/inspection-bg-r.png");
+      background-image: url("../../images/page/qljc/inspection-bg-r.png");
       padding: 20px 50px;
       box-sizing: border-box;
 
@@ -178,6 +187,15 @@ $alpBgc: rgba(0, 165, 255, .1);
           width: 120px;
           line-height: 40px;
           text-align: center;
+          cursor: pointer;
+          background-image: url('../../images/page/qljc/down.png');
+          background-position: center center;
+          background-size: contain;
+          background-repeat: no-repeat;
+
+          &.active {
+            background-image: url('../../images/page/qljc/on.png');
+          }
         }
       }
 

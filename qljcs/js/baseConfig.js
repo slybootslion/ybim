@@ -11,16 +11,6 @@ layui
   })
   .extend({
   })
-  // .extend({
-  //   LuHeaderTemplate: 'template/LuHeaderTemplate',
-  //   LuBodyContentTemplate: 'template/LuBodyContentTemplate',
-  //   LuCommonTemplate: 'template/LuCommonTemplate',
-  //   LuUtilsTemplate: 'template/LuUtilsTemplate',
-  //   LuTreeTable: 'treeTable/LuTreeTable',
-  //   zTree: 'z-tree/jquery.ztree.all',
-  //   echarts: 'echarts/echarts.min',
-  //   Swiper: 'swiper/swiper.min',
-  // })
 
 const appConfig = {
   loadingTime: 0,

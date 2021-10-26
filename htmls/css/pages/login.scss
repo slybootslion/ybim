@@ -10,8 +10,11 @@ html, body {
 
   .bg {
     height: 100%;
-
-    .top, .bottom {
+    background-image: url(../../images/page/login/logon-bg.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /*.top, .bottom {
       background-position: center center;
       background-size: cover;
       background-repeat: no-repeat;
@@ -26,7 +29,7 @@ html, body {
     .bottom {
       background-image: url(../../images/page/login/login2.jpg);
       height: 50%;
-    }
+    }*/
   }
 
   .login-form {
@@ -58,15 +61,16 @@ html, body {
     }
 
     .login-title {
-      width: 594px;
-      height: 53px;
-      background-image: url(../../images/page/login/login-logl.png);
+      width: 883px;
+      height: 73px;
+      background-image: url(../../images/page/login/logon.png);
+      //background-image: url(../../images/page/login/login-logl.png);
       background-position: center center;
       background-size: cover;
       background-repeat: no-repeat;
       position: absolute;
       left: 50%;
-      margin-left: -297px;
+      margin-left: -442px;
       top: -150px;
     }
 

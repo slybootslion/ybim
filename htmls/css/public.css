@@ -5,7 +5,7 @@
   position: relative;
 }
 .layui-header .header-logo img {
-  width: 100%;
+  width: 86%;
 }
 .layui-header .header-logo::after {
   content: "";
