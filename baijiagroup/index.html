@@ -115,16 +115,16 @@ $(function () {
   // mock
   const data = {
     banner: [
-      {pic: './images/1551255535481.jpg', link: 'javascript:void(0)'},
-      {pic: './images/1469583762983.jpg', link: 'javascript:void(0)'},
-      {pic: './images/1494574148711.jpg', link: 'javascript:void(0)'},
+      { pic: './images/1551255535481.jpg', link: 'javascript:void(0)' },
+      { pic: './images/1469583762983.jpg', link: 'javascript:void(0)' },
+      { pic: './images/1494574148711.jpg', link: 'javascript:void(0)' },
     ],
     notice: [
-      {link: 'javascript:void(0)', text: '柏嘉交科与中设股份建立战略合作伙伴关系 【2019-06-06】'},
-      {link: 'javascript:void(0)', text: '我司总裁应邀出席在京召开的2019世界交通运输大会 【2019-06-17】'},
-      {link: 'javascript:void(0)', text: '深度合作 携手出海 ——柏嘉交科与中设股份、西安建工就国际工程项目 签署合作备忘录 【2019-06-06】'},
-      {link: 'javascript:void(0)', text: '柏嘉交科与中设股份建立战略合作伙伴关系 【2019-06-06】'},
-      {link: 'javascript:void(0)', text: '我司总裁应邀出席在京召开的2019世界交通运输大会 【2019-06-17】'},
+      { link: 'javascript:void(0)', text: '柏嘉交科与中设股份建立战略合作伙伴关系 【2019-06-06】' },
+      { link: 'javascript:void(0)', text: '我司总裁应邀出席在京召开的2019世界交通运输大会 【2019-06-17】' },
+      { link: 'javascript:void(0)', text: '深度合作 携手出海 ——柏嘉交科与中设股份、西安建工就国际工程项目 签署合作备忘录 【2019-06-06】' },
+      { link: 'javascript:void(0)', text: '柏嘉交科与中设股份建立战略合作伙伴关系 【2019-06-06】' },
+      { link: 'javascript:void(0)', text: '我司总裁应邀出席在京召开的2019世界交通运输大会 【2019-06-17】' },
     ]
   }
   $luCommon.renderBanner(data)
@@ -266,6 +266,9 @@ $(function () {
 
   $(".video-title .tag-more").on('click', () => location.href = './video.html')
 
+  $(".scene-2").on('click', function () {
+    location.href = '/baijiagroup/introduce-3.html'
+  });
 })
 </script>
 </body>

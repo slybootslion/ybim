@@ -636,6 +636,9 @@
   text-align: center;
   margin-top: 50px;
 }
+.index-page .scene-2 {
+  cursor: pointer;
+}
 
 .news-body .newspage {
   width: 900px;
