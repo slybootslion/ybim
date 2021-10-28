@@ -311,10 +311,11 @@ body a,body em,body i,body span,body b{font-style:normal;font-family:"Microsoft 
 .service_main_cnt .tab-box .tab-title{
     width: 27%;
     box-sizing: border-box;
+    border: 1px solid #0d74d0;
 }
 .service_main_cnt .tab-box .tab-title .tab-title-item{
     height: 75px;
-    border: 1px solid #0d74d0;
+    border-bottom: 1px solid #0d74d0;
     margin-top: -1px;
     display: flex;
     align-items: center;
@@ -336,6 +337,7 @@ body a,body em,body i,body span,body b{font-style:normal;font-family:"Microsoft 
     padding: 20px;
     box-sizing: border-box;
     border: 1px solid #0d74d0;
+    border-left: none;
     margin-left: -1px;
 }
 .service_main_cnt .tab-box .tab-content .tab-content-item{
