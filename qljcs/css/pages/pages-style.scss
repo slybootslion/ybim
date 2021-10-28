@@ -21,6 +21,7 @@ $alpBgc: rgba(0, 165, 255, .1);
 }
 
 .bim-body,
+.inner-body.video-control,
 .inner-body.inspection-maintenance,
 .inner-body.warning-message {
   .nav {
@@ -96,6 +97,230 @@ $alpBgc: rgba(0, 165, 255, .1);
     position: absolute;
     top: 20px;
     right: 20px;
+  }
+}
+
+.inner-body.video-control {
+  .page-container {
+    min-height: 600px;
+    margin-top: 20px;
+
+    .left {
+      width: 78%;
+      height: 100%;
+      margin-right: 2%;
+
+      .select-box {
+        background-color: #f2f2f2;
+        padding: 0 20px;
+        box-sizing: border-box;
+        height: 50px;
+        align-items: center;
+        color: #333;
+
+        .layui-inline {
+          margin-right: 10px;
+        }
+      }
+
+      .video-box {
+        background-color: #ccc;
+        height: 699px;
+        margin-bottom: 50px;
+        position: relative;
+
+        .video-title {
+          position: absolute;
+          top: 0;
+          left: 0;
+          font-size: 16px;
+          padding: 0 10px;
+          box-sizing: border-box;
+          line-height: 30px;
+        }
+      }
+
+      .ctrl-box {
+        width: 100%;
+        height: 104px;
+        position: relative;
+
+        .btn-box {
+          width: 306px;
+          height: 100%;
+          position: absolute;
+          left: 50%;
+          top: 0;
+          margin-left: -153px;
+
+          .b-mid {
+            width: 155px;
+            height: 100%;
+            margin-top: -10px;
+
+            .b-p {
+              background-position: center center;
+              background-size: auto;
+              background-repeat: no-repeat;
+              cursor: pointer;
+              opacity: .6;
+
+              &:hover {
+                opacity: 1;
+              }
+            }
+
+            .b-m-top {
+              width: 72px;
+              height: 17px;
+              margin: 0 auto;
+              background-image: url(../../images/page/qljc/up.png);
+            }
+
+            .b-m-mid {
+              width: 106px;
+              height: 72px;
+              margin: 0 auto;
+
+              .btn-mb-l {
+                width: 17px;
+                height: 72px;
+                background-image: url(../../images/page/qljc/left.png);
+              }
+
+              .btn-mb-m {
+                width: 72px;
+                height: 72px;
+                background-image: url(../../images/page/qljc/center.png);
+              }
+
+              .btn-mb-r {
+                width: 17px;
+                height: 72px;
+                background-image: url(../../images/page/qljc/right.png);
+              }
+            }
+
+            .b-m-bottom {
+              width: 72px;
+              height: 17px;
+              margin: 0 auto;
+              background-image: url(../../images/page/qljc/down.png);
+            }
+          }
+
+          .btn-item {
+            width: 74px;
+            height: 33px;
+            color: #fff;
+            border: 1px solid $paramColor;
+            border-radius: 5px;
+            display: block;
+            background-color: transparent;
+            margin-bottom: 16px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .right {
+      width: 20%;
+      height: 100%;
+
+      .right-content {
+        height: 740px;
+        border: 1px dotted #ededed;
+        margin-bottom: 10px;
+
+        .arrow {
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          position: relative;
+
+          &:hover {
+            .iconfont {
+              color: #333;
+            }
+          }
+
+          &.up {
+            .icon-bofang {
+              transform: rotate(-90deg);
+            }
+          }
+
+          &.down {
+            .icon-bofang {
+              transform: rotate(90deg);
+            }
+          }
+
+          .iconfont {
+            font-size: 32px;
+            color: #b1b1b1;
+          }
+        }
+
+        .content {
+          height: 630px;
+          margin: 5px 0;
+          position: relative;
+          overflow: hidden;
+
+          .content-slide {
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 0 10px;
+            transition: top .3s;
+            box-sizing: border-box;
+
+            .content-item {
+              width: 100%;
+              height: 210px;
+              margin: 0 auto;
+              position: relative;
+
+              &.active {
+                .play-icon {
+                  display: none;
+                }
+              }
+
+              .pic {
+                width: 100%;
+                height: 158px;
+                margin-bottom: 10px;
+              }
+
+              .play-icon {
+                width: 45px;
+                height: 45px;
+                background-image: url(../../images/page/qljc/bofang.png);
+                background-position: center center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                margin-top: -25px
+              }
+
+              .cover {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 
@@ -188,7 +413,7 @@ $alpBgc: rgba(0, 165, 255, .1);
           line-height: 40px;
           text-align: center;
           cursor: pointer;
-          background-image: url('../../images/page/qljc/down.png');
+          background-image: url('../../images/page/qljc/down_.png');
           background-position: center center;
           background-size: contain;
           background-repeat: no-repeat;

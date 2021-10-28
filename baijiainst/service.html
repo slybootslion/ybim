@@ -206,7 +206,8 @@ jQuery(function ($) {
 const computedTabContentHeight = () => {
   const ITEM_HEIGHT = 75
   const count = $(".tab-title .tab-title-item").length
-  const height = count * ITEM_HEIGHT - count
+  let height = count * ITEM_HEIGHT - count
+  if (height < 518) height = 518
   $('.tab-content').css({ height })
 }
 computedTabContentHeight()

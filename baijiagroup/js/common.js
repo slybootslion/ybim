@@ -23,14 +23,14 @@
                             </a>
                             <div class="nav-box">
                               <nav class="nav">${h}</nav>
-                              <div class="search-client">
-                                <div class="search">
-                                  <form action="/search.html" method="get">
-                                    <span class="icon" type="submit"></span>
-                                    <input type="text" class="seach_inptu" autocomplete="off" name="q" placeholder="请输入搜索内容">
-                                  </form>
-                                </div>
-                              </div>
+<!--                              <div class="search-client">-->
+<!--                                <div class="search">-->
+<!--                                  <form action="/search.html" method="get">-->
+<!--                                    <span class="icon" type="submit"></span>-->
+<!--                                    <input type="text" class="seach_inptu" autocomplete="off" name="q" placeholder="请输入搜索内容">-->
+<!--                                  </form>-->
+<!--                                </div>-->
+<!--                              </div>-->
                             </div>
                           </div>`
     }
