@@ -136,7 +136,7 @@
 }
 .inner-body.video-control .page-container .left .video-box {
   background-color: #ccc;
-  height: 699px;
+  height: 692px;
   margin-bottom: 50px;
   position: relative;
 }
@@ -148,6 +148,7 @@
   padding: 0 10px;
   box-sizing: border-box;
   line-height: 30px;
+  color: #333;
 }
 .inner-body.video-control .page-container .left .ctrl-box {
   width: 100%;
@@ -228,6 +229,7 @@
   height: 740px;
   border: 1px dotted #ededed;
   margin-bottom: 10px;
+  background-color: #f2f2f2;
 }
 .inner-body.video-control .page-container .right .right-content .arrow {
   height: 50px;
@@ -274,10 +276,16 @@
 .inner-body.video-control .page-container .right .right-content .content .content-slide .content-item.active .play-icon {
   display: none;
 }
+.inner-body.video-control .page-container .right .right-content .content .content-slide .content-item.active .pic {
+  border: 1px solid #007fff;
+}
 .inner-body.video-control .page-container .right .right-content .content .content-slide .content-item .pic {
   width: 100%;
   height: 158px;
   margin-bottom: 10px;
+}
+.inner-body.video-control .page-container .right .right-content .content .content-slide .content-item .title {
+  color: #333;
 }
 .inner-body.video-control .page-container .right .right-content .content .content-slide .content-item .play-icon {
   width: 45px;
