@@ -208,6 +208,10 @@
 }
 
 /* layer */
+.layui-layer-hui .layui-layer-content {
+  color: #fff;
+}
+
 .layui-layer.layui-layer-page {
   color: #fff;
   border: 1px solid #2372a9;

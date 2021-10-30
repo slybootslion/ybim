@@ -81,15 +81,19 @@ layui.use(['LuCommonTemplate'], function () {
     $this.addClass('active').siblings('.content-nav-item').removeClass('active')
   }
 
-  function computedContentHeight () {
-    const { height } = $lulib.domWidthHeight('#bodyOnePage')
-    const { height: headerH } = $lulib.domWidthHeight('.lu-header-ql')
-    const { height: navH } = $lulib.domWidthHeight('.page-container .nav')
-    const h = height - headerH - navH
-    $(".page-container .content").css({ height: h })
-  }
-
-  computedContentHeight()
+  // function computedContentHeight (dom, navH) {
+  //   const { height } = $lulib.domWidthHeight('#bodyOnePage')
+  //   const { height: headerH } = $lulib.domWidthHeight('.lu-header-ql')
+  //   const { height: navH } = $lulib.domWidthHeight('.page-container .nav')
+  //   const h = height - headerH - navH
+  //   if (typeof dom === 'string') {
+  //     $(dom).css({ height: h })
+  //   } else {
+  //     dom.css({ height: h })
+  //   }
+  //   // $(".page-container .content")
+  // }
+  $lulib.computedContentHeight($(".page-container .content"), $lulib.domWidthHeight('.page-container .nav').height)
 
   async function treeNodeClick (obj) {
     if (!obj) {

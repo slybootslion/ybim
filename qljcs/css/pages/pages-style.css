@@ -11,6 +11,7 @@
   font-size: 16px;
 }
 
+.analysis-evaluation .nav,
 .bim-body .nav,
 .inner-body.video-control .nav,
 .inner-body.inspection-maintenance .nav,
@@ -23,6 +24,7 @@
   align-items: center;
   margin-bottom: 5px;
 }
+.analysis-evaluation .nav .left,
 .bim-body .nav .left,
 .inner-body.video-control .nav .left,
 .inner-body.inspection-maintenance .nav .left,
@@ -30,6 +32,7 @@
   display: flex;
   color: #3794ff;
 }
+.analysis-evaluation .nav .left .warning-sample,
 .bim-body .nav .left .warning-sample,
 .inner-body.video-control .nav .left .warning-sample,
 .inner-body.inspection-maintenance .nav .left .warning-sample,
@@ -38,6 +41,7 @@
   display: flex;
   align-items: center;
 }
+.analysis-evaluation .nav .right,
 .bim-body .nav .right,
 .inner-body.video-control .nav .right,
 .inner-body.inspection-maintenance .nav .right,
@@ -46,6 +50,7 @@
   align-items: center;
   font-size: 16px;
 }
+.analysis-evaluation .nav .right .btn-item,
 .bim-body .nav .right .btn-item,
 .inner-body.video-control .nav .right .btn-item,
 .inner-body.inspection-maintenance .nav .right .btn-item,
@@ -56,12 +61,14 @@
   margin-left: 10px;
   cursor: pointer;
 }
+.analysis-evaluation .nav .right .btn-item.active,
 .bim-body .nav .right .btn-item.active,
 .inner-body.video-control .nav .right .btn-item.active,
 .inner-body.inspection-maintenance .nav .right .btn-item.active,
 .inner-body.warning-message .nav .right .btn-item.active {
   background-color: #007fff;
 }
+.analysis-evaluation .nav .right .setting-warning,
 .bim-body .nav .right .setting-warning,
 .inner-body.video-control .nav .right .setting-warning,
 .inner-body.inspection-maintenance .nav .right .setting-warning,
@@ -70,12 +77,14 @@
   color: #3794ff;
   cursor: pointer;
 }
+.analysis-evaluation .nav .right .setting-warning .iconfont,
 .bim-body .nav .right .setting-warning .iconfont,
 .inner-body.video-control .nav .right .setting-warning .iconfont,
 .inner-body.inspection-maintenance .nav .right .setting-warning .iconfont,
 .inner-body.warning-message .nav .right .setting-warning .iconfont {
   margin-right: 5px;
 }
+.analysis-evaluation .iconfont.icon-yujing,
 .bim-body .iconfont.icon-yujing,
 .inner-body.video-control .iconfont.icon-yujing,
 .inner-body.inspection-maintenance .iconfont.icon-yujing,
@@ -83,24 +92,28 @@
   font-size: 20px;
   margin-right: 5px;
 }
+.analysis-evaluation .iconfont.icon-yujing.red,
 .bim-body .iconfont.icon-yujing.red,
 .inner-body.video-control .iconfont.icon-yujing.red,
 .inner-body.inspection-maintenance .iconfont.icon-yujing.red,
 .inner-body.warning-message .iconfont.icon-yujing.red {
   color: red;
 }
+.analysis-evaluation .iconfont.icon-yujing.orange,
 .bim-body .iconfont.icon-yujing.orange,
 .inner-body.video-control .iconfont.icon-yujing.orange,
 .inner-body.inspection-maintenance .iconfont.icon-yujing.orange,
 .inner-body.warning-message .iconfont.icon-yujing.orange {
   color: orange;
 }
+.analysis-evaluation .iconfont.icon-yujing.yellow,
 .bim-body .iconfont.icon-yujing.yellow,
 .inner-body.video-control .iconfont.icon-yujing.yellow,
 .inner-body.inspection-maintenance .iconfont.icon-yujing.yellow,
 .inner-body.warning-message .iconfont.icon-yujing.yellow {
   color: yellow;
 }
+.analysis-evaluation .iconfont.icon-yujing.blue,
 .bim-body .iconfont.icon-yujing.blue,
 .inner-body.video-control .iconfont.icon-yujing.blue,
 .inner-body.inspection-maintenance .iconfont.icon-yujing.blue,
@@ -112,6 +125,48 @@
   position: absolute;
   top: 20px;
   right: 20px;
+}
+
+.inner-body.analysis-evaluation .nav {
+  margin: -25px 0 12px;
+  padding: 0;
+}
+.inner-body.analysis-evaluation .page-container {
+  background-image: url("../../images/page/qljc/inspection-bg-r.png");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 0 50px;
+  box-sizing: border-box;
+}
+.inner-body.analysis-evaluation .page-container .container-nav {
+  display: flex;
+  margin-bottom: 20px;
+}
+.inner-body.analysis-evaluation .page-container .container-nav .nav-item {
+  width: 150px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  cursor: pointer;
+  background-image: url("../../images/page/qljc/down_.png");
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.inner-body.analysis-evaluation .page-container .container-nav .nav-item.active {
+  background-image: url("../../images/page/qljc/on.png");
+}
+.inner-body.analysis-evaluation .page-container .select-box .layui-form {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px 0 0;
+}
+.inner-body.analysis-evaluation .page-container .select-box .layui-form .layui-inline {
+  margin-bottom: 20px;
+}
+.inner-body.analysis-evaluation .page-container .select-box .layui-form .layui-input {
+  width: 255px;
 }
 
 .inner-body.video-control .page-container {
@@ -374,14 +429,14 @@
   top: 0;
 }
 .inner-body.inspection-maintenance .content .content-right .content-nav {
-  height: 40px;
+  height: 30px;
   display: flex;
   justify-content: flex-start;
   margin-bottom: 20px;
 }
 .inner-body.inspection-maintenance .content .content-right .content-nav .content-nav-item {
-  width: 120px;
-  line-height: 40px;
+  width: 150px;
+  line-height: 30px;
   text-align: center;
   cursor: pointer;
   background-image: url("../../images/page/qljc/down_.png");

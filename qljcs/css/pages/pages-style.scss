@@ -20,6 +20,7 @@ $alpBgc: rgba(0, 165, 255, .1);
   }
 }
 
+.analysis-evaluation,
 .bim-body,
 .inner-body.video-control,
 .inner-body.inspection-maintenance,
@@ -97,6 +98,60 @@ $alpBgc: rgba(0, 165, 255, .1);
     position: absolute;
     top: 20px;
     right: 20px;
+  }
+}
+
+.inner-body.analysis-evaluation {
+  .nav {
+    margin: -25px 0 12px;
+    padding: 0;
+  }
+
+  .page-container {
+    background-image: url('../../images/page/qljc/inspection-bg-r.png');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 0 50px;
+    box-sizing: border-box;
+
+    .container-nav {
+      display: flex;
+      margin-bottom: 20px;
+
+      .nav-item {
+        width: 150px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        cursor: pointer;
+        background-image: url('../../images/page/qljc/down_.png');
+        background-position: center center;
+        background-size: contain;
+        background-repeat: no-repeat;
+
+        &.active {
+          background-image: url('../../images/page/qljc/on.png');
+        }
+      }
+    }
+
+    .select-box {
+
+      .layui-form {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 20px 0 0;
+
+        .layui-inline {
+          margin-bottom: 20px;
+        }
+
+        .layui-input {
+          width: 255px;
+        }
+      }
+    }
   }
 }
 
@@ -413,14 +468,14 @@ $alpBgc: rgba(0, 165, 255, .1);
       }
 
       .content-nav {
-        height: 40px;
+        height: 30px;
         display: flex;
         justify-content: flex-start;
         margin-bottom: 20px;
 
         .content-nav-item {
-          width: 120px;
-          line-height: 40px;
+          width: 150px;
+          line-height: 30px;
           text-align: center;
           cursor: pointer;
           background-image: url('../../images/page/qljc/down_.png');

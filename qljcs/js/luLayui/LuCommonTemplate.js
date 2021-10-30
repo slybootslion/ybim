@@ -3,6 +3,7 @@ layui.define([], function (exports) {
   const $form = layui.form
   const $table = layui.table
   const $layer = layui.layer
+  const $laydate = layui.laydate
 
   const areaSize = {
     b: '1000px',
@@ -73,13 +74,18 @@ layui.define([], function (exports) {
 
     renderSearchForm () {
       const data = this.data
-      let i = 0, len = data.length, h = ''
+      let i = 0, len = data.length, h = '', dateDOpts
 
       for (; i < len; i++) {
         const item = data[i]
         switch (item.type) {
           case 'text':
             h += LuSearchForm.textTemplate(item)
+            break
+          case 'date-d':
+            const { html, domTag } = LuSearchForm.dateTemplate(item.options)
+            h += html
+            dateDOpts = { ...domTag, ...item.options }
             break
           case 'select':
             h += LuSearchForm.selectTemplate(item)
@@ -100,7 +106,40 @@ layui.define([], function (exports) {
       $form.render()
       this.form = $form
       this.bindSubmit()
+      dateDOpts && bindDateDMethod(dateDOpts)
       return this.form
+    }
+
+    static dateTemplate (opts = {}) {
+      const w155 = opts.w155 ? 'inner-input-w155' : ''
+      const startInputId = opts.startInputId || 'dateStartInput'
+      const endInputId = opts.endInputId || 'dateEndInput'
+      const endName = opts.endName || 'eDate'
+      const startName = opts.startName || 'sDate'
+      const endEleStr = `<input type='text' name='${endName}' autocomplete='off' class='layui-input' id='${endInputId}' disabled placeholder='请选择结束时间'>`
+
+      const dateEndBox = $lulib.randomStr() + 'dateEndBox'
+
+      const html = `
+        <div class='layui-inline'>
+          <label class='layui-form-label'>开始时间：</label>
+          <div class='layui-input-inline ${w155}'>
+            <input type='text'
+                   name='${startName}'
+                   autocomplete='off'
+                   class='layui-input'
+                   id='${startInputId}'
+                   placeholder='请选择开始时间'>
+          </div>
+        </div>
+        <div class='layui-inline'>
+          <label class='layui-form-label'>结束时间：</label>
+          <div class='layui-input-inline ${w155} ${dateEndBox}'>
+            ${endEleStr}
+          </div>
+        </div>
+      `
+      return { html, domTag: { startInputId, endInputId, dateEndBox, endEleStr } }
     }
 
     static textTemplate (data) {
@@ -120,6 +159,7 @@ layui.define([], function (exports) {
 
     static selectTemplate (data) {
       let optionStr = "<option value=''>请选择</option>"
+      const w155 = data.w155 ? 'inner-input-w155' : ''
       const len = data.selectData.length
       let i = 0
       for (; i < len; i++) {
@@ -129,8 +169,8 @@ layui.define([], function (exports) {
       }
       return `<div class='layui-inline'>
               <label class='layui-form-label'>${data.label}：</label>
-              <div class='layui-input-inline inner-input-w155'>
-                <select name='${data.name}'>
+              <div class='layui-input-inline ${w155}'>
+                <select name='${data.name}' lay-filter="${data.name}">
                   ${optionStr}
                 </select>
               </div>
@@ -235,7 +275,45 @@ layui.define([], function (exports) {
   exports('LuSearchForm', LuSearchForm)
   exports('LuTable', LuTable)
 
-  function hideHeadCheck() {
+  function hideHeadCheck () {
     $('.layui-table-header .laytable-cell-checkbox').empty()
+  }
+
+  function bindDateDMethod (opts) {
+    const { dateEndBox, endInputId, startInputId, endEleStr, noMaxDate } = opts
+    const dateEndBoxEle = $(`.${dateEndBox}`)
+    const maxDate = $lulib.getFormatTime('YYYY-MM-DD', new Date())
+    const dateElemStr = {
+      start: `#${startInputId}`,
+      end: `#${endInputId}`,
+    }
+
+    function renderDateInput (elem, done, min = '') {
+      const opts = {
+        elem,
+        theme: '#007fff',
+        max: maxDate,
+      }
+      if (noMaxDate) delete opts.max
+      if (done) opts.done = done
+      if (min) opts.min = min
+      $laydate.render(opts)
+    }
+
+    let endEle = $(dateElemStr.end)
+    renderDateInput(dateElemStr.start, val => {
+      endEle.remove()
+      endEle = dateEndBoxEle.append(endEleStr).find(`#${endInputId}`)
+      endEle.attr({ disabled: false })
+      renderDateInput(dateElemStr.end, null, val)
+    })
+
+    dateEndBoxEle.on('click', function () {
+      const input = $(this).find('#dateEndInput')
+      const isDisable = input.attr('disabled')
+      if (isDisable) {
+        layer.msg('先选择开始时间')
+      }
+    })
   }
 })

@@ -304,6 +304,18 @@
     getFormatTime (formatStr = 'YYYY年MM月DD日 HH:mm:ss', date = new Date()) {
       return dayjs(date).format(formatStr)
     }
+
+    computedContentHeight (dom, navH) {
+      const { height } = $lulib.domWidthHeight('#bodyOnePage')
+      const { height: headerH } = $lulib.domWidthHeight('.lu-header-ql')
+      const h = height - headerH - navH
+      if (typeof dom === 'string') {
+        $(dom).css({ height: h })
+      } else {
+        dom.css({ height: h })
+      }
+      // $(".page-container .content")
+    }
   }
 
   class BindMethodProxy {
