@@ -167,6 +167,7 @@
 }
 .inner-body.analysis-evaluation .page-container .select-box .layui-form .layui-input {
   width: 255px;
+  transition: none;
 }
 
 .inner-body.video-control .page-container {

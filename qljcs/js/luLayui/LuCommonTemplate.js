@@ -92,13 +92,16 @@ layui.define([], function (exports) {
             break
         }
       }
-
+      let clearBtnHtml = `<button class='layui-btn btn-weaken' type="reset">${this.clearBtnText}</button>`
+      if (this.options.clearForm) {
+        clearBtnHtml = `<button type="reset" class='layui-btn btn-weaken' lay-submit lay-filter='formClear'>${this.clearBtnText}</button>`
+      }
       this.container.html(`
         <form class='layui-form' lay-filter='${this.filterStr}'>
           ${h}
           <div class='layui-inline'>
             <button type='button' class='layui-btn' lay-submit lay-filter='${this.submitFilter}'>${this.submitBtnText}</button>
-            <button class='layui-btn btn-weaken' type="reset">${this.clearBtnText}</button>
+            ${clearBtnHtml}
           </div>
         </form>
       `)
@@ -107,6 +110,7 @@ layui.define([], function (exports) {
       this.form = $form
       this.bindSubmit()
       dateDOpts && bindDateDMethod(dateDOpts)
+      this.options.clearForm && this.bindClearMethod()
       return this.form
     }
 
@@ -180,6 +184,10 @@ layui.define([], function (exports) {
 
     bindSubmit () {
       this.form.on(`submit(${this.submitFilter})`, () => this.submit && this.submit.call(this, this.form.val(this.filterStr)))
+    }
+
+    bindClearMethod () {
+      this.form.on(`submit(formClear)`, () => this.options.clearForm && this.options.clearForm.call(this, this.form.val(this.filterStr)))
     }
   }
 
@@ -280,7 +288,7 @@ layui.define([], function (exports) {
   }
 
   function bindDateDMethod (opts) {
-    const { dateEndBox, endInputId, startInputId, endEleStr, noMaxDate } = opts
+    const { dateEndBox, endInputId, startInputId, endEleStr, noMaxDate, options = {} } = opts
     const dateEndBoxEle = $(`.${dateEndBox}`)
     const maxDate = $lulib.getFormatTime('YYYY-MM-DD', new Date())
     const dateElemStr = {
@@ -288,11 +296,12 @@ layui.define([], function (exports) {
       end: `#${endInputId}`,
     }
 
-    function renderDateInput (elem, done, min = '') {
+    function renderDateInput (elem, done, min = '', options) {
       const opts = {
         elem,
         theme: '#007fff',
         max: maxDate,
+        ...options,
       }
       if (noMaxDate) delete opts.max
       if (done) opts.done = done
@@ -300,20 +309,31 @@ layui.define([], function (exports) {
       $laydate.render(opts)
     }
 
+    const startOpts = {}
+    const endOpts = {}
+    if (options && options.startValue) startOpts.value = options.startValue
+    if (options && options.endValue) endOpts.value = options.endValue
     let endEle = $(dateElemStr.end)
-    renderDateInput(dateElemStr.start, val => {
+
+    const handleEndInput = val => {
       endEle.remove()
       endEle = dateEndBoxEle.append(endEleStr).find(`#${endInputId}`)
       endEle.attr({ disabled: false })
-      renderDateInput(dateElemStr.end, null, val)
-    })
+      renderDateInput(dateElemStr.end, null, val, { ...endOpts })
+    }
 
-    dateEndBoxEle.on('click', function () {
-      const input = $(this).find('#dateEndInput')
-      const isDisable = input.attr('disabled')
-      if (isDisable) {
-        layer.msg('先选择开始时间')
-      }
-    })
+    renderDateInput(dateElemStr.start, val => handleEndInput(val), '', { ...startOpts })
+
+    if (!startOpts.value) {
+      dateEndBoxEle.on('click', function () {
+        const input = $(this).find('#dateEndInput')
+        const isDisable = input.attr('disabled')
+        if (isDisable) {
+          layer.msg('先选择开始时间')
+        }
+      })
+    } else {
+      handleEndInput(startOpts.value)
+    }
   }
 })
