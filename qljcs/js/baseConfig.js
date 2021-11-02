@@ -10,6 +10,7 @@ layui
     debug: true,
   })
   .extend({
+    echarts: 'echarts/echarts.min',
   })
 
 const appConfig = {
