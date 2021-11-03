@@ -11,6 +11,7 @@
   font-size: 16px;
 }
 
+.bridge-monitoring .nav,
 .analysis-evaluation .nav,
 .bim-body .nav,
 .inner-body.video-control .nav,
@@ -24,6 +25,7 @@
   align-items: center;
   margin-bottom: 5px;
 }
+.bridge-monitoring .nav .left,
 .analysis-evaluation .nav .left,
 .bim-body .nav .left,
 .inner-body.video-control .nav .left,
@@ -32,6 +34,7 @@
   display: flex;
   color: #3794ff;
 }
+.bridge-monitoring .nav .left .warning-sample,
 .analysis-evaluation .nav .left .warning-sample,
 .bim-body .nav .left .warning-sample,
 .inner-body.video-control .nav .left .warning-sample,
@@ -41,6 +44,7 @@
   display: flex;
   align-items: center;
 }
+.bridge-monitoring .nav .right,
 .analysis-evaluation .nav .right,
 .bim-body .nav .right,
 .inner-body.video-control .nav .right,
@@ -50,6 +54,7 @@
   align-items: center;
   font-size: 16px;
 }
+.bridge-monitoring .nav .right .btn-item,
 .analysis-evaluation .nav .right .btn-item,
 .bim-body .nav .right .btn-item,
 .inner-body.video-control .nav .right .btn-item,
@@ -61,6 +66,7 @@
   margin-left: 10px;
   cursor: pointer;
 }
+.bridge-monitoring .nav .right .btn-item.active,
 .analysis-evaluation .nav .right .btn-item.active,
 .bim-body .nav .right .btn-item.active,
 .inner-body.video-control .nav .right .btn-item.active,
@@ -68,6 +74,7 @@
 .inner-body.warning-message .nav .right .btn-item.active {
   background-color: #007fff;
 }
+.bridge-monitoring .nav .right .setting-warning,
 .analysis-evaluation .nav .right .setting-warning,
 .bim-body .nav .right .setting-warning,
 .inner-body.video-control .nav .right .setting-warning,
@@ -77,6 +84,7 @@
   color: #3794ff;
   cursor: pointer;
 }
+.bridge-monitoring .nav .right .setting-warning .iconfont,
 .analysis-evaluation .nav .right .setting-warning .iconfont,
 .bim-body .nav .right .setting-warning .iconfont,
 .inner-body.video-control .nav .right .setting-warning .iconfont,
@@ -84,6 +92,7 @@
 .inner-body.warning-message .nav .right .setting-warning .iconfont {
   margin-right: 5px;
 }
+.bridge-monitoring .iconfont.icon-yujing,
 .analysis-evaluation .iconfont.icon-yujing,
 .bim-body .iconfont.icon-yujing,
 .inner-body.video-control .iconfont.icon-yujing,
@@ -92,6 +101,7 @@
   font-size: 20px;
   margin-right: 5px;
 }
+.bridge-monitoring .iconfont.icon-yujing.red,
 .analysis-evaluation .iconfont.icon-yujing.red,
 .bim-body .iconfont.icon-yujing.red,
 .inner-body.video-control .iconfont.icon-yujing.red,
@@ -99,6 +109,7 @@
 .inner-body.warning-message .iconfont.icon-yujing.red {
   color: red;
 }
+.bridge-monitoring .iconfont.icon-yujing.orange,
 .analysis-evaluation .iconfont.icon-yujing.orange,
 .bim-body .iconfont.icon-yujing.orange,
 .inner-body.video-control .iconfont.icon-yujing.orange,
@@ -106,6 +117,7 @@
 .inner-body.warning-message .iconfont.icon-yujing.orange {
   color: orange;
 }
+.bridge-monitoring .iconfont.icon-yujing.yellow,
 .analysis-evaluation .iconfont.icon-yujing.yellow,
 .bim-body .iconfont.icon-yujing.yellow,
 .inner-body.video-control .iconfont.icon-yujing.yellow,
@@ -113,6 +125,7 @@
 .inner-body.warning-message .iconfont.icon-yujing.yellow {
   color: yellow;
 }
+.bridge-monitoring .iconfont.icon-yujing.blue,
 .analysis-evaluation .iconfont.icon-yujing.blue,
 .bim-body .iconfont.icon-yujing.blue,
 .inner-body.video-control .iconfont.icon-yujing.blue,

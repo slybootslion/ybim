@@ -20,6 +20,7 @@ $alpBgc: rgba(0, 165, 255, .1);
   }
 }
 
+.bridge-monitoring,
 .analysis-evaluation,
 .bim-body,
 .inner-body.video-control,
@@ -99,6 +100,10 @@ $alpBgc: rgba(0, 165, 255, .1);
     top: 20px;
     right: 20px;
   }
+}
+
+.inner-body.bridge-monitoring {
+
 }
 
 .inner-body.analysis-evaluation {
