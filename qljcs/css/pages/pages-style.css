@@ -140,6 +140,15 @@
   right: 20px;
 }
 
+.inner-body.bridge-monitoring .select-box {
+  margin-top: 10px;
+}
+.inner-body.bridge-monitoring .bridge-box {
+  margin-top: 10px;
+  height: 720px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
 .inner-body.analysis-evaluation .nav {
   margin: -25px 0 12px;
   padding: 0;
