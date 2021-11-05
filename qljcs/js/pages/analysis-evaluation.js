@@ -105,17 +105,18 @@ layui.use(['LuCommonTemplate', 'echarts'], function () {
   function echartsReset () {
     $(".echarts-box").html('<div class="empty">暂无数据</div>')
   }
-  renderEcharts()
-  function renderEcharts (selectData) {
-    const tempalte = `<div class="echarts-title">比对结果</div><div class="echarts-container"><div class="echarts" id="echarts"></div></div>`
-    $(".echarts-box").html(tempalte)
-    const option = echartsOptions(selectData)
+
+  async function renderEcharts (selectData) {
+    const template = `<div class="echarts-title">比对结果</div><div class="echarts-container"><div class="echarts" id="echarts"></div></div>`
+    $(".echarts-box").html(template)
+    const option = echartsOptions()
+    await $lulib.delay(300)
     const chartDom = document.querySelector('#echarts');
     echartsObj = echarts.init(chartDom)
     echartsObj.setOption(option)
   }
 
-  function echartsOptions (selectData) {
+  function echartsOptions () {
     const optsDict = {
       0: {
         grid: {

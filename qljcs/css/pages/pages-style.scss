@@ -111,6 +111,13 @@ $alpBgc: rgba(0, 165, 255, .1);
     margin-top: 10px;
     height: 720px;
     background-color: rgba(0, 0, 0, 0.3);
+    overflow-x: auto;
+
+    .bridge-pic {
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
   }
 }
 

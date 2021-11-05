@@ -147,6 +147,12 @@
   margin-top: 10px;
   height: 720px;
   background-color: rgba(0, 0, 0, 0.3);
+  overflow-x: auto;
+}
+.inner-body.bridge-monitoring .bridge-box .bridge-pic {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .inner-body.analysis-evaluation .nav {
