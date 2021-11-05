@@ -153,6 +153,34 @@
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+  position: relative;
+}
+.inner-body.bridge-monitoring .bridge-box .bridge-pic .instrument-item {
+  width: 150px;
+  height: 40px;
+  position: absolute;
+  top: 242px;
+  left: 1334px;
+  display: flex;
+  cursor: pointer;
+}
+.inner-body.bridge-monitoring .bridge-box .bridge-pic .instrument-item .inst-item-icon {
+  width: 40px;
+  height: 40px;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.inner-body.bridge-monitoring .bridge-box .bridge-pic .instrument-item .inst-item-info {
+  flex: 1;
+  border: 1px solid #007fff;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 0 5px;
+  box-sizing: border-box;
+}
+.inner-body.bridge-monitoring .bridge-box .bridge-pic .instrument-item .inst-item-info p {
+  width: 100%;
+  height: 20px;
 }
 
 .inner-body.analysis-evaluation .nav {

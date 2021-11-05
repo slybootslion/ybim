@@ -2,6 +2,38 @@
   {
     "pic": "/qljcs/images/page/qljc/bridge1.gif",
     "width": 2842,
-    "height": 780
+    "height": 780,
+    "instrumentList": [
+      {
+        "id": "a1",
+        "type": 1,
+        "name": "WS01",
+        "value": "20.01℃"
+      },
+      {
+        "id": "a2",
+        "type": 2,
+        "name": "WS02",
+        "value": "20.01℃"
+      },
+      {
+        "id": "a3",
+        "type": 3,
+        "name": "WS03",
+        "value": "20.01℃"
+      },
+      {
+        "id": "a4",
+        "type": 4,
+        "name": "WS04",
+        "value": "20.01℃"
+      },
+      {
+        "id": "a5",
+        "type": 5,
+        "name": "WS05",
+        "value": "20.01℃"
+      }
+    ]
   }
 ]
