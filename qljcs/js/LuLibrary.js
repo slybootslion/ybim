@@ -316,6 +316,17 @@
       }
       // $(".page-container .content")
     }
+
+    loadScript (dom, src) {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = src
+        script.onload = resolve(script)
+        script.onerror = reject(new Error('script标签加载错误'))
+        console.log(dom.parentNode)
+        dom.parentNode.insertBefore(script, dom)
+      })
+    }
   }
 
   class BindMethodProxy {

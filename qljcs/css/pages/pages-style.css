@@ -1,3 +1,134 @@
+.inner-body.home {
+  display: flex;
+  justify-content: space-between;
+}
+.inner-body.home .map-container {
+  width: 1380px;
+  height: 810px;
+  border: 1px solid #3794ff;
+}
+.inner-body.home .right-box {
+  flex: 1;
+  margin-left: 10px;
+}
+.inner-body.home .right-box .nav {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.inner-body.home .right-box .nav .btn-item {
+  flex: 1;
+  background-color: rgba(0, 165, 255, 0.1);
+  padding: 10px 20px;
+  border: 1px solid rgba(25, 121, 187, 0.5);
+  margin: 0 5px;
+  cursor: pointer;
+}
+.inner-body.home .right-box .nav .btn-item.active {
+  background-color: #007fff;
+}
+.inner-body.home .right-box .right-content .title {
+  width: 150px;
+  height: 30px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 30px;
+  background-image: url(../../images/page/qljc/home-block-title.png);
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.inner-body.home .right-box .right-content .block-1 {
+  background-image: url(../../images/page/qljc/inspection-bg-r.png);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.inner-body.home .right-box .right-content .block-1 .block-1-info {
+  padding: 0 20px;
+}
+.inner-body.home .right-box .right-content .block-1 .block-1-info .info-title {
+  color: #00fffc;
+  margin-bottom: 5px;
+}
+.inner-body.home .right-box .right-content .block-1 .block-1-info .info-item {
+  display: flex;
+}
+.inner-body.home .right-box .right-content .block-1 .block-1-info .info-item .label {
+  color: rgba(25, 121, 187, 0.5);
+}
+.inner-body.home .right-box .right-content .block-1 .block1-nums {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+.inner-body.home .right-box .right-content .block-1 .block1-nums .nums-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.inner-body.home .right-box .right-content .block-1 .block1-nums .nums-item .top {
+  color: rgba(25, 121, 187, 0.5);
+  flex: 1;
+  margin-bottom: 10px;
+}
+.inner-body.home .right-box .right-content .block-1 .block1-nums .nums-line {
+  width: 0;
+  height: 50px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 0 20px;
+}
+.inner-body.home .right-box .right-content .block-2 {
+  background-image: url(../../images/page/qljc/inspection-bg-r.png);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.inner-body.home .right-box .right-content .block-3 {
+  background-image: url(../../images/page/qljc/inspection-bg-r.png);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.inner-body.home .right-box .right-content .block-3 .block-video {
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0 10px;
+}
+.inner-body.home .right-box .right-content .block-3 .block-video .video-item {
+  width: 46%;
+  height: 80px;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 10px;
+  position: relative;
+  cursor: pointer;
+}
+.inner-body.home .right-box .right-content .block-3 .block-video .video-item::after {
+  content: "";
+  width: 40px;
+  height: 40px;
+  display: block;
+  background-image: url(http://127.0.0.1:8080/qljcs/images/page/qljc/bofang.png);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -20px;
+  margin-top: -20px;
+}
+
 .inner-body.equipment-management .nav {
   height: 40px;
   display: flex;
