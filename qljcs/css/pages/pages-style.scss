@@ -48,13 +48,16 @@ $alpBgc: rgba(0, 165, 255, .1);
         background-repeat: no-repeat;
       }
 
-      .block-1 {
-        background-image: url(../../images/page/qljc/inspection-bg-r.png);
+      .block {
+        background-image: url(../../images/page/qljc/background.png);
         background-position: center center;
         background-size: cover;
         background-repeat: no-repeat;
         overflow: hidden;
         margin-bottom: 10px;
+      }
+
+      .block-1 {
 
         .block-1-info {
           padding: 0 20px;
@@ -92,29 +95,69 @@ $alpBgc: rgba(0, 165, 255, .1);
           .nums-line {
             width: 0;
             height: 50px;
-            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px dashed rgba(255, 255, 255, 0.1);
             margin: 0 20px;
           }
         }
       }
 
       .block-2 {
-        background-image: url(../../images/page/qljc/inspection-bg-r.png);
-        background-position: center center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        overflow: hidden;
-        margin-bottom: 10px;
+        padding: 20px 30px;
+        box-sizing: border-box;
+        .block-top {
+          display: flex;
+          flex-wrap: wrap;
+          padding-bottom: 10px;
+          border-bottom: 1px $sideBarBgc dashed;
+
+          .info-item {
+            width: 50%;
+            height: 25px;
+            line-height: 25px;
+            margin-bottom: 3px;
+
+            .label {
+              color: $sideBarBgc;
+            }
+
+            .desc {
+              &.red {
+                color: #f00;
+              }
+              &.yellow {
+                color: #fbc200;
+              }
+              &.green {
+                color: #00f200;
+              }
+            }
+          }
+        }
+        .block-bottom {
+          display: flex;
+          justify-content: space-around;
+          padding: 20px 0;
+
+          .bottom-item {
+            height: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .top {
+              color: $sideBarBgc;
+              margin-bottom: 10px;
+            }
+
+            .bottom {
+              font-size: 34px;
+              color: #00fffc;
+            }
+          }
+        }
       }
 
       .block-3 {
-        background-image: url(../../images/page/qljc/inspection-bg-r.png);
-        background-position: center center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        overflow: hidden;
-        margin-bottom: 10px;
-
         .block-video {
           padding: 0 20px;
           display: flex;
@@ -128,7 +171,7 @@ $alpBgc: rgba(0, 165, 255, .1);
             background-position: center center;
             background-size: cover;
             background-repeat: no-repeat;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             position: relative;
             cursor: pointer;
 

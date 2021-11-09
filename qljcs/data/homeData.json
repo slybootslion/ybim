@@ -1,0 +1,107 @@
+{
+  "mapData": {
+    "longitude": "108.991971",
+    "latitude": "34.04204",
+    "level": 17
+  },
+  "bridgeList": {
+    "0": {
+      "id": "1",
+      "block1": {
+        "title": "西甘村大桥",
+        "infoText": "西甘村大桥介绍，桥梁介绍等，桥梁介绍桥梁介绍桥梁介绍桥梁介绍桥梁介绍桥梁介绍桥梁介绍桥梁介绍桥梁介绍桥梁介绍桥梁介绍桥梁介绍桥梁介绍桥梁介绍桥梁介绍桥梁介绍。",
+        "infoList": [
+          {
+            "label": "地理位置",
+            "desc": "显示桥梁具体位置"
+          },
+          {
+            "label": "建成时间",
+            "desc": "1087年12月"
+          }
+        ],
+        "nums": [
+          {
+            "label": "桥型",
+            "desc": "箱梁式"
+          },
+          {
+            "label": "线路",
+            "desc": "S107环线"
+          },
+          {
+            "label": "长度",
+            "desc": "288米"
+          },
+          {
+            "label": "高度",
+            "desc": "20米"
+          }
+        ]
+      },
+      "block2": {
+        "infoList": [
+          {
+            "label": "本月预警",
+            "desc": "2次",
+            "type": "red"
+          },
+          {
+            "label": "上月预警",
+            "desc": "1次",
+            "type": "red"
+          },
+          {
+            "label": "累计预警",
+            "desc": "5次",
+            "type": "red"
+          },
+          {
+            "label": "结构评分",
+            "desc": "89.98",
+            "type": "yellow"
+          },
+          {
+            "label": "结构等级",
+            "desc": "二类桥",
+            "type": "green"
+          }
+        ],
+        "nums": [
+          {
+            "label": "设备总数",
+            "desc": "36"
+          },
+          {
+            "label": "在线设备",
+            "desc": "32"
+          },
+          {
+            "label": "离线设备",
+            "desc": "4"
+          }
+        ]
+      },
+      "block3": [
+        {
+          "id": 1,
+          "img": "https://mp.ofweek.com/Upload/News/Img/member528/201906/wx_article_20190625115124_zv7TJO.jpg"
+        },
+        {
+          "id": 2,
+          "img": "https://mp.ofweek.com/Upload/News/Img/member528/201906/wx_article_20190625115124_zv7TJO.jpg"
+        },
+        {
+          "id": 3,
+          "img": "https://mp.ofweek.com/Upload/News/Img/member528/201906/wx_article_20190625115124_zv7TJO.jpg"
+        },
+        {
+          "id": 4,
+          "img": "https://mp.ofweek.com/Upload/News/Img/member528/201906/wx_article_20190625115124_zv7TJO.jpg"
+        }
+      ]
+    },
+    "1": {},
+    "2": {}
+  }
+}
