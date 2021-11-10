@@ -46,6 +46,9 @@
   overflow: hidden;
   margin-bottom: 10px;
 }
+.inner-body.home .right-box .right-content .block-1 {
+  height: 258px;
+}
 .inner-body.home .right-box .right-content .block-1 .block-1-info {
   padding: 0 20px;
 }
@@ -81,6 +84,7 @@
   margin: 0 20px;
 }
 .inner-body.home .right-box .right-content .block-2 {
+  height: 225px;
   padding: 20px 30px;
   box-sizing: border-box;
 }
@@ -126,6 +130,9 @@
 .inner-body.home .right-box .right-content .block-2 .block-bottom .bottom-item .bottom {
   font-size: 34px;
   color: #00fffc;
+}
+.inner-body.home .right-box .right-content .block-3 {
+  height: 260px;
 }
 .inner-body.home .right-box .right-content .block-3 .block-video {
   padding: 0 20px;

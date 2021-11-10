@@ -2,7 +2,27 @@
   "mapData": {
     "longitude": "108.991971",
     "latitude": "34.04204",
-    "level": 17
+    "level": 17,
+    "bridgePoints": [
+      {
+        "id": "1",
+        "longitude": "108.991971",
+        "latitude": "34.04204",
+        "name": "西甘村大桥"
+      },
+      {
+        "id": "2",
+        "longitude": "108.983739",
+        "latitude": "34.04397",
+        "name": "化龙沟大桥"
+      },
+      {
+        "id": "3",
+        "longitude": "108.99345",
+        "latitude": "34.041942",
+        "name": "康峪沟大桥"
+      }
+    ]
   },
   "bridgeList": {
     "0": {

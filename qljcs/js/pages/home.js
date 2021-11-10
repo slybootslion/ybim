@@ -58,6 +58,7 @@ layui.use([], function () {
     await getBridgeData()
     renderBridge()
     await renderMap()
+    renderMapPoints()
   })()
 
   async function getBridgeData () {
@@ -89,8 +90,8 @@ layui.use([], function () {
   async function renderMap () {
     const { longitude, latitude, level } = mapData
     bMap = new BMap.Map('mapContainer')
-    const point = new BMap.Point(longitude, latitude)
-    bMap.centerAndZoom(point, level)
+    const mapPoint = new BMap.Point(longitude, latitude)
+    bMap.centerAndZoom(mapPoint, level)
     bMap.enableScrollWheelZoom(true)
     bMap.setMapStyle({
       features: ["road", "building", "water", "land"], //隐藏地图上的"poi",
@@ -99,6 +100,22 @@ layui.use([], function () {
     await $lulib.delay(300)
     const doms = $(".anchorBL")
     doms.each((_, dom) => dom.remove())
+  }
+
+  function renderMapPoints () {
+    const { bridgePoints } = mapData
+    if (!bridgePoints || !bridgePoints.length) return
+    bridgePoints.forEach(point => {
+      const { longitude, latitude, name } = point
+      const marker = new BMap.Marker(new BMap.Point(longitude, latitude))
+      marker.bridgeId = point.id
+      bMap.addOverlay(marker)
+      const label = new BMap.Label(name, { offset: new BMap.Size(20, -10) })
+      marker.setLabel(label)
+      marker.onclick = function (e) {
+        console.log(e)
+      }
+    })
   }
 
 })
