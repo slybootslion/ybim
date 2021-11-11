@@ -112,9 +112,9 @@ layui.use([], function () {
       bMap.addOverlay(marker)
       const label = new BMap.Label(name, { offset: new BMap.Size(20, -10) })
       marker.setLabel(label)
-      marker.onclick = function (e) {
-        console.log(e)
-      }
+      // marker.onclick = function (e) {
+      //   console.log(e)
+      // }
     })
   }
 

@@ -3,7 +3,7 @@ layui.use(['LuCommonTemplate', 'echarts'], function () {
   const LuSearchForm = layui.LuSearchForm
   const echarts = layui.echarts
 
-  let luSearchForm, echartsObj, navIndex = 0;
+  let luSearchForm, echartsObj = null, navIndex = 0;
 
   const getSelectData = async () => {
     // mock data
@@ -31,6 +31,7 @@ layui.use(['LuCommonTemplate', 'echarts'], function () {
     const isActive = $(this).hasClass('active')
     if (isActive) return
     $(this).addClass('active').siblings('.btn-item').removeClass('active')
+    // do something ...
   })
 
   $(".container-nav .nav-item").on('click', async function () {
@@ -40,6 +41,7 @@ layui.use(['LuCommonTemplate', 'echarts'], function () {
     $this.addClass('active').siblings('.nav-item').removeClass('active')
     renderLuSearchForm(await getSelectData())
     echartsReset()
+    echartsObj = null
     navIndex = $this.index() || 0
   })
 

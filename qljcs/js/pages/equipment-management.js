@@ -153,13 +153,11 @@ layui.use(['LuCommonTemplate'], function () {
       id: 'addEquipmentForm',
       area: ['578px', '468px'],
     }
-    if (!editData) {
-      opts.content = pt.formTemplate(data)
-    } else {
+    if (editData) {
       data.editData = editData
-      opts.content = pt.formTemplate(data)
       opts.title = '编辑设备'
     }
+    opts.content = pt.formTemplate(data)
     luLayer = new LuLayer(opts)
     form.render()
     laydate.render({
