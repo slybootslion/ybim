@@ -3,7 +3,7 @@ layui.use(['LuCommonTemplate', 'echarts'], function () {
   const LuSearchForm = layui.LuSearchForm
   const LuLayer = layui.LuLayer
   const echarts = layui.echarts
-  let luSearchForm, luLayer, currentData, echartsObj
+  let luSearchForm, luLayer, currentData, echartsObj, echartsTimer
 
   const iconDict = {
     1: { name: '位移计', icon: 'inst-icon01' },
@@ -99,8 +99,7 @@ layui.use(['LuCommonTemplate', 'echarts'], function () {
   }
 
   async function handleInstrument () {
-    // const { id } = $(this).data()
-    let id = 'a5'
+    const { id } = $(this).data()
     const instrument = currentData.instrumentList.find(item => item.id === id)
     const title = `${instrument.name} ${iconDict[instrument.type].name}`
     const content = pt.layerEchartsTemplate(instrument)
@@ -109,78 +108,165 @@ layui.use(['LuCommonTemplate', 'echarts'], function () {
       id: 'instrumentEchartsForm',
       area: ['1178px', '668px'],
       content,
-      cancel: () => echartsObj = null
+      cancel: () => {
+        echartsObj = null
+        clearInterval(echartsTimer)
+        echartsTimer = null
+      }
     }
     luLayer = new LuLayer(opts)
 
     await renderEcharts(id)
   }
 
+  let data = [], xData = []
+  const makeData = () => {
+    if (!data.length) {
+      for (let i = 0; i < 120; i++) {
+        xData.push(dayjs(new Date()).format('HH:mm:ss\nMM-DD'))
+        data.push($lulib.randomInt(77, -5))
+      }
+    } else {
+      data.shift()
+      data.push($lulib.randomInt(77, -5))
+      xData.shift()
+      xData.push(dayjs(new Date()).format('HH:mm:ss\nMM-DD'))
+    }
+  }
+
   async function renderEcharts (id) {
     // mock
-    const opts = await getEchartsOptions(id)
     await $lulib.delay(200)
     const chartDom = document.querySelector('#echartsContainer');
     echartsObj = echarts.init(chartDom)
-    echartsObj.setOption(opts)
+    const opts = await getEchartsOptions(id)
+    const run = () => {
+      makeData()
+      echartsObj.setOption(opts)
+    }
+    run()
+    echartsTimer = setInterval(run, 1000)
   }
 
   async function getEchartsOptions (id) {
+    const LEVEL_1_COLOR = 'rgba(53, 171, 106, .5)'
+    const LEVEL_2_COLOR = 'rgba(53, 132, 146, .5)'
+    const LEVEL_3_COLOR = 'rgba(255, 138, 0, .5)'
+    const LEVEL_4_COLOR = 'rgba(255, 0, 0, .5)'
+    // mock
     return {
+      animation: false,
+      tooltip: {
+        trigger: 'axis',
+        backgroundColor: 'rgba(50, 50, 50, 0.7)',
+        borderColor: 'transparent',
+        textStyle: {
+          color: '#fff'
+        }
+      },
+      color: ['rgba(53, 171, 106)', 'rgba(53, 132, 146)', 'rgba(255, 138, 0)', 'rgba(255, 0, 0)',],
+      legend: {
+        icon: 'roundRect',
+        textStyle: {
+          color: '#fff'
+        },
+        right: 60,
+        top: 20,
+        selectedMode: false,
+        data: ['一级预警', '二级预警', '三级预警', '四级预警']
+      },
       xAxis: {
         type: 'category',
-        boundaryGap: false
+        boundaryGap: false,
+        data: xData,
+        axisLine: {
+          lineStyle: {
+            color: '#fff'
+          }
+        }
       },
       yAxis: {
+        max: 80,
+        min: -12,
+        name: '监测信息\n(℃)',
         type: 'value',
-        boundaryGap: [0, '30%']
-      },
-      visualMap: {
-        type: 'piecewise',
-        show: false,
-        dimension: 0,
-        seriesIndex: 0,
-        pieces: [
-          {
-            gt: 1,
-            lt: 3,
-            color: 'rgba(0, 0, 180, 0.4)'
-          },
-          {
-            gt: 5,
-            lt: 7,
-            color: 'rgba(0, 0, 180, 0.4)'
-          }
-        ]
-      },
-      series: [
-        {
-          type: 'line',
-          smooth: 0.6,
-          symbol: 'none',
+        axisLine: {
           lineStyle: {
-            color: '#5470C6',
-            width: 5
-          },
-          markLine: {
-            symbol: ['none', 'none'],
-            label: { show: false },
-            data: [{ xAxis: 1 }, { xAxis: 3 }, { xAxis: 5 }, { xAxis: 7 }]
-          },
-          areaStyle: {},
-          data: [
-            ['2019-10-10', 200],
-            ['2019-10-11', 560],
-            ['2019-10-12', 750],
-            ['2019-10-13', 580],
-            ['2019-10-14', 250],
-            ['2019-10-15', 300],
-            ['2019-10-16', 450],
-            ['2019-10-17', 300],
-            ['2019-10-18', 100]
-          ]
+            color: '#fff'
+          }
         }
-      ]
+      },
+      series: [{
+        name: '传感器1',
+        type: 'line',
+        markLine: {
+          symbol: ['none', 'none'],//去掉箭头
+          lineStyle: {
+            type: "solid",
+            color: "#ff9c34",
+          },
+          data: [{ yAxis: 60 }, { yAxis: -10 }],
+        },
+        markArea: {
+          itemStyle: { color: LEVEL_4_COLOR },
+          data: [[{ yAxis: 80 }, { yAxis: 75 }]]
+        },
+        data,
+        itemStyle: {
+          normal: {
+            color: '#2068cb',
+            lineStyle: {
+              color: '#00ff00'
+            }
+          }
+        },
+      }, {
+        type: 'line',
+        markArea: {
+          itemStyle: { color: LEVEL_3_COLOR },
+          data: [[{ yAxis: 75 }, { yAxis: 70 }]]
+        }
+      }, {
+        type: 'line',
+        markArea: {
+          itemStyle: { color: LEVEL_2_COLOR },
+          data: [[{ yAxis: 70 }, { yAxis: 65 }]]
+        }
+      }, {
+        type: 'line',
+        markArea: {
+          itemStyle: { color: LEVEL_1_COLOR },
+          data: [[{ yAxis: 65 }, { yAxis: 60 }]]
+        }
+      }, {
+        name: '四级预警',
+        type: 'line',
+        markArea: {
+          itemStyle: { color: LEVEL_1_COLOR },
+          data: [[{ yAxis: 20 }, { yAxis: 10 }]]
+        }
+      }, {
+        name: '三级预警',
+        type: 'line',
+        markArea: {
+          itemStyle: { color: LEVEL_2_COLOR },
+          data: [[{ yAxis: 10 }, { yAxis: 5 }]]
+        }
+      }, {
+        name: '二级预警',
+        type: 'line',
+        markArea: {
+          itemStyle: { color: LEVEL_3_COLOR },
+          data: [[{ yAxis: 5 }, { yAxis: 0 }]]
+        }
+      }, {
+        name: '一级预警',
+        type: 'line',
+        markArea: {
+          itemStyle: { color: LEVEL_4_COLOR },
+          data: [[{ yAxis: 0 }, { yAxis: -12 }]]
+        }
+      }],
     }
   }
 
