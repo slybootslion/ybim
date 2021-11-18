@@ -5,21 +5,33 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/zhui/lib/layui/css/layui.css">
+  <link rel="stylesheet" href="/zhui/css/public.css">
   <title>智慧园区三维可视化运营管理系统</title>
 </head>
 <body>
-<div id="main" style="width: 600px;height:400px;"></div>
-<script src="/zhui/lib/JordanStone/JordanStone.js" charset="utf-8"></script>
-<script>
-jordanstone.extend({
-  'luAdmin': 'LuAdmin/LuAdmin'
-})
-jordanstone.use(function () {
-  const luAdmin = new jordanstone.LuAdmin()
-  // user weather project mock data
-  const data = {
-
-  }
+<button class="btn">btn</button>
+<script src="/zhui/lib/layui/layui.js"></script>
+<script type="text/javascript">
+(function () {
+  layui.config({
+    base: '/zhui/lib/lulib/',
+    version: true,
+    debug: true,
+  }).extend({
+    echarts: 'echarts.min',
+    dayjs: 'dayjs.min',
+    luUtils: 'LuUtils'
+  })
+})()
+</script>
+<script type="text/javascript" charset="utf-8">
+layui.use(['dayjs'], function () {
+  console.log(layui.dayjs(new Date()).format('YYYY-MM-DD'))
+  const echarts = layui.echarts
+  console.log(echarts)
+  const luUtils = layui.luUtils
+  console.log(luUtils)
 })
 </script>
 </body>

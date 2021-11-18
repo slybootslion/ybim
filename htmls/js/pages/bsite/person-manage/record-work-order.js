@@ -333,7 +333,9 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
   function calculatePay () {
     const sumArr = $('[data-lu-method-input]').map((idx, ele) => (ele.value ? +ele.value : 0))
     const s = Array.from(sumArr)
-    const sum = s[0] * s[1] + s[2] - s[3]
+    // const sum = s[0] * s[1] + s[2] - s[3]
+    const { add, mul, sub } = $lulib.calculate
+    const sum = sub(add(mul(s[0], s[1]), s[2]), s[3])
     $('#countSum').val(sum)
   }
 

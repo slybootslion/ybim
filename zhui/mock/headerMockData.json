@@ -1,0 +1,26 @@
+{
+  "buttonList": [],
+  "weather": {
+    "text": "晴转多云",
+    "temperature": "15℃",
+    "icon": "1"
+  },
+  "projectList": [
+    {
+      "id": 1,
+      "name": "高新技术产业园区"
+    },
+    {
+      "id": 2,
+      "name": "xxx产业园区"
+    },
+    {
+      "id": 3,
+      "name": "yyy产业园区"
+    },
+    {
+      "id": 4,
+      "name": "zzz产业园区"
+    }
+  ]
+}

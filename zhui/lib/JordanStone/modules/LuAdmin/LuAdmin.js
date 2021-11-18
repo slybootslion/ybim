@@ -1,5 +1,4 @@
-jordanstone.define(exports => {
-
+jordanstone.define('LuAdmin', exports => {
   class LuHeader {
 
   }

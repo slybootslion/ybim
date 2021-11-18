@@ -19,8 +19,10 @@
       this.status = {}
       this.modules = {
         jquery: 'jquery',
+        echarts: 'echarts.min',
+        dayjs: 'dayjs.min',
         utils: 'utils',
-        echarts: 'echarts.min'
+        LuAdmin: 'LuAdmin/LuAdmin',
       }
       global.GLOBAL = {}
       this.path = this.getPath()
@@ -45,7 +47,7 @@
 
       this.config.modules[name] = src
       const node = doc.createElement('script')
-      node.async = true
+      // node.async = true
       node.src = src
       headTag.appendChild(node)
       node.addEventListener('load', function (e) {
@@ -56,26 +58,43 @@
     init () {
       const { modules } = this
       const moduleKeys = Object.keys(modules)
-      moduleKeys.forEach(key => this.status[key] = false)
+      for (let i = 0; i < moduleKeys.length; i++) {
+        const key = moduleKeys[i]
+        this.status[key] = false
+      }
       const baseModulePath = this.path + 'modules'
-      moduleKeys.forEach(key => this.bindScript(key, `${baseModulePath}/${modules[key]}.js`))
+      for (let i = 0; i < moduleKeys.length; i++) {
+        const key = moduleKeys[i]
+        this.bindScript(key, `${baseModulePath}/${modules[key]}.js`)
+      }
     }
 
-    define (method) {
-      method && method(this.exports.bind(this))
-      return this
+    define (name, method) {
+      // method && method(this.exports.bind(this))
+      this.poll(() => Object.values(this.status).every(state => state), async () => await method(this.exports.bind(this)))
+    }
+
+    poll (judgeFn, cb) {
+      let timeout = 0
+      if (++timeout > this.config.timeout * 1000 / 4) {
+        this.handlerError('模块加载失败')
+        return
+      }
+      const poll = this.poll
+      judgeFn && judgeFn() ? cb && cb() : setTimeout(poll.bind(this), 4, judgeFn, cb)
     }
 
     use (callback) {
-      let timeout = 0
-      const poll = () => {
-        if (++timeout > this.config.timeout * 1000 / 4) {
-          this.handlerError('模块加载失败')
-          return
-        }
-        Object.values(this.status).every(state => state) ? callback && callback() : setTimeout(poll, 4)
-      }
-      poll()
+      this.poll(() => Object.values(this.status).every(state => state), callback)
+      // let timeout = 0
+      // const poll = () => {
+      //   if (++timeout > this.config.timeout * 1000 / 4) {
+      //     this.handlerError('模块加载失败')
+      //     return
+      //   }
+      //   Object.values(this.status).every(state => state) ? callback && callback() : setTimeout(poll, 4)
+      // }
+      // poll()
     }
 
     extend (obj) {
@@ -90,6 +109,7 @@
 
     exports (moduleName, module) {
       if (!this) return
+      console.log(module, '-----module-----')
       this[moduleName] = module
     }
 
@@ -97,7 +117,7 @@
     getPath () {
       return (() => {
         const jsPath = this.doc.currentScript.src
-        return this.config.dir = GLOBAL.dir || jsPath.substring(0, jsPath.lastIndexOf('/') + 1);
+        return this.config.dir = GLOBAL.dir || jsPath.substring(0, jsPath.lastIndexOf('/') + 1)
       })()
     }
 
