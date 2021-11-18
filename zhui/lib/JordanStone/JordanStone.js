@@ -9,37 +9,101 @@
 ;!function (global) {
   class JordanStone {
     constructor () {
+      this.v = '0.0.1'
       this.doc = global.document
       this.config = {
         modules: {}, // 模块路径
-        builtin: {
-          utils: 'utils',
-          jquery: 'jquery',
-          all: 'all',
-        }
+        timeout: 10,
+        callback: {},
       }
-      global.JORDAN_GLOBAL = {}
+      this.status = {}
+      this.modules = {
+        jquery: 'jquery',
+        utils: 'utils',
+        echarts: 'echarts.min'
+      }
+      global.GLOBAL = {}
       this.path = this.getPath()
-      if (!this.config.host) this.config.host = (this.path.match(/\/\/([\s\S]+?)\//) || ['//' + location.host + '/'])[0]
+      this.config.host = (this.path.match(/\/\/([\s\S]+?)\//) || ['//' + location.host + '/'])[0]
+    }
+
+    config (opts) {
+      this.config = {
+        ...this.config,
+        ...opts
+      }
+      this.init()
+    }
+
+    bindScript (name, src) {
+      const { modules, doc } = this
+      const headTag = doc.querySelector('head')
+      const onScriptLoad = (e, node, name) => {
+        headTag.removeChild(node)
+        this.status[name] = true
+      }
+
+      this.config.modules[name] = src
+      const node = doc.createElement('script')
+      node.async = true
+      node.src = src
+      headTag.appendChild(node)
+      node.addEventListener('load', function (e) {
+        onScriptLoad(e, node, name);
+      }, false);
+    }
+
+    init () {
+      const { modules } = this
+      const moduleKeys = Object.keys(modules)
+      moduleKeys.forEach(key => this.status[key] = false)
+      const baseModulePath = this.path + 'modules'
+      moduleKeys.forEach(key => this.bindScript(key, `${baseModulePath}/${modules[key]}.js`))
+    }
+
+    define (method) {
+      method && method(this.exports.bind(this))
+      return this
+    }
+
+    use (callback) {
+      let timeout = 0
+      const poll = () => {
+        if (++timeout > this.config.timeout * 1000 / 4) {
+          this.handlerError('模块加载失败')
+          return
+        }
+        Object.values(this.status).every(state => state) ? callback && callback() : setTimeout(poll, 4)
+      }
+      poll()
+    }
+
+    extend (obj) {
+      const keys = Object.keys(obj)
+      this.status[keys] = false
+      for (let i = 0; i < keys.length; i++) {
+        const key = keys[i]
+        const path = `${this.path}/${obj[key]}.js`
+        this.bindScript(key, path)
+      }
+    }
+
+    exports (moduleName, module) {
+      if (!this) return
+      this[moduleName] = module
     }
 
     // 获取所在目录
     getPath () {
-      const doc = this.doc
-      const jsPath = doc.currentScript ? doc.currentScript.src : (() => {
-        const js = doc.scripts
-        const last = js.length - 1
-        let src
-        for (let i = 0; i < last; i++) {
-          if (js[i].readyState === 'interactive') {
-            src = js[i].src
-            break
-          }
-          return src || js[last].src
-        }
+      return (() => {
+        const jsPath = this.doc.currentScript.src
+        return this.config.dir = GLOBAL.dir || jsPath.substring(0, jsPath.lastIndexOf('/') + 1);
       })()
+    }
 
-      return this.config.dir = JORDAN_GLOBAL.dir || jsPath.substring(0, jsPath.lastIndexOf('/') + 1)
+    // 异常错误处理
+    handlerError (msg, type = 'log') {
+      console && console[type]('JORDAN STONE ERROR:' + msg)
     }
 
     // 内置each方法
@@ -59,67 +123,8 @@
       }
       return this
     }
-
-
-    // 使用模块
-    use (modelNames, callback, from, exports = [],) {
-      const doc = this.doc
-      const dir = this.config.dir ? this.config.dir : this.path
-      const headTag = doc.querySelector('head')
-      const host = this.config.host
-
-      // 判断所要加载的模块
-      modelNames = (() => {
-        if (typeof modelNames === 'string') return [modelNames]
-        if (Array.isArray(modelNames) && !modelNames.length) return ['all']
-        else if (typeof modelNames === 'function') {
-          callback = modelNames
-          return ['all']
-        }
-        return modelNames
-      })()
-
-      // 如果全局已经有jQuery，不加载模块内置jQuery
-      if (global.jQuery && jQuery.fn.on) {
-        this.each(global, (idx, module) => {
-          if (module === 'jquery') modelNames.split(idx, 1)
-        })
-        global.jordanstone.jquery = global.jordanstone.$ = jQuery
-      }
-
-      let item = modelNames[0]
-      const modules = this.config.builtin
-      const urls = (modules[item] ? (dir + 'modules/') : (/^\{\/\}/.test(modules[item]) ? '' : (this.config.base || ''))) + (modules[item] || item) + '.js'
-      const url = urls.replace(/^\{\/\}/, '')
-      if (!this.config.modules[item] && jordanstone[item]) this.config.modules[item] = url
-
-      if (!this.config.modules[item]) {
-        const node = doc.createElement('script')
-        node.async = true
-        node.src = url + (() => `?v=${(new Date()).getTime()}`)()
-        headTag.appendChild(node)
-        node.addEventListener('load', (e) => onScriptLoad(e, url, node), false)
-      }
-
-
-      function onScriptLoad (e, url, node) {
-        if (e.type === 'load') {
-          this.config.modules[item] = url
-          headTag.removeChild(node)
-          // todo use轮询
-        }
-      }
-    }
-
-    // 定义模块
-    define (modelName, callback) {
-      if (typeof modelName === 'function') {
-        callback = modelName
-        modelName = []
-      }
-
-    }
   }
 
   global.jordanstone = new JordanStone()
+  global.jordanstone.init()
 }(window)

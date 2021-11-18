@@ -325,7 +325,8 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
     },
   ])
 
-  function closeInnerLayer () {
+  function closeInnerLayer (_) {
+    console.log($('#countSum').val())
     luLayerInner.close()
   }
 

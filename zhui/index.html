@@ -8,11 +8,14 @@
   <title>智慧园区三维可视化运营管理系统</title>
 </head>
 <body>
-<script src="/zhui/js/LuLibrary.js" charset="utf-8"></script>
+<div id="main" style="width: 600px;height:400px;"></div>
 <script src="/zhui/lib/JordanStone/JordanStone.js" charset="utf-8"></script>
 <script>
-jordanstone.use([], function (_) {
-  console.log(_, '-------')
+jordanstone.extend({
+  'luAdmin': 'LuAdmin/LuAdmin'
+})
+jordanstone.use(function () {
+
 })
 </script>
 </body>
