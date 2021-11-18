@@ -1,7 +1,17 @@
 jordanstone.define(exports => {
+
+  class LuHeader {
+
+  }
+
+  class LuPageBody {
+
+  }
+
   class LuAdmin {
     constructor (opts) {
-
+      this.LuHeader = LuHeader
+      this.LuPageBody = LuPageBody
     }
   }
 
