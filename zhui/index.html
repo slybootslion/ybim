@@ -10,28 +10,40 @@
   <title>智慧园区三维可视化运营管理系统</title>
 </head>
 <body>
-<button class="btn">btn</button>
+<div class="lu-header" id="luHeader">
+  <div class="left">
+    <div class="logo"></div>
+    <div class="btn-list">
+      <div class="btn-item"></div>
+    </div>
+  </div>
+  <div class="right">weather</div>
+</div>
+
+
 <script src="/zhui/lib/layui/layui.js"></script>
 <script type="text/javascript">
 (function () {
   layui.config({
-    base: '/zhui/lib/lulib/',
+    base: '/zhui/lib/jordan-stone/',
     version: true,
     debug: true,
   }).extend({
-    echarts: 'echarts.min',
-    dayjs: 'dayjs.min',
-    luUtils: 'LuUtils'
+    dayjs: 'modules/dayjs.min',
+    echarts: 'modules/echarts.min',
+    LuUtils: 'lu-lib/LuUtils',
+    LuAdmin: 'lu-lib/LuAdmin',
   })
 })()
 </script>
 <script type="text/javascript" charset="utf-8">
-layui.use(['dayjs'], function () {
-  console.log(layui.dayjs(new Date()).format('YYYY-MM-DD'))
-  const echarts = layui.echarts
-  console.log(echarts)
-  const luUtils = layui.luUtils
-  console.log(luUtils)
+layui.use(['dayjs', 'LuUtils', 'echarts', 'LuAdmin'], async function () {
+  const luUtils = layui.LuUtils
+  const luAdmin = layui.LuAdmin
+  // header project list, weather, button list data
+  const headerData = await luUtils.ajax('/zhui/mock/headerMockData.json', { dataType: 'json' })
+  const { luHeader } = luAdmin
+  luHeader.init(headerData)
 })
 </script>
 </body>
