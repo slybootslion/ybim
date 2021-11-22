@@ -76,7 +76,7 @@ html .bim-content, body .bim-content {
   cursor: pointer;
   display: flex;
   align-items: center;
-  margin-right: 20px;
+  margin-right: 30px;
 }
 .lu-header .right .project-list .iconfont {
   font-size: 30px;
@@ -84,6 +84,12 @@ html .bim-content, body .bim-content {
 }
 .lu-header .right .weather-box {
   margin-right: 40px;
+  display: flex;
+  align-items: center;
+}
+.lu-header .right .weather-box .iconfont {
+  font-size: 30px;
+  margin-right: 10px;
 }
 
 /*# sourceMappingURL=public.css.map */

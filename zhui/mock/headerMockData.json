@@ -1,5 +1,30 @@
 {
-  "buttonList": [],
+  "buttonList": [
+    {
+      "id": 1,
+      "text": "园区概览"
+    },
+    {
+      "id": 2,
+      "text": "智慧安防"
+    },
+    {
+      "id": 3,
+      "text": "智慧能效"
+    },
+    {
+      "id": 4,
+      "text": "设备管理"
+    },
+    {
+      "id": 5,
+      "text": "通行管理"
+    },
+    {
+      "id": 6,
+      "text": "园区运维"
+    }
+  ],
   "weather": {
     "text": "晴转多云",
     "temperature": "15℃",

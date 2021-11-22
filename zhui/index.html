@@ -10,28 +10,7 @@
   <title>智慧园区三维可视化运营管理系统</title>
 </head>
 <body>
-<div class="lu-header" id="luHeader">
-  <div class="left">
-    <div class="logo"></div>
-    <div class="btn-list">
-      <div class="btn-item active">园区概览</div>
-      <div class="btn-item">智慧安防</div>
-    </div>
-  </div>
-  <div class="right">
-    <div class="project-list">
-      <span class="iconfont icon-chanyeyuanqu"></span>
-      <span>高新技术产业园区 >></span>
-    </div>
-    <div class="weather-box">
-      <div class="icon"></div>
-      <div class="weather-info">
-        <div class="top">2021年05月21日 星期一</div>
-        <div class="bottom">晴转多云 15℃</div>
-      </div>
-    </div>
-  </div>
-</div>
+<div class="lu-header" id="luHeader"></div>
 <div class="bim-content"></div>
 
 <script src="/zhui/lib/layui/layui.js"></script>
@@ -55,6 +34,9 @@ layui.use(['dayjs', 'LuUtils', 'echarts', 'LuAdmin'], async function () {
   const luAdmin = layui.LuAdmin
   // header project list, weather, button list data
   const headerData = await luUtils.ajax('/zhui/mock/headerMockData.json', { dataType: 'json' })
+  const params = luUtils.getHashParams()
+  if (!params) headerData.id = 1
+  else headerData.id = params.id
   const { luHeader } = luAdmin
   luHeader.init(headerData)
 })
