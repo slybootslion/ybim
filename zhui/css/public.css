@@ -5,4 +5,64 @@ html, body {
   overflow: hidden;
 }
 
+.lu-header {
+  width: 100%;
+  height: 85px;
+  background-image: url(../images/common/top-bg.png);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: space-between;
+}
+.lu-header .left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lu-header .left .logo {
+  width: 541px;
+  height: 85px;
+  background-image: url(../images/common/title.png);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.lu-header .left .btn-list {
+  margin-top: -20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.lu-header .left .btn-list .btn-item {
+  width: 140px;
+  height: 40px;
+  background-image: url(../images/common/Unchecked.png);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+.lu-header .left .btn-list .btn-item.active {
+  background-image: url(../images/common/Select.png);
+}
+.lu-header .right {
+  height: 60px;
+  color: #1E9FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lu-header .right .project-list {
+  cursor: pointer;
+}
+.lu-header .right .weather-box {
+  margin: 0 40px;
+}
+
 /*# sourceMappingURL=public.css.map */
