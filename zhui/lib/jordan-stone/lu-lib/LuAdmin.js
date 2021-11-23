@@ -1,17 +1,75 @@
 layui.define([], exports => {
   const $ = layui.$
   const luUtils = layui.LuUtils
+  const dropdown = layui.dropdown
 
   class LuHeader {
+    init (opts) {
+      const header = this
+      this.opts = opts
+      this.render(opts, click)
+
+      // do hash
+      function click (obj) {
+        if (obj && obj.id === +(opts.id)) return
+        if (!obj) {
+          const params = luUtils.getHashParams()
+          let pid = 1
+          if (params && typeof params.pid === 'string') pid = +params.pid
+          luUtils.pagePushHash(header.getHref(), { pid })
+          return
+        }
+        luUtils.pagePushHash(header.getHref(), { pid: obj.id })
+        this.opts.id = obj.id
+        header.render(header.opts, click)
+      }
+
+      click.call(this)
+      if (this.bindFlag) return
+      this.bindMethod()
+    }
+
+    render (opts, click) {
+      const hh = this.headerTemplate(opts)
+      $("#luHeader").html(hh)
+      dropdown.render({
+        elem: '#projectBtn',
+        data: [
+          ...opts.projectList
+        ],
+        click: obj => {
+          click.call(this, obj)
+        },
+      })
+    }
+
+    bindMethod () {
+      const header = this
+      $("#luHeader").on('click', '.btn-item', function () {
+        header.bindFlag = true
+        const isActive = $(this).hasClass('active')
+        if (isActive) return
+        const opts = header.opts
+        $(this).addClass('active').siblings('.btn-item').removeClass('active')
+        const id = $(this).data('id')
+        const item = opts.buttonList.find(btn => btn.id === id)
+        luUtils.pagePushHash(item.href, { pid: opts.id })
+      })
+    }
+
     headerTemplate (data) {
-      const { buttonList, projectList, weather, id } = data
+      let { buttonList, projectList, weather, id } = data
       let btnHtml = ''
+      const href = this.getHref()
+      const btnId = data.buttonList.find(btn => btn.href === href).id || 1
       for (let i = 0; i < buttonList.length; i++) {
         const item = buttonList[i]
-        const isActive = i === 0 ? 'active' : ''
-        btnHtml += `<div class="btn-item ${isActive}">${item.text}</div>`
+        const isActive = item.id === btnId ? 'active' : ''
+        btnHtml += `<div class="btn-item ${isActive}" data-id="${item.id}">${item.text}</div>`
       }
-      const projectName = projectList.find(p => p.id === id).name
+      if (!id || (typeof id === 'string' && id === 'undefined')) id = 1
+      const projectTitle = projectList.find(p => p.id === +id).title
+      // mock
       const weatherIconDict = {
         1: 'icon-tianqitubiao_dayu', // 大雨
         2: 'icon-tianqitubiao_qing', // 晴
@@ -28,9 +86,9 @@ layui.define([], exports => {
                 <div class="btn-list">${btnHtml}</div>
               </div>
               <div class="right">
-                <div class="project-list">
+                <div class="project-list" id="projectBtn">
                   <span class="iconfont icon-chanyeyuanqu"></span>
-                  <span>${projectName} >></span>
+                  <span>${projectTitle} >></span>
                 </div>
                 <div class="weather-box">
                   <span class="iconfont ${weatherIconDict[weather.icon]}"></span>
@@ -42,15 +100,39 @@ layui.define([], exports => {
               </div>`
     }
 
-    init (opts) {
-      const hh = this.headerTemplate(opts)
-      $("#luHeader").html(hh)
+    getHref () {
+      let href = luUtils.getHashNoParams()
+      if (!href) href = this.opts.buttonList[0].href
+      return href
+    }
+  }
+
+  class LuBody {
+    async init (data) {
+      this.data = data
+      await this.bindMethod()
+    }
+
+    async renderBody () {
+      const href = luUtils.getHashNoParams()
+      if (!href) {
+        await luUtils.delay(100)
+        await this.renderBody()
+        return
+      }
+      const bodyItem = this.data.buttonList.find(btn => btn.href === href)
+      console.log(bodyItem)
+    }
+
+    async bindMethod () {
+      
     }
   }
 
   class LuAdmin {
     constructor () {
-      this.luHeader = new LuHeader()
+      this.luHeader = new LuHeader
+      this.luBody = new LuBody
     }
   }
 

@@ -2,27 +2,33 @@
   "buttonList": [
     {
       "id": 1,
-      "text": "园区概览"
+      "text": "园区概览",
+      "href": "overview"
     },
     {
       "id": 2,
-      "text": "智慧安防"
+      "text": "智慧安防",
+      "href": "security"
     },
     {
       "id": 3,
-      "text": "智慧能效"
+      "text": "智慧能效",
+      "href": "efficiency"
     },
     {
       "id": 4,
-      "text": "设备管理"
+      "text": "设备管理",
+      "href": "equipment"
     },
     {
       "id": 5,
-      "text": "通行管理"
+      "text": "通行管理",
+      "href": "pass"
     },
     {
       "id": 6,
-      "text": "园区运维"
+      "text": "园区运维",
+      "href": "maintenance"
     }
   ],
   "weather": {
@@ -33,19 +39,19 @@
   "projectList": [
     {
       "id": 1,
-      "name": "高新技术产业园区"
+      "title": "高新技术产业园区"
     },
     {
       "id": 2,
-      "name": "xxx产业园区"
+      "title": "xxx产业园区"
     },
     {
       "id": 3,
-      "name": "yyy产业园区"
+      "title": "yyy产业园区"
     },
     {
       "id": 4,
-      "name": "zzz产业园区"
+      "title": "zzz产业园区"
     }
   ]
 }

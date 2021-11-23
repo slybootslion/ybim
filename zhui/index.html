@@ -32,13 +32,26 @@
 layui.use(['dayjs', 'LuUtils', 'echarts', 'LuAdmin'], async function () {
   const luUtils = layui.LuUtils
   const luAdmin = layui.LuAdmin
+  const { luHeader, luBody } = luAdmin
+
   // header project list, weather, button list data
   const headerData = await luUtils.ajax('/zhui/mock/headerMockData.json', { dataType: 'json' })
   const params = luUtils.getHashParams()
+
   if (!params) headerData.id = 1
-  else headerData.id = params.id
-  const { luHeader } = luAdmin
-  luHeader.init(headerData)
+  else headerData.id = +(params.pid)
+  headerData.callback = selectedData => {
+    headerData.id = selectedData.id
+    headerRender(headerData)
+  }
+  headerRender(headerData)
+
+  function headerRender (data) {
+    luUtils.global.pid = data.id
+    luHeader.init(data)
+    luBody.init(data)
+  }
+
 })
 </script>
 </body>
