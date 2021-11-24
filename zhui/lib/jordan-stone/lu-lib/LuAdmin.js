@@ -121,11 +121,15 @@ layui.define([], exports => {
         return
       }
       const bodyItem = this.data.buttonList.find(btn => btn.href === href)
-      console.log(bodyItem)
+      console.log(bodyItem, '-----------------')
     }
 
     async bindMethod () {
-      
+      $(window).on('hashchange', async () => {
+        console.log('test bind count')
+        await this.renderBody()
+      })
+      await this.renderBody()
     }
   }
 
