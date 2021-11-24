@@ -59,14 +59,7 @@ layui.define([], exports => {
 
     headerTemplate (data) {
       let { buttonList, projectList, weather, id } = data
-      let btnHtml = ''
-      const href = this.getHref()
-      const btnId = data.buttonList.find(btn => btn.href === href).id || 1
-      for (let i = 0; i < buttonList.length; i++) {
-        const item = buttonList[i]
-        const isActive = item.id === btnId ? 'active' : ''
-        btnHtml += `<div class="btn-item ${isActive}" data-id="${item.id}">${item.text}</div>`
-      }
+
       if (!id || (typeof id === 'string' && id === 'undefined')) id = 1
       const projectTitle = projectList.find(p => p.id === +id).title
       // mock
@@ -83,7 +76,7 @@ layui.define([], exports => {
 
       return `<div class="left">
                 <div class="logo"></div>
-                <div class="btn-list">${btnHtml}</div>
+                <div class="btn-list"></div>
               </div>
               <div class="right">
                 <div class="project-list" id="projectBtn">
@@ -121,7 +114,22 @@ layui.define([], exports => {
         return
       }
       const bodyItem = this.data.buttonList.find(btn => btn.href === href)
-      console.log(bodyItem, '-----------------')
+      if (!bodyItem) {
+        luUtils.pageReplace('/zhui/pages/error404.html')
+        return
+      }
+      // btn list
+      let btnHtml = ''
+      const btnId = this.data.buttonList.find(btn => btn.href === href).id || 1
+      for (let i = 0; i < this.data.buttonList.length; i++) {
+        const item = this.data.buttonList[i]
+        const isActive = item.id === btnId ? 'active' : ''
+        btnHtml += `<div class="btn-item ${isActive}" data-id="${item.id}">${item.text}</div>`
+      }
+      $("#luHeader .btn-list").html(btnHtml)
+      // real body render handler
+      $("#luBody").html(await luUtils.ajax(`/zhui/pages/${bodyItem.href}.html`, { dataType: 'html' }))
+      $("title").html(bodyItem.text + '智慧园区三维可视化运营管理系统')
     }
 
     async bindMethod () {

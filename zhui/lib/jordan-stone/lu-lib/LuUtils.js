@@ -6,6 +6,10 @@ layui.define(exports => {
       this.global = {}
     }
 
+    pageReplace (url) {
+      location.replace(url)
+    }
+
     pagePushHash (url, data = null, type = false) {
       let paramStr = ''
       if (data) {

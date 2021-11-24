@@ -109,3 +109,36 @@ html, body {
     }
   }
 }
+
+.body-one-page {
+  width: 100%;
+  height: calc(100% - 85px);
+  position: absolute;
+  top: 85px;
+  left: 0;
+
+  .content-body {
+    position: relative;
+    z-index: 3;
+    color: #fff;
+  }
+
+  &::before {
+    content: '';
+    width: 350px;
+    height: 100%;
+    display: block;
+    position: absolute;
+    background-color: rgba(0, 0, 0, .5);
+  }
+
+  &::after {
+    content: '';
+    width: 350px;
+    height: 100%;
+    display: block;
+    position: absolute;
+    right: 0;
+    background-color: rgba(0, 0, 0, .5);
+  }
+}
