@@ -59,13 +59,14 @@ layui.define(exports => {
     ajax (url, opts = {}, type = 'get') {
       return new Promise(resolve => {
         $.ajax({
-          url, type,
+          url,
+          type,
           ...opts,
           success (data) {
             resolve(data)
           },
           error (xhr) {
-            layer.msg('请求错误或功能页面不存在，稍后再试')
+            console.log(xhr)
           }
         })
       })

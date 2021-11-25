@@ -101,8 +101,31 @@ html .bim-content, body .bim-content {
 }
 .body-one-page .content-body {
   position: relative;
+  height: 100%;
   z-index: 3;
   color: #fff;
+}
+.body-one-page .content-body .left {
+  width: 350px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -350px;
+}
+.body-one-page .content-body .right {
+  width: 350px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: -350px;
+}
+.body-one-page .content-body .left-animation {
+  transition: left 0.5s;
+  left: 0;
+}
+.body-one-page .content-body .right-animation {
+  transition: right 0.5s;
+  right: 0;
 }
 .body-one-page::before {
   content: "";
@@ -119,7 +142,29 @@ html .bim-content, body .bim-content {
   display: block;
   position: absolute;
   right: 0;
+  top: 0;
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.block-title {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 700;
+  box-sizing: border-box;
+  padding: 0 20px;
+}
+.block-title::before {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 18px;
+  background-color: #00f8ff;
+  margin-right: 6px;
+}
+
+.block-content {
+  margin-top: 10px;
 }
 
 /*# sourceMappingURL=public.css.map */

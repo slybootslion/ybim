@@ -1,11 +1,5 @@
 @import "./iconfont/iconfont.css";
-
-$color1: #00f8ff;
-$color2: #00c0ff;
-$color3: #f4b140;
-$color4: #ff8c0e;
-$color5: #ff2a0e;
-$color6: #c6c6c6;
+@import './var.scss';
 
 html, body {
   width: 100%;
@@ -119,8 +113,34 @@ html, body {
 
   .content-body {
     position: relative;
+    height: 100%;
     z-index: 3;
     color: #fff;
+
+    .left {
+      width: 350px;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: -350px;
+    }
+
+    .right {
+      width: 350px;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: -350px;
+    }
+
+    .left-animation {
+      transition: left .5s;
+      left: 0;
+    }
+    .right-animation {
+      transition: right .5s;
+      right: 0;
+    }
   }
 
   &::before {
@@ -139,6 +159,30 @@ html, body {
     display: block;
     position: absolute;
     right: 0;
+    top: 0;
     background-color: rgba(0, 0, 0, .5);
   }
+}
+
+.block-title {
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 18px;
+    background-color: $color1;
+    margin-right: 6px;
+  }
+
+  font-size: 20px;
+  font-weight: 700;
+  box-sizing: border-box;
+  padding: 0 20px;
+}
+
+.block-content {
+  margin-top: 10px;
 }

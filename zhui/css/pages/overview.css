@@ -1,0 +1,84 @@
+.top-block {
+  width: 96%;
+  height: 50px;
+  background-image: linear-gradient(#0f4fa9, #052351);
+  margin: 5px auto 0;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+.top-block .left-title {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+}
+.top-block .nums {
+  display: flex;
+  margin-left: 5px;
+  align-items: center;
+  justify-content: center;
+}
+.top-block .nums .num-item {
+  width: 30px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #00f8ff;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 40px;
+  margin-right: 5px;
+}
+.top-block .nums .num-txt {
+  margin-top: 18px;
+}
+
+.block {
+  margin-top: 20px;
+}
+
+.block-content {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  padding: 0 30px;
+  margin-bottom: 10px;
+}
+.block-content .block-content-item {
+  width: 50%;
+  margin-bottom: 10px;
+}
+.block-content .block-content-item .item-title {
+  color: #c6c6c6;
+  margin-bottom: 5px;
+}
+.block-content .block-content-item .item-num .num {
+  color: #00c0ff;
+  font-size: 20px;
+}
+.block-content .block-content-item .item-num .unit {
+  color: #c6c6c6;
+}
+
+.left .block3 .charts-box {
+  margin-top: 20px;
+  display: flex;
+}
+.left .block3 .charts-box .charts-item {
+  flex: 1;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+.left .block3 .charts-box .charts-item .charts-pie {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+/*# sourceMappingURL=overview.css.map */

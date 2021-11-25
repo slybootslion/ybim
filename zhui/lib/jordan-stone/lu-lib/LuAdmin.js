@@ -130,6 +130,10 @@ layui.define([], exports => {
       // real body render handler
       $("#luBody").html(await luUtils.ajax(`/zhui/pages/${bodyItem.href}.html`, { dataType: 'html' }))
       $("title").html(bodyItem.text + '智慧园区三维可视化运营管理系统')
+      // add animation after render page
+      await luUtils.delay(500)
+      $(".content-body .left").addClass('left-animation')
+      $(".content-body .right").addClass('right-animation')
     }
 
     async bindMethod () {
