@@ -79,6 +79,107 @@
           ]
         }
       ]
+    },
+    "block4": {
+      "title": "车位统计",
+      "dataList": [
+        {
+          "title": "地上车位",
+          "data": [
+            {
+              "label": "车位总数",
+              "num": 1000
+            },
+            {
+              "label": "空闲车位",
+              "num": 723
+            },
+            {
+              "label": "故障车位",
+              "num": 5
+            }
+          ]
+        },
+        {
+          "title": "地下车位",
+          "data": [
+            {
+              "label": "车位总数",
+              "num": 2000
+            },
+            {
+              "label": "空闲车位",
+              "num": 589
+            },
+            {
+              "label": "故障车位",
+              "num": 10
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "right": {
+    "block1": {},
+    "block2": {
+      "title": "设备情况",
+      "dataList": [
+        {
+          "id": 1,
+          "title": "电表",
+          "icon": "icon-dianbiao",
+          "nums": {
+            "num1": 25,
+            "num2": 3
+          }
+        },
+        {
+          "id": 2,
+          "title": "水表",
+          "icon": "icon-shuibiao",
+          "nums": {
+            "num1": 56,
+            "num2": 3
+          }
+        },
+        {
+          "id": 3,
+          "title": "电梯",
+          "icon": "icon-dianti01",
+          "nums": {
+            "num1": 26,
+            "num2": 3
+          }
+        },
+        {
+          "id": 4,
+          "title": "摄像头",
+          "icon": "icon-shexiangtou",
+          "nums": {
+            "num1": 25,
+            "num2": 3
+          }
+        },
+        {
+          "id": 5,
+          "title": "消防设备",
+          "icon": "icon-xiaofangshebei",
+          "nums": {
+            "num1": 56,
+            "num2": 3
+          }
+        },
+        {
+          "id": 6,
+          "title": "门禁",
+          "icon": "icon-menjin",
+          "nums": {
+            "num1": 26,
+            "num2": 3
+          }
+        }
+      ]
     }
   }
 }

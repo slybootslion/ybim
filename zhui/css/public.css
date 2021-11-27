@@ -111,6 +111,7 @@ html .bim-content, body .bim-content {
   position: absolute;
   top: 0;
   left: -350px;
+  overflow-y: auto;
 }
 .body-one-page .content-body .right {
   width: 350px;
@@ -118,6 +119,7 @@ html .bim-content, body .bim-content {
   position: absolute;
   top: 0;
   right: -350px;
+  overflow-y: auto;
 }
 .body-one-page .content-body .left-animation {
   transition: left 0.5s;
@@ -165,6 +167,23 @@ html .bim-content, body .bim-content {
 
 .block-content {
   margin-top: 10px;
+}
+
+.scroll-bar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.scroll-bar::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.scroll-bar::-webkit-scrollbar-thumb {
+  height: 20px;
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #555;
 }
 
 /*# sourceMappingURL=public.css.map */

@@ -2,6 +2,7 @@ layui.use([], () => {
   const $ = layui.$
   const luUtils = layui.LuUtils
   const echarts = layui.echarts
+  const dropdown = layui.dropdown
 
   const leftColorList1 = [
     { c1: '#fcb740ff', c2: '#13325f80' },
@@ -11,7 +12,7 @@ layui.use([], () => {
 
   class PageTemplate {
     renderLeft (data) {
-      let { topBlock, block1, block2, block3 } = data
+      let { topBlock, block1, block2, block3, block4 } = data
       topBlock = topBlock.padStart(6, '0').split('')
       let topBlockNumsHtml = '', block1Html = ``, block2Html = ``
       for (let i = 0; i < topBlock.length; i++) {
@@ -65,10 +66,78 @@ layui.use([], () => {
             <div class="charts-legend">${block3Legend2}</div>
           </div>
         </div>
+      </div>
+      <div class="block4 block">
+        <div class="block-title">${block4.title}</div>
+        <div class="charts-box">
+          <div class="charts-item" id="echarts3"></div>
+          <div class="charts-item" id="echarts4"></div>
+        </div>
       </div>`
     }
 
     renderRight (data) {
+      const { block1, block2 } = data
+      let h2 = ''
+      for (let i = 0; i < block2.dataList.length; i++) {
+        const item = block2.dataList[i]
+        h2 += `<div class="equipment-item">
+                  <div class="icon">
+                    <span class="iconfont ${item.icon}"></span>
+                  </div>
+                  <div class="txt">${item.title}</div>
+                  <div class="nums">
+                    <span class="num-1">${item.nums.num1}/</span>
+                    <span class="num-2">${item.nums.num2}</span>
+                  </div>
+                  <div class="desc">（启用/停用）</div>
+                </div>`
+      }
+
+      return `<div class="block1 block">
+                <div class="block-title">能耗详情</div>
+                <div class="block-content">
+                  <div class="charts-box">
+                    <div class="charts-item">
+                      <div class="charts-top">
+                        <div class="top-left">用电统计</div>
+                        <div class="top-btn-box">
+                          <div class="btn-item date active">本日</div>
+                          <div class="btn-item date">本月</div>
+                          <div class="btn-item" id="selectYears0">2021 ></div>
+                        </div>
+                      </div>
+                      <div class="charts-line-pie" id="echarts5"></div>
+                    </div>
+                    <div class="charts-item">
+                      <div class="charts-top">
+                        <div class="top-left">给排水统计</div>
+                        <div class="top-btn-box">
+                          <div class="btn-item date active">本日</div>
+                          <div class="btn-item date">本月</div>
+                          <div class="btn-item" id="selectYears1">2021 ></div>
+                        </div>
+                      </div>
+                      <div class="charts-line-pie" id="echarts6"></div>
+                    </div>
+                    <div class="charts-item">
+                      <div class="charts-top">
+                        <div class="top-left">用电量占比</div>
+                        <div class="top-btn-box">
+                          <div class="btn-item date active">本日</div>
+                          <div class="btn-item date">本月</div>
+                          <div class="btn-item" id="selectYears2">2021 ></div>
+                        </div>
+                      </div>
+                      <div class="charts-line-pie" id="echarts7"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="block2 block">
+                <div class="block-title">设备情况</div>
+                <div class="block-content">${h2}</div>
+              </div>`
     }
   }
 
@@ -77,15 +146,13 @@ layui.use([], () => {
   let pageData
   ;(
     async () => {
-      pageData = await getPageData()
+      // mock
+      pageData = await luUtils.ajax('/zhui/mock/overviewData.json')
+      await luUtils.delay(500)
       render()
+      bindRightEChartsMethod()
     }
   )()
-
-  async function getPageData () {
-    // mock
-    return luUtils.ajax('/zhui/mock/overviewData.json')
-  }
 
   function render () {
     const { left, right } = pageData
@@ -94,14 +161,18 @@ layui.use([], () => {
     $(".content-body .left").html(leftHtml)
     $(".content-body .right").html(rightHtml)
     handlerEcharts(pageData)
+    rightEchartsYearSelectRender()
   }
 
-  function handlerEcharts (data) {
+  function handlerEcharts (data, selected = null) {
     const echarts1 = echarts.init(document.querySelector('#echarts1'))
     const echarts2 = echarts.init(document.querySelector('#echarts2'))
+    const echarts3 = echarts.init(document.querySelector('#echarts3'))
+    const echarts4 = echarts.init(document.querySelector('#echarts4'))
     const leftData1 = data.left.block3.dataList
+    const leftData2 = data.left.block4.dataList
 
-    function leftChartsDataMaker (type) {
+    function leftChartsDataMakerPie (type) {
       type = type === 1 ? 0 : 1
       return {
         colorList: leftColorList1,
@@ -111,8 +182,18 @@ layui.use([], () => {
       }
     }
 
-    echarts1.setOption(echartsOpts(1, leftChartsDataMaker(1)))
-    echarts2.setOption(echartsOpts(1, leftChartsDataMaker(2)))
+    function leftChartsDataMakerBar (type) {
+      const data = type === 1 ? leftData2[0] : leftData2[1]
+      return {
+        title: type === 1 ? '地上车位' : '地下车位',
+        data: data.data.map(d => d.num)
+      }
+    }
+
+    echarts1.setOption(echartsOpts(1, leftChartsDataMakerPie(1)))
+    echarts2.setOption(echartsOpts(1, leftChartsDataMakerPie(2)))
+    echarts3.setOption(echartsOpts(2, leftChartsDataMakerBar(1)))
+    echarts4.setOption(echartsOpts(2, leftChartsDataMakerBar(2)))
   }
 
   function echartsOpts (key, data) {
@@ -162,9 +243,107 @@ layui.use([], () => {
             radius: ['62%', '64%']
           },
         ],
+      },
+      2: {
+        title: {
+          text: data.title,
+          textStyle: {
+            fontSize: 10,
+            color: '#fff',
+          },
+          top: 0,
+          left: 50
+        },
+        grid: {
+          left: '0',
+          right: '15%',
+          bottom: '0',
+          top: '20%',
+          containLabel: true
+        },
+        yAxis: {
+          type: 'category',
+          splitLine: {
+            show: false,
+          },
+          axisTick: {
+            show: false,
+          },
+          axisLine: {
+            show: false,
+          },
+          axisLabel: {
+            textStyle: {
+              color: '#c6c6c6',
+            },
+          },
+          inverse: true,
+          data: ['车位总数', '空闲车位', '故障车位'],
+        },
+        xAxis: {
+          show: false,
+          type: 'value'
+        },
+        series: [
+          {
+            data: [...data.data],
+            type: 'bar',
+            itemStyle: {
+              normal: {
+                color (params) {
+                  const colorList = [
+                    { c1: '#00a6ff', c2: '#00fefc' },
+                    { c1: '#ffb227', c2: '#90fe01' },
+                    { c1: '#ff2000', c2: '#ff8a00' },
+                  ]
+                  return new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                    { offset: 0, color: colorList[params.dataIndex].c1 },
+                    { offset: 1, color: colorList[params.dataIndex].c2 },
+                  ])
+                },
+                label: {
+                  show: true,
+                  position: 'right',
+                  textStyle: {
+                    color: '#fff',
+                    fontSize: 12,
+                  }
+                }
+              }
+            }
+          }
+        ]
       }
     }
     return options[key]
+  }
+
+  function rightEchartsBtnItemClick (el) {
+    const isActive = el.hasClass('active')
+    if (isActive) return
+    el.addClass('active').siblings('.btn-item').removeClass('active')
+    // todo render echarts data
+  }
+
+  function bindRightEChartsMethod () {
+    $(".right").on('click', '.btn-item.date', function () {
+      rightEchartsBtnItemClick($(this))
+    });
+  }
+
+  function rightEchartsYearSelectRender () {
+    const year = new Date().getFullYear()
+    for (let i = 0; i < 3; i++) {
+      dropdown.render({
+        elem: '#selectYears' + i,
+        data: [{ id: 1, title: year }, { id: 2, title: year - 1 }, { id: 3, title: year - 2 }],
+        click (obj) {
+          const $el = $(this.elem[0])
+          $el.html(obj.title + ' >')
+          rightEchartsBtnItemClick($(this.elem[0]))
+        }
+      })
+    }
   }
 
 })

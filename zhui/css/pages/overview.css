@@ -67,7 +67,7 @@
 }
 
 .left .block3 .charts-box {
-  margin-top: 20px;
+  margin-top: 5px;
   display: flex;
 }
 .left .block3 .charts-box .charts-item {
@@ -79,6 +79,103 @@
   width: 120px;
   height: 120px;
   margin: 0 auto;
+}
+.left .block3 .charts-box .charts-legend {
+  margin-top: 6px;
+}
+.left .block3 .charts-box .charts-legend .legend {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-left: 30px;
+}
+.left .block3 .charts-box .charts-legend .legend .color {
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+}
+.left .block3 .charts-box .charts-legend .legend div {
+  margin-right: 5px;
+}
+.left .block3 .charts-box .charts-legend .legend div:nth-child(2) {
+  color: #c6c6c6;
+}
+.left .block4 .charts-box {
+  margin-top: 5px;
+  padding: 0 20px;
+}
+.left .block4 .charts-box .charts-item {
+  height: 105px;
+  margin-bottom: 5px;
+}
+
+.right .block1 .charts-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.right .block1 .charts-box .charts-item {
+  margin-bottom: 5px;
+}
+.right .block1 .charts-box .charts-item .charts-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.right .block1 .charts-box .charts-item .charts-top .top-btn-box {
+  display: flex;
+  align-items: center;
+}
+.right .block1 .charts-box .charts-item .charts-top .top-btn-box .btn-item {
+  padding: 3px 5px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.right .block1 .charts-box .charts-item .charts-top .top-btn-box .btn-item.active {
+  background-color: #0381d9;
+}
+.right .block1 .charts-box .charts-item .charts-line-pie {
+  height: 136px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.right .block2 .block-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.right .block2 .block-content .equipment-item {
+  margin-bottom: 10px;
+  width: 33%;
+  position: relative;
+  right: -20px;
+}
+.right .block2 .block-content .equipment-item .icon {
+  margin-bottom: 5px;
+}
+.right .block2 .block-content .equipment-item .icon .iconfont {
+  font-size: 34px;
+  background-image: linear-gradient(to bottom, #3ad1ed, #2775e6);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.right .block2 .block-content .equipment-item .txt {
+  font-size: 16px;
+  color: #c6c6c6;
+  margin-bottom: 3px;
+}
+.right .block2 .block-content .equipment-item .nums {
+  margin-bottom: 3px;
+}
+.right .block2 .block-content .equipment-item .nums .num-1 {
+  color: #00f8ff;
+  font-size: 20px;
+}
+.right .block2 .block-content .equipment-item .desc {
+  color: #c6c6c6;
+  font-size: 12px;
+  margin-left: -10px;
 }
 
 /*# sourceMappingURL=overview.css.map */
