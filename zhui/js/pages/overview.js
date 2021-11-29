@@ -169,8 +169,17 @@ layui.use([], () => {
     const echarts2 = echarts.init(document.querySelector('#echarts2'))
     const echarts3 = echarts.init(document.querySelector('#echarts3'))
     const echarts4 = echarts.init(document.querySelector('#echarts4'))
+    const echarts5 = echarts.init(document.querySelector('#echarts5'))
+    const echarts6 = echarts.init(document.querySelector('#echarts6'))
+    const echarts7 = echarts.init(document.querySelector('#echarts7'))
     const leftData1 = data.left.block3.dataList
     const leftData2 = data.left.block4.dataList
+    const rightData = data.right.block1
+
+    if (selected) {
+
+      return
+    }
 
     function leftChartsDataMakerPie (type) {
       type = type === 1 ? 0 : 1
@@ -190,145 +199,256 @@ layui.use([], () => {
       }
     }
 
-    echarts1.setOption(echartsOpts(1, leftChartsDataMakerPie(1)))
-    echarts2.setOption(echartsOpts(1, leftChartsDataMakerPie(2)))
-    echarts3.setOption(echartsOpts(2, leftChartsDataMakerBar(1)))
-    echarts4.setOption(echartsOpts(2, leftChartsDataMakerBar(2)))
+    function rightChartsDataMakerLine (type, dateType) {
+      let data = rightData['data' + type]
+      return {
+        title: data.unit,
+        data: data[dateType + 'Data'],
+        names: data.names,
+      }
+    }
+
+    echarts1.setOption(echartsOpts1(leftChartsDataMakerPie(1)))
+    echarts2.setOption(echartsOpts1(leftChartsDataMakerPie(2)))
+
+    echarts3.setOption(echartsOpts2(leftChartsDataMakerBar(1)))
+    echarts4.setOption(echartsOpts2(leftChartsDataMakerBar(2)))
+
+    echarts5.setOption(echartsOpts3(rightChartsDataMakerLine(1, 'day')))
+    echarts6.setOption(echartsOpts3(rightChartsDataMakerLine(2, 'day')))
+    echarts7.setOption(echartsOpts3(rightChartsDataMakerLine(1, 'day')))
   }
 
-  function echartsOpts (key, data) {
-    const options = {
-      1: {
-        series: [
-          {
-            type: 'pie',
-            radius: ['64%', '80%'],
-            center: ['50%', '50%'],
-            avoidLabelOverlap: false,
-            label: {
-              show: true,
-              position: 'center',
-              formatter: [`{a|${data.txt1}}`, `{b|${data.txt2}}`].join('\n'),
-              rich: {
-                a: { fontSize: 18, color: '#fff' },
-                b: { fontSize: 12, color: '#c6c6c6' },
-              },
+  function echartsOpts1 (data = {}) {
+    return {
+      series: [
+        {
+          type: 'pie',
+          radius: ['64%', '80%'],
+          center: ['50%', '50%'],
+          avoidLabelOverlap: false,
+          label: {
+            show: true,
+            position: 'center',
+            formatter: [`{a|${data.txt1}}`, `{b|${data.txt2}}`].join('\n'),
+            rich: {
+              a: { fontSize: 18, color: '#fff' },
+              b: { fontSize: 12, color: '#c6c6c6' },
             },
-            labelLine: {
-              show: false,
+          },
+          labelLine: {
+            show: false,
+          },
+          data: [
+            ...data.data
+          ],
+          itemStyle: {
+            color (params) {
+              const list = data.colorList
+              return new echarts.graphic.LinearGradient(1, 0, 0, 0, [
+                { offset: 1, color: list[params.dataIndex].c1 },
+                { offset: 0, color: list[params.dataIndex].c2 }
+              ])
             },
-            data: [
-              ...data.data
-            ],
-            itemStyle: {
+          },
+          emphasis: {
+            scale: false,
+            focus: 'none',
+          }
+        },
+        {
+          type: 'pie',
+          radius: ['85%', '87%']
+        },
+        {
+          type: 'pie',
+          radius: ['62%', '64%']
+        },
+      ],
+    }
+  }
+
+  function echartsOpts2 (data = {}) {
+    const colorList = [
+      { c1: '#00a6ff', c2: '#00fefc' },
+      { c1: '#ffb227', c2: '#90fe01' },
+      { c1: '#ff2000', c2: '#ff8a00' },
+    ]
+    return {
+      title: {
+        text: data.title,
+        textStyle: {
+          fontSize: 10,
+          color: '#fff',
+        },
+        top: 0,
+        left: 50
+      },
+      grid: {
+        left: '0',
+        right: '15%',
+        bottom: '0',
+        top: '20%',
+        containLabel: true
+      },
+      yAxis: {
+        type: 'category',
+        splitLine: {
+          show: false,
+        },
+        axisTick: {
+          show: false,
+        },
+        axisLine: {
+          show: false,
+        },
+        axisLabel: {
+          textStyle: {
+            color: '#c6c6c6',
+          },
+        },
+        inverse: true,
+        data: ['车位总数', '空闲车位', '故障车位'],
+      },
+      xAxis: {
+        show: false,
+        type: 'value'
+      },
+      series: [
+        {
+          data: [...data.data],
+          type: 'bar',
+          itemStyle: {
+            normal: {
               color (params) {
-                const list = data.colorList
-                return new echarts.graphic.LinearGradient(1, 0, 0, 0, [
-                  { offset: 1, color: list[params.dataIndex].c1 },
-                  { offset: 0, color: list[params.dataIndex].c2 }
+                return new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                  { offset: 0, color: colorList[params.dataIndex].c1 },
+                  { offset: 1, color: colorList[params.dataIndex].c2 },
                 ])
               },
-            },
-            emphasis: {
-              scale: false,
-              focus: 'none',
-            }
-          },
-          {
-            type: 'pie',
-            radius: ['85%', '87%']
-          },
-          {
-            type: 'pie',
-            radius: ['62%', '64%']
-          },
-        ],
-      },
-      2: {
-        title: {
-          text: data.title,
-          textStyle: {
-            fontSize: 10,
-            color: '#fff',
-          },
-          top: 0,
-          left: 50
-        },
-        grid: {
-          left: '0',
-          right: '15%',
-          bottom: '0',
-          top: '20%',
-          containLabel: true
-        },
-        yAxis: {
-          type: 'category',
-          splitLine: {
-            show: false,
-          },
-          axisTick: {
-            show: false,
-          },
-          axisLine: {
-            show: false,
-          },
-          axisLabel: {
-            textStyle: {
-              color: '#c6c6c6',
-            },
-          },
-          inverse: true,
-          data: ['车位总数', '空闲车位', '故障车位'],
-        },
-        xAxis: {
-          show: false,
-          type: 'value'
-        },
-        series: [
-          {
-            data: [...data.data],
-            type: 'bar',
-            itemStyle: {
-              normal: {
-                color (params) {
-                  const colorList = [
-                    { c1: '#00a6ff', c2: '#00fefc' },
-                    { c1: '#ffb227', c2: '#90fe01' },
-                    { c1: '#ff2000', c2: '#ff8a00' },
-                  ]
-                  return new echarts.graphic.LinearGradient(0, 0, 1, 0, [
-                    { offset: 0, color: colorList[params.dataIndex].c1 },
-                    { offset: 1, color: colorList[params.dataIndex].c2 },
-                  ])
-                },
-                label: {
-                  show: true,
-                  position: 'right',
-                  textStyle: {
-                    color: '#fff',
-                    fontSize: 12,
-                  }
+              label: {
+                show: true,
+                position: 'right',
+                textStyle: {
+                  color: '#fff',
+                  fontSize: 12,
                 }
               }
             }
           }
-        ]
-      }
+        }
+      ]
     }
-    return options[key]
   }
 
-  function rightEchartsBtnItemClick (el) {
+  function echartsOpts3 (data = {}) {
+    const { data: d, title: name } = data
+    const colorData = {
+      1: { c1: ['#0381d9'], c2: [{ t: '#0381d980', b: '#0381d980' }] },
+      2: { c1: ['#134a70', '#fcb740'], c2: [{ t: '#134a70ff', b: '#134a7080' }, { t: '#fcb740ff', b: '#fcb74080' }] }
+    }
+    const opts = {
+      xAxis: {
+        type: 'category',
+        boundaryGap: true,
+        data: [...d.xData],
+        axisLabel: {
+          textStyle: {
+            color: '#fff'
+          }
+        },
+        lineStyle: {
+          color: '#c6c6c6'
+        },
+        axisTick: {
+          show: false,
+        },
+      },
+      yAxis: {
+        type: 'value',
+        name,
+        nameTextStyle: {
+          color: '#c6c6c6',
+        },
+        axisLabel: {
+          textStyle: {
+            color: '#00c0ff'
+          }
+        },
+        splitLine: {
+          lineStyle: {
+            color: '#5c5c5c80',
+          }
+        }
+      },
+      grid: {
+        left: '0',
+        right: '0',
+        bottom: '0',
+        top: '20%',
+        containLabel: true
+      },
+      series: (() => {
+        const arr = []
+        const color = colorData[d.seriesData.length]
+        for (let i = 0; i < d.seriesData.length; i++) {
+          const series = d.seriesData[i]
+          const obj = {
+            data: [...series],
+            type: 'line',
+            itemStyle: {
+              color: color.c1[i]
+            },
+            lineStyle: {
+              color: color.c1[i]
+            },
+            z: i === 0 ? 0 : 1,
+            areaStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                {
+                  offset: 0,
+                  color: color.c2[i].t,
+                },
+                {
+                  offset: 1,
+                  color: color.c2[i].b,
+                }
+              ])
+            }
+          }
+          if (d.seriesData.length > 1) obj.name = data.names[i]
+          arr.push(obj)
+        }
+        return arr
+      })()
+    }
+    if (d.seriesData.length > 1) {
+      opts.legend = {
+        data: ['总用水', '总排污'],
+        x: 'right',
+        y: 'top',
+      }
+    }
+    return opts
+  }
+
+  function rightEchartsBtnItemClick (el, data = {}) {
+    const { type, idx } = data
     const isActive = el.hasClass('active')
     if (isActive) return
     el.addClass('active').siblings('.btn-item').removeClass('active')
     // todo render echarts data
+    console.log(type, idx)
   }
 
   function bindRightEChartsMethod () {
     $(".right").on('click', '.btn-item.date', function () {
-      rightEchartsBtnItemClick($(this))
-    });
+      const $this = $(this)
+      const type = $this.html() === '本月' ? 'month' : 'day'
+      const contentTitle = $this.parents('.charts-top').find('.top-left').html()
+      const idx = findEchartsBoxIndex(contentTitle)
+      rightEchartsBtnItemClick($(this), { type, idx })
+    })
   }
 
   function rightEchartsYearSelectRender () {
@@ -340,10 +460,31 @@ layui.use([], () => {
         click (obj) {
           const $el = $(this.elem[0])
           $el.html(obj.title + ' >')
-          rightEchartsBtnItemClick($(this.elem[0]))
+          const $this = $(this.elem[0])
+          const contentTitle = $this.parents('.charts-top').find('.top-left').html()
+          const idx = findEchartsBoxIndex(contentTitle)
+          rightEchartsBtnItemClick($this, { type: 'year', idx })
         }
       })
     }
+  }
+
+  function findEchartsBoxIndex (contentTitle) {
+    let idx = null
+    switch (contentTitle) {
+      case '用电统计':
+        idx = 0
+        break
+      case '给排水统计':
+        idx = 1
+        break
+      case '用电量占比':
+        idx = 2
+        break
+      default:
+        break
+    }
+    return idx
   }
 
 })
