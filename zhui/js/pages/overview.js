@@ -3,7 +3,7 @@ layui.use([], () => {
   const luUtils = layui.LuUtils
   const echarts = layui.echarts
   const dropdown = layui.dropdown
-
+// asdf
   const leftColorList1 = [
     { c1: '#fcb740ff', c2: '#13325f80' },
     { c1: '#0381d9ff', c2: '#13325f80' },
