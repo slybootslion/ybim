@@ -177,4 +177,25 @@
   margin-left: -10px;
 }
 
+.content .environment-box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  background-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.8), transparent);
+  padding: 10px 30px;
+}
+.content .environment-box .env-item {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+}
+.content .environment-box .env-item .iconfont {
+  font-size: 32px;
+  color: #00c0ff;
+}
+.content .environment-box .env-item .evn-info .env-num {
+  color: #f4b140;
+}
+
 /*# sourceMappingURL=overview.css.map */

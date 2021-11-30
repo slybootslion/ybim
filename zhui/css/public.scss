@@ -116,11 +116,13 @@ html, body {
     height: 100%;
     z-index: 3;
     color: #fff;
+    display: flex;
+
 
     .left {
       width: 350px;
       height: 100%;
-      position: absolute;
+      position: relative;
       top: 0;
       left: -350px;
       overflow-y: auto;
@@ -129,7 +131,7 @@ html, body {
     .right {
       width: 350px;
       height: 100%;
-      position: absolute;
+      position: relative;
       top: 0;
       right: -350px;
       overflow-y: auto;
@@ -139,9 +141,15 @@ html, body {
       transition: left .5s;
       left: 0;
     }
+
     .right-animation {
       transition: right .5s;
       right: 0;
+    }
+
+    .content {
+      flex: 1;
+      position: relative;
     }
   }
 

@@ -139,6 +139,24 @@ layui.use([], () => {
                 <div class="block-content">${h2}</div>
               </div>`
     }
+
+    renderContent (data) {
+      const environment = data.environment
+      let envHtml = ''
+      const evnIconList = ['icon-wendu', 'icon-icontubiao', 'icon-fangdumianju',
+        'icon-fengsu', 'icon-zaoyin', 'icon-keranqiti']
+      for (let i = 0; i < environment.length; i++) {
+        const item = environment[i]
+        envHtml += `<div class="env-item">
+                      <span class="iconfont ${evnIconList[i]}"></span>
+                      <div class="evn-info">
+                        <div class="env-name">${item.key}</div>
+                        <div class="env-num">${item.value}</div>
+                      </div>
+                    </div>`
+      }
+      return `<div class="environment-box">${envHtml}</div>`
+    }
   }
 
   const pt = new PageTemplate()
@@ -155,11 +173,13 @@ layui.use([], () => {
   )()
 
   function render () {
-    const { left, right } = pageData
+    const { left, right, content } = pageData
     const leftHtml = pt.renderLeft(left)
     const rightHtml = pt.renderRight(right)
+    const contentHtml = pt.renderContent(content)
     $(".content-body .left").html(leftHtml)
     $(".content-body .right").html(rightHtml)
+    $(".content-body .content").html(contentHtml)
     handlerEcharts(pageData)
     rightEchartsYearSelectRender()
   }
@@ -177,7 +197,10 @@ layui.use([], () => {
     const rightData = data.right.block1
 
     if (selected) {
-
+      const { idx, type } = selected
+      if (idx === 0) echarts5.setOption(echartsOpts3(rightChartsDataMakerLine(1, type)))
+      if (idx === 1) echarts6.setOption(echartsOpts3(rightChartsDataMakerLine(2, type)))
+      if (idx === 2) echarts7.setOption(echartsOpts3(rightChartsDataMakerPie(type)))
       return
     }
 
@@ -208,6 +231,12 @@ layui.use([], () => {
       }
     }
 
+    function rightChartsDataMakerPie (dateType) {
+      return {
+        data: rightData.data3[dateType + 'Data']
+      }
+    }
+
     echarts1.setOption(echartsOpts1(leftChartsDataMakerPie(1)))
     echarts2.setOption(echartsOpts1(leftChartsDataMakerPie(2)))
 
@@ -216,7 +245,7 @@ layui.use([], () => {
 
     echarts5.setOption(echartsOpts3(rightChartsDataMakerLine(1, 'day')))
     echarts6.setOption(echartsOpts3(rightChartsDataMakerLine(2, 'day')))
-    echarts7.setOption(echartsOpts3(rightChartsDataMakerLine(1, 'day')))
+    echarts7.setOption(echartsOpts4(rightChartsDataMakerPie('day')))
   }
 
   function echartsOpts1 (data = {}) {
@@ -386,7 +415,7 @@ layui.use([], () => {
         right: '0',
         bottom: '0',
         top: '20%',
-        containLabel: true
+        containLabel: true,
       },
       series: (() => {
         const arr = []
@@ -427,9 +456,69 @@ layui.use([], () => {
         data: ['总用水', '总排污'],
         x: 'right',
         y: 'top',
+        textStyle: { color: '#c6c6c6', }
       }
     }
     return opts
+  }
+
+  function echartsOpts4 (data = {}) {
+    const colorList = ['#61b5e0', '#d8ca74', '#14a7e2', '#bfa55f', '#0962b6']
+    const colorList2 = ['#47c8ff', '#ffe042', '#2ec1ff', '#ffcc39', '#128dff']
+    return {
+      legend: {
+        orient: 'vertical',
+        left: 'right',
+        icon: 'circle',
+        align: 'left',
+        bottom: 0,
+        textStyle: {
+          color: '#c6c6c6',
+        }
+      },
+      graphic: {
+        elements: [{
+          type: 'image',
+          style: {
+            image: '/zhui/images/pages/Pie.png',
+            width: 140,
+            height: 140,
+          },
+          left: 0,
+          top: 'center'
+        }]
+      },
+      grid: {
+        left: '0',
+        right: '0',
+        bottom: '0',
+        top: '0',
+        containLabel: true
+      },
+      series: [
+        {
+          type: 'pie',
+          roseType: 'area',
+          radius: '80%',
+          center: ['24%', '50%'],
+          label: {
+            show: false
+          },
+          data: data.data,
+          itemStyle: {
+            color (params) {
+              return new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+                offset: 0,
+                color: colorList[params.dataIndex] + '80'
+              }, {
+                offset: 1,
+                color: colorList2[params.dataIndex] + 'c0'
+              }])
+            }
+          }
+        }
+      ]
+    }
   }
 
   function rightEchartsBtnItemClick (el, data = {}) {
@@ -438,7 +527,7 @@ layui.use([], () => {
     if (isActive) return
     el.addClass('active').siblings('.btn-item').removeClass('active')
     // todo render echarts data
-    console.log(type, idx)
+    handlerEcharts(pageData, { type, idx })
   }
 
   function bindRightEChartsMethod () {

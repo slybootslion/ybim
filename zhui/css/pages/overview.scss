@@ -217,3 +217,31 @@
     }
   }
 }
+
+.content {
+  .environment-box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    background-image: linear-gradient(to right, transparent, rgba(0, 0, 0, .8), transparent);
+    padding: 10px 30px;
+
+    .env-item {
+      display: flex;
+      align-items: center;
+      margin-right: 30px;
+
+      .iconfont {
+        font-size: 32px;
+        color: $color2;
+      }
+
+      .evn-info {
+        .env-num {
+          color: $color3;
+        }
+      }
+    }
+  }
+}
