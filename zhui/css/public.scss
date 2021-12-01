@@ -223,3 +223,9 @@ html, body {
     background-color: #555;
   }
 }
+
+.txt-overflow {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

@@ -76,7 +76,7 @@ layui.use([], () => {
     }
 
     templateRight (data) {
-      const { block2 } = data
+      const { block2, block1 } = data
       let h2 = ''
       for (let i = 0; i < block2.dataList.length; i++) {
         const item = block2.dataList[i]
@@ -94,7 +94,7 @@ layui.use([], () => {
       }
 
       return `<div class="block1 block">
-                <div class="block-title">能耗详情</div>
+                <div class="block-title">${block1.title}</div>
                 <div class="block-content">
                   <div class="charts-box">
                     <div class="charts-item">
@@ -134,7 +134,7 @@ layui.use([], () => {
                 </div>
               </div>
               <div class="block2 block">
-                <div class="block-title">设备情况</div>
+                <div class="block-title">${block2.title}</div>
                 <div class="block-content">${h2}</div>
               </div>`
     }

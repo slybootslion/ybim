@@ -122,6 +122,7 @@
   },
   "right": {
     "block1": {
+      "title": "能耗详情",
       "data1": {
         "unit": "流量",
         "dayData": {

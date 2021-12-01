@@ -196,4 +196,10 @@ html .bim-content, body .bim-content {
   background-color: #555;
 }
 
+.txt-overflow {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 /*# sourceMappingURL=public.css.map */

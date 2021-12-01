@@ -1,0 +1,36 @@
+@import "../var.scss";
+
+.left {
+  .block3 {
+    .warning-list {
+      margin-top: 20px;
+      padding: 0 30px;
+
+      .warning-item {
+        display: flex;
+        align-items: center;
+        color: $color6;
+        margin-bottom: 10px;
+
+        &.level1 {
+          color: $color5;
+        }
+
+        &.level2 {
+          color: $color4;
+        }
+
+        .iconfont {
+          margin-right: 10px;
+        }
+        .desc {
+          width: 180px;
+          margin-right: 10px;
+        }
+        .date {
+          color: $color6;
+        }
+      }
+    }
+  }
+}
