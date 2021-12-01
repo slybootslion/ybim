@@ -169,7 +169,6 @@
 }
 .right .block2 .block-content .equipment-item .nums .num-1 {
   color: #00f8ff;
-  font-size: 20px;
 }
 .right .block2 .block-content .equipment-item .desc {
   color: #c6c6c6;
@@ -196,6 +195,91 @@
 }
 .content .environment-box .env-item .evn-info .env-num {
   color: #f4b140;
+}
+.content .point-box {
+  position: absolute;
+  right: 10px;
+  top: 80px;
+}
+.content .point-box .point-item {
+  padding: 0 30px 0 20px;
+  position: relative;
+  margin-top: -10px;
+}
+.content .point-box .point-item span {
+  cursor: pointer;
+}
+.content .point-box .point-item.active {
+  color: #00f8ff;
+}
+.content .point-box .point-item.active::before {
+  background-color: #00f8ff;
+}
+.content .point-box .point-item:nth-last-child(1)::after {
+  width: 0;
+  height: 0;
+}
+.content .point-box .point-item::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  background-color: #c6c6c6;
+  position: absolute;
+  left: 5px;
+  top: 5px;
+}
+.content .point-box .point-item::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 30px;
+  background-color: #c6c6c6;
+  position: relative;
+  top: -5px;
+  left: -10px;
+}
+.content .building-info {
+  width: 320px;
+  padding: 10px;
+  border: 1px solid #00c0ff;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 160px;
+  left: 260px;
+}
+.content .building-info .info-block .title {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.content .building-info .info-block .list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.content .building-info .info-block .list.big {
+  font-size: 16px;
+}
+.content .building-info .info-block .list.big .value {
+  font-size: 20px;
+  font-weight: 700;
+}
+.content .building-info .info-block .list.no-flex {
+  display: block;
+}
+.content .building-info .info-block .list .item {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.content .building-info .info-block .list .item .label {
+  color: #c6c6c6;
+  white-space: nowrap;
+}
+.content .building-info .info-block .list .item .value {
+  color: #00c0ff;
 }
 
 /*# sourceMappingURL=overview.css.map */

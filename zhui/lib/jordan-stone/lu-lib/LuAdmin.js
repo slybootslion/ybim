@@ -58,7 +58,7 @@ layui.define([], exports => {
     }
 
     headerTemplate (data) {
-      let { buttonList, projectList, weather, id } = data
+      let { projectList, weather, id } = data
 
       if (!id || (typeof id === 'string' && id === 'undefined')) id = 1
       const projectTitle = projectList.find(p => p.id === +id).title
@@ -134,6 +134,7 @@ layui.define([], exports => {
       await luUtils.delay(500)
       $(".content-body .left").addClass('left-animation')
       $(".content-body .right").addClass('right-animation')
+      $(".content-body .content").addClass('content-animation')
     }
 
     async bindMethod () {

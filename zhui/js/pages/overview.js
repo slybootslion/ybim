@@ -3,7 +3,6 @@ layui.use([], () => {
   const luUtils = layui.LuUtils
   const echarts = layui.echarts
   const dropdown = layui.dropdown
-// asdf
   const leftColorList1 = [
     { c1: '#fcb740ff', c2: '#13325f80' },
     { c1: '#0381d9ff', c2: '#13325f80' },
@@ -11,7 +10,7 @@ layui.use([], () => {
   ]
 
   class PageTemplate {
-    renderLeft (data) {
+    templateLeft (data) {
       let { topBlock, block1, block2, block3, block4 } = data
       topBlock = topBlock.padStart(6, '0').split('')
       let topBlockNumsHtml = '', block1Html = ``, block2Html = ``
@@ -76,8 +75,8 @@ layui.use([], () => {
       </div>`
     }
 
-    renderRight (data) {
-      const { block1, block2 } = data
+    templateRight (data) {
+      const { block2 } = data
       let h2 = ''
       for (let i = 0; i < block2.dataList.length; i++) {
         const item = block2.dataList[i]
@@ -140,8 +139,8 @@ layui.use([], () => {
               </div>`
     }
 
-    renderContent (data) {
-      const environment = data.environment
+    templateContent (data) {
+      const { environment, building } = data
       let envHtml = ''
       const evnIconList = ['icon-wendu', 'icon-icontubiao', 'icon-fangdumianju',
         'icon-fengsu', 'icon-zaoyin', 'icon-keranqiti']
@@ -155,7 +154,30 @@ layui.use([], () => {
                       </div>
                     </div>`
       }
-      return `<div class="environment-box">${envHtml}</div>`
+      let pointHtml = ''
+      for (let i = 0; i < building.length; i++) {
+        const itme = building[i]
+        const isActive = i === 0 ? 'active' : ''
+        pointHtml += `<div class="point-item ${isActive}"><span data-id="${itme.id}">${itme.name}</span></div>`
+      }
+      let infoHtml = this.infoBlockTemplate(building[0].info)
+      return `<div class="environment-box">${envHtml}</div><div class="point-box">${pointHtml}</div><div class="building-info">${infoHtml}</div>`
+    }
+
+    infoBlockTemplate (data) {
+      let infoHtml = ''
+      for (let i = 0; i < data.length; i++) {
+        const item = data[i]
+        const isBig = i === 0 ? 'big' : ''
+        const noFlex = i === 1 ? 'no-flex' : ''
+        let h = ''
+        for (let i = 0; i < item.data.length; i++) {
+          const it = item.data[i]
+          h += `<div class="item"><div class="label">${it.key}：</div><div class="value">${it.value}</div></div>`
+        }
+        infoHtml += `<div class="title">${item.title}</div><div class="list ${isBig} ${noFlex}">${h}</div>`
+      }
+      return `<div class="info-block">${infoHtml}</div>`
     }
   }
 
@@ -169,14 +191,15 @@ layui.use([], () => {
       await luUtils.delay(500)
       render()
       bindRightEChartsMethod()
+      bindContentMethod()
     }
   )()
 
   function render () {
     const { left, right, content } = pageData
-    const leftHtml = pt.renderLeft(left)
-    const rightHtml = pt.renderRight(right)
-    const contentHtml = pt.renderContent(content)
+    const leftHtml = pt.templateLeft(left)
+    const rightHtml = pt.templateRight(right)
+    const contentHtml = pt.templateContent(content)
     $(".content-body .left").html(leftHtml)
     $(".content-body .right").html(rightHtml)
     $(".content-body .content").html(contentHtml)
@@ -526,7 +549,6 @@ layui.use([], () => {
     const isActive = el.hasClass('active')
     if (isActive) return
     el.addClass('active').siblings('.btn-item').removeClass('active')
-    // todo render echarts data
     handlerEcharts(pageData, { type, idx })
   }
 
@@ -574,6 +596,18 @@ layui.use([], () => {
         break
     }
     return idx
+  }
+
+  function bindContentMethod () {
+    $(".content-body .content").on('click', '.point-item span', function () {
+      const isActive = $(this).parent('.point-item').hasClass('active')
+      if (isActive) return
+      $(this).parent('.point-item').addClass('active').siblings('.point-item').removeClass('active')
+      const id = $(this).data('id')
+      const data = pageData.content.building.find(build => build.id === id)
+      const html = pt.infoBlockTemplate(data.info)
+      $(".building-info").html(html)
+    })
   }
 
 })

@@ -137,6 +137,12 @@ html, body {
       overflow-y: auto;
     }
 
+    .content {
+      flex: 1;
+      position: relative;
+      opacity: 0;
+    }
+
     .left-animation {
       transition: left .5s;
       left: 0;
@@ -147,9 +153,9 @@ html, body {
       right: 0;
     }
 
-    .content {
-      flex: 1;
-      position: relative;
+    .content-animation {
+      transition: opacity .5s;
+      opacity: 1;
     }
   }
 
