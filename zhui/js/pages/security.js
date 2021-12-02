@@ -22,10 +22,10 @@ layui.use([], () => {
         <div class="block-title">
           <div class="title">${block2.title}</div>
           <div class="top-btn-box">
-              <div class="btn-item active">本日</div>
-              <div class="btn-item">本周</div>
-              <div class="btn-item">本月</div>
-            </div>
+            <div class="btn-item active">本日</div>
+            <div class="btn-item">本周</div>
+            <div class="btn-item">本月</div>
+          </div>
         </div>
         <div class="block-content">
           <div class="info-box"></div>
