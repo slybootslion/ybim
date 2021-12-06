@@ -223,7 +223,7 @@ layui.use([], () => {
       const { idx, type } = selected
       if (idx === 0) echarts5.setOption(echartsOpts3(rightChartsDataMakerLine(1, type)))
       if (idx === 1) echarts6.setOption(echartsOpts3(rightChartsDataMakerLine(2, type)))
-      if (idx === 2) echarts7.setOption(echartsOpts3(rightChartsDataMakerPie(type)))
+      if (idx === 2) echarts7.setOption(echartsOpts4(rightChartsDataMakerPie(type)))
       return
     }
 

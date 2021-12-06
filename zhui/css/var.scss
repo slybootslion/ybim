@@ -9,3 +9,12 @@ $color-p1: #fcb740;
 $color-p2: #0381d9;
 $color-p3: #098e52;
 $color-p4: #134a70;
+
+@keyframes rotate-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
