@@ -50,6 +50,22 @@ layui.use([], () => {
       </div>`
     }
 
+    templateRight (data) {
+      const { block1, block2 } = data
+      let videoHtml = ''
+      for (let i = 0; i < block1.data.length; i++) {
+        const item = block1.data[i]
+        videoHtml += `<div class="video-item"><div class="pic-box"><img src="${item.pic}" alt=""></div><div class="pic-info txt-overflow">${item.title}</div></div>`
+      }
+
+      return `<div class="block1 block">
+                <div class="block-title">
+                  <div class="title">${block1.title}</div>
+                </div>
+                <div class="video-content">${videoHtml}</div>
+              </div>`
+    }
+
     leftBlock1Template (data) {
       const count = data.top.reduce((a, b) => a.num + b.num)
 
@@ -92,9 +108,11 @@ layui.use([], () => {
   })()
 
   function render () {
-    const { left } = pageData
+    const { left, right } = pageData
     const leftHtml = pt.templateLeft(left)
+    const rightHtml = pt.templateRight(right)
     $(".content-body .left").html(leftHtml)
+    // $(".content-body .right").html(rightHtml)
   }
 
   function handlerEcharts (data, selected = null) {

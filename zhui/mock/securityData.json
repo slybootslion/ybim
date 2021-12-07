@@ -183,5 +183,54 @@
       ]
     }
   },
-  "right": {}
+  "right": {
+    "block1": {
+      "title": "重点视频监控",
+      "data": [
+        {
+          "id": 1,
+          "pic": "https://www.cuplayer.com/rtsp/Images/rtsp_p10.jpg",
+          "title": "A栋大楼门口1号监控"
+        },
+        {
+          "id": 2,
+          "pic": "https://security.tp-link.com.cn/pages/imageuploadfolder/201706/20170614105626_9960.png",
+          "title": "C栋大楼1号电梯监控"
+        },
+        {
+          "id": 3,
+          "pic": "https://www.ronghengtai.com/uploads/allimg/180605/1-1P60503222N24.jpg",
+          "title": "地下停车场监控"
+        },
+        {
+          "id": 4,
+          "pic": "http://i0.sinaimg.cn/cj/2015/0327/U7924P31DT20150327185023.jpg",
+          "title": "办公区域监控"
+        },
+        {
+          "id": 5,
+          "pic": "https://www.cuplayer.com/rtsp/Images/rtsp_p10.jpg",
+          "title": "A栋大楼大门口监控"
+        },
+        {
+          "id": 6,
+          "pic": "https://www.ronghengtai.com/uploads/allimg/180605/1-1P605032011a9.jpg",
+          "title": "地面停车场C区监控"
+        },
+        {
+          "id": 7,
+          "pic": "https://www.cuplayer.com/rtsp/Images/rtsp_p10.jpg",
+          "title": "C栋大楼大门口监控"
+        },
+        {
+          "id": 8,
+          "pic": "https://i.v2ex.co/6KI0ovh5.jpeg",
+          "title": "A栋大楼2号电梯监控"
+        }
+      ]
+    },
+    "block2": {
+      "title": "安保统计"
+    }
+  }
 }

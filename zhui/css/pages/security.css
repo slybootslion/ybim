@@ -159,4 +159,34 @@
   background-color: #0381d9;
 }
 
+.right .block1 {
+  margin-top: 20px;
+}
+.right .block1 .video-content {
+  padding: 0 20px;
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.right .block1 .video-content .video-item {
+  width: 47%;
+  margin-bottom: 15px;
+}
+.right .block1 .video-content .video-item .pic-box {
+  width: 100%;
+  height: 90px;
+  margin-bottom: 3px;
+}
+.right .block1 .video-content .video-item .pic-box img {
+  width: 100%;
+  height: 100%;
+}
+.right .block1 .video-content .video-item .pic-info {
+  color: #c6c6c6;
+}
+.right .block2 {
+  margin-top: 20px;
+}
+
 /*# sourceMappingURL=security.css.map */

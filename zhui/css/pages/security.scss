@@ -183,5 +183,39 @@
 }
 
 .right {
+  .block1 {
+    margin-top: 20px;
 
+    .video-content {
+      padding: 0 20px;
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .video-item {
+        width: 47%;
+        margin-bottom: 15px;
+
+        .pic-box {
+          width: 100%;
+          height: 90px;
+          margin-bottom: 3px;
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        .pic-info {
+          color: $color6;
+        }
+      }
+    }
+  }
+
+  .block2 {
+    margin-top: 20px;
+  }
 }
