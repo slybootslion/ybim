@@ -57,12 +57,33 @@ layui.use([], () => {
         const item = block1.data[i]
         videoHtml += `<div class="video-item"><div class="pic-box"><img src="${item.pic}" alt=""></div><div class="pic-info txt-overflow">${item.title}</div></div>`
       }
-
       return `<div class="block1 block">
                 <div class="block-title">
                   <div class="title">${block1.title}</div>
                 </div>
                 <div class="video-content">${videoHtml}</div>
+              </div>
+              <div class="block2 block">
+                <div class="block-title">
+                  <div class="title">${block2.title}</div>
+                </div>
+                <div class="security-content">
+                  <div class="top">
+                    <div class="top-item active">
+                      <div class="num">100%</div>
+                      <div class="txt">在岗率</div>
+                    </div>
+                    <div class="top-item">
+                      <div class="num">${block2.data.info.total}人</div>
+                      <div class="txt">总人数</div>
+                    </div>
+                    <div class="top-item">
+                      <div class="num">${block2.data.info.onDuty}人</div>
+                      <div class="txt">当前在岗人数</div>
+                    </div>
+                  </div>
+                  <div class="charts-bar" id="echarts2"></div>
+                </div>
               </div>`
     }
 
@@ -112,12 +133,14 @@ layui.use([], () => {
     const leftHtml = pt.templateLeft(left)
     const rightHtml = pt.templateRight(right)
     $(".content-body .left").html(leftHtml)
-    // $(".content-body .right").html(rightHtml)
+    $(".content-body .right").html(rightHtml)
   }
 
   function handlerEcharts (data, selected = null) {
     const echarts1 = echarts.init(document.querySelector('#echarts1'))
+    const echarts2 = echarts.init(document.querySelector('#echarts2'))
     const leftData = data.left.block2.data
+    const rightData = data.right.block2.data.list
 
     if (selected) {
       const { type, idx } = selected
@@ -136,6 +159,7 @@ layui.use([], () => {
     }
 
     echarts1.setOption(echartsOpts1(leftChartsDataMakerLine('day')))
+    echarts2.setOption(echartsOpts2(rightData))
 
     function echartsOpts1 (data = {}) {
       const { data: d, name, info, dateType } = data
@@ -176,7 +200,7 @@ layui.use([], () => {
           },
           axisLabel: {
             textStyle: {
-              color: '#0381d9'
+              color: '#86cdff'
             }
           },
           splitLine: {
@@ -204,6 +228,110 @@ layui.use([], () => {
             },
             areaStyle: { color: '#0381d990' }
           }
+        ]
+      }
+    }
+
+    function echartsOpts2 (data = {}) {
+      let { data: d, xData } = data
+      return {
+        xAxis: {
+          type: 'category',
+          data: xData,
+          axisTick: {
+            alignWithLabel: true,
+            show: false,
+          },
+          axisLabel: {
+            textStyle: {
+              color: '#fff'
+            }
+          },
+        },
+        yAxis: {
+          type: 'value',
+          nameTextStyle: {
+            color: '#c6c6c6',
+          },
+          axisLabel: {
+            textStyle: {
+              color: '#86cdff'
+            }
+          },
+          splitLine: {
+            lineStyle: {
+              color: '#5c5c5c26',
+            }
+          },
+          max: 40,
+          splitNumber: 5,
+        },
+        grid: {
+          left: '0',
+          right: '0',
+          bottom: '15%',
+          top: '15%',
+          containLabel: true
+        },
+        series: [
+          {
+            name: 'line',
+            type: 'bar',
+            barGap: '-100%',
+            barWidth: 20,
+            itemStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 0, color: '#00c0ff' },
+                { offset: 0.4, color: '#00c0ff89' },
+                { offset: 1, color: 'rgba(20,200,212,0)' }
+              ])
+            },
+            showBackground: true,
+            backgroundStyle: {
+              color: 'rgba(0,0,0,.2)'
+            },
+            z: -22,
+            data: d
+          },
+          {
+            name: 'dotted',
+            type: 'pictorialBar',
+            symbol: 'rect',
+            itemStyle: {
+              color: 'rgba(0,0,0,1)'
+            },
+            symbolRepeat: true,
+            symbolSize: [20, 2],
+            symbolMargin: 3,
+            z: -10,
+            data: d
+          },
+          // {
+          // data: d,
+          // type: 'pictorialBar',
+          // barWidth: 20,
+          // symbol: 'image://images/common/BIM-bg.jpg',
+          // symbolKeepAspect: true,
+          // symbolSize: [20, '100%'],
+          // symbolRepeat: true,
+          // symbolMargin: '10%',
+          // symbolClip: true,
+          // itemStyle: {
+          //   normal: {
+          //     color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+          //       offset: 0,
+          //       color: "red" // 0% 处的颜色
+          //     }, {
+          //       offset: 0.6,
+          //       color: "blue" // 60% 处的颜色
+          //     }, {
+          //       offset: 1,
+          //       color: "yellow" // 100% 处的颜色
+          //     }], false)
+          //   }
+          // },
+          // symbolSize: 20,
+          // }
         ]
       }
     }
