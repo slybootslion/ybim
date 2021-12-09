@@ -92,6 +92,7 @@ layui.use([], () => {
                   <div class="desc">（启用/停用）</div>
                 </div>`
       }
+      const yearTxt = new Date().getFullYear()
 
       return `<div class="block1 block">
                 <div class="block-title">${block1.title}</div>
@@ -103,7 +104,7 @@ layui.use([], () => {
                         <div class="top-btn-box">
                           <div class="btn-item date active">本日</div>
                           <div class="btn-item date">本月</div>
-                          <div class="btn-item" id="selectYears0">2021 ></div>
+                          <div class="btn-item" id="selectYears0">${yearTxt} ></div>
                         </div>
                       </div>
                       <div class="charts-line-pie" id="echarts5"></div>
@@ -114,7 +115,7 @@ layui.use([], () => {
                         <div class="top-btn-box">
                           <div class="btn-item date active">本日</div>
                           <div class="btn-item date">本月</div>
-                          <div class="btn-item" id="selectYears1">2021 ></div>
+                          <div class="btn-item" id="selectYears1">${yearTxt} ></div>
                         </div>
                       </div>
                       <div class="charts-line-pie" id="echarts6"></div>
@@ -125,7 +126,7 @@ layui.use([], () => {
                         <div class="top-btn-box">
                           <div class="btn-item date active">本日</div>
                           <div class="btn-item date">本月</div>
-                          <div class="btn-item" id="selectYears2">2021 ></div>
+                          <div class="btn-item" id="selectYears2">${yearTxt} ></div>
                         </div>
                       </div>
                       <div class="charts-line-pie" id="echarts7"></div>
@@ -381,6 +382,7 @@ layui.use([], () => {
               label: {
                 show: true,
                 position: 'right',
+                valueAnimation: true,
                 textStyle: {
                   color: '#fff',
                   fontSize: 12,
@@ -558,7 +560,7 @@ layui.use([], () => {
       const type = $this.html() === '本月' ? 'month' : 'day'
       const contentTitle = $this.parents('.charts-top').find('.top-left').html()
       const idx = findEchartsBoxIndex(contentTitle)
-      rightEchartsBtnItemClick($(this), { type, idx })
+      rightEchartsBtnItemClick($this, { type, idx })
     })
   }
 

@@ -1,0 +1,64 @@
+@keyframes rotate-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.top-block {
+  width: 96%;
+  background-image: linear-gradient(#0f4fa9, #052351);
+  padding: 10px 20px;
+  box-sizing: border-box;
+  margin: 5px;
+  display: flex;
+}
+.top-block .top-item {
+  width: 50%;
+}
+.top-block .top-item .num {
+  color: #00f8ff;
+  font-size: 20px;
+}
+
+.block {
+  margin-top: 20px;
+}
+
+.block-content {
+  box-sizing: border-box;
+  padding: 0 30px;
+}
+
+.left .block1 .charts-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.left .block1 .charts-box .charts-item {
+  margin-bottom: 10px;
+}
+.left .block1 .charts-box .charts-item .charts-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.left .block1 .charts-box .charts-item .charts-top .top-btn-box {
+  display: flex;
+  align-items: center;
+}
+.left .block1 .charts-box .charts-item .charts-top .top-btn-box .btn-item {
+  padding: 3px 5px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.left .block1 .charts-box .charts-item .charts-top .top-btn-box .btn-item.active {
+  background-color: #0381d9;
+}
+.left .block1 .charts-box .charts-item .charts-bar {
+  height: 156px;
+}
+
+/*# sourceMappingURL=maintenance.css.map */

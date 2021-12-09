@@ -306,32 +306,6 @@ layui.use([], () => {
             z: -10,
             data: d
           },
-          // {
-          // data: d,
-          // type: 'pictorialBar',
-          // barWidth: 20,
-          // symbol: 'image://images/common/BIM-bg.jpg',
-          // symbolKeepAspect: true,
-          // symbolSize: [20, '100%'],
-          // symbolRepeat: true,
-          // symbolMargin: '10%',
-          // symbolClip: true,
-          // itemStyle: {
-          //   normal: {
-          //     color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
-          //       offset: 0,
-          //       color: "red" // 0% 处的颜色
-          //     }, {
-          //       offset: 0.6,
-          //       color: "blue" // 60% 处的颜色
-          //     }, {
-          //       offset: 1,
-          //       color: "yellow" // 100% 处的颜色
-          //     }], false)
-          //   }
-          // },
-          // symbolSize: 20,
-          // }
         ]
       }
     }
