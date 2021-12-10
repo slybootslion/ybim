@@ -69,7 +69,7 @@ layui.use([], () => {
     const leftHtml = pt.templateLeft(left)
     const rightHtml = pt.templateRight(right)
     $(".content-body .left").html(leftHtml)
-    $(".content-body .right").html(rightHtml)
+    // $(".content-body .right").html(rightHtml)
     handlerEcharts(pageData.left.block1)
     rightEchartsYearSelectRender()
   }
