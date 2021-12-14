@@ -1,0 +1,164 @@
+@import "../var.scss";
+
+.block {
+  margin-top: 20px;
+}
+
+.block-content {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  padding: 0 30px;
+  margin-bottom: 10px;
+
+  .block-content-item {
+    width: 50%;
+    margin-bottom: 10px;
+
+    .item-title {
+      color: $color6;
+      margin-bottom: 5px;
+    }
+    .item-num {
+      .num {
+        color: $color2;
+        font-size: 20px;
+      }
+      .unit {
+        color: $color6;
+      }
+    }
+  }
+}
+
+.block-title {
+  justify-content: space-between;
+  &::before {
+    display: none;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 5px;
+      height: 18px;
+      background-color: #00f8ff;
+      margin-right: 6px;
+    }
+  }
+
+  .top-btn-box {
+    display: flex;
+    align-items: center;
+
+    .btn-item {
+      height: 16px;
+      line-height: 16px;
+      font-size: 14px;
+      font-weight: 400;
+      padding: 3px 10px;
+      border-radius: 3px;
+      margin: 0 3px;
+
+      &.c1 {
+        background-color: $color2;
+      }
+      &.c2 {
+        background-color: $color3;
+      }
+      &.c3 {
+        background-color: $color1;
+      }
+    }
+  }
+}
+
+.left {
+  .block1 {
+    .charts-box {
+      margin-top: 5px;
+      display: flex;
+      .charts-item {
+        flex: 1;
+        padding: 0 10px;
+        box-sizing: border-box;
+
+        .charts-pie {
+          width: 120px;
+          height: 120px;
+          margin: 0 auto;
+        }
+      }
+
+      .charts-legend {
+        margin-top: 6px;
+
+        .legend {
+          width: 70%;
+          display: flex;
+          align-items: center;
+          margin-bottom: 10px;
+          margin-left: 30px;
+
+          .color {
+            width: 10px;
+            height: 10px;
+            border-radius: 10px;
+
+          }
+          div {
+            margin-right: 5px;
+
+            &:nth-child(2) {
+              color: $color6;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .block2 {
+    .charts-box {
+      margin-top: 5px;
+      padding: 0 20px;
+
+      .charts-item {
+        height: 105px;
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  .block3 {
+    .charts-box {
+      margin-top: 5px;
+      padding: 0 20px;
+
+      .charts-item {
+        height: 160px;
+      }
+    }
+  }
+}
+
+.right {
+  .top-btn-box {
+    .btn-item {
+      color: #333333;
+    }
+  }
+
+  .charts-box {
+    margin-top: 5px;
+    padding: 0 20px;
+
+    .charts-item {
+      height: 160px;
+    }
+  }
+}
