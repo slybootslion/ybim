@@ -56,6 +56,16 @@ layui.use([], () => {
 
     templateRight (data) {
       let { block1, block2 } = data
+      let l1 = '', l2 = ''
+      console.log(block2.dataList)
+      for (let i = 0; i < block2.dataList.data1.length; i++) {
+        const item = block2.dataList.data1[i]
+        l1 += `<div class="list-item">${item}</div>`
+      }
+      for (let i = 0; i < block2.dataList.data2.length; i++) {
+        const item = block2.dataList.data2[i]
+        l2 += `<div class="list-item">${item}</div>`
+      }
       return `
       <div class="block1 block">
         <div class="block-title">
@@ -67,6 +77,23 @@ layui.use([], () => {
         </div>
         <div class="charts-box">
           <div class="charts-item" id="echarts6"></div>
+        </div>
+      </div>
+      <div class="block2 block">
+        <div class="block-title">${block2.title}</div>
+        <div class="block-content">
+          <div class="block-list">
+            <div class="content-title">
+              <span class="dian c1"></span><span>南门</span>
+            </div>
+            ${l1}
+          </div>
+          <div class="block-list">
+            <div class="content-title">
+              <span class="dian c2"></span><span>北门</span>
+            </div>
+            ${l1}
+          </div>
         </div>
       </div>
       `
@@ -323,7 +350,6 @@ layui.use([], () => {
   }
 
   function echartsOpts4 (data = {}) {
-    console.log(data)
     return {
       grid: {
         left: '0',
