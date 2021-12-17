@@ -4,10 +4,11 @@ layui.use([], () => {
   const echarts = layui.echarts
   const dropdown = layui.dropdown
 
+  const yearTxt = new Date().getFullYear()
+
   class PageTemplate {
     templateLeft (data) {
       const { block1 } = data
-      const yearTxt = new Date().getFullYear()
       return `
         <div class="block1 block">
           <div class="block-title">${block1.title}</div>
@@ -41,8 +42,52 @@ layui.use([], () => {
       `
     }
 
-    templateRight () {
-      return ``
+    templateRight (data) {
+      const { block1, block2, block3 } = data
+      return `
+        <div class="block1 block">
+        <div class="block-title">
+          <div class="title">${block1.title}</div>
+          <div class="top-btn-box">
+            <div class="btn-item active">本日</div>
+            <div class="btn-item">本月</div>
+            <div class="btn-item" id="selectYears2">${yearTxt} ></div>
+          </div>
+        </div>
+        <div class="block-content">
+          <div class="info-box"></div>
+          <div class="right-charts" id="echarts4"></div>
+        </div>
+      </div>
+      <div class="block1 block">
+        <div class="block-title">
+          <div class="title">${block2.title}</div>
+          <div class="top-btn-box">
+            <div class="btn-item active">本日</div>
+            <div class="btn-item">本月</div>
+            <div class="btn-item" id="selectYears3">${yearTxt} ></div>
+          </div>
+        </div>
+        <div class="block-content">
+          <div class="info-box"></div>
+          <div class="right-charts" id="echarts5"></div>
+        </div>
+      </div>
+      <div class="block1 block">
+        <div class="block-title">
+          <div class="title">${block3.title}</div>
+          <div class="top-btn-box">
+            <div class="btn-item active">本日</div>
+            <div class="btn-item">本月</div>
+            <div class="btn-item" id="selectYears4">${yearTxt} ></div>
+          </div>
+        </div>
+        <div class="block-content">
+          <div class="info-box"></div>
+          <div class="right-charts" id="echarts6"></div>
+        </div>
+      </div>
+      `
     }
   }
 
@@ -259,11 +304,10 @@ layui.use([], () => {
   }
 
   function leftEchartsYearSelectRender () {
-    const year = new Date().getFullYear()
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 5; i++) {
       dropdown.render({
         elem: '#selectYears' + i,
-        data: [{ id: 1, title: year }, { id: 2, title: year - 1 }, { id: 3, title: year - 2 }],
+        data: [{ id: 1, title: yearTxt }, { id: 2, title: yearTxt - 1 }, { id: 3, title: yearTxt - 2 }],
         click (obj) {
           const $el = $(this.elem[0])
           $el.html(obj.title + ' >')

@@ -6,6 +6,19 @@
     transform: rotate(360deg);
   }
 }
+.top-btn-box {
+  display: flex;
+  align-items: center;
+}
+.top-btn-box .btn-item {
+  padding: 3px 5px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.top-btn-box .btn-item.active {
+  background-color: #0381d9;
+}
+
 .left .block1 .charts-box {
   width: 100%;
   display: flex;
@@ -20,21 +33,45 @@
   align-items: center;
   margin-bottom: 5px;
 }
-.left .block1 .charts-box .charts-item .charts-top .top-btn-box {
+.left .block1 .charts-box .charts-item .charts-line-pie {
+  height: 136px;
+  margin-bottom: 20px;
+}
+
+.right .block-title {
+  justify-content: space-between;
+}
+.right .block-title::before {
+  display: none;
+}
+.right .block-title .title {
   display: flex;
   align-items: center;
 }
-.left .block1 .charts-box .charts-item .charts-top .top-btn-box .btn-item {
+.right .block-title .title::before {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 18px;
+  background-color: #00f8ff;
+  margin-right: 6px;
+}
+.right .block-title .top-btn-box {
+  display: flex;
+  align-items: center;
+}
+.right .block-title .top-btn-box .btn-item {
+  font-size: 14px;
+  font-weight: 400;
   padding: 3px 5px;
   border-radius: 3px;
   cursor: pointer;
 }
-.left .block1 .charts-box .charts-item .charts-top .top-btn-box .btn-item.active {
+.right .block-title .top-btn-box .btn-item.active {
   background-color: #0381d9;
 }
-.left .block1 .charts-box .charts-item .charts-line-pie {
-  height: 136px;
-  margin-bottom: 20px;
+.right .right-charts {
+  height: 160px;
 }
 
 .block {

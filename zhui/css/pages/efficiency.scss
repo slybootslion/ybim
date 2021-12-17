@@ -1,4 +1,18 @@
 @import "../var.scss";
+.top-btn-box {
+  display: flex;
+  align-items: center;
+
+  .btn-item {
+    padding: 3px 5px;
+    border-radius: 3px;
+    cursor: pointer;
+
+    &.active {
+      background-color: $color-p2;
+    }
+  }
+}
 
 .left {
   .block1 {
@@ -15,21 +29,6 @@
           justify-content: space-between;
           align-items: center;
           margin-bottom: 5px;
-
-          .top-btn-box {
-            display: flex;
-            align-items: center;
-
-            .btn-item {
-              padding: 3px 5px;
-              border-radius: 3px;
-              cursor: pointer;
-
-              &.active {
-                background-color: $color-p2;
-              }
-            }
-          }
         }
 
         .charts-line-pie {
@@ -38,6 +37,48 @@
         }
       }
     }
+  }
+}
+
+.right {
+  .block-title {
+    justify-content: space-between;
+    &::before {
+      display: none;
+    }
+    .title {
+      display: flex;
+      align-items: center;
+
+      &::before {
+        content: "";
+        display: block;
+        width: 5px;
+        height: 18px;
+        background-color: #00f8ff;
+        margin-right: 6px;
+      }
+    }
+    .top-btn-box {
+      display: flex;
+      align-items: center;
+
+      .btn-item {
+        font-size: 14px;
+        font-weight: 400;
+        padding: 3px 5px;
+        border-radius: 3px;
+        cursor: pointer;
+
+        &.active {
+          background-color: $color-p2;
+        }
+      }
+    }
+  }
+
+  .right-charts {
+    height: 160px;
   }
 }
 
