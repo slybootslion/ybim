@@ -45,12 +45,12 @@ layui.use([], () => {
     templateRight (data) {
       const { block1, block2, block3 } = data
       return `
-        <div class="block1 block">
+      <div class="block1 block">
         <div class="block-title">
           <div class="title">${block1.title}</div>
           <div class="top-btn-box">
-            <div class="btn-item active">本日</div>
-            <div class="btn-item">本月</div>
+            <div class="btn-item date active">本日</div>
+            <div class="btn-item date">本月</div>
             <div class="btn-item" id="selectYears2">${yearTxt} ></div>
           </div>
         </div>
@@ -59,12 +59,12 @@ layui.use([], () => {
           <div class="right-charts" id="echarts4"></div>
         </div>
       </div>
-      <div class="block1 block">
+      <div class="block2 block">
         <div class="block-title">
           <div class="title">${block2.title}</div>
           <div class="top-btn-box">
-            <div class="btn-item active">本日</div>
-            <div class="btn-item">本月</div>
+            <div class="btn-item date active">本日</div>
+            <div class="btn-item date">本月</div>
             <div class="btn-item" id="selectYears3">${yearTxt} ></div>
           </div>
         </div>
@@ -73,12 +73,12 @@ layui.use([], () => {
           <div class="right-charts" id="echarts5"></div>
         </div>
       </div>
-      <div class="block1 block">
+      <div class="block3 block">
         <div class="block-title">
           <div class="title">${block3.title}</div>
           <div class="top-btn-box">
-            <div class="btn-item active">本日</div>
-            <div class="btn-item">本月</div>
+            <div class="btn-item date active">本日</div>
+            <div class="btn-item date">本月</div>
             <div class="btn-item" id="selectYears4">${yearTxt} ></div>
           </div>
         </div>
@@ -114,7 +114,7 @@ layui.use([], () => {
     $(".content-body").on('click', '.btn-item.date', function () {
       const $this = $(this)
       const type = $this.html() === '本月' ? 'month' : 'day'
-      const contentTitle = $this.parents('.charts-top').find('.top-left').html()
+      const contentTitle = findContentTitle($this)
       const idx = findEchartsBoxIndex(contentTitle)
       dateBtnItemClick($this, { type, idx })
     })
@@ -124,17 +124,24 @@ layui.use([], () => {
     const echarts1 = echarts.init(document.querySelector('#echarts1'))
     const echarts2 = echarts.init(document.querySelector('#echarts2'))
 
+    const echarts4 = echarts.init(document.querySelector('#echarts4'))
+    const echarts5 = echarts.init(document.querySelector('#echarts5'))
+    const echarts6 = echarts.init(document.querySelector('#echarts6'))
+
     const leftData = data.left.block1
+    const rightData = data.right.block1
 
     if (selected) {
       const { idx, type } = selected
-      if (idx === 0) echarts1.setOption(echartsOpts3(leftChartsDataMakerLine(1, type)))
+      if (idx === 0) echarts1.setOption(echartsOpts3(chartsDataMakerLine(leftData, 1, type)))
       if (idx === 1) echarts2.setOption(echartsOpts4(leftChartsDataMakerPie(type)))
+
+      if (idx === 2) echarts4.setOption(echartsOpts3(chartsDataMakerLine(rightData, 1, type)))
       return
     }
 
-    function leftChartsDataMakerLine (type, dateType) {
-      let data = leftData['data' + type]
+    function chartsDataMakerLine (d, type, dateType) {
+      let data = d['data' + type]
       return {
         title: data.unit,
         data: data[dateType + 'Data'],
@@ -148,8 +155,10 @@ layui.use([], () => {
       }
     }
 
-    echarts1.setOption(echartsOpts3(leftChartsDataMakerLine(1, 'day')))
+    echarts1.setOption(echartsOpts3(chartsDataMakerLine(leftData, 1, 'day')))
     echarts2.setOption(echartsOpts4(leftChartsDataMakerPie('day')))
+
+    echarts4.setOption(echartsOpts3(chartsDataMakerLine(rightData, 1, 'day')))
   }
 
   function echartsOpts3 (data = {}) {
@@ -312,7 +321,7 @@ layui.use([], () => {
           const $el = $(this.elem[0])
           $el.html(obj.title + ' >')
           const $this = $(this.elem[0])
-          const contentTitle = $this.parents('.charts-top').find('.top-left').html()
+          const contentTitle = findContentTitle($this)
           const idx = findEchartsBoxIndex(contentTitle)
           dateBtnItemClick($this, { type: 'year', idx })
         }
@@ -328,6 +337,17 @@ layui.use([], () => {
     handlerEcharts(pageData, { type, idx })
   }
 
+  function findContentTitle ($this) {
+    const chartsTop = $this.parents('.charts-top')
+    let contentTitle
+    if (chartsTop.length) {
+      contentTitle = $this.parents('.charts-top').find('.top-left').html()
+    } else {
+      contentTitle = $this.parents('.block-title').find('.title').html()
+    }
+    return contentTitle
+  }
+
   function findEchartsBoxIndex (contentTitle) {
     let idx = null
     switch (contentTitle) {
@@ -336,6 +356,15 @@ layui.use([], () => {
         break
       case '用电量占比':
         idx = 1
+        break
+      case '给排水统计':
+        idx = 2
+        break
+      case '区域用气统计':
+        idx = 3
+        break
+      case '区域用热量':
+        idx = 4
         break
       default:
         break

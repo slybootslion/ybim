@@ -138,7 +138,7 @@
   "right": {
     "block1": {
       "title": "给排水统计",
-      "data": {
+      "data1": {
         "unit": "吨",
         "names": [
           "总用水",
