@@ -139,7 +139,7 @@ layui.use([], () => {
       if (idx === 1) echarts2.setOption(echartsOpts2(leftChartsDataMakerPie(type)))
 
       if (idx === 2) echarts4.setOption(echartsOpts1(chartsDataMakerLine(rightData1, 1, type)))
-      
+
       if (idx === 3) echarts5.setOption(echartsOpts3(rightChartsDataMakerBar(rightData2, type)))
       if (idx === 4) echarts6.setOption(echartsOpts3(rightChartsDataMakerBar(rightData3, type)))
       return
