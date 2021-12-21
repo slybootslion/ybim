@@ -129,14 +129,19 @@ layui.use([], () => {
     const echarts6 = echarts.init(document.querySelector('#echarts6'))
 
     const leftData = data.left.block1
-    const rightData = data.right.block1
+    const rightData1 = data.right.block1
+    const rightData2 = data.right.block2
+    const rightData3 = data.right.block3
 
     if (selected) {
       const { idx, type } = selected
-      if (idx === 0) echarts1.setOption(echartsOpts3(chartsDataMakerLine(leftData, 1, type)))
-      if (idx === 1) echarts2.setOption(echartsOpts4(leftChartsDataMakerPie(type)))
+      if (idx === 0) echarts1.setOption(echartsOpts1(chartsDataMakerLine(leftData, 1, type)))
+      if (idx === 1) echarts2.setOption(echartsOpts2(leftChartsDataMakerPie(type)))
 
-      if (idx === 2) echarts4.setOption(echartsOpts3(chartsDataMakerLine(rightData, 1, type)))
+      if (idx === 2) echarts4.setOption(echartsOpts1(chartsDataMakerLine(rightData1, 1, type)))
+      
+      if (idx === 3) echarts5.setOption(echartsOpts3(rightChartsDataMakerBar(rightData2, type)))
+      if (idx === 4) echarts6.setOption(echartsOpts3(rightChartsDataMakerBar(rightData3, type)))
       return
     }
 
@@ -155,13 +160,24 @@ layui.use([], () => {
       }
     }
 
-    echarts1.setOption(echartsOpts3(chartsDataMakerLine(leftData, 1, 'day')))
-    echarts2.setOption(echartsOpts4(leftChartsDataMakerPie('day')))
+    function rightChartsDataMakerBar (d, dateType) {
+      const data = d[dateType + 'Data']
+      return {
+        title: d.unit,
+        xData: d.xData,
+        data
+      }
+    }
 
-    echarts4.setOption(echartsOpts3(chartsDataMakerLine(rightData, 1, 'day')))
+    echarts1.setOption(echartsOpts1(chartsDataMakerLine(leftData, 1, 'day')))
+    echarts2.setOption(echartsOpts2(leftChartsDataMakerPie('day')))
+
+    echarts4.setOption(echartsOpts1(chartsDataMakerLine(rightData1, 1, 'day')))
+    echarts5.setOption(echartsOpts3(rightChartsDataMakerBar(rightData2, 'day')))
+    echarts6.setOption(echartsOpts3(rightChartsDataMakerBar(rightData3, 'day')))
   }
 
-  function echartsOpts3 (data = {}) {
+  function echartsOpts1 (data = {}) {
     const { data: d, title: name } = data
     const colorData = {
       1: { c1: ['#0381d9'], c2: [{ t: '#0381d980', b: '#0381d980' }] },
@@ -253,7 +269,7 @@ layui.use([], () => {
     return opts
   }
 
-  function echartsOpts4 (data = {}) {
+  function echartsOpts2 (data = {}) {
     const colorList = ['#61b5e0', '#d8ca74', '#14a7e2', '#bfa55f', '#0962b6']
     const colorList2 = ['#47c8ff', '#ffe042', '#2ec1ff', '#ffcc39', '#128dff']
     return {
@@ -307,6 +323,66 @@ layui.use([], () => {
               }])
             }
           }
+        }
+      ]
+    }
+  }
+
+  function echartsOpts3 (data = {}) {
+    const colorList = ['#0381d9', '#00f8ff']
+    return {
+      grid: {
+        left: '0',
+        right: '0',
+        bottom: '0',
+        top: '20%',
+        containLabel: true,
+      },
+      xAxis: {
+        type: 'category',
+        data: data.xData,
+        axisLabel: {
+          textStyle: {
+            color: '#fff'
+          }
+        },
+        lineStyle: {
+          color: '#c6c6c6'
+        },
+        axisTick: {
+          show: false,
+        },
+      },
+      yAxis: {
+        type: 'value',
+        name: data.title,
+        nameTextStyle: {
+          color: '#c6c6c6',
+        },
+        axisLabel: {
+          textStyle: {
+            color: '#00c0ff'
+          }
+        },
+        splitLine: {
+          lineStyle: {
+            color: '#5c5c5c80',
+          }
+        }
+      },
+      series: [
+        {
+          data: data.data,
+          type: 'bar',
+          barWidth: '12',
+          itemStyle: {
+            color (params) {
+              return new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                { offset: 0, color: colorList[0] },
+                { offset: 1, color: colorList[1] }
+              ])
+            }
+          },
         }
       ]
     }
