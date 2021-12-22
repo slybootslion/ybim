@@ -37,6 +37,26 @@
   height: 136px;
   margin-bottom: 20px;
 }
+.left .block1 .charts-box .charts-item .charts-line-bar {
+  height: 150px;
+}
+.left .block1 .top-signs {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+}
+.left .block1 .top-signs::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  background-color: #f4b140;
+  margin-right: 10px;
+}
+.left .block1 .top-signs.blue::before {
+  background-color: #00f8ff;
+}
 
 .right .block-title {
   justify-content: space-between;

@@ -35,6 +35,32 @@
           height: 136px;
           margin-bottom: 20px;
         }
+
+        .charts-line-bar {
+          height: 150px;
+        }
+      }
+    }
+
+    .top-signs {
+      margin-left: 20px;
+      display: flex;
+      align-items: center;
+
+      &::before {
+        content: '';
+        display: block;
+        width: 10px;
+        height: 10px;
+        border-radius: 10px;
+        background-color: $color3;
+        margin-right: 10px;
+      }
+
+      &.blue {
+        &::before {
+          background-color: $color1;
+        }
       }
     }
   }

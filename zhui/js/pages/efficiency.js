@@ -8,7 +8,7 @@ layui.use([], () => {
 
   class PageTemplate {
     templateLeft (data) {
-      const { block1 } = data
+      const { block1, block2 } = data
       return `
         <div class="block1 block">
           <div class="block-title">${block1.title}</div>
@@ -35,6 +35,16 @@ layui.use([], () => {
                   </div>
                 </div>
                 <div class="charts-line-pie" id="echarts2"></div>
+              </div>
+              <div class="charts-item">
+                <div class="charts-top">
+                  <div class="top-left">月度节能情况</div>
+                  <div class="top-btn-box">
+                    <div class="top-signs">同比增长</div>
+                    <div class="top-signs blue">均值<br/>(kwh)</div>
+                  </div>
+                </div>
+                <div class="charts-line-bar" id="echarts3"></div>
               </div>
             </div>
           </div>
@@ -123,6 +133,7 @@ layui.use([], () => {
   function handlerEcharts (data, selected = null) {
     const echarts1 = echarts.init(document.querySelector('#echarts1'))
     const echarts2 = echarts.init(document.querySelector('#echarts2'))
+    const echarts3 = echarts.init(document.querySelector('#echarts3'))
 
     const echarts4 = echarts.init(document.querySelector('#echarts4'))
     const echarts5 = echarts.init(document.querySelector('#echarts5'))
@@ -139,7 +150,6 @@ layui.use([], () => {
       if (idx === 1) echarts2.setOption(echartsOpts2(leftChartsDataMakerPie(type)))
 
       if (idx === 2) echarts4.setOption(echartsOpts1(chartsDataMakerLine(rightData1, 1, type)))
-
       if (idx === 3) echarts5.setOption(echartsOpts3(rightChartsDataMakerBar(rightData2, type)))
       if (idx === 4) echarts6.setOption(echartsOpts3(rightChartsDataMakerBar(rightData3, type)))
       return
@@ -171,6 +181,7 @@ layui.use([], () => {
 
     echarts1.setOption(echartsOpts1(chartsDataMakerLine(leftData, 1, 'day')))
     echarts2.setOption(echartsOpts2(leftChartsDataMakerPie('day')))
+    echarts3.setOption(echartsOpts4(leftData.data3))
 
     echarts4.setOption(echartsOpts1(chartsDataMakerLine(rightData1, 1, 'day')))
     echarts5.setOption(echartsOpts3(rightChartsDataMakerBar(rightData2, 'day')))
@@ -383,6 +394,117 @@ layui.use([], () => {
               ])
             }
           },
+        }
+      ]
+    }
+  }
+
+  function echartsOpts4 (data = {}) {
+    console.log(data)
+    let { dataBar, dataLine, xData } = data
+    return {
+      xAxis: {
+        type: 'category',
+        data: xData,
+        axisTick: {
+          alignWithLabel: true,
+          show: false,
+        },
+        axisLabel: {
+          textStyle: {
+            color: '#fff'
+          }
+        },
+      },
+      yAxis: [
+        {
+          type: 'value',
+          nameTextStyle: {
+            color: '#c6c6c6',
+          },
+          axisLabel: {
+            textStyle: {
+              color: '#86cdff'
+            }
+          },
+          splitLine: {
+            lineStyle: {
+              color: '#5c5c5c26',
+            }
+          },
+        },
+        {
+          type: 'value',
+          nameTextStyle: {
+            color: '#c6c6c6',
+          },
+          axisLabel: {
+            textStyle: {
+              color: '#86cdff'
+            }
+          },
+          splitLine: {
+            lineStyle: {
+              color: '#5c5c5c26',
+            }
+          },
+        },
+      ],
+      grid: {
+        left: '0',
+        right: '0',
+        bottom: '0',
+        top: '20%',
+        containLabel: true
+      },
+      series: [
+        {
+          name: 'bar1',
+          type: 'bar',
+          barGap: '-100%',
+          barWidth: 10,
+          itemStyle: {
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+              { offset: 0, color: '#00c0ff' },
+              { offset: 0.4, color: '#00c0ff89' },
+              { offset: 1, color: 'rgba(20,200,212,0)' }
+            ])
+          },
+          showBackground: true,
+          backgroundStyle: {
+            color: 'rgba(0,0,0,.2)'
+          },
+          z: -22,
+          data: dataBar
+        },
+        {
+          name: 'dotted',
+          type: 'pictorialBar',
+          barWidth: 10,
+          symbol: 'rect',
+          itemStyle: {
+            color: 'rgba(0,0,0,1)'
+          },
+          symbolRepeat: true,
+          symbolSize: [20, 2],
+          symbolMargin: 3,
+          z: -10,
+          data: dataBar
+        },
+        {
+          name: 'line',
+          symbol: "none",
+          type: 'line',
+          yAxisIndex: 1,
+          data: dataLine,
+          smooth: true,
+          itemStyle: {
+            normal: {
+              lineStyle: {
+                color: '#f4b140'
+              }
+            }
+          }
         }
       ]
     }
