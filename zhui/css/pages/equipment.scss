@@ -1,0 +1,50 @@
+@import "../var.scss";
+
+.right {
+  .block1 {
+    .block-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .equipment-item {
+        margin-bottom: 10px;
+        width: 33%;
+        position: relative;
+        right: -20px;
+
+        .icon {
+          margin-bottom: 5px;
+
+          .iconfont {
+            font-size: 34px;
+            background-image: linear-gradient(to bottom, #3ad1ed, #2775e6);
+            -webkit-background-clip: text;
+            color: transparent;
+          }
+        }
+        .txt {
+          font-size: 16px;
+          color: $color6;
+          margin-bottom: 3px;
+        }
+        .nums {
+          margin-bottom: 3px;
+          .num-1 {
+            color: $color1;
+          }
+        }
+        .desc {
+          color: $color6;
+          font-size: 12px;
+          margin-left: -10px;
+        }
+      }
+
+    }
+  }
+}
+
+.block {
+  margin-top: 20px;
+}

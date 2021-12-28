@@ -1,0 +1,50 @@
+@keyframes rotate-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.right .block1 .block-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.right .block1 .block-content .equipment-item {
+  margin-bottom: 10px;
+  width: 33%;
+  position: relative;
+  right: -20px;
+}
+.right .block1 .block-content .equipment-item .icon {
+  margin-bottom: 5px;
+}
+.right .block1 .block-content .equipment-item .icon .iconfont {
+  font-size: 34px;
+  background-image: linear-gradient(to bottom, #3ad1ed, #2775e6);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.right .block1 .block-content .equipment-item .txt {
+  font-size: 16px;
+  color: #c6c6c6;
+  margin-bottom: 3px;
+}
+.right .block1 .block-content .equipment-item .nums {
+  margin-bottom: 3px;
+}
+.right .block1 .block-content .equipment-item .nums .num-1 {
+  color: #00f8ff;
+}
+.right .block1 .block-content .equipment-item .desc {
+  color: #c6c6c6;
+  font-size: 12px;
+  margin-left: -10px;
+}
+
+.block {
+  margin-top: 20px;
+}
+
+/*# sourceMappingURL=equipment.css.map */
