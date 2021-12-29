@@ -4,7 +4,7 @@ layui.use([], () => {
 
   class PageTemplate {
     templateRight (data) {
-      const { block1 } = data
+      const { block1, block2 } = data
 
       let h1 = ''
       for (let i = 0; i < block1.dataList.length; i++) {
@@ -21,9 +21,24 @@ layui.use([], () => {
                   <div class="desc">（启用/停用）</div>
                 </div>`
       }
+
+      let h2 = ''
+      for (let i = 0; i < block2.data.length; i++) {
+        const item = block2.data[i]
+        const levelTag = 'level' + item.level
+        h2 += `<div class="warning-item ${levelTag}">
+          <span class="iconfont icon-jingshi"></span>
+          <span class="desc txt-overflow">${item.info}</span>
+          <span class="date">${item.date}</span>
+        </div>`
+      }
       return `<div class="block1 block">
                 <div class="block-title">${block1.title}</div>
                 <div class="block-content">${h1}</div>
+              </div>
+              <div class="block2 block">
+                <div class="block-title">${block2.title}</div>
+                <div class="warning-list">${h2}</div>
               </div>`
     }
   }

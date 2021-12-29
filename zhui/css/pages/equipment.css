@@ -42,6 +42,35 @@
   font-size: 12px;
   margin-left: -10px;
 }
+.right .block2 {
+  margin-top: 30px;
+}
+.right .block2 .warning-list {
+  margin-top: 20px;
+  padding: 0 30px;
+}
+.right .block2 .warning-list .warning-item {
+  display: flex;
+  align-items: center;
+  color: #c6c6c6;
+  margin-bottom: 10px;
+}
+.right .block2 .warning-list .warning-item.level1 {
+  color: #ff2a0e;
+}
+.right .block2 .warning-list .warning-item.level2 {
+  color: #ff8c0e;
+}
+.right .block2 .warning-list .warning-item .iconfont {
+  margin-right: 10px;
+}
+.right .block2 .warning-list .warning-item .desc {
+  width: 180px;
+  margin-right: 10px;
+}
+.right .block2 .warning-list .warning-item .date {
+  color: #c6c6c6;
+}
 
 .block {
   margin-top: 20px;
