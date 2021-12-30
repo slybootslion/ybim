@@ -41,6 +41,20 @@ layui.use([], () => {
                 <div class="warning-list">${h2}</div>
               </div>`
     }
+
+    templateLeft (data) {
+      const { block2, block1 } = data
+      return `<div class="block1 block">
+                <div class="block-title">${block1.title}</div>
+                <div class="block1-content"></div>
+              </div>
+              <div class="block2 block">
+                <div class="block-title">${block2.title}</div>
+                <div class="charts-box">
+                  <div class="charts-item" id="echarts1"></div>
+                </div>
+              </div>`
+    }
   }
 
   const pt = new PageTemplate
@@ -57,5 +71,80 @@ layui.use([], () => {
     const { left, right, content } = pageData
     const rightHtml = pt.templateRight(right)
     $(".content-body .right").html(rightHtml)
+    const leftHtml = pt.templateLeft(left)
+    $(".content-body .left").html(leftHtml)
+    handlerEcharts()
+  }
+
+  function handlerEcharts () {
+    const echarts1 = echarts.init(document.querySelector('#echarts1'))
+    const data = pageData.left.block2.data
+    echarts1.setOption(echartsOpts(data))
+  }
+
+
+  function echartsOpts (data = {}) {
+    const colorList = ['#0381d9', '#00f8ff']
+    return {
+      grid: {
+        left: '5%',
+        right: '13%',
+        bottom: '0',
+        top: '5%',
+        containLabel: true
+      },
+      yAxis: {
+        type: 'category',
+        splitLine: {
+          show: false,
+        },
+        axisTick: {
+          show: false,
+        },
+        axisLine: {
+          show: false,
+        },
+        axisLabel: {
+          textStyle: {
+            color: '#c6c6c6',
+          },
+        },
+        inverse: true,
+        data: [...data.map(d => d.label)],
+      },
+      xAxis: {
+        show: false,
+        type: 'value'
+      },
+      series: [
+        {
+          data: [...data.map(d => d.num)],
+          type: 'bar',
+          barWidth: 10,
+          itemStyle: {
+            normal: {
+              color (params) {
+                return new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+                  { offset: 0, color: colorList[0] },
+                  { offset: 1, color: colorList[1] }
+                ])
+              },
+              label: {
+                show: true,
+                position: 'right',
+                valueAnimation: true,
+                formatter (params) {
+                  return params.data + '次'
+                },
+                textStyle: {
+                  color: '#fff',
+                  fontSize: 12,
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
   }
 })

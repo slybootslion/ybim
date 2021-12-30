@@ -1,5 +1,19 @@
 @import "../var.scss";
 
+.left {
+  .block1 {
+    .block1-content {
+      height: 180px;
+    }
+  }
+
+  .block2 {
+    .charts-item {
+      height: 260px;
+    }
+  }
+}
+
 .right {
   .block1 {
     .block-content {

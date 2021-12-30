@@ -1,5 +1,33 @@
 {
   "left": {
+    "block1": {
+      "title": "电梯运行状态"
+    },
+    "block2": {
+      "title": "区域告警排行",
+      "data": [
+        {
+          "label": "A区位置",
+          "num": 20
+        },
+        {
+          "label": "B区位置",
+          "num": 18
+        },
+        {
+          "label": "C区位置",
+          "num": 12
+        },
+        {
+          "label": "D区位置",
+          "num": 8
+        },
+        {
+          "label": "E区位置",
+          "num": 6
+        }
+      ]
+    }
   },
   "right": {
     "block1": {
