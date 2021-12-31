@@ -72,7 +72,7 @@ layui.use([], () => {
     const rightHtml = pt.templateRight(right)
     $(".content-body .right").html(rightHtml)
     const leftHtml = pt.templateLeft(left)
-    $(".content-body .left").html(leftHtml)
+    // $(".content-body .left").html(leftHtml)
     handlerEcharts()
   }
 
