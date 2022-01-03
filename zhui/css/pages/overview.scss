@@ -256,10 +256,13 @@
 
       span {
         cursor: pointer;
+        color: $color6;
       }
 
       &.active {
-        color: $color1;
+        span {
+          color: $color1;
+        }
 
         &::before {
           background-color: $color1;

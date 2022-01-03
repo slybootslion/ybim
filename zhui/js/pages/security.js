@@ -115,6 +115,17 @@ layui.use([], () => {
                 <div class="num-block">${bottomHtml}</div>
               </div>`
     }
+
+    templateContent (data) {
+      const { building } = data
+      let pointHtml = ''
+      for (let i = 0; i < building.length; i++) {
+        const itme = building[i]
+        const isActive = i === 0 ? 'active' : ''
+        pointHtml += `<div class="point-item ${isActive}"><span data-id="${itme.id}">${itme.name}</span></div>`
+      }
+      return `<div class="point-box">${pointHtml}</div><div class="jk-box"><span class="iconfont icon-jiankongshebei jk-item"></span></div>`
+    }
   }
 
   const pt = new PageTemplate
@@ -126,14 +137,17 @@ layui.use([], () => {
     render()
     handlerEcharts(pageData)
     bindLeftEchartsMethod()
+    bindContentMethod()
   })()
 
   function render () {
-    const { left, right } = pageData
+    const { left, right, content } = pageData
     const leftHtml = pt.templateLeft(left)
     const rightHtml = pt.templateRight(right)
+    const contentHtml = pt.templateContent(content)
     $(".content-body .left").html(leftHtml)
     $(".content-body .right").html(rightHtml)
+    $(".content-body .content").html(contentHtml)
   }
 
   function handlerEcharts (data, selected = null) {
@@ -330,5 +344,17 @@ layui.use([], () => {
     })
   }
 
+  function bindContentMethod () {
+    $(".content-body .content").on('click', '.point-item span', function () {
+      const isActive = $(this).parent('.point-item').hasClass('active')
+      if (isActive) return
+      $(this).parent('.point-item').addClass('active').siblings('.point-item').removeClass('active')
+    })
 
+    $(".content-body .content").on('click', '.jk-item', function (e) {
+      const target = e.target
+
+
+    })
+  }
 })

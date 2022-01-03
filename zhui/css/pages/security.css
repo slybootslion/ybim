@@ -230,4 +230,69 @@
   margin-top: 10px;
 }
 
+.content .point-box {
+  position: absolute;
+  right: 10px;
+  top: 80px;
+  border: 1px solid #00f8ff;
+  background-color: rgba(10, 41, 60, 0.83);
+  padding: 20px 5px 10px;
+}
+.content .point-box .point-item {
+  padding: 0 5px 0 20px;
+  position: relative;
+  margin-top: -10px;
+}
+.content .point-box .point-item span {
+  cursor: pointer;
+  color: #c6c6c6;
+}
+.content .point-box .point-item.active span {
+  color: #00f8ff;
+}
+.content .point-box .point-item.active::before {
+  background-color: #00f8ff;
+}
+.content .point-box .point-item:nth-last-child(1)::after {
+  width: 0;
+  height: 0;
+}
+.content .point-box .point-item::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  background-color: #c6c6c6;
+  position: absolute;
+  left: 5px;
+  top: 5px;
+}
+.content .point-box .point-item::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 30px;
+  background-color: #c6c6c6;
+  position: relative;
+  top: -5px;
+  left: -10px;
+}
+.content .jk-box {
+  position: absolute;
+  top: 400px;
+  left: 700px;
+}
+.content .jk-box .icon-jiankongshebei {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #00f8ff;
+  box-sizing: border-box;
+  padding: 3px;
+  color: #00f8ff;
+  font-size: 30px;
+  background-color: rgba(10, 41, 60, 0.7);
+  cursor: pointer;
+}
+
 /*# sourceMappingURL=security.css.map */

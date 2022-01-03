@@ -57,7 +57,6 @@ layui.use([], () => {
     templateRight (data) {
       let { block1, block2 } = data
       let l1 = '', l2 = ''
-      console.log(block2.dataList)
       for (let i = 0; i < block2.dataList.data1.length; i++) {
         const item = block2.dataList.data1[i]
         l1 += `<div class="list-item">${item}</div>`

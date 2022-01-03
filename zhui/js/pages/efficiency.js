@@ -400,7 +400,6 @@ layui.use([], () => {
   }
 
   function echartsOpts4 (data = {}) {
-    console.log(data)
     let { dataBar, dataLine, xData } = data
     return {
       xAxis: {

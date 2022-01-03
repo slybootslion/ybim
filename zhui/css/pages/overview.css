@@ -216,8 +216,9 @@
 }
 .content .point-box .point-item span {
   cursor: pointer;
+  color: #c6c6c6;
 }
-.content .point-box .point-item.active {
+.content .point-box .point-item.active span {
   color: #00f8ff;
 }
 .content .point-box .point-item.active::before {
