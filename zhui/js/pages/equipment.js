@@ -55,6 +55,12 @@ layui.use([], () => {
                 </div>
               </div>`
     }
+
+    templateContent (data) {
+      const { equipment } = data
+
+      return `<div class="equ-box" style="top: 320px; left: 780px;"><span class="iconfont icon-shebeiguanli equ-item"></span></div>`
+    }
   }
 
   const pt = new PageTemplate
@@ -65,6 +71,7 @@ layui.use([], () => {
     pageData = await luUtils.ajax('/zhui/mock/equipmentData.json')
     await luUtils.delay(500)
     render()
+    bindContentMethod()
   })()
 
   function render () {
@@ -73,6 +80,8 @@ layui.use([], () => {
     $(".content-body .right").html(rightHtml)
     const leftHtml = pt.templateLeft(left)
     // $(".content-body .left").html(leftHtml)
+    const contentHtml = pt.templateContent(content)
+    $(".content-body .content").html(contentHtml)
     handlerEcharts()
   }
 
@@ -81,7 +90,6 @@ layui.use([], () => {
     const data = pageData.left.block2.data
     echarts1.setOption(echartsOpts(data))
   }
-
 
   function echartsOpts (data = {}) {
     const colorList = ['#0381d9', '#00f8ff']
@@ -146,5 +154,12 @@ layui.use([], () => {
         }
       ]
     }
+  }
+
+  function bindContentMethod () {
+    const $content = $(".content-body .content")
+    $content.on('click', '.equ-item', function (e) {
+
+    })
   }
 })

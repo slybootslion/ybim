@@ -116,6 +116,16 @@ layui.use([], () => {
               </div>`
     }
 
+    videoTemplate (data) {
+      return `<div class="video-info-box">
+    <div class="title">${data.title}</div>
+    <div class="pic-box">
+      <img src="${data.pic}" alt="">
+      <div class="pic-txt">${data.time}</div>
+    </div>
+  </div>`
+    }
+
     templateContent (data) {
       const { building } = data
       let pointHtml = ''
@@ -124,7 +134,7 @@ layui.use([], () => {
         const isActive = i === 0 ? 'active' : ''
         pointHtml += `<div class="point-item ${isActive}"><span data-id="${itme.id}">${itme.name}</span></div>`
       }
-      return `<div class="point-box">${pointHtml}</div><div class="jk-box"><span class="iconfont icon-jiankongshebei jk-item"></span></div>`
+      return `<div class="point-box">${pointHtml}</div><div class="jk-box" style="top: 400px;left: 700px;"><span class="iconfont icon-jiankongshebei jk-item"></span></div><div class="jk-box" style="top: 320px; left: 780px;"><span class="iconfont icon-jiankongshebei jk-item"></span></div>`
     }
   }
 
@@ -345,16 +355,32 @@ layui.use([], () => {
   }
 
   function bindContentMethod () {
-    $(".content-body .content").on('click', '.point-item span', function () {
+    const $content = $(".content-body .content")
+    $content.on('click', '.point-item span', function () {
       const isActive = $(this).parent('.point-item').hasClass('active')
       if (isActive) return
       $(this).parent('.point-item').addClass('active').siblings('.point-item').removeClass('active')
     })
 
-    $(".content-body .content").on('click', '.jk-item', function (e) {
-      const target = e.target
-
-
+    $content.on('click', '.jk-item', function (e) {
+      const target = $(e.target).parent('.jk-box')
+      $(".jk-box").css({ zIndex: 0 })
+      target.css({ zIndex: 1 })
+      // mock
+      const data = {
+        title: '智慧园区A栋大门监控',
+        pic: 'http://i0.sinaimg.cn/cj/2015/0327/U7924P31DT20150327185023.jpg',
+        time: '2021/10/15 12:00'
+      }
+      const html = pt.videoTemplate(data)
+      const videoEl = $(".video-info-box")
+      const childrenEl = target.find('.video-info-box')
+      if (videoEl.length) {
+        videoEl.remove()
+        if (!childrenEl.length) target.append(html)
+      } else {
+        target.append(html)
+      }
     })
   }
 })

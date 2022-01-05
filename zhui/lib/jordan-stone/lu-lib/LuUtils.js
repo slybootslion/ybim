@@ -80,6 +80,29 @@ layui.define(exports => {
         }, interval)
       })
     }
+
+    _checkDom (dom) {
+      if (typeof dom === 'string') dom = document.querySelector(dom)
+      if (dom instanceof HTMLElement) return dom
+    }
+
+    domWidthHeight (dom) {
+      dom = this._checkDom(dom)
+      if (dom) {
+        const r = dom.getBoundingClientRect()
+        return { height: r.height, width: r.width }
+      }
+      return { height: 0, width: 0 }
+    }
+
+    domTopLeft (dom) {
+      dom = this._checkDom(dom)
+      if (dom) {
+        const { top, left } = dom.getBoundingClientRect()
+        return { top, left }
+      }
+      return { top: 0, left: 0 }
+    }
   }
 
   exports('LuUtils', new LuUtils)

@@ -148,4 +148,20 @@
   margin-top: 20px;
 }
 
+.content .equ-box {
+  position: absolute;
+  z-index: 0;
+}
+.content .equ-box .icon-shebeiguanli {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #00f8ff;
+  box-sizing: border-box;
+  padding: 3px;
+  color: #00f8ff;
+  font-size: 30px;
+  background-color: rgba(10, 41, 60, 0.7);
+  cursor: pointer;
+}
+
 /*# sourceMappingURL=equipment.css.map */
