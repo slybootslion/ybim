@@ -188,5 +188,43 @@
       background-color: rgba(10, 41, 60, 0.70);
       cursor: pointer;
     }
+
+    .equ-info-box {
+      position: absolute;
+      width: 260px;
+      border: 1px solid $color1;
+      background-color: rgba(10, 41, 60, 0.7);
+      padding: 10px;
+      box-sizing: border-box;
+      display: none;
+
+      &.active {
+        display: block;
+      }
+
+      .equ-info-title {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+
+        .title {
+          font-size: 16px;
+        }
+
+        .state {
+          &.blue {
+            color: $color2;
+          }
+        }
+      }
+
+      .equ-info-item {
+        margin-top: 5px;
+
+        .item-info {
+          color: $color6;
+        }
+      }
+    }
   }
 }

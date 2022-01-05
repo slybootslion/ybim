@@ -44,9 +44,30 @@ layui.use([], () => {
 
     templateLeft (data) {
       const { block2, block1 } = data
+
+      const { title, buildList } = block1
+
+      let buildHtml = '', contentHtml = ''
+      Object.keys(buildList).forEach((item, idx) => {
+        if (idx === 0) {
+          buildHtml += `<div class="left-item active">${item}栋</div>`
+          for (let i = 0; i < buildList[item].length; i++) {
+            contentHtml += `<div class="right-item"><div class="title">${i + 1}#</div><div class="block-box"><div class="block-inner">${buildList[item][i]}</div></div></div>`
+          }
+        } else {
+          buildHtml += `<div class="left-item">${item}栋</div>`
+        }
+      })
+
       return `<div class="block1 block">
-                <div class="block-title">${block1.title}</div>
-                <div class="block1-content"></div>
+                <div class="block-title">${title}</div>
+                <div class="block1-content">
+                  <div class="content-left">
+                    <div class="title">楼座</div>
+                    <div class="left-list">${buildHtml}</div>
+                  </div>
+                  <div class="content-right">${contentHtml}</div>
+                </div>
               </div>
               <div class="block2 block">
                 <div class="block-title">${block2.title}</div>
@@ -59,7 +80,35 @@ layui.use([], () => {
     templateContent (data) {
       const { equipment } = data
 
-      return `<div class="equ-box" style="top: 320px; left: 780px;"><span class="iconfont icon-shebeiguanli equ-item"></span></div>`
+      const makeItems = list => {
+        let h = ''
+        for (let i = 0; i < list.length; i++) {
+          const item = list[i]
+          h += `<div class="equ-info-item"><span class="item-title">${item.label}</span><span class="item-info">：${item.value}</span></div>`
+        }
+        return h
+      }
+
+      let html = ''
+      for (let i = 0; i < equipment.length; i++) {
+        const equ = equipment[i]
+        const stateClass = equ.state === 1 ? 'blue' : ''
+        const stateTxt = equ.state === 1 ? '在线' : '离线'
+        const items = makeItems(equ.list)
+        html += `
+          <div class="equ-box" style="top: 320px; left: 780px;">
+            <span class="iconfont icon-shebeiguanli equ-item"></span>
+            <div class="equ-info-box" style="top: -3px; left: -270px;">
+              <div class="equ-info-title">
+                <span class="title">设备信息</span>
+                <span class="state ${stateClass}">${stateTxt}</span>
+              </div>
+              ${items}
+            </div>
+          </div>`
+      }
+
+      return `${html}`
     }
   }
 
@@ -71,6 +120,7 @@ layui.use([], () => {
     pageData = await luUtils.ajax('/zhui/mock/equipmentData.json')
     await luUtils.delay(500)
     render()
+    bindLeftMethod()
     bindContentMethod()
   })()
 
@@ -79,7 +129,7 @@ layui.use([], () => {
     const rightHtml = pt.templateRight(right)
     $(".content-body .right").html(rightHtml)
     const leftHtml = pt.templateLeft(left)
-    // $(".content-body .left").html(leftHtml)
+    $(".content-body .left").html(leftHtml)
     const contentHtml = pt.templateContent(content)
     $(".content-body .content").html(contentHtml)
     handlerEcharts()
@@ -156,10 +206,32 @@ layui.use([], () => {
     }
   }
 
+  function bindLeftMethod () {
+    $(".content-body .left").on('click', '.left-item', function (e) {
+      const target = $(e.target)
+      target.addClass('active').siblings('.left-item').removeClass('active')
+      // todo 后续电梯节点渲染
+    })
+  }
+
   function bindContentMethod () {
     const $content = $(".content-body .content")
-    $content.on('click', '.equ-item', function (e) {
 
+    $content.on('click', '.equ-item', function (e) {
+      const target = $(e.target).parent('.equ-box')
+      $(".equ-box").css({ zIndex: 0 })
+      target.css({ zIndex: 1 })
+
+      // $(".equ-info-box").each(item => item.removeClass('active'))
+
+      const infoEl = target.find('.equ-info-box')
+      const isActive = infoEl.hasClass('active')
+      if (!isActive) {
+        $(".equ-info-box").each((idx, item) => $(item).removeClass('active'))
+        infoEl.addClass('active')
+      } else {
+        infoEl.removeClass('active')
+      }
     })
   }
 })
