@@ -42,20 +42,35 @@ layui.use([], () => {
               </div>`
     }
 
+    buildListTemplate (data) {
+      let html = ''
+
+      const computedTop = num => {
+        // 0~228之间 1-30层
+        const itemHeight = 228 / 30
+        return (30 - num) * itemHeight
+      }
+
+      for (let i = 0; i < data.length; i++) {
+        const num = data[i]
+        const top = computedTop(num)
+        html += `<div class="right-item"><div class="title">${i + 1}#</div><div class="block-box"><div class="block-inner" style="top:${top}px">${num}</div></div></div>`
+      }
+      return html
+    }
+
     templateLeft (data) {
       const { block2, block1 } = data
-
       const { title, buildList } = block1
-
       let buildHtml = '', contentHtml = ''
       Object.keys(buildList).forEach((item, idx) => {
         if (idx === 0) {
-          buildHtml += `<div class="left-item active">${item}栋</div>`
-          for (let i = 0; i < buildList[item].length; i++) {
-            contentHtml += `<div class="right-item"><div class="title">${i + 1}#</div><div class="block-box"><div class="block-inner">${buildList[item][i]}</div></div></div>`
-          }
+          buildHtml += `<div class="left-item active"
+                             data-item="${item}">${item}栋</div>`
+          contentHtml = this.buildListTemplate(buildList[item])
         } else {
-          buildHtml += `<div class="left-item">${item}栋</div>`
+          buildHtml += `<div class="left-item" 
+                             data-item="${item}">${item}栋</div>`
         }
       })
 
@@ -66,7 +81,7 @@ layui.use([], () => {
                     <div class="title">楼座</div>
                     <div class="left-list">${buildHtml}</div>
                   </div>
-                  <div class="content-right">${contentHtml}</div>
+                  <div class="content-right" id="buildContent">${contentHtml}</div>
                 </div>
               </div>
               <div class="block2 block">
@@ -209,8 +224,11 @@ layui.use([], () => {
   function bindLeftMethod () {
     $(".content-body .left").on('click', '.left-item', function (e) {
       const target = $(e.target)
+      if (target.hasClass('active')) return
       target.addClass('active').siblings('.left-item').removeClass('active')
-      // todo 后续电梯节点渲染
+      const buildList = pageData.left.block1.buildList
+      const html = pt.buildListTemplate(buildList[target.data('item')])
+      $("#buildContent").html(html)
     })
   }
 

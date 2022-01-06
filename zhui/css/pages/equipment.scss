@@ -64,8 +64,10 @@
             width: 24px;
             height: 243px;
             border: 1px solid $color6;
+            position: relative;
 
             .block-inner {
+              width: 24px;
               height: 24px;
               color: #333;
               line-height: 24px;
@@ -74,6 +76,8 @@
               border-top: 1px solid $color6;
               border-bottom: 1px solid $color6;
               box-sizing: border-box;
+              position: absolute;
+              left: 0;
             }
           }
         }

@@ -63,8 +63,10 @@
   width: 24px;
   height: 243px;
   border: 1px solid #c6c6c6;
+  position: relative;
 }
 .left .block1 .block1-content .content-right .right-item .block-box .block-inner {
+  width: 24px;
   height: 24px;
   color: #333;
   line-height: 24px;
@@ -73,6 +75,8 @@
   border-top: 1px solid #c6c6c6;
   border-bottom: 1px solid #c6c6c6;
   box-sizing: border-box;
+  position: absolute;
+  left: 0;
 }
 .left .block2 .charts-item {
   height: 260px;
