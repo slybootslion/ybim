@@ -114,14 +114,14 @@ layui.use([], () => {
     const { left, right } = pageData
     const leftHtml = pt.templateLeft(left)
     const rightHtml = pt.templateRight(right)
-    $(".content-body .left").html(leftHtml)
-    $(".content-body .right").html(rightHtml)
+    $(".left-content").html(leftHtml)
+    $(".right-content").html(rightHtml)
     handlerEcharts(pageData)
     leftEchartsYearSelectRender()
   }
 
   function bindBtnMethod () {
-    $(".content-body").on('click', '.btn-item.date', function () {
+    $(".btn-event-box").on('click', '.btn-item.date', function () {
       const $this = $(this)
       const type = $this.html() === '本月' ? 'month' : 'day'
       const contentTitle = findContentTitle($this)

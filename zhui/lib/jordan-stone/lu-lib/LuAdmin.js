@@ -132,9 +132,9 @@ layui.define([], exports => {
       $("title").html(bodyItem.text + '智慧园区三维可视化运营管理系统')
       // add animation after render page
       await luUtils.delay(500)
-      $(".content-body .left").addClass('left-animation')
-      $(".content-body .right").addClass('right-animation')
-      $(".content-body .content").addClass('content-animation')
+      $(".left-content").addClass('left-animation')
+      $(".right-content").addClass('right-animation')
+      $(".middle-content").addClass('content-animation')
     }
 
     async bindMethod () {

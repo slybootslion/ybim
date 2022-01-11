@@ -230,7 +230,7 @@
   margin-top: 10px;
 }
 
-.content .point-box {
+.middle-content .point-box {
   position: absolute;
   right: 10px;
   top: 80px;
@@ -238,26 +238,28 @@
   background-color: rgba(10, 41, 60, 0.83);
   padding: 20px 5px 10px;
 }
-.content .point-box .point-item {
+.middle-content .point-box .point-item {
   padding: 0 5px 0 20px;
   position: relative;
   margin-top: -10px;
 }
-.content .point-box .point-item span {
+.middle-content .point-box .point-item span {
+  width: 30px;
   cursor: pointer;
   color: #c6c6c6;
+  display: block;
 }
-.content .point-box .point-item.active span {
+.middle-content .point-box .point-item.active span {
   color: #00f8ff;
 }
-.content .point-box .point-item.active::before {
+.middle-content .point-box .point-item.active::before {
   background-color: #00f8ff;
 }
-.content .point-box .point-item:nth-last-child(1)::after {
+.middle-content .point-box .point-item:nth-last-child(1)::after {
   width: 0;
   height: 0;
 }
-.content .point-box .point-item::before {
+.middle-content .point-box .point-item::before {
   content: "";
   display: block;
   width: 10px;
@@ -268,7 +270,7 @@
   left: 5px;
   top: 5px;
 }
-.content .point-box .point-item::after {
+.middle-content .point-box .point-item::after {
   content: "";
   display: block;
   width: 1px;
@@ -278,11 +280,11 @@
   top: -5px;
   left: -10px;
 }
-.content .jk-box {
+.middle-content .jk-box {
   position: absolute;
   z-index: 0;
 }
-.content .jk-box .icon-jiankongshebei {
+.middle-content .jk-box .icon-jiankongshebei {
   width: 50px;
   height: 50px;
   border: 1px solid #00f8ff;
@@ -293,7 +295,7 @@
   background-color: rgba(10, 41, 60, 0.7);
   cursor: pointer;
 }
-.content .jk-box .video-info-box {
+.middle-content .jk-box .video-info-box {
   position: absolute;
   top: -175px;
   left: -116px;
@@ -304,24 +306,24 @@
   padding: 3px;
   box-sizing: border-box;
 }
-.content .jk-box .video-info-box .title {
+.middle-content .jk-box .video-info-box .title {
   height: 30px;
   line-height: 30px;
   text-align: center;
   font-size: 16px;
   font-weight: 700;
 }
-.content .jk-box .video-info-box .pic-box {
+.middle-content .jk-box .video-info-box .pic-box {
   width: 100%;
   height: 125px;
   margin-top: 5px;
   position: relative;
 }
-.content .jk-box .video-info-box .pic-box img {
+.middle-content .jk-box .video-info-box .pic-box img {
   width: 100%;
   height: 100%;
 }
-.content .jk-box .video-info-box .pic-box .pic-txt {
+.middle-content .jk-box .video-info-box .pic-box .pic-txt {
   position: absolute;
   top: 5px;
   left: 5px;

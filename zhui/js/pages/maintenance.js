@@ -68,7 +68,7 @@ layui.use([], () => {
     const { left, right } = pageData
     const leftHtml = pt.templateLeft(left)
     const rightHtml = pt.templateRight(right)
-    $(".content-body .left").html(leftHtml)
+    $(".left-content").html(leftHtml)
     // $(".content-body .right").html(rightHtml)
     handlerEcharts(pageData.left.block1)
     rightEchartsYearSelectRender()
@@ -214,7 +214,7 @@ layui.use([], () => {
   }
 
   function bindLeftEChartsMethod () {
-    $(".left").on('click', '.btn-item.date', function () {
+    $(".left-content").on('click', '.btn-item.date', function () {
       const $this = $(this)
       const type = $this.html() === '本月' ? 'month' : 'day'
       const contentTitle = $this.parents('.charts-top').find('.top-left').html()

@@ -52,6 +52,11 @@ layui.use(['dayjs', 'LuUtils', 'echarts', 'LuAdmin'], async function () {
     luBody.init(data)
   }
 
+  /* bim content event test*/
+  const $ = layui.$
+  $(".bim-content").on('click', function () {
+    console.log('bim content click')
+  });
 })
 </script>
 </body>

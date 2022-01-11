@@ -267,7 +267,8 @@
   }
 }
 
-.content {
+.middle-content {
+
   .point-box {
     position: absolute;
     right: 10px;
@@ -282,8 +283,10 @@
       margin-top: -10px;
 
       span {
+        width: 30px;
         cursor: pointer;
         color: $color6;
+        display: block;
       }
 
       &.active {

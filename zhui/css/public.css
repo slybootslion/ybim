@@ -101,69 +101,45 @@ html .bim-content, body .bim-content {
 }
 
 .body-one-page {
-  width: 100%;
+  color: #fff;
+}
+.body-one-page .left {
+  width: 350px;
   height: calc(100% - 85px);
   position: absolute;
   top: 85px;
-  left: 0;
-}
-.body-one-page .content-body {
-  position: relative;
-  height: 100%;
-  z-index: 3;
-  color: #fff;
-  display: flex;
-}
-.body-one-page .content-body .left {
-  width: 350px;
-  height: 100%;
-  position: relative;
-  top: 0;
   left: -350px;
   overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.5);
 }
-.body-one-page .content-body .right {
+.body-one-page .right {
   width: 350px;
-  height: 100%;
-  position: relative;
-  top: 0;
+  height: calc(100% - 85px);
+  position: absolute;
+  top: 85px;
   right: -350px;
   overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.5);
 }
-.body-one-page .content-body .content {
-  flex: 1;
-  position: relative;
+.body-one-page .middle-content {
   opacity: 0;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 89px;
+  right: 380px;
 }
-.body-one-page .content-body .left-animation {
+.body-one-page .left-animation {
   transition: left 0.5s;
   left: 0;
 }
-.body-one-page .content-body .right-animation {
+.body-one-page .right-animation {
   transition: right 0.5s;
   right: 0;
 }
-.body-one-page .content-body .content-animation {
+.body-one-page .content-animation {
   transition: opacity 0.5s;
   opacity: 1;
-}
-.body-one-page::before {
-  content: "";
-  width: 350px;
-  height: 100%;
-  display: block;
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-.body-one-page::after {
-  content: "";
-  width: 350px;
-  height: 100%;
-  display: block;
-  position: absolute;
-  right: 0;
-  top: 0;
-  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .block-title {

@@ -31,75 +31,75 @@
   padding: 0 30px;
 }
 
-.left .block1 .charts-box {
+.left-content .block1 .charts-box {
   width: 100%;
   display: flex;
   flex-direction: column;
 }
-.left .block1 .charts-box .charts-item {
+.left-content .block1 .charts-box .charts-item {
   margin-bottom: 10px;
 }
-.left .block1 .charts-box .charts-item .charts-top {
+.left-content .block1 .charts-box .charts-item .charts-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 5px;
 }
-.left .block1 .charts-box .charts-item .charts-top .top-btn-box {
+.left-content .block1 .charts-box .charts-item .charts-top .top-btn-box {
   display: flex;
   align-items: center;
 }
-.left .block1 .charts-box .charts-item .charts-top .top-btn-box .btn-item {
+.left-content .block1 .charts-box .charts-item .charts-top .top-btn-box .btn-item {
   padding: 3px 5px;
   border-radius: 3px;
   cursor: pointer;
 }
-.left .block1 .charts-box .charts-item .charts-top .top-btn-box .btn-item.active {
+.left-content .block1 .charts-box .charts-item .charts-top .top-btn-box .btn-item.active {
   background-color: #0381d9;
 }
-.left .block1 .charts-box .charts-item .charts-bar {
+.left-content .block1 .charts-box .charts-item .charts-bar {
   height: 156px;
 }
 
-.right .block-item {
+.right-content .block-item {
   padding: 20px;
 }
-.right .block-item .item-title {
+.right-content .block-item .item-title {
   font-size: 18px;
   margin-bottom: 20px;
 }
-.right .block-item .block-fir {
+.right-content .block-item .block-fir {
   color: #00c0ff;
 }
-.right .block-item .block-sec {
+.right-content .block-item .block-sec {
   color: #c6c6c6;
 }
-.right .block-item .block-thr {
+.right-content .block-item .block-thr {
   color: #ff8c0e;
 }
-.right .block-item .fsi18 {
+.right-content .block-item .fsi18 {
   font-size: 18px;
 }
-.right .block-item .mt5 {
+.right-content .block-item .mt5 {
   margin-top: 5px;
 }
-.right .block-item .mb20 {
+.right-content .block-item .mb20 {
   margin-bottom: 20px;
 }
-.right .block-item .flexed {
+.right-content .block-item .flexed {
   display: flex;
   align-items: center;
 }
-.right .block-item .block-item-content {
+.right-content .block-item .block-item-content {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
   flex-wrap: wrap;
 }
-.right .block-item .block-item-content .block-item-2 {
+.right-content .block-item .block-item-content .block-item-2 {
   width: 42%;
 }
-.right .block-item .block-item-content .block-item-2 .iconfont {
+.right-content .block-item .block-item-content .block-item-2 .iconfont {
   width: 40px;
   font-size: 36px;
   margin-right: 10px;
@@ -107,7 +107,7 @@
   -webkit-background-clip: text;
   color: transparent;
 }
-.right .block-item .block-item-content .bgc2 {
+.right-content .block-item .block-item-content .bgc2 {
   background-color: #0381d94D;
   padding: 10px;
 }

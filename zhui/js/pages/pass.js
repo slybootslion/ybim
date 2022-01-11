@@ -110,9 +110,9 @@ layui.use([], () => {
   function render () {
     const { left, right } = pageData
     const leftHtml = pt.templateLeft(left)
-    $(".content-body .left").html(leftHtml)
+    $(".left-content").html(leftHtml)
     const rightHtml = pt.templateRight(right)
-    $(".content-body .right").html(rightHtml)
+    $(".right-content").html(rightHtml)
     handlerEcharts(pageData)
   }
 

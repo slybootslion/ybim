@@ -105,79 +105,125 @@ html, body {
 }
 
 .body-one-page {
-  width: 100%;
-  height: calc(100% - 85px);
-  position: absolute;
-  top: 85px;
-  left: 0;
+  color: #fff;
 
-  .content-body {
-    position: relative;
-    height: 100%;
-    z-index: 3;
-    color: #fff;
-    display: flex;
-
-
-    .left {
-      width: 350px;
-      height: 100%;
-      position: relative;
-      top: 0;
-      left: -350px;
-      overflow-y: auto;
-    }
-
-    .right {
-      width: 350px;
-      height: 100%;
-      position: relative;
-      top: 0;
-      right: -350px;
-      overflow-y: auto;
-    }
-
-    .content {
-      flex: 1;
-      position: relative;
-      opacity: 0;
-    }
-
-    .left-animation {
-      transition: left .5s;
-      left: 0;
-    }
-
-    .right-animation {
-      transition: right .5s;
-      right: 0;
-    }
-
-    .content-animation {
-      transition: opacity .5s;
-      opacity: 1;
-    }
-  }
-
-  &::before {
-    content: '';
+  .left {
     width: 350px;
-    height: 100%;
-    display: block;
+    height: calc(100% - 85px);
     position: absolute;
+    top: 85px;
+    left: -350px;
+    overflow-y: auto;
     background-color: rgba(0, 0, 0, .5);
   }
 
-  &::after {
-    content: '';
+  .right {
     width: 350px;
-    height: 100%;
-    display: block;
+    height: calc(100% - 85px);
     position: absolute;
+    top: 85px;
+    right: -350px;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, .5);
+  }
+
+  .middle-content {
+    opacity: 0;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 89px;
+    right: 380px;
+  }
+
+  .left-animation {
+    transition: left .5s;
+    left: 0;
+  }
+
+  .right-animation {
+    transition: right .5s;
     right: 0;
-    top: 0;
-    background-color: rgba(0, 0, 0, .5);
   }
+
+  .content-animation {
+    transition: opacity .5s;
+    opacity: 1;
+  }
+
+  //width: 100%;
+  //height: calc(100% - 85px);
+  //position: absolute;
+  //top: 85px;
+  //left: 0;
+
+  //.content-body {
+  //  position: relative;
+  //  height: 100%;
+  //  z-index: 3;
+  //  color: #fff;
+  //  display: flex;
+  //
+  //
+  //  .left {
+  //    width: 350px;
+  //    height: 100%;
+  //    position: relative;
+  //    top: 0;
+  //    left: -350px;
+  //    overflow-y: auto;
+  //  }
+  //
+  //  .right {
+  //    width: 350px;
+  //    height: 100%;
+  //    position: relative;
+  //    top: 0;
+  //    right: -350px;
+  //    overflow-y: auto;
+  //  }
+  //
+  //  .content {
+  //    flex: 1;
+  //    position: relative;
+  //    opacity: 0;
+  //  }
+  //
+  //  .left-animation {
+  //    transition: left .5s;
+  //    left: 0;
+  //  }
+  //
+  //  .right-animation {
+  //    transition: right .5s;
+  //    right: 0;
+  //  }
+  //
+  //  .content-animation {
+  //    transition: opacity .5s;
+  //    opacity: 1;
+  //  }
+  //}
+
+  //&::before {
+  //  content: '';
+  //  width: 350px;
+  //  height: 100%;
+  //  display: block;
+  //  position: absolute;
+  //  background-color: rgba(0, 0, 0, .5);
+  //}
+  //
+  //&::after {
+  //  content: '';
+  //  width: 350px;
+  //  height: 100%;
+  //  display: block;
+  //  position: absolute;
+  //  right: 0;
+  //  top: 0;
+  //  background-color: rgba(0, 0, 0, .5);
+  //}
 }
 
 .block-title {

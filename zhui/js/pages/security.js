@@ -134,7 +134,7 @@ layui.use([], () => {
         const isActive = i === 0 ? 'active' : ''
         pointHtml += `<div class="point-item ${isActive}"><span data-id="${itme.id}">${itme.name}</span></div>`
       }
-      return `<div class="point-box">${pointHtml}</div><div class="jk-box" style="top: 400px;left: 700px;"><span class="iconfont icon-jiankongshebei jk-item"></span></div><div class="jk-box" style="top: 320px; left: 780px;"><span class="iconfont icon-jiankongshebei jk-item"></span></div>`
+      return `<div class="point-box">${pointHtml}</div><div class="jk-box" style="top: 340px;right: 480px;"><span class="iconfont icon-jiankongshebei jk-item"></span></div><div class="jk-box" style="top: 420px; right: 398px;"><span class="iconfont icon-jiankongshebei jk-item"></span></div>`
     }
   }
 
@@ -155,9 +155,9 @@ layui.use([], () => {
     const leftHtml = pt.templateLeft(left)
     const rightHtml = pt.templateRight(right)
     const contentHtml = pt.templateContent(content)
-    $(".content-body .left").html(leftHtml)
-    $(".content-body .right").html(rightHtml)
-    $(".content-body .content").html(contentHtml)
+    $(".left-content").html(leftHtml)
+    $(".right-content").html(rightHtml)
+    $(".middle-content").html(contentHtml)
   }
 
   function handlerEcharts (data, selected = null) {
@@ -336,7 +336,7 @@ layui.use([], () => {
   }
 
   function bindLeftEchartsMethod () {
-    $(".content-body .left").on('click', '.btn-item', function () {
+    $(".left-content").on('click', '.btn-item', function () {
       const $this = $(this)
       const isActive = $this.hasClass('active')
       if (isActive) return
@@ -349,13 +349,13 @@ layui.use([], () => {
       if (idx === 0) {
         const type = $this.html() === '今日' ? 'day' : 'history'
         const data = pageData.left.block1.info[type]
-        $(".left .block1-content").html(pt.leftBlock1Template(data))
+        $(".left-content .block1-content").html(pt.leftBlock1Template(data))
       }
     })
   }
 
   function bindContentMethod () {
-    const $content = $(".content-body .content")
+    const $content = $(".middle-content")
     $content.on('click', '.point-item span', function () {
       const isActive = $(this).parent('.point-item').hasClass('active')
       if (isActive) return

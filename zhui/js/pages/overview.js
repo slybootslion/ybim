@@ -201,9 +201,9 @@ layui.use([], () => {
     const leftHtml = pt.templateLeft(left)
     const rightHtml = pt.templateRight(right)
     const contentHtml = pt.templateContent(content)
-    $(".content-body .left").html(leftHtml)
-    $(".content-body .right").html(rightHtml)
-    $(".content-body .content").html(contentHtml)
+    $(".left-content").html(leftHtml)
+    $(".right-content").html(rightHtml)
+    $(".middle-content").html(contentHtml)
     handlerEcharts(pageData)
     rightEchartsYearSelectRender()
   }
@@ -601,7 +601,7 @@ layui.use([], () => {
   }
 
   function bindContentMethod () {
-    $(".content-body .content").on('click', '.point-item span', function () {
+    $(".middle-content").on('click', '.point-item span', function () {
       const isActive = $(this).parent('.point-item').hasClass('active')
       if (isActive) return
       $(this).parent('.point-item').addClass('active').siblings('.point-item').removeClass('active')

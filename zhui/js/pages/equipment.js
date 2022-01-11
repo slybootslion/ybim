@@ -111,7 +111,7 @@ layui.use([], () => {
         const stateTxt = equ.state === 1 ? '在线' : '离线'
         const items = makeItems(equ.list)
         html += `
-          <div class="equ-box" style="top: 320px; left: 780px;">
+          <div class="equ-box" style="top: 441px; right: 528px;">
             <span class="iconfont icon-shebeiguanli equ-item"></span>
             <div class="equ-info-box" style="top: -3px; left: -270px;">
               <div class="equ-info-title">
@@ -142,11 +142,11 @@ layui.use([], () => {
   function render () {
     const { left, right, content } = pageData
     const rightHtml = pt.templateRight(right)
-    $(".content-body .right").html(rightHtml)
+    $(".right-content").html(rightHtml)
     const leftHtml = pt.templateLeft(left)
-    $(".content-body .left").html(leftHtml)
+    $(".left-content").html(leftHtml)
     const contentHtml = pt.templateContent(content)
-    $(".content-body .content").html(contentHtml)
+    $(".middle-content").html(contentHtml)
     handlerEcharts()
   }
 
@@ -222,7 +222,7 @@ layui.use([], () => {
   }
 
   function bindLeftMethod () {
-    $(".content-body .left").on('click', '.left-item', function (e) {
+    $(".left-content").on('click', '.left-item', function (e) {
       const target = $(e.target)
       if (target.hasClass('active')) return
       target.addClass('active').siblings('.left-item').removeClass('active')
@@ -233,7 +233,7 @@ layui.use([], () => {
   }
 
   function bindContentMethod () {
-    const $content = $(".content-body .content")
+    const $content = $(".middle-content")
 
     $content.on('click', '.equ-item', function (e) {
       const target = $(e.target).parent('.equ-box')
