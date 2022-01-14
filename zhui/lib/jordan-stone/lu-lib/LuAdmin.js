@@ -3,6 +3,8 @@ layui.define([], exports => {
   const luUtils = layui.LuUtils
   const dropdown = layui.dropdown
 
+  let clickLock = false
+
   class LuHeader {
     init (opts) {
       const header = this
@@ -46,7 +48,9 @@ layui.define([], exports => {
     bindMethod () {
       const header = this
       $("#luHeader").on('click', '.btn-item', function () {
+        if (clickLock) return
         header.bindFlag = true
+        clickLock = true
         const isActive = $(this).hasClass('active')
         if (isActive) return
         const opts = header.opts
@@ -135,13 +139,11 @@ layui.define([], exports => {
       $(".left-content").addClass('left-animation')
       $(".right-content").addClass('right-animation')
       $(".middle-content").addClass('content-animation')
+      if (clickLock) clickLock = false
     }
 
     async bindMethod () {
-      $(window).on('hashchange', async () => {
-        console.log('test bind count')
-        await this.renderBody()
-      })
+      $(window).on('hashchange', async () => (await this.renderBody()))
       await this.renderBody()
     }
   }
