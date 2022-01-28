@@ -21,7 +21,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
         team: '班组工种',
         name: '班组长',
         idNum: '班组长身份证号码',
-        phone: '班组长身份证号码',
+        phone: '班组长电话',
       }
       let h = ''
       Object.keys(dict).forEach(d => {
