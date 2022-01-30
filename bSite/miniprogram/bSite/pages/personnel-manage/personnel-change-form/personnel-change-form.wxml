@@ -1,0 +1,21 @@
+<!--pages/personnel-manage/personnel-change-form/personnel-change-form.wxml-->
+<lu-page-container title="人员变动">
+  <view class="input-item">
+    <lu-input-element type="select" label="参建单位" placeholder="请选择" selectList="{{company_list}}"
+      selectKeyStr="company_id" selectShowStr="company_name" 
+      bind:valueChange="onCompanyId" />
+  </view>
+  <view class="input-item">
+    <view class="mask" wx:if="{{!company_id}}" bindtap="showWarning"></view>
+    <lu-input-element type="select" label="班组" placeholder="请选择" selectList="{{active_group_list}}"
+      selectValue="{{group_name}}"
+      selectKeyStr="group_id" selectShowStr="group_name" bind:valueChange="onGroupList"
+      bind:selectListEmpty="showEmptyWarning" />
+  </view>
+  <view class="btn-box">
+    <l-button bind:lintap="submit" 
+              disabled="{{btnDisabled}}" 
+              size="long">确定</l-button>
+  </view>
+</lu-page-container>
+<l-toast />

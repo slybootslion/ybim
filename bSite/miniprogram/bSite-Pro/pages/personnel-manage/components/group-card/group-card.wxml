@@ -1,0 +1,38 @@
+<!--pages/personnel-manage/components/group-card/group-card.wxml-->
+<view class="container">
+  <view class="top">
+    <view class="top-left">
+      <image class="top-icon" src="http://bjbsite.com/images/xcx/page/personnel/group.png"></image>
+      <view class="top-name">{{detail.group_name}}</view>
+    </view>
+    <view class="top-right">
+      <div wx:if="{{!hide2}}" class="right-item" catchtap="toFormPage">
+        <text class="iconfont icon-bianjijusebi"></text>
+        <text class="text">编辑</text>
+      </div>
+      <div wx:if="{{!hide3}}" class="right-item" catchtap="del">
+        <text class="iconfont icon-shanchu"></text>
+        <text class="text">删除</text>
+      </div>
+    </view>
+  </view>
+  <view class="bottom" hover-class="active" bindtap="groupTap">
+    <view class="bottom-item">
+      <view class="item-left">在场人员：</view>
+      <view class="item-right">{{detail.employee_count}}</view>
+    </view>
+    <view class="bottom-item">
+      <view class="item-left">所属参建公司：</view>
+      <view class="item-right">{{detail.company_name}}</view>
+    </view>
+    <view class="bottom-item">
+      <view class="item-left">班组长：</view>
+      <view class="item-right">{{detail.staff_name}}</view>
+    </view>
+    <view class="bottom-item">
+      <view class="item-left">班组长电话：</view>
+      <view class="item-right">{{detail.mobile_phone}}</view>
+    </view>
+  </view>
+</view>
+<l-dialog/>

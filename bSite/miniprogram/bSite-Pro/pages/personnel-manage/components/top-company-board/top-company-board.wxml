@@ -1,0 +1,23 @@
+<!--pages/personnel-manage/components/top-company-board/top-company-board.wxml-->
+<view class="board top-board">
+  <view class="company-name" bind:tap="selectCompany">
+    <image class="top-icon" src="http://bjbsite.com/images/xcx/page/personnel/company.png"></image>
+    <view class="name txt-overflow">{{current.company_name}}</view>
+    <image class="xiala" src="http://bjbsite.com/images/xcx/page/index/xiala.png"></image>
+  </view>
+  <view class="top-content">
+    <view wx:if="{{!current.company_id}}" class="empty">暂无数据</view>
+    <view wx:else class="item-content">
+      <view class="content-item">在场人员：<text class="item-t">{{current.onworkc}}人</text></view>
+      <view class="content-item">下属班组：<text class="item-t">{{current.groupc}}人</text></view>
+    </view>
+  </view>
+</view>
+<l-popup show="{{showPopup}}" content-align="bottom" z-index="1000">
+  <scroll-view scroll-y class="popup-content">
+    <view class="select-item txt-overflow" data-index="{{index}}" wx:for="{{list}}" wx:key="company_id"
+      bind:tap="popupItemClick">
+      {{item.company_name}}
+    </view>
+  </scroll-view>
+</l-popup>

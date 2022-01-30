@@ -1,0 +1,19 @@
+/* pages/personnel-manage/roster-list/roster-list.wxss */
+.search-bar {
+  padding: 20rpx 10rpx;
+}
+
+.search-bar .search-box {
+  height: 55rpx;
+  border-radius: 30rpx;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+
+.search-bar .t {
+  font-size: 28rpx;
+}

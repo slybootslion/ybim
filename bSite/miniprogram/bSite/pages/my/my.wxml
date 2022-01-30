@@ -1,0 +1,51 @@
+<!--pages/my/my.wxml-->
+<scroll-view class="container bg-color" enhanced scroll-y style="height: {{contentHeight}}px" show-scrollbar="{{false}}"
+  bindscroll="scrolling">
+  <l-capsule-bar hidden-capsule title="我的" title-color="{{barColor === 'transparent' ? '#fff' : '#333'}}"
+    bg-color="{{barColor}}" />
+  <view class="wrapper">
+    <view class="info-border">
+      <image class="avatar" src="{{info.avatar}}"></image>
+      <view class="info">
+        <view class="info-item">{{info.nickname}}</view>
+        <view class="info-item">{{info.mobile_phone}}</view>
+        <view class="info-item">{{info.company_name}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="content">
+    <view class="content-group">
+      <view class="content-item" data-idx="0" bindtap="itemTap">
+        <view class="left">
+          <image class="icon" src="http://bjbsite.com/images/xcx/page/my/grxx.png"></image>
+          <text class="content-txt">个人信息</text>
+        </view>
+        <l-icon name="right" size="30" color="#9d9d9d"></l-icon>
+      </view>
+      <view class="content-item" data-idx="1" bindtap="itemTap">
+        <view class="left">
+          <image class="icon" src="http://bjbsite.com/images/xcx/page/my/xgmm.png"></image>
+          <text class="content-txt">密码修改</text>
+        </view>
+        <l-icon name="right" size="30" color="#9d9d9d"></l-icon>
+      </view>
+    </view>
+    <view class="content-group">
+      <view class="content-item" data-idx="2" bindtap="itemTap">
+        <view class="left">
+          <image class="icon" src="http://bjbsite.com/images/xcx/page/my/gzgl.png"></image>
+          <text class="content-txt">工种管理</text>
+        </view>
+        <l-icon name="right" size="30" color="#9d9d9d"></l-icon>
+      </view>
+    </view>
+    <view class="content-group">
+      <l-button size="long" bg-color="#fff" bind:lintap="logout">
+        <image class="logout-icon" src="http://bjbsite.com/images/xcx/page/my/xgmm.png"></image>
+        <text class="logout-txt">退出登录</text>
+      </l-button>
+    </view>
+  </view>
+</scroll-view>
+<l-dialog />
+<l-toast/>

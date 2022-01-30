@@ -1,0 +1,37 @@
+<!--pages/my-app/work-manage/work-manage.wxml-->
+<lu-page-container title="工种管理">
+  <view class="top-btn" bindtap="add">
+    <l-icon name="add" size="30"></l-icon>
+    <text class="txt primary-color">新建工种</text>
+  </view>
+  <view class="borad-item" wx:for="{{list}}" wx:key="kindwork_id">
+    <view class="top border-color">
+      <view class="left">
+        <text>{{item.work_name}}</text>
+      </view>
+      <view class="right ">
+        <div class="right-item" data-kindwork-id="{{item.kindwork_id}}" bindtap="toForm">
+          <text class="iconfont icon-bianjijusebi"></text>
+          <text class="text">编辑</text>
+        </div>
+        <div class="right-item" data-kindwork-id="{{item.kindwork_id}}" bindtap="del">
+          <text class="iconfont icon-shanchu"></text>
+          <text class="text">删除</text>
+        </div>
+      </view>
+    </view>
+    <view class="detail">
+      <text class="item-key text-info-color">{{item.create_time}}</text>
+    </view>
+  </view>
+</lu-page-container>
+<l-dialog z-index="1000" />
+<l-popup show="{{popupShow}}" z-index="1000">
+  <view class='pupop-content'>
+    <view class="input-box">
+      <input class="input-el" placeholder="请输入工种名称" type="text" value="{{work_name}}" focus bindinput="handleInput" />
+    </view>
+    <l-button class='pupop-close' disabled="{{disabled}}" bind:lintap='handleSubmit'>确定</l-button>
+  </view>
+</l-popup>
+<l-toast/>

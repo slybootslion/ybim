@@ -1,0 +1,73 @@
+<!--pages/attendance-manage/components/select-worker-board/select-worker-board.wxml-->
+<view class="container">
+  <view class="top">
+    <view class="top-left" bindtap="selectTap">
+      <image class="top-icon" src="{{detail.selected ? checkedIcon : checkIcon}}"></image>
+      <view>{{detail.staff_name}}</view>
+    </view>
+    <view class="top-rigth">
+      {{ticket_money}}元
+    </view>
+  </view>
+  <view class="middle">
+    <view class="middle-item">
+      <view class="item-left">所属班组：</view>
+      <view class="item-right">{{detail.group_name}}</view>
+    </view>
+    <view class="middle-item">
+      <view class="item-left">记工时间段：</view>
+      <view class="item-right">{{detail.date_duan}}</view>
+    </view>
+  </view>
+  <view class="bottom" bindtap="handleShow">
+    <view class="bottom-item">
+      <view class="item-title">工日（工）</view>
+      <view class="item-num">{{w_day ? w_day : 0}}</view>
+    </view>
+    <view class="bottom-item">
+      <view class="item-title">工价（元/工）</view>
+      <view class="item-num">{{w_pay ? w_pay : 0}}</view>
+    </view>
+    <view class="bottom-item">
+      <view class="item-title">嘉奖（元）</view>
+      <view class="item-num">{{w_award ? w_award : 0}}</view>
+    </view>
+    <view class="bottom-item">
+      <view class="item-title">扣款（元）</view>
+      <view class="item-num">{{w_cutpay ? w_cutpay : 0}}</view>
+    </view>
+  </view>
+</view>
+<l-popup show="{{showPopup}}" z-index="1000">
+  <view class="pupop-content">
+    <view class="input-box">
+      <text class="input-t">工日（工）：</text>
+      <input class="input-el"
+             type="number"
+             value="{{w_day == null ? '' : w_day}}"
+             bindinput="wDayInput"/>
+    </view>
+    <view class="input-box">
+      <text class="input-t">工价（元/工）：</text>
+      <input class="input-el"
+             type="digit"
+             value="{{w_pay == null ? '' : w_pay}}"
+             bindinput="wPayInput"/>
+    </view>
+    <view class="input-box">
+      <text class="input-t">嘉奖（元）：</text>
+      <input class="input-el"
+             type="digit"
+             value="{{w_award == null ? '' : w_award}}"
+             bindinput="wAwardInput"/>
+    </view>
+    <view class="input-box">
+      <text class="input-t">扣款（元）：</text>
+      <input class="input-el"
+             type="digit"
+             value="{{w_cutpay == null ? '' : w_cutpay}}"
+             bindinput="wCutpayInput"/>
+    </view>
+    <l-button class='pupop-close' bind:lintap='handleSubmit'>确定</l-button>
+  </view>
+</l-popup>

@@ -1,0 +1,81 @@
+<!--pages/site-manage/environ-monitoring/environ-monitoring.wxml-->
+<lu-page-container title="环境监测">
+  <view class="content">
+    <lu-content-top title="设备总览">
+      <view class="top-link primary-color"
+            wx:if="{{!hide}}"
+            bindtap="toMangePage">
+        <image class="shebei" src="http://bjbsite.com/images/xcx/page/site-manage/sbgl.png"></image>
+        <text>设备管理</text>
+      </view>
+    </lu-content-top>
+    <view class="content-detail detail-1">
+      <view class="top">
+        <view class="top-item">
+          <text class="top-item-title">设备总数</text>
+          <text class="top-item-num primary-color">{{count}}</text>
+        </view>
+        <view class="top-item">
+          <text class="top-item-title">在线</text>
+          <text class="top-item-num primary-color">{{online}}</text>
+        </view>
+        <view class="top-item">
+          <text class="top-item-title">离线</text>
+          <text class="top-item-num primary-color">{{offline}}</text>
+        </view>
+      </view>
+      <view class="top-list">
+        <view class="top-list-item primary-txt top-list-title">
+          <view class="item-left">设备名称</view>
+          <view class="item-right">设备状态</view>
+        </view>
+        <view class="top-list-item" wx:for="{{list}}" wx:key="device_number">
+          <view class="item-left txt-overflow text-info-color">{{item.Name}}</view>
+          <view class="item-right {{item.Status === '离线' ? 'red' : ''}}">{{item.Status}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="content">
+    <lu-content-top title="实时监测">
+      <view class="top-select-box" bindtap="selectTap">
+        <text class="select-name">{{list[currentIndex].Name}}</text>
+        <l-icon name="down" color="#828282" size="22"></l-icon>
+      </view>
+    </lu-content-top>
+    <view class="content-detail detail-2">
+      <view class="detail-2-item" wx:for="{{detail2List}}" wx:key="name">
+        <text class="{{item.icon}} iconfont"></text>
+        <text class="item-txt">{{item.name}}</text>
+        <text class="item-txt">{{list[currentIndex][item.key]}}{{item.unit}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="content">
+    <lu-content-top title="实时监测">
+      <view class="top-select-box" bindtap="selectTap">
+        <text class="select-name">{{list[currentIndex].Name}}</text>
+        <l-icon name="down" color="#828282" size="22"></l-icon>
+      </view>
+    </lu-content-top>
+    <view class="content-detail detail-3">
+      <view class="detail-3-item"
+            wx:for="{{detail3List}}" wx:key="name">
+        <view class="left">{{item.name}}</view>
+        <view class="right primary-color">{{list[currentIndex][item.key]}}{{item.unit}}</view>
+      </view>
+    </view>
+  </view>
+</lu-page-container>
+<l-loading full-screen show="{{isLoading}}"/>
+<l-popup show="{{showPopup}}" content-align="bottom" z-index="1000">
+  <scroll-view scroll-y class="popup-content">
+    <view class="select-item txt-overflow"
+          wx:for="{{list}}"
+          wx:key="device_number"
+          id="{{index}}"
+          bind:tap="popupItemClick">
+      {{item.Name}}
+    </view>
+  </scroll-view>
+</l-popup>

@@ -1,0 +1,27 @@
+<!--pages/site-manage/components/equipment-content-detail/equipment-content-detail.wxml-->
+<view class="container">
+  <view class="top border-color">
+    <view class="left">
+      <image class="left-pic" src="http://bjbsite.com/images/xcx/page/site-manage/shebei.png"></image>
+      <text>{{detail.device_name}}</text>
+    </view>
+    <view class="right ">
+      <div class="right-item" bindtap="toFormPage">
+        <text class="iconfont icon-bianjijusebi"></text>
+        <text class="text">编辑</text>
+      </div>
+      <div class="right-item" bindtap="del">
+        <text class="iconfont icon-shanchu"></text>
+        <text class="text">删除</text>
+      </div>
+    </view>
+  </view>
+  <view class="detail">
+    <view class="detail-item" wx:for="{{detailData}}" wx:key="key">
+      <text class="item-key">{{item.key}}：</text>
+      <text class="item-detail" wx:if="{{item.valueFlag !== 'status_name'}}">{{detail[item.valueFlag]}}</text>
+      <text class="{{statusColor}}" wx:else>{{detail[item.valueFlag]}}</text>
+    </view>
+  </view>
+</view>
+<l-dialog/>

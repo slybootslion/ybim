@@ -1,0 +1,15 @@
+<!--pages/site-manage/video-manage/video-manage.wxml-->
+<lu-page-container title="设备管理">
+  <lu-content-top title="视频设备列表">
+    <view class="top-link primary-color" bindtap="toFormPage">
+      <l-icon name="add" size="36"></l-icon><text class="top-text">添加设备</text>
+    </view>
+  </lu-content-top>
+  <lu-content-detail wx:for="{{list}}"
+                     wx:key="id"
+                     detail="{{item}}"
+                     bind:editTap="toFormPage"
+                     bind:delTap="handleDel"
+  />
+</lu-page-container>
+<l-loading full-screen show="{{isLoading}}"/>

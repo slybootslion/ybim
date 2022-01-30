@@ -1,0 +1,25 @@
+<!--pages/personnel-manage/person-detail/person-detail.wxml-->
+<lu-page-container title="工人详细">
+  <lu-person-board data="{{personDetail}}"></lu-person-board>
+  <view class="person-company">
+    <view class="company-info-item"
+          wx:for="{{companyInfoData}}"
+          wx:key="key">
+      <view class="company-info-item-left">{{item.key}}</view>
+      <view class="company-info-item-right txt-overflow text-info-color">{{personDetail[item.keyName]}}</view>
+    </view>
+  </view>
+  <view class="person-company">
+    <view class="company-info-item"
+          wx:for="{{linkData}}"
+          wx:key="key"
+          data-url="{{item.url}}"
+          hover-class="link-hover"
+          bind:tap="toLink">
+      <view class="company-info-item-left">{{item.key}}</view>
+      <view class="company-info-item-right txt-overflow">
+        <l-icon name="right" color="#9d9d9d"></l-icon>
+      </view>
+    </view>
+  </view>
+</lu-page-container>

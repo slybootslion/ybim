@@ -1,0 +1,20 @@
+<!--pages/site-manage/equipment-manage/equipment-manage.wxml-->
+<lu-page-container title="设备管理">
+  <lu-content-top title="环境设备列表">
+    <view wx:if="{{!hide1}}" 
+          class="top-link primary-color" 
+          bindtap="toFormPage">
+      <l-icon name="add" size="36"></l-icon>
+      <text class="top-text">添加设备</text>
+    </view>
+  </lu-content-top>
+  <lu-content-detail wx:for="{{list}}"
+                     wx:key="id"
+                     detail="{{item}}"
+                     hide2="{{hide2}}"
+                     hide3="{{hide3}}"
+                     bind:editTap="toFormPage"
+                     bind:delTap="handleDel"
+  />
+</lu-page-container>
+<l-loading full-screen show="{{isLoading}}"/>

@@ -1,0 +1,9 @@
+<!--pages/site-manage/components/content-top/content-top.wxml-->
+<view class="container">
+  <view class="left">
+    {{title}}
+  </view>
+  <view class="rigth">
+    <slot/>
+  </view>
+</view>

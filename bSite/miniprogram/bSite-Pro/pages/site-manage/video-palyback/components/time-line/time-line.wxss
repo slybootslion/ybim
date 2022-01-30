@@ -1,0 +1,73 @@
+/* pages/site-manage/video-palyback/components/time-line/time-line.wxss */
+.time-line-container {
+  height: 500rpx;
+  position: relative;
+}
+
+.time-line-container  .current-time {
+  position: absolute;
+  left: 0;
+  top: 80rpx;
+  height: 58rpx;
+  /* line-height: 58rpx; */
+  border-bottom: 2rpx solid #0080ff;
+  width: 60%;
+  padding-left: 36%;
+}
+
+.time-line-container  .current-time .current-time-bg {
+  position: relative;
+  top: 30rpx;
+  width: 200rpx;
+  height: 58rpx;
+  line-height: 58rpx;
+  /* line-height: 58rpx; */
+  background-color: #0080ff;
+  color: #fff;
+  text-align: center;
+  border-radius: 30rpx;
+}
+
+.time-line-container .time-line-item-container {
+  display: inline-block;
+  width: 30%;
+  overflow-y: scroll;
+  height: 500rpx;
+  box-sizing: border-box;
+  white-space: nowrap
+}
+
+.time-line-item .time-item {
+  position: relative;
+  box-sizing: border-box;
+  height: 120rpx;
+  font-size: 28rpx;
+  color: rgb(150, 150, 150);
+  border-right:  12rpx solid ;
+  border-right-color: #ddd;
+}
+
+.time-line-item .time-item .scale {
+  width: 12rpx;
+  height: 18rpx;
+  border-bottom: 2rpx solid #ccc;
+  float: right;
+  clear: both;
+}
+
+.time-line-item .time-item .item-unavail {
+  width: 12rpx;
+  position: absolute;
+  left: 100%;
+  background-color:#0080ff;
+}
+
+/*隐藏滚动条*/
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.time-line-container .time-line-item-container .time-line-item{
+  height: 2400rpx;  
+}

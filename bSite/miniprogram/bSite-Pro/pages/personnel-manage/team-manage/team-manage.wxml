@@ -1,0 +1,19 @@
+<!--pages/personnel-manage/team-manage/team-manage.wxml-->
+<lu-page-container title="班组管理" bind:scrollToLower="scrollToLower">
+  <view class="top-btn" wx:if="{{!hide1}}" bindtap="groupAdd">
+    <l-icon name="add" size="30"></l-icon>
+    <text class="txt primary-color">新建班组</text>
+  </view>
+  <lu-company-board list="{{company_list}}"
+                    bind:itemClick="companySelected"/>
+  <lu-group-card wx:for="{{list}}"
+                  wx:key="index"
+                  hide2="{{hide2}}"
+                  hide3="{{hide3}}"
+                  hide4="{{hide4}}"
+                  bind:isDel="delItem"
+                  bind:editItem="groupAdd"
+                  detail="{{item}}"/>
+</lu-page-container>
+<l-loading full-screen show="{{isLoading}}"/>
+

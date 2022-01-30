@@ -1,0 +1,2 @@
+<!--pages/attendance-manage/payroll-page/payroll-page.wxml-->
+<lu-page-container title="工资单"></lu-page-container>

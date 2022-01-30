@@ -1,0 +1,71 @@
+/* pages/site-manage/video-surveillance-detail/video-surveillance-detail.wxss */
+
+.live-player {
+  width: 100%;
+}
+
+.ctrl-box {
+  height: 92rpx;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+
+.play-btn {
+  width: 80rpx;
+  height: 80rpx;
+  background-color: #ccc;
+  border-radius: 50%;
+}
+
+.ctrl-left,
+.ctrl-rigth {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.left-item {
+  display: flex;
+  margin-right: 10rpx;
+}
+
+.left-item .arrow{
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.left-item .arrow.arrow-up{
+  transform: rotate(-90deg);
+}
+
+.left-item .arrow.arrow-down{
+  transform: rotate(90deg);
+}
+
+.left-item .arrow.arrow-left{
+  transform: rotate(180deg);
+}
+
+/*  */
+
+.ptz-container {
+  width: 100%;
+  height: 416rpx;
+  background: #fff;
+  text-align: center;
+
+}
+
+.ptz-container .ptz-img-container{
+  display: inline-block;
+}
+
+.ptz-container .ptz-img {
+  display: inline-block;
+  width: 416rpx;
+  height: 416rpx;
+}

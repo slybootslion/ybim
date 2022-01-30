@@ -1,0 +1,54 @@
+/* pages/personnel-manage/components/personnel-collapse/personnel-collapse.wxss */
+
+.company_name {
+  height: 100rpx;
+  border-bottom: 1rpx solid #e8e8e8;
+}
+
+.bodyclass {
+  padding: 0;
+}
+
+.group_name {
+  width: 100%;
+  height: 100rpx;
+  border-bottom: 1rpx solid #e8e8e8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.wrap {
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.group-img {
+  width: 32rpx;
+  height: 32rpx;
+  margin: 0 20rpx;
+}
+
+.group-item-right {
+  display: flex;
+  align-items: center;
+}
+
+.content {
+  padding: 0 20rpx;
+}
+
+.person-item {
+  height: 100rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1rpx solid #e8e8e8;
+}
+
+.person-item .check-icon {
+  width: 26rpx;
+  height: 26rpx;
+  margin-right: 20rpx;
+}

@@ -1,0 +1,62 @@
+/* pages/personnel-manage/components/person-card/person-card.wxss */
+.container {
+  background-color: #fff;
+  margin-bottom: 20rpx;
+  padding: 0 30rpx;
+}
+
+.container .top {
+  height: 69rpx;
+  border-bottom: 1rpx solid #e8e8e8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container .top .top-icon {
+  width: 26rpx;
+  height: 32rpx;
+  margin: 0 20rpx;
+}
+
+.top .top-left {
+  display: flex;
+  align-items: center;
+}
+
+.top .top-right .top-status {
+  padding: 0 10rpx;
+  line-height: 32rpx;
+  background-color: #ffe2ce;
+  color: #f66200;
+  font-size: 18rpx;
+}
+
+.top .top-right .top-status.low {
+  background-color: #e7e7e7;
+  color: #333;
+}
+
+.bottom {
+  padding: 26rpx 0;
+}
+
+.bottom .bottom-item {
+  height: 40rpx;
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+}
+
+.bottom .bottom-item .item-right {
+  color: #9d9d9d;
+}
+
+.leader {
+  margin-left: 10rpx;
+  font-size: 20rpx;
+  color: #0080ff;
+  background-color: #dce8f4;
+  padding: 0 10rpx;
+  border-radius: 10rpx;
+}

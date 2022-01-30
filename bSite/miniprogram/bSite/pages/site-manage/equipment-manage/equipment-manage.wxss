@@ -1,0 +1,17 @@
+/* pages/site-manage/equipment-manage/equipment-manage.wxss */
+
+.top-link {
+  height: 40rpx;
+  display: flex;
+  align-items: center;
+}
+
+.top-text {
+  margin-left: 10rpx;
+}
+
+.content-detail {
+  background-color: #fff;
+  padding: 30rpx;
+  box-sizing: border-box;
+}

@@ -1,0 +1,6 @@
+<!--pages/site-manage/video-surveillance-detail/video-surveillance-detail.wxml-->
+<lu-page-container title="视频监控" bind:leftBtnTap="beforeBackPage">
+  <lu-content-top title="{{title}}">
+  </lu-content-top>
+  <video src="{{data_url}}" autoplay></video>
+</lu-page-container>

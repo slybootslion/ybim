@@ -1,0 +1,59 @@
+<!--pages/site-manage/video-surveillance-detail/video-surveillance-detail.wxml-->
+<lu-page-container title="视频监控" bind:leftBtnTap="beforeBackPage">
+  <lu-content-top title="{{title}}" />
+  <view class="video-container">
+    <live-player src="{{data_url}}"
+                 mode="RTC" 
+                 id="livePlayer"
+                 autoplay 
+                 bindstatechange="statechange" 
+                 binderror="liveError" 
+                 class="live-player"/>
+    <view class="ctrl-box">
+      <view class="ctrl-left" bindtap="play">
+        <image src="http://bjbsite.com/images/xcx/page/site-manage/play.png" class="play-btn" />
+        <!-- <view class="left-item" 
+              data-status="1" 
+              catchtouchstart="ctrlTapStart" 
+              catchtouchend="ctrlTapEnd">
+          <image class="arrow arrow-up" src="http://bjbsite.com/images/xcx/page/site-manage/arrow.png"></image>
+          <view>向上</view>
+        </view>
+        <view class="left-item" 
+              data-status="2" 
+              catchtouchstart="ctrlTapStart" 
+              catchtouchend="ctrlTapEnd">
+          <image class="arrow arrow-down" src="http://bjbsite.com/images/xcx/page/site-manage/arrow.png"></image>
+          <view>向下</view>
+        </view>
+        <view class="left-item" 
+              data-status="3" 
+              catchtouchstart="ctrlTapStart" 
+              catchtouchend="ctrlTapEnd">
+          <image class="arrow arrow-left" src="http://bjbsite.com/images/xcx/page/site-manage/arrow.png"></image>
+          <view>向左</view>
+        </view>
+        <view class="left-item" 
+              data-status="4" 
+              catchtouchstart="ctrlTapStart" 
+              catchtouchend="ctrlTapEnd">
+          <image class="arrow arrow-right" src="http://bjbsite.com/images/xcx/page/site-manage/arrow.png"></image>
+          <view>向右</view>
+        </view> -->
+      </view>
+      <view class="ctrl-rigth">
+        <l-button size="mini" 
+                  bindtap="goPlayBack">点击回放</l-button>
+      </view>
+    </view>
+    <view class="ptz-container">
+        <view class="ptz-img-container" 
+              id="ptzImgContainer" 
+              catchtouchstart="ctrlTapStart" 
+              catchtouchend="ctrlTapEnd">
+        <image class="ptz-img" src="{{currentPtzImg}}"></image>
+      </view>
+    </view>
+  </view>
+</lu-page-container>
+<l-toast />

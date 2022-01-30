@@ -1,0 +1,6 @@
+/* pages/personnel-manage/person-detail/person-detail.wxss */
+@import '../../../static/style/person-public.wxss';
+
+.link-hover {
+  background-color: #dce8f4;
+}

@@ -1,0 +1,66 @@
+<!--pages/attendance-manage/group-attendance-detail/group-attendance-detail.wxml-->
+<lu-page-container title="{{pageTitle}}">
+  <lu-calendar bind:dateChange="handleDateChange"/>
+  <view class="top-board">
+    <view class="top-info">
+      <view class="left">
+        <image class="item-icon" src="http://bjbsite.com/images/xcx/page/attendance-manage/bz.png"></image>
+        <text>{{groupName}}</text>
+      </view>
+      <view class="right">考勤人数：
+        <text class="text-info-color">{{total}}人</text>
+      </view>
+    </view>
+    <view class="top-ctrl">
+      <view class="ctrl-item" bindtap="batchAttendance">
+        <text class="iconfont icon-piliang"></text>
+        <text>班组批量考勤</text>
+      </view>
+    </view>
+  </view>
+  <view class="board"
+        wx:for="{{list}}"
+        wx:key="emp_id"
+        data-current-id="{{item.emp_id}}"
+        hover-class="tap-hover"
+        bindtap="itemClick">
+    <view class="board-t">
+      <view class="t-l">
+        <l-icon l-class="check-icon"
+                catchtap="itemCheck"
+                data-index="{{index}}"
+                color="{{item.checked ? '#0080ff' : '#9d9d9d'}}"
+                name="checked" size="26"></l-icon>
+        <text>{{item.staff_name}}</text>
+      </view>
+      <view class="t-r {{item.qstatus === '已签到' ? 'primary-color' : 'text-info-color'}}">
+        <text class="iconfont icon-yiqiandao1"></text>
+        {{item.qstatus}}
+      </view>
+    </view>
+    <view class="board-b">
+      <view class="b-l">在场工时：
+        <text class="text-info-color">{{item.workhour}}小时</text>
+      </view>
+      <view class="b-r text-info-color">{{item.ttype}}</view>
+    </view>
+  </view>
+</lu-page-container>
+<l-popup show="{{popupShow}}" z-index="1000">
+  <view class="pupop-content">
+    <view class="input-box">
+      <text class="input-t">在场工时：</text>
+      <input class="input-el"
+             type="number"
+             value="{{workhour}}"
+             focus
+             maxlength="2"
+             max="24"
+             bindinput="handleInput"/>
+      <text class="input-t">小时</text>
+    </view>
+    <l-button class='pupop-close' disabled="{{disabled}}" bind:lintap='handleSubmit'>确定</l-button>
+  </view>
+</l-popup>
+<l-loading full-screen show="{{isLoading}}"/>
+<l-toast/>

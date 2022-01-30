@@ -1,0 +1,15 @@
+<!--pages/personnel-manage/roster-list/roster-list.wxml-->
+<lu-page-container title="花名册" bind:scrollToLower="scrollToLower">
+  <view class="search-bar">
+    <view class="search-box" bindtap="toSearch">
+      <text class="t text-info-color">请输入工人名称搜索</text>
+      <l-icon name="research" size="28" color="#76849b"></l-icon>
+    </view>
+  </view>
+  <lu-company-board list="{{company_list}}"
+                    bind:itemClick="companySelected"/>
+  <lu-person-card wx:for="{{list}}"
+                  wx:key="index"
+                  detail="{{item}}"/>
+</lu-page-container>
+<l-loading full-screen show="{{isLoading}}"/>

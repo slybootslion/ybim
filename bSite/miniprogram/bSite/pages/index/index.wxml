@@ -1,0 +1,46 @@
+<!--index.wxml-->
+<scroll-view class="container bg-color"
+             enhanced
+             scroll-y
+             style="height: {{contentHeight}}px"
+             show-scrollbar="{{false}}"
+             bindscroll="scrolling">
+  <l-capsule-bar hidden-capsule
+                 title="首页"
+                 title-color="{{barColor === 'transparent' ? '#fff' : '#333'}}"
+                 bg-color="{{barColor}}"/>
+  <view class="wrapper">
+    <view class="board top-board">
+      <view class="project-name txt-overflow">
+        <text class="iconfont icon-xiangmu primary-color"></text>
+        <text>S107关中环线大中修工程项目</text>
+      </view>
+      <view class="company-name" bind:tap="selectCompany">
+        <view class="name txt-overflow">所属公司：{{companyName.company_name}}</view>
+        <image class="xiala" src="http://bjbsite.com/images/xcx/page/index/xiala.png"></image>
+      </view>
+    </view>
+    <view class="board" wx:for="{{modelList}}" wx:key="index">
+      <view class="title">{{item.title}}</view>
+      <l-loading show="{{!item.content.length && !isLoading}}"
+                 l-container-class="board-loading"/>
+      <view class="content">
+        <view class="content-item" wx:for="{{item.content}}" wx:key="index">
+          {{item.key}}:
+          <text class="info-color">{{item.value}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<l-popup show="{{showPopup}}" content-align="bottom" z-index="1000">
+  <scroll-view scroll-y class="popup-content">
+    <view class="select-item txt-overflow"
+          id="{{item.builing_id}}"
+          wx:for="{{companies}}" wx:key="builing_id"
+          bind:tap="popupItemClick">
+      {{item.company_name}}
+    </view>
+  </scroll-view>
+</l-popup>
+<l-loading full-screen="{{true}}" show="{{isLoading}}"/>

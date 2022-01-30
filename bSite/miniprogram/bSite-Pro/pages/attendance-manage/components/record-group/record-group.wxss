@@ -1,0 +1,2 @@
+/* pages/attendance-manage/components/record-group/record-group.wxss */
+@import "../../../personnel-manage/components/group-card/group-card.wxss";

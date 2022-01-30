@@ -1,0 +1,21 @@
+<!--pages/personnel-manage/in-out-mange/in-out-mange.wxml-->
+<lu-page-container title="进退场管理">
+  <lu-person-board data="{{personDetail}}"></lu-person-board>
+  <view class="log-content">
+    <view class="log-item" wx:for="{{in_space_log}}" wx:key="index">
+      <view class="company-name">{{item.company_name}}</view>
+      <view class="group-name text-info-color">{{item.group_name}}</view>
+      <view class="in-time">
+        <text class="iconfont icon-shijian"></text>
+        <text>进场时间：<text class="text-info-color">{{item.in_time}}</text></text>
+      </view>
+      <view class="out-time">
+        <text class="iconfont icon-shijian"></text>
+        <text>退场时间：<text class="text-info-color">{{item.out_time || '---'}}</text></text>
+      </view>
+    </view>
+  </view>
+  <l-button wx:if="{{!hide}}" size="long" bind:lintap="handleChange" bg-color="#0080ff" disabled="{{btnDisabled}}">
+    {{ in_space === '1' ? '退场' : '进场'}}</l-button>
+</lu-page-container>
+<l-dialog />

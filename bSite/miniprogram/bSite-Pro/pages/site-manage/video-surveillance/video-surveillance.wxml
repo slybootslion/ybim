@@ -1,0 +1,43 @@
+<!--pages/site-manage/video-surveillance/video-surveillance.wxml-->
+<lu-page-container title="视频监控">
+  <view class="content">
+    <lu-content-top title="设备总览">
+      <view class="top-link primary-color" 
+            wx:if="{{!hide}}"
+            bindtap="toMangePage">
+        <image class="shebei" src="http://bjbsite.com/images/xcx/page/site-manage/shebei2.png"></image>
+        <text>设备管理</text>
+      </view>
+    </lu-content-top>
+    <view class="content-detail detail-1">
+      <view class="top">
+        <view class="top-item">
+          <text class="top-item-title">视频总数</text>
+          <text class="top-item-num primary-color">{{total}}</text>
+        </view>
+        <view class="top-item">
+          <text class="top-item-title">在线</text>
+          <text class="top-item-num primary-color">{{on_line}}</text>
+        </view>
+        <view class="top-item">
+          <text class="top-item-title">离线</text>
+          <text class="top-item-num primary-color">{{off_line}}</text>
+        </view>
+      </view>
+      <view class="top-list">
+        <view class="video-item"
+              wx:for="{{list}}"
+              wx:key="video_id"
+              data-index="{{index}}"
+              bind:tap="goPlayPage">
+          <view class="video-pic-box">
+            <image src="{{item.pic}}" class="video-pic"></image>
+            <image src="http://bjbsite.com/images/xcx/page/site-manage/play.png" class="play-icon"></image>
+          </view>
+          <view class="video-title txt-overflow">{{item.title}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</lu-page-container>
+<l-loading full-screen show="{{isLoading}}"/>

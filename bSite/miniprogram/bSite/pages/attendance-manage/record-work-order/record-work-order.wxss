@@ -1,0 +1,12 @@
+/* pages/record-work-order/record-work-order.wxss */
+.top-btn {
+  height: 92rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+}
+
+.top-btn .txt{
+  margin-left: 20rpx;
+}

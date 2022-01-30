@@ -1,0 +1,17 @@
+/* pages/attendance-manage/select-workers/select-workers.wxss */
+.footer {
+  width: 100%;
+  height: 119rpx;
+  background-color: #fff;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+}
+
+.block {
+  height: 126rpx;
+}

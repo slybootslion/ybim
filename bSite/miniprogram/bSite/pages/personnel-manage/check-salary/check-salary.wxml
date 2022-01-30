@@ -1,0 +1,30 @@
+<!--pages/personnel-manage/check-salary/check-salary.wxml-->
+<lu-page-container title="查工资">
+  <lu-person-board data="{{personDetail}}"></lu-person-board>
+  <view class="salary-item" wx:for="{{list}}" wx:key="index">
+    <view class="item">
+      <view class="item-key">记工截至月份：</view>
+      <view class="item-value text-info-color">{{item.end_time}}</view>
+    </view>
+    <view class="item">
+      <view class="item-key">参见公司：</view>
+      <view class="item-value text-info-color">{{item.company_name}}</view>
+    </view>
+    <view class="item">
+      <view class="item-key">记工金额：</view>
+      <view class="item-value text-info-color">{{item.ticket_money}}</view>
+    </view>
+    <view class="item">
+      <view class="item-key">发放状态：</view>
+      <view class="item-value {{item.h_pay_status === 1 ? 'green' : 'red'}}">
+        <text class="iconfont icon-yiwancheng" wx:if="{{item.h_pay_status === 1}}"></text>
+        <text class="iconfont icon-weiwancheng" wx:else></text>
+        <text class="txt">{{item.h_pay_status === 1 ? '已发放' : '未发放'}}</text>
+      </view>
+    </view>
+    <view class="item">
+      <view class="item-key">发放金额：</view>
+      <view class="item-value text-info-color">{{item.ticket_money}}</view>
+    </view>
+  </view>
+</lu-page-container>

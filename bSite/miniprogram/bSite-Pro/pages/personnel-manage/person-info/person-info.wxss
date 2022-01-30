@@ -1,0 +1,8 @@
+/* pages/personnel-manage/person-info/person-info.wxss */
+@import '../../../static/style/person-public.wxss';
+
+.btn-box {
+  padding: 0 30rpx;
+  margin: 30rpx 0;
+  box-sizing: border-box;
+}

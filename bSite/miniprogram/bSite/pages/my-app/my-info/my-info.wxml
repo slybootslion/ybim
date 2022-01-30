@@ -1,0 +1,13 @@
+<!--pages/my-app/my-info/my-info.wxml-->
+<lu-page-container title="个人信息" bind:leftBtnTap="beforeBackPage">
+  <view class="info-item" wx:for="{{infoKey}}" wx:key="index">
+    <view class="border-content">
+      <view class="info-key">
+        {{item.key}}
+      </view>
+      <view class="info-value text-info-color">
+        {{info[item.valueKey]}}
+      </view>
+    </view>
+  </view>
+</lu-page-container>

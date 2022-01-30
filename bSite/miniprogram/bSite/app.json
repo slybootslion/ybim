@@ -1,0 +1,101 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/application/application",
+    "pages/my/my",
+    "pages/attendance-manage/record-work-order/record-work-order",
+    "pages/personnel-manage/add-workers/add-workers",
+    "pages/attendance-manage/attendance-statistics/attendance-statistics",
+    "pages/attendance-manage/group-attendance-detail/group-attendance-detail",
+    "pages/site-manage/environ-monitoring/environ-monitoring",
+    "pages/site-manage/equipment-manage/equipment-manage",
+    "pages/site-manage/equipment-form/equipment-form",
+    "pages/site-manage/video-surveillance/video-surveillance",
+    "pages/site-manage/video-surveillance-detail/video-surveillance-detail",
+    "pages/site-manage/video-manage/video-manage",
+    "pages/site-manage/video-form/video-form",
+    "pages/personnel-manage/roster-list/roster-list",
+    "pages/personnel-manage/search-page/search-page",
+    "pages/personnel-manage/person-detail/person-detail",
+    "pages/personnel-manage/person-info/person-info",
+    "pages/personnel-manage/in-out-mange/in-out-mange",
+    "pages/personnel-manage/check-salary/check-salary",
+    "pages/personnel-manage/check-attendance/check-attendance",
+    "pages/personnel-manage/team-manage/team-manage",
+    "pages/my-app/work-manage/work-manage",
+    "pages/my-app/my-info/my-info",
+    "pages/my-app/edit-password/edit-password",
+    "pages/personnel-manage/add-groups/add-groups",
+    "pages/personnel-manage/group-detail/group-detail",
+    "pages/personnel-manage/personnel-change/personnel-change",
+    "pages/personnel-manage/personnel-change-form/personnel-change-form",
+    "pages/personnel-manage/handle-add/handle-add",
+    "pages/personnel-manage/submit-add-workers/submit-add-workers",
+    "pages/attendance-manage/add-word-order/add-word-order",
+    "pages/attendance-manage/payroll-page/payroll-page",
+    "pages/attendance-manage/select-workers/select-workers"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "智慧工地",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "color": "#76849b",
+    "selectedColor": "#0080ff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/image/home.png",
+        "selectedIconPath": "static/image/home_on.png"
+      },
+      {
+        "pagePath": "pages/application/application",
+        "text": "应用",
+        "iconPath": "static/image/app.png",
+        "selectedIconPath": "static/image/app_on.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "static/image/me.png",
+        "selectedIconPath": "static/image/me_on.png"
+      }
+    ]
+  },
+  "usingComponents": {
+    "l-button": "/lu-ui/button/index",
+    "l-capsule-bar": "/lu-ui/capsule-bar/index",
+    "l-form": "/lu-ui/form/index",
+    "l-form-item": "/lu-ui/form-item/index",
+    "l-input": "/lu-ui/input/index",
+    "l-textarea": "/lu-ui/textarea/index",
+    "l-toast": "/lu-ui/toast/index",
+    "l-dialog": "/lu-ui/dialog/index",
+    "l-message": "/lu-ui/message/index",
+    "l-popup": "/lu-ui/popup/index",
+    "l-icon": "/lu-ui/icon/index",
+    "l-loading": "/lu-ui/loading/index",
+    "l-calendar": "/lu-ui/calendar/index",
+    "l-search-bar": "/lu-ui/search-bar/index",
+    "l-collapse": "/lu-ui/collapse/index",
+    "l-collapse-item": "/lu-ui/collapse-item/index",
+    "l-checkbox": "/lu-ui/checkbox/index",
+    "lu-page-container": "/components/page-container/page-container",
+    "lu-calendar": "/components/calendar/calendar",
+    "lu-content-top": "/components/content-top/content-top",
+    "lu-input-element": "/components/input-element/input-element"
+  },
+  "plugins": {
+    "ocr-plugin": {
+      "version": "3.0.6",
+      "provider": "wx4418e3e031e551be"
+    }
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

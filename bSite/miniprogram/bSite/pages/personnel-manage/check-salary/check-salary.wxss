@@ -1,0 +1,37 @@
+/* pages/personnel-manage/check-salary/check-salary.wxss */
+
+.salary-item {
+  background-color: #fff;
+  margin-top: 18rpx;
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.salary-item .item {
+  display: flex;
+  font-size: 28rpx;
+  line-height: 50rpx;
+}
+
+.item-value {
+  position: relative;
+}
+
+.item-value .iconfont {
+  margin-right: 10rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.item-value .txt {
+  margin-left: 36rpx;
+}
+
+.item-value.green {
+  color: #0f0;
+}
+
+.item-value.red {
+  color: #ff0000;
+}

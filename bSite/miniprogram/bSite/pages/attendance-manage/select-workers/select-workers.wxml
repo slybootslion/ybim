@@ -1,0 +1,19 @@
+<!--pages/attendance-manage/select-workers/select-workers.wxml-->
+<lu-page-container title="选择工友">
+  <lu-worker-board wx:for="{{empList}}" 
+                   wx:key="index"
+                   detail="{{item}}"
+                   index="{{index}}"
+                   bind:selectTap="onSelectTap" 
+                   bind:payInput="onPayInput"/>
+              <view class="block"></view>
+  <view class="footer">
+    <view class="footer-left">
+      <text>共计总额：</text>
+      <text class="primary-color">{{countNum}}</text>
+    </view>
+    <view class="footer-left">
+      <l-button bind:lintap="submit">确定</l-button>
+    </view>
+  </view>
+</lu-page-container>

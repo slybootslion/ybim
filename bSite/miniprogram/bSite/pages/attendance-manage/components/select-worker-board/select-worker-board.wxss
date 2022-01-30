@@ -1,0 +1,100 @@
+/* pages/attendance-manage/components/select-worker-board/select-worker-board.wxss */
+
+.container {
+  background-color: #fff;
+  padding: 20rpx;
+  box-sizing: border-box;
+  margin-top: 10rpx;
+}
+
+.container .top {
+  height: 70rpx;
+  border-bottom: 2rpx solid #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.container .top .top-icon {
+  width: 26rpx;
+  height: 26rpx;
+  margin-right: 20rpx;
+}
+
+.container .top .top-left {
+  display: flex;
+  align-items: center;
+}
+
+.middle {
+  font-size: 26rpx;
+  padding: 25rpx 0 30rpx;
+  box-sizing: border-box;
+  border-bottom: 2rpx solid #e8e8e8;
+}
+
+.middle .middle-item {
+  line-height: 38rpx;
+  display: flex;
+  align-items: center;
+}
+
+.middle .item-right {
+  color: #76849b;
+}
+
+.bottom {
+  display: flex;
+  font-size: 24rpx;
+  padding: 10rpx 0;
+  box-sizing: border-box;
+}
+
+.bottom .bottom-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottom .bottom-item .item-num{
+  width: 132rpx;
+  height: 42rpx;
+  background-color: #dce8f4;
+  border: 2rpx solid #e8e8e8;
+  color: #76849b;
+  border-radius: 5rpx;
+  margin-top: 10rpx;
+  text-align: center;
+}
+
+.pupop-content {
+  width: 642rpx;
+  background-color: #fff;
+  display: flex;
+  padding: 20rpx 0;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pupop-content .input-box{
+  width: 600rpx;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.pupop-content .input-box .input-el{
+  width: 265rpx;
+  height: 86rpx;
+  border: 1px solid #e8e8e8;
+  margin: 0 10rpx;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+}

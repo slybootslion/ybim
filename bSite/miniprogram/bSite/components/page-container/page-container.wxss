@@ -1,0 +1,7 @@
+/* components/page-container/page-container.wxss */
+.title-content {
+  background-image: url(http://bjbsite.com/images/xcx/common/top-bg.jpg);
+  background-position: content content;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

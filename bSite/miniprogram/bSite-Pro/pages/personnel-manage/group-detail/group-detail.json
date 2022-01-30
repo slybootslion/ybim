@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "lu-person-card": "../components/person-card/person-card"
+  }
+}

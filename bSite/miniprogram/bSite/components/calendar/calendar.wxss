@@ -1,0 +1,98 @@
+/* components/calendar/index.wxss */
+.container { 
+  /* padding: 160rpx 0 60rpx; */
+  /* box-sizing: border-box; */
+}
+
+.calendar {
+  width: 90%;
+  background-color: #fff;
+  padding: 40rpx 20rpx;
+  margin: 0 auto;
+  border-radius: 24rpx;
+}
+
+.controller {
+  display: flex;
+}
+
+.control-item {
+  font-size: 26rpx;
+  padding: 0 14px;
+}
+
+.date-display {
+  font-size: 36rpx;
+  padding-left: 30rpx;
+}
+
+.date {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 20rpx;
+}
+
+.divide {
+  width: 91%;
+  height: 4rpx;
+  background-color: #ededed;
+  margin: 28rpx auto;
+}
+
+.week {
+  display: flex;
+  justify-content: center;
+}
+
+.days {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.day {
+  width: 50rpx;
+  height: 50rpx;
+  padding: 4px 4px;
+  margin: 6rpx 12rpx;
+  font-size: 27rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pre-month, .next-month {
+  opacity: .4;
+}
+
+.weeken {
+  color: #c00;
+}
+
+.icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-top: 10rpx;
+}
+
+.today {
+  border-bottom: 3rpx solid #0097fe;
+  margin: 6rpx 12rpx 3rpx;
+}
+.selected-date, .range-pick {
+  color: #fff;
+  background-color: #0097fe;
+  border: none;
+}
+.inrange {
+  background-color: #e0f2ff;
+}
+
+.select-date {
+  display: flex;
+  justify-content: center;
+  font-size: 36rpx;
+  padding-bottom: 40rpx;
+  margin-top: 40rpx;
+}

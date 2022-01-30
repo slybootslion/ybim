@@ -1,0 +1,24 @@
+<!--pages/personnel-manage/components/person-top-board/person-top-board.wxml-->
+<view class="container">
+  <view class="avatar">
+    <image class="pic" wx:if="{{data.avatar}}" src="{{'http://bjbsite.com' + data.avatar}}"></image>
+    <image class="pic" wx:else src="http://bjbsite.com/images/xcx/page/personnel/default-avatar.png"></image>
+  </view>
+  <view class="info-box">
+    <view class="info-top">
+      <view class="top-left">
+        <text>{{data.staff_name}}</text>
+        <image wx:if="{{data.sex_name === '男'}}" class="top-icon"
+          src="http://bjbsite.com/images/xcx/page/personnel/male.png"></image>
+        <image wx:if="{{data.sex_name === '女'}}" class="top-icon"
+          src="http://bjbsite.com/images/xcx/page/personnel/female.png"></image>
+      </view>
+      <view class="top-right {{data.in_space_name  === '已退场' ? 'low' : ''}}">
+        {{data.in_space_name}}
+      </view>
+    </view>
+    <view class="info-bottom">
+      <text>{{data.mobile_phone}}</text>
+    </view>
+  </view>
+</view>

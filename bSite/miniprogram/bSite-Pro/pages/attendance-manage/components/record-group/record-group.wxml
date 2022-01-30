@@ -1,0 +1,37 @@
+<!--pages/attendance-manage/components/record-group/record-group.wxml-->
+<view class="container">
+  <view class="top">
+    <view class="top-left">
+      <view class="top-name">{{detail.name}}</view>
+    </view>
+    <view class="top-right" wx:if="{{detail.h_pay === '0.00'}}">
+      <div wx:if="{{!hide2}}" class="right-item" catchtap="toFormPage">
+        <text class="iconfont icon-bianjijusebi"></text>
+        <text class="text">编辑</text>
+      </div>
+      <div wx:if="{{!hide3}}" class="right-item" catchtap="del">
+        <text class="iconfont icon-shanchu"></text>
+        <text class="text">删除</text>
+      </div>
+    </view>
+  </view>
+  <view class="bottom" bindtap="detailHandler">
+    <view class="bottom-item">
+      <view class="item-left">截止时间：</view>
+      <view class="item-right">{{detail.end_time}}</view>
+    </view>
+    <view class="bottom-item">
+      <view class="item-left">工人人数：</view>
+      <view class="item-right">{{detail.worker_num}}</view>
+    </view>
+    <view class="bottom-item">
+      <view class="item-left">应付款：</view>
+      <view class="item-right">{{detail.s_pay}}</view>
+    </view>
+    <view class="bottom-item">
+      <view class="item-left">所属参建公司：</view>
+      <view class="item-right">{{detail.company_name}}</view>
+    </view>
+  </view>
+</view>
+<l-dialog/>

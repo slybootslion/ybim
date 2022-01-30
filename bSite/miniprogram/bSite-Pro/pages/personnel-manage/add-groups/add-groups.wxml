@@ -1,0 +1,34 @@
+<!--pages/personnel-manage/add-groups/add-groups.wxml-->
+<lu-page-container title="新增班组">
+  <view class="input-padding">
+    <view class="input-item">
+      <lu-input-element isRequired label="班组名称" value="{{group_name}}" bind:valueChange="onGroupName" />
+    </view>
+    <view class="input-item">
+      <lu-input-element isRequired type="select" label="所属参建公司" placeholder="请选择" selectList="{{company_list}}"
+        selectKeyStr="company_id" selectShowStr="company_name" selectValue="{{company_name}}" bind:valueChange="onCompanyId" />
+    </view>
+    <view class="input-item">
+      <lu-input-element isRequired 
+                        type="select" 
+                        label="班组工种" 
+                        placeholder="请选择" 
+                        selectList="{{worktype_list}}"
+                        selectKeyStr="kindwork_id" selectShowStr="work_name" 
+                        selectValue="{{work_name}}"
+                        bind:valueChange="onGroupList" />
+    </view>
+    <view class="input-item">
+      <lu-input-element label="责任人" value="{{responsible}}" bind:valueChange="onResponsible" />
+    </view>
+    <view class="input-item">
+      <lu-input-element label="责任人身份证号" label-width="{{400}}" value="{{responsible_card_no}}"
+        bind:valueChange="onResponsibleCardNo" />
+    </view>
+    <lu-input-element type="textarea" label="备注" value="{{memo}}" bind:valueChange="onMemo" />
+  </view>
+  <view class="btn-box">
+    <l-button bind:lintap="submit" disabled="{{btnDisabled}}" size="long">确定</l-button>
+  </view>
+</lu-page-container>
+<l-toast/>

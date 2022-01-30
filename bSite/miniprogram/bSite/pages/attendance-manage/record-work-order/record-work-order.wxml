@@ -1,0 +1,13 @@
+<!--pages/record-work-order/record-work-order.wxml-->
+<lu-page-container title="记工单">
+  <view class="top-btn" bindtap="recordAdd">
+    <l-icon name="add" size="30"></l-icon>
+    <text class="txt primary-color">新建记工单</text>
+  </view>
+  <lu-record-group wx:for="{{list}}" 
+                   wx:key="index" 
+                   detail="{{item}}"
+                   bind:isDel="delItem"
+                   bind:toFormPage="toFormPage"/>
+</lu-page-container>
+<l-loading full-screen show="{{isLoading}}"/>

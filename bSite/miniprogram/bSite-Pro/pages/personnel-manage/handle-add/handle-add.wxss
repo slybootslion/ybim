@@ -1,0 +1,14 @@
+/* pages/personnel-manage/handle-add/handle-add.wxss */
+.wrap {
+  background-color: #fff;
+}
+
+.btn-box {
+  padding: 0 30rpx;
+  margin-top: 30rpx;
+  box-sizing: border-box;
+}
+
+.input-item {
+  border-bottom: 2rpx solid #e8e8e8;
+}

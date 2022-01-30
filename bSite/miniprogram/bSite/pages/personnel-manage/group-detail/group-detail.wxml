@@ -1,0 +1,22 @@
+<!--pages/personnel-manage/group-detail/group-detail.wxml-->
+<lu-page-container title="{{pageTitle}}">
+  <view class="top">
+    <view class="left">
+      <text class="left-name">{{info.group_name}}</text>
+      <text class="left-num text-info-color">（{{info.employee_count}}）</text>
+    </view>
+    <view class="right text-info-color" bindtap="editLeader">
+      <text class="iconfont icon-caozuo-banzuchang"></text>
+      <text>设为班组长</text>
+    </view>
+  </view>
+  <view class="bottom">
+    <lu-person-card wx:for="{{emp_list}}" wx:key="index" detail="{{item}}" disablePersonInfo bind:iconTap="leaderSelect" />
+  </view>
+  <view class="blank-block" wx:if="{{showSet}}"></view>
+  <view class="btn-box" wx:if="{{showSet}}">
+    <view class="btn-item cancel" bindtap="cancelShowChoose">取消</view>
+    <view class="btn-item" bindtap="submitLeader">确定</view>
+  </view>
+</lu-page-container>
+<l-loading full-screen show="{{isLoading}}" />

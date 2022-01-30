@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "lu-company-board": "../components/top-company-board/top-company-board",
+    "lu-group-card": "../components/group-card/group-card"
+  }
+}

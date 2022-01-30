@@ -1,0 +1,2 @@
+/* pages/site-manage/components/video-content-detail/video-content-detail.wxss */
+@import "../equipment-content-detail/equipment-content-detail.wxss";

@@ -1,0 +1,2 @@
+/* pages/site-manage/video-form/video-form.wxss */
+@import '../equipment-form/equipment-form.wxss';

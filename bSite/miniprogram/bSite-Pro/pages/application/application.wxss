@@ -1,0 +1,54 @@
+/* pages/application/application.wxss */
+@import '../../static/style/index-public.wxss';
+
+.wrapper {
+  position: relative;
+  top: 290rpx;
+}
+
+.board {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  margin-bottom: 27rpx;
+}
+
+.board .title {
+  font-weight: 700;
+  font-size: 30rpx;
+  padding-left: 20rpx;
+  position: relative;
+}
+
+.board .title::before {
+  content: '';
+  width:6rpx;
+  height: 30rpx;
+  display: block;
+  position: absolute;
+  top: 6rpx;
+  left: 0;
+  background-color: #0080ff;
+}
+
+.board .content {
+  margin-top: 10rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.board .content .content-item{
+  width: 25%;
+  text-align: center;
+}
+
+.board .content .icon{
+  width: 50rpx;
+  height: 48rpx;
+}
+
+.board .content .key{
+  font-size: 26rpx;
+}

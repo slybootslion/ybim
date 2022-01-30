@@ -1,0 +1,15 @@
+<!--pages/personnel-manage/person-info/person-info.wxml-->
+<lu-page-container title="个人信息" 
+                   hiddenCapsule="{{hiddenCapsule}}">
+  <view class="person-company">
+    <view class="company-info-item"
+          wx:for="{{viewData}}"
+          wx:key="key">
+      <view class="company-info-item-left">{{item.key}}</view>
+      <view class="company-info-item-right txt-overflow text-info-color">{{info[item.keyName]}}</view>
+    </view>
+  </view>
+  <view class="btn-box" wx:if="{{hiddenCapsule}}">
+    <l-button bind:lintap="back" size="long"> 返 回 </l-button>
+  </view>
+</lu-page-container>

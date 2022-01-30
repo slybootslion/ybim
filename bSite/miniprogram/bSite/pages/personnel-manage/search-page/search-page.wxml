@@ -1,0 +1,21 @@
+<!--pages/personnel-manage/search-page/search-page.wxml-->
+<lu-page-container title="工人查询" bind:scrollToLower="scrollToLower">
+  <view class="search-box">
+    <l-search-bar show-cancel="{{false}}"
+                  bind:linchange="inputChange"></l-search-bar>
+  </view>
+  <view class="content">
+    <view class="empty" wx:if="{{!list.length}}">
+      <image class="empty-pic" src="http://bjbsite.com/images/xcx/page/personnel/empty.png"></image>
+    </view>
+    <view class="list-box" wx:else>
+      <view class="total-text">
+        共搜索到{{total}}条信息
+      </view>
+      <lu-person-card wx:for="{{list}}"
+                      wx:key="index"
+                      detail="{{item}}"/>
+    </view>
+  </view>
+</lu-page-container>
+<l-toast/>

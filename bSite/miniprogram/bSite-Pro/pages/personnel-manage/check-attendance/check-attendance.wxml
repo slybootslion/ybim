@@ -1,0 +1,48 @@
+<!--pages/personnel-manage/check-attendance/check-attendance.wxml-->
+<lu-page-container title="查考勤">
+  <lu-person-board data="{{personDetail}}"></lu-person-board>
+  <view class="calendar-box">
+    <lu-calendar showDay="{{false}}" bind:dateChange="handleDateChange" date="{{fullDate}}"></lu-calendar>
+  </view>
+  <view class="days">
+    <view class="top-line">
+      <view class="day">一</view>
+      <view class="day">二</view>
+      <view class="day">三</view>
+      <view class="day">四</view>
+      <view class="day">五</view>
+      <view class="day">六</view>
+      <view class="day">日</view>
+    </view>
+    <view class="day-content">
+      <view
+        class="day {{item.state === 1 ? 'clock-in' : ''}} {{item.active ? 'active' : ''}} {{item.disable ? 'disable' : ''}}"
+        wx:for="{{list}}" wx:key="index" bind:tap="itemTap" data-index="{{index}}">
+        {{item.day}}
+      </view>
+    </view>
+    <view class="bottom-content">
+      <view class="bottom-item">
+        <text>本月出勤：</text>
+        <text>{{t_timenum}}天</text>
+      </view>
+      <view class="bottom-item">
+        <text>共计出勤工时：</text>
+        <text>{{t_workhour}}小时</text>
+      </view>
+    </view>
+  </view>
+  <view class="p-log-box" wx:if="{{currentLog}}">
+    <view class="p-log-title">
+      打卡记录
+    </view>
+    <view class="content">
+      <view class="p-log-item">{{currentLog.sign_in_start}}</view>
+      <view class="p-log-item">
+        <text>{{currentLog.ttype}}</text>
+        <text class="text-info-color">{{currentLog.workhour}}小时</text>
+      </view>
+    </view>
+  </view>
+</lu-page-container>
+<l-loading full-screen show="{{isLoading}}" />

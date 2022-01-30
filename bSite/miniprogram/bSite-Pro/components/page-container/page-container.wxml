@@ -1,0 +1,17 @@
+<!--components/page-container/page-container.wxml-->
+<view class="title-content" style="height: {{capsuleBarHeight}}rpx">
+  <l-capsule-bar title="{{title}}"
+                 home-page="/pages/index/index"
+                 capsule-color="white"
+                 title-color="#fff"
+                 bg-color="transparent"
+                 disable-back="{{disableBack}}"
+                 hidden-capsule="{{hiddenCapsule}}"
+                 bind:linlefttap="leftTap">
+  </l-capsule-bar>
+</view>
+<scroll-view style="height: {{scrollHeight}}rpx"
+             scroll-y
+             bindscrolltolower="scrollToLower">
+  <slot></slot>
+</scroll-view>

@@ -1,0 +1,21 @@
+/* pages/personnel-manage/search-page/search-page.wxss */
+.search-box {
+  padding: 20rpx 10rpx;
+}
+
+.empty {
+  height: 500rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-pic {
+  width: 260rpx;
+  height: 260rpx;
+}
+
+.total-text {
+  padding: 20rpx;
+  font-size: 28rpx;
+}

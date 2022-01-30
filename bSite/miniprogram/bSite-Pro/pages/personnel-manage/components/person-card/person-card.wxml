@@ -1,0 +1,41 @@
+<!--pages/personnel-manage/components/person-card/person-card.wxml-->
+<view class="container" bindtap="personnelTap">
+  <view class="top">
+    <view class="top-left">
+      <l-icon wx:if="{{detail.showChoose}}"
+              size="36"
+              name="success"
+              l-class="success-icon"
+              color="{{detail.iconColor}}" bindtap="iconTap"/>
+      <image wx:if="{{detail.sex_name === '男'}}"
+             class="top-icon"
+             src="http://bjbsite.com/images/xcx/page/personnel/male.png"></image>
+      <image wx:if="{{detail.sex_name === '女'}}"
+             class="top-icon"
+             src="http://bjbsite.com/images/xcx/page/personnel/female.png"></image>
+      <view class="top-name">{{detail.staff_name}}</view>
+      <view class="leader" wx:if="{{detail.showLeaderTag}}">班组长</view>
+    </view>
+    <view class="top-right">
+      <view class="top-status {{detail.in_space_name === '已退场' ? 'low' : ''}}">{{detail.in_space_name}}</view>
+    </view>
+  </view>
+  <view class="bottom">
+    <view class="bottom-item">
+      <view class="item-left">工种：</view>
+      <view class="item-right">{{detail.work_type_name}}</view>
+    </view>
+    <view class="bottom-item">
+      <view class="item-left">电话：</view>
+      <view class="item-right">{{detail.mobile_phone}}</view>
+    </view>
+    <view class="bottom-item">
+      <view class="item-left">所属参建单位：</view>
+      <view class="item-right">{{detail.company_name}}</view>
+    </view>
+    <view class="bottom-item">
+      <view class="item-left">所属班组：</view>
+      <view class="item-right">{{detail.group_name}}</view>
+    </view>
+  </view>
+</view>

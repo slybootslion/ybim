@@ -1,0 +1,116 @@
+/* pages/my-app/work-manage/work-manage.wxss */
+.top-btn {
+  height: 92rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+}
+
+.top-btn .txt{
+  margin-left: 20rpx;
+}
+
+.borad-item {
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+}
+
+@font-face {
+  font-family: "iconfont";
+  src: url('//at.alicdn.com/t/font_2272957_jhmb8lhtcvb.eot?t=1614309003483');
+  /* IE9 */
+  src: url('//at.alicdn.com/t/font_2272957_jhmb8lhtcvb.eot?t=1614309003483#iefix') format('embedded-opentype'),
+    /* IE6-IE8 */
+    url('//at.alicdn.com/t/font_2272957_jhmb8lhtcvb.woff?t=1614309003483') format('woff'),
+    url('//at.alicdn.com/t/font_2272957_jhmb8lhtcvb.ttf?t=1614309003483') format('truetype'),
+    /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url('//at.alicdn.com/t/font_2272957_jhmb8lhtcvb.svg?t=1614309003483#iconfont') format('svg');
+  /* iOS 4.1- */
+}
+
+.icon-shanchu:before {
+  content: "\e608";
+}
+
+.icon-bianjijusebi:before {
+  content: "\e858";
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  /* font-size: 16px; */
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.borad-item .top {
+  height: 70rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.borad-item .top .right {
+  font-size: 22rpx;
+  color: #9d9d9d;
+  display: flex;
+}
+
+.borad-item .top .left {
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.borad-item .top .left .left-pic {
+  width: 28rpx;
+  height: 24rpx;
+  margin-right: 10rpx;
+}
+
+.borad-item .top .right .right-item {
+  display: flex;
+  margin-left: 20rpx;
+}
+
+.borad-item .top .right .right-item .iconfont {
+  margin-top: -20rpx;
+  font-size: 32rpx;
+}
+
+.borad-item .detail {
+  font-size: 26rpx;
+}
+
+.pupop-content {
+  width: 642rpx;
+  height: 278rpx;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pupop-content .input-box{
+  width: 600rpx;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20rpx;
+}
+
+.pupop-content .input-box .input-el{
+  width: 503rpx;
+  height: 67rpx;
+  border: 1px solid #e8e8e8;
+  margin: 0 10rpx;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+}

@@ -1,0 +1,29 @@
+/* pages/site-manage/components/content-top/content-top.wxss */
+.container {
+  height: 93rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40rpx;
+  box-sizing: border-box;
+}
+
+.container .left {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 31rpx;
+  line-height: 31rpx;
+}
+
+.container .left::before {
+  content: '';
+  width: 6rpx;
+  height: 31rpx;
+  display: block;
+  background-color: #0080ff;
+  position: relative;
+  top: 3rpx;
+  left: 0;
+  margin-right: 10rpx;
+}

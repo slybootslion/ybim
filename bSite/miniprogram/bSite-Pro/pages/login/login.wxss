@@ -1,0 +1,68 @@
+/* pages/login/login.wxss */
+page {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+  background-image: url(http://bjbsite.com/images/xcx/page/login/bg.png);
+  background-position: top center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  color: #ffffff;
+  position: relative;
+  background-color: #dbe8f4;
+}
+
+.form-box {
+  width: 650rpx;
+  height: 600rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -300rpx;
+  margin-left: -325rpx;
+  box-shadow: 2rpx 2rpx 20rpx rgba(0, 0, 0, .1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.form-item {
+  margin-bottom: 50rpx;
+  background-color: #f1f1f1;
+  border-radius: 10rpx;
+}
+
+.project-name {
+  width: 594rpx;
+  height: 53rpx;
+  top: -100rpx;
+}
+
+.icon-image {
+  width: 40rpx;
+  height: 40rpx;
+  position: relative;
+  top: 10rpx;
+}
+
+.submit-btn {
+  width: 554rpx;
+  height: 90rpx;
+  position: relative;
+}
+
+.submit-btn.disabled {
+  opacity: .5;
+}
+
+.submit-btn-img {
+  width: 554rpx;
+  height: 90rpx;
+}
