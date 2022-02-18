@@ -46,7 +46,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
           {
             title: '金额',
             templet: `<span><input disabled
-                                   class='layui-input disabled'></span>`,
+                                   class='layui-input disabled input3'></span>`,
             width: 180,
           },
         ]),
@@ -309,6 +309,9 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
     tableOpts.data = [data]
     innerTable = table.render(tableOpts)
     table.on('tool(innerTable)', obj => (innerTableCurrentId = obj.data.id))
+    $(".input1").val(data.value0)
+    $(".input2").val(data.value1)
+    $(".input3").val((data.value0 * data.value1).toFixed(2))
   }
 
   async function addNew() {
