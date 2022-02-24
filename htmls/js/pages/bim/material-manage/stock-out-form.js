@@ -70,12 +70,18 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
     isEdit = false
 
   class PageTemplate {
-    renderTop(selectData) {
-      let h = '<option value=""></option>'
-      $(selectData).each((_, item) => {
-        h += `<option value='${item.id}'>${item.name}</option>`
+    renderTop (selectData) {
+      console.log(selectData)
+      let h1 = '<option value=""></option>'
+      let h2 = '<option value=""></option>'
+      $(selectData.f1).each((_, item) => {
+        h1 += `<option value='${item.id}'>${item.name}</option>`
       })
-      let selectHtml = `<select name='f3'>${h}</select>`
+      $(selectData.f2).each((_, item) => {
+        h2 += `<option value='${item.id}'>${item.name}</option>`
+      })
+      let selectHtml1 = `<select name='f7'>${h1}</select>`
+      let selectHtml2 = `<select name='f3'>${h2}</select>`
 
       const html = `
         <div class='content-head'>
@@ -93,17 +99,23 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
               <div class='layui-input-block'>
                 <input type='text' name='f2' placeholder='请输入' autocomplete='off' class='layui-input'>
               </div>
-            </div>
-           <div class='layui-form-item'>
-              <label class='layui-form-label'>领用班组：</label>
-              <div class='layui-input-block'>
-                ${selectHtml}
-              </div>
-            </div>
+           </div>
            <div class='layui-form-item'>
               <label class='layui-form-label'>领用人：</label>
               <div class='layui-input-block'>
                 <input type='text' name='f4' placeholder='请输入' autocomplete='off' class='layui-input'>
+              </div>
+           </div>
+           <div class='layui-form-item'>
+              <label class='layui-form-label'>领用单位：</label>
+              <div class='layui-input-block'>
+                ${selectHtml1}
+              </div>
+           </div>
+           <div class='layui-form-item'>
+              <label class='layui-form-label'>领用班组：</label>
+              <div class='layui-input-block'>
+                ${selectHtml2}
               </div>
            </div>
            <div class='layui-form-item'>
@@ -138,7 +150,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
       laydate.render({ elem: '#outDate', theme: '#007fff' })
     }
 
-    async renderMid() {
+    async renderMid () {
       const html = `<div class='content-head'>
                       <span>出库明细</span>
                       <span>
@@ -152,7 +164,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
       await this.renderOuterTable()
     }
 
-    renderBot() {
+    renderBot () {
       const html = `<div class='content-head'>
                       <span>附件</span>
                     </div>
@@ -170,7 +182,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
         elFile: '.upload-file-placeholder',
         multiple: true,
         max: 8,
-        success(files) {
+        success (files) {
           for (let i = 0; i < files.length; i++) {
             const file = files[i]
             // mock
@@ -181,7 +193,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
       luUpload = new LuUpload(opts)
     }
 
-    async renderOuterTable() {
+    async renderOuterTable () {
       outerTableOpts = {
         elem: '#tb',
         page: false,
@@ -234,23 +246,30 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
     await innerBody()
   })()
 
-  function innerHeaderRender() {
+  function innerHeaderRender () {
     let prefix = !!pageId ? '修改' : '新增'
     let title = prefix + '出库'
     let rightHtml = [{ txt: '返回', isWeaken: true }]
     luInnerHeader = new LuInnerHeader({ title, rightHtml })
   }
 
-  async function innerBody() {
+  async function innerBody () {
     // mock data
     pt.renderTop(
       await new Promise(resolve =>
-        resolve([
-          { id: 1, name: '班组1' },
-          { id: 2, name: '班组2' },
-          { id: 3, name: '班组3' },
-          { id: 4, name: '班组4' },
-        ]),
+        resolve({
+          f1: [
+            { id: 1, name: '柏嘉交通科技集团有限公司' },
+            { id: 2, name: '西安中交柏嘉研究院' },
+            { id: 3, name: '土木极客' },
+          ],
+          f2: [
+            { id: 1, name: '班组1' },
+            { id: 2, name: '班组2' },
+            { id: 3, name: '班组3' },
+            { id: 4, name: '班组4' },
+          ]
+        }),
       ),
     )
     await pt.renderMid()
@@ -262,7 +281,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
     $lulib.pagePushHash(url, null, true)
   })
 
-  async function editNew(data) {
+  async function editNew (data) {
     const opts = { ...innerLayerOpts }
     isEdit = true
     opts.title = '修改货物'
@@ -272,7 +291,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
     table.on('tool(innerTable)', obj => (innerTableCurrentId = obj.data.id))
   }
 
-  async function addNew() {
+  async function addNew () {
     const opts = { ...innerLayerOpts }
     isEdit = false
     opts.title = '选择货物'
@@ -284,7 +303,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
     table.on('tool(innerTable)', obj => (innerTableCurrentId = obj.data.id))
   }
 
-  function innerInput(e) {
+  function innerInput (e) {
     const inputs = $(this).parents('tr').find('.layui-input')
     const input0 = inputs[0]
     const input1 = inputs[1]
@@ -301,7 +320,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
     }
   }
 
-  function innerBoxSubmit() {
+  function innerBoxSubmit () {
     const { data } = table.checkStatus('innerTableBox')
     if (!data.length) {
       layer.msg('未选择数据')
