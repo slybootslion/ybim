@@ -196,7 +196,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
     async renderOuterTable () {
       outerTableOpts = {
         elem: '#tb',
-        page: false,
+        page: true,
         cols: [
           $lulib.tableSetCenter([
             { field: 'id', title: '序号', width: 60 },
