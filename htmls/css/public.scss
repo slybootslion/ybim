@@ -36,6 +36,11 @@ $sideBarBgc: #242d3c;
     .header-content-left {
       font-size: 16px;
       cursor: pointer;
+
+      .txt {
+        margin-right: 20px;
+      }
+
       .iconfont {
 
         &.icon-tucengzhanshifangshipeizhi {

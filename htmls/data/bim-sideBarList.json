@@ -411,5 +411,11 @@
         ]
       }
     ]
+  },
+  {
+    "id": "9",
+    "title": "项目管理",
+    "href": "project/index",
+    "hide": true
   }
 ]

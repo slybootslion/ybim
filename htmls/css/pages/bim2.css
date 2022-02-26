@@ -277,6 +277,67 @@ input[type=range]::-webkit-slider-thumb {
   border-radius: 50%;
 }
 
+.project .container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.project .container .project-item {
+  width: 49.3%;
+  height: 294px;
+  display: flex;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px 30px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+.project .container .project-item .left {
+  width: 30%;
+  margin-right: 20px;
+  text-align: center;
+}
+.project .container .project-item .left .pic {
+  width: 100%;
+  height: 140px;
+}
+.project .container .project-item .left .layui-btn {
+  margin-top: 20px;
+  width: 100px;
+  text-align: center;
+}
+.project .container .project-item .right {
+  flex: 1;
+}
+.project .container .project-item .right .title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.project .container .project-item .right .title .txt {
+  font-size: 18px;
+  font-weight: 700;
+}
+.project .container .project-item .right .title .btn-box {
+  color: #1E9FFF;
+}
+.project .container .project-item .right .title .btn-box .btn {
+  cursor: pointer;
+  margin: 0 10px;
+}
+.project .container .project-item .right .info-box {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.project .container .project-item .right .info-box .info-item {
+  width: 50%;
+  margin-bottom: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .ctrl-page .row {
   width: 100%;
   margin-bottom: 10px;

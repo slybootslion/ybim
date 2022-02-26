@@ -26,9 +26,9 @@ layui.define(['util', 'LuHeaderTemplate'], function (exports) {
       const projectName = projectList.length ? projectList[0].name : '项目名称'
       const prefix = $lulib.getHash().split('/')[0]
       this.renderTemplate(username, projectName, time, prefix)
-      this.renderProjectList()
+      // this.renderProjectList()
       this.bindListeners()
-      this.renderBlockList()
+      // this.renderBlockList()
       /* -- -- -- -- -- */
       this.renderTime()
     }
@@ -60,21 +60,23 @@ layui.define(['util', 'LuHeaderTemplate'], function (exports) {
         $lulib.pageReplace(loginUrl)
       })
 
-      headerEle.on('click', '#userSetting', () => {
-        if (window.openMenu) layer.close(window.openMenu)
-        window.openMenu = null
-        $('.lu-layout-body').attr({ class: 'layui-layout-body lu-layout-body lu-layout-all' })
-        const URL = 'user/system-settings/account-management'
-        const hash = $lulib.getHash()
-        if (hash === URL) return
-        this.beforeHash = hash
-        $lulib.pagePushHash(URL)
-        $(".header-content-left .left2-text").html('用户设置')
-      })
+      // headerEle.on('click', '#userSetting', () => {
+      //   if (window.openMenu) layer.close(window.openMenu)
+      //   window.openMenu = null
+      //   $('.lu-layout-body').attr({ class: 'layui-layout-body lu-layout-body lu-layout-all' })
+      //   const URL = 'user/system-settings/account-management'
+      //   const hash = $lulib.getHash()
+      //   if (hash === URL) return
+      //   this.beforeHash = hash
+      //   $lulib.pagePushHash(URL)
+      //   $(".header-content-left .left2-text").html('用户设置')
+      // })
 
       headerEle.on('click', '#ldjsc', () => $lulib.pagePush('/htmls/pages/bim/data-screen'))
 
-      headerEle.on('click', '#headerLeft2', () =>{
+      headerEle.on('click', '#headerLeft1', () => $lulib.pagePushHash('bim/project/index'))
+
+      headerEle.on('click', '#headerLeft2', () => {
         // window open to qljcs
         $lulib.pageOpen('/qljcs/')
       })

@@ -1,7 +1,6 @@
 layui.use(['LuCommonTemplate', 'LuLayer'], function () {
   const $ = layui.$
   const form = layui.form
-  const laydate = layui.laydate
 
   const LuInnerHeader = layui.LuInnerHeader
   const LuSearchForm = layui.LuSearchForm
