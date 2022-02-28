@@ -16,17 +16,17 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
         h += `<div class="project-item">
         <div class="left">
           <img src="${item.i10}" alt="" class="pic">
-          <button class='layui-btn'>进入项目</button>
+          <button class='layui-btn inProject'>进入项目</button>
         </div>
         <div class="right">
           <div class="title">
             <h3 class="txt">${item.i1}</h3>
             <div class="btn-box">
-            <span class="edit btn">
+            <span class="edit btn" data-id="${item.id}">
               <span class="iconfont icon-bianji"></span>
               <span>编辑</span>
             </span>
-            <span class="del btn">
+            <span class="del btn" data-id="${item.id}">
               <span class="iconfont icon-shanchu1"></span>
               <span>删除</span>
             </span>
@@ -75,6 +75,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
     form (selData, editData) {
       const { sel1, sel2, sel3, sel4, sel5, sel6 } = selData
       let data = { i1: '', i2: '', i3: '', i4: '', i5: '', i6: '', i7: '', i8: '', i9: '', i10: '', i11: '' }
+      if (editData.id) data = { ...editData }
       const s1 = luUtilsTemplate.renderSelectOptions(sel1, data.i3)
       const s2 = luUtilsTemplate.renderSelectOptions(sel3, data.i6)
       const s3 = luUtilsTemplate.renderSelectOptions(sel2, data.i5)
@@ -228,8 +229,9 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
             </label>
             <div class="layui-input-block">
             <textarea placeholder="请输入200字以内的项目介绍"
-                      maxlength='2000'
-                      class="layui-textarea" lay-verify='required'></textarea>
+                      maxlength='200'
+                      name="i9"
+                      class="layui-textarea" lay-verify='required'>${data.i9}</textarea>
             </div>
           </div>
           <div class='layui-layer-btn btn-box'>
@@ -240,7 +242,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
     }
   }
 
-  let luInnerHeader, luLayer, luUpload
+  let luInnerHeader, luLayer, luUpload, listData
   ;(async () => {
     renderInnerHeader()
     await renderList()
@@ -256,7 +258,27 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
   const pt = new PageTemplate
 
   async function renderList () {
-    const listData = await $lulib.getMockData('/htmls/mock/bim/projectListData.json', 1, '', false)
+    listData = await $lulib.getMockData('/htmls/mock/bim/projectListData.json', 1, '', false)
+    handleList(listData)
+    const pcEle = $("#projectContainer")
+    pcEle.on('click', '.edit.btn', async function () {
+      const id = $(this).data().id
+      const data = listData.find(item => item.id === id)
+      await formMethod(data)
+    })
+    pcEle.on('click', '.del.btn', function () {
+      LuLayer.confirm('确定删除？', () => {
+        const id = $(this).data().id
+        listData = listData.filter(item => item.id !== id)
+        handleList(listData)
+      })
+    })
+    pcEle.on('click', '.inProject', function () {
+      $lulib.pagePushHash('bim/ctrl/index')
+    })
+  }
+
+  const handleList = listData => {
     const h = pt.list(listData)
     $("#projectContainer").html(h)
   }
@@ -276,13 +298,17 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
     })
     const selData = { sel1, sel2, sel3, sel4, sel5, sel6 }
     const content = pt.form(selData, editData)
+    let isEdit = true
     const options = {
       title: '修改项目',
       id: 'renderProjectForm',
       area: ['860px', '600px'],
       content
     }
-    if (editData instanceof MouseEvent) options.title = '新建项目'
+    if (editData instanceof MouseEvent) {
+      isEdit = false
+      options.title = '新建项目'
+    }
     luLayer = new LuLayer(options)
     form.render()
     laydate.render({
@@ -309,7 +335,11 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
       },
     }
     luUpload = new LuUpload(uploadOpts)
+    isEdit && luUpload.renderFileList([{ name: '2519.jpg_wh860.jpg' }], true)
   }
 
-  // formMethod()
+  form.on('submit(submit)', function (data) {
+    luLayer.close()
+  })
+
 })
