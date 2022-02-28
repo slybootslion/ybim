@@ -257,12 +257,12 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
     }
     const content = pt.renderForm(data)
     const opts = {
-      title: '新建记工单',
+      title: '修改记工单',
       id: 'renderRecordWorkOrderForm',
       area: ['778px', '708px'],
       content,
     }
-    if (editData instanceof MouseEvent) opts.title = '修改记工单'
+    if (editData instanceof MouseEvent) opts.title = '新建记工单'
     luLayer = new LuLayer(opts)
     form.render()
     laydate.render({

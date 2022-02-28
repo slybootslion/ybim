@@ -290,6 +290,7 @@ input[type=range]::-webkit-slider-thumb {
   padding: 20px 30px;
   box-sizing: border-box;
   margin-bottom: 20px;
+  overflow: hidden;
 }
 .project .container .project-item .left {
   width: 30%;
@@ -1352,42 +1353,57 @@ input[type=range]::-webkit-slider-thumb {
 
 #scheduleQrcodeSelectTree,
 #planningAddForm,
-#scheduleAddForm {
+#scheduleAddForm,
+#renderProjectForm {
   overflow: inherit;
   background: transparent;
 }
 #scheduleQrcodeSelectTree .add-account-box,
 #planningAddForm .add-account-box,
-#scheduleAddForm .add-account-box {
+#scheduleAddForm .add-account-box,
+#renderProjectForm .add-account-box {
   display: flex;
-  padding: 0 60px;
+  padding: 0 30px;
 }
 #scheduleQrcodeSelectTree .add-account-box .box-item,
 #planningAddForm .add-account-box .box-item,
-#scheduleAddForm .add-account-box .box-item {
+#scheduleAddForm .add-account-box .box-item,
+#renderProjectForm .add-account-box .box-item {
   flex: 1;
   justify-content: center;
 }
 #scheduleQrcodeSelectTree .w335,
 #planningAddForm .w335,
-#scheduleAddForm .w335 {
+#scheduleAddForm .w335,
+#renderProjectForm .w335 {
   width: 335px;
 }
 #scheduleQrcodeSelectTree .layui-inline,
 #planningAddForm .layui-inline,
-#scheduleAddForm .layui-inline {
+#scheduleAddForm .layui-inline,
+#renderProjectForm .layui-inline {
   padding-left: 20px;
   box-sizing: border-box;
   justify-content: flex-start;
 }
 #scheduleQrcodeSelectTree .btn-box,
 #planningAddForm .btn-box,
-#scheduleAddForm .btn-box {
+#scheduleAddForm .btn-box,
+#renderProjectForm .btn-box {
   width: 100%;
   box-sizing: border-box;
   position: absolute;
   bottom: -60px;
   text-align: center;
+}
+
+#renderProjectForm .team-add-form {
+  height: 100%;
+  justify-content: center;
+  box-sizing: border-box;
+}
+#renderProjectForm .team-add-form .layui-form-label {
+  width: 70px;
 }
 
 #planningAddForm .add-account-box,

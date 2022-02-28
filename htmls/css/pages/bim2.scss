@@ -36,6 +36,7 @@ input[type=range]::-webkit-slider-thumb {
       padding: 20px 30px;
       box-sizing: border-box;
       margin-bottom: 20px;
+      overflow: hidden;
 
       .left {
         width: 30%;
@@ -1373,13 +1374,14 @@ input[type=range]::-webkit-slider-thumb {
 
 #scheduleQrcodeSelectTree,
 #planningAddForm,
-#scheduleAddForm {
+#scheduleAddForm,
+#renderProjectForm {
   overflow: inherit;
   background: transparent;
 
   .add-account-box {
     display: flex;
-    padding: 0 60px;
+    padding: 0 30px;
 
     .box-item {
       flex: 1;
@@ -1403,6 +1405,18 @@ input[type=range]::-webkit-slider-thumb {
     position: absolute;
     bottom: -60px;
     text-align: center;
+  }
+}
+
+#renderProjectForm {
+  .team-add-form {
+    height: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+
+    .layui-form-label {
+      width: 70px;
+    }
   }
 }
 
