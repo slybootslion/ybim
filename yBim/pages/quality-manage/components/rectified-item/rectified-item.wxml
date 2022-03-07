@@ -4,7 +4,7 @@
 		<view class="header-left">
 			部位：{{data.title}}
 		</view>
-		<view class="header-right">
+		<view class="header-right" wx:if="{{!hideEdit}}">
 			<div class="right-item" catchtap="toFormPage">
 				<text class="iconfont icon-bianjijusebi"></text>
 				<text class="text">编辑</text>
@@ -32,6 +32,6 @@
 		</view>
 	</view>
 	<view class="footer">
-		<l-button size="mini" bindtap="goRectifiedForm">立即整改</l-button>
+		<l-button size="mini" bindtap="goRectifiedForm">{{btnText}}</l-button>
 	</view>
 </view>

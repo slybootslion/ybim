@@ -242,6 +242,18 @@
           "pathName": "pages/quality-manage/rectified-detial/rectified-detial",
           "query": "id=1",
           "scene": null
+        },
+        {
+          "name": "立即整改",
+          "pathName": "pages/quality-manage/rectifying/rectifying",
+          "query": "id=1",
+          "scene": null
+        },
+        {
+          "name": "待复查",
+          "pathName": "pages/quality-manage/to-review/to-review",
+          "query": "",
+          "scene": null
         }
       ]
     }

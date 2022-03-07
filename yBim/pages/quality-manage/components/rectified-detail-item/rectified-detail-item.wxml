@@ -8,7 +8,7 @@
 	</view>
 	<view class="content">
 		<view class="content-item">
-			<view class="label">内容描述：</view>
+			<view class="label">{{data.i1 === 2 ? '整改' : ''}}内容描述：</view>
 			<view class="value">{{data.i3}}</view>
 		</view>
 		<view class="content-item">
@@ -23,14 +23,19 @@
 			<view class="value blue" wx:if="{{data.i5 === 3}}">三级</view>
 		</view>
 		<view class="content-item">
-			<view class="label">期望整改时间：</view>
-			<view class="value">{{data.i7}}</view>
+			<view class="label">整改{{data.i1 === 1 ? '责任' : ''}}人：</view>
+			<view class="value">{{data.i6}}</view>
 		</view>
 		<view class="content-item">
+			<view class="label" wx:if="{{data.i1 === 1}}">期望整改时间：</view>
+			<view class="label" wx:if="{{data.i1 === 2}}">整改时间：</view>
+			<view class="value">{{data.i7}}</view>
+		</view>
+		<view class="content-item" wx:if="{{data.i1 === 1}}">
 			<view class="label">检查人：</view>
 			<view class="value">{{data.i8}}</view>
 		</view>
-		<view class="content-item">
+		<view class="content-item" wx:if="{{data.i1 === 1}}">
 			<view class="label">检查时间：</view>
 			<view class="value">{{data.i9}}</view>
 		</view>

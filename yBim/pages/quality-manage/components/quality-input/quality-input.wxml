@@ -5,7 +5,8 @@
 			<text class="text-require" wx:if="{{isRequired}}">* </text>
 			{{ label }}
 		</view>
-		<lu-input-element type="{{type}}" minContainer isRequired hideLabel txtLeft placeholder="{{placeholder}}" />
+		<lu-input-element type="{{type}}" minContainer isRequired hideLabel txtLeft placeholder="{{placeholder}}"
+			disabled="{{disabled}}" value="{{value}}" />
 	</block>
 	<view wx:if="{{type === 'select'}}" class="select-box">
 		<view class="label" style="width: {{labelWidth}}rpx">
@@ -18,14 +19,11 @@
 		</view>
 	</view>
 	<l-popup show="{{showPopup}}" wx:if="{{type === 'select'}}" content-align="bottom" z-index="1000">
-			<scroll-view scroll-y class="popup-content">
-				<view class="select-item txt-overflow" 
-							id="{{item[selectKeyStr]}}" 
-							wx:for="{{selectList}}" 
-							wx:key="index"
-							bind:tap="popupItemClick">
-					{{item[selectShowStr]}}
-				</view>
-			</scroll-view>
-		</l-popup>
+		<scroll-view scroll-y class="popup-content">
+			<view class="select-item txt-overflow" id="{{item[selectKeyStr]}}" wx:for="{{selectList}}" wx:key="index"
+				bind:tap="popupItemClick">
+				{{item[selectShowStr]}}
+			</view>
+		</scroll-view>
+	</l-popup>
 </view>

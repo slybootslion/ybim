@@ -24,10 +24,15 @@ Component({
 			type: Array,
 			value: []
 		},
+		value: String,
 		selectKeyStr: String,
-    selectShowStr: String,
-    selectValue: String,
-    selectCalendar: String,
+		selectShowStr: String,
+		selectValue: String,
+		selectCalendar: String,
+    disabled: {
+      type: Boolean,
+      value: false,
+    },
 	},
 
 	/**
@@ -50,15 +55,15 @@ Component({
 				showPopup: true,
 			})
 		},
-		popupItemClick (e) {
+		popupItemClick(e) {
 			const { id } = e.currentTarget
-      this.triggerEvent('valueChange', { value: id })
-      const { selectList, selectKeyStr } = this.data
-      const current = selectList.find(item => item[selectKeyStr] == id)
-      this.setData({
-        showPopup: false,
-        selectedCurrent: current[this.data.selectShowStr],
-      })
+			this.triggerEvent('valueChange', { value: id })
+			const { selectList, selectKeyStr } = this.data
+			const current = selectList.find(item => item[selectKeyStr] == id)
+			this.setData({
+				showPopup: false,
+				selectedCurrent: current[this.data.selectShowStr],
+			})
 		}
 	}
 })

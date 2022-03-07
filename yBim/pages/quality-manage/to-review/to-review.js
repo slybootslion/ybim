@@ -1,11 +1,11 @@
-// pages/quality-manage/rectified.js
+// pages/quality-manage/to-review/to-review.js
 Page({
 
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
-		rectifiedList: [
+		reviewList: [
 			{
 				id: 1,
 				title: '现场围挡',
@@ -26,19 +26,19 @@ Page({
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
-	onLoad(options) {
+	onLoad: function (options) {
 
 	},
 
 	handleNav(e) {
-		wx.navigateTo({
-			url: '/pages/quality-manage/rectifying/rectifying',
-		})
+		console.log(e)
 	},
 
 	handleDetail(e) {
+		const id = e.detail.id
 		wx.navigateTo({
 			url: '/pages/quality-manage/rectified-detial/rectified-detial?id=' + e.target.id,
+			url: `/pages/quality-manage/rectified-detial/rectified-detial?id=${e.target.id}&state=review`,
 		})
 	}
 })

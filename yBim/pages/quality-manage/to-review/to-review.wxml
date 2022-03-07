@@ -1,0 +1,5 @@
+<!--pages/quality-manage/to-review/to-review.wxml-->
+<lu-page-container title="待付查">
+	<lu-rectified-item wx:for="{{reviewList}}" wx:key="id" data="{{item}}" btnText="立即复查" hideEdit
+		bind:navEvent="handleNav" bind:detailEvent="handleDetail" />
+</lu-page-container>

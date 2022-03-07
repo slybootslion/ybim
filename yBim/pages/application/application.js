@@ -32,7 +32,7 @@ let list = [
     content: [
       { key: '质量上报', icon: 'zlsb', page: 'quality-reporting' },
       { key: '待整改', icon: 'dzg', page: 'rectified' },
-      { key: '待复查', icon: 'dfc', page: '' },
+      { key: '待复查', icon: 'dfc', page: 'to-review' },
       { key: '超期隐患', icon: 'cqyh', page: '' },
       { key: '累计检查', icon: 'ljjc', page: '' },
     ],
@@ -43,8 +43,8 @@ let list = [
     content: [
       { key: '质量上报', icon: 'zlsb', page: 'quality-reporting', param: 'Safety' },
       { key: '待整改', icon: 'dzg', page: 'rectified', param: 'Safety' },
-      { key: '待复查', icon: 'dfc', page: '' },
-      { key: '超期隐患', icon: 'cqyh', page: '' },
+      { key: '待复查', icon: 'dfc', page: 'to-review', param: 'Safety' },
+      { key: '超期隐患', icon: 'cqyh', page: '', param: 'Safety' },
     ],
   },
 ]

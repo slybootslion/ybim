@@ -24,17 +24,42 @@ Page({
 				i8: '某某某',
 				i9: '2020-10-01 13:44:32'
 			}
-		]
+		],
+		currentId: 0,
+		state: undefined,
+		pageTitle: '待整改',
+		btnText: '立即复查'
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad(options) {
-		this.currentId = options.id
+		const data = {
+			state: options.state,
+			currentId: +options.id
+		}
+		if (data.state === 'review') {
+			data.pageTitle = '待复查'
+			data.btnText = '立即复查'
+			this.data.detailList.unshift({
+				id: 2,
+				i1: 2,
+				i2: '2020-08-18 15:54',
+				i3: '现场围挡倒塌摆放混乱，并被车反复碾压，导致变形，现场围挡倒塌摆放混乱，并被车反复碾压，导致变形。',
+				i4: ['http://bjbsite.com//public/upload/moeny/2021/05/19/60a4a7c40bd8c.jpg', 'http://bjbsite.com//public/upload/moeny/2021/05/19/60a4a7c47df7b.jpg'],
+				i5: 1,
+				i6: '李工',
+				i7: '2020-10-01 13:56:32'
+			})
+			data.detailList = this.data.detailList
+		}
+		this.setData({
+			...data
+		})
 	},
 
-	goRectifying () {
+	goRectifying() {
 		wx.navigateTo({
 			url: '/pages/quality-manage/rectifying/rectifying',
 		})

@@ -41,7 +41,8 @@
 		"pages/quality-manage/quality-reporting/quality-reporting",
 		"pages/quality-manage/rectified/rectified",
 		"pages/quality-manage/rectified-detial/rectified-detial",
-		"pages/quality-manage/rectifying/rectifying"
+		"pages/quality-manage/rectifying/rectifying",
+		"pages/quality-manage/to-review/to-review"
 	],
 	"window": {
 		"backgroundTextStyle": "light",

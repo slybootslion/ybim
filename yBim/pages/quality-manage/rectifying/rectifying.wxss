@@ -1,1 +1,2 @@
 /* pages/quality-manage/rectifying/rectifying.wxss */
+@import '../quality-reporting/quality-reporting.wxss'

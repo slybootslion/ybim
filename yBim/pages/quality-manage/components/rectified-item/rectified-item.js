@@ -8,6 +8,14 @@ Component({
 			type: Object,
 			value: {},
 		},
+		hideEdit: {
+			type: Boolean,
+			value: false
+		},
+		btnText: {
+			type: String,
+			value: '立即整改'
+		}
 	},
 
 	/**
@@ -22,14 +30,10 @@ Component({
 	 */
 	methods: {
 		toDetails() {
-			wx.navigateTo({
-				url: '/pages/quality-manage/rectified-detial/rectified-detial?id=' + this.properties.data.id,
-			})
+			this.triggerEvent('detailEvent', { id: this.properties.data.id });
 		},
 		goRectifiedForm() {
-			wx.navigateTo({
-				url: '/pages/quality-manage/rectifying/rectifying',
-			})
+			this.triggerEvent('navEvent', { id: this.properties.data.id });
 		}
 	}
 })

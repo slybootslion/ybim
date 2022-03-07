@@ -1,4 +1,4 @@
 <!--pages/quality-manage/rectified.wxml-->
 <lu-page-container title="待整改">
-	<lu-rectified-item wx:for="{{rectifiedList}}" wx:key="id" data="{{item}}" />
+	<lu-rectified-item wx:for="{{rectifiedList}}" wx:key="id" data="{{item}}" bind:navEvent="handleNav" bind:detailEvent="handleDetail" />
 </lu-page-container>
