@@ -1,0 +1,92 @@
+<!--pages/site-manage/video-surveillance/video-surveillance.wxml-->
+
+<scroll-view class="container bg-color" enhanced scroll-y style="height: {{contentHeight}}px" show-scrollbar="{{false}}"
+  bindscroll="scrolling">
+  <l-capsule-bar title="视频监控" home-page="/pages/index/index" capsule-color="white"
+    title-color="{{barColor === 'transparent' ? '#fff' : '#333'}}" bg-color="{{barColor}}" bind:linlefttap="leftTap" />
+  <view class="top-link" wx:if="{{!hide}}" bindtap="toMangePage">
+    <image class="shebei" src="http://bjbsite.com/images/xcx/page/site-manage/sbgl_.png"></image>
+    <text>设备管理</text>
+  </view>
+  <view class="wrapper">
+    <view class="board top-board">
+      <view class="project-name txt-overflow" data-show-type="1" bind:tap="selectTap">
+        <text class="iconfont icon-xiangmu primary-color"></text>
+        <text>{{projectName.project_name}}</text>
+        <image class="xiala" src="http://bjbsite.com/images/xcx/page/index/xiala.png"></image>
+      </view>
+    </view>
+    <view class="board board2">
+      <view class="board2-item {{index === 0 ? 'c1' : index === 1 ? 'c2' : 'c3'}}" wx:for="{{3}}" wx:key="index">
+        <image class="icon"
+          src="http://bjbsite.com/images/xcx/page/site-manage/{{index === 0 ? 'shuliang' : index === 1 ? 'zaixian' : 'lixian'}}.png">
+        </image>
+        <view class="item-box">
+          <text>{{index === 0 ? '设备总数' : index === 1 ? '在线设备' : '离线设备'}}</text>
+          <text class="color-text {{index === 0 ? 'c1' : index === 1 ? 'c2' : 'c3'}}">{{index === 0 ? count :
+            index === 1 ? online : offline}}台</text>
+        </view>
+      </view>
+    </view>
+    <view class="board top-board top-list">
+      <view class="video-item" wx:for="{{list}}" wx:key="video_id" data-index="{{index}}" bind:tap="goPlayPage">
+        <view class="video-pic-box">
+          <image src="{{item.pic}}" class="video-pic"></image>
+          <image src="http://bjbsite.com/images/xcx/page/site-manage/play.png" class="play-icon"></image>
+        </view>
+        <view class="video-title txt-overflow">{{item.title}}</view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<l-popup show="{{showPopupN}}" content-align="bottom" z-index="1000">
+  <scroll-view scroll-y class="popup-content">
+    <view data-show-type="1" class="select-item txt-overflow" id="{{item.project_id}}" wx:for="{{projects}}"
+      wx:key="project_id" bind:tap="popupItemClick">
+      {{item.project_name}}
+    </view>
+  </scroll-view>
+</l-popup>
+<l-loading full-screen show="{{isLoading}}" />
+<!-- <lu-page-container title="视频监控">
+  <view class="content">
+    <lu-content-top title="设备总览">
+      <view class="top-link primary-color" 
+            wx:if="{{!hide}}"
+            bindtap="toMangePage">
+        <image class="shebei" src="http://bjbsite.com/images/xcx/page/site-manage/shebei2.png"></image>
+        <text>设备管理</text>
+      </view>
+    </lu-content-top>
+    <view class="content-detail detail-1">
+      <view class="top">
+        <view class="top-item">
+          <text class="top-item-title">视频总数</text>
+          <text class="top-item-num primary-color">{{total}}</text>
+        </view>
+        <view class="top-item">
+          <text class="top-item-title">在线</text>
+          <text class="top-item-num primary-color">{{on_line}}</text>
+        </view>
+        <view class="top-item">
+          <text class="top-item-title">离线</text>
+          <text class="top-item-num primary-color">{{off_line}}</text>
+        </view>
+      </view>
+      <view class="top-list">
+        <view class="video-item"
+              wx:for="{{list}}"
+              wx:key="video_id"
+              data-index="{{index}}"
+              bind:tap="goPlayPage">
+          <view class="video-pic-box">
+            <image src="{{item.pic}}" class="video-pic"></image>
+            <image src="http://bjbsite.com/images/xcx/page/site-manage/play.png" class="play-icon"></image>
+          </view>
+          <view class="video-title txt-overflow">{{item.title}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</lu-page-container>
+<l-loading full-screen show="{{isLoading}}"/> -->

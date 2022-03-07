@@ -1,0 +1,93 @@
+<!--pages/attendance-manage/payroll-info/payroll-info.wxml-->
+<lu-page-container title="查看详细">
+  <view class="block">
+    <view class="header">
+      <view class="header-left">
+        {{info.name}}
+      </view>
+      <view class="header-rigth">
+        <view class="pay-flag" 
+              wx:if="{{!isPaied}}">
+          <text class="t">待发放</text>
+        </view>
+        <view class="pay-flag active" 
+              wx:else>
+          <l-icon name="success" 
+                  size="22" 
+                  color="#65c466" />
+            <text class="t">已发放</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="body">
+      <view class="body-item">
+        <view class="key">所属参建公司：</view>
+        <view class="value">{{info.company_name}}</view>
+      </view>
+      <view class="body-item">
+        <view class="key">记工单截止月份：</view>
+        <view class="value">{{info.end_time}}</view>
+      </view>
+      <view class="body-item">
+        <view class="key">发放薪酬人数：</view>
+        <view class="value">{{info.worker_num}}人</view>
+      </view>
+      <view class="body-item">
+        <view class="key">发放金额合计：</view>
+        <view class="value">{{info.s_pay}}</view>
+      </view>
+      <view class="body-item">
+        <view class="key">生成日期：</view>
+        <view class="value">{{info.create_time}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="block">
+    <view class="header header-noborder">人员信息</view>
+    <view class="worker-content">
+      <view class="worker-item" wx:for="{{info.emp_list}}" wx:key="index">
+        <view class="worker-name">{{item.staff_name}}</view>
+        <view class="worker-detail">
+          <view class="worker-deital-item">
+            <view class="key">所属班组：</view>
+            <view class="value">{{item.group_name}}</view>
+          </view>
+          <view class="worker-deital-item">
+            <view class="key">记工时间段：</view>
+            <view class="value">{{item.date_duan}}</view>
+          </view>
+          <view class="worker-deital-item">
+            <view class="key">记工工资：</view>
+            <view class="value">{{item.ticket_money}}元</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="block" wx:if="{{isPaied && !infoType}}">
+    <view class="header header-noborder">支付信息</view>
+    <view class="pay-item" wx:if="{{images}}">
+      <view class="key">支付凭证：</view>
+      <l-album urls="{{images}}" 
+               l-single-image-class="single-img"
+               key="url"></l-album>
+    </view>
+    <view class="pay-item flex">
+      <view class="key">备注：</view>
+      <view class="value">{{info.h_remark ? info.h_remark : '无'}}</view>
+    </view>
+    <view class="pay-item flex">
+      <view class="key">发放时间：</view>
+      <view class="value">{{info.h_pay_time}}</view>
+    </view>
+  </view>
+  <l-button wx:if="{{!infoType && !isPaied}}"
+            size="long" 
+            bind:lintap="goPay" 
+            l-class="sub-btn">工资发放</l-button>
+  <view class="blank"></view>
+</lu-page-container>
+<l-loading full-screen show="{{isLoading}}" />

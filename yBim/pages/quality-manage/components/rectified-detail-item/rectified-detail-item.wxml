@@ -1,0 +1,38 @@
+<!--pages/quality-manage/components/rectified-detail-item/rectified-detail-item.wxml-->
+<view class="container">
+	<view class="top">
+		<view class="tag blue" wx:if="{{data.i1 === 1}}">质量上报</view>
+		<view class="tag orange" wx:if="{{data.i1 === 2}}">整改</view>
+		<view class="tag blue" wx:if="{{data.i1 === 3}}">复查</view>
+		<view>{{ data.i2 }}</view>
+	</view>
+	<view class="content">
+		<view class="content-item">
+			<view class="label">内容描述：</view>
+			<view class="value">{{data.i3}}</view>
+		</view>
+		<view class="content-item">
+			<view class="label">现场照片：</view>
+			<l-album urls="{{data.i4}}"
+               key="url"></l-album>
+		</view>
+		<view class="content-item">
+			<view class="label">隐患等级：</view>
+			<view class="value red" wx:if="{{data.i5 === 1}}">一级</view>
+			<view class="value oragne" wx:if="{{data.i5 === 2}}">二级</view>
+			<view class="value blue" wx:if="{{data.i5 === 3}}">三级</view>
+		</view>
+		<view class="content-item">
+			<view class="label">期望整改时间：</view>
+			<view class="value">{{data.i7}}</view>
+		</view>
+		<view class="content-item">
+			<view class="label">检查人：</view>
+			<view class="value">{{data.i8}}</view>
+		</view>
+		<view class="content-item">
+			<view class="label">检查时间：</view>
+			<view class="value">{{data.i9}}</view>
+		</view>
+	</view>
+</view>

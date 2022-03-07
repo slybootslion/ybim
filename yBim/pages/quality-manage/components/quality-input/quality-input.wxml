@@ -1,0 +1,31 @@
+<!--pages/quality-manage/components/form-input.wxml-->
+<view class="input-box">
+	<block wx:if="{{type !== 'select'}}">
+		<view class="label">
+			<text class="text-require" wx:if="{{isRequired}}">* </text>
+			{{ label }}
+		</view>
+		<lu-input-element type="{{type}}" minContainer isRequired hideLabel txtLeft placeholder="{{placeholder}}" />
+	</block>
+	<view wx:if="{{type === 'select'}}" class="select-box">
+		<view class="label" style="width: {{labelWidth}}rpx">
+			<text class="text-require" wx:if="{{isRequired}}">* </text>
+			{{ label }}
+		</view>
+		<view class="selected-cotent" bindtap="selectTap">
+			{{selectedCurrent || placeholder}}
+			<l-icon name="right" size="28" color="#76849b"></l-icon>
+		</view>
+	</view>
+	<l-popup show="{{showPopup}}" wx:if="{{type === 'select'}}" content-align="bottom" z-index="1000">
+			<scroll-view scroll-y class="popup-content">
+				<view class="select-item txt-overflow" 
+							id="{{item[selectKeyStr]}}" 
+							wx:for="{{selectList}}" 
+							wx:key="index"
+							bind:tap="popupItemClick">
+					{{item[selectShowStr]}}
+				</view>
+			</scroll-view>
+		</l-popup>
+</view>

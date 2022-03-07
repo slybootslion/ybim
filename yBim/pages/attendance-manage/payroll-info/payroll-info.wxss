@@ -1,0 +1,107 @@
+/* pages/personnel-manage/payroll-info/payroll-info.wxss */
+
+.block {
+  margin-top: 20rpx;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.header {
+  height: 70rpx;
+  border-bottom: 2rpx solid #e8e8e8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+}
+
+.header-noborder {
+  border-bottom: none;
+}
+
+.header .header-left {
+  font-size: 30rpx;
+}
+
+.header .pay-flag {
+  font-size: 22rpx;
+  display: flex;
+  align-items: center;
+}
+
+.header .pay-flag .t {
+  margin-left: 10rpx;
+}
+
+.header .pay-flag.active {
+  color: #65c466;
+}
+
+.body {
+  padding: 25rpx 10rpx;
+  font-size: 26rpx;
+}
+
+.worker-deital-item,
+.body .body-item {
+  height: 40rpx;
+  line-height: 40rpx;
+  display: flex;
+}
+
+.worker-deital-item .value,
+.body .body-item .value {
+  color: #9d9d9d;
+}
+
+.worker-item {
+  background-color: #f0f0f0;
+  padding: 22rpx 26rpx;
+  margin-bottom: 20rpx;
+}
+
+.worker-item .worker-name {
+  margin-bottom: 10rpx;
+}
+
+.worker-item .name {
+  font-size: 30rpx;
+}
+
+.worker-deital-item {
+  font-size: 26rpx;
+}
+
+.pay-item {
+  font-size: 26rpx;
+  margin-bottom: 10rpx;
+}
+
+.pay-item.flex{
+  display: flex;
+}
+
+.pay-item .value {
+  color: #9d9d9d;
+  flex: 1;
+}
+
+.pay-item .key {
+  width: 130rpx;
+}
+
+.single-img {
+  width: 158rpx !important;
+  height: 158rpx !important;
+}
+
+.blank {
+  height: 90rpx;
+}
+
+.sub-btn {
+  margin-top: 20rpx;
+}

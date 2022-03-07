@@ -1,0 +1,10 @@
+<!--pages/personnel-manage/personnel-change/personnel-change.wxml-->
+<lu-page-container title="人员变动">
+  <lu-personnel-collapse list="{{roster_list}}" bind:handleCheck="handleCheck">
+  </lu-personnel-collapse>
+  <view class="btn-box">
+    <l-button bind:lintap="submit" size="long">下一步</l-button>
+  </view>
+</lu-page-container>
+<l-loading full-screen show="{{isLoading}}" />
+<l-toast />

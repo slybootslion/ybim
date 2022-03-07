@@ -1,0 +1,23 @@
+/* pages/quality-manage/rectified-detial/rectified-detial.wxss */
+.top {
+	background-color: #fff;
+	padding: 20rpx;
+	margin-top: 20rpx;
+}
+
+.top .title {
+	margin-bottom: 10rpx;
+}
+
+.top .zone {
+	display: flex;
+	font-size: 24rpx;
+}
+
+.value {
+	color: #9d9d9d;
+}
+
+.btn-box {
+	padding: 20rpx;
+}

@@ -1,0 +1,55 @@
+<!--pages/personnel-manage/add-workers/add-workers.wxml-->
+<lu-page-container title="添加工人" 
+                   disableBack 
+                   bind:leftBtnTap="leftBtnTap">
+  <view class="top">
+    <view class="handle-btn" bindtap="handleAdd">
+      <text class="iconfont icon-bianjitianjiawenzi"></text>
+      <text class="handle-btn-txt">手动添加</text>
+    </view>
+    <view class="btn-box">
+      <ocr-navigator bind:onSuccess="ocrSuccess" 
+                     certificateType="idCard" 
+                     opposite="{{false}}">
+        <l-button l-class="ocr-btn">扫正面</l-button>
+      </ocr-navigator>
+      <ocr-navigator bind:onSuccess="ocrSuccess" 
+                     certificateType="idCard" 
+                     opposite="{{true}}">
+        <l-button l-class="ocr-btn">扫反面</l-button>
+      </ocr-navigator>
+    </view>
+  </view>
+  <view class="id-description">
+    <lu-content-top title="人员身份信息"></lu-content-top>
+    <view class="wrap">
+      <view class="info-item" wx:for="{{idInfoListA}}" 
+                              wx:key="index">
+        <view class="label">
+          {{item.key}}
+        </view>
+        <view class="text-info-color">
+          {{infoA[item.valueKey]}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="id-description">
+    <lu-content-top title="人员身份信息"></lu-content-top>
+    <view class="wrap">
+      <view class="info-item" wx:for="{{idInfoListB}}" 
+                              wx:key="index">
+        <view class="label">
+          {{item.key}}
+        </view>
+        <view class="text-info-color">
+          {{infoB[item.valueKey]}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="btn-box-2">
+    <l-button bind:lintap="submit" size="long">下一步</l-button>
+  </view>
+</lu-page-container>
+<l-toast />

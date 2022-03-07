@@ -1,0 +1,25 @@
+<!--pages/login/login.wxml-->
+<view class="container">
+  <l-capsule-bar hidden-capsule title="登录" title-color="#fff" status-bar-color="transparent"
+    title-bar-color="transparent" bg-color="transparent"></l-capsule-bar>
+  <view class="form-box">
+    <image class="project-name centerX" src="http://bjbsite.com/images/xcx/common/login-title.png"></image>
+    <l-form name="loginForm" bind:linsubmit="submit">
+      <l-form-item name="username" l-form-item-class="form-item" label-slot>
+        <image src="http://bjbsite.com/images/xcx/page/login/icon-u.png" slot="label" class="icon-image"></image>
+        <l-input id="username" hide-label placeholder="用户名" show-row="{{false}}" />
+      </l-form-item>
+      <l-form-item name="password" l-form-item-class="form-item" label-slot>
+        <image src="http://bjbsite.com/images/xcx/page/login/icon-p.png" slot="label" class="icon-image"></image>
+        <l-input id="password" type="password" hide-label placeholder="请输入密码" show-row="{{false}}" />
+      </l-form-item>
+      <view slot="submit">
+        <l-button l-class="submit-btn {{disabled ? 'disabled' : ''}}" special="{{true}}">
+          <image src="http://bjbsite.com/images/xcx/page/login/btn.png" class="submit-btn-img"></image>
+          <view class="centerXY">登录</view>
+        </l-button>
+      </view>
+    </l-form>
+  </view>
+</view>
+<l-toast />

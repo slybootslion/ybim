@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "lu-worker-board": "../components/select-worker-board/select-worker-board"
+  }
+}

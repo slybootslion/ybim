@@ -1,0 +1,54 @@
+/* pages/personnel-manage/add-workers/add-workers.wxss */
+.top {
+  height: 221rpx;
+  position: relative;
+}
+
+.handle-btn {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  background-color: rgba(0, 0, 0, 0);
+  padding: 10rpx 20rpx;
+  border: 1rpx solid #353535;
+  border-radius: 10rpx;
+}
+
+.icon-bianjitianjiawenzi {
+  position: absolute;
+}
+
+.handle-btn-txt {
+  margin-left: 45rpx;
+}
+
+.top .btn-box {
+  display: flex;
+  padding: 99rpx 0 44rpx;
+  justify-content: center;
+}
+
+.btn-box .ocr-btn {
+  margin: 0rpx 20rpx;
+}
+
+.wrap {
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.info-item {
+  height: 106rpx;
+  border-bottom: 2rpx solid #e8e8e8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 30rpx;
+}
+
+.btn-box-2 {
+  padding: 0 30rpx;
+  margin: 30rpx 0;
+  box-sizing: border-box;
+}

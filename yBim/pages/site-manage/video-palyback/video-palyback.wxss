@@ -1,0 +1,13 @@
+/* pages/site-manage/video-palyback/video-palyback.wxss */
+@import "../video-surveillance-detail/video-surveillance-detail.wxss";
+
+.xiala {
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 20rpx;
+}
+
+.picker-container {
+  display: flex;
+  align-items: center;
+}

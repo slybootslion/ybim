@@ -1,0 +1,47 @@
+/* components/calendar/calendar.wxss */
+.container-bar {
+  width: 100%;
+  height: 97rpx;
+  box-shadow: 1rpx 2rpx 6rpx rgba(0, 0, 0, .1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  position: relative;
+}
+
+.date-txt {
+  font-size: 30rpx;
+  margin: 0 20rpx;
+}
+
+.icon-single {
+  width: 60rpx;
+  text-align: center;
+}
+
+.icon-double {
+  width: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-item-left-1 {
+  position: relative;
+  left: -10rpx;
+}
+
+.icon-item-left-2 {
+  position: relative;
+  left: 10rpx;
+}
+
+.icon-item-right-1 {
+  position: relative;
+  right: -10rpx;
+}
+.icon-item-right-2 {
+  position: relative;
+  right: 10rpx;
+}

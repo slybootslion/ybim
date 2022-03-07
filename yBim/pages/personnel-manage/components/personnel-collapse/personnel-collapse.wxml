@@ -1,0 +1,44 @@
+<!--pages/personnel-manage/components/personnel-collapse/personnel-collapse.wxml-->
+<view class="wrap">
+  <l-collapse type="accordion">
+    <l-collapse-item wx:for="{{roster_list}}"
+                     wx:for-index="rosterListIndex"
+                     wx:for-item="detail"
+                     wx:key="rosterListIndex" 
+                     l-title-class="company_name"
+                     l-body-class="bodyclass" 
+                     title="{{detail.company_name}}">
+      <l-collapse type="accordion"
+                  data-rosterListId="{{rosterListIndex}}"
+                  bind:linexpand="handleExpand" 
+                  bind:linfold="handleFold">
+        <l-collapse-item wx:for="{{detail.groups}}"
+                         wx:for-index="groupIndex"
+                         wx:key="index"
+                         customTitle 
+                         item-id="{{groupIndex}}">
+          <view class="group_name" slot="title">
+            <view class="group-item-right">
+              <image class="group-img" src="http://bjbsite.com/images/xcx/page/personnel/group.png"></image>
+              <text>{{item.group_name}}</text>
+            </view>
+            <l-icon name="{{item.arrowIcon}}" size="32" color="#999" />
+          </view>
+          <view class="content">
+            <view class="person-item" 
+                  wx:for="{{item.workers}}" 
+                  wx:key="index"
+                  data-rosterListId="{{rosterListIndex}}"
+                  data-groupIndex="{{groupIndex}}"
+                  data-index="{{index}}" 
+                  bindtap="handleCheck">
+              <image class="check-icon"
+                     src="{{item.checked ? checkedIcon : checkIcon}}"></image>
+              <view>{{item.staff_name}}</view>
+            </view>
+          </view>
+        </l-collapse-item>
+      </l-collapse>
+    </l-collapse-item>
+  </l-collapse>
+</view>

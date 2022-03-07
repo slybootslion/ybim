@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "lu-person-board": "../components/person-top-board/person-top-board"
+  }
+}

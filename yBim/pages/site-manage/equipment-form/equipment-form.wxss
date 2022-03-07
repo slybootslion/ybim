@@ -1,0 +1,14 @@
+/* pages/site-manage/equipment-form/equipment-form.wxss */
+.btn-box {
+  padding: 20rpx;
+}
+
+.input-padding {
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.input-padding .input-item {
+  border-bottom: 1rpx solid #e8e8e8;
+}

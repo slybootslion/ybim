@@ -1,0 +1,78 @@
+<!--pages/site-manage/environ-monitoring/environ-monitoring.wxml-->
+<scroll-view class="container bg-color" enhanced scroll-y style="height: {{contentHeight}}px" show-scrollbar="{{false}}"
+    bindscroll="scrolling">
+    <l-capsule-bar title="环境监测" home-page="/pages/index/index" capsule-color="white"
+        title-color="{{barColor === 'transparent' ? '#fff' : '#333'}}" bg-color="{{barColor}}"
+        bind:linlefttap="leftTap" />
+    <view class="top-link" wx:if="{{!hide}}" bindtap="toMangePage">
+        <image class="shebei" src="http://bjbsite.com/images/xcx/page/site-manage/sbgl_.png"></image>
+        <text>设备管理</text>
+    </view>
+    <view class="wrapper">
+        <view class="board top-board">
+            <view class="project-name txt-overflow" data-show-type="1" bind:tap="selectTap">
+                <text class="iconfont icon-xiangmu primary-color"></text>
+                <text>{{projectName.project_name}}</text>
+                <image class="xiala" src="http://bjbsite.com/images/xcx/page/index/xiala.png"></image>
+            </view>
+        </view>
+        <view class="board board2">
+            <view class="board2-item {{index === 0 ? 'c1' : index === 1 ? 'c2' : 'c3'}}" wx:for="{{3}}" wx:key="index">
+                <image class="icon"
+                    src="http://bjbsite.com/images/xcx/page/site-manage/{{index === 0 ? 'shuliang' : index === 1 ? 'zaixian' : 'lixian'}}.png">
+                </image>
+                <view class="item-box">
+                    <text>{{index === 0 ? '设备总数' : index === 1 ? '在线设备' : '离线设备'}}</text>
+                    <text class="color-text {{index === 0 ? 'c1' : index === 1 ? 'c2' : 'c3'}}">{{index === 0 ? count :
+                        index === 1 ? online : offline}}台</text>
+                </view>
+            </view>
+        </view>
+        <view class="board top-board">
+            <lu-content-top title="实时监测">
+                <view class="top-select-box" bindtap="selectTap">
+                    <text class="select-name">{{list[currentIndex].Name}}</text>
+                    <l-icon name="down" color="#828282" size="22"></l-icon>
+                </view>
+            </lu-content-top>
+            <view class="content-detail detail-2">
+                <view class="detail-2-item" wx:for="{{detail2List}}" wx:key="name">
+                    <text class="{{item.icon}} iconfont"></text>
+                    <text class="item-txt">{{item.name}}</text>
+                    <text class="item-txt">{{list[currentIndex][item.key]}}{{item.unit}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="board top-board">
+            <lu-content-top title="统计信息">
+                <view class="top-select-box" bindtap="selectTap">
+                    <text class="select-name">{{list[currentIndex].Name}}</text>
+                    <l-icon name="down" color="#828282" size="22"></l-icon>
+                </view>
+            </lu-content-top>
+            <view class="content-detail detail-3">
+                <view class="detail-3-item" wx:for="{{detail3List}}" wx:key="name">
+                    <view class="left">{{item.name}}</view>
+                    <view class="right primary-color">{{list[currentIndex][item.key]}}{{item.unit}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</scroll-view>
+<l-popup show="{{showPopupN}}" content-align="bottom" z-index="1000">
+    <scroll-view scroll-y class="popup-content">
+        <view data-show-type="1" class="select-item txt-overflow" id="{{item.project_id}}" wx:for="{{projects}}"
+            wx:key="project_id" bind:tap="popupItemClick">
+            {{item.project_name}}
+        </view>
+    </scroll-view>
+</l-popup>
+<l-popup show="{{showPopup}}" content-align="bottom" z-index="1000">
+    <scroll-view scroll-y class="popup-content">
+        <view class="select-item txt-overflow" wx:for="{{list}}" wx:key="device_number" id="{{index}}"
+            bind:tap="popupItemClick">
+            {{item.Name}}
+        </view>
+    </scroll-view>
+</l-popup>
+<l-loading full-screen="{{true}}" show="{{isLoading}}" />

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "lu-person-board": "../components/person-top-board/person-top-board",
+    "lu-calendar": "../../personnel-manage/components/calendar/calendar"
+  }
+}

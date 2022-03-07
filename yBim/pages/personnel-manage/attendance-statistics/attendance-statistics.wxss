@@ -1,0 +1,76 @@
+/* pages/attendance-manage/attendance-statistics/attendance-statistics.wxss */
+@import './../../../static/style/index-public.wxss';
+
+.board {
+  margin-bottom: 22rpx;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+
+.board.top-board {
+  justify-content: center;
+}
+
+.company-name {
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.company-name .name {
+  max-width: 500rpx
+}
+
+.company-name .xiala {
+  width: 25rpx;
+  height: 25rpx;
+  margin-left: 10rpx;
+}
+
+.top-content .empty {
+  height: 120rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.group-item {
+  padding: 0 30rpx 30rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+}
+
+.group-item .item-icon {
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 10rpx;
+}
+
+.group-item .item-title {
+  height: 70rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #e8e8e8;
+}
+
+.item-content {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+
+.content-item {
+  width: 50%;
+  font-size: 26rpx;
+  line-height: 46rpx;
+}
+
+.content-item text {
+  color: #9d9d9d;
+}

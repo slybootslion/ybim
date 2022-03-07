@@ -1,0 +1,14 @@
+/* pages/my-app/my-info/my-info.wxss */
+
+.info-item {
+  background-color: #fff;
+  padding: 0 20rpx;
+}
+
+.border-content {
+  height: 105rpx;
+  border-bottom: 1rpx solid #e8e8e8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

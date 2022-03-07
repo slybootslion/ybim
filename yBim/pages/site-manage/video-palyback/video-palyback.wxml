@@ -1,0 +1,37 @@
+<!--pages/site-manage/video-palyback/video-palyback.wxml-->
+<lu-page-container title="视频监控">
+  <lu-content-top title="{{title}}" />
+  <view class="video-container">
+    <live-player src="{{data_url}}"
+                 mode="RTC" 
+                 id="previewPlayer"
+                 autoplay 
+                 bindstatechange="statechange" 
+                 binderror="liveError" 
+                 class="live-player"/>
+  </view>
+  <view class="ctrl-box">
+    <view class="ctrl-left">
+      <picker mode="date" 
+              value="{{date}}"  
+              bindchange="bindDateChange" 
+              start="2000-01-01" 
+              end="{{toDay}}">
+        <view class="picker-container">
+          <view class="date-text">{{date}}</view>
+          <image class="xiala" 
+                src="http://bjbsite.com/images/xcx/page/index/xiala.png" />
+        </view>
+      </picker>
+    </view>
+    <view class="ctrl-rigth">
+      <l-button size="mini" 
+                bindtap="goLive">返回直播</l-button>
+    </view>
+  </view>
+  <lu-time-line inner-text="{{innerText}}"
+                bind:getPalyParam="getPalyParam"
+                playCode="{{playCode}}"
+                dateLine="{{dateLine}}" />
+</lu-page-container>
+<l-toast/>

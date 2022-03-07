@@ -1,0 +1,61 @@
+<!--index.wxml-->
+<scroll-view class="container bg-color" enhanced scroll-y style="height: {{contentHeight}}px" show-scrollbar="{{false}}"
+  bindscroll="scrolling">
+  <l-capsule-bar hidden-capsule title="首页" title-color="{{barColor === 'transparent' ? '#fff' : '#333'}}"
+    bg-color="{{barColor}}" />
+  <view class="wrapper">
+    <view class="board top-board">
+      <view class="project-name txt-overflow" bind:tap="selectProject">
+        <text class="iconfont icon-xiangmu primary-color"></text>
+        <text>{{projectName.project_name}}</text>
+        <image class="xiala" src="http://bjbsite.com/images/xcx/page/index/xiala.png"></image>
+      </view>
+      <view class="project-info-box">
+        <view class="project-info-item">开工时间：<text>{{projectInfo.info1}}</text></view>
+        <view class="project-info-item">预计完工时间：<text>{{projectInfo.info2}}</text></view>
+        <view class="project-info-item">安全生产：<text>{{projectInfo.info3}}</text></view>
+        <view class="project-info-item">总工期：<text>{{projectInfo.info4}}</text></view>
+      </view>
+    </view>
+    <view class="board" wx:for="{{modelList}}" wx:key="index">
+      <view class="title">{{item.title}}</view>
+      <l-loading show="{{!item.content.length && !isLoading}}" l-container-class="board-loading" />
+      <view class="content" wx:if="{{item.title === '人员管理'}}">
+        <view class="col-block" wx:if="{{item.content}}">
+          <view class="col-block-item" wx:for="{{item.content}}" wx:key="index">
+            <text class="col-block1-value">{{item.value}}</text>
+            <text>{{item.key}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="content" wx:if="{{item.title === '进度管理'}}">
+        <view class="echart-box" wx:if="{{item.content}}">
+          <ec-canvas id="jdgl-dom-bar" canvas-id="jdgl-bar" ec="{{ ec }}"></ec-canvas>
+        </view>
+      </view>
+      <view class="content" wx:if="{{item.title === '质量管理'}}">
+        <view class="col-block" wx:if="{{item.content}}">
+          <view class="col-block-item no-border" wx:for="{{item.content}}" wx:key="index">
+            <text class="col-block2-value">{{item.value}}</text>
+            <text>{{item.key}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="content" wx:if="{{item.title === '环境监测' || item.title === '设备管理'}}">
+        <view class="content-item" wx:for="{{item.content}}" wx:key="index">
+          {{item.key}}:
+          <text class="info-color">{{item.value}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<l-popup show="{{showPopup}}" content-align="bottom" z-index="9000">
+  <scroll-view scroll-y class="popup-content">
+    <view class="select-item txt-overflow" id="{{item.project_id}}" wx:for="{{projects}}" wx:key="project_id"
+      bind:tap="popupItemClick">
+      {{item.project_name}}
+    </view>
+  </scroll-view>
+</l-popup>
+<l-loading full-screen="{{true}}" show="{{isLoading}}" />

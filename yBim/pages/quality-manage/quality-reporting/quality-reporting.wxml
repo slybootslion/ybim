@@ -1,0 +1,33 @@
+<!--pages/quality-manage/quality-reporting/quality-reporting.wxml-->
+<lu-page-container title="{{pageTitle}}">
+	<lu-quality-input label="检查部位" placeholder="请输入检查部位（最多输入30个字）" isRequired />
+	<lu-quality-input label="所属区域" placeholder="请输入所属区域（最多输入30个字）" isRequired />
+	<lu-quality-input label="内容描述" type="textarea" placeholder="请输入内容描述（最多输入140个字）" isRequired />
+	<view class="wrap">
+		<view class="item-box">
+			<view class="item-title star">
+				现场照片
+			</view>
+			<view>
+				<l-image-picker size="4" bind:linchange="handleImage" />
+			</view>
+		</view>
+	</view>
+	<lu-quality-input label="隐患等级" type="select" placeholder="请选择" isRequired selectList="{{levelList}}"
+		selectKeyStr="key" selectShowStr="value" />
+	<lu-quality-input label="整改责任人" type="select" placeholder="请选择" isRequired selectList="{{peoples}}" selectKeyStr="id"
+		selectShowStr="value" />
+	<view class="input-box">
+		<lu-input-element type="calendar" labelNoPadding isRequired label="期望整改时间" placeholder="请选择"
+			bind:valueChange="handleDate" />
+	</view>
+	<view class="input-box">
+		<lu-input-element disabled label="检查人" value="{{nickname}}" />
+	</view>
+	<view class="input-box">
+		<lu-input-element disabled label="检查时间" value="{{nowTime}}" />
+	</view>
+	<view class="btn-box">
+		<l-button bind:lintap="submit" size="long">提交</l-button>
+	</view>
+</lu-page-container>

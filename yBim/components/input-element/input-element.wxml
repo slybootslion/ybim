@@ -1,0 +1,72 @@
+<!--components/input-element/input-element.wxml-->
+<view class="container {{minContainer ? 'min-container' : ''}}">
+  <l-input wx:if="{{type === 'input'}}"
+           label="{{label}}"
+           label-width="{{labelWidth}}"
+           type="{{inputType}}"
+           l-row-class="input-line"
+           l-class="input {{txtLeft ? 'text-align-left' : ''}}"
+           required="{{isRequired}}"
+           value="{{value}}"
+           disabled="{{disabled}}"
+           hide-label="{{hideLabel}}"
+           bind:lininput="handleInput"
+           placeholder="{{placeholder}}"/>
+  <view wx:if="{{type === 'select'}}" class="select-box">
+    <view class="label" style="width: {{labelWidth}}rpx">
+      <text class="text-require" wx:if="{{isRequired}}">* </text>
+      {{label}}
+    </view>
+    <view class="selected-cotent" bindtap="selectTap">
+      {{selectedCurrent || placeholder}}
+      <l-icon name="right" size="28" color="#76849b"></l-icon>
+    </view>
+  </view>
+  <view wx:if="{{type === 'textarea'}}" class="textarea-box {{minContainer ? 'textarea-box-min' : ''}}">
+    <view class="label" wx:if="{{!hideLabel}}">{{label}}</view>
+    <l-textarea placeholder="{{placeholder}}"
+                l-class="textarea"
+                indicator="{{false}}"
+                maxlength="{{-1}}"
+                value="{{value}}"
+                border="{{false}}"
+                bind:lininput="handleInput"></l-textarea>
+  </view>
+  <view wx:if="{{type === 'calendar'}}" class="select-box">
+    <view class="label {{labelNoPadding ? 'no-padding' : ''}}">
+      <text class="text-require" wx:if="{{isRequired}}">* </text>
+      {{label}}
+    </view>
+    <view class="selected-cotent" bindtap="calendarTap">
+      {{calendarCurrent || placeholder}}
+      <l-icon name="right" size="28" color="#76849b"></l-icon>
+    </view>
+  </view>
+</view>
+<l-popup show="{{showPopup}}"
+         wx:if="{{type === 'select'}}"
+         content-align="bottom"
+         z-index="1000">
+  <scroll-view scroll-y class="popup-content">
+    <view class="select-item txt-overflow"
+          id="{{item[selectKeyStr]}}"
+          wx:for="{{selectList}}"
+          wx:key="index"
+          bind:tap="popupItemClick">
+      {{item[selectShowStr]}}
+    </view>
+  </scroll-view>
+</l-popup>
+<l-popup show="{{showCalendar}}"
+         wx:if="{{type === 'calendar'}}"
+         content-align="center"
+         z-index="1000">
+  <lu-calendar bind:onPickDateChange="onPickDateChange"           
+               bind:onControl="onControl" 
+               bind:onPickDay="onPickDay" 
+               bind:onRangePick="onRangePick" 
+               bind:initDate="onInitDate" 
+               bind:calendarSubmit="calendarSubmit"
+               defaultSelectDate="{{calendarCurrent}}" 
+               showToday="{{true}}" />
+</l-popup>

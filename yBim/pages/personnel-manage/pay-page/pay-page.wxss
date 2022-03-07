@@ -1,0 +1,34 @@
+/* pages/attendance-manage/pay-page/pay-page.wxss */
+.wrap {
+  background-color: #fff;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+}
+
+.wrap .item-title {
+  height: 70rpx;
+  line-height: 70rpx;
+  margin-bottom: 20rpx;
+}
+
+.wrap .item-title.star::before {
+  content: '*';
+  color: #f00;
+}
+
+.item-box {
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-bottom: 2rpx solid #e8e8e8;
+}
+
+.time-box {
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx 0;
+}
+
+.btn {
+  margin-top: 20rpx;
+}

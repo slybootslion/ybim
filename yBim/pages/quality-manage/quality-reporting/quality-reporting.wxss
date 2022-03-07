@@ -1,0 +1,34 @@
+/* pages/quality-manage/quality-reporting/quality-reporting.wxss */
+
+.input-box {
+  background-color: #fff;
+}
+
+.wrap {
+  background-color: #fff;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  font-size: 28rpx;
+}
+
+.wrap .item-title {
+  height: 70rpx;
+  line-height: 70rpx;
+  margin-bottom: 20rpx;
+}
+
+.wrap .item-title.star::before {
+  content: '*';
+  color: #f00;
+}
+
+.item-box {
+  padding: 20rpx;
+  box-sizing: border-box;
+  margin-bottom: 20rpx;
+  /* border-bottom: 2rpx solid #e8e8e8; */
+}
+
+.input-box {
+  margin-bottom: 20rpx;
+}

@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "lu-content-detail": "../components/equipment-content-detail/equipment-content-detail"
+  }
+}

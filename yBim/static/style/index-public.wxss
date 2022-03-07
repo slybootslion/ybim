@@ -1,0 +1,37 @@
+page {
+  height: 100%;
+}
+
+.container {
+  /* min-height: 100%; */
+  /* overflow-y: auto; */
+  padding-bottom: 40rpx;
+  background-image: url(http://bjbsite.com/images/xcx/page/index/banner.png);
+  background-position: top center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.container .wrapper {
+  width: 695rpx;
+  margin: 0 auto;
+}
+
+.popup-content {
+  width: 100%;
+  max-height: 800rpx;
+  overflow-y: scroll;
+  background-color: #fff;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-content .select-item {
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-bottom: 1rpx solid #ededed;
+  text-align: center;
+}

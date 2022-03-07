@@ -1,0 +1,29 @@
+<!--pages/application/application.wxml-->
+<scroll-view class="container bg-color"
+             enhanced
+             scroll-y
+             style="height: {{contentHeight}}px"
+             show-scrollbar="{{false}}"
+             bindscroll="scrolling">
+  <l-capsule-bar hidden-capsule
+                 title="应用管理"
+                 title-color="{{barColor === 'transparent' ? '#fff' : '#333'}}"
+                 bg-color="{{barColor}}"/>
+  <view class="wrapper">
+    <view class="board {{index === 0 ? 'top-board' : ''}}" wx:for="{{list}}" wx:key="index">
+      <view class="title">{{item.title}}</view>
+      <view class="content">
+        <view class="content-item"
+              wx:for="{{item.content}}"
+              wx:key="index"
+              wx:if="{{!item.hide}}"
+              data-page="{{item.page}}"
+              data-param="{{item.param}}"
+              bindtap="handleTap">
+          <image src="{{'http://bjbsite.com/images/xcx/common/'+item.icon+'.png'}}" class="icon"></image>
+          <view class="key">{{item.key}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

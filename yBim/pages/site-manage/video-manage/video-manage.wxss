@@ -1,0 +1,2 @@
+/* pages/site-manage/video-manage/video-manage.wxss */
+@import "../equipment-manage/equipment-manage.wxss";

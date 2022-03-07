@@ -1,0 +1,80 @@
+/* pages/personnel-manage/components/top-company-board/top-company-board.wxss */
+
+.board {
+  height: 161rpx;
+  margin-bottom: 22rpx;
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+
+.board.top-board {
+  justify-content: center;
+}
+
+.company-name {
+  flex: 1;
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.company-name .name {
+  max-width: 500rpx
+}
+
+.company-name .xiala {
+  width: 25rpx;
+  height: 25rpx;
+  margin-left: 10rpx;
+}
+
+.company-name .top-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 10rpx;
+}
+
+.top-content .empty {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-content {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  font-size: 26rpx;
+}
+
+.item-content .content-item{
+  margin-right: 30rpx;
+}
+
+.item-content .content-item .item-t{
+  color: #9d9d9d;
+}
+
+.popup-content {
+  width: 100%;
+  max-height: 800rpx;
+  overflow-y: scroll;
+  background-color: #fff;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-content .select-item {
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-bottom: 1rpx solid #ededed;
+  text-align: center;
+}

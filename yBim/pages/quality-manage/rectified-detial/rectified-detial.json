@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "lu-rectified-detail-item": "../components/rectified-detail-item/rectified-detail-item"
+  }
+}
