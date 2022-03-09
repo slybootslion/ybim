@@ -28,7 +28,8 @@ Page({
 		currentId: 0,
 		state: undefined,
 		pageTitle: '待整改',
-		btnText: '立即复查'
+		btnText: '立即复查',
+		hideBtn: false
 	},
 
 	/**
@@ -54,14 +55,53 @@ Page({
 			})
 			data.detailList = this.data.detailList
 		}
+		if (data.state === 'accumulate') {
+			data.pageTitle = '待复查'
+			data.hideBtn = true
+			this.data.detailList.unshift({
+				id: 2,
+				i1: 2,
+				i2: '2020-08-18 15:54',
+				i3: '现场围挡倒塌摆放混乱，并被车反复碾压，导致变形，现场围挡倒塌摆放混乱，并被车反复碾压，导致变形。',
+				i4: ['http://bjbsite.com//public/upload/moeny/2021/05/19/60a4a7c40bd8c.jpg', 'http://bjbsite.com//public/upload/moeny/2021/05/19/60a4a7c47df7b.jpg'],
+				i5: 1,
+				i6: '李工',
+				i7: '2020-10-01 13:56:32'
+			})
+			this.data.detailList.unshift({
+				id: 3,
+				i1: 3,
+				i2: '2020-08-19 15:54',
+				i3: '现场围挡倒塌摆放混乱，并被车反复碾压，导致变形，现场围挡倒塌摆放混乱，并被车反复碾压，导致变形。',
+				i4: ['http://bjbsite.com//public/upload/moeny/2021/05/19/60a4a7c40bd8c.jpg'],
+				i5: 1,
+				i6: '李工',
+				i7: '2020-10-01 13:56:32',
+				i8: 1,
+				i9: '18629614589',
+				i10: '西安监理公司',
+				i11: '2020-10-01 13:56:32'
+			})
+			data.detailList = this.data.detailList
+		}
 		this.setData({
 			...data
 		})
 	},
 
 	goRectifying() {
-		wx.navigateTo({
-			url: '/pages/quality-manage/rectifying/rectifying',
-		})
+		const { state, currentId } = this.data
+		console.log(state)
+		if (state === 'review') {
+			// 复查
+			wx.navigateTo({
+				url: `/pages/quality-manage/reviewing/reviewing?id=${currentId}`,
+			})
+		} else {
+			// 整改
+			wx.navigateTo({
+				url: `/pages/quality-manage/rectifying/rectifying?id=${currentId}`,
+			})
+		}
 	}
 })

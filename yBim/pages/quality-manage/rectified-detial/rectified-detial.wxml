@@ -10,7 +10,7 @@
 	<view class="container">
 		<lu-rectified-detail-item wx:for="{{detailList}}" wx:key="id" data="{{item}}" />
 	</view>
-	<view class="btn-box">
+	<view class="btn-box" wx:if="!hideBtn">
 		<l-button bind:lintap="goRectifying" size="long">{{btnText}}</l-button>
 	</view>
 </lu-page-container>

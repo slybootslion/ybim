@@ -7,6 +7,10 @@
 		<view>{{ data.i2 }}</view>
 	</view>
 	<view class="content">
+		<view class="content-item" wx:if="{{data.i8}}">
+			<view class="label">检查结果：</view>
+			<view class="value">正常</view>
+		</view>
 		<view class="content-item">
 			<view class="label">{{data.i1 === 2 ? '整改' : ''}}内容描述：</view>
 			<view class="value">{{data.i3}}</view>

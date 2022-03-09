@@ -42,7 +42,10 @@
 		"pages/quality-manage/rectified/rectified",
 		"pages/quality-manage/rectified-detial/rectified-detial",
 		"pages/quality-manage/rectifying/rectifying",
-		"pages/quality-manage/to-review/to-review"
+		"pages/quality-manage/to-review/to-review",
+		"pages/quality-manage/reviewing/reviewing",
+		"pages/quality-manage/overtime/overtime",
+		"pages/quality-manage/accumulate/accumulate"
 	],
 	"window": {
 		"backgroundTextStyle": "light",

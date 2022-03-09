@@ -20,4 +20,5 @@
 
 .btn-box {
 	padding: 20rpx;
+	margin-bottom: 100rpx;
 }

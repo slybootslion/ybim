@@ -15,6 +15,18 @@ Component({
 		btnText: {
 			type: String,
 			value: '立即整改'
+		},
+		isOvertime: {
+			type: Boolean,
+			value: false
+		},
+		hideBtn: {
+			type: Boolean,
+			value: false
+		},
+		isFinished: {
+			type: Boolean,
+			value: false
 		}
 	},
 
@@ -30,10 +42,10 @@ Component({
 	 */
 	methods: {
 		toDetails() {
-			this.triggerEvent('detailEvent', { id: this.properties.data.id });
+			this.triggerEvent('detailEvent', { id: this.properties.data.id, type: this.properties.data.type });
 		},
 		goRectifiedForm() {
-			this.triggerEvent('navEvent', { id: this.properties.data.id });
+			this.triggerEvent('navEvent', { id: this.properties.data.id, type: this.properties.data.type });
 		}
 	}
 })

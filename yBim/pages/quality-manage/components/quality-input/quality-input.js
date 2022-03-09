@@ -32,7 +32,11 @@ Component({
     disabled: {
       type: Boolean,
       value: false,
-    },
+		},
+		isPadding: {
+			type: Boolean,
+			value: false
+		}
 	},
 
 	/**

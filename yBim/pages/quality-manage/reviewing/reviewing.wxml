@@ -1,0 +1,27 @@
+<!--pages/quality-manage/reviewing/reviewing.wxml-->
+<lu-page-container title="检查">
+	<lu-quality-input label="检查部位" disabled value="{{currentData.i1}}" />
+	<lu-quality-input label="所属区域" disabled value="{{currentData.i2}}" />
+	<lu-quality-input label="检查结果" type="select" placeholder="请选择" selectList="{{resultList}}" selectKeyStr="key"
+		selectShowStr="value" isPadding />
+	<lu-quality-input label="内容描述" type="textarea" placeholder="请输入内容描述（最多输入140个字）" />
+	<view class="wrap">
+		<view class="item-box">
+			<view class="item-title">
+				现场照片
+			</view>
+			<view>
+				<l-image-picker size="4" bind:linchange="handleImage" />
+			</view>
+		</view>
+	</view>
+	<view class="input-box">
+		<lu-input-element disabled label="检查人" value="{{nickname}}" />
+	</view>
+	<view class="input-box">
+		<lu-input-element disabled label="检查时间" value="{{nowTime}}" />
+	</view>
+	<view class="btn-box">
+		<l-button bind:lintap="submit" size="long">提交</l-button>
+	</view>
+</lu-page-container>

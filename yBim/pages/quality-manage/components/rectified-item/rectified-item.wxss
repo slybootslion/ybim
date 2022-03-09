@@ -83,3 +83,11 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+
+.rectified-item .header .header-right.red {
+	color: #f00;
+}
+
+.rectified-item .header .header-right.green {
+	color: rgb(0, 255, 191);
+}

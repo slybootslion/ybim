@@ -14,9 +14,8 @@
 		</view>
 	</view>
 	<lu-quality-input label="隐患等级" type="select" placeholder="请选择" isRequired selectList="{{levelList}}"
-		selectKeyStr="key" selectShowStr="value" />
-	<lu-quality-input label="整改责任人" type="select" placeholder="请选择" isRequired selectList="{{peoples}}" selectKeyStr="id"
-		selectShowStr="value" />
+		selectKeyStr="key" selectShowStr="value" isPadding />
+	<lu-quality-input label="整改责任人" type="select" placeholder="请选择" isRequired selectList="{{peoples}}" selectKeyStr="id" selectShowStr="value" isPadding />
 	<view class="input-box">
 		<lu-input-element type="calendar" labelNoPadding isRequired label="期望整改时间" placeholder="请选择"
 			bind:valueChange="handleDate" />

@@ -14,6 +14,8 @@
 				<text class="text">删除</text>
 			</div>
 		</view>
+		<view class="header-right red" wx:if="{{isOvertime}}">{{data.overtime}}</view>
+		<view class="header-right green" wx:if="{{isFinished}}">已完成</view>
 	</view>
 	<view class="wrap" hover-class="content-hover">
 		<view class="content" bindtap="toDetails">
@@ -31,7 +33,7 @@
 			</view>
 		</view>
 	</view>
-	<view class="footer">
+	<view class="footer" wx:if="{{!hideBtn}}">
 		<l-button size="mini" bindtap="goRectifiedForm">{{btnText}}</l-button>
 	</view>
 </view>

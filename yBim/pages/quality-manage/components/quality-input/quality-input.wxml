@@ -1,5 +1,5 @@
 <!--pages/quality-manage/components/form-input.wxml-->
-<view class="input-box">
+<view class="input-box {{isPadding ? 'input-box-padding' : ''}}">
 	<block wx:if="{{type !== 'select'}}">
 		<view class="label">
 			<text class="text-require" wx:if="{{isRequired}}">* </text>
