@@ -1,0 +1,2034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>招标网书签</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+
+    td, th {
+      padding: 0;
+    }
+
+    .pure-table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      empty-cells: show;
+      border: 1px solid #cbcbcb;
+    }
+
+    .pure-table caption {
+      color: #000;
+      font: italic 85%/1 arial, sans-serif;
+      padding: 1em 0;
+      text-align: center;
+    }
+
+    .pure-table td, .pure-table th {
+      border-width: 0 0 0 1px;
+      border-left: 1px solid #cbcbcb;
+      font-size: inherit;
+      margin: 0;
+      overflow: visible;
+      padding: .5em 1em;
+    }
+
+    .pure-table thead {
+      background-color: #e0e0e0;
+      color: #000;
+      text-align: left;
+      vertical-align: bottom;
+    }
+
+    .pure-table td {
+      background-color: transparent;
+    }
+
+    .pure-table-bordered td {
+      border-bottom: 1px solid #cbcbcb;
+    }
+
+    .pure-table-bordered tbody > tr:last-child > td {
+      border-bottom-width: 0;
+    }
+
+    #app {
+      padding: 20px;
+    }
+
+    h2 {
+      margin: 30px 0 10px;
+    }
+  </style>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/javascript" charset="utf-8">
+const db = [{
+  name: '浙江', list: [{
+    "name": "浙江省公共资源交易服务平台", "link": "http://www.zjpubservice.com/"
+  }, {
+    "name": "浙江省公共资源交易", "link": "http://new.zmctc.com/zjgcjy/"
+  }, {
+    "name": "浙江招投标网", "link": "http://www.zjbid.cn/zjwz/"
+  }, {
+    "name": "浙江交通运输厅", "link": "http://www.zjt.gov.cn/"
+  }, {
+    "name": "浙江省发展和改革委员会", "link": "http://www.zjdpc.gov.cn/index.html"
+  }, {
+    "name": "温州市招标投标网", "link": "http://ggzy.wzzbtb.com/wzcms/"
+  }, {
+    "name": "舟山市招标投标网", "link": "http://www.zsztb.gov.cn/zsztbweb/"
+  }, {
+    "name": "衢州市公共资源交易网", "link": "http://www.qzggzy.com/"
+  }, {
+    "name": "金华市公共资源交易网", "link": "http://www.jhztb.gov.cn/jhztb/"
+  }, {
+    "name": "嘉兴市公共资源交易中心", "link": "http://www.jxzbtb.gov.cn/jxcms/jxztb/"
+  }, {
+    "name": "湖州市行政服务中心", "link": "http://xzfw.huzhou.gov.cn/WebHZXZFW/"
+  }, {
+    "name": "丽水市公共资源交易网", "link": "http://www.lssggzy.com/lsweb/"
+  }, {
+    "name": "台州市公共资源交易网", "link": "http://www.tzztb.cn/tzcms/"
+  }, {
+    "name": "宁波市公共资源交易中心", "link": "http://www.bidding.gov.cn/jyxxgcjs/index.htm"
+  }, {
+    "name": "杭州市公共资源交易网", "link": "http://www.hzctc.cn/index.aspx"
+  }, {
+    "name": "舟山交通", "link": "http://www.zsjtw.gov.cn/zs/index.html"
+  }, {
+    "name": "浙江政府采购网", "link": "http://www.zjzfcg.gov.cn/"
+  }, {
+    "name": "杭州建设工程招标网", "link": "http://www.hzzbw.net/DesktopDefault.aspx?tabid=1"
+  }, {
+    "name": "杭州市公共资源交易网", "link": "http://www.hzctc.cn/SecondPage/SecondPage?moduleID=67&ViewID=17&areaID=72"
+  }, {
+    "name": "绍兴", "link": "http://ggb.sx.gov.cn/col/col1518886/index.html"
+  }, {
+    "name": "工程竞价", "link": "http://zjzx2.wzae.gov.cn:8000/main/gonggao?gonggao"
+  }, {
+    "name": "浙江交通诚信系统", "link": "http://jssccx.zjt.gov.cn:8532/index.htm"
+  }, {
+    "name": "杭州交通信息网", "link": "http://tb.hangzhou.gov.cn/"
+  }, {
+    "name": "丽水行政审批服务管理办公室", "link": "http://xzsp.lishui.gov.cn/jjgg/jjggmoreinfo.html?catenum=003002"
+  }, {
+    "name": "浙江重大工程交易网", "link": "http://www.zmctc.com/zjgcjy/"
+  }, {
+    "name": "温州市公共资源交易网-温州市招标投标网", "link": "https://ggzyjy.wenzhou.gov.cn/wzcms/"
+  },]
+}, {
+  name: '陕西', list: [{
+    "name": "登录到陕西省公共资源交易平台", "link": "http://www.sxggzyjy.cn:9003/TPBidder/memberLogin"
+  }, {
+    "name": "陕西省公共资源交易中心", "link": "http://www.sxggzyjy.cn/jydt/001001/001001001/subPage_jyxx.html"
+  }, {
+    "name": "陕西省政府采购网", "link": "http://www.ccgp-shaanxi.gov.cn/"
+  }, {
+    "name": "陕西采购与招标网", "link": "http://bulletin.sntba.com/"
+  }, {
+    "name": "延安市住房和城乡建设局", "link": "http://www.yajsgh.gov.cn/webSite/main/yanewslist4.aspx?fcol=211011001"
+  }, {
+    "name": "延安市公共资源交易中心", "link": "http://www.yaggzyjy.cn/Front_YanAn/Default.aspx"
+  }, {
+    "name": "渭南招标信息网", "link": "http://www.wnzbxx.com/list.aspx?cid=15&cp=1"
+  }, {
+    "name": "西安建设工程", "link": "http://www.xacin.com.cn/XianGcjy/web/tender/shed_gc.jsp?gc_type=5&page=1"
+  }, {
+    "name": "西咸新区", "link": "http://xxxq.sxggzyjy.cn/#page3"
+  }, {
+    "name": "咸阳市", "link": "http://xy.sxggzyjy.cn/"
+  }, {
+    "name": "安康市", "link": "http://ak.sxggzyjy.cn/"
+  }, {
+    "name": "榆林市交通运输局", "link": "http://jtysj.yl.gov.cn/list-11-1.html"
+  }, {
+    "name": "延安市交通运输局", "link": "http://jtj.yanan.gov.cn/"
+  }, {
+    "name": "咸阳交通运输网", "link": "http://www.xyjtj.gov.cn/html/"
+  }, {
+    "name": "宝鸡市交通运输局", "link": "http://jtj.baoji.gov.cn/"
+  }, {
+    "name": "渭南市交通运输局", "link": "http://jtj.weinan.gov.cn/"
+  }, {
+    "name": "汉中市交通运输局", "link": "http://jt.hanzhong.gov.cn/"
+  }, {
+    "name": "招标公告 - 陕西采购与招标网、陕西省招标投标协会网", "link": "http://www.sntba.com/website/gg_list.aspx?category_id=53&page=3"
+  },]
+}, {
+  name: '安徽', list: [{
+    "name": "安徽省公共资源交易监管网",
+    "link": "http://ggzy.ah.gov.cn/login.do;jsessionid=debacf992936eb2e93d1b2bd8fdb?method=beginlogin"
+  }, {
+    "name": "安徽省招标投标信息网", "link": "http://www.ahtba.org.cn/"
+  }, {
+    "name": "安徽省交通运输厅", "link": "http://www.ahjt.gov.cn/"
+  }, {
+    "name": "安徽省发展和改革委员会", "link": "http://fzggw.ah.gov.cn/"
+  }, {
+    "name": "安徽合肥公共资源交易中心", "link": "http://ggzy.hefei.gov.cn/"
+  }, {
+    "name": "芜湖市公共资源交易中心", "link": "http://whsggzy.wuhu.gov.cn/jyxx/005001/about.html"
+  }, {
+    "name": "滁州公共资源交易中心", "link": "http://www.czggzy.gov.cn/Front_jyzx/"
+  }, {
+    "name": "蚌埠市公共资源交易中心", "link": "http://ggzy.bengbu.gov.cn/bbfwweb/"
+  }, {
+    "name": "阜阳市公共资源交易网", "link": "http://jyzx.fy.gov.cn/FuYang/"
+  }, {
+    "name": "宿州市公共资源交易网", "link": "http://www.szggzyjy.cn/szfront/"
+  }, {
+    "name": "黄山市公共资源交易中心", "link": "http://ggzy.huangshan.gov.cn/hsweb/Default.aspx"
+  }, {
+    "name": "宣城市公共资源交易服务网", "link": "http://ggzyjy.xuancheng.gov.cn/XCTPFront/"
+  }, {
+    "name": "铜陵市公共资源交易", "link": "http://www.tlzbcg.com/tlsggzy/gcjs/006001/"
+  }, {
+    "name": "安庆市公共资源交易服务网", "link": "http://www.aqzbcg.org:1102/"
+  }, {
+    "name": "马鞍山公共资源交易服务网", "link": "http://zbcg.mas.gov.cn/maszbw/"
+  }, {
+    "name": "淮北市公共资源交易网", "link": "http://ggzy.huaibei.gov.cn/hbweb/Default.aspx"
+  }, {
+    "name": "亳州市公共资源交易网首页", "link": "http://www.bzztb.gov.cn/BZWZ/"
+  }, {
+    "name": "淮南市公共资源首页", "link": "http://ggj.huainan.gov.cn/HNWeb_NEW/"
+  },]
+}, {
+  name: '北京', list: [{
+    "name": "北京市工程建设交易信息网", "link": "http://www.bcactc.com/home/gcxx/index.aspx"
+  }, {
+    "name": "北京市公共资源交易服务平台", "link": "https://www.bjggzyfw.gov.cn/cmsbj/jyxxggjtbyqs/index.html"
+  }, {
+    "name": "北京市交通委员会-招投标信息", "link": "http://jtw.beijing.gov.cn/ysj/xxgk/ztbxx/"
+  }]
+}, {
+  name: '天津', list: [{
+    "name": "天津市公共资源交易网", "link": "http://ggzy.xzsp.tj.gov.cn/jyxxgcjs/index.jhtml"
+  }, {
+    "name": "天津市交通运输委员会", "link": "http://jtys.tj.gov.cn/Page/InfoListPage_index.aspx?NCode=110"
+  }, {
+    "name": "天津建设工程信息网", "link": "http://www.tjconstruct.cn/Zbgg?type=sjzb"
+  },]
+}, {
+  name: '河北', list: [{
+    "name": "河北省建设工程招投标交易管理及计算机辅助评标系统", "link": "http://zbb.hebjs.gov.cn/hebgc2009/?a=eng-anc-list"
+  }, {
+    "name": "河北招投标公共服务平台", "link": "http://121.28.195.124:9001/tender/xxgk/list.do?selectype=zbgg"
+  }, {
+    "name": "河北省公共资源交易平台", "link": "http://www.hebpr.gov.cn/index.html"
+  }, {
+    "name": "河北省交通运输厅", "link": "http://www.hbsjtt.gov.cn/jtyst/zwgk/zdlyxxgk/zbxx/zbgg/"
+  }, {
+    "name": "河北交通招标投标网", "link": "http://ztbzx.hbsjtt.gov.cn/Site/list.aspx?type=gg"
+  }, {
+    "name": "河北省政府采购网首页", "link": "http://www.ccgp-hebei.gov.cn/province/"
+  }, {
+    "name": "衡水市公共资源交易中心", "link": "http://hsggzy.hengshui.gov.cn/"
+  }, {
+    "name": "石家庄公共资源交易网", "link": "http://www.sjzsggzyjyzx.org.cn/jyxxgc/index.jhtml"
+  }, {
+    "name": "唐山市公共资源", "link": "http://www.hebpr.cn/tangshan/"
+  }, {
+    "name": "秦皇岛市公共资源交易网", "link": "http://www.qhdggzy.gov.cn/"
+  }, {
+    "name": "邢台市公共资源交易", "link": "http://60.6.253.156:8888/sszt-zyjyPortal/"
+  },]
+}, {
+  name: '山西', list: [{
+    "name": "山西省招标投标公共服务平台", "link": "http://www.sxbid.com.cn/"
+  }, {
+    "name": "全国公共资源交易服务平台（山西省）",
+    "link": "http://prec.sxzwfw.gov.cn/TenderProjectSx/noticeAndPublicity.do?huanJie=NOTICE"
+  }, {
+    "name": "山西省交通运输厅", "link": "http://www.sxjt.gov.cn/zbtb/index.jhtml"
+  }, {
+    "name": "山西省发改委", "link": "http://www.sxdrc.gov.cn/wsbs/lxsp/"
+  }, {
+    "name": "中国山西政府采购", "link": "http://www.ccgp-shanxi.gov.cn/"
+  }, {
+    "name": "长治建设工程交易网", "link": "http://www.czjjzx.net/type.aspx?typeid=3"
+  }, {
+    "name": "全国公共资源交易平台（山西省·长治市）", "link": "http://www.czsggzy.gov.cn/"
+  }, {
+    "name": "大同市建设工程交易信息网", "link": "http://www.dtjsgcjy.com/"
+  }, {
+    "name": "全国公共资源交易平台(山西省•朔州市)", "link": "http://szggzy.shuozhou.gov.cn/cmsController.do?goPage&page=index"
+  }, {
+    "name": "晋中市公共资源交易网", "link": "http://www.jzggzy.gov.cn/"
+  }, {
+    "name": "全国公共资源交易平台(山西省·晋中市)", "link": "http://www.prec-sxjz.gov.cn/cmsController.do?goPage&page=index"
+  }, {
+    "name": "运城市公共资源交易中心", "link": "http://www.ycggfw.gov.cn/TPfront/"
+  }, {
+    "name": "运城市政府采购网", "link": "http://www.ccgp-yuncheng.gov.cn/"
+  }, {
+    "name": "忻州市交易中心", "link": "http://ggzyjy.sxxz.gov.cn/"
+  }, {
+    "name": "忻州市建设工程交易中心信息网", "link": "http://www.xzgcjy.com/pull/"
+  }, {
+    "name": "临汾市公共资源交易管理中心", "link": "http://www.lfggzyjy.gov.cn/Notice/List/1-0-1-1.html"
+  }, {
+    "name": "临汾市工程建设招标投标办公室", "link": "http://www.lfztb.com.cn/list.jsp?urltype=tree.TreeTempUrl&wbtreeid=1006"
+  }, {
+    "name": "全国公共资源交易平台（山西省·吕梁市）", "link": "http://ggzyjyzx.lvliang.gov.cn/"
+  }, {
+    "name": "中招联合信息股份有限公司", "link": "http://shanxi.365trade.com.cn/"
+  }, {
+    "name": "首页-比比电子招投标交易平台", "link": "http://www.bitbid.cn/"
+  }, {
+    "name": "伟拓招采平台", "link": "http://www.wtjypt.com/"
+  }, {
+    "name": "易招标山西交易平台", "link": "http://sxty.ebidding.net.cn/"
+  }, {
+    "name": "欢迎使用金蝉公共服务平台", "link": "http://www.jcebid.com/"
+  }, {
+    "name": "山西新点招投标交易平台", "link": "http://www.sxxindian.com/"
+  }, {
+    "name": "润世和电子招投标交易平台", "link": "http://www.rshec.com/"
+  }, {
+    "name": "首页_旺采网", "link": "http://sx.5ibid.net/Liems/sxIndex.html"
+  }, {
+    "name": "云买卖交易平台", "link": "http://www.eqbidding.com/pc/index.html"
+  },]
+}, {
+  name: '内蒙古', list: [{
+    "name": "内蒙古公共资源交易管理服务中心", "link": "http://ggzyjy.nmg.gov.cn/"
+  }, {
+    "name": "内蒙古公共资源交易管理服务中心", "link": "http://www.nmgggzyjy.gov.cn/"
+  }, {
+    "name": "内蒙古招标投标网", "link": "http://www.nmgztb.com.cn/"
+  }, {
+    "name": "内蒙古自治区工程项目招投标中心", "link": "http://www.nmggcztb.cn/"
+  }, {
+    "name": "内蒙古自治区交通运输厅", "link": "http://www.nmjt.gov.cn/"
+  }, {
+    "name": "内蒙古自治区发展和改革委员会", "link": "http://www.nmgfgw.gov.cn/"
+  }, {
+    "name": "呼和浩特市公共资源交易监督管理局", "link": "http://ggzy.huhhot.gov.cn/hsweb/"
+  }, {
+    "name": "包头市公共资源交易中心", "link": "http://ggzyjy.baotou.gov.cn/"
+  }, {
+    "name": "呼伦贝尔市公共资源交易中心", "link": "http://www.hlbeggzyjy.org.cn/"
+  }, {
+    "name": "通辽市公共资源交易中心", "link": "http://ggzy.tlzw.gov.cn/"
+  }, {
+    "name": "兴安盟公共资源交易中心", "link": "http://ggzy.xam.gov.cn/xamggzy/default.aspx"
+  }, {
+    "name": "赤峰市公共资源交易中心", "link": "http://www.cfggzy.cn/epointweb_cf/"
+  }, {
+    "name": "锡林郭勒盟政务服务和公共资源交易网", "link": "http://xmzwggzy.xlgl.gov.cn/xmweb/default.aspx"
+  }, {
+    "name": "锡林郭勒盟政务服务和公共资源交易网", "link": "http://xmzwggzy.xlgl.gov.cn/xmweb/ggzyjy/"
+  }, {
+    "name": "乌兰察布市公共资源交易中心", "link": "http://www.wlcbggzyjy.org.cn/"
+  }, {
+    "name": "乌兰察布市公共资源交易中心", "link": "http://ggzy.wulanchabu.gov.cn/"
+  }, {
+    "name": "鄂尔多斯公共资源交易网", "link": "http://www.ordosggzyjy.org.cn/TPFront/"
+  }, {
+    "name": "巴彦淖尔", "link": "http://zwzx.bynr.gov.cn/"
+  }, {
+    "name": "乌海市公共资源交易中心-首页", "link": "http://www.whggzy.com/index!index.action"
+  }, {
+    "name": "阿拉善公共资源交易网", "link": "http://www.alsggzyjy.cn/PublicServer/public/index.html"
+  }, {
+    "name": "满洲里市公共资源交易中心", "link": "http://www.mzlggzy.org.cn/"
+  },],
+}, {
+  name: '河南', list: [{
+    "name": "河南省公共资源交易公共服务平台", "link": "http://www.hnsggzyfwpt.gov.cn/"
+  }, {
+    "name": "河南省交通运输厅", "link": "http://www.hncd.gov.cn/portal/index.htm"
+  }, {
+    "name": "河南省发展和改革委员会", "link": "http://www.hndrc.gov.cn/"
+  }, {
+    "name": "河南省政府采购网", "link": "http://www.hngp.gov.cn/"
+  }, {
+    "name": "河南招标采购综合网", "link": "http://www.hnzbcg.cn/zb/"
+  }, {
+    "name": "郑州市公共资源交易中心", "link": "http://www.zzsggzy.com/"
+  }, {
+    "name": "郑州建设信息网 - 首页", "link": "http://www.zzjs.com.cn/"
+  }, {
+    "name": "三门峡市公共资源交易中心", "link": "http://www.smxgzjy.org/"
+  }, {
+    "name": "洛阳市公共资源交易中心", "link": "http://www.lyggzyjy.cn/TPFront/"
+  }, {
+    "name": "济源市公共资源交易中心", "link": "http://www.jyggjy.cn/TPFront/"
+  }, {
+    "name": "南阳市公共资源交易中心", "link": "http://www.nyggzyjy.cn/TPFront/"
+  }, {
+    "name": "邓州市公共资源交易中心", "link": "http://www.dzggzy.com/dzweb/"
+  }, {
+    "name": "焦作公共资源交易中心", "link": "http://www.jzggzy.cn/TPFront/"
+  }, {
+    "name": "巩义市公共资源交易中心", "link": "http://www.gyggzyjy.gov.cn/"
+  }, {
+    "name": "汝州市公共资源交易中心", "link": "http://www.rzggzy.com/"
+  }, {
+    "name": "平顶山市公共资源交易中心", "link": "http://www.pdsggzy.com/"
+  }, {
+    "name": "郑州航空港经济综合实验区公共资源交易中心", "link": "http://www.zzhkgggzy.cn/zzhkgsyqjyzx/"
+  }, {
+    "name": "许昌公共资源交易网", "link": "http://xcggzy.gov.cn/"
+  }, {
+    "name": "漯河市公共资源交易信息网", "link": "https://www.lhjs.cn/"
+  }, {
+    "name": "驻马店市公共资源电子交易系统", "link": "http://www.zmdggzy.gov.cn/TPFront/"
+  }, {
+    "name": "信阳市公共资源交易网", "link": "http://www.xyggzy.gov.cn/TPFront/"
+  }, {
+    "name": "固始县公共资源交易中心", "link": "http://www.gsggzy.cn/tpfront/"
+  }, {
+    "name": "新蔡县公共资源交易中心", "link": "http://www.xcggzy.org.cn/tpfront/"
+  }, {
+    "name": "周口市行政服务（公共资源交易）中心", "link": "http://www.zkggzyjy.gov.cn/TPFront/"
+  }, {
+    "name": "鹿邑县公共资源交易中心", "link": "http://www.lyggzyjy.org.cn/"
+  }, {
+    "name": "永城市公共资源交易中心", "link": "http://www.ycggzyjy.com/"
+  }, {
+    "name": "商丘市公共资源交易服务平台", "link": "http://www.sqggzy.com/spweb/HNSQ/Home/index.do"
+  }, {
+    "name": "开封市公共资源交易信息网", "link": "http://www.kfsggzyjyw.cn/"
+  }, {
+    "name": "兰考县公共资源交易中心", "link": "http://www.lkxggzy.com/"
+  }, {
+    "name": "长垣县公共资源交易管理中心", "link": "http://www.cyxggzy.cn/"
+  }, {
+    "name": "滑县公共资源交易中心", "link": "http://www.hxggzy.cn/"
+  }, {
+    "name": "新乡市公共资源交易管理中心", "link": "http://117.158.91.68:8093/"
+  }, {
+    "name": "鹤壁市公共资源交易中心", "link": "http://ggzy.hebi.gov.cn/TPFront/"
+  }, {
+    "name": "安阳市公共资源交易中心", "link": "http://www.ayggzy.cn/"
+  }, {
+    "name": "濮阳市公共资源交易网", "link": "http://www.pyggzy.com/"
+  }, {
+    "name": "濮阳市建设工程交易网", "link": "http://www.pyjsgc.com/"
+  }],
+}, {
+  name: '湖北', list: [{
+    "name": "湖北省公共资源电子交易服务系统", "link": "https://www.hbggzyfwpt.cn/jyxx/index?pageSize=9"
+  }, {
+    "name": "湖北省公共资源交易网", "link": "http://www.hbggzy.cn/"
+  }, {
+    "name": "湖北省公共资源交易云平台网站", "link": "http://www.hbbidcloud.cn/hubei/"
+  }, {
+    "name": "湖北省交通运输厅", "link": "http://www.hbjt.gov.cn/"
+  }, {
+    "name": "湖北省发展和改革委员会", "link": "http://fgw.hubei.gov.cn/"
+  }, {
+    "name": "武汉市公共资源招标投标交易系统", "link": "http://www.jy.whzbtb.cn/"
+  }, {
+    "name": "襄阳市公共资源交易网", "link": "http://jyzx.xiangyang.gov.cn/"
+  }, {
+    "name": "宜昌市公共资源-首页", "link": "http://ggzyjy.yichang.gov.cn/TPFront/"
+  }, {
+    "name": "黄石公共资源交易信息网", "link": "http://www.hsztbzx.com/Content/jsgc"
+  }, {
+    "name": "荆州市公共资源交易信息网", "link": "http://www.jzggzy.com/TPFront_JingZhou/"
+  }, {
+    "name": "鄂州市公共资源交易", "link": "http://www.ezggzy.cn/"
+  }, {
+    "name": "黄冈公共资源交易中心",
+    "link": "http://ggzy.hg.gov.cn/ceinwz/WebInfo_List.aspx?newsid=700&jsgc=0100000&zfcg=&tdjy=&cqjy=&qtjy=&PubDateSort=1&ShowPre=1&CbsZgys=0&zbfs=&qxxx=0&showqxname=0&NewsShowPre=1&wsjj=0&showCgr=0&ShowOverDate=0&showdate=1&FromUrl=jygg"
+  }, {
+    "name": "咸宁市公共资源交易信息网", "link": "http://xnztb.xianning.gov.cn/xnweb/jyxx/"
+  }, {
+    "name": "随州市公共资源交易网", "link": "http://ztb.suizhou.gov.cn/?id=569"
+  }, {
+    "name": "恩施州公共资源交易监督管理局", "link": "http://58.52.192.225/TPFront/jyxx/070001/"
+  }, {
+    "name": "仙桃市公共资源交易中心", "link": "http://www.xtggzy.com/"
+  }, {
+    "name": "天门市公共资源交易网", "link": "http://ztb.tianmen.gov.cn/"
+  }, {
+    "name": "潜江公共资源交易中心", "link": "http://www.qjggzy.cn/qjztb/gy_index.do"
+  }, {
+    "name": "神农架林区公共资源交易信息网", "link": "http://ggzy.zhsnj.cn/"
+  }, {
+    "name": "孝感市公共资源交易管理局", "link": "http://xgggzy.xiaogan.gov.cn/"
+  }, {
+    "name": "十堰公共资源交易信息网 - 十堰招标投标网 - 十堰市公共资源交易中心", "link": "http://www.syggzyjyzx.org.cn/"
+  }, {
+    "name": "湖北省交通运输厅", "link": "http://jtt.hubei.gov.cn/ymtz.htm"
+  },]
+}, {
+  name: '湖南', list: [{
+    "name": "湖南省公共资源交易服务平台", "link": "http://www.hnsggzy.com/"
+  }, {
+    "name": "湖南省招投标监管网", "link": "http://www.bidding.hunan.gov.cn/"
+  }, {
+    "name": "湖南省发展和改革委员会官网", "link": "http://fgw.hunan.gov.cn/"
+  }, {
+    "name": "湖南省交通运输厅", "link": "http://jtt.hunan.gov.cn/"
+  }, {
+    "name": "湖南省建设工程招标投标信息网", "link": "http://www.hnztb.org/"
+  }, {
+    "name": "湖南省招标投标协会官方网站", "link": "http://www.hntba.net.cn/"
+  }, {
+    "name": "长沙公共资源交易电子服务平台", "link": "https://fwpt.csggzy.cn/spweb/CS/TradeCenter/tradeList.do?Deal_Type=Deal_Type2"
+  }, {
+    "name": "张家界市公共资源交易网", "link": "http://www.zjjsggzy.gov.cn/index.html"
+  }, {
+    "name": "湘西公共资源交易网", "link": "http://ggzyjy.xxz.gov.cn/"
+  }, {
+    "name": "常德市公共资源交易网", "link": "http://ggzy.changde.gov.cn/"
+  }, {
+    "name": "岳阳市公共资源交易中心", "link": "http://ggzy.yueyang.gov.cn/"
+  }, {
+    "name": "益阳公共资源交易中心", "link": "http://jyzx.yiyang.gov.cn/"
+  }, {
+    "name": "怀化市公共资源交易中心", "link": "http://ggzy.huaihua.gov.cn/"
+  }, {
+    "name": "娄底市公共资源交易中心", "link": "http://ldggzy.hnloudi.gov.cn/"
+  }, {
+    "name": "湘潭市公共资源交易中心", "link": "https://ggzy.xiangtan.gov.cn/"
+  }, {
+    "name": "郴州市公共资源交易中心", "link": "http://czggzy.czs.gov.cn/"
+  }, {
+    "name": "衡阳市公共资源交易网", "link": "http://ggzy.hengyang.gov.cn/"
+  }, {
+    "name": "永州市公共资源交易中心", "link": "http://ggzy.yzcity.gov.cn/yzweb/"
+  }, {
+    "name": "邵阳市公共资源交易中心", "link": "http://ggzy.shaoyang.gov.cn/"
+  }, {
+    "name": "株洲市公共资源交易中心", "link": "http://www.zzzyjy.cn/"
+  },]
+}, {
+  name: '重庆', list: [{
+    "name": "重庆市公共资源交易网_重庆市公共资源交易中心", "link": "https://www.cqggzy.com/"
+  }, {
+    "name": "重庆市招标投标综合网", "link": "http://www.cqzb.gov.cn/"
+  }, {
+    "name": "重庆市发展和改革委员会", "link": "http://fzggw.cq.gov.cn/"
+  }, {
+    "name": "重庆市政府采购网", "link": "https://www.cqgp.gov.cn/"
+  }, {
+    "name": "重庆建设工程信息网", "link": "http://www1.cqjsxx.com/webcqjg/"
+  }, {
+    "name": "万州区公共资源交易中心交易信息网", "link": "http://www.wzqztb.cn/wzweb/"
+  }, {
+    "name": "重庆市渝中区公共资源交易网", "link": "http://www.cqyzbid.com/cqyzwz/"
+  }, {
+    "name": "黔江区公共资源交易网", "link": "http://www.qjdtc.com/LBv3/index.aspx"
+  }, {
+    "name": "重庆市涪陵区公共资源综合交易中心", "link": "http://www.flggzy.cn/lbv3/index.aspx"
+  }, {
+    "name": "重庆市江北区公共资源综合交易中心", "link": "http://www.cqjbjyzx.gov.cn/lbv3/index.aspx"
+  }, {
+    "name": "重庆市南岸区公共资源交易中心", "link": "https://www.naggzy.gov.cn/index!index.action"
+  }, {
+    "name": "重庆市沙坪坝区公共资源交易中心", "link": "http://www.cqspbjyzx.com/LBv3/index.aspx"
+  }, {
+    "name": "重庆市九龙坡区公共资源综合交易网", "link": "http://www.cqjlpggzyzhjy.gov.cn/cqjl/default.aspx"
+  }, {
+    "name": "重庆市大渡口区公共资源综合交易中心", "link": "http://www.ddkggzy.com/lbv3/index.aspx"
+  }, {
+    "name": "重庆市渝北区公共资源交易网", "link": "http://jyzx.ybq.gov.cn/cqybwz/default.aspx"
+  }, {
+    "name": "重庆市北碚区公共资源交易网", "link": "http://jyzx.beibei.gov.cn/cqbbwz/"
+  }, {
+    "name": "重庆市巴南区公共资源交易网", "link": "http://www.cqbnggzyjy.com/LBv3/index.aspx"
+  }, {
+    "name": "长寿区公共资源交易网", "link": "http://jyzx.cqcs.gov.cn/ceinwz/2018cs/indexcsnew.html"
+  }, {
+    "name": "重庆市合川区公共资源交易网", "link": "http://www.cqhcjy.gov.cn/lbWeb/index.aspx"
+  }, {
+    "name": "重庆市永川区公共资源交易网", "link": "http://www.yczyjy.cn/"
+  }, {
+    "name": "重庆市江津区公共资源交易中心", "link": "http://www.jjqjyzx.cn/www/bm/cqjjyzx/jjqjyzx_index.html"
+  }, {
+    "name": "璧山公共资源交易中心", "link": "http://www.bsggjy.com/"
+  }, {
+    "name": "重庆綦江公共资源综合交易网", "link": "http://jyzx.cqqj.gov.cn/index/"
+  }, {
+    "name": "重庆市荣昌区公共资源交易中心", "link": "http://zyjy.rongchang.gov.cn/"
+  }, {
+    "name": "重庆市南川区公共资源综合交易中心", "link": "http://jyzx.cqnc.gov.cn/html/9/Index.shtml"
+  }, {
+    "name": "重庆市大足区公共资源综合交易中心", "link": "http://www.cqdzjyzx.cn/lbv3/index.aspx"
+  }, {
+    "name": "重庆市铜梁区公共资源综合交易中心", "link": "http://www.tljyzx.cn/lbv3/index.aspx"
+  }, {
+    "name": "重庆市潼南公共资源交易中心", "link": "http://www.cqtnjy.cn/lbv3/index.aspx"
+  }, {
+    "name": "梁平公共资源交易网", "link": "http://www.cqlpjyzx.com/ceinwz/"
+  }, {
+    "name": "城口县公共资源交易中心", "link": "http://www.ckjyzx.cn/LBv3/index.aspx"
+  }, {
+    "name": "重庆市丰都县公共资源综合交易中心", "link": "http://www.fdggzy.cn/lBv3/index.aspx"
+  }, {
+    "name": "重庆市垫江县公共资源交易中心", "link": "http://www.djjyzx.gov.cn/lbv3/index.aspx"
+  }, {
+    "name": "重庆市忠县公共资源综合交易网", "link": "http://www.zxggzy.cn/lbWeb/index.aspx"
+  }, {
+    "name": "开县公共资源交易网", "link": "http://www.cqkxjyzx.com/ceinwz/indexkx.htm"
+  }, {
+    "name": "重庆市奉节县公共资源综合交易中心", "link": "http://www.fjjyzx.gov.cn/lbv3/index.aspx"
+  }, {
+    "name": "重庆市巫山县公共资源交易中心", "link": "http://www.wsggzyjy.com/lbv3/index.aspx"
+  }, {
+    "name": "巫溪县公共资源交易服务中心信息公开", "link": "http://zfxx.wx.cq.gov.cn/www/default_86_0_0.shtml"
+  }, {
+    "name": "武隆区公共资源综合交易网", "link": "http://www.wlzyzx.cn/lbv3/index.aspx"
+  }, {
+    "name": "重庆市石柱土家族自治县公共资源综合交易中心", "link": "http://www.cqszggzyjy.com/lbv3/index.aspx"
+  }, {
+    "name": "重庆市秀山县公共资源综合交易中心", "link": "http://www.xsggzy.com/LBv3/index.aspx"
+  }, {
+    "name": "重庆市酉阳县公共资源综合交易中心", "link": "http://ggzy.youyang.gov.cn/LBv3/index.aspx"
+  }, {
+    "name": "重庆市彭水县公共资源综合交易中心", "link": "http://www.psggzy.com/LBv3/index.aspx"
+  }, {
+    "name": "重庆万盛公共资源交易网", "link": "http://www.wsjyzx.com/lbWeb/index.aspx"
+  }, {
+    "name": "重庆市綦江区建设工程招标投标信息网", "link": "http://jsgc.cqqj.gov.cn/index/"
+  },]
+}, {
+  name: '四川', list: [{
+    "name": "全国公共资源交易平台(四川省)", "link": "http://ggzyjy.sc.gov.cn/Info/Index/project.html"
+  }, {
+    "name": "四川省发展和改革委员会", "link": "http://www.scdrc.gov.cn/"
+  }, {
+    "name": "四川省交通运输厅", "link": "http://jtt.sc.gov.cn/"
+  }, {
+    "name": "四川省政府采购", "link": "http://www.ccgp-sichuan.gov.cn/view/srplatform/portal/index.html"
+  }, {
+    "name": "成都市公共资源交易服务中心", "link": "https://www.cdggzy.com/site/JSGC/List.aspx"
+  }, {
+    "name": "自贡市公共资源交易服务中心", "link": "http://www.zgggzy.cn/"
+  }, {
+    "name": "攀枝花公共资源交易服务中心", "link": "http://ggzy.panzhihua.gov.cn/"
+  }, {
+    "name": "泸州市公共资源交易网", "link": "http://www.lzsggzy.com/"
+  }, {
+    "name": "德阳市", "link": "http://ggzyxx.deyang.gov.cn/pub/webindex.html"
+  }, {
+    "name": "绵阳市公共资源交易服务中心", "link": "http://ggzy.my.gov.cn/"
+  }, {
+    "name": "广元市公共资源交易服务中心网站", "link": "http://www.gyggzyjy.cn/"
+  }, {
+    "name": "遂宁市公共资源交易网", "link": "http://jyzx.suining.gov.cn/Index.html"
+  }, {
+    "name": "内江市", "link": "http://www.njztb.cn/"
+  }, {
+    "name": "乐山市公共资源交易服务中心", "link": "http://lsggzy.com.cn/"
+  }, {
+    "name": "南充公共资源交易中心", "link": "http://www.scncggzy.com.cn/TPFront/"
+  }, {
+    "name": "宜宾市公共资源交易信息网",
+    "link": "http://ggzy.yibin.gov.cn/Jyweb/JYXTXiangMuXinXiList.aspx?type=%e5%bb%ba%e8%ae%be%e5%b7%a5%e7%a8%8b&subType=130"
+  }, {
+    "name": "广安公共资源交易网", "link": "http://ggzy.guang-an.gov.cn/gasggzy/"
+  }, {
+    "name": "广安公共资源交易网-工程建设", "link": "http://ggzy.guang-an.gov.cn/gasggzy/gcjs/"
+  }, {
+    "name": "达州市公共资源交易服务网-首页", "link": "http://www.dzggzy.cn/dzsggzy/"
+  }, {
+    "name": "巴中市公共资源交易平台", "link": "http://117.172.156.43:82/pub/bazhong_webindex.html"
+  }, {
+    "name": "雅安公共资源交易服务中心", "link": "http://www.yaggzy.org.cn/"
+  }, {
+    "name": "眉山市公共资源建设工程", "link": "http://www.msggzy.org.cn/front/jsgc/"
+  }, {
+    "name": "阿坝藏族羌族自治州公共资源交易中心", "link": "http://ggzyjy.abazhou.gov.cn/Index.html"
+  }, {
+    "name": "甘孜州政务服务和公共资源交易服务中心", "link": "http://www.scgzzg.com/pub/webindex.html"
+  }, {
+    "name": "凉山州公共资源交易服务中心", "link": "http://ggzyjy.lsz.gov.cn/TPFront/"
+  }, {
+    "name": "资阳公共资源交易中心", "link": "http://zyggzyjy.com/"
+  },]
+}, {
+  name: '贵州', list: [{
+    "name": "首页 - 全国公共资源交易平台（贵州省•省中心）", "link": "http://www.gzsggzyjyzx.cn/"
+  }, {
+    "name": "贵州省招标投标公共服务平台", "link": "http://www.gzsztb.gov.cn/"
+  }, {
+    "name": "贵州公共资源交易服务平台", "link": "http://www.gzjyfw.gov.cn/gcms/jygg/index_1.jhtml"
+  }, {
+    "name": "贵州发展和改革委员会", "link": "http://www.gzdpc.gov.cn/"
+  }, {
+    "name": "贵州省交通运输厅门户网站-首页", "link": "http://jt.guizhou.gov.cn/"
+  }, {
+    "name": "贵州省政府采购网", "link": "http://www.ccgp-guizhou.gov.cn/"
+  }, {
+    "name": "贵阳市公共资源交易中心", "link": "http://www.gyggzy.cn/"
+  }, {
+    "name": "六盘水市公共资源交易中心", "link": "http://ggzy.gzlps.gov.cn/"
+  }, {
+    "name": "遵义市", "link": "http://ggzyjy.zunyi.gov.cn/index/"
+  }, {
+    "name": "铜仁公共资源引导页", "link": "http://www.trjyzx.cn/TPFront_TR/index.htm"
+  }, {
+    "name": "全国公共资源交易平台（贵州省●毕节市）", "link": "http://www.bjggzy.cn/"
+  }, {
+    "name": "安顺市", "link": "http://ggzy.anshun.gov.cn/"
+  }, {
+    "name": "黔西南州公共资源交易中心", "link": "http://www.qxnzjyzx.cn/qxnztb/"
+  }, {
+    "name": "贵州省.黔东南州", "link": "http://www.qdnggzy.cn/qdnztb/"
+  }, {
+    "name": "贵州省·黔南州", "link": "http://www.qnggzy.cn/tpweb_qn/"
+  }, {
+    "name": "贵州省·贵安新区", "link": "http://www.gaxqjyzx.cn/gaxqztb/"
+  },]
+}, {
+  name: '云南', list: [{
+    "name": "云南省公共资源交易电子服务系统", "link": "https://www.ynggzyxx.gov.cn/"
+  }, {
+    "name": "云南省公共资源交易电子服务系统", "link": "https://www.ynggzy.com/jyxx/jsgcZbgg"
+  }, {
+    "name": "云南省政府采购网",
+    "link": "http://www.yngp.com/login.do;jsessionid=ShTGcS4DpyQJp7mRQvJpT4zkzPYVVHyV4qv5lzwMrpQNC3vqNnMn!1165295576?method=beginlogin"
+  }, {
+    "name": "云南省交通运输厅", "link": "http://www.ynjtt.gov.cn/"
+  }, {
+    "name": "云南省发展和改革委员会", "link": "http://www.yndpc.yn.gov.cn/"
+  }, {
+    "name": "昆明市公共资源交易平台公共服务系统", "link": "https://www.kmggzy.com/Index.html"
+  }, {
+    "name": "丽江市公共资源交易电子服务系统", "link": "https://www.ljggzyxx.cn/"
+  }, {
+    "name": "曲靖市公共资源交易中心", "link": "http://www.qjggzyxx.gov.cn/"
+  }, {
+    "name": "德宏州公共资源交易电子服务系统", "link": "https://jyzx.dh.gov.cn/"
+  }, {
+    "name": "大理州公共资源交易电子服务系统", "link": "https://www.dlggzy.cn/"
+  }, {
+    "name": "玉溪市公共资源交易电子服务系统", "link": "http://60.160.190.130:8001/"
+  }, {
+    "name": "红河州公共资源交易电子服务系统", "link": "https://www.hhzy.net/"
+  }, {
+    "name": "保山市公共资源交易电子服务系统", "link": "http://www.bszwzx.gov.cn/"
+  }, {
+    "name": "昭通市公共资源交易电子服务系统", "link": "http://ztggzyjy.zt.gov.cn/"
+  }, {
+    "name": "普洱市公共资源交易电子服务系统", "link": "http://www.pesggzyjyxxw.com/"
+  }, {
+    "name": "临沧市公共资源交易电子服务系统", "link": "https://www.lcggzy.gov.cn/"
+  },]
+}, {
+  name: '西藏', list: [{
+    "name": "西藏公共资源交易信息网", "link": "http://www.xzggzy.gov.cn:9090/"
+  }, {
+    "name": "西藏自治区招标投标网", "link": "http://www.xzzbtb.gov.cn/xz/publish-notice!tenderNoticeView.do"
+  }, {
+    "name": "西藏自治区住房和城乡建设网", "link": "http://www.xzcs.gov.cn/zbggzbgg/index.jhtml;"
+  }, {
+    "name": "西藏自治区发展和改革委员会", "link": "http://drc.xizang.gov.cn/"
+  }, {
+    "name": "西藏自治区交通厅", "link": "http://jtt.xizang.gov.cn/"
+  }, {
+    "name": "拉萨公共资源交易网", "link": "http://www.lsggzy.cn/Category/More?id=643"
+  },]
+}, {
+  name: '辽宁', list: [{
+    "name": "全国公共资源交易平台（辽宁省）", "link": "http://www.lnggzy.gov.cn/lnggzy/"
+  }, {
+    "name": "辽宁省住房和城乡建设厅", "link": "http://zjt.ln.gov.cn/"
+  }, {
+    "name": "辽宁省发展和改革委员会", "link": "http://www.lndp.gov.cn/"
+  }, {
+    "name": "辽宁省交通运输厅", "link": "http://jtt.ln.gov.cn/index.html"
+  }, {
+    "name": "辽宁省招标投标监管网", "link": "http://www.lntb.gov.cn/"
+  }, {
+    "name": "辽宁建设工程信息网", "link": "http://jgpt.lnzb.cn/"
+  }, {
+    "name": "辽宁城乡建设工程招投标网", "link": "http://www.lnsgczb.com/"
+  }, {
+    "name": "辽宁省网联招标投标综合服务平台", "link": "https://www.lnwlzb.com/tradeinfo.html"
+  }, {
+    "name": "辽宁工程招投标信息网", "link": "http://www.lnzxzb.cn/"
+  }, {
+    "name": "辽宁政府采购",
+    "link": "http://www.ccgp-liaoning.gov.cn/login.do;jsessionid=Q582cTGB7gD2l2rFnMQMxDMcD5csQf6NxTppDbxDS9HsFW2NhHzx!-384918629?method=beginlogin"
+  }, {
+    "name": "朝阳市公共资源交易信息网", "link": "http://ggzy.zgcy.gov.cn/cyfront/"
+  }, {
+    "name": "葫芦岛市公共资源交易中心", "link": "http://www.hldggzyjyzx.com.cn/"
+  }, {
+    "name": "鞍山市公共资源服务平台", "link": "http://www.asggzyjy.cn/gcjs/014001/about.html"
+  }, {
+    "name": "盘锦市公共资源", "link": "http://202.97.171.175/"
+  }, {
+    "name": "锦州市公共资源", "link": "http://ggzy.jz.gov.cn/"
+  }, {
+    "name": "阜新市公共资源交易平台", "link": "http://ggzy.fuxin.gov.cn/"
+  }, {
+    "name": "沈阳公共资源交易监督管理信息网", "link": "http://www.syjy.gov.cn/"
+  }, {
+    "name": "辽阳市公共资源交易中心", "link": "http://ggzyjy.liaoyang.gov.cn/"
+  }, {
+    "name": "本溪市公共资源交易网",
+    "link": "http://ggzyjy.benxi.gov.cn/frontpage/second.jsp?intx=4&inty=2&intz=2&mdid=120219,1202192,1202193,1202194,1202195,1202196,1202197,1202198&pageNum=10"
+  }, {
+    "name": "丹东市公共资源交易平台", "link": "http://ddpas.dandong.gov.cn/ddggzy/"
+  }, {
+    "name": "鞍山市公共资源服务平台", "link": "http://www.asggzyjy.cn/"
+  }, {
+    "name": "大连市公共资源", "link": "http://ggzyjy.dl.gov.cn/TPFront/"
+  }, {
+    "name": "营口市公共资源交易服务平台门户网站 -信息发布", "link": "http://www.ykggzy.gov.cn/xxfb/about_zt.html"
+  }, {
+    "name": "营口市公共资源交易网", "link": "http://www.ccgp-yingkou.gov.cn/Html/NewsList.asp?SortID=120&SortPath=0,98,120,"
+  },]
+}, {
+  name: '吉林', list: [{
+    "name": "吉林省公共资源交易公共服务平台", "link": "http://www.jl.gov.cn/ggzy/"
+  }, {
+    "name": "吉林省建设信息网", "link": "http://www.jlsjsxxw.com/zbgg/index.jhtml"
+  }, {
+    "name": "吉林省公路管理局", "link": "http://glj.jljt.gov.cn/zbtb_7650/zbtg/"
+  }, {
+    "name": "吉林省交通运输厅", "link": "http://jtyst.jl.gov.cn/"
+  }, {
+    "name": "吉林省发展和改革委员会", "link": "http://jldrc.jl.gov.cn/"
+  }, {
+    "name": "吉林市公共资源交易网", "link": "http://www.jlsggzyjy.gov.cn/jlsztb/jyxx/003001/003001001/003001001001/"
+  }, {
+    "name": "四平市公共资源交易网", "link": "http://ggzy.siping.gov.cn/"
+  }, {
+    "name": "长春市公共资源交易网-首页", "link": "http://www.ccggzy.gov.cn/"
+  }, {
+    "name": "延边朝鲜族自治州公共资源交易网", "link": "http://ggzyjy.yanbian.gov.cn/"
+  }, {
+    "name": "通化市公共资源交易中心", "link": "http://thsggzyjy.tonghua.gov.cn/"
+  }, {
+    "name": "松原市公共资源网站", "link": "http://syggzy.jlsy.gov.cn/"
+  }, {
+    "name": "辽源市公共资源交易服务网", "link": "http://lygg.gov.cn/"
+  }, {
+    "name": "白山市公共资源交易网", "link": "http://bsggzyjy.cbs.gov.cn/"
+  },]
+}, {
+  name: '黑龙江', list: [{
+    "name": "黑龙江省公共资源交易信息网", "link": "http://hljggzyjyw.gov.cn/trade/tradezfcg?cid=16"
+  }, {
+    "name": "黑龙江工程招标网", "link": "http://ztb.hljjs.gov.cn/"
+  }, {
+    "name": "黑龙江省交通运输厅", "link": "http://www.hljjt.gov.cn/"
+  }, {
+    "name": "黑龙江省发展和改革委员会", "link": "http://www.hljdpc.gov.cn/"
+  }, {
+    "name": "哈尔滨市建设工程信息网", "link": "http://www.hrbjjzx.cn/"
+  }, {
+    "name": "鹤岗市公共资源交易平台", "link": "http://www.hgggzyjyw.org.cn/"
+  }, {
+    "name": "伊春市行政服务和公共资源交易网", "link": "http://ggzy.yc.gov.cn/"
+  }, {
+    "name": "齐齐哈尔市公共资源交易服务网", "link": "http://www.qqhrggzy.cn/jyxx/003001/003001001/about.html"
+  }, {
+    "name": "大庆市公共资源交易中心网", "link": "http://ggzyjyzx.daqing.gov.cn/"
+  },]
+}, {
+  name: '江苏', list: [{
+    "name": "江苏省公共资源交易网", "link": "http://jsggzy.jszwfw.gov.cn/"
+  }, {
+    "name": "江苏省公路水路建设市场信用信息服务系统", "link": "http://218.2.208.148:8084/JDPT/fileMain/fileMainInfo/publicshow?type=1"
+  }, {
+    "name": "江苏省招标投标公共服务平台", "link": "http://jszbtb.com/#/newindex"
+  }, {
+    "name": "江苏省建设工程招标网",
+    "link": "http://www.jszb.com.cn/JSZB/YW_info/ZhaoBiaoGG/MoreInfo_ZBGG.aspx?Type=%CA%D0%D5%FE%B9%A4%B3%CC%CA%A9%B9%A4"
+  }, {
+    "name": "江苏省交通运输厅门户网站", "link": "http://jtyst.jiangsu.gov.cn/"
+  }, {
+    "name": "江苏省发展和改革委员会", "link": "http://fzggw.jiangsu.gov.cn/"
+  }, {
+    "name": "南京市公共资源交易平台", "link": "http://ggzy.njzwfw.gov.cn/njweb/jtsw/traffic.html"
+  }, {
+    "name": "大丰公共资源电子交易平台", "link": "http://221.231.122.12/dfweb/default.aspx"
+  }, {
+    "name": "徐州公共资源交易平台", "link": "http://www.xzggzy.com.cn/jtgc/proInfo.html?type=jtgc"
+  }, {
+    "name": "宿迁市公共资源交易电子服务平台", "link": "http://ggzy.sqzwfw.gov.cn/jyxx/tradeInfo.html?catenum=001002"
+  }, {
+    "name": "苏州市公共资源", "link": "http://www.szzyjy.com.cn/front/default.aspx"
+  }, {
+    "name": "徐州市公共资源建设工程交易平台", "link": "http://www.xzcet.com/xzwebnew/ztbpages/MoreinfoZbgg.aspx?categoryNum=046001002"
+  }, {
+    "name": "无锡市公共资源交易中心", "link": "http://xzfw.wuxi.gov.cn/ztzl/wxsggzyjyzx/index.shtml"
+  }, {
+    "name": "常州市工程交易网", "link": "http://www.czgcjy.com/czztb/jyxx/010001/"
+  }, {
+    "name": "常州公共资源交易网", "link": "http://xzsp.changzhou.gov.cn/czggzy"
+  }, {
+    "name": "苏州市公共资源", "link": "http://szzyjy.fwzx.suzhou.gov.cn/Front/"
+  }, {
+    "name": "苏州市建设工程交易中心信息网", "link": "http://yxcbs.szjsj.gov.cn/szconsprotradingcenterinwpage/Page_List.aspx?menuno=03"
+  }, {
+    "name": "南通市公共资源交易网", "link": "http://ggzyjy.nantong.gov.cn/jtgc/proInfo.html?type=jtgc"
+  }, {
+    "name": "连云港公共资源交易网", "link": "http://spzx.lyg.gov.cn/lygweb/jyxx/001002/tradeInfo.html"
+  }, {
+    "name": "淮安市公共资源交易网", "link": "http://www.haztb.gov.cn/EpointWeb/"
+  }, {
+    "name": "盐城市公共资源交易网", "link": "http://221.231.4.242/front/showinfo/moreinfo_search.aspx?categoryNum=009&type=001"
+  }, {
+    "name": "扬州市公共资源交易服务平台", "link": "http://ggzyjyzx.yangzhou.gov.cn/"
+  }, {
+    "name": "扬州工程建设信息网",
+    "link": "http://www.yzcetc.com/yzcetc/YW_Info/ZaoBiaoReport/MoreReportList_YZ_New.aspx?CategoryNum=003"
+  }, {
+    "name": "镇江市公共资源交易电子服务平台", "link": "http://ggzy.zhenjiang.gov.cn/jyxx/001007/second-page.html"
+  }, {
+    "name": "泰州市政务服务管理办公室 公共资源交易平台泰州站", "link": "http://zwfw.taizhou.gov.cn/ggzy/"
+  }, {
+    "name": "泰州公共资源交易网", "link": "http://www.tzzbtb.com/ggzy/jyxx/004002/004002001/"
+  },]
+}, {
+  name: '福建', list: [{
+    "name": "福建省公共资源交易电子行政监督平台", "link": "https://www.fjxzjd.gov.cn/PortalPage/PSInfo/PSInfo.aspx"
+  }, {
+    "name": "福建省公共资源交易电子公共服务平台", "link": "https://www.fjggfw.gov.cn/"
+  }, {
+    "name": "福建省公共资源交易中心网", "link": "http://www.fjggzyjy.cn/"
+  }, {
+    "name": "福建省交通运输厅", "link": "http://jtyst.fujian.gov.cn/"
+  }, {
+    "name": "福建省发展和改革委员会", "link": "http://fgw.fujian.gov.cn/"
+  }, {
+    "name": "E共享电子招投标交易平台", "link": "http://ebid.okap.com/authorize/view/index/index.html"
+  }, {
+    "name": "福州公共资源交易网", "link": "http://fzsggzyjyfwzx.cn/"
+  }, {
+    "name": "厦门市公共资源交易网", "link": "http://www.xmzyjy.cn/XmUiForWeb2.0/xmebid/default.do"
+  }, {
+    "name": "漳州市工程项目交易中心", "link": "http://www.zzgcjyzx.com/Front/"
+  }, {
+    "name": "泉州市公共资源交易信息网", "link": "http://ggzyjy.quanzhou.gov.cn/default/homePage.do"
+  }, {
+    "name": "三明市公共资源交易网", "link": "http://www.smggzy.cn:8086/smwz/"
+  }, {
+    "name": "莆田市行政服务中心", "link": "http://xzfwzx.putian.gov.cn/fwzx/wjzyzx/004002/"
+  }, {
+    "name": "南平市公共资源交易中心", "link": "http://www.npggzy.gov.cn/npztb/"
+  }, {
+    "name": "龙岩市公共资源交易中心", "link": "https://www.lyggzy.com.cn/lyztb/gcjs/081001/081001003/"
+  }, {
+    "name": "宁德市公共资源交易中心_ 宁德市人民政府", "link": "http://www.ningde.gov.cn/ztzl/ndsggzyjyzx/"
+  }, {
+    "name": "平潭综合实验区公共资源统一平台", "link": "http://www.ptggzy.gov.cn/"
+  }, {
+    "name": "易交易电子招标投标交易平台", "link": "https://www.enjoy5191.com/"
+  },]
+}, {
+  name: '江西', list: [{
+    "name": "江西公共资源交易网-首页", "link": "http://jxsggzy.cn/web/"
+  }, {
+    "name": "江西省发展和改革委员会", "link": "http://drc.jiangxi.gov.cn/"
+  }, {
+    "name": "江西省交通运输厅", "link": "http://www.jxjt.gov.cn/"
+  }, {
+    "name": "江西省南昌公共资源交易网", "link": "http://www.jxsncggzy.cn/nczbw/"
+  }, {
+    "name": "宜春市公共资源交易网", "link": "http://ggzyjyzx.yichun.gov.cn/"
+  }, {
+    "name": "江西省招标投标网", "link": "http://www.jxtb.org.cn/"
+  }, {
+    "name": "赣州公共资源交易网", "link": "http://www.gzzbtbzx.com/"
+  }, {
+    "name": "新余公共资源交易中心", "link": "http://www.xyggzy.cn/ggzy/"
+  }, {
+    "name": "吉安市公共交易资源网", "link": "http://www.japrtc.com.cn/"
+  }, {
+    "name": "九江市公共资源交易中心", "link": "http://ggzy.jiujiang.gov.cn/"
+  }, {
+    "name": "抚州公共资源交易网", "link": "http://www.fzztb.gov.cn/"
+  }, {
+    "name": "景德镇市公共资源交易中心", "link": "http://jdzggzyjyzx.cn/"
+  },]
+}, {
+  name: '山东', list: [{
+    "name": "山东省公共资源交易中心首页", "link": "http://ggzyjyzx.shandong.gov.cn/"
+  }, {
+    "name": "山东省公共资源交易网", "link": "http://www.sdggzyjy.gov.cn/"
+  }, {
+    "name": "山东省交通运输工程建设项目招标投标管理信息网", "link": "http://60.208.61.132:8085/ztbSub/ZTBSubListServlet?option=home"
+  }, {
+    "name": "山东省交通运输厅", "link": "http://jtt.shandong.gov.cn/"
+  }, {
+    "name": "威海公共资源交易网", "link": "http://www.whggzyjy.cn/"
+  }, {
+    "name": "德州市公共资源交易网", "link": "http://ggzyjy.dz.gov.cn/TPFront/"
+  }, {
+    "name": "济南公共资源交易中心", "link": "http://jnggzy.jinan.gov.cn/"
+  }, {
+    "name": "工程建设-招标公告", "link": "https://ggzy.qingdao.gov.cn/Tradeinfo-GGGSList/0-0-0"
+  }, {
+    "name": "青岛市公共资源交易信息网", "link": "https://ggzy.qingdao.gov.cn/PortalQDManage/"
+  }, {
+    "name": "淄博市公共资源交易网", "link": "http://ggzyjy.zibo.gov.cn/TPFront/"
+  }, {
+    "name": "枣庄市公共资源交易网", "link": "http://www.zzggzy.com/tpfront/"
+  }, {
+    "name": "东营市公共资源交易网", "link": "http://www.dyggzyjy.gov.cn/dysite/"
+  }, {
+    "name": "烟台市公共资源交易信息网", "link": "http://www.ytggzyjy.gov.cn/jyxxgc/index.jhtml"
+  }, {
+    "name": "潍坊市公共资源交易中心-首页", "link": "http://ggzy.weifang.gov.cn/wfggzy/"
+  }, {
+    "name": "济宁市公共资源交易网", "link": "http://www.jnggzyjy.gov.cn/JiNing"
+  }, {
+    "name": "泰安市公共资源交易网", "link": "http://www.taggzyjy.com.cn/Front/"
+  }, {
+    "name": "日照市公共资源交易网", "link": "http://www.rzggzyjy.gov.cn/rzwz/"
+  }, {
+    "name": "莱芜市公共资源交易网", "link": "http://ggzy.laiwu.gov.cn/lwwznew/"
+  }, {
+    "name": "聊城市公共资源交易中心", "link": "http://www.lcsggzyjy.cn/lcweb/"
+  }, {
+    "name": "滨州公共资源交易中心", "link": "http://www.bzggzyjy.gov.cn/bzweb/"
+  }, {
+    "name": "邹平县公共资源交易中心", "link": "http://zouping.bzggzyjy.gov.cn/zpweb/"
+  }, {
+    "name": "山东省公共资源交易中心首页", "link": "http://www.sdsggzyjyzx.gov.cn/"
+  },]
+}, {
+  name: '广东', list: [{
+    "name": "全国公共资源交易平台（广东省）", "link": "http://bs.gdggzy.org.cn/osh-web/"
+  }, {
+    "name": "广东省招标投标监管网-广东省招标投标监管网", "link": "http://www.gdzbtb.gov.cn/login"
+  }, {
+    "name": "广东省发展和改革委员会", "link": "http://drc.gd.gov.cn/"
+  }, {
+    "name": "广东省交通运输厅公众网", "link": "http://td.gd.gov.cn/"
+  }, {
+    "name": "广州", "link": "http://www.gzggzy.cn/cms/html/wz/view/index/layout2/fwzq_zbdl.html?channelId=34"
+  }, {
+    "name": "深圳", "link": "http://ggzy.sz.gov.cn/jyxx/gzjsztb/zbgg/"
+  }, {
+    "name": "珠海市公共资源交易中心", "link": "http://ggzy.zhuhai.gov.cn/"
+  }, {
+    "name": "汕头市公共资源交易中心", "link": "http://www.shantou.gov.cn/ggzyjy/"
+  }, {
+    "name": "佛山市公共资源交易网", "link": "http://www.fsggzy.cn/jyxx/fss/gcjy_1108550/zbgg/"
+  }, {
+    "name": "韶关市公共资源交易服务平台", "link": "http://www.sgjyzx.com/"
+  }, {
+    "name": "河源市公共资源网上交易平台", "link": "http://61.143.150.176/"
+  }, {
+    "name": "梅州市公共资源交易中心", "link": "http://mzggzy.meizhou.gov.cn/TPFront/"
+  }, {
+    "name": "惠州市公共资源交易中心门户网站", "link": "http://zyjy.huizhou.gov.cn/"
+  }, {
+    "name": "汕尾市公共资源交易平台", "link": "http://swggzy.shanwei.gov.cn/home"
+  }, {
+    "name": "东莞市公共资源交易网", "link": "http://ggzy.dg.gov.cn/home/index.html?times=20190328111538"
+  }, {
+    "name": "中山市公共资源交易网", "link": "http://www.zsjyzx.gov.cn/"
+  }, {
+    "name": "江门市公共资源交易网", "link": "http://zyjy.jiangmen.gov.cn/exchangeinfo/index.htm"
+  }, {
+    "name": "阳江公共资源交易中心", "link": "http://www.yjggzy.cn/Query/JsgcBidAfficheQuery2/d4f193435ad04447a997719474139181"
+  }, {
+    "name": "湛江市公共资源交易中心门户网站", "link": "http://www.zjprtc.com/"
+  }, {
+    "name": "茂名公共资源交易网", "link": "http://218.15.22.157/mmzbtb/"
+  }, {
+    "name": "肇庆市公共资源交易中心", "link": "http://ggzy.zhaoqing.gov.cn/"
+  }, {
+    "name": "清远市公共资源交易中心", "link": "https://ggzy.gdqy.gov.cn/"
+  }, {
+    "name": "潮州市公共资源交易网", "link": "https://www.czggzy.com/"
+  }, {
+    "name": "揭阳市公共资源交易中心", "link": "http://www.jysggzy.com/"
+  }, {
+    "name": "云浮市公共资源交易网", "link": "http://ggzy.yunfu.gov.cn/yfggzy/"
+  }, {
+    "name": "深圳市住房和建设局", "link": "http://zjj.sz.gov.cn/jsjy/jyxx/zbgg/"
+  }, {
+    "name": "广州公共资源交易中心", "link": "http://www.gzggzy.cn/cms/index.html?siteId=1"
+  },]
+}, {
+  name: '广西', list: [{
+    "name": "广西壮族自治区公共资源交易中心", "link": "http://gxggzy.gxzf.gov.cn/gxzbw/"
+  }, {
+    "name": "广西壮族自治区招标投标公共服务平台", "link": "http://ztb.gxi.gov.cn/"
+  }, {
+    "name": "欢迎访问广西交通投资集团", "link": "http://www.gxjttzjt.com/zbtb/index.html"
+  }, {
+    "name": "广西壮族自治区交通运输厅", "link": "http://www.gxdot.gov.cn/"
+  }, {
+    "name": "广西壮族自治区发展和改革委员会", "link": "http://www.gxdrc.gov.cn/"
+  }, {
+    "name": "广西壮族自治区政府采购网", "link": "http://www.gxzfcg.gov.cn/"
+  }, {
+    "name": "柳州公共资源交易服务中心", "link": "http://ggzy.liuzhou.gov.cn/gxlzzbw/jyxx/001001/"
+  }, {
+    "name": "桂林市公共资源交易中心", "link": "http://glggzy.org.cn/gxglzbw/"
+  }, {
+    "name": "梧州市公共资源交易中心", "link": "http://www.wzggzy.cn/gxwzzbw/"
+  }, {
+    "name": "北海公共资源交易中心", "link": "http://www.bhsggzy.cn/gxbhzbw/"
+  }, {
+    "name": "防城港市公共资源交易中心", "link": "http://www.fcgggzy.cn/gxfcgzbw/"
+  }, {
+    "name": "广西钦州市公共资源交易中心", "link": "http://ggzyjy.qinzhou.gov.cn/gxqzzbw/"
+  }, {
+    "name": "贵港市公共资源", "link": "http://ggggjy.gxgg.gov.cn:9005/"
+  }, {
+    "name": "百色市公共资源交易中心", "link": "http://www.bsggzy.cn/gxbszbw/"
+  }, {
+    "name": "贺州市公共资源交易中心 | 首页", "link": "http://www.hzzfcg.com/v.1/"
+  }, {
+    "name": "贺州市公共资源交易中心", "link": "http://www.hzggzy.cn/gxhzzbw/"
+  }, {
+    "name": "河池市公共资源交易中心", "link": "http://ggzyjy.hechi.gov.cn/"
+  }, {
+    "name": "来宾市公共资源交易中心", "link": "http://www.lbsggzyjyzx.com/gxlbzbw/"
+  }, {
+    "name": "崇左市公共资源交易中心", "link": "http://www.czjyzx.gov.cn/gxczzbw/"
+  },]
+}, {
+  name: '海南', list: [{
+    "name": "首页 - 全国公共资源交易平台（海南省）", "link": "http://zw.hainan.gov.cn/ggzy/"
+  }, {
+    "name": "海口市公共资源交易网", "link": "http://ggzy.haikou.gov.cn/login.do?method=newindex"
+  }, {
+    "name": "三亚市", "link": "http://zw.hainan.gov.cn/ggzy/syggzy/"
+  }, {
+    "name": "海南省人民政府政务服务中心", "link": "http://zw.hainan.gov.cn/2017/jydt.php?Class=307&Deep=1"
+  }, {
+    "name": "陵水县", "link": "http://zw.hainan.gov.cn/ggzy/lsggzy/"
+  },]
+}, {
+  name: '甘肃', list: [{
+    "name": " 甘肃省公共资源交易电子公共服务系统", "link": "http://gsggfw.cn/w"
+  }, {
+    "name": "甘肃公路信息网", "link": "http://www.gs-highway.com/"
+  }, {
+    "name": "甘肃省公共资源交易", "link": "http://ggzyjy.gansu.gov.cn/"
+  }, {
+    "name": "兰州市公共资源交易中心", "link": "http://lzggzyjy.lanzhou.gov.cn/"
+  }, {
+    "name": "嘉峪关市公共资源交易中心", "link": "http://www.jygzyjy.gov.cn/f"
+  }, {
+    "name": "金昌市公共资源交易中心", "link": "http://www.jcggzy.gov.cn/f"
+  }, {
+    "name": "白银市公共资源交易中心", "link": "http://www.bygzjy.cn/f"
+  }, {
+    "name": "天水市公共资源交易中心", "link": "http://www.tsggzyjy.gov.cn/f"
+  }, {
+    "name": "武威市公共资源交易中心", "link": "http://www.wwggzy.com/"
+  }, {
+    "name": "张掖市公共资源交易中心", "link": "http://www.zhangye.gov.cn/ggzy/"
+  }, {
+    "name": "平凉市公共资源交易中心", "link": "http://plsggzyjy.cn/f"
+  }, {
+    "name": "酒泉市公共资源交易网", "link": "http://www.ggzyjypt.com.cn/"
+  }, {
+    "name": "庆阳市公共资源交易中心", "link": "http://www.qysggzyjy.cn/"
+  }, {
+    "name": "定西市公共资源交易中心", "link": "http://ggzy.dingxi.gov.cn/"
+  }, {
+    "name": "陇南市公共资源交易网", "link": "http://www.lnsggzyjy.cn/"
+  }, {
+    "name": "临夏州公共资源交易中心", "link": "http://www.lxggzyjy.com/"
+  }, {
+    "name": "甘南州公共资源交易中心", "link": "http://gnggzyjy.gov.cn/f"
+  }, {
+    "name": "甘肃省交通运输厅", "link": "http://www.gsjt.gov.cn/"
+  }, {
+    "name": "甘肃省发展和改革委员会", "link": "http://www.gsdrc.gov.cn/"
+  },]
+}, {
+  name: '青海宁夏新疆', list: [{
+    "name": "青海省公共资源交易服务平台", "link": "http://www.qhdzzbfw.gov.cn/fwpt/"
+  }, {
+    "name": "青海省发展和改革委员会", "link": "http://www.qhfgw.gov.cn/"
+  }, {
+    "name": "宁夏回族自治区公共资源交易网", "link": "http://www.nxggzyjy.org/"
+  }, {
+    "name": "银川公共资源交易中心网", "link": "http://www.ycsggzy.cn/index.html"
+  }, {
+    "name": "宁夏建设工程招投标信息", "link": "http://www.nxzb.com.cn/index.htm"
+  }, {
+    "name": "固原市公共资源交易网", "link": "http://www.gysggzyjy.cn/"
+  }, {
+    "name": "银川市发展和改革委员会", "link": "http://fgw.yinchuan.gov.cn/"
+  }, {
+    "name": "宁夏回族自治区交通运输厅", "link": "http://www.nxcd.gov.cn/"
+  }, {
+    "name": "乌鲁木齐市公共资源交易网",
+    "link": "http://ggzy.wlmq.gov.cn/login.do;jsessionid=mkz7rPddC6vhdGj8Q5qXrbI4cCu6hw6IHaFVJqeXPLRSjmn-tdZ7!-224305983!-1970902347?method=beginlogin"
+  }, {
+    "name": "新疆生产建设兵团公共资源交易信息网", "link": "http://ggzy.xjbt.gov.cn/"
+  }, {
+    "name": "新疆维吾尔自治区交通运输厅", "link": "http://www.xjjt.gov.cn/"
+  }, {
+    "name": "新疆维吾尔自治区发展和改革委员会", "link": "http://www.xjdrc.gov.cn/"
+  },]
+}, {
+  name: '招投标', list: [{
+    "name": "中国交建设备物资采购管理信息平台", "link": "http://ec.ccccltd.cn/PMS/jsp/business/cccc/login.jsp"
+  }, {
+    "name": "铁建商城 - 中国铁建综合交易服务电子商务平台", "link": "https://www.crccmall.com/static/crccmall/#/home"
+  }, {
+    "name": "中国铁建物资采购网－首页", "link": "http://ecm.crcc.cn/login.jhtml"
+  }, {
+    "name": "首页-中铁鲁班商务网 -", "link": "http://www.crecgec.com/portal.php"
+  }, {
+    "name": "中国招标投标公共服务平台", "link": "http://bulletin.cebpubservice.com/"
+  }, {
+    "name": "中国雄安集团招标采购管理平台", "link": "http://144.7.127.63:9090/cms/channel/zbgg/index.htm"
+  }, {
+    "name": "全国公共资源交易平台", "link": "http://www.ggzy.gov.cn/"
+  }, {
+    "name": "中冶集团电子商务平台", "link": "http://ec.mcc.com.cn/logonAction.do"
+  }, {
+    "name": "中国交建设备物资采购管理信息平台", "link": "http://114.255.239.59/PMS/"
+  }, {
+    "name": "采购专区-建筑行业一站式垂直电子商务服务平台", "link": "https://mall.yzw.cn/tender/purchasingzone/o_00010100/p_1"
+  }, {
+    "name": "中国交建--供应商门户", "link": "http://sup.ccccltd.cn/ecp/jsp/emp/web/index.jsp"
+  }, {
+    "name": "中铁招投标商务平台", "link": "http://zhaobiao.crecgec.com/forum-80-1.html"
+  }, {
+    "name": "中铁十七局集团第二工程有限公司设备物资交易信息公告平台", "link": "http://wzxx.zt172.com.cn/wz/wzgg.asp?id=1"
+  }, {
+    "name": "共营链-首页", "link": "http://www.winchainet.com/"
+  }, {
+    "name": "中国采招网-招标频道|全国最大的招标公告信息服务", "link": "http://www.bidcenter.com.cn/zhaobiao/"
+  }, {
+    "name": "中国电建集中采购平台", "link": "http://ec1.powerchina.cn/"
+  }, {
+    "name": "中国电力建设集团 设备物资采购", "link": "http://www.powerchina.cn/col/col56/index.html"
+  }, {
+    "name": "葛洲坝集采平台", "link": "http://cgpt.cggc.cn/index.do"
+  }, {
+    "name": "中国能源建设集团（股份）有限公司-电子采购平台", "link": "http://ec.ceec.net.cn/HomeInfo/ProjectList.aspx"
+  }, {
+    "name": "中国电建招标与采购网", "link": "http://bid.powerchina.cn/"
+  }, {
+    "name": "基建通", "link": "http://www.cninct.com/index.php?m=index&a=news&cid=32"
+  }, {
+    "name": "中铁二十局采购平台", "link": "http://zb.cr20g.com/"
+  }, {
+    "name": "浙江交通 招标公告", "link": "http://www.zjt.gov.cn/col/col26/index.html"
+  }, {
+    "name": "北京市交通委员会路政局", "link": "http://www.bjlzj.gov.cn/xxgk/ztbxx/"
+  }, {
+    "name": "发改委", "link": "http://zfxxgk.ndrc.gov.cn/PublicItemFrame.aspx"
+  }, {
+    "name": "中国采购与招标网", "link": "http://www.chinabidding.com.cn/"
+  }, {
+    "name": "中国招投标公共服务平台",
+    "link": "http://www.cebpubservice.com/ctpsp/jsp/trade/jiaoyigongkai.jsp?tabledivIds=searchTabLi2&type=hy&param=%E5%85%AC%E8%B7%AF&code=02"
+  }, {
+    "name": "公路招标采购-千里马招标网", "link": "http://www.qianlima.com/gjxx/490/index.html"
+  }, {
+    "name": "中国铁建股份有限公司招标网", "link": "http://www.bidchance.com/company-404517.html"
+  }, {
+    "name": "中国铁路招标采购网-铁路物资采购商务平台_铁路局采购交易中心_铁路建设项目_高铁招标", "link": "http://www.cntlzb.com/index.asp"
+  }, {
+    "name": "中国采购与招标网_官网_中国最大的招标采购信息服务平台", "link": "http://www.chinabidding.com.cn/"
+  }, {
+    "name": "竞价采购 - 中铁物资商城 - 官方权威、安全诚信的工程物资B2B电子商务网上交易服务平台！", "link": "http://www.ztwzsc.com/Tender/index.aspx"
+  }, {
+    "name": "中国大唐电子商城", "link": "http://mall.cdtbuy.cn/"
+  }, {
+    "name": "中煤招标与采购网", "link": "http://www.zmzb.com/"
+  }, {
+    "name": "中国招标投标公共服务平台", "link": "http://www.cebpubservice.com/"
+  }, {
+    "name": "招标采购-铁建商城", "link": "https://www.crccmall.com/cms/bidding"
+  }, {
+    "name": "中国电力招标网", "link": "https://www.dlzb.com/search/"
+  },]
+}, {
+  name: '中交', list: [{
+    "name": "中国交建首页", "link": "http://www.ccccltd.cn/"
+  }, {
+    "name": "中国港湾", "link": "http://www.chec.bj.cn/tabid/680/Default.aspx"
+  }, {
+    "name": "中国交建总承包公司暨中交机电局", "link": "http://www.ccccie.com/index.php?optionid=987&page=2"
+  },]
+}, {
+  name: '中交一航局', list: [{
+    "name": "中交一航局", "link": "http://www.ccccyhj.com/"
+  }, {
+    "name": "中交一航局第二工程有限公司", "link": "http://www.ccccqd.com.cn/index.aspx"
+  }, {
+    "name": "中交一航局第三工程有限公司", "link": "http://www.yhjsgs.com.cn/"
+  },]
+}, {
+  name: '中交二航局', list: [{
+    "name": "中交第二航务工程局", "link": "http://www.sneb.com.cn/web.do?action=menuListLeft&Module_Code=00050001&Module_Id=35"
+  }, {
+    "name": "中交二航局第一工程有限公司", "link": "http://www.snebone.com/newslist----cid--hyidt.htm"
+  }, {
+    "name": "中交二航局第二工程有限公司", "link": "http://www.csnec.cn/n_xwzx.asp?b_id=152"
+  }, {
+    "name": "中交二航局第三工程有限公司", "link": "http://www.sneb3.com/plus/list.php?tid=2"
+  }, {
+    "name": "中交二航局第四工程有限公司", "link": "http://www.wh-eh.com/news/qiyexinwen/list_50_1.html"
+  }, {
+    "name": "中交二航局第五工程分公司", "link": "http://www.sneb5.com/news.asp?cid=18"
+  }, {
+    "name": "中交二航局第六工程分公司", "link": "http://www.sneb6.cn/index.aspx?lanmuid=90&sublanmuid=726"
+  }, {
+    "name": "中交二航局南方工程有限公司", "link": "http://www.snebnf.com.cn/index.php/Index-category-id-131.html"
+  }, {
+    "name": "中交第二航务工程局有限公司昆明分公司", "link": "http://snebxn.com/"
+  }, {
+    "name": "中交第二航务工程局有限公司深圳分公司", "link": "http://www.snebsz.com/"
+  }, {
+    "name": "中交二航局装备分公司", "link": "http://www.sneb-gczb.com.cn/index.htm"
+  }, {
+    "name": "中交二航局福州分公司", "link": "http://www.snebfz.com/Newslist_1.aspx"
+  }, {
+    "name": "武汉二航路桥特种工程有限责任公司", "link": "http://www.rbse.cn/tzzx/list.php?catid=16"
+  },]
+}, {
+  name: '中交三航局', list: [{
+    "name": "中交三航局第二工程有限公司", "link": "http://www.5432.com.cn/news01.asp?page=1"
+  }, {
+    "name": "中交三航局第三工程有限公司", "link": "http://www.goto303.com/Default.aspx"
+  }, {
+    "name": "中交第三航务工程局有限公司", "link": "http://www.ccshj.com/welcome.do"
+  }, {
+    "name": "中交第三航务工程局有限公司宁波分公司", "link": "http://www.ccnbsh.com/news.asp?sid=20"
+  },]
+}, {
+  name: '中交四航局', list: [{
+    "name": "中交第四航务工程局有限公司", "link": "http://www.cccc4.com/web/default.biz"
+  }, {
+    "name": "中交四航局第一工程有限公司", "link": "http://fir.cccc4.com/sitecn/News.aspx?id=13"
+  }, {
+    "name": "中交四航局第三工程有限公司", "link": "http://www.checsh3.com/news.aspx?classcode=004001"
+  }, {
+    "name": "中交四航局第五工程有限公司", "link": "http://fuz.cccc4.com/"
+  }, {
+    "name": "中交四航局总承包分公司", "link": "http://zcb.cccc4.com/lan/153/"
+  },]
+}, {
+  name: '中交一公局', list: [{
+    "name": "中交第一公路工程局有限公司", "link": "http://www.fheb.cn/"
+  }, {
+    "name": "中交一公局第一工程有限公司", "link": "http://www.fheb-one.com/"
+  }, {
+    "name": "中交一公局第二工程有限公司", "link": "http://www.fheb-two.com/index1.html"
+  }, {
+    "name": "中交一公局第四工程有限公司", "link": "http://www.fheb-four.com/"
+  }, {
+    "name": "中交一公局第五工程有限公司", "link": "http://www.gs-5.cn/"
+  }, {
+    "name": "中交一公局第六工程有限公司", "link": "http://www.fheb-six.com/maison.asp"
+  }, {
+    "name": "中交一公局厦门工程有限公司", "link": "http://www.fheb-xm.com/"
+  }, {
+    "name": "中交一公局海威工程建设有限公司", "link": "http://www.zjyjhw.com/"
+  },]
+}, {
+  name: '中交二公局', list: [{
+    "name": "中交二公局第二工程有限公司", "link": "http://www.shb2ccccc.com/"
+  }, {
+    "name": "中交二公局第一工程有限公司", "link": "http://www.egjyc.com.cn/"
+  }, {
+    "name": "中交二公局第三工程有限公司-", "link": "http://www.seb3ccrbc.com/"
+  }, {
+    "name": "中交二公局第四工程有限公司", "link": "http://www.jiaosichu.com/index.html"
+  }, {
+    "name": "中交二公局五公司-", "link": "http://www.wugongsi.com/"
+  }, {
+    "name": "中交二公局东萌工程有限公司", "link": "http://www.eace.cc/"
+  }, {
+    "name": "中交二公局萌兴工程有限公司", "link": "http://www.egjmx.com/"
+  }, {
+    "name": "上海远通路桥工程有限公司", "link": "http://www.shytc.com/"
+  }, {
+    "name": "中交第二公路工程局有限公司", "link": "http://www.bidcenter.com.cn/newssearch-38067788.html"
+  },]
+}, {
+  name: '中交三公局', list: [{
+    "name": "中交三公局", "link": "http://www.zjsgj.com.cn/"
+  }, {
+    "name": "www.gdhmrb.com", "link": "http://www.gdhmrb.com/"
+  }, {
+    "name": "中交三公局第一工程有限公司", "link": "http://www.zjsgjygs.cn/"
+  }, {
+    "name": "中交第三公路工程局第四工程分公司", "link": "http://www.zjsgjsgs.cn/"
+  }, {
+    "name": "中交第三公路工程局第五工程公司", "link": "http://www.thecoc.cn/"
+  }, {
+    "name": "中交三公局桥隧公司", "link": "http://www.zjsgjqs.com/"
+  }, {
+    "name": "中交三公局第三工程有限公司", "link": "http://zhongjiao.s1107.com/"
+  },]
+}, {
+  name: '中交四公局', list: [{
+    "name": "官网", "link": "http://www.ccfourth.com/"
+  }, {
+    "name": "七公司", "link": "http://www.ccfourth.com/026/"
+  }, {
+    "name": "一公司", "link": "http://www.ccfourth.com/003/"
+  }, {
+    "name": "二公司", "link": "http://www.ccfourth.com/004/"
+  }, {
+    "name": "三公司", "link": "http://www.ccfourth.com/005/"
+  }, {
+    "name": "四公司", "link": "http://www.ccfourth.com/006/"
+  }, {
+    "name": "五公司", "link": "http://www.ccfourth.com/007/"
+  }, {
+    "name": "六公司", "link": "http://www.ccfourth.com/008/"
+  }, {
+    "name": "桥梁隧道分公司", "link": "http://www.ccfourth.com/009/"
+  }, {
+    "name": "铁路工程公司", "link": "http://www.ccfourth.com/010/"
+  }, {
+    "name": "总承包分公司", "link": "http://www.ccfourth.com/022/"
+  },]
+}, {
+  name: '中交路桥建设', list: [{
+    "name": "中交路桥建设有限公司|中交路建", "link": "http://www.crbcint.com/"
+  }, {
+    "name": "中交路桥南方工程有限公司", "link": "http://www.ccrbcn.com/"
+  }, {
+    "name": "中交路桥华南工程有限公司", "link": "http://www.rbsce.com/"
+  }, {
+    "name": "路桥华东工程有限公司", "link": "http://www.rbece.com/"
+  }, {
+    "name": "中交路桥华北工程有限公司", "link": "http://www.ccrbnc.com/"
+  }, {
+    "name": "中交路桥北方工程有限公司", "link": "http://www.ccrbne.cn/index.htm"
+  }, {
+    "name": "中交路桥建设有限公司总承包分公司", "link": "http://www.crbczcb.com/"
+  },]
+}, {
+  name: '中交一公院', list: [{
+    "name": "中交瑞通路桥养护科技有限公司", "link": "http://www.ccruitong.com/"
+  }, {
+    "name": "中交第一公路勘察设计研究院有限公司", "link": "http://www.ccroad.com.cn/index.jspx"
+  }, {
+    "name": "中国交建设备物资采购管理信息平台",
+    "link": "http://ec.ccccltd.cn/PMS/daohang.shtml?id=J8Gis7a8zFp0/0+cu62h4ufCdjRQ/t9M5buuVsVwZbmhKSxRhbdvSt3x/r33rSlFfUFq9C6X0AEpCIzTVUmSWtgpChILJXW0gEmmXw9vaks="
+  },]
+}, {
+  name: '中铁', list: [{
+    "name": "中铁", "link": "http://www.crecg.com/chinazt/4/index.html"
+  }, {
+    "name": "中铁大桥局集团有限公司", "link": "http://www.ztmbec.com/tabid/3052/Default.aspx"
+  }, {
+    "name": "中国中铁二局集团有限公司", "link": "http://2j.crec.cn/"
+  }, {
+    "name": "wm.crsg.com.cn/9.asp", "link": "http://wm.crsg.com.cn/9.asp"
+  }, {
+    "name": "中国铁建股份有限公司 > 新首页", "link": "http://www.crcc.cn/"
+  }, {
+    "name": "中铁四局", "link": "http://www.crec4.com/"
+  }, {
+    "name": "首页-中国中铁一局", "link": "http://www.crfeb.com.cn/"
+  },]
+}, {
+  name: '各省建筑企业招投标', list: [{
+    "name": "安徽建工集团集采平台", "link": "http://cp.aceg.com.cn/"
+  }, {
+    "name": "上海建工电子商务平台", "link": "http://www.yzscg.cn/"
+  }, {
+    "name": "招标招聘_广西路建工程集团有限公司", "link": "http://www.gxlqjs.com/?news-16"
+  }, {
+    "name": "招标中心-浙江交工集团股份有限公司", "link": "http://www.zjjtgc.com/bidding.html"
+  }, {
+    "name": "网站首页-广东省长大公路工程有限公司", "link": "http://www.gdchangda.cn/"
+  }, {
+    "name": "四川公路桥梁建设集团有限公司", "link": "http://www.scrbg.com/NewsList.aspx?classcode=125&classpcode=125"
+  }, {
+    "name": "公司概况 - 陕西路桥集团有限公司 - 陕西路桥集团有限公司", "link": "http://www.sxlqjt.com/article/"
+  }, {
+    "name": "江西省公路桥梁工程有限公司", "link": "http://www.jxlq.cn/"
+  }, {
+    "name": "四川公路桥梁建设集团有限公司", "link": "http://www.scrbg.com/"
+  }, {
+    "name": "四川路桥项目公告", "link": "http://www.sse.com.cn/disclosure/listedinfo/announcement/index.shtml?productId=600039"
+  }, {
+    "name": "广西路桥工程集团有限公司", "link": "http://www.gxlq.com.cn/"
+  },]
+}, {
+  name: '企业协会', list: [{
+    "name": "中国招标投标协会", "link": "http://www.ctba.org.cn/"
+  }, {
+    "name": "中国建筑业协会", "link": "http://www.zgjzy.org/"
+  }, {
+    "name": "国资委", "link": "http://www.sasac.gov.cn/index.html"
+  }, {
+    "name": "中国施工企业管理协会 施工企业管理 工程建设行业", "link": "http://www.cacem.com.cn/index.html"
+  }, {
+    "name": "关联协会", "link": "http://www.cacem.com.cn/n32/n63/index.html"
+  }, {
+    "name": "首页-中国勘察设计协会", "link": "http://www.chinaeda.org/Default.aspx"
+  }, {
+    "name": "广西建设工程质量安全监督信息网", "link": "http://www.gxzljd.com/"
+  }, {
+    "name": "广东省建筑业协会", "link": "http://www.gdcia.org/index.aspx"
+  }, {
+    "name": "陕西省建筑业协会【官方网站】http://www.sxjzy.org", "link": "http://www.sxjzy.org/"
+  }, {
+    "name": "北京市建筑业联合会", "link": "http://www.bjjl.org.cn/index.html"
+  }, {
+    "name": "江苏建筑业网", "link": "http://www.jsconi.com/"
+  }, {
+    "name": "浙江省住房和城乡建设厅", "link": "http://www.zjjs.com.cn/"
+  }, {
+    "name": "安徽省建筑业协会", "link": "http://www.ahjzy.com.cn/"
+  }, {
+    "name": "中国公路建设行业协会", "link": "http://www.chhca.org.cn/Web_Html/001/index.asp"
+  }, {
+    "name": "中国公路学会", "link": "http://www.chts.cn/topic/kpjy"
+  },]
+}, {
+  name: '政府机构', list: [{
+    "name": "住建部", "link": "http://www.mohurd.gov.cn/"
+  }, {
+    "name": "统计局", "link": "http://www.stats.gov.cn/"
+  }, {
+    "name": "天津建设网", "link": "http://www.tjcac.gov.cn/"
+  }, {
+    "name": "交通运输部", "link": "http://www.mot.gov.cn/"
+  }, {
+    "name": "安徽省住房和城乡建设厅", "link": "http://www.ahjst.gov.cn/ahzjt_Front/"
+  },]
+}, {
+  name: '发改委', list: [{
+    "name": "欢迎访问陕西省发展和改革委员会", "link": "http://www.sndrc.gov.cn/"
+  }, {
+    "name": "中华人民共和国国家发展和改革委员会", "link": "http://www.ndrc.gov.cn/"
+  }, {
+    "name": "上海市发展和改革委员会", "link": "http://www.shdrc.gov.cn/"
+  }, {
+    "name": "北京市发展和改革委员会", "link": "http://www.bjpc.gov.cn/"
+  }, {
+    "name": "重庆市发展和改革委员会", "link": "http://www.cqdpc.gov.cn/"
+  }, {
+    "name": "福建省发展和改革委员会", "link": "http://www.fjdpc.gov.cn/"
+  }, {
+    "name": "天津市发展和改革委员会门户网站", "link": "http://www.tjdpc.gov.cn/"
+  }, {
+    "name": "广东省发展和改革委员会", "link": "http://www.gddrc.gov.cn/"
+  }, {
+    "name": "湖北省发展和改革委员会", "link": "http://www.hbfgw.gov.cn/"
+  }, {
+    "name": "吉林省发展和改革委员会", "link": "http://www.jldrc.gov.cn/"
+  }, {
+    "name": "湖南省发展和改革委员会", "link": "http://www.hnfgw.gov.cn/Index.html"
+  }, {
+    "name": "浙江省发展和改革委员会", "link": "http://www.zjdpc.gov.cn/"
+  }, {
+    "name": "江苏省发展和改革委员会", "link": "http://www.jsdpc.gov.cn/"
+  }, {
+    "name": "安徽省发展和改革委员会", "link": "http://www.ahpc.gov.cn/"
+  }, {
+    "name": "海南省发展和改革委员会", "link": "http://plan.hainan.gov.cn/"
+  }, {
+    "name": "宁夏回族自治区发展和改革委员会", "link": "http://www.nxdrc.gov.cn/"
+  }, {
+    "name": "西藏自治区发展和改革委员会", "link": "http://www.xdrc.gov.cn/"
+  }, {
+    "name": "山西省发改委门户网站", "link": "http://www.sxdrc.gov.cn/"
+  }, {
+    "name": "江西发改委",
+    "link": "https://www.baidu.com/link?url=NiVa0Os2pEMvD5ROs9KUPADfU7l7RHittSiEClB7t3JSdUIofI5gbvbUziFrjpfu&wd=&eqid=ddd7fd2b00057d6b0000000359607ee8"
+  }, {
+    "name": "江西发改委", "link": "http://www.jxdpc.gov.cn/"
+  }, {
+    "name": "中国铁路总公司陕西省政府正式批复 《西安铁路枢纽规划》（2016-2030年）",
+    "link": "http://www.xadrc.gov.cn/ptl/def/def/index_942_4568_ci_trid_2535650.html"
+  }, {
+    "name": "中华人民共和国国家发展和改革委员会", "link": "http://www.ndrc.gov.cn/jsfb/wzdt/"
+  },]
+}, {
+  name: '各省交通运输厅', list: [{
+    "name": "陕西省交通运输厅", "link": "http://www.sxsjtt.gov.cn/"
+  }, {
+    "name": "四川省交通运输厅", "link": "http://www.scjt.gov.cn/"
+  }, {
+    "name": "贵州省交通厅", "link": "http://www.qjt.gov.cn/"
+  }, {
+    "name": "重庆市交通委员会", "link": "http://www.cqjt.gov.cn/"
+  }, {
+    "name": "海南省交通运输网", "link": "http://www.hainanjt.gov.cn/"
+  }, {
+    "name": "广西交通运输厅", "link": "http://www.gxdot.gov.cn/defaultroot/portal/main.jsp"
+  }, {
+    "name": "广东省交通运输厅", "link": "http://www.gdcd.gov.cn/"
+  }, {
+    "name": "湖南省交通运输厅", "link": "http://www.hnjt.gov.cn/"
+  }, {
+    "name": "湖北省交通运输厅", "link": "http://www.moc.gov.cn/st2010/hubei/"
+  }, {
+    "name": "山东省交通运输厅", "link": "http://www.sdjt.gov.cn/"
+  }, {
+    "name": "福建省交通运输厅", "link": "http://www.fjjt.gov.cn/"
+  }, {
+    "name": "江苏省交通运输厅", "link": "http://www.jscd.gov.cn/"
+  }, {
+    "name": "上海交通网", "link": "http://www.jt.sh.cn/jtw/index.html"
+  }, {
+    "name": "吉林省交通运输厅", "link": "http://www.jljt.gov.cn/"
+  }, {
+    "name": "辽宁省交通运输厅", "link": "http://www.lncom.gov.cn/"
+  }, {
+    "name": "山西省交通运输厅", "link": "http://www.sxjt.gov.cn/sxjt_www2/"
+  }, {
+    "name": "河北省交通运输厅", "link": "http://www.hbsjtt.gov.cn/"
+  }, {
+    "name": "天津市交通运输", "link": "http://www.tjjt.gov.cn/Page/Index.aspx"
+  }, {
+    "name": "北京市交通运输", "link": "http://www.bjjtw.gov.cn/"
+  }, {
+    "name": "西藏自治区交通厅", "link": "http://www.xzjtt.gov.cn/"
+  }, {
+    "name": "青海交通运输厅", "link": "http://www.qhjt.gov.cn/"
+  }, {
+    "name": "四川省交通运输厅", "link": "http://www.scjt.gov.cn/10000/index.shtml"
+  }, {
+    "name": "公路局--中华人民共和国交通运输部", "link": "http://zizhan.mot.gov.cn/sj/gonglj/"
+  }, {
+    "name": "首页>新闻发布", "link": "http://www.scio.gov.cn/xwfbh/index.htm"
+  }, {
+    "name": "中国政府网_中央人民政府门户网站", "link": "http://www.gov.cn/"
+  },]
+}, {
+  name: '交通投资集团', list: [{
+    "name": "浙江省交通投资集团有限公司", "link": "http://www.cncico.com/"
+  }, {
+    "name": "江苏交通控股有限公司", "link": "http://www.jchc.cn/"
+  }, {
+    "name": "广东省交通集团有限公司", "link": "http://www.gdcg.com.cn/"
+  }, {
+    "name": "新华网-广西交通投资集团网站", "link": "http://www.gx.xinhuanet.com/wq/gxjt/"
+  }, {
+    "name": "山东高速集团欢迎您", "link": "http://www.sdhsg.com/"
+  }, {
+    "name": "河南高速公路发展有限责任公司", "link": "http://www.hnew.com.cn/"
+  }, {
+    "name": "河北建设投资集团有限责任公司", "link": "http://www.hecic.com.cn/"
+  }, {
+    "name": "欢迎访问陕西省交通建设集团公司网站", "link": "http://www.spccg.com/"
+  }, {
+    "name": "四川省交通投资集团有限责任公司", "link": "http://www.scjtgroup.com/"
+  }, {
+    "name": "齐鲁交通发展集团有限公司", "link": "http://www.qljfjt.com/"
+  },]
+}, {
+  name: '设计院', list: [{
+    "name": "上海市政工程设计研究总院(集团)有限公司", "link": "http://www.smedi.com/news/index.jsp"
+  }, {
+    "name": "中交公路规划设计院有限公司 CCCC Highway\nConsultants CO.,Ltd.", "link": "http://www.hpdi.com.cn/Gen/default.aspx"
+  }, {
+    "name": "浙江省交通规划设计研究院", "link": "http://www.zjic.com/"
+  },]
+}, {
+  name: '项目审批监管平台', list: [{
+    "name": "湖南省投资项目在线审批监管平台办事大厅", "link": "http://www.hntzxm.gov.cn/portal/"
+  }, {
+    "name": "首页 - 北京市投资项目在线审批监管平台", "link": "http://tzxm.beijing.gov.cn/"
+  }, {
+    "name": "投资项目在线审批监管平台", "link": "http://www.tzxm.gov.cn/"
+  }, {
+    "name": "天津市投资项目联合审批在线办事大厅", "link": "http://xzsp.tj.gov.cn:8086/"
+  }, {
+    "name": "河北省投资项目在线审批监管平台", "link": "http://tzxm.hbzwfw.gov.cn/"
+  }, {
+    "name": "山西省投资项目联合审批办事大厅", "link": "http://www.shanxitzxm.gov.cn/"
+  }, {
+    "name": "内蒙古自治区投资项目在线审批办事大厅", "link": "http://www.nmgtzxm.gov.cn/"
+  }, {
+    "name": "辽宁政务服务网", "link": "http://www.lnzwfw.gov.cn/"
+  }, {
+    "name": "吉林省投资项目在线审批监管平台", "link": "http://www.jltzxm.gov.cn/indexjl.jsp"
+  }, {
+    "name": "黑龙江省投资项目在线审批监管平台",
+    "link": "http://tzxm.hljzwzx.gov.cn/hz_tzxm_root_hlj/tzxmindex;jsessionid=458051CBDEB72A00EE738287C64458F0"
+  }, {
+    "name": "上海市投资项目在线审批监管平台", "link": "http://tzxm.shdrc.gov.cn/banpro/newgdzc/index.jsp"
+  }, {
+    "name": "江苏省投资项目审批监管平台", "link": "http://218.94.123.37/indexjs.jsp"
+  }, {
+    "name": "浙江政务服务网投资项目在线审批监管平台", "link": "http://tzxm.zjzwfw.gov.cn/"
+  }, {
+    "name": "安徽省投资项目审批监管平台", "link": "http://www.ahtzxm.gov.cn/"
+  }, {
+    "name": "福建投资监管平台", "link": "http://120.35.29.78:8090/eap/"
+  }, {
+    "name": "江西省投资项目在线审批监管平台", "link": "http://tzxm.jxzwfww.gov.cn/icity/ipro/index"
+  }, {
+    "name": "山东省投资项目在线审批监管平台", "link": "http://221.214.94.51:8081/icity/ipro/hall"
+  }, {
+    "name": "河南项目审批", "link": "http://tzls.hazw.gov.cn/"
+  }, {
+    "name": "湖北省投资项目在线审批监管平台", "link": "http://www.hbtzls.gov.cn/indexhb.jsp"
+  }, {
+    "name": "广东省投资项目在线审批监管平台", "link": "http://www.gdtz.gov.cn/tybm/index.action"
+  }, {
+    "name": "广西投资项目审批监管平台", "link": "http://zxsp.gxdrc.gov.cn/tzxmspweb/indexgx.jsp"
+  }, {
+    "name": "海南省投资项目在线审批监管平台", "link": "https://wssp.hainan.gov.cn/wssp/hn/module/wssb/tzxmv2/tzxmSpqkJggsList.do"
+  }, {
+    "name": "政务服务网", "link": "http://zwfw.cq.gov.cn/icity/public/index"
+  }, {
+    "name": "四川省投资项目在线审批监管平台", "link": "http://www.sctz.gov.cn/"
+  }, {
+    "name": "贵州政务服务网- 省级-投资项目审批首页", "link": "http://58.16.64.24/tzxm.jspx"
+  }, {
+    "name": "云南省投资项目在线审批监管平台", "link": "http://zxjg.yn.gov.cn/zxjg/home"
+  }, {
+    "name": "西藏投资项目审批监管平台", "link": "http://www.xdrc.gov.cn:8088/tzxmspweb/indexxz.jsp"
+  }, {
+    "name": "陕西省投资项目在线审批监管平台", "link": "http://tzxm.shaanxi.gov.cn/indexsx.jsp"
+  }, {
+    "name": "甘肃政务服务网", "link": "http://www.gszwfw.gov.cn/"
+  }, {
+    "name": "青海省投资项目审批监管平台", "link": "http://www.qhtzxm.gov.cn/tzxmspweb/indexqh.jsp"
+  }, {
+    "name": "宁夏自治区政府投资项目在线审批平台二期（首页）", "link": "http://61.133.207.41/"
+  }, {
+    "name": "新疆维吾尔自治区投资项目联合审批办事大厅", "link": "http://www.xjtzxm.gov.cn/"
+  }, {
+    "name": "政务服务", "link": "http://service.xjbt.gov.cn/"
+  },]
+}, {
+  name: '咸阳', list: [{
+    "name": "咸阳市人民政府", "link": "http://www.xianyang.gov.cn/info/iList.jsp?cat_id=28914&tm_id=2708"
+  }, {
+    "name": "淳化县人民政府", "link": "http://www.snchunhua.gov.cn/"
+  }, {
+    "name": "咸阳市秦都区人民政府", "link": "http://www.snqindu.gov.cn/"
+  }, {
+    "name": "咸阳市渭城区人民政府", "link": "http://www.weic.gov.cn/"
+  }, {
+    "name": "兴平市人民政府门户网站", "link": "http://www.snxingping.gov.cn/"
+  }, {
+    "name": "武功县人民政府门户网站", "link": "http://www.wugong.gov.cn/"
+  }, {
+    "name": "乾县人民政府", "link": "http://www.snqianxian.gov.cn/"
+  }, {
+    "name": "礼泉县人民政府", "link": "http://www.liquan.gov.cn/"
+  }, {
+    "name": "泾阳县人民政府门户网站", "link": "http://www.snjingyang.gov.cn/"
+  }, {
+    "name": "三原县人民政府", "link": "http://www.snsanyuan.gov.cn/"
+  }, {
+    "name": "永寿县人民政府", "link": "http://www.yongshou.gov.cn/"
+  }, {
+    "name": "彬州市人民政府门户网站", "link": "http://www.snbinzhou.gov.cn/"
+  }, {
+    "name": "长武县人民政府门户网站", "link": "http://www.changwu.gov.cn/"
+  }, {
+    "name": "旬邑人民政府门户网站", "link": "http://www.snxunyi.gov.cn/"
+  },]
+}, {
+  name: '商洛', list: [{
+    "name": "商洛市人民政府", "link": "http://www.shangluo.gov.cn/"
+  }, {
+    "name": "商州区人民政府", "link": "http://www.shangzhou.gov.cn/"
+  }, {
+    "name": "洛南县人民政府门户网站", "link": "http://www.luonan.gov.cn/"
+  }, {
+    "name": "丹凤县人民政府-中国•丹凤", "link": "http://www.danfeng.gov.cn/"
+  }, {
+    "name": "商南县人民政府", "link": "http://www.shangnan.gov.cn/"
+  }, {
+    "name": "山阳县人民政府", "link": "http://www.shy.gov.cn/"
+  }, {
+    "name": "镇安县人民政府 - 中国·镇安", "link": "http://www.zazf.gov.cn/"
+  }, {
+    "name": "柞水县人民政府", "link": "http://www.snzs.gov.cn/"
+  },
+
+  ]
+}, {
+  name: '安康', list: [{
+    "name": "安康市人民政府", "link": "http://www.ankang.gov.cn/"
+  }, {
+    "name": "汉滨区人民政府", "link": "http://www.hanbin.gov.cn/"
+  }, {
+    "name": "首页-汉阴县人民政府", "link": "http://www.hanyin.gov.cn/"
+  }, {
+    "name": "石泉县人民政府", "link": "http://www.shiquan.gov.cn/"
+  }, {
+    "name": "宁陕县人民政府", "link": "http://www.ningshan.gov.cn/"
+  }, {
+    "name": "紫阳县人民政府", "link": "http://www.zyx.gov.cn/"
+  }, {
+    "name": "岚皋县人民政府", "link": "http://www.langao.gov.cn/"
+  }, {
+    "name": "旬阳县人民政府", "link": "http://www.xyx.gov.cn/"
+  }, {
+    "name": "白河县人民政府", "link": "http://www.baihe.gov.cn/"
+  }, {
+    "name": "平利县人民政府", "link": "http://www.pingli.gov.cn/"
+  }, {
+    "name": "镇坪县人民政府", "link": "http://www.zhp.gov.cn/"
+  },]
+}, {
+  name: '汉中', list: [{
+    "name": "汉中市人民政府", "link": "http://www.hanzhong.gov.cn/"
+  }, {
+    "name": "汉中经济技术开发区", "link": "http://hzedz.hanzhong.gov.cn/"
+  }, {
+    "name": "佛坪县人民政府", "link": "http://www.foping.gov.cn/"
+  }, {
+    "name": "留坝县人民政府", "link": "http://www.liuba.gov.cn/"
+  }, {
+    "name": "宁强县人民政府", "link": "http://www.nq.gov.cn/"
+  }, {
+    "name": "镇巴县人民政府", "link": "http://www.zb.gov.cn/"
+  }, {
+    "name": "略阳县人民政府", "link": "http://www.lueyang.gov.cn/"
+  }, {
+    "name": "西乡县人民政府", "link": "http://www.snxx.gov.cn/"
+  }, {
+    "name": "勉县人民政府", "link": "http://www.mianxian.gov.cn/"
+  }, {
+    "name": "洋县人民政府", "link": "http://www.yangxian.gov.cn/"
+  }, {
+    "name": "城固县人民政府", "link": "http://www.chenggu.gov.cn/"
+  }, {
+    "name": "南郑区人民政府", "link": "http://www.nanzheng.gov.cn/"
+  }, {
+    "name": "汉中市汉台区人民政府", "link": "http://www.htq.gov.cn/"
+  },]
+}, {
+  name: '宝鸡', list: [{
+    "name": "宝鸡市人民政府门户网站", "link": "http://www.baoji.gov.cn/"
+  }, {
+    "name": "陈仓区人民政府", "link": "http://www.chencang.gov.cn/"
+  }, {
+    "name": "渭滨区人民政府", "link": "http://www.weibin.gov.cn/"
+  }, {
+    "name": "金台区人民政府", "link": "http://www.jintai.gov.cn/"
+  }, {
+    "name": "麟游县人民政府", "link": "http://www.linyou.gov.cn/"
+  }, {
+    "name": "太白县人民政府", "link": "http://www.taibai.gov.cn/"
+  }, {
+    "name": "凤县人民政府网站", "link": "http://www.sxfx.gov.cn/"
+  }, {
+    "name": "千阳县人民政府", "link": "http://www.qianyang.gov.cn/"
+  }, {
+    "name": "陇县人民政府", "link": "http://www.longxian.gov.cn/"
+  }, {
+    "name": "眉县人民政府", "link": "http://www.meixian.gov.cn/"
+  }, {
+    "name": "扶风县人民政府", "link": "http://www.fufeng.gov.cn/"
+  }, {
+    "name": "岐山县人民政府", "link": "http://www.qishan.gov.cn/"
+  }, {
+    "name": "凤翔县人民政府", "link": "http://www.fengxiang.gov.cn/"
+  },]
+}, {
+  name: '渭南', list: [{
+    "name": "渭南市人民政府", "link": "http://www.weinan.gov.cn/"
+  }, {
+    "name": "韩城市", "link": "http://www.hancheng.gov.cn/"
+  }, {
+    "name": "澄城政府网站", "link": "http://www.chengcheng.gov.cn/"
+  }, {
+    "name": "大荔县人民政府", "link": "http://www.dalisn.gov.cn/"
+  }, {
+    "name": "潼关县人民政府", "link": "http://www.tongguan.gov.cn/"
+  }, {
+    "name": "华阴市人民政府", "link": "http://www.huayin.gov.cn/"
+  }, {
+    "name": "渭南市华州区人民政府", "link": "http://www.hzqu.gov.cn/"
+  }, {
+    "name": "渭南·临渭", "link": "http://www.linwei.gov.cn/"
+  }, {
+    "name": "陕西省合阳县人民政府", "link": "http://www.heyang.gov.cn/"
+  }, {
+    "name": "卤阳湖现代产业开发区", "link": "http://luyanghu.weinan.gov.cn/"
+  }, {
+    "name": "渭南经济技术开发区网站－", "link": "http://etdz.weinan.gov.cn/"
+  }, {
+    "name": "渭南国家高新技术产业开发区", "link": "http://gaoxinqu.weinan.gov.cn/"
+  }, {
+    "name": "白水县人民政府", "link": "http://www.baishui.gov.cn/"
+  }, {
+    "name": "富平县人民政府-欢迎光临", "link": "http://www.fuping.gov.cn/"
+  }, {
+    "name": "蒲城县人民政府", "link": "http://www.pucheng.gov.cn/"
+  },]
+}, {
+  name: '西安', list: [{
+    "name": "西安市人民政府", "link": "http://www.xa.gov.cn/"
+  }, {
+    "name": "首页-西安市新城区人民政府", "link": "http://www.xincheng.gov.cn/"
+  }, {
+    "name": "西安市碑林区人民政府", "link": "http://www.beilin.gov.cn/"
+  }, {
+    "name": "西安市莲湖区人民政府", "link": "http://www.lianhu.gov.cn/"
+  }, {
+    "name": "西安市雁塔区人民政府", "link": "http://www.yanta.gov.cn/"
+  }, {
+    "name": "西安市未央区人民政府", "link": "http://www.weiyang.gov.cn/"
+  }, {
+    "name": "西安市灞桥区人民政府", "link": "http://www.baqiao.gov.cn/"
+  }, {
+    "name": "西安市周至县人民政府", "link": "http://www.zhouzhi.gov.cn/"
+  }, {
+    "name": "西安市?邑区人民政府", "link": "http://www.xahy.gov.cn/"
+  }, {
+    "name": "首页-西安市高陵区人民政府", "link": "http://www.gaoling.gov.cn/"
+  }, {
+    "name": "首页-西安市长安区人民政府", "link": "http://www.changanqu.gov.cn/"
+  }, {
+    "name": "西安市临潼区人民政府", "link": "http://www.lintong.gov.cn/"
+  }, {
+    "name": "阎良区人民政府", "link": "http://www.yanliang.gov.cn/"
+  }, {
+    "name": "蓝田县人民政府", "link": "http://www.lantian.gov.cn/"
+  }, {
+    "name": "西安高新技术产业开发区", "link": "http://xdz.xa.gov.cn/"
+  }, {
+    "name": "国家级·西安经济技术开发区", "link": "http://xetdz.xa.gov.cn/"
+  }, {
+    "name": "西安曲江新区管理委员会", "link": "http://qjxq.xa.gov.cn/"
+  }, {
+    "name": "?哄?生态区", "link": "http://cbe.xa.gov.cn/"
+  }, {
+    "name": "西安国家级民用航天产业基地", "link": "http://xcaib.xa.gov.cn/"
+  }, {
+    "name": "陕西省西咸新区开发建设管理委员会", "link": "http://www.xixianxinqu.gov.cn/"
+  }, {
+    "name": "西安国际港务区", "link": "http://itl.xa.gov.cn/"
+  }, {
+    "name": "西安阎良国家航空高技术产业基地管理委员会", "link": "http://caib.xa.gov.cn/"
+  },]
+}, {
+  name: '延安', list: [{
+    "name": "延安市人民政府", "link": "http://www.yanan.gov.cn/"
+  }, {
+    "name": "延长县人民政府", "link": "http://www.yanchangxian.gov.cn/"
+  }, {
+    "name": "延川县人民政府", "link": "http://www.yanchuan.gov.cn/"
+  }, {
+    "name": "子长市人民政府", "link": "http://www.zichang.gov.cn/"
+  }, {
+    "name": "延安市安塞区人民政府", "link": "http://www.ansai.gov.cn/"
+  }, {
+    "name": "志丹县人民政府", "link": "http://www.zhidan.gov.cn/"
+  }, {
+    "name": "吴起县人民政府", "link": "http://www.wqx.gov.cn/"
+  }, {
+    "name": "甘泉县人民政府", "link": "http://www.ganquanxian.gov.cn/"
+  }, {
+    "name": "富县人民政府", "link": "http://www.fuxian.gov.cn/index.htm"
+  }, {
+    "name": "洛川县人民政府", "link": "http://www.lcx.gov.cn/index.htm"
+  }, {
+    "name": "宜川县人民政府", "link": "http://www.ycx.gov.cn/"
+  }, {
+    "name": "黄龙县人民政府", "link": "http://www.hlx.gov.cn/"
+  }, {
+    "name": "黄陵县人民政府", "link": "http://www.huangling.gov.cn/"
+  }, {
+    "name": "宝塔区人民政府", "link": "http://www.baotaqu.gov.cn/"
+  },]
+}, {
+  name: '榆林', list: [{
+    "name": "榆林市人民政府", "link": "http://www.yl.gov.cn/"
+  }, {
+    "name": "榆林市榆阳区人民政府", "link": "http://www.yuyang.gov.cn/"
+  }, {
+    "name": "子洲县人民政府", "link": "https://www.zizhou.gov.cn/"
+  }, {
+    "name": "网站首页-清涧县人民政府", "link": "http://www.qjzhf.gov.cn/"
+  }, {
+    "name": "吴堡县人民政府", "link": "http://www.wubu.gov.cn/"
+  }, {
+    "name": "佳县人民政府", "link": "http://www.sxjiaxian.gov.cn/"
+  }, {
+    "name": "米脂县人民政府", "link": "http://www.mizhi.gov.cn/"
+  }, {
+    "name": "绥德县人民政府", "link": "http://www.sxsd.gov.cn/"
+  }, {
+    "name": "靖边县人民政府", "link": "http://www.jingbian.gov.cn/"
+  }, {
+    "name": "定边县人民政府", "link": "http://www.dingbian.gov.cn/"
+  }, {
+    "name": "府谷县人民政府", "link": "http://www.fg.gov.cn/"
+  }, {
+    "name": "神木市人民政府", "link": "http://www.sxsm.gov.cn/"
+  }, {
+    "name": "横山区人民政府", "link": "http://www.hszf.gov.cn/"
+  }, {
+    "name": "陕西省投资项目在线审批监管平台", "link": "https://tzxm.shaanxi.gov.cn/tzxmspweb/home"
+  },]
+}, {
+  name: '招商', list: [{
+    "name": "安康市招商和经济合作局", "link": "https://zs.ankang.gov.cn/"
+  }, {
+    "name": "招商项目-安康市人民政府", "link": "https://www.ankang.gov.cn/Node-3072.html"
+  }, {
+    "name": "项目推荐-汉阴县人民政府", "link": "https://www.hanyin.gov.cn/Node-92891.html"
+  }, {
+    "name": "宝鸡市招商局", "link": "http://zsj.baoji.gov.cn/"
+  }, {
+    "name": "汉中市经济合作局", "link": "http://jhj.hanzhong.gov.cn/"
+  }, {
+    "name": "咸阳市招商局", "link": "http://zsj.xianyang.gov.cn/"
+  }, {
+    "name": "商洛市招商服务中心", "link": "http://zsj.shangluo.gov.cn/"
+  }, {
+    "name": "西安市投资合作局", "link": "http://xaic.xa.gov.cn/"
+  }, {
+    "name": "投资指南--渭南市对外经济技术合作局", "link": "http://wnzs.weinan.gov.cn/list.asp?D_CataID=A00040003"
+  }, {
+    "name": "延安市招商局(中国国际贸易促进委员会延安市支会、中国国际商会延安商会)", "link": "http://zsj.yanan.gov.cn/"
+  }, {
+    "name": "招标采购导航网_专业的招投标综合服务平台", "link": "http://www.okcis.cn/"
+  }]
+},]
+</script>
+<script>
+let html = ''
+for (let i = 0; i < db.length; i++) {
+  const { name, list } = db[i]
+  console.log(db[i])
+  let temp = ''
+  for (let i = 0; i < list.length; i++) {
+    const item = list[i]
+    temp += `<tr>
+                <td>${i + 1}</td>
+                <td>${item.name}</td>
+                <td><a href="${item.link}" target="_blank">链接地址</a></td>
+            </tr>`
+  }
+  const h = `<table class="pure-table pure-table-bordered">
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>名称</th>
+                <th>连接</th>
+            </tr>
+        </thead>
+        <tbody>${temp}</tbody>
+    </table>`
+
+  html += `
+    <h2>${name}</h2>
+    ${h}
+  `
+}
+const app = document.querySelector('#app')
+app.innerHTML = html
+</script>
+</body>
+</html>
