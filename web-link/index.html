@@ -67,10 +67,33 @@
     h2 {
       margin: 30px 0 10px;
     }
+
+    .table-content {
+      /*margin-top: 80px;*/
+    }
+
+    .links-content {
+      width: 100%;
+      position: relative;
+      top: 0;
+      left: 0;
+      background-color: #fff;
+    }
+
+    .link-item {
+      margin: 0 10px;
+    }
+    .go-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
 <div id="app"></div>
+<a class="go-top" href="#app">返回顶部</a>
 <script type="text/javascript" charset="utf-8">
 const db = [{
   name: '浙江', list: [{
@@ -1999,10 +2022,11 @@ const db = [{
 </script>
 <script>
 let html = ''
+let links = ''
 for (let i = 0; i < db.length; i++) {
   const { name, list } = db[i]
-  console.log(db[i])
   let temp = ''
+  links += `<span class="link-item"><a href="#${i}">${name}</a></span>`
   for (let i = 0; i < list.length; i++) {
     const item = list[i]
     temp += `<tr>
@@ -2023,12 +2047,13 @@ for (let i = 0; i < db.length; i++) {
     </table>`
 
   html += `
-    <h2>${name}</h2>
-    ${h}
+      <h2 id="${i}">${name}</h2>
+      ${h}
   `
 }
+const contentHtml = `<div class="links-content">${links}</div><div class="table-content">${html}</div>`
 const app = document.querySelector('#app')
-app.innerHTML = html
+app.innerHTML = contentHtml
 </script>
 </body>
 </html>
