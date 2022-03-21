@@ -4,7 +4,7 @@ import StorageCache from '../../tools/storage-cache'
 import CtrlApi from '../../api/controls/ctrl-model'
 import BaseDataApi from '../../api/base-data/base-data-model'
 import { setPageScrollViewEvent, setScrollHeight } from '../../tools/system-info'
-import * as echarts from '../../components/ec-canvas/echarts'
+// import * as echarts from '../../components/ec-canvas/echarts'
 
 const baseModelList = {
   rygl: { title: '人员管理' },
@@ -14,70 +14,70 @@ const baseModelList = {
   sbgl: { title: '设备管理' },
 }
 
-function echartsOpts (data = {}) {
-  const colorList = [
-    { c1: '#fccbcb', c2: '#ffe7e7' },
-    { c1: '#d3e6fe', c2: '#ddf8ff' },
-    { c1: '#fce0cb', c2: '#fdf4e6' },
-  ]
-  return {
-    grid: {
-      left: '0',
-      right: '15%',
-      bottom: '0',
-      top: '20%',
-      containLabel: true
-    },
-    yAxis: {
-      type: 'category',
-      splitLine: {
-        show: false,
-      },
-      axisTick: {
-        show: false,
-      },
-      axisLine: {
-        show: false,
-      },
-      axisLabel: {
-        textStyle: {
-          color: '#333',
-        },
-      },
-      inverse: true,
-      data: data.map(item => item.key + ':'),
-    },
-    xAxis: {
-      show: false,
-      type: 'value'
-    },
-    series: [
-      {
-        data: [...data.map(item => item.value)],
-        type: 'bar',
-        itemStyle: {
-          normal: {
-            color (params) {
-              return new echarts.graphic.LinearGradient(0, 1, 0, 0, [
-                { offset: 0, color: colorList[params.dataIndex].c1 },
-                { offset: 1, color: colorList[params.dataIndex].c2 },
-              ])
-            },
-            label: {
-              show: true,
-              position: 'right',
-              valueAnimation: true,
-              textStyle: {
-                color: '#333',
-                fontSize: 12,
-              }
-            }
-          }
-        }
-      }
-    ]
-  }
-}
+// function echartsOpts(data = {}) {
+//   const colorList = [
+//     { c1: '#fccbcb', c2: '#ffe7e7' },
+//     { c1: '#d3e6fe', c2: '#ddf8ff' },
+//     { c1: '#fce0cb', c2: '#fdf4e6' },
+//   ]
+//   return {
+//     grid: {
+//       left: '0',
+//       right: '15%',
+//       bottom: '0',
+//       top: '20%',
+//       containLabel: true
+//     },
+//     yAxis: {
+//       type: 'category',
+//       splitLine: {
+//         show: false,
+//       },
+//       axisTick: {
+//         show: false,
+//       },
+//       axisLine: {
+//         show: false,
+//       },
+//       axisLabel: {
+//         textStyle: {
+//           color: '#333',
+//         },
+//       },
+//       inverse: true,
+//       data: data.map(item => item.key + ':'),
+//     },
+//     xAxis: {
+//       show: false,
+//       type: 'value'
+//     },
+//     series: [
+//       {
+//         data: [...data.map(item => item.value)],
+//         type: 'bar',
+//         itemStyle: {
+//           normal: {
+//             color(params) {
+//               return new echarts.graphic.LinearGradient(0, 1, 0, 0, [
+//                 { offset: 0, color: colorList[params.dataIndex].c1 },
+//                 { offset: 1, color: colorList[params.dataIndex].c2 },
+//               ])
+//             },
+//             label: {
+//               show: true,
+//               position: 'right',
+//               valueAnimation: true,
+//               textStyle: {
+//                 color: '#333',
+//                 fontSize: 12,
+//               }
+//             }
+//           }
+//         }
+//       }
+//     ]
+//   }
+// }
 
 let eOpts = {}
 
@@ -98,8 +98,13 @@ Page({
   data: {
     showPopup: false,
     projects: [],
-    projectInfo: {},
-    projectName: {},
+    projectInfo: {
+      info1: '2021-12-15',
+      info2: '2023-07-21',
+      info3: '35天',
+      info4: '489天',
+    },
+    companyName: {},
     modelList: baseModelList,
     isLoading: true,
     contentHeight: 0,
@@ -109,70 +114,47 @@ Page({
   async onLoad() {
     await setScrollHeight(this)
     this.checkAuth()
-    const { data: projects, info: projectInfo } = await this.getProjectList()
-    const projectName = projects[0]
+    const companies = await this.getCompany()
+    const companyName = companies[0]
     this.setData({
-      projectName,
-      projectInfo,
-      projects,
-      isLoading: false
+      companies,
+      companyName,
+      isLoading: false,
     })
-    projectName && this.getIndexData(projectName.project_id)
+    companyName && this.getIndexData(companyName.builing_id)
   },
   async checkAuth() {
     const token = await StorageCache.getToken()
     if (!token) wx.reLaunch({ url: '/pages/login/login' })
   },
-  selectProject() {
+  selectCompany() {
     this.setData({
       showPopup: true,
     })
   },
   popupItemClick(e) {
-    const project_id = +e.target.id
-    const projectName = this.data.projects.find(p => p.project_id === project_id)
-    // const companyName = this.data.companies.find(c => c.builing_id === builing_id)
+    const builing_id = +e.target.id
+    const companyName = this.data.companies.find(c => c.builing_id === builing_id)
     this.setData({
-      projectName,
+      companyName,
       showPopup: false,
       modelList: baseModelList
     })
-    this.getIndexData(project_id)
-  },
-  async getProjectList() {
-    return {
-      data: [
-        {
-          project_id: 1,
-          project_name: 'S107关中环线大中修工程项目',
-        },
-        {
-          project_id: 11,
-          project_name: '工程项目2'
-        }
-      ],
-      info: {
-        info1: '2021-12-15',
-        info2: '2023-07-21',
-        info3: '35天',
-        info4: '489天',
-      }
-    }
+    this.getIndexData(builing_id)
   },
   async getCompany() {
     const res = await BaseDataApi.getCompany()
-    console.log(res)
     return res.data
   },
-  renderEcharts() {
-    const content = this.data.modelList.jdgl.content
-    eOpts = echartsOpts(content)
-    this.setData({
-      ec: {
-        onInit: initChart
-      }
-    })
-  },
+  // renderEcharts() {
+  //   const content = this.data.modelList.jdgl.content
+  //   eOpts = echartsOpts(content)
+  //   this.setData({
+  //     ec: {
+  //       onInit: initChart
+  //     }
+  //   })
+  // },
   async getInfo(builing_id) {
     const infoList = {
       info1: [
@@ -195,22 +177,8 @@ Page({
     const { modelList } = this.data
     modelList.rygl.content = infoList.info1
     modelList.jdgl.content = infoList.info2
-    this.renderEcharts()
+    // this.renderEcharts()
     modelList.zlgl.content = infoList.info3
-    // const info = await CtrlApi.getInfo({ builing_id })
-    // const { modelList } = this.data
-    // modelList.jrkq.content = [
-    //   { key: '今日出勤', value: info.today_num },
-    //   { key: '考勤率', value: info.cql },
-    //   // { key: '设备考勤', value: '' },
-    //   // { key: '自报考勤', value: '23个' },
-    // ]
-    // modelList.gz.content = [
-    //   { key: '记工金额', value: info.s_pay },
-    //   { key: '记工人数', value: info.worker_num },
-    //   { key: '待付金额', value: info.d_pay },
-    // ]
-    // this.setData({ modelList })
   },
   async getVideos(builing_id) {
     try {
