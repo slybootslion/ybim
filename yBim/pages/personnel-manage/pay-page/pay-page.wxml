@@ -1,4 +1,4 @@
-<!--pages/attendance-manage/pay-page/pay-page.wxml-->
+<!--pages/personnel-manage/pay-page/pay-page.wxml-->
 <lu-page-container title="工资发放">
   <view class="wrap">
     <view class="item-box">

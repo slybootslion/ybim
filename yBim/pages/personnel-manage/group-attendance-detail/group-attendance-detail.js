@@ -1,4 +1,4 @@
-// pages/attendance-manage/group-attendance-detail/group-attendance-detail.js
+// pages/personnel-manage/group-attendance-detail/group-attendance-detail.js
 import AttendanceApi from '../../../api/attendance/attendance-model'
 import { navigationBarHeight } from '../../../tools/system-info'
 

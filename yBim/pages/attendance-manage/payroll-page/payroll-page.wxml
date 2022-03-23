@@ -1,8 +1,0 @@
-<!--pages/personnel-manage/payroll-page/payroll-page.wxml-->
-<lu-page-container title="工资单">
-  <lu-payroll-item wx:for="{{list}}" 
-                   wx:key="index"
-                   hide1="{{hide1}}"
-                   hide2="{{hide2}}"
-                   detail="{{item}}" />
-</lu-page-container>

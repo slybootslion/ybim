@@ -1,5 +1,0 @@
-{
-  "usingComponents": {
-    "lu-payroll-item": "../components/payroll-item/payroll-item"
-  }
-}

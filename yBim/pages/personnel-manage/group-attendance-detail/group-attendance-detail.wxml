@@ -1,11 +1,11 @@
-<!--pages/attendance-manage/group-attendance-detail/group-attendance-detail.wxml-->
+<!--pages/personnel-manage/group-attendance-detail/group-attendance-detail.wxml-->
 <lu-page-container title="{{pageTitle}}">
   <lu-calendar bind:dateChange="handleDateChange" 
                date="{{s_date}}" />
   <view class="top-board">
     <view class="top-info">
       <view class="left">
-        <image class="item-icon" src="http://bjbsite.com/images/xcx/page/attendance-manage/bz.png"></image>
+        <image class="item-icon" src="http://bjbsite.com/images/xcx/page/personnel-manage/bz.png"></image>
         <text>{{groupName}}</text>
       </view>
       <view class="right">考勤人数：

@@ -1,4 +1,4 @@
-// pages/attendance-manage/components/record-group/record-group.js
+// pages/personnel-manage/components/record-group/record-group.js
 import RecordApi from '../../../../api/attendance/record-model'
 Component({
   /**
@@ -60,7 +60,7 @@ Component({
     detailHandler() {
       const { ticket_id } = this.data.detail
       wx.navigateTo({
-        url: `/pages/attendance-manage/payroll-info/payroll-info?ticket_id=${ticket_id}&type=no`,
+        url: `/pages/personnel-manage/payroll-info/payroll-info?ticket_id=${ticket_id}&type=no`,
       })
     }
   }

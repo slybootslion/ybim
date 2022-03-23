@@ -1,4 +1,4 @@
-<!--pages/attendance-manage/payroll-info/payroll-info.wxml-->
+<!--pages/personnel-manage/payroll-info/payroll-info.wxml-->
 <lu-page-container title="查看详细">
   <view class="block">
     <view class="header">

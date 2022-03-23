@@ -1,4 +1,4 @@
-<!--pages/attendance-manage/components/select-worker-board/select-worker-board.wxml-->
+<!--pages/personnel-manage/components/select-worker-board/select-worker-board.wxml-->
 <view class="container">
   <view class="top">
     <view class="top-left" bindtap="selectTap">

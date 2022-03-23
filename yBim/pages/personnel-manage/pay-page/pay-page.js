@@ -1,4 +1,4 @@
-// pages/attendance-manage/pay-page/pay-page.js
+// pages/personnel-manage/pay-page/pay-page.js
 import dayjs from '../../../tools/dayjs.min'
 import UplaodApi from '../../../api/upload'
 import PayrollApi from '../../../api/attendance/payroll-model'
@@ -53,7 +53,6 @@ Page({
       uploadRes.push(`${res.data}|||${originName}`)
     }
     const h_pay_cert = uploadRes.join('---')
-    console.log(h_pay_cert)
     const data = {
       ticket_id: info.ticket_id,
       h_pay: info.s_pay,
@@ -61,7 +60,6 @@ Page({
       h_pay_cert,
     }
     const res = await PayrollApi.postTimeticketsGPay(data)
-    console.log(res)
     wx.navigateBack()
     eventChannel.emit('success')
   }

@@ -1,4 +1,4 @@
-<!--pages/attendance-manage/payroll-page/components/payroll-item/payroll-item.wxml-->
+<!--pages/personnel-manage/payroll-page/components/payroll-item/payroll-item.wxml-->
 <view class="container">
   <view class="header">
     <view class="header-left">

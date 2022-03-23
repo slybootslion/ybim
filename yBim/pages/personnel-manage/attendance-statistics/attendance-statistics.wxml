@@ -1,4 +1,4 @@
-<!--pages/attendance-manage/attendance-statistics/attendance-statistics.wxml-->
+<!--pages/personnel-manage/attendance-statistics/attendance-statistics.wxml-->
 <lu-page-container title="考勤管理">
   <lu-calendar bind:dateChange="handleDateChange" />
   <view class="board top-board">
@@ -25,7 +25,7 @@
         bindtap="groupItemTap"
         hover-class="tap-hover">
     <view class="item-title">
-      <image class="item-icon" src="http://bjbsite.com/images/xcx/page/attendance-manage/bz.png"></image>
+      <image class="item-icon" src="http://bjbsite.com/images/xcx/page/personnel-manage/bz.png"></image>
      <text>{{item.group_name}}</text>
     </view>
     <view class="item-content">

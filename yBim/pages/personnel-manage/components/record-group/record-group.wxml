@@ -1,4 +1,4 @@
-<!--pages/attendance-manage/components/record-group/record-group.wxml-->
+<!--pages/personnel-manage/components/record-group/record-group.wxml-->
 <view class="container">
   <view class="top">
     <view class="top-left">

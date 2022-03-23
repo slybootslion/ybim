@@ -1,4 +1,4 @@
-/* pages/attendance-manage/pay-page/pay-page.wxss */
+/* pages/personnel-manage/pay-page/pay-page.wxss */
 .wrap {
   background-color: #fff;
   padding: 0 20rpx;

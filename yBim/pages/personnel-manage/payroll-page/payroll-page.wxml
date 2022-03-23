@@ -1,4 +1,4 @@
-<!--pages/attendance-manage/payroll-page/payroll-page.wxml-->
+<!--pages/personnel-manage/payroll-page/payroll-page.wxml-->
 <lu-page-container title="工资单">
   <lu-payroll-item wx:for="{{list}}" 
                    wx:key="index"

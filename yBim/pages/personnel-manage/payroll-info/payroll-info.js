@@ -1,4 +1,4 @@
-// pages/attendance-manage/payroll-info/payroll-info.js
+// pages/personnel-manage/payroll-info/payroll-info.js
 import PayrollApi from '../../../api/attendance/payroll-model'
 import { promisic } from '../../../lu-ui/utils/util'
 Page({
@@ -34,7 +34,7 @@ Page({
 
   async goPay() {
     const { eventChannel } = await promisic(wx.navigateTo)({
-      url: `/pages/attendance-manage/pay-page/pay-page`
+      url: `/pages/personnel-manage/pay-page/pay-page`
     })
     eventChannel.emit('ticketData', this.data.info)
     eventChannel.on('success', () => {

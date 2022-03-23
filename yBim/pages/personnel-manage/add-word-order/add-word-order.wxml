@@ -1,4 +1,4 @@
-<!--pages/attendance-manage/add-word-order/add-word-order.wxml-->
+<!--pages/personnel-manage/add-word-order/add-word-order.wxml-->
 <lu-page-container title="{{pageTitle}}">
   <view class="wrap">
     <view class="input-item">

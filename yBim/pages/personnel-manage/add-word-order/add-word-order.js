@@ -1,4 +1,4 @@
-// pages/attendance-manage/add-word-order/add-word-order.js
+// pages/personnel-manage/add-word-order/add-word-order.js
 import StorageCache from '../../../tools/storage-cache'
 import dayjs from '../../../tools/dayjs.min'
 import SelectWorkerStore from '../hooks/select-worker-store'
@@ -135,7 +135,7 @@ Page({
 
   goSelectPage() {
     wx.navigateTo({
-      url: `/pages/attendance-manage/select-workers/select-workers`,
+      url: `/pages/personnel-manage/select-workers/select-workers`,
     })
   },
 

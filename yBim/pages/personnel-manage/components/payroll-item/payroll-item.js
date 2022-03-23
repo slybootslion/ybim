@@ -1,4 +1,4 @@
-// pages/attendance-manage/payroll-page/components/payroll-item/payroll-item.js
+// pages/personnel-manage/payroll-page/components/payroll-item/payroll-item.js
 Component({
   /**
    * 组件的属性列表
@@ -39,13 +39,13 @@ Component({
     goInfo() {
       const { ticket_id } = this.data.detail
       wx.navigateTo({
-        url: `/pages/attendance-manage/payroll-info/payroll-info?ticket_id=${ticket_id}`,
+        url: `/pages/personnel-manage/payroll-info/payroll-info?ticket_id=${ticket_id}`,
       })
     },
     goPayInfo() {
       const { ticket_id } = this.data.detail
       wx.navigateTo({
-        url: `/pages/attendance-manage/payroll-info/payroll-info?ticket_id=${ticket_id}`,
+        url: `/pages/personnel-manage/payroll-info/payroll-info?ticket_id=${ticket_id}`,
       })
     }
   }

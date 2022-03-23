@@ -1,4 +1,4 @@
-/* pages/attendance-manage/components/select-worker-board/select-worker-board.wxss */
+/* pages/personnel-manage/components/select-worker-board/select-worker-board.wxss */
 
 .container {
   background-color: #fff;

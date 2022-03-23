@@ -1,4 +1,4 @@
-// pages/attendance-manage/components/selected-worker-board/selected-worker-board.js
+// pages/personnel-manage/components/selected-worker-board/selected-worker-board.js
 Component({
   /**
    * 组件的属性列表

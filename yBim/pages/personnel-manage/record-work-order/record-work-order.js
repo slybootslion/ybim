@@ -45,7 +45,7 @@ Page({
     const { company_list } = this.data
     await StorageCache.setEmpList({ company_list })
     wx.navigateTo({
-      url: '/pages/attendance-manage/add-word-order/add-word-order',
+      url: '/pages/personnel-manage/add-word-order/add-word-order',
     })
   },
 
@@ -61,7 +61,7 @@ Page({
     })
 
     wx.navigateTo({
-      url: '/pages/attendance-manage/add-word-order/add-word-order',
+      url: '/pages/personnel-manage/add-word-order/add-word-order',
     })
   }
 })

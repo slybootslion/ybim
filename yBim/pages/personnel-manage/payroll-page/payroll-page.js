@@ -1,4 +1,4 @@
-// pages/attendance-manage/payroll-page/payroll-page.js
+// pages/personnel-manage/payroll-page/payroll-page.js
 import PayrollApi from '../../../api/attendance/payroll-model'
 import { permissionHide } from '../../../tools/utils'
 

@@ -1,4 +1,4 @@
-<!--pages/attendance-manage/select-workers/select-workers.wxml-->
+<!--pages/personnel-manage/select-workers/select-workers.wxml-->
 <lu-page-container title="选择工友">
   <lu-worker-board wx:for="{{empList}}" 
                    wx:key="index"

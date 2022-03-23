@@ -36,6 +36,10 @@ Component({
 		isPadding: {
 			type: Boolean,
 			value: false
+		},
+		maxlength: {
+			type: Number,
+			value: -1
 		}
 	},
 
@@ -68,6 +72,9 @@ Component({
 				showPopup: false,
 				selectedCurrent: current[this.data.selectShowStr],
 			})
+		},
+		valueChange(e) {
+			this.triggerEvent('valueChange', e.detail)
 		}
 	}
 })

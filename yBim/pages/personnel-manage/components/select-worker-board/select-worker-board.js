@@ -1,4 +1,4 @@
-// pages/attendance-manage/components/select-worker-board/select-worker-board.js
+// pages/personnel-manage/components/select-worker-board/select-worker-board.js
 import { formatFloat } from '../../../../tools/utils'
 
 Component({

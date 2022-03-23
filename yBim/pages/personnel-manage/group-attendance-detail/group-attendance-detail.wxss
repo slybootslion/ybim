@@ -1,4 +1,4 @@
-/* pages/attendance-manage/group-attendance-detail/group-attendance-detail.wxss */
+/* pages/personnel-manage/group-attendance-detail/group-attendance-detail.wxss */
 .top-board {
   height: 137rpx;
   background-color: #fff;

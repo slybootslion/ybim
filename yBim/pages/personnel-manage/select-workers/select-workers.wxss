@@ -1,4 +1,4 @@
-/* pages/attendance-manage/select-workers/select-workers.wxss */
+/* pages/personnel-manage/select-workers/select-workers.wxss */
 .footer {
   width: 100%;
   height: 119rpx;

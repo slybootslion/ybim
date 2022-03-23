@@ -17,10 +17,9 @@ class Paging {
       page_size: this.pageSize,
       page: this.page,
     }
-
     const res = await this.method(data)
-    const { total } = res
     // console.log(res)
+    const { total } = res
     if (total > 0) {
       if (res[this.resKey] && res[this.resKey].length) {
         this.data = this.data.concat(res[this.resKey])

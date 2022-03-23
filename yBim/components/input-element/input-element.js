@@ -60,7 +60,11 @@ Component({
     labelNoPadding: {
       type: Boolean,
       value: false
-    }
+    },
+    maxlength: {
+      type: Number,
+      value: -1
+    },
   },
 
   observers: {

@@ -1,4 +1,4 @@
-// pages/attendance-manage/attendance-statistics/attendance-statistics.js
+// pages/personnel-manage/attendance-statistics/attendance-statistics.js
 import AttendanceApi from '../../../api/attendance/attendance-model'
 import BaseDataApi from '../../../api/base-data/base-data-model'
 import { permissionHide } from '../../../tools/utils'
@@ -68,7 +68,7 @@ Page({
     let { builing_id, s_date } = this.data
     if (!builing_id) builing_id = this.data.companyName.builing_id
     wx.navigateTo({
-      url: '/pages/attendance-manage/group-attendance-detail/group-attendance-detail?group_id=' + group_id + '&builing_id=' + builing_id + '&s_date=' + s_date,
+      url: '/pages/personnel-manage/group-attendance-detail/group-attendance-detail?group_id=' + group_id + '&builing_id=' + builing_id + '&s_date=' + s_date,
     })
   },
 })

@@ -1,4 +1,4 @@
-// pages/attendance-manage/select-workers/select-workers.js
+// pages/personnel-manage/select-workers/select-workers.js
 import SelectWorkerStore from '../hooks/select-worker-store'
 import { formatFloat } from '../../../tools/utils'
 // import RecordApi from '../../../api/attendance/record-model'

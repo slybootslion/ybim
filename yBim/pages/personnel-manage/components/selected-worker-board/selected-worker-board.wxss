@@ -1,4 +1,4 @@
-/* pages/attendance-manage/components/selected-worker-board/selected-worker-board.wxss */
+/* pages/personnel-manage/components/selected-worker-board/selected-worker-board.wxss */
 .container {
   padding: 20rpx;
   box-sizing: border-box;

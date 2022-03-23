@@ -10,6 +10,7 @@
            value="{{value}}"
            disabled="{{disabled}}"
            hide-label="{{hideLabel}}"
+           maxlength="{{maxlength}}"
            bind:lininput="handleInput"
            placeholder="{{placeholder}}"/>
   <view wx:if="{{type === 'select'}}" class="select-box">
@@ -27,7 +28,7 @@
     <l-textarea placeholder="{{placeholder}}"
                 l-class="textarea"
                 indicator="{{false}}"
-                maxlength="{{-1}}"
+                maxlength="{{maxlength}}"
                 value="{{value}}"
                 border="{{false}}"
                 bind:lininput="handleInput"></l-textarea>

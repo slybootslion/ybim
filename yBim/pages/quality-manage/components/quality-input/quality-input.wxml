@@ -6,7 +6,7 @@
 			{{ label }}
 		</view>
 		<lu-input-element type="{{type}}" minContainer isRequired hideLabel txtLeft placeholder="{{placeholder}}"
-			disabled="{{disabled}}" value="{{value}}" />
+			disabled="{{disabled}}" value="{{value}}" maxlength="{{maxlength}}" bind:valueChange="valueChange" />
 	</block>
 	<view wx:if="{{type === 'select'}}" class="select-box">
 		<view class="label" style="width: {{labelWidth}}rpx">
@@ -27,3 +27,4 @@
 		</scroll-view>
 	</l-popup>
 </view>
+<l-toast />
