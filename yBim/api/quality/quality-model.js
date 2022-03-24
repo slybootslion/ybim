@@ -20,6 +20,13 @@ class QualityModel {
 			data
 		})
 	}
+	deleteInspectionqualitiesDelete(data){
+		return http.request({
+			url: '/inspectionqualities/delete',
+			method: 'post',
+			data
+		})
+	}
 }
 
 export default new QualityModel()

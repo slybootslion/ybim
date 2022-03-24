@@ -1,22 +1,22 @@
 <!--pages/quality-manage/quality-reporting/quality-reporting.wxml-->
 <lu-page-container title="{{pageTitle}}">
-	<lu-quality-input label="检查部位" placeholder="请输入检查部位（最多输入30个字）" isRequired bind:valueChange="handlePart" maxlength="{{30}}" />
-	<lu-quality-input label=" 所属区域" placeholder="请输入所属区域（最多输入30个字）" isRequired bind:valueChange="handleZone" maxlength="{{30}}" />
-	<lu-quality-input label="内容描述" type="textarea" placeholder="请输入内容描述（最多输入140个字）" isRequired isRequired bind:valueChange="handleDescriptor" maxlength="{{140}}" />
+	<lu-quality-input label="检查部位" placeholder="请输入检查部位（最多输入30个字）" isRequired bind:valueChange="handlePart" maxlength="{{30}}" value="{{part}}" />
+	<lu-quality-input label=" 所属区域" placeholder="请输入所属区域（最多输入30个字）" isRequired bind:valueChange="handleZone" maxlength="{{30}}" value="{{zone}}" />
+	<lu-quality-input label="内容描述" type="textarea" placeholder="请输入内容描述（最多输入140个字）" isRequired isRequired bind:valueChange="handleDescriptor" maxlength="{{140}}" value="{{descriptor}}" />
 	<view class="wrap">
 		<view class="item-box">
 			<view class="item-title star">
 				现场照片
 			</view>
 			<view>
-				<l-image-picker size="4" bind:linchange="handleImage" />
+				<l-image-picker size="4" bind:linchange="handleImage" bind:linremove="removeImg" urls="{{picUrls}}" />
 			</view>
 		</view>
 	</view>
-	<lu-quality-input label="隐患等级" type="select" placeholder="请选择" isRequired selectList="{{levelList}}" selectKeyStr="key" selectShowStr="value" isPadding bind:valueChange="handleGrade" />
-	<lu-quality-input label="整改责任人" type="select" placeholder="请选择" isRequired selectList="{{peoples}}" selectKeyStr="id" selectShowStr="value" isPadding bind:valueChange="handleRectifyUserId" />
+	<lu-quality-input label="隐患等级" type="select" placeholder="请选择" isRequired selectList="{{levelList}}" selectKeyStr="key" selectShowStr="value" isPadding bind:valueChange="handleGrade" selectValue="{{grade_name}}" />
+	<lu-quality-input label="整改责任人" type="select" placeholder="请选择" isRequired selectList="{{peoples}}" selectKeyStr="id" selectShowStr="nickname" isPadding bind:valueChange="handleRectifyUserId" selectValue="{{rectify_user}}" />
 	<view class="input-box">
-		<lu-input-element type="calendar" labelNoPadding isRequired label="期望整改时间" placeholder="请选择" bind:valueChange="handleDate" />
+		<lu-input-element type="calendar" labelNoPadding isRequired label="期望整改时间" placeholder="请选择" bind:valueChange="handleDate" selectCalendar="{{rectify_time}}" />
 	</view>
 	<view class="input-box">
 		<lu-input-element disabled label="检查人" value="{{nickname}}" />

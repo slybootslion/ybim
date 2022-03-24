@@ -228,8 +228,9 @@
         {
           "name": "质量上报",
           "pathName": "pages/quality-manage/quality-reporting/quality-reporting",
-          "query": "",
-          "scene": null
+          "query": "id=20",
+          "scene": null,
+          "launchMode": "default"
         },
         {
           "name": "待整改",

@@ -1,4 +1,4 @@
 <!--pages/quality-manage/accumulate/accumulate.wxml-->
 <lu-page-container title="累计检查">
-	<lu-rectified-item wx:for="{{rectifiedList}}" wx:key="id" data="{{item}}" bind:detailEvent="handleDetail" hideEdit hideBtn isFinished />
+	<lu-rectified-item wx:for="{{rectifiedList}}" wx:key="id" data="{{item}}" bind:detailEvent="handleDetail" hideBtn isFinished />
 </lu-page-container>

@@ -2,9 +2,9 @@
 <view class="rectified-item">
 	<view class="header">
 		<view class="header-left">
-			部位：{{data.title}}
+			部位：{{data.part}}
 		</view>
-		<view class="header-right" wx:if="{{!hideEdit}}">
+		<view class="header-right" wx:if="{{data.is_reporter}}">
 			<div class="right-item" catchtap="toFormPage">
 				<text class="iconfont icon-bianjijusebi"></text>
 				<text class="text">编辑</text>
@@ -25,15 +25,17 @@
 			</view>
 			<view class="content-item">
 				<view class="label">隐患等级：</view>
-				<view class="value">{{data.level}}</view>
+				<view class="value">{{data.grade_name}}</view>
 			</view>
 			<view class="content-item">
 				<view class="label">上报时间：</view>
-				<view class="value">{{data.date}}</view>
+				<view class="value">{{data.report_time}}</view>
 			</view>
 		</view>
 	</view>
-	<view class="footer" wx:if="{{!hideBtn}}">
+	<view class="footer" wx:if="{{data.is_rectifier}}">
 		<l-button size="mini" bindtap="goRectifiedForm">{{btnText}}</l-button>
 	</view>
 </view>
+<l-toast/>
+<l-dialog z-index="1000" />

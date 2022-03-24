@@ -43,6 +43,16 @@ Component({
 		}
 	},
 
+	observers: {
+    selectValue(selectedCurrent) {
+      this.setData({ selectedCurrent })
+    },
+
+    selectCalendar(calendarCurrent) {
+      this.setData({ calendarCurrent })
+    }
+  },
+
 	/**
 	 * 组件的初始数据
 	 */
