@@ -102,7 +102,6 @@ Page({
 		})
 		const noNeedUploadList = urls.filter(url => url.startsWith(config.imgBaseUrl)).map(url => url.replace(config.imgBaseUrl, ''))
 		const needUploadList = urls.filter(url => !url.startsWith(config.imgBaseUrl))
-		console.log(this.data.id)
 		for (let i = 0; i < needUploadList.length; i++) {
 			const url = needUploadList[i];
 			// const originName = url.substring(url.lastIndexOf("/")+1)
