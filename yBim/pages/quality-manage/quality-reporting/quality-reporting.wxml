@@ -9,7 +9,7 @@
 				现场照片
 			</view>
 			<view>
-				<l-image-picker size="4" bind:linchange="handleImage" bind:linremove="removeImg" urls="{{picUrls}}" />
+				<l-image-picker size="4" bind:linchange="handleImage" bind:linremove="removeImg" urls="{{urls}}" />
 			</view>
 		</view>
 	</view>

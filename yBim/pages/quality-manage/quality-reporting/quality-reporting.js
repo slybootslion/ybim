@@ -3,6 +3,7 @@ import dayjs from '../../../tools/dayjs.min'
 import StorageCache from '../../../tools/storage-cache'
 import UplaodApi from '../../../api/upload'
 import QualityApi from '../../../api/quality/quality-model'
+import config from '../../../config/index'
 
 Page({
 	/**
@@ -21,7 +22,7 @@ Page({
 			// { id: 3, value: 'Responsible 3' },
 			// { id: 4, value: 'Responsible 4' },
 		],
-		picUrls: [],
+		urls: [],
 		nowTime: '',
 		part: '',
 		zone: '',
@@ -52,7 +53,7 @@ Page({
 		}
 		if (id !== '0') {
 			const editData = {
-				picUrls: res.info.inspection.pic.map(img => 'http://ytbim.com' + img),
+				urls: res.info.inspection.pic.map(img => config.imgBaseUrl + img),
 				part: res.info.inspection.part,
 				zone: res.info.inspection.zone,
 				descriptor: res.info.inspection.descriptor,
@@ -61,6 +62,7 @@ Page({
 				rectify_user: res.info.inspection.rectify_user,
 				rectify_user_id: res.info.inspection.rectify_user_id,
 				rectify_time: res.info.inspection.rectify_time,
+				id: res.info.inspection.id,
 			}
 			data = {
 				...data,
@@ -73,13 +75,14 @@ Page({
 	},
 	handleImage(e) {
 		// todo: recover pic handle logic
-		console.log(e.detail)
-		this.data.urls = e.detail.all.map(pic => pic.url)
-		console.log(this.data.urls)
+		if (this.data.urls.length) {
+			this.data.urls = e.detail.all
+		} else {
+			this.data.urls = e.detail.all.map(pic => pic.url)
+		}
 	},
 	removeImg(e) {
-		console.log(e)
-		const url = e.detail.current
+		this.data.urls = this.data.urls.filter(url => e.detail.current !== url)
 	},
 	async submit() {
 		const { urls, part, zone, descriptor, grade, rectify_user_id, rectify_time } = this.data
@@ -90,8 +93,6 @@ Page({
 			})
 			return false
 		}
-		console.log(urls)
-		return
 		const ua = new UplaodApi()
 		const uploadRes = []
 		wx.lin.showToast({
@@ -99,17 +100,25 @@ Page({
 			title: '提交中',
 			duration: 0,
 		})
-		for (let i = 0; i < urls.length; i++) {
-			const url = urls[i];
+		const noNeedUploadList = urls.filter(url => url.startsWith(config.imgBaseUrl)).map(url => url.replace(config.imgBaseUrl, ''))
+		const needUploadList = urls.filter(url => !url.startsWith(config.imgBaseUrl))
+		console.log(this.data.id)
+		for (let i = 0; i < needUploadList.length; i++) {
+			const url = needUploadList[i];
 			// const originName = url.substring(url.lastIndexOf("/")+1)
 			const res = await ua.postImage(url)
 			uploadRes.push(res.data)
 			// uploadRes.push(`${res.data}|||${originName}`)
 		}
 		const data = {
-			part, zone, descriptor, grade, rectify_user_id, rectify_time, pic: JSON.stringify(uploadRes)
+			part, zone, descriptor, grade, rectify_user_id, rectify_time, pic: JSON.stringify(noNeedUploadList.concat(uploadRes))
 		}
-		await QualityApi.postInspectionqualitiesAdd(data)
+		if (this.data.id) {
+			data.id = this.data.id
+			await QualityApi.putInspectionqualitiesEdit(data)
+		} else {
+			await QualityApi.postInspectionqualitiesAdd(data)
+		}
 		wx.navigateBack()
 		wx.lin.hideToast()
 	},

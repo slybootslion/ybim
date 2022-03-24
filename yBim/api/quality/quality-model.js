@@ -20,10 +20,17 @@ class QualityModel {
 			data
 		})
 	}
-	deleteInspectionqualitiesDelete(data){
+	deleteInspectionqualitiesDelete(data) {
 		return http.request({
 			url: '/inspectionqualities/delete',
 			method: 'post',
+			data
+		})
+	}
+	putInspectionqualitiesEdit(data) {
+		return http.request({
+			url: '/inspectionqualities/edit',
+			method: 'put',
 			data
 		})
 	}
