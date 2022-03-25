@@ -28,3 +28,4 @@
 		<l-button bind:lintap="submit" size="long">提交</l-button>
 	</view>
 </lu-page-container>
+<l-toast />

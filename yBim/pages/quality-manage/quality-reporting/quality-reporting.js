@@ -85,7 +85,7 @@ Page({
 		this.data.urls = this.data.urls.filter(url => e.detail.current !== url)
 	},
 	async submit() {
-		const { urls, part, zone, descriptor, grade, rectify_user_id, rectify_time } = this.data
+		let { urls, part, zone, descriptor, grade, rectify_user_id, rectify_time } = this.data
 		if (!urls.length || !part || !zone || !descriptor || !grade || !rectify_user_id || !rectify_time) {
 			wx.lin.showToast({
 				title: '有必要信息未填写',
@@ -100,6 +100,11 @@ Page({
 			title: '提交中',
 			duration: 0,
 		})
+		urls = urls.map(url => {
+			if (typeof url === 'string') return url
+			else return url.url
+		})
+		console.log(urls)
 		const noNeedUploadList = urls.filter(url => url.startsWith(config.imgBaseUrl)).map(url => url.replace(config.imgBaseUrl, ''))
 		const needUploadList = urls.filter(url => !url.startsWith(config.imgBaseUrl))
 		for (let i = 0; i < needUploadList.length; i++) {

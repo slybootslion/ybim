@@ -18,6 +18,14 @@
 	color: #9d9d9d;
 }
 
+.rectified-item .header .header-left {
+  width: 490rpx;
+  font-size: 30rpx;
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  white-space: nowrap;
+}
+
 .rectified-item .header .header-right .right-item {
 	margin: 0 10rpx;
 }
