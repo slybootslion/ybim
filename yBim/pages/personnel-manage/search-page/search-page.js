@@ -51,7 +51,7 @@ Page({
     wx.lin.showToast({
       icon: 'loading',
       title: '搜索中',
-      duration: 0,
+      duration: 99999,
     })
     return this.data.pagingApi.getMore({ search_word })
   },

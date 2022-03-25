@@ -19,11 +19,11 @@
 }
 
 .rectified-item .header .header-left {
-  width: 490rpx;
-  font-size: 30rpx;
-  overflow: hidden; 
-  text-overflow: ellipsis; 
-  white-space: nowrap;
+	width: 490rpx;
+	font-size: 30rpx;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .rectified-item .header .header-right .right-item {
@@ -49,7 +49,7 @@
 
 .rectified-item .content .content-item {
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: flex-start;
 	font-size: 28rpx;
 	margin-bottom: 10rpx;
@@ -59,8 +59,13 @@
 	opacity: 0.8;
 }
 
+.rectified-item .content .content-item .label {
+	width: 140rpx;
+}
+
 .rectified-item .content .content-item .value {
 	color: #9d9d9d;
+	flex: 1;
 }
 
 @font-face {

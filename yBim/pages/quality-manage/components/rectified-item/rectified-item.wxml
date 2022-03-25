@@ -33,7 +33,7 @@
 			</view>
 		</view>
 	</view>
-	<view class="footer" wx:if="{{data.is_rectifier}}">
+	<view class="footer" wx:if="{{data.is_rectifier || data.is_rechecker}}">
 		<l-button size="mini" bindtap="goRectifiedForm">{{btnText}}</l-button>
 	</view>
 </view>

@@ -22,7 +22,7 @@ Page({
 	async getData() {
 		this.data.pagingApi = new Paging(QualityApi.getInspectionqualitiesList)
 		const res = await this.getMore()
-		console.log(res.data);
+		// console.log(res.data);
 		this.setData({ rectifiedList: res.data, hadMore: res.hadMore, isLoading: false })
 		// this.setData({ company_list, list: data, hadMore, isLoading: false })
 	},
@@ -46,7 +46,7 @@ Page({
 
 	handleNav(e) {
 		wx.navigateTo({
-			url: '/pages/quality-manage/rectifying/rectifying',
+			url: '/pages/quality-manage/rectifying/rectifying?id=' + e.detail.id,
 		})
 	},
 

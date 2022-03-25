@@ -1,15 +1,15 @@
 <!--pages/quality-manage/rectifying/rectifying.wxml-->
 <lu-page-container title="立即整改">
-	<lu-quality-input label="部位"  disabled value="{{currentData.i1}}" />
-	<lu-quality-input label="所属区域" disabled value="{{currentData.i2}}" />
-	<lu-quality-input label="内容描述" type="textarea" placeholder="请输入整改内容描述（最多输入140个字）" />
+	<lu-quality-input label="部位" disabled value="{{currentData.part}}" />
+	<lu-quality-input label="所属区域" disabled value="{{currentData.zone}}" />
+	<lu-quality-input label="内容描述" type="textarea" placeholder="请输入整改内容描述（最多输入140个字）" bind:valueChange="handleDescriptor" />
 	<view class="wrap">
 		<view class="item-box">
 			<view class="item-title">
 				现场照片
 			</view>
 			<view>
-				<l-image-picker size="4" bind:linchange="handleImage" />
+				<l-image-picker size="4" bind:linchange="handleImage" bind:linremove="removeImg" urls="{{urls}}" />
 			</view>
 		</view>
 	</view>
@@ -23,3 +23,4 @@
 		<l-button bind:lintap="submit" size="long">提交</l-button>
 	</view>
 </lu-page-container>
+<l-toast />

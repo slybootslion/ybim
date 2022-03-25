@@ -98,7 +98,7 @@ Page({
 		wx.lin.showToast({
 			icon: 'loading',
 			title: '提交中',
-			duration: 0,
+			duration: 9999,
 		})
 		urls = urls.map(url => {
 			if (typeof url === 'string') return url

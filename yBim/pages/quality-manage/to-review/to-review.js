@@ -46,6 +46,7 @@ Page({
 	},
 
 	handleNav(e) {
+		console.log(e)
 		wx.navigateTo({
 			url: `/pages/quality-manage/reviewing/reviewing?id=${e.target.id}`,
 		})

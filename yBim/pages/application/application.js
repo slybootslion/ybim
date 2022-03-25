@@ -121,7 +121,7 @@ Page({
 
   handleTap(e) {
     const { page, param } = e.currentTarget.dataset
-    console.log(param)
+    // console.log(param)
     if (!page) return
     const url = this.findUrl(page, param)
     if (url) wx.navigateTo({ url })

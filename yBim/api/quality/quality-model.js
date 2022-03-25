@@ -34,6 +34,14 @@ class QualityModel {
 			data
 		})
 	}
+
+	postInspectionqualitiesRectify(data) {
+		return http.request({
+			url: '/inspectionqualities/rectify',
+			method: 'post',
+			data
+		})
+	}
 }
 
 export default new QualityModel()
