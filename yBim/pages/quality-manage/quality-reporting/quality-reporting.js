@@ -38,6 +38,7 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	async onLoad(options) {
+		console.log(options)
 		this.setData({
 			nickname: (await StorageCache.getUserInfo()).user.nickname,
 			nowTime: dayjs(new Date).format('YYYY-MM-DD')
@@ -47,22 +48,22 @@ Page({
 	async getInfoData(options) {
 		const id = options.id ? options.id : '0'
 		const res = await QualityApi.getInspectionqualitiesInfo({ id })
-		// console.log(res)
+		console.log(res)
 		let data = {
 			peoples: res.users,
 		}
 		if (id !== '0') {
 			const editData = {
-				urls: res.info.inspection.pic.map(img => config.imgBaseUrl + img),
-				part: res.info.inspection.part,
-				zone: res.info.inspection.zone,
-				descriptor: res.info.inspection.descriptor,
-				grade: res.info.inspection.grade,
-				grade_name: res.info.inspection.grade_name,
-				rectify_user: res.info.inspection.rectify_user,
-				rectify_user_id: res.info.inspection.rectify_user_id,
-				rectify_time: res.info.inspection.rectify_time,
-				id: res.info.inspection.id,
+				urls: res.info[0].inspection.pic.map(img => config.imgBaseUrl + img),
+				part: res.info[0].inspection.part,
+				zone: res.info[0].inspection.zone,
+				descriptor: res.info[0].inspection.descriptor,
+				grade: res.info[0].inspection.grade,
+				grade_name: res.info[0].inspection.grade_name,
+				rectify_user: res.info[0].inspection.rectify_user,
+				rectify_user_id: res.info[0].inspection.rectify_user_id,
+				rectify_time: res.info[0].inspection.rectify_time,
+				id: res.info[0].inspection.id,
 			}
 			data = {
 				...data,

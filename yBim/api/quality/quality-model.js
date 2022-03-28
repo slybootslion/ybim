@@ -42,6 +42,14 @@ class QualityModel {
 			data
 		})
 	}
+
+	postInspectionqualitiesRecheck(data) {
+		return http.request({
+			url: '/inspectionqualities/recheck',
+			method: 'post',
+			data
+		})
+	}
 }
 
 export default new QualityModel()

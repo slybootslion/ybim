@@ -1,6 +1,104 @@
 <!--pages/quality-manage/components/rectified-detail-item/rectified-detail-item.wxml-->
-<view class="container">
+<view class="container" wx:if="{{currentData.recheck.create_time}}">
 	<view class="top">
+		<view class="tag blue">复查</view>
+		<view>{{ currentData.recheck.create_time }}</view>
+	</view>
+	<view class="content">
+		<view class="content-item">
+			<view class="label">检查结果：</view>
+			<view class="value blue">正常</view>
+		</view>
+		<view class="content-item">
+			<view class="label">内容描述：</view>
+			<view class="value blue">{{currentData.recheck.descriptor}}</view>
+		</view>
+		<view class="content-item">
+			<view class="label">现场照片：</view>
+			<l-album urls="{{currentData.recheck.pic}}" key="url"></l-album>
+		</view>
+		<view class="content-item">
+			<view class="label">检查人：</view>
+			<view class="value">{{currentData.recheck.recheck_user}}</view>
+		</view>
+		<!-- <view class="content-item">
+			<view class="label">检查人电话：</view>
+			<view class="value">{{currentData.recheck.recification_user}}</view>
+		</view>
+		<view class="content-item">
+			<view class="label">检查人公司：</view>
+			<view class="value">{{currentData.recheck.recification_user}}</view>
+		</view> -->
+		<view class="content-item">
+			<view class="label">检查时间：</view>
+			<view class="value">{{currentData.recheck.create_time}}</view>
+		</view>
+	</view>
+</view>
+<view class="container" wx:if="{{currentData.recification.create_time}}">
+	<view class="top">
+		<view class="tag orange">整改</view>
+		<view>{{ currentData.recification.create_time }}</view>
+	</view>
+	<view class="content">
+		<view class="content-item">
+			<view class="label">整改内容描述：</view>
+			<view class="value">{{currentData.recification.descriptor}}</view>
+		</view>
+		<view class="content-item">
+			<view class="label">现场照片：</view>
+			<l-album urls="{{currentData.recification.pic}}" key="url"></l-album>
+		</view>
+		<view class="content-item">
+			<view class="label">整改人：</view>
+			<view class="value">{{currentData.recification.recification_user}}</view>
+		</view>
+		<view class="content-item">
+			<view class="label">整改时间：</view>
+			<view class="value">{{currentData.recification.create_time}}</view>
+		</view>
+	</view>
+</view>
+<view class="container" wx:if="{{currentData.inspection}}">
+	<view class="top">
+		<view class="tag blue">质量上报</view>
+		<view>{{ currentData.inspection.create_time }}</view>
+	</view>
+	<view class="content">
+		<view class="content-item">
+			<view class="label">内容描述：</view>
+			<view class="value">{{currentData.inspection.descriptor}}</view>
+		</view>
+		<view class="content-item">
+			<view class="label">现场照片：</view>
+			<l-album urls="{{currentData.inspection.pic}}" key="url"></l-album>
+		</view>
+		<view class="content-item">
+			<view class="label">隐患等级：</view>
+			<view class="value {{currentData.inspection.grade === '1' ? 'blue' : currentData.inspection.grade === '2' ? 'orange' : 'red'}}">{{currentData.inspection.grade_name}}</view>
+		</view>
+		<view class="content-item">
+			<view class="label">整改责任人：</view>
+			<view class="value">{{currentData.inspection.rectify_user}}</view>
+		</view>
+		<view class="content-item">
+			<view class="label">期望整改时间：</view>
+			<view class="value">{{currentData.inspection.rectify_time}}</view>
+		</view>
+		<view class="content-item">
+			<view class="label">检查人：</view>
+			<view class="value">{{currentData.inspection.report_user}}</view>
+		</view>
+		<view class="content-item">
+			<view class="label">检查时间：</view>
+			<view class="value">{{currentData.inspection.create_time}}</view>
+		</view>
+	</view>
+</view>
+
+<!-- <view> -->
+
+<!-- <view class="top">
 		<view class="tag blue" wx:if="{{data.i1 === 1}}">质量上报</view>
 		<view class="tag orange" wx:if="{{data.i1 === 2}}">整改</view>
 		<view class="tag blue" wx:if="{{data.i1 === 3}}">复查</view>
@@ -51,5 +149,5 @@
 			<view class="label">检查时间：</view>
 			<view class="value">{{data.i9}}</view>
 		</view>
-	</view>
-</view>
+	</view> -->
+<!-- </view> -->

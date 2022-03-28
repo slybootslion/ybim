@@ -9,10 +9,6 @@ Component({
 			type: Object,
 			value: {},
 		},
-		btnText: {
-			type: String,
-			value: '立即整改'
-		},
 		isOvertime: {
 			type: Boolean,
 			value: false
@@ -42,7 +38,7 @@ Component({
 			this.triggerEvent('detailEvent', { id: this.properties.data.id, type: this.properties.data.type });
 		},
 		goRectifiedForm() {
-			this.triggerEvent('navEvent', { id: this.properties.data.id, type: this.properties.data.type });
+			this.triggerEvent('navEvent', { id: this.properties.data.id, type: this.properties.data.state });
 		},
 		del() {
 			wx.lin.showDialog({

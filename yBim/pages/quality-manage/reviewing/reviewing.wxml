@@ -1,10 +1,9 @@
 <!--pages/quality-manage/reviewing/reviewing.wxml-->
 <lu-page-container title="检查">
-	<lu-quality-input label="检查部位" disabled value="{{currentData.i1}}" />
-	<lu-quality-input label="所属区域" disabled value="{{currentData.i2}}" />
-	<lu-quality-input label="检查结果" type="select" placeholder="请选择" selectList="{{resultList}}" selectKeyStr="key"
-		selectShowStr="value" isPadding />
-	<lu-quality-input label="内容描述" type="textarea" placeholder="请输入内容描述（最多输入140个字）" />
+	<lu-quality-input label="检查部位" disabled value="{{currentData.part}}" />
+	<lu-quality-input label="所属区域" disabled value="{{currentData.zone}}" />
+	<lu-quality-input label="检查结果" type="select" placeholder="请选择" selectList="{{resultList}}" selectKeyStr="key" selectShowStr="value" isPadding bind:valueChange="handleState" />
+	<lu-quality-input label="内容描述" type="textarea" placeholder="请输入内容描述（最多输入140个字）" bind:valueChange="handleDescriptor" />
 	<view class="wrap">
 		<view class="item-box">
 			<view class="item-title">

@@ -1,7 +1,7 @@
 <!--pages/quality-manage/rectified-detial/rectified-detial.wxml-->
 <lu-page-container title="{{pageTitle}}">
 	<view class="top">
-		<view class="title">部位：{{currendData.title}}</view>
+		<view class="title">部位：{{currendData.part}}</view>
 		<view class="zone">
 			<view class="label">所属区域：</view>
 			<view class="value">{{currendData.zone}}</view>
@@ -10,7 +10,7 @@
 	<view class="container">
 		<lu-rectified-detail-item wx:for="{{detailList}}" wx:key="id" data="{{item}}" />
 	</view>
-	<view class="btn-box" wx:if="{{!hideBtn}}">
+	<view class="btn-box" wx:if="{{state !== 'accumulate'}}">
 		<l-button bind:lintap="goRectifying" size="long">{{btnText}}</l-button>
 	</view>
 </lu-page-container>

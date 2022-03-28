@@ -1,4 +1,4 @@
 <!--pages/quality-manage/overtime/overtime.wxml-->
 <lu-page-container title="超期隐患">
-	<lu-rectified-item wx:for="{{rectifiedList}}" wx:key="id" data="{{item}}" bind:navEvent="handleNav" bind:detailEvent="handleDetail" isOvertime btnText="{{item.type === 1 ? '立即整改' : '立即复查'}}" />
+	<lu-rectified-item wx:for="{{rectifiedList}}" wx:key="id" data="{{item}}" bind:navEvent="handleNav" bind:detailEvent="handleDetail" isOvertime bind:delItem="delItem"/>
 </lu-page-container>

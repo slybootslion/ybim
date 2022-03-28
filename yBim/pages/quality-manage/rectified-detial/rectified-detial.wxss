@@ -7,6 +7,9 @@
 
 .top .title {
 	margin-bottom: 10rpx;
+	overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .top .zone {
@@ -14,8 +17,16 @@
 	font-size: 24rpx;
 }
 
+.label {
+	width: 120rpx;
+}
+
 .value {
 	color: #9d9d9d;
+	overflow: hidden;
+  white-space: nowrap;
+	text-overflow: ellipsis;
+	flex: 1;
 }
 
 .btn-box {

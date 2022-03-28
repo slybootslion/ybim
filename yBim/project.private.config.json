@@ -229,8 +229,8 @@
           "name": "质量上报",
           "pathName": "pages/quality-manage/quality-reporting/quality-reporting",
           "query": "id=20",
-          "scene": null,
-          "launchMode": "default"
+          "launchMode": "default",
+          "scene": null
         },
         {
           "name": "待整改",
@@ -241,8 +241,9 @@
         {
           "name": "待整改-详情",
           "pathName": "pages/quality-manage/rectified-detial/rectified-detial",
-          "query": "id=1",
-          "scene": null
+          "query": "id=30",
+          "scene": null,
+          "launchMode": "default"
         },
         {
           "name": "立即整改",

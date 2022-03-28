@@ -1,6 +1,8 @@
 // pages/quality-manage/reviewing/reviewing.js
 import dayjs from '../../../tools/dayjs.min'
 import StorageCache from '../../../tools/storage-cache'
+import QualityApi from '../../../api/quality/quality-model'
+import { useUpload } from '../libs/hooks'
 
 Page({
 
@@ -8,27 +10,70 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		currentId: 0,
-		currentData: {
-			id: 1, 
-			i1: "康峪沟大桥现场围挡",
-			i2: "康峪沟大桥左幅第6跨向北2米",
-		},
+		inspection_id: 0,
+		currentData: {},
 		nowTime: '',
 		resultList: [
-			{ key: 1, value: '正常' },
-			{ key: 2, value: '异常' },
-		]
+			{ key: 2, value: '正常' },
+			{ key: 3, value: '异常' },
+		],
+		urls: [],
+		descriptor: '',
+		state: '',
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	async onLoad(options) {
+		console.log(options.id)
 		this.setData({
-			currentId: +options.id,
+			inspection_id: +options.id,
 			nickname: (await StorageCache.getUserInfo()).user.nickname,
 			nowTime: dayjs(new Date).format('YYYY-MM-DD HH:mm:ss'),
 		})
-	}
+		this.getDetail()
+	},
+
+	async getDetail() {
+		const res = await QualityApi.getInspectionqualitiesInfo({ id: this.data.inspection_id })
+		console.log(res)
+		this.setData({
+			currentData: res.info[0].inspection
+		})
+	},
+
+	handleImage(e) {
+		if (this.data.urls.length) {
+			this.data.urls = e.detail.all
+		} else {
+			this.data.urls = e.detail.all.map(pic => pic.url)
+		}
+	},
+
+	async submit() {
+		let { urls, descriptor, inspection_id, state } = this.data
+		if (!urls.length || !descriptor || !state) {
+			wx.lin.showToast({
+				title: '有必要信息未填写',
+				icon: 'error',
+			})
+			return false
+		}
+		const pic = await useUpload(urls)
+		const data = {
+			inspection_id, descriptor, pic, state,
+		}
+		await QualityApi.postInspectionqualitiesRecheck(data)
+		wx.navigateBack()
+		wx.lin.hideToast()
+	},
+
+	handleState(e) {
+		this.data.state = e.detail.value
+	},
+
+	handleDescriptor(e) {
+		this.data.descriptor = e.detail.value
+	},
 })

@@ -52,7 +52,7 @@ Page({
 
 	handleDetail(e) {
 		wx.navigateTo({
-			url: '/pages/quality-manage/rectified-detial/rectified-detial?id=' + e.target.id,
+			url: '/pages/quality-manage/rectified-detial/rectified-detial?id=' + e.detail.id,
 		})
 	}
 })

@@ -30,8 +30,7 @@ Page({
 
 	async getDetail() {
 		const res = await QualityApi.getInspectionqualitiesInfo({ id: this.data.inspection_id })
-		console.log(res)
-		const info = res.info.inspection
+		const info = res.info[0].inspection
 		const data = {
 			id: info.id,
 			zone: info.zone,
@@ -65,7 +64,7 @@ Page({
 			return false
 		}
 
-		const pic = useUpload(urls)
+		const pic = await useUpload(urls)
 		const data = {
 			inspection_id, descriptor, pic,
 		}

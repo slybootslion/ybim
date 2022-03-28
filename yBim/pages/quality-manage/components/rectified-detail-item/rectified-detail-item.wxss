@@ -41,12 +41,13 @@
 	margin-bottom: 10rpx;
 }
 
-.label {
+/* .label {
 	min-width: 150rpx;
-}
+} */
 
 .value {
 	color: #9d9d9d;
+	flex: 1;
 }
 
 .content .content-item .value.blue{

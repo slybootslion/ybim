@@ -30,14 +30,16 @@ Page({
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
-	onLoad (options) {
+	onLoad(options) {
+	},
+
+	onShow() {
 		this.getList()
 	},
 
 	async getList() {
 		this.data.pagingApi = new Paging(QualityApi.getInspectionqualitiesList)
 		const res = await this.getMore()
-		console.log(res);
 		this.setData({ reviewList: res.data, hadMore: res.hadMore, isLoading: false })
 	},
 
@@ -46,15 +48,14 @@ Page({
 	},
 
 	handleNav(e) {
-		console.log(e)
 		wx.navigateTo({
-			url: `/pages/quality-manage/reviewing/reviewing?id=${e.target.id}`,
+			url: `/pages/quality-manage/reviewing/reviewing?id=${e.detail.id}`,
 		})
 	},
 
 	handleDetail(e) {
 		wx.navigateTo({
-			url: `/pages/quality-manage/rectified-detial/rectified-detial?id=${e.target.id}&state=review`,
+			url: `/pages/quality-manage/rectified-detial/rectified-detial?id=${e.detail.id}&state=review`,
 		})
 	}
 })

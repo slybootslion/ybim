@@ -14,7 +14,7 @@
 				<text class="text">删除</text>
 			</div>
 		</view>
-		<view class="header-right red" wx:if="{{isOvertime}}">{{data.overtime}}</view>
+		<!-- <view class="header-right red" wx:if="{{isOvertime}}">{{data.expire_day}}</view> -->
 		<view class="header-right green" wx:if="{{isFinished}}">已完成</view>
 	</view>
 	<view class="wrap" hover-class="content-hover">
@@ -31,11 +31,15 @@
 				<view class="label">上报时间：</view>
 				<view class="value">{{data.report_time}}</view>
 			</view>
+			<view class="content-item" wx:if="{{data.expire_day}}">
+				<view class="label">超期时间：</view>
+				<view class="value">超期{{data.expire_day}}天</view>
+			</view>
 		</view>
 	</view>
 	<view class="footer" wx:if="{{data.is_rectifier || data.is_rechecker}}">
-		<l-button size="mini" bindtap="goRectifiedForm">{{btnText}}</l-button>
+		<l-button size="mini" bindtap="goRectifiedForm">{{data.state === '0'?'立即整改':'立即复查'}}</l-button>
 	</view>
 </view>
-<l-toast/>
+<l-toast />
 <l-dialog z-index="1000" />
