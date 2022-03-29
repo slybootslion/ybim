@@ -27,6 +27,8 @@ Page({
 		this.setData({
 			...data
 		})
+	},
+	onShow () {
 		this.getInfo()
 	},
 

@@ -11,7 +11,7 @@
 		</view>
 		<view class="content-item">
 			<view class="label">内容描述：</view>
-			<view class="value blue">{{currentData.recheck.descriptor}}</view>
+			<view class="value">{{currentData.recheck.descriptor}}</view>
 		</view>
 		<view class="content-item">
 			<view class="label">现场照片：</view>
