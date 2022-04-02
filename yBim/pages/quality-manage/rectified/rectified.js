@@ -1,5 +1,6 @@
 // pages/quality-manage/rectified.js
 import QualityApi from '../../../api/quality/quality-model'
+import SafetyApi from '../../../api/quality/safety-model'
 import Paging from '../../../api/paging'
 
 Page({
@@ -10,21 +11,26 @@ Page({
 	data: {
 		rectifiedList: [],
 		isLoading: true,
+		Model: null,
+		param: null,
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
-	onShow(options) {
+	onLoad(options) {
+		const { param } = options
+		const Model = param === "Safety" ? SafetyApi : QualityApi
+		this.setData({ Model, param })
+	},
+	onShow() {
 		this.getData()
 	},
 
 	async getData() {
-		this.data.pagingApi = new Paging(QualityApi.getInspectionqualitiesList)
+		this.data.pagingApi = new Paging(this.data.Model.getInspectionList)
 		const res = await this.getMore()
-		// console.log(res.data);
 		this.setData({ rectifiedList: res.data, hadMore: res.hadMore, isLoading: false })
-		// this.setData({ company_list, list: data, hadMore, isLoading: false })
 	},
 
 	async getMore() {
@@ -45,14 +51,18 @@ Page({
 	},
 
 	handleNav(e) {
+		let paramStr = `?id=${e.detail.id}`
+		if (this.data.param === 'Safety') paramStr += `&param=${this.data.param}`
 		wx.navigateTo({
-			url: '/pages/quality-manage/rectifying/rectifying?id=' + e.detail.id,
+			url: `/pages/quality-manage/rectifying/rectifying${paramStr}`,
 		})
 	},
 
 	handleDetail(e) {
+		let paramStr = `?id=${e.detail.id}`
+		if (this.data.param === 'Safety') paramStr += `&param=${this.data.param}`
 		wx.navigateTo({
-			url: '/pages/quality-manage/rectified-detial/rectified-detial?id=' + e.detail.id,
+			url: `/pages/quality-manage/rectified-detial/rectified-detial${paramStr}`,
 		})
 	}
 })

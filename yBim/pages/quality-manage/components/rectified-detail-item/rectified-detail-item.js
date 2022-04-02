@@ -27,7 +27,7 @@ Component({
 			if (this.properties.data.recheck.pic) {
 				data.recheck.pic = this.properties.data.recheck.pic.map(pic => config.imgBaseUrl + pic)
 			}
-			console.log(data)
+			// console.log(data)
 			this.setData({ currentData: data })
 		}
 	},

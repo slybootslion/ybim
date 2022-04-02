@@ -1,35 +1,35 @@
 import http from '../http'
 
-class QualityModel {
+class SafetyModel {
 	postInspectionAdd(data) {
 		return http.request({
-			url: '/inspectionqualities/add',
+			url: '/inspectionsafeties/add',
 			method: 'post',
 			data
 		})
 	}
 	getInspectionList(data) {
 		return http.request({
-			url: '/inspectionqualities/list',
+			url: '/inspectionsafeties/list',
 			data
 		})
 	}
 	getInspectionInfo(data) {
 		return http.request({
-			url: '/inspectionqualities/info',
+			url: '/inspectionsafeties/info',
 			data
 		})
 	}
 	deleteInspectionDelete(data) {
 		return http.request({
-			url: '/inspectionqualities/delete',
+			url: '/inspectionsafeties/delete',
 			method: 'post',
 			data
 		})
 	}
 	putInspectionEdit(data) {
 		return http.request({
-			url: '/inspectionqualities/edit',
+			url: '/inspectionsafeties/edit',
 			method: 'put',
 			data
 		})
@@ -37,7 +37,7 @@ class QualityModel {
 
 	postInspectionRectify(data) {
 		return http.request({
-			url: '/inspectionqualities/rectify',
+			url: '/inspectionsafeties/rectify',
 			method: 'post',
 			data
 		})
@@ -45,11 +45,11 @@ class QualityModel {
 
 	postInspectionRecheck(data) {
 		return http.request({
-			url: '/inspectionqualities/recheck',
+			url: '/inspectionsafeties/recheck',
 			method: 'post',
 			data
 		})
 	}
 }
 
-export default new QualityModel()
+export default new SafetyModel()

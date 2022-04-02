@@ -2,6 +2,7 @@
 import dayjs from '../../../tools/dayjs.min'
 import StorageCache from '../../../tools/storage-cache'
 import QualityApi from '../../../api/quality/quality-model'
+import SafetyApi from '../../../api/quality/safety-model'
 import { useUpload } from '../libs/hooks'
 
 Page({
@@ -14,22 +15,30 @@ Page({
 		currentData: {},
 		nowTime: '',
 		urls: [],
+		Model: null,
+
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	async onLoad(options) {
-		this.setData({
+		const data = {
 			inspection_id: +options.id,
 			nickname: (await StorageCache.getUserInfo()).user.nickname,
 			nowTime: dayjs(new Date).format('YYYY-MM-DD HH:mm:ss'),
-		})
+			Model: QualityApi,
+		}
+		if (options.param === 'Safety') {
+			data.param = options.param
+			data.Model = SafetyApi
+		}
+		this.setData({ ...data })
 		this.getDetail()
 	},
 
 	async getDetail() {
-		const res = await QualityApi.getInspectionqualitiesInfo({ id: this.data.inspection_id })
+		const res = await this.data.Model.getInspectionInfo({ id: this.data.inspection_id })
 		const info = res.info[0].inspection
 		const data = {
 			id: info.id,
@@ -68,7 +77,7 @@ Page({
 		const data = {
 			inspection_id, descriptor, pic,
 		}
-		await QualityApi.postInspectionqualitiesRectify(data)
+		await this.data.Model.postInspectionRectify(data)
 		wx.navigateBack()
 		wx.lin.hideToast()
 	},

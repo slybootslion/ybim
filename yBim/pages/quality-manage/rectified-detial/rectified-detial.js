@@ -19,7 +19,7 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad(options) {
-		// console.log(options)
+		console.log(options)
 		const data = {
 			state: options.state,
 			currentId: +options.id
@@ -28,7 +28,7 @@ Page({
 			...data
 		})
 	},
-	onShow () {
+	onShow() {
 		this.getInfo()
 	},
 
@@ -38,7 +38,7 @@ Page({
 		console.log(res)
 		const detailList = res.info
 		const currendData = res.info[0].inspection
-		// console.log(currendData)
+		console.log(currendData)
 		const btnText = this.data.state === "review" ? '立即复查' : '立即整改'
 		this.setData({
 			currendData,

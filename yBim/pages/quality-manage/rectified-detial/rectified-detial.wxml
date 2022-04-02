@@ -10,7 +10,7 @@
 	<view class="container">
 		<lu-rectified-detail-item wx:for="{{detailList}}" wx:key="id" data="{{item}}" />
 	</view>
-	<view class="btn-box" wx:if="{{state !== 'accumulate'}}">
+	<view class="btn-box" wx:if="{{currendData.is_rectifier === 1 || currendData.is_rechecker === 1}}">
 		<l-button bind:lintap="goRectifying" size="long">{{btnText}}</l-button>
 	</view>
 </lu-page-container>

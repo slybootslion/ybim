@@ -3,6 +3,7 @@ import dayjs from '../../../tools/dayjs.min'
 import StorageCache from '../../../tools/storage-cache'
 import UplaodApi from '../../../api/upload'
 import QualityApi from '../../../api/quality/quality-model'
+import SafetyApi from '../../../api/quality/safety-model'
 import config from '../../../config/index'
 
 Page({
@@ -16,12 +17,7 @@ Page({
 			{ key: 2, value: '严重' },
 			{ key: 3, value: '重大' },
 		],
-		peoples: [
-			// { id: 1, value: 'Responsible 1' },
-			// { id: 2, value: 'Responsible 2' },
-			// { id: 3, value: 'Responsible 3' },
-			// { id: 4, value: 'Responsible 4' },
-		],
+		peoples: [],
 		urls: [],
 		nowTime: '',
 		part: '',
@@ -31,23 +27,28 @@ Page({
 		grade_name: '',
 		rectify_user_id: '',
 		rectify_time: '',
-		id: ''
+		id: '',
+		Model: null,
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	async onLoad(options) {
-		console.log(options)
-		this.setData({
+		const { param } = options
+		const data = {
 			nickname: (await StorageCache.getUserInfo()).user.nickname,
 			nowTime: dayjs(new Date).format('YYYY-MM-DD')
+		}
+		data.Model = param === 'Safety' ? SafetyApi : QualityApi
+		this.setData({
+			...data
 		})
 		this.getInfoData(options)
 	},
 	async getInfoData(options) {
 		const id = options.id ? options.id : '0'
-		const res = await QualityApi.getInspectionqualitiesInfo({ id })
+		const res = await this.data.Model.getInspectionInfo({ id })
 		console.log(res)
 		let data = {
 			peoples: res.users,
@@ -120,9 +121,9 @@ Page({
 		}
 		if (this.data.id) {
 			data.id = this.data.id
-			await QualityApi.putInspectionqualitiesEdit(data)
+			await this.data.Model.putInspectionEdit(data)
 		} else {
-			await QualityApi.postInspectionqualitiesAdd(data)
+			await this.data.Model.postInspectionAdd(data)
 		}
 		wx.navigateBack()
 		wx.lin.hideToast()
