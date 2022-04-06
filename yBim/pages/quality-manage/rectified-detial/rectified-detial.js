@@ -1,5 +1,6 @@
 // pages/quality-manage/rectified-detial/rectified-detial.js
 import QualityApi from '../../../api/quality/quality-model'
+import SafetyApi from '../../../api/quality/safety-model'
 
 Page({
 
@@ -19,13 +20,14 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad(options) {
-		console.log(options)
+		console.log(options.state)
 		const data = {
 			state: options.state,
 			currentId: +options.id
 		}
+		const Model = options.param === "Safety" ? SafetyApi : QualityApi
 		this.setData({
-			...data
+			...data, Model, param: options.param
 		})
 	},
 	onShow() {
@@ -34,11 +36,9 @@ Page({
 
 	async getInfo() {
 		const id = this.data.currentId
-		const res = await QualityApi.getInspectionqualitiesInfo({ id })
-		console.log(res)
+		const res = await this.data.Model.getInspectionInfo({ id })
 		const detailList = res.info
 		const currendData = res.info[0].inspection
-		console.log(currendData)
 		const btnText = this.data.state === "review" ? '立即复查' : '立即整改'
 		this.setData({
 			currendData,

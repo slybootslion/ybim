@@ -9,13 +9,9 @@ Component({
 			type: Object,
 			value: {},
 		},
-		isOvertime: {
-			type: Boolean,
-			value: false
-		},
-		hideBtn: {
-			type: Boolean,
-			value: false
+		param: {
+			type: String,
+			value: ''
 		},
 		isFinished: {
 			type: Boolean,
@@ -35,10 +31,10 @@ Component({
 	 */
 	methods: {
 		toDetails() {
-			this.triggerEvent('detailEvent', { id: this.properties.data.id, type: this.properties.data.type });
+			this.triggerEvent('detailEvent', { id: this.properties.data.id });
 		},
 		goRectifiedForm() {
-			this.triggerEvent('navEvent', { id: this.properties.data.id, type: this.properties.data.state });
+			this.triggerEvent('navEvent', { id: this.properties.data.id });
 		},
 		del() {
 			wx.lin.showDialog({
@@ -58,8 +54,10 @@ Component({
 			})
 		},
 		toFormPage() {
+			let paramStr = `?id=${this.properties.data.id}`
+			if (this.properties.param === 'Safety') {paramStr += `&param=Safety`}
 			wx.navigateTo({
-				url: `/pages/quality-manage/quality-reporting/quality-reporting?id=${this.properties.data.id}`,
+				url: `/pages/quality-manage/quality-reporting/quality-reporting${paramStr}`,
 			})
 		}
 	}

@@ -2,6 +2,7 @@
 import dayjs from '../../../tools/dayjs.min'
 import StorageCache from '../../../tools/storage-cache'
 import QualityApi from '../../../api/quality/quality-model'
+import SafetyApi from '../../../api/quality/safety-model'
 import { useUpload } from '../libs/hooks'
 
 Page({
@@ -26,18 +27,19 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	async onLoad(options) {
-		console.log(options.id)
+		const { param } = options
+		const Model = param === "Safety" ? SafetyApi : QualityApi
 		this.setData({
 			inspection_id: +options.id,
 			nickname: (await StorageCache.getUserInfo()).user.nickname,
 			nowTime: dayjs(new Date).format('YYYY-MM-DD HH:mm:ss'),
+			Model, param
 		})
 		this.getDetail()
 	},
 
 	async getDetail() {
-		const res = await QualityApi.getInspectionqualitiesInfo({ id: this.data.inspection_id })
-		console.log(res)
+		const res = await this.data.Model.getInspectionInfo({ id: this.data.inspection_id })
 		this.setData({
 			currentData: res.info[0].inspection
 		})
@@ -64,7 +66,7 @@ Page({
 		const data = {
 			inspection_id, descriptor, pic, state,
 		}
-		await QualityApi.postInspectionqualitiesRecheck(data)
+		await this.data.Model.postInspectionRecheck(data)
 		wx.navigateBack()
 		wx.lin.hideToast()
 	},

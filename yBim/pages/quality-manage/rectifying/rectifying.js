@@ -6,7 +6,6 @@ import SafetyApi from '../../../api/quality/safety-model'
 import { useUpload } from '../libs/hooks'
 
 Page({
-
 	/**
 	 * 页面的初始数据
 	 */

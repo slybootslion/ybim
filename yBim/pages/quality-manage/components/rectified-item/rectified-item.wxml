@@ -14,7 +14,6 @@
 				<text class="text">删除</text>
 			</div>
 		</view>
-		<!-- <view class="header-right red" wx:if="{{isOvertime}}">{{data.expire_day}}</view> -->
 		<view class="header-right green" wx:if="{{isFinished}}">已完成</view>
 	</view>
 	<view class="wrap" hover-class="content-hover">

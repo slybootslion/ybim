@@ -36,6 +36,7 @@ Page({
 	 */
 	async onLoad(options) {
 		const { param } = options
+		console.log(options)
 		const data = {
 			nickname: (await StorageCache.getUserInfo()).user.nickname,
 			nowTime: dayjs(new Date).format('YYYY-MM-DD')

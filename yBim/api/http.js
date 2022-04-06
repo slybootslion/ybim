@@ -38,7 +38,7 @@ class Http {
       }
       // 错误码为"0"
       const { data } = res
-      if (data.code === '0') return data.data
+      if (data.code == 0) return data.data
       else this._showError(data.code)
       return false
     } else {

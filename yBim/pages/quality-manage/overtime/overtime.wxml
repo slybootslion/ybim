@@ -1,4 +1,5 @@
 <!--pages/quality-manage/overtime/overtime.wxml-->
-<lu-page-container title="超期隐患">
-	<lu-rectified-item wx:for="{{rectifiedList}}" wx:key="id" data="{{item}}" bind:navEvent="handleNav" bind:detailEvent="handleDetail" isOvertime bind:delItem="delItem"/>
+<lu-page-container title="超期隐患" bind:scrollToLower="scrollToLower">
+	<lu-rectified-item wx:for="{{rectifiedList}}" wx:key="id" data="{{item}}" param="{{param}}" bind:navEvent="handleNav" bind:detailEvent="handleDetail" isOvertime bind:delItem="delItem"/>
 </lu-page-container>
+<l-loading full-screen show="{{isLoading}}"/>

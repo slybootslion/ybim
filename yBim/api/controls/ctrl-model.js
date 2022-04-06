@@ -4,7 +4,20 @@ class CtrlModel {
   getInfo(data) {
     return http.request({
       url: '/controls/info',
-      method: 'get',
+      data
+    })
+  }
+
+  getControlsWorkinfo(data) {
+    return http.request({
+      url: '/controls/workinfo',
+      data
+    })
+  }
+
+  getControlsQualityinfo(data) {
+    return http.request({
+      url: '/controls/qualityinfo',
       data
     })
   }

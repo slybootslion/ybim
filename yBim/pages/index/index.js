@@ -14,71 +14,6 @@ const baseModelList = {
   sbgl: { title: '设备管理' },
 }
 
-// function echartsOpts(data = {}) {
-//   const colorList = [
-//     { c1: '#fccbcb', c2: '#ffe7e7' },
-//     { c1: '#d3e6fe', c2: '#ddf8ff' },
-//     { c1: '#fce0cb', c2: '#fdf4e6' },
-//   ]
-//   return {
-//     grid: {
-//       left: '0',
-//       right: '15%',
-//       bottom: '0',
-//       top: '20%',
-//       containLabel: true
-//     },
-//     yAxis: {
-//       type: 'category',
-//       splitLine: {
-//         show: false,
-//       },
-//       axisTick: {
-//         show: false,
-//       },
-//       axisLine: {
-//         show: false,
-//       },
-//       axisLabel: {
-//         textStyle: {
-//           color: '#333',
-//         },
-//       },
-//       inverse: true,
-//       data: data.map(item => item.key + ':'),
-//     },
-//     xAxis: {
-//       show: false,
-//       type: 'value'
-//     },
-//     series: [
-//       {
-//         data: [...data.map(item => item.value)],
-//         type: 'bar',
-//         itemStyle: {
-//           normal: {
-//             color(params) {
-//               return new echarts.graphic.LinearGradient(0, 1, 0, 0, [
-//                 { offset: 0, color: colorList[params.dataIndex].c1 },
-//                 { offset: 1, color: colorList[params.dataIndex].c2 },
-//               ])
-//             },
-//             label: {
-//               show: true,
-//               position: 'right',
-//               valueAnimation: true,
-//               textStyle: {
-//                 color: '#333',
-//                 fontSize: 12,
-//               }
-//             }
-//           }
-//         }
-//       }
-//     ]
-//   }
-// }
-
 let eOpts = {}
 
 function initChart(canvas, width, height, dpr) {
@@ -146,38 +81,32 @@ Page({
     const res = await BaseDataApi.getCompany()
     return res.data
   },
-  // renderEcharts() {
-  //   const content = this.data.modelList.jdgl.content
-  //   eOpts = echartsOpts(content)
-  //   this.setData({
-  //     ec: {
-  //       onInit: initChart
-  //     }
-  //   })
-  // },
   async getInfo(builing_id) {
+    const res1 = await CtrlApi.getInfo({ builing_id })
+    const res2 = await CtrlApi.getControlsWorkinfo({ builing_id })
+    const res3 = await CtrlApi.getControlsQualityinfo({ builing_id })
+    console.log(res2)
     const infoList = {
       info1: [
-        { key: '在册人数', value: '43人' },
-        { key: '进场人员', value: '51人' },
-        { key: '今日出勤', value: '35人' },
+        { key: '在册人数', value: `${res1.data.zc_num}人` },
+        { key: '进场人员', value: `${res1.data.inspace_num}人` },
+        { key: '今日出勤', value: `${res1.data.dk_num}人` },
       ],
       info2: [
-        { key: '未完成任务', value: 15 },
-        { key: '已完成任务', value: 34 },
-        { key: '逾期任务', value: 2 },
+        { key: '未完成任务', value: res2.work_info[0].undone_plan },
+        { key: '已完成任务', value: res2.work_info[1].done_plan },
+        { key: '逾期任务', value: res2.work_info[2].overdue_plan },
       ],
       info3: [
-        { key: '累计检查', value: 56 },
-        { key: '待复查', value: 2 },
-        { key: '待整改', value: 5 },
-        { key: '超期隐患', value: 1 },
+        { key: '累计检查', value: res3.quality_info.allc },
+        { key: '待复查', value: res3.quality_info.recheckc },
+        { key: '待整改', value: res3.quality_info.rectifyc },
+        { key: '超期隐患', value: res3.quality_info.expirec },
       ]
     }
     const { modelList } = this.data
     modelList.rygl.content = infoList.info1
     modelList.jdgl.content = infoList.info2
-    // this.renderEcharts()
     modelList.zlgl.content = infoList.info3
   },
   async getVideos(builing_id) {

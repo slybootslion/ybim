@@ -39,8 +39,8 @@ Page({
 
 	async scrollToLower() {
 		if (!this.data.hadMore) return
-		const { data } = await this.getMore()
-		this.setData({ rectifiedList: data })
+		const {data, hadMore} = await this.getMore()
+		this.setData({ rectifiedList: this.data.rectifiedList.concat(data), hadMore })
 		wx.lin.hideToast()
 	},
 

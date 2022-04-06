@@ -1,4 +1,5 @@
 <!--pages/quality-manage/to-review/to-review.wxml-->
-<lu-page-container title="待复查">
+<lu-page-container title="待复查" bind:scrollToLower="scrollToLower">
 	<lu-rectified-item wx:for="{{reviewList}}" wx:key="id" data="{{item}}" btnText="立即复查" bind:navEvent="handleNav" bind:detailEvent="handleDetail" />
 </lu-page-container>
+<l-loading full-screen show="{{isLoading}}"/>
