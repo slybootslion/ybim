@@ -31,6 +31,7 @@ Page({
 	async getList() {
 		this.data.pagingApi = new Paging(this.data.Model.getInspectionList)
 		const res = await this.getMore()
+		console.log(res)
 		this.setData({ reviewList: res.data, hadMore: res.hadMore, isLoading: false })
 	},
 
@@ -40,8 +41,9 @@ Page({
 
 	async scrollToLower() {
 		if (!this.data.hadMore) return
-		const {data, hadMore} = await this.getMore()
-		this.setData({ reviewList: this.data.reviewList.concat(data), hadMore })
+		const res = await this.getMore()
+		console.log(res)
+		this.setData({ reviewList: this.data.reviewList.concat(res.data), hadMore:res.hadMore })
 		wx.lin.hideToast()
 	},
 

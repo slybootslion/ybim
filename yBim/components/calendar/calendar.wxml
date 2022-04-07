@@ -1,9 +1,9 @@
 <!--components/calendar/index.wxml-->
 <wxs module="rangeStyle">
-var handle = function(day, dateRange) {
-  if (dateRange.indexOf(day.date) !== -1) return 'range-pick';
-};
-module.exports.handle = handle;
+	var handle = function (day, dateRange) {
+		if (dateRange.indexOf(day.date) !== -1) return 'range-pick';
+	};
+	module.exports.handle = handle;
 </wxs>
 <view class="container">
 	<view class="calendar">
@@ -34,18 +34,14 @@ module.exports.handle = handle;
 			<view class="day">五</view>
 			<view class="day weeken">六</view>
 			<view class="day weeken">日</view>
-			<view 
-            class="day {{item.position}} {{item.week === 6 || item.week === 7 ? 'weeken' : ''}} {{selectedDate === item.date ? 'selected-date' : ''}} {{today === item.date && showToday ? 'today' : ''}} {{item.inRange ? 'inrange' : ''}} {{rangeStyle.handle(item, dateRange)}}"
-            wx:for="{{allDays}}" 
-            wx:key="item" 
-            bindtap="onPickDay" 
-            data-day="{{item}}">
+			<view class="day {{item.position}} {{item.week === 6 || item.week === 7 ? 'weeken' : ''}} {{selectedDate === item.date ? 'selected-date' : ''}} {{today === item.date && showToday ? 'today' : ''}} {{item.inRange ? 'inrange' : ''}} {{rangeStyle.handle(item, dateRange)}}" wx:for="{{allDays}}" wx:key="item" bindtap="onPickDay" data-day="{{item}}">
 				{{item.dateNumber}}
 			</view>
 		</view>
 		<view class="select-date">{{selectedDate}}</view>
-		<view class="select-date"><l-button bindtap="submit">确定</l-button></view>
-		
+		<view class="select-date">
+			<l-button bindtap="submit">确定</l-button>
+		</view>
+
 	</view>
 </view>
-

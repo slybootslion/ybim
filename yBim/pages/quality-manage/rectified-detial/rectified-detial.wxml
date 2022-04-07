@@ -1,16 +1,16 @@
 <!--pages/quality-manage/rectified-detial/rectified-detial.wxml-->
 <lu-page-container title="{{pageTitle}}">
 	<view class="top">
-		<view class="title">部位：{{currendData.part}}</view>
+		<view class="title">部位：{{currentData.part}}</view>
 		<view class="zone">
 			<view class="label">所属区域：</view>
-			<view class="value">{{currendData.zone}}</view>
+			<view class="value">{{currentData.zone}}</view>
 		</view>
 	</view>
 	<view class="container">
 		<lu-rectified-detail-item wx:for="{{detailList}}" wx:key="id" data="{{item}}" />
 	</view>
-	<view class="btn-box" wx:if="{{currendData.is_rectifier === 1 || currendData.is_rechecker === 1}}">
+	<view class="btn-box" wx:if="{{(currentData.is_rectifier === 1 || currentData.is_rechecker === 1) && showSubmitBtn }}">
 		<l-button bind:lintap="goRectifying" size="long">{{btnText}}</l-button>
 	</view>
 </lu-page-container>

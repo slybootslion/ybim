@@ -1,6 +1,7 @@
 // pages/quality-manage/rectified-detial/rectified-detial.js
 import QualityApi from '../../../api/quality/quality-model'
 import SafetyApi from '../../../api/quality/safety-model'
+import { useMitt } from '../libs/hooks'
 
 Page({
 
@@ -8,19 +9,19 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		currendData: {},
+		currentData: {},
 		detailList: [],
 		currentId: 0,
 		state: undefined,
 		pageTitle: '待整改',
 		btnText: '立即复查',
+		showSubmitBtn: true,
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad(options) {
-		console.log(options.state)
 		const data = {
 			state: options.state,
 			currentId: +options.id
@@ -32,33 +33,48 @@ Page({
 	},
 	onShow() {
 		this.getInfo()
+		const m = useMitt()
+		m.on('isBackFormPage', () => {
+			console.log('---')
+			this.setData({ showSubmitBtn: false })
+		})
 	},
 
 	async getInfo() {
 		const id = this.data.currentId
 		const res = await this.data.Model.getInspectionInfo({ id })
+		console.log(res)
 		const detailList = res.info
-		const currendData = res.info[0].inspection
-		const btnText = this.data.state === "review" ? '立即复查' : '立即整改'
+		const currentData = res.info[0].inspection
+		let btnText = '立即复查'
+		if (currentData.state === '0') {
+			btnText = '立即整改'
+		}
+		// if (Array.isArray(res.info[0].recification) &&
+		// 	res.info[0].recification.length == 0) btnText = '立即整改'
 		this.setData({
-			currendData,
+			currentData,
 			detailList,
 			btnText
 		})
 	},
 
 	goRectifying() {
-		const { state, currentId } = this.data
-		console.log(state)
-		if (state === 'review') {
+		const { btnText, currentId, param } = this.data
+		let paramStr = `?id=${currentId}`
+		if (param === 'Safety') {
+			paramStr += `&param=Safety`
+		}
+		if (btnText === '立即复查') {
 			// 复查
 			wx.navigateTo({
-				url: `/pages/quality-manage/reviewing/reviewing?id=${currentId}`,
+				url: `/pages/quality-manage/reviewing/reviewing${paramStr}`,
 			})
-		} else {
+		}
+		if (btnText === '立即整改') {
 			// 整改
 			wx.navigateTo({
-				url: `/pages/quality-manage/rectifying/rectifying?id=${currentId}`,
+				url: `/pages/quality-manage/rectifying/rectifying${paramStr}`,
 			})
 		}
 	}

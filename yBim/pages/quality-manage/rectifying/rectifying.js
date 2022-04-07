@@ -3,7 +3,7 @@ import dayjs from '../../../tools/dayjs.min'
 import StorageCache from '../../../tools/storage-cache'
 import QualityApi from '../../../api/quality/quality-model'
 import SafetyApi from '../../../api/quality/safety-model'
-import { useUpload } from '../libs/hooks'
+import { useMitt, useUpload } from '../libs/hooks'
 
 Page({
 	/**
@@ -15,7 +15,6 @@ Page({
 		nowTime: '',
 		urls: [],
 		Model: null,
-
 	},
 
 	/**
@@ -28,6 +27,7 @@ Page({
 			nowTime: dayjs(new Date).format('YYYY-MM-DD HH:mm:ss'),
 			Model: QualityApi,
 		}
+		console.log(options)
 		if (options.param === 'Safety') {
 			data.param = options.param
 			data.Model = SafetyApi
@@ -78,6 +78,7 @@ Page({
 		}
 		await this.data.Model.postInspectionRectify(data)
 		wx.navigateBack()
+		useMitt().emit('isBackFormPage')
 		wx.lin.hideToast()
 	},
 

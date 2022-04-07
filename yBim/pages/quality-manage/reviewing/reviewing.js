@@ -3,7 +3,7 @@ import dayjs from '../../../tools/dayjs.min'
 import StorageCache from '../../../tools/storage-cache'
 import QualityApi from '../../../api/quality/quality-model'
 import SafetyApi from '../../../api/quality/safety-model'
-import { useUpload } from '../libs/hooks'
+import { useUpload, useMitt } from '../libs/hooks'
 
 Page({
 
@@ -28,6 +28,7 @@ Page({
 	 */
 	async onLoad(options) {
 		const { param } = options
+		console.log(options)
 		const Model = param === "Safety" ? SafetyApi : QualityApi
 		this.setData({
 			inspection_id: +options.id,
@@ -68,6 +69,7 @@ Page({
 		}
 		await this.data.Model.postInspectionRecheck(data)
 		wx.navigateBack()
+		useMitt().emit('isBackFormPage')
 		wx.lin.hideToast()
 	},
 

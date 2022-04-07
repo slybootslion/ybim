@@ -54,7 +54,7 @@ Page({
 		let paramStr = `?id=${e.detail.id}`
 		if (this.data.param === 'Safety') paramStr += `&param=${this.data.param}`
 		wx.navigateTo({
-			url: `/pages/quality-manage/rectifying/rectifying?id=${e.detail.id}`,
+			url: `/pages/quality-manage/rectifying/rectifying${paramStr}`,
 		})
 	},
 
