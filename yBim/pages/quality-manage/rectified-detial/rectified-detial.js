@@ -30,20 +30,16 @@ Page({
 		this.setData({
 			...data, Model, param: options.param
 		})
+		useMitt().on('isBackFormPage', () => this.setData({ showSubmitBtn: false }))
 	},
 	onShow() {
 		this.getInfo()
-		const m = useMitt()
-		m.on('isBackFormPage', () => {
-			console.log('---')
-			this.setData({ showSubmitBtn: false })
-		})
 	},
 
 	async getInfo() {
 		const id = this.data.currentId
 		const res = await this.data.Model.getInspectionInfo({ id })
-		console.log(res)
+		// console.log(res)
 		const detailList = res.info
 		const currentData = res.info[0].inspection
 		let btnText = '立即复查'

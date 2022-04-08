@@ -29,7 +29,7 @@ Page({
 	async getData() {
 		this.data.pagingApi = new Paging(this.data.Model.getInspectionList)
 		const res = await this.getMore()
-		console.log(res)
+		// console.log(res)
 		this.setData({ rectifiedList: res.data, hadMore: res.hadMore, isLoading: false })
 	},
 

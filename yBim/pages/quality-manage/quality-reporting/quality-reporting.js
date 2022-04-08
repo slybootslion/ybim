@@ -36,7 +36,7 @@ Page({
 	 */
 	async onLoad(options) {
 		const { param } = options
-		console.log(options)
+		// console.log(options)
 		const data = {
 			nickname: (await StorageCache.getUserInfo()).user.nickname,
 			nowTime: dayjs(new Date).format('YYYY-MM-DD')
@@ -50,9 +50,11 @@ Page({
 	async getInfoData(options) {
 		const id = options.id ? options.id : '0'
 		const res = await this.data.Model.getInspectionInfo({ id })
-		console.log(res)
+		// console.log(res)
+		const userId = (await StorageCache.getUserInfo()).user.id
+		const peoples = res.users.filter(user => user.id !== userId)
 		let data = {
-			peoples: res.users,
+			peoples
 		}
 		if (id !== '0') {
 			const editData = {
