@@ -42,7 +42,7 @@ layui.define(['LuBodyContentTemplate'], function (exports) {
       if (!hash) {
         prefix = modelType
         data = this.handleFilePathPrefix(await $lulib.ajax(dataPath[prefix], 'json'), prefix)
-        $lulib.pagePushHash(data[0].href)
+        $lulib.pagePushHash(data[0].children[0].href)
         return false
       }
       prefix = this.getPrefix(hash)

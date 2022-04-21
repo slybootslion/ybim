@@ -26,8 +26,8 @@ const appConfig = {
   sideBar: {
     dataPath: {
       bim: '/htmls/data/bim-sideBarList.json',
-      zhgd: '/htmls/data/zhgd-sideBarList.json',
-      user: '/htmls/data/user-sideBarList.json',
+      // zhgd: '/htmls/data/zhgd-sideBarList.json',
+      // user: '/htmls/data/user-sideBarList.json',
     },
     shrink: true, // 手风琴模式
   },
