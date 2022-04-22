@@ -18,15 +18,17 @@ layui.define([], function (exports) {
     static selectDateDoubleTemplate(opts = {}) {
       const startInputId = opts.startInputId || 'dateStartInput'
       const endInputId = opts.endInputId || 'dateEndInput'
-      const endName = opts.endName || 'eDate'
       const startName = opts.startName || 'sDate'
+      const endName = opts.endName || 'eDate'
+      const startLabel = opts.startLabel || '开始时间'
+      const endLabel = opts.endLabel || '结束时间'
       const endEleStr = `<input type='text' name='${endName}' autocomplete='off' class='layui-input' id='${endInputId}' disabled placeholder='请选择结束时间'>`
 
       const dateEndBox = $lulib.randomStr() + 'dateEndBox'
 
       const html = `
         <div class='layui-inline'>
-          <label class='layui-form-label'>开始时间：</label>
+          <label class='layui-form-label'>${startLabel}：</label>
           <div class='layui-input-inline inner-input-w155'>
             <input type='text'
                    name='${startName}'
@@ -37,7 +39,7 @@ layui.define([], function (exports) {
           </div>
         </div>
         <div class='layui-inline'>
-          <label class='layui-form-label'>结束时间：</label>
+          <label class='layui-form-label'>${endLabel}：</label>
           <div class='layui-input-inline inner-input-w155 ${dateEndBox}'>
             ${endEleStr}
           </div>
