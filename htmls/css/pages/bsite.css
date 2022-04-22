@@ -1177,6 +1177,7 @@
   width: 230px;
 }
 
+#contractUploadForm,
 #rosterChangeForm,
 #teamChangeInTime,
 #teamAddForm,
@@ -1186,6 +1187,7 @@
   overflow: inherit;
   background: transparent;
 }
+#contractUploadForm .add-account-box,
 #rosterChangeForm .add-account-box,
 #teamChangeInTime .add-account-box,
 #teamAddForm .add-account-box,
@@ -1195,6 +1197,7 @@
   display: flex;
   padding: 0 60px;
 }
+#contractUploadForm .add-account-box .box-item,
 #rosterChangeForm .add-account-box .box-item,
 #teamChangeInTime .add-account-box .box-item,
 #teamAddForm .add-account-box .box-item,
@@ -1204,6 +1207,7 @@
   flex: 1;
   justify-content: center;
 }
+#contractUploadForm .w335,
 #rosterChangeForm .w335,
 #teamChangeInTime .w335,
 #teamAddForm .w335,
@@ -1212,6 +1216,7 @@
 #renderRecordWorkOrderForm .w335 {
   width: 335px;
 }
+#contractUploadForm .layui-inline,
 #rosterChangeForm .layui-inline,
 #teamChangeInTime .layui-inline,
 #teamAddForm .layui-inline,
@@ -1222,6 +1227,7 @@
   box-sizing: border-box;
   justify-content: flex-start;
 }
+#contractUploadForm .btn-box,
 #rosterChangeForm .btn-box,
 #teamChangeInTime .btn-box,
 #teamAddForm .btn-box,

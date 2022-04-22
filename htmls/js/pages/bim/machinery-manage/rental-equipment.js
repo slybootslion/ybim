@@ -27,7 +27,6 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
         editData.t8 = data.editData.t6
         editData.t9 = data.editData.t7
       }
-
       const s1 = luUtilsTemplate.renderSelectOptions(sel1, editData.t4)
       const s2 = luUtilsTemplate.renderSelectOptions(sel2, editData.t7)
       const s3 = luUtilsTemplate.renderSelectOptions(sel3, editData.t9)
