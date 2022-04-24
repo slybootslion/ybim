@@ -1,5 +1,4 @@
 layui.use(['LuCommonTemplate', 'LuLayer'], function () {
-  const $ = layui.$
   const form = layui.form
   const laydate = layui.laydate
 
