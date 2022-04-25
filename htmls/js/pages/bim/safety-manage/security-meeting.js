@@ -26,7 +26,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
         <form class='layui-form layer-form layer-form-flex-colm team-add-form' action=''>
           <div class='layui-inline'>
             <label class='layui-form-label required'>
-              <span>培训名称：</span>
+              <span>会议名称：</span>
             </label>
             <div class='layui-input-inline'>
               <input type='text' 
@@ -39,7 +39,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
           </div>
           <div class='layui-inline'>
             <label class='layui-form-label required'>
-              <span>培训地点：</span>
+              <span>会议地点：</span>
             </label>
             <div class='layui-input-inline'>
               <input type='text' 
@@ -65,7 +65,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
           </div>
           <div class='layui-inline'>
             <label class='layui-form-label required'>
-              <span>培训日期：</span>
+              <span>会议日期：</span>
             </label>
             <div class='layui-input-inline'>
               <input type='text'
@@ -111,17 +111,17 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
 
   function innerHeaderRender () {
     luInnerHeader = new LuInnerHeader({
-      title: '教育培训',
-      rightHtml: [{ txt: '新增培训' }],
+      title: '安全会议',
+      rightHtml: [{ txt: '新增会议' }],
     })
   }
 
   function renderSearchForm () {
     new LuSearchForm(
       [
-        { label: '教育名称', type: 'text', name: 's1' },
-        { label: '培训时间', type: 'date-d' },
-        { label: '培训地点', type: 'text', name: 's2' },
+        { label: '会议名称', type: 'text', name: 's1' },
+        { label: '会议时间', type: 'date-d' },
+        { label: '会议地点', type: 'text', name: 's2' },
       ],
       {
         submit (data) {
@@ -137,11 +137,11 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
       cols: [
         $lulib.tableSetCenter([
           { field: 'id', title: '序号', width: 60 },
-          { field: 't1', title: '时间', minWidth: 160, align: 'center' },
-          { field: 't2', title: '培训名称', minWidth: 400, align: 'center' },
-          { field: 't3', title: '培训地点', minWidth: 180, align: 'center' },
+          { field: 't1', title: '会议时间', minWidth: 160, align: 'center' },
+          { field: 't2', title: '会议名称', minWidth: 400, align: 'center' },
+          { field: 't3', title: '会议地点', minWidth: 180, align: 'center' },
           { field: 't4', title: '组织部门', minWidth: 160, align: 'center' },
-          { field: 't5', title: '主讲人', width: 150, align: 'center' },
+          { field: 't5', title: '主持人', width: 150, align: 'center' },
         ]),
       ],
       ctrlData: [
