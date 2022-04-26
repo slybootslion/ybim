@@ -100,7 +100,7 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate'], function () {
           { field: 'id', title: '序号', width: 60 },
           { field: 't1', title: '检查部位', minWidth: 180 },
           { field: 't2', title: '所属区域', minWidth: 180 },
-          { field: 't3', title: '养护负责人', width: 100 },
+          { field: 't3', title: '检查人', width: 100 },
           { field: 't4', title: '整改责任人', width: 100 },
           { field: 't5', title: '问题描述', minWidth: 360 },
           { title: '等级', width: 80, templet: templet1 },
