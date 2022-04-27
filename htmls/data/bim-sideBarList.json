@@ -359,6 +359,18 @@
             "href": "safety-manage/training"
           },
           {
+            "id": "5-4-1",
+            "title": "教育培训",
+            "href": "safety-manage/training-content-form",
+            "hide": true
+          },
+          {
+            "id": "5-4-1",
+            "title": "教育培训",
+            "href": "safety-manage/training-content-info",
+            "hide": true
+          },
+          {
             "id": "5-4-2",
             "title": "安全会议",
             "href": "safety-manage/security-meeting"

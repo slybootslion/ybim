@@ -1407,10 +1407,10 @@
   padding: 20px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 .equipment-ledger .content-inner .content-body.content-form .layui-form-item {
-  width: 30%;
+  width: 33.33%;
 }
 .equipment-ledger .content-inner .content-body.content-form .layui-form-item.textarea-box {
   width: 100%;

@@ -1438,10 +1438,10 @@
         padding: 20px;
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: flex-start;
 
         .layui-form-item {
-          width: 30%;
+          width: 33.33%;
 
           &.textarea-box {
             width: 100%;

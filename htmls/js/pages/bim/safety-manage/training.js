@@ -133,6 +133,21 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
 
   async function renderTable () {
     const tableData = await $lulib.getMockData('/htmls/mock/bjm/safetyTrainingTabelData.json', 12, '', false)
+
+    const linkTemplate = `
+      <span>
+        <a href="javascript:void(0)" class="table-tool-link" lay-event="edit" title="编辑">
+          <span class="iconfont icon-bianji"></span>
+        </a>
+        <a href="javascript:void(0)" class="table-tool-link" lay-event="del" title="删除">
+          <span class="iconfont icon-shanchu1"></span>
+        </a>
+        <a href="javascript:void(0)" class="table-tool-link" lay-event="{{d.state === 1 ? 'm1' : 'm2'}}" title="{{d.state === 1 ? '添加' : '详情'}}">
+          <span class="iconfont {{d.state === 1 ? 'icon-xinzeng' : 'icon-chakanxiangqing'}}"></span>
+        </a>
+      </span>      
+    `
+
     const options = {
       cols: [
         $lulib.tableSetCenter([
@@ -142,13 +157,8 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
           { field: 't3', title: '培训地点', minWidth: 180, align: 'center' },
           { field: 't4', title: '组织部门', minWidth: 160, align: 'center' },
           { field: 't5', title: '主讲人', width: 150, align: 'center' },
+          { title: '操作', templet: linkTemplate, width: 120, align: 'center' },
         ]),
-      ],
-      ctrlData: [
-        { eventStr: 'edit', iconStr: 'icon-bianji', title: '编辑' },
-        { eventStr: 'del', iconStr: 'icon-shanchu1', title: '删除' },
-        { eventStr: 'm1', iconStr: 'icon-chakanxiangqing', title: '详情' },
-        { eventStr: 'm2', iconStr: 'icon-xinzeng', title: '添加' },
       ],
       methods: {
         edit: formShow,
@@ -158,6 +168,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
       },
     }
     luTable = new LuTable(tableData, options)
+    luTable.tableOn() // 订制table cell，需手动调用bind event。
   }
 
   function del (_, obj) {
@@ -165,11 +176,11 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
   }
 
   function m1 (data) {
-    console.log(data)
+    $lulib.pagePushHash(`bim/safety-manage/training-content-form?id=${data.id}`)
   }
 
   function m2 (data) {
-    console.log(data)
+    $lulib.pagePushHash(`bim/safety-manage/training-content-info?id=${data.id}`)
   }
 
   const formShow = editData => {

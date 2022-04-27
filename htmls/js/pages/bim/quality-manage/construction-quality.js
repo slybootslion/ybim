@@ -5,10 +5,6 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate'], function () {
   const LuSearchForm = layui.LuSearchForm
   const LuTable = layui.LuTable
 
-  class PageTemplate {}
-
-  const pt = new PageTemplate()
-
   let luInnerHeader, luTable
   !(() => {
     new LuInnerHeader({ title: '运营期养护' })
