@@ -1,9 +1,7 @@
 layui.use(['LuCommonTemplate', 'LuUtilsTemplate'], function () {
   const $ = layui.$
-  const form = layui.form
 
   const LuInnerHeader = layui.LuInnerHeader
-  const LuUpload = layui.LuUpload
 
   let luInnerHeader, params, luUpload
 
@@ -47,74 +45,49 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate'], function () {
                     </div>`
     }
 
-    bottomTemplate () {
+    bottomTemplate (data) {
       return `
-            <div class='content-head'>
-              <span>培训内容</span>
-            </div>
-            <form class='layui-form layer-form layer-form-flex-colm team-add-form' action=''>
+              <div class='content-head'>
+                <span>基本信息</span>
+              </div>
               <div class='content-body content-form'>
                 <div class='layui-form-item'>
-                  <label class='layui-form-label required'><span>学时：</span></label>
+                  <label class='layui-form-label'><span>学时：</span></label>
                   <div class='layui-input-block'>
-                    <input name='f1' 
-                           placeholder='请输入' 
-                           autocomplete='off'
-                           lay-verify='required'
-                           class='layui-input'>
+                    <span class='info'>${data.i6}</span>
                   </div>
                 </div>
                 <div class='layui-form-item'>
-                  <label class='layui-form-label required'><span>记录人：</span></label>
+                  <label class='layui-form-label'><span>记录人：</span></label>
                   <div class='layui-input-block'>
-                    <input name='f2' 
-                           placeholder='请输入'
-                           lay-verify='required'
-                           autocomplete='off'
-                           class='layui-input'>
+                    <span class='info'>${data.i7}</span>
                   </div>
                 </div>
                 <div class='layui-form-item'>
-                  <label class='layui-form-label required'><span>参加人员：</span></label>
+                  <label class='layui-form-label'><span>参加人员：</span></label>
                   <div class='layui-input-block'>
-                    <input name='f3' 
-                           placeholder='请输入'
-                           lay-verify='required' 
-                           autocomplete='off'
-                           class='layui-input'>
+                    <span class='info'>${data.i8}</span>
                   </div>
                 </div>
                 <div class="layui-form-item">
-                  <label class='layui-form-label required'><span>培训内容：</span></label>
+                  <label class='layui-form-label'><span>培训内容：</span></label>
                   <div class='layui-input-block'>
-                    <textarea name='f4'
-                              lay-verify='required'
-                              placeholder='请输入200字以内的描述'
-                              class='layui-textarea'></textarea>
+                    <span class='info'>${data.i9}</span>
                   </div>
                 </div>
                 <div class='layui-form-item'>
-                  <label class='layui-form-label required'><span>签到资料：</span></label>
-                  <div class='add-records-upload-box'>
-                    <div class='file-box' id='fileBox'></div>
-                    <div class='upload-file-placeholder'></div>
+                  <label class='layui-form-label'><span>签到资料：</span></label>
+                  <div class='layui-input-block'>
+                    <a href="javascript:void(0)"  download href="${data.file}">${data.file}</a>
                   </div>
                 </div>
               </div>
-              <div class='btn-content'>
-                <button lay-submit
-                        lay-filter='submit'
-                        class='layui-btn submit'>
-                        保存
-                </button>
-              </div>
-            </form>
 `
     }
   }
 
   const pt = new PageTemplate()
-  !(async () => {
+  ;(async () => {
     initParams()
     luInnerHeader = new LuInnerHeader({
       title: '教育培训',
@@ -130,38 +103,19 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate'], function () {
   }
 
   function renderBodyForm () {
-    // mock
     const data = {
       i1: 'S107关中环线智慧公交候车亭施工项目职工上岗安全教育',
       i2: 'A标段项目部会议室',
       i3: '项目部安全科',
       i4: '2021-12-15',
       i5: '王晶',
+      i6: "2021-12-15",
+      i7: "王李",
+      i8: "王丽 李钱 周四 赵前进",
+      i9: "请输入200字以内的描述培训内容描述，培训内容培训内容，培训内容培训内容培训内容培训内容，培训内容培训内容培训内容培训内容培训内容培训内容，培训内容培训内容培训内容培训内容培训内容培训内容，培训内容培训内容培训内容培训内容，培训内容培训内容培训内容培训内容，培训内容培训内容培训内容培训内容。",
+      file: '签到资料.jpg'
     }
     $(".top.content-inner").html(pt.topTemplate(data))
-    $(".bottom-form.content-inner").html(pt.bottomTemplate())
-
-    const opts = {
-      el: '#fileBox',
-      elFile: '.upload-file-placeholder',
-      label: '上传',
-      limit: 1,
-      success (files) {
-        for (let i = 0; i < files.length; i++) {
-          const file = files[i]
-          // mock
-          setTimeout(() => luUpload.clearFin(file), $lulib.randomInt(10, 3) * 750)
-        }
-      },
-    }
-    luUpload = new LuUpload(opts)
+    $(".bottom-form.content-inner").html(pt.bottomTemplate(data))
   }
-
-  form.on('submit(submit)', function (data) {
-    if (luUpload.files.length < 1) {
-      layer.msg('文件未上传')
-      return false
-    }
-    return false
-  })
 })

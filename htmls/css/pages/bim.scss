@@ -1392,12 +1392,26 @@
         &.content-form {
           .layui-form-item {
             width: 80%;
+            margin-bottom: 10px;
 
             &.select-w90 {
               .layui-input.layui-unselect {
                 width: 90%;
               }
             }
+          }
+        }
+      }
+
+      &.info-bottom {
+        .layui-form-item {
+          margin-bottom: 0;
+
+          .layui-form-label {
+            padding-top: 0;
+          }
+          .layui-input-block {
+            min-height: 0;
           }
         }
       }

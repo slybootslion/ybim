@@ -1373,9 +1373,19 @@
 }
 .equipment-ledger .content-inner.bottom-form .content-body.content-form .layui-form-item {
   width: 80%;
+  margin-bottom: 10px;
 }
 .equipment-ledger .content-inner.bottom-form .content-body.content-form .layui-form-item.select-w90 .layui-input.layui-unselect {
   width: 90%;
+}
+.equipment-ledger .content-inner.bottom-form.info-bottom .layui-form-item {
+  margin-bottom: 0;
+}
+.equipment-ledger .content-inner.bottom-form.info-bottom .layui-form-item .layui-form-label {
+  padding-top: 0;
+}
+.equipment-ledger .content-inner.bottom-form.info-bottom .layui-form-item .layui-input-block {
+  min-height: 0;
 }
 .equipment-ledger .content-inner .top-header {
   text-align: center;
