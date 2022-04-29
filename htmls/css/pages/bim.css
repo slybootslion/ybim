@@ -1387,6 +1387,9 @@
 .equipment-ledger .content-inner.bottom-form.info-bottom .layui-form-item .layui-input-block {
   min-height: 0;
 }
+.equipment-ledger .content-inner.info-top .layui-form-item {
+  margin-bottom: 0;
+}
 .equipment-ledger .content-inner .top-header {
   text-align: center;
   margin-bottom: 20px;

@@ -7,19 +7,19 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate'], function () {
 
   class PageTemplate {
     topTemplate (data) {
-      return `<h3 class='top-header'>培训详细</h3>
+      return `<h3 class='top-header'>会议详细</h3>
                     <div class='content-head'>
                       <span>基本信息</span>
                     </div>
                     <div class='content-body content-form'>
                       <div class='layui-form-item'>
-                        <label class='layui-form-label'>培训名称：</label>
+                        <label class='layui-form-label'>会议名称：</label>
                         <div class='layui-input-block'>
                           <span class='info'>${data.i1}</span>
                         </div>
                       </div>
                       <div class='layui-form-item'>
-                        <label class='layui-form-label'>培训地点：</label>
+                        <label class='layui-form-label'>会议地点：</label>
                         <div class='layui-input-block'>
                           <span class='info'>${data.i2}</span>
                         </div>
@@ -31,13 +31,13 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate'], function () {
                         </div>
                        </div>
                       <div class='layui-form-item'>
-                        <label class='layui-form-label'>培训时间：</label>
+                        <label class='layui-form-label'>会议时间：</label>
                         <div class='layui-input-block'>
                           <span class='info'>${data.i4}</span>
                         </div>
                        </div>
                       <div class='layui-form-item'>
-                        <label class='layui-form-label'>主讲人：</label>
+                        <label class='layui-form-label'>主持人：</label>
                         <div class='layui-input-block'>
                           <span class='info'>${data.i5}</span>
                         </div>
@@ -52,12 +52,6 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate'], function () {
               </div>
               <div class='content-body content-form'>
                 <div class='layui-form-item'>
-                  <label class='layui-form-label'><span>学时：</span></label>
-                  <div class='layui-input-block'>
-                    <span class='info'>${data.i6}</span>
-                  </div>
-                </div>
-                <div class='layui-form-item'>
                   <label class='layui-form-label'><span>记录人：</span></label>
                   <div class='layui-input-block'>
                     <span class='info'>${data.i7}</span>
@@ -70,7 +64,7 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate'], function () {
                   </div>
                 </div>
                 <div class="layui-form-item">
-                  <label class='layui-form-label'><span>培训内容：</span></label>
+                  <label class='layui-form-label'><span>会议内容：</span></label>
                   <div class='layui-input-block'>
                     <span class='info'>${data.i9}</span>
                   </div>

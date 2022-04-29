@@ -376,6 +376,18 @@
             "href": "safety-manage/security-meeting"
           },
           {
+            "id": "5-4-2",
+            "title": "安全会议",
+            "href": "safety-manage/security-meeting-form",
+            "hide": true
+          },
+          {
+            "id": "5-4-2",
+            "title": "安全会议",
+            "href": "safety-manage/security-meeting-info",
+            "hide": true
+          },
+          {
             "id": "5-4-3",
             "title": "知识库",
             "href": "safety-manage/knowledge-base"

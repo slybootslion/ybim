@@ -1417,6 +1417,12 @@
       }
     }
 
+    &.info-top {
+      .layui-form-item {
+        margin-bottom: 0;
+      }
+    }
+
     .top-header {
       text-align: center;
       margin-bottom: 20px;

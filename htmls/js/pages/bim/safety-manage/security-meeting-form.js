@@ -9,19 +9,19 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate'], function () {
 
   class PageTemplate {
     topTemplate (data) {
-      return `<h3 class='top-header'>添加培训内容</h3>
+      return `<h3 class='top-header'>添加会议内容</h3>
                     <div class='content-head'>
                       <span>基本信息</span>
                     </div>
                     <div class='content-body content-form'>
                       <div class='layui-form-item'>
-                        <label class='layui-form-label'>培训名称：</label>
+                        <label class='layui-form-label'>会议名称：</label>
                         <div class='layui-input-block'>
                           <span class='info'>${data.i1}</span>
                         </div>
                       </div>
                       <div class='layui-form-item'>
-                        <label class='layui-form-label'>培训地点：</label>
+                        <label class='layui-form-label'>会议地点：</label>
                         <div class='layui-input-block'>
                           <span class='info'>${data.i2}</span>
                         </div>
@@ -33,13 +33,13 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate'], function () {
                         </div>
                        </div>
                       <div class='layui-form-item'>
-                        <label class='layui-form-label'>培训时间：</label>
+                        <label class='layui-form-label'>会议时间：</label>
                         <div class='layui-input-block'>
                           <span class='info'>${data.i4}</span>
                         </div>
                        </div>
                       <div class='layui-form-item'>
-                        <label class='layui-form-label'>主讲人：</label>
+                        <label class='layui-form-label'>主持人：</label>
                         <div class='layui-input-block'>
                           <span class='info'>${data.i5}</span>
                         </div>
@@ -55,22 +55,12 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate'], function () {
             <form class='layui-form layer-form layer-form-flex-colm team-add-form' action=''>
               <div class='content-body content-form'>
                 <div class='layui-form-item'>
-                  <label class='layui-form-label required'><span>学时：</span></label>
+                  <label class='layui-form-label required'><span>记录人：</span></label>
                   <div class='layui-input-block'>
                     <input name='f1' 
                            placeholder='请输入' 
                            autocomplete='off'
                            lay-verify='required'
-                           class='layui-input'>
-                  </div>
-                </div>
-                <div class='layui-form-item'>
-                  <label class='layui-form-label required'><span>记录人：</span></label>
-                  <div class='layui-input-block'>
-                    <input name='f2' 
-                           placeholder='请输入'
-                           lay-verify='required'
-                           autocomplete='off'
                            class='layui-input'>
                   </div>
                 </div>
@@ -85,7 +75,7 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate'], function () {
                   </div>
                 </div>
                 <div class="layui-form-item">
-                  <label class='layui-form-label required'><span>培训内容：</span></label>
+                  <label class='layui-form-label required'><span>会议内容：</span></label>
                   <div class='layui-input-block'>
                     <textarea name='f4'
                               lay-verify='required'
@@ -117,7 +107,7 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate'], function () {
   !(async () => {
     initParams()
     luInnerHeader = new LuInnerHeader({
-      title: '教育培训',
+      title: '安全会议',
       rightHtml: [{ txt: '返回', isWeaken: true }],
     })
     await renderBodyForm()
