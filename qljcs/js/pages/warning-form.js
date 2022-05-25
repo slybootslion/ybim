@@ -10,11 +10,15 @@ layui.use(['LuCommonTemplate'], function () {
   class PageTemplate {
     formTemplate (data) {
       const blockList = [
-        { label: '一级预警', name: 'f2' },
-        { label: '二级预警', name: 'f3' },
+        { label: '一级预警最低值', name: 'f2' },
+        { label: '一级预警最高值', name: 'f21' },
+        { label: '二级预警最低值', name: 'f3' },
+        { label: '二级预警最高值', name: 'f31' },
+        { label: '三级预警最低值', name: 'f4' },
+        { label: '三级预警最高值', name: 'f41' },
+        { label: '四级预警最低值', name: 'f5' },
+        { label: '四级预警最高值', name: 'f51' },
         { label: '预警接收人' },
-        { label: '三级预警', name: 'f4' },
-        { label: '四级预警', name: 'f5' },
       ]
       if (data.editData) {
         data.selectData.forEach(d => {
@@ -27,13 +31,17 @@ layui.use(['LuCommonTemplate'], function () {
         const item = blockList[i]
         if (data.editData) {
           if (item.name === 'f2') item.value = data.editData.t4
+          if (item.name === 'f21') item.value = data.editData.t41
           if (item.name === 'f3') item.value = data.editData.t5
+          if (item.name === 'f31') item.value = data.editData.t51
           if (item.name === 'f4') item.value = data.editData.t6
+          if (item.name === 'f41') item.value = data.editData.t61
           if (item.name === 'f5') item.value = data.editData.t7
+          if (item.name === 'f51') item.value = data.editData.t71
         }
         if (item.label === '预警接收人') {
           h += `<div class="layui-inline">
-                  <label class="layui-form-label">${item.label}：</label>
+                  <label class="layui-form-label w120">${item.label}：</label>
                   <div class="layui-input-inline">
                     <span class="layui-input name-layer">请选择</span>
                   </div>
@@ -41,14 +49,15 @@ layui.use(['LuCommonTemplate'], function () {
           continue
         }
         h += `<div class="layui-inline">
-                <label class="layui-form-label">${item.label}：</label>
+                <label class="layui-form-label w120">${item.label}：</label>
                 <div class="layui-input-inline">
-                  <input type="text" name="${item.name}" value="${item.value || ''}" autocomplete="off" class="layui-input">
+                  <input type="text" name="${item.name}" value="${item.value || ''}" autocomplete="off" class="layui-input w197">
                 </div>
               </div>`
       }
+      console.log(selHtml)
       return `<div class="left">
-                ${selHtml}${h}
+                ${selHtml.replace("class='layui-form-label'", "class='layui-form-label w120'")}${h}
                 <div class="name-list-placeholder"></div>
               </div>
               <div class="right">
@@ -104,17 +113,24 @@ layui.use(['LuCommonTemplate'], function () {
 
   async function renderTable () {
     const tableData = await $lulib.getMockData('/qljcs/mock/warningSettingTableData.json', 8, null, false)
+
+    const tableTemplate1 = d => `<span>${d.t4}, ${d.t41}</span>`
+    const tableTemplate2 = d => `<span>${d.t5}, ${d.t51}</span>`
+    const tableTemplate3 = d => `<span>${d.t6}, ${d.t61}</span>`
+    const tableTemplate4 = d => `<span>${d.t7}, ${d.t71}</span>`
+
+
     const options = {
       cols: [
         $lulib.tableSetCenter([
           { field: 'id', title: '编号', width: 60 },
-          { field: 't1', title: '传感器编号', minWidth: 140 },
-          { field: 't2', title: '设备类型', minWidth: 180 },
-          { field: 't3', title: '设备名称', minWidth: 180 },
-          { field: 't4', title: '一级预警', width: 100, },
-          { field: 't5', title: '二级预警', width: 100 },
-          { field: 't6', title: '三级预警', width: 100 },
-          { field: 't7', title: '四级预警', width: 100 },
+          { field: 't1', title: '传感器编号' },
+          { field: 't2', title: '设备类型' },
+          { field: 't3', title: '设备名称' },
+          { title: '一级预警', templet: tableTemplate1},
+          { title: '二级预警', templet: tableTemplate2},
+          { title: '三级预警', templet: tableTemplate3},
+          { title: '四级预警', templet: tableTemplate4},
           { field: 't8', title: '预警接收人', width: 160 },
           { field: 't9', title: '接收人电话', width: 180 },
         ]),

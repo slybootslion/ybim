@@ -931,10 +931,10 @@ $alpBgc: rgba(0, 165, 255, .1);
       align-items: center;
 
       .left {
-        width: 1350px;
+        width: 1550px;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-start;
         flex-wrap: wrap;
         padding: 0 80px;
         box-sizing: border-box;
@@ -951,10 +951,15 @@ $alpBgc: rgba(0, 165, 255, .1);
 
         .layui-form-label {
           width: 90px;
+
+          &.w120 {
+            width: 120px;
+          }
         }
 
         .layui-input {
-          width: 234px;
+          //width: 234px;
+          width: 197px;
         }
 
         .name-list-placeholder {

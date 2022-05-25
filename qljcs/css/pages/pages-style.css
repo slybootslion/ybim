@@ -828,10 +828,10 @@
   align-items: center;
 }
 .inner-body.warning-setting .form-box .layui-form .left {
-  width: 1350px;
+  width: 1550px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
   padding: 0 80px;
   box-sizing: border-box;
@@ -847,8 +847,11 @@
 .inner-body.warning-setting .form-box .layui-form .left .layui-form-label {
   width: 90px;
 }
+.inner-body.warning-setting .form-box .layui-form .left .layui-form-label.w120 {
+  width: 120px;
+}
 .inner-body.warning-setting .form-box .layui-form .left .layui-input {
-  width: 234px;
+  width: 197px;
 }
 .inner-body.warning-setting .form-box .layui-form .left .name-list-placeholder {
   min-width: 130px;
