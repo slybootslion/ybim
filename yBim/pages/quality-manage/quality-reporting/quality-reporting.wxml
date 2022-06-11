@@ -1,6 +1,6 @@
 <!--pages/quality-manage/quality-reporting/quality-reporting.wxml-->
 <lu-page-container title="{{pageTitle}}">
-	<lu-quality-input label="检查部位" placeholder="请输入检查部位（最多输入30个字）" isRequired bind:valueChange="handlePart" maxlength="{{30}}" value="{{part}}" />
+	<lu-quality-input label="{{labelText}}部位" placeholder="请输入{{labelText}}部位（最多输入30个字）" isRequired bind:valueChange="handlePart" maxlength="{{30}}" value="{{part}}" />
 	<lu-quality-input label=" 所属区域" placeholder="请输入所属区域（最多输入30个字）" isRequired bind:valueChange="handleZone" maxlength="{{30}}" value="{{zone}}" />
 	<lu-quality-input label="内容描述" type="textarea" placeholder="请输入内容描述（最多输入140个字）" isRequired isRequired bind:valueChange="handleDescriptor" maxlength="{{140}}" value="{{descriptor}}" />
 	<view class="wrap">

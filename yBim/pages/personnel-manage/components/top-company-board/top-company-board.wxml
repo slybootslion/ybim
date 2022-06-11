@@ -9,7 +9,7 @@
     <view wx:if="{{!current.company_id}}" class="empty">暂无数据</view>
     <view wx:else class="item-content">
       <view class="content-item">在场人员：<text class="item-t">{{current.onworkc}}人</text></view>
-      <view class="content-item">下属班组：<text class="item-t">{{current.groupc}}人</text></view>
+      <view class="content-item">下属班组：<text class="item-t">{{current.groupc}}班组</text></view>
     </view>
   </view>
 </view>

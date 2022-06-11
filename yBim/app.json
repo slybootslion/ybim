@@ -101,7 +101,8 @@
 		"lu-page-container": "/components/page-container/page-container",
 		"lu-calendar": "/components/calendar/calendar",
 		"lu-content-top": "/components/content-top/content-top",
-		"lu-input-element": "/components/input-element/input-element"
+		"lu-input-element": "/components/input-element/input-element",
+		"l-avatar": "/lu-ui/avatar/index"
 	},
 	"plugins": {
 		"ocr-plugin": {

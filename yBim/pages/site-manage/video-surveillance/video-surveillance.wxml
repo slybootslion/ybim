@@ -23,12 +23,12 @@
         </image>
         <view class="item-box">
           <text>{{index === 0 ? '设备总数' : index === 1 ? '在线设备' : '离线设备'}}</text>
-          <text class="color-text {{index === 0 ? 'c1' : index === 1 ? 'c2' : 'c3'}}">{{index === 0 ? count :
-            index === 1 ? online : offline}}台</text>
+          <text class="color-text {{index === 0 ? 'c1' : index === 1 ? 'c2' : 'c3'}}">{{index === 0 ? total :
+            index === 1 ? on_line : off_line}}台</text>
         </view>
       </view>
     </view>
-    <view class="board top-board top-list">
+    <view class="board top-list">
       <view class="video-item" wx:for="{{list}}" wx:key="video_id" data-index="{{index}}" bind:tap="goPlayPage">
         <view class="video-pic-box">
           <image src="{{item.pic}}" class="video-pic"></image>

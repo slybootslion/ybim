@@ -35,10 +35,11 @@ Page({
 
   async init() {
     this.data.pagingInce = new Paging(GroupApi.getGroupList, 'groups_list')
+    this.setData({ isLoading: true })
     const res = await this.getMore()
-    const { company_list, groups_list, worktype_list, data } = res
+    const { company_list, groups_list, worktype_list, data, hadMore } = res
     const setdata = {
-      groups_list, data, isLoading: false, list: data
+      groups_list, data, isLoading: false, list: data, hadMore
     }
     if (worktype_list) setdata.worktype_list = worktype_list
     if (company_list) setdata.company_list = company_list
@@ -46,7 +47,6 @@ Page({
   },
 
   async getMore() {
-    this.setData({ isLoading: true })
     let data = {}
     const { company_id } = this.data
     if (company_id) data = { company_id }
@@ -60,8 +60,9 @@ Page({
 
   async scrollToLower() {
     if (!this.data.hadMore) return
-    const { data } = await this.getMore()
-    this.setData({ list: data })
+    this.setData({ isLoading: true })
+    const { data, hadMore } = await this.getMore()
+    this.setData({ list: data, hadMore, isLoading: false })
   },
 
   async groupAdd(e) {

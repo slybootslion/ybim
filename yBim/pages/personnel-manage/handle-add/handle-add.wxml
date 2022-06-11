@@ -9,6 +9,9 @@
       <lu-input-element type="select" isRequired label="性别" placeholder="请选择" selectList="{{gender}}" selectKeyStr="value" selectShowStr="key" selectValue="{{company_name}}" bind:valueChange="onGender" />
     </view>
     <view class="input-item">
+      <lu-input-element type="upload" isRequired label="头像" placeholder="上传" bind:imageUpload="avatarUpload" />
+    </view>
+    <view class="input-item">
       <lu-input-element isRequired label="民族" value="{{nation}}" bind:valueChange="onNation" />
     </view>
     <view class="input-item">

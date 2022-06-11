@@ -1,7 +1,7 @@
 // pages/personnel-manage/roster-list/roster-list.js
 import RosterApi from '../../../api/personnel/roster-model'
 import Paging from '../../../api/paging'
-
+let lock = false
 Page({
   /**
    * 页面的初始数据
@@ -35,9 +35,12 @@ Page({
   },
 
   async scrollToLower() {
+    if (lock) return
     if (!this.data.hadMore) return
+    lock = true
     const { data, hadMore } = await this.getMore()
     this.setData({ list: data, hadMore })
+    lock = false
   },
 
   companySelected(e) {

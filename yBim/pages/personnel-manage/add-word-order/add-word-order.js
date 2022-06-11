@@ -141,7 +141,7 @@ Page({
 
   async submit() {
     const { name, end_time, builing_id, remark, TicketEmp, ticket_id } = this.data
-    if (!name || !end_time || !builing_id || !TicketEmp.length) {
+    if (!name || !end_time || !remark || !builing_id || !TicketEmp.length) {
       this.showToast('有必要信息未填写')
       return false
     }

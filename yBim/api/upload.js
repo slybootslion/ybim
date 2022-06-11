@@ -27,11 +27,11 @@ class Upload {
     }
   }
 
-  async postImage2(filePath) {
+  async postImage2(filePath, uploadPath = '/inspectionqualities/upload') {
     try {
       const res = await promisic(wx.uploadFile)({
         // url: `${config.apiBaseUrl}/timetickets/upload`,
-        url: `${config.apiBaseUrl}/inspectionqualities/upload`,
+        url: `${config.apiBaseUrl}${uploadPath}`,
         filePath,
         name: 'files[]',
         header: this.header

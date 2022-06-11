@@ -1,0 +1,63 @@
+/* pages/personnel-manage/payroll-page/components/payroll-item/payroll-item.wxss */
+
+.container {
+  margin-top: 20rpx;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.header {
+  height: 70rpx;
+  border-bottom: 2rpx solid #e8e8e8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+}
+
+.header .header-left {
+  font-size: 30rpx;
+}
+
+.header .pay-flag {
+  font-size: 22rpx;
+  display: flex;
+  align-items: center;
+}
+
+.header .pay-flag .t {
+  margin-left: 10rpx;
+}
+
+.header .pay-flag.active {
+  color: #65c466;
+}
+
+.footer {
+  height: 88rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 26rpx;
+  color: #9d9d9d;
+  border-top: 2rpx solid #e8e8e8;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+}
+
+.body {
+  padding: 25rpx 10rpx;
+  font-size: 26rpx;
+}
+
+.body .body-item {
+  height: 40rpx;
+  line-height: 40rpx;
+  display: flex;
+}
+
+.body .body-item .value{
+  color: #9d9d9d;
+}

@@ -20,6 +20,7 @@
               data-page="{{item.page}}"
               data-param="{{item.param}}"
               bindtap="handleTap">
+					<view class="tag" wx:if="{{item.tag}}">{{tagData[item.tag]}}</view>
           <image src="{{'http://bjbsite.com/images/xcx/common/'+item.icon+'.png'}}" class="icon"></image>
           <view class="key">{{item.key}}</view>
         </view>

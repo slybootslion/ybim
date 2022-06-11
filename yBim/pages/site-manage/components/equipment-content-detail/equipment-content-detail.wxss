@@ -67,7 +67,7 @@
 }
 
 .container .top .right .right-item .iconfont {
-  margin-top: -20rpx;
+  /* margin-top: -20rpx; */
   font-size: 32rpx;
 }
 

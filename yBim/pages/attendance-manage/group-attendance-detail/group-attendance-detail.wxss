@@ -1,0 +1,109 @@
+/* pages/personnel-manage/group-attendance-detail/group-attendance-detail.wxss */
+.top-board {
+  height: 137rpx;
+  background-color: #fff;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+}
+
+.top-board .top-info {
+  height: 70rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-board .top-info .left {
+  display: flex;
+  align-items: center;
+}
+
+.top-board .item-icon {
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 10rpx;
+}
+
+.top-board .top-ctrl {
+  flex: 1;
+}
+
+.top-board .top-ctrl .ctrl-item {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #9d9d9d;
+}
+
+.top-board .top-ctrl .ctrl-item .iconfont {
+  margin: -20rpx 10rpx 0 0;
+}
+
+.board {
+  height: 132rpx;
+  background-color: #fff;
+  margin-top: 20rpx;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.board .board-t {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.board .board-t .t-l {
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.board .board-t .t-r,
+.board .board-t .t-r .iconfont {
+  font-size: 18rpx;
+}
+
+.board .board-b {
+  flex: 1;
+  font-size: 26rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.check-icon {
+  margin: 0 20rpx;
+}
+
+.pupop-content {
+  width: 642rpx;
+  height: 278rpx;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pupop-content .input-box{
+  width: 600rpx;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20rpx;
+}
+
+.pupop-content .input-box .input-el{
+  width: 215rpx;
+  height: 86rpx;
+  border: 1px solid #e8e8e8;
+  margin: 0 10rpx;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+}

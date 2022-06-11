@@ -5,7 +5,8 @@
     bg-color="{{barColor}}" />
   <view class="wrapper">
     <view class="info-border">
-      <image class="avatar" src="{{info.avatar}}"></image>
+      <image class="avatar" wx:if="{{info.avatar}}" src="{{info.avatar}}"></image>
+			<image class="avatar" wx:if="{{!info.avatar}}" src="http://bjbsite.com/images/xcx/page/personnel/default-avatar.png"></image>
       <view class="info">
         <view class="info-item">{{info.nickname}}</view>
         <view class="info-item">{{info.mobile_phone}}</view>

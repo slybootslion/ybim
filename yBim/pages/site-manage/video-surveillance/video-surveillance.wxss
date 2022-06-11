@@ -53,13 +53,14 @@
   font-size: 28rpx;
 }
 
-.top-list {
+.wrapper .board.top-list {
   padding: 10rpx;
   box-sizing: border-box;
   margin-top: 10rpx;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-between;
+  flex-direction: row;
 }
 
 .top-list .video-item {
@@ -109,11 +110,9 @@
 }
 
 .board.top-board {
+  justify-content: center;
   border-radius: 20rpx;
-  padding: 10rpx;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-between;
+  padding: 20rpx;
 }
 
 .board .title {

@@ -1,0 +1,20 @@
+<!--components/calendar/calendar.wxml-->
+<view class="container-bar">
+  <view class="icon-double" bindtap="prevMonth">
+    <l-icon size="30" color="#333" class="icon-item-left-2" name="left" />
+    <l-icon size="30" color="#333" class="icon-item-left-1" name="left" />
+  </view>
+  <view class="icon-single" wx:if="{{showDay}}" bindtap="prevDay">
+    <l-icon size="30" color="#333" name="left" />
+  </view>
+  <view class="date-txt" bindtap="showCalendarSelect">{{showDate}}</view>
+  <view class="icon-single" wx:if="{{showDay}}" bindtap="nextDay">
+    <l-icon size="30" color="#333" name="right" />
+  </view>
+  <view class="icon-double" bindtap="nextMonth">
+    <l-icon size="30" color="#333" class="icon-item-right-1" name="right" />
+    <l-icon size="30" color="#333" class="icon-item-right-2" name="right" />
+  </view>
+</view>
+<l-calendar show="{{ calendarShow }}" show-title="{{ false }}" bind:linconfirm="dateSelect"
+  default-date="{{ defaultDate }}" min-date="{{ minDate }}" max-date="{{ maxDate }}" />

@@ -22,7 +22,6 @@
     </view>
     <view class="board" wx:for="{{modelList}}" wx:key="index">
       <view class="title">{{item.title}}</view>
-      <l-loading show="{{!item.content.length && !isLoading}}" l-container-class="board-loading" />
       <view class="content" wx:if="{{item.title === '人员管理'}}">
         <view class="col-block" wx:if="{{item.content}}">
           <view class="col-block-item" wx:for="{{item.content}}" wx:key="index">
@@ -30,6 +29,7 @@
             <text>{{item.key}}</text>
           </view>
         </view>
+				<view class="empty" wx:else>无数据</view>
       </view>
       <view class="content" wx:if="{{item.title === '进度管理'}}">
         <view class="chart-box" wx:if="{{item.content}}">
@@ -40,6 +40,7 @@
             <text>{{item.key}}</text>
           </view>
         </view>
+				<view class="empty" wx:else>无数据</view>
       </view>
       <view class="content" wx:if="{{item.title === '质量管理'}}">
         <view class="col-block" wx:if="{{item.content}}">
@@ -48,6 +49,7 @@
             <text>{{item.key}}</text>
           </view>
         </view>
+				<view class="empty" wx:else>无数据</view>
       </view>
       <view class="content" wx:if="{{item.title === '环境监测' || item.title === '设备管理'}}">
         <view class="content-item" wx:for="{{item.content}}" wx:key="index">

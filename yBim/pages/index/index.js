@@ -4,7 +4,6 @@ import StorageCache from '../../tools/storage-cache'
 import CtrlApi from '../../api/controls/ctrl-model'
 import BaseDataApi from '../../api/base-data/base-data-model'
 import { setPageScrollViewEvent, setScrollHeight } from '../../tools/system-info'
-// import * as echarts from '../../components/ec-canvas/echarts'
 
 const baseModelList = {
   rygl: { title: '人员管理' },
@@ -15,19 +14,6 @@ const baseModelList = {
 }
 
 let eOpts = {}
-
-function initChart(canvas, width, height, dpr) {
-  const chart = echarts.init(canvas, null, {
-    width: width,
-    height: height,
-    devicePixelRatio: dpr // 像素
-  });
-  canvas.setChart(chart);
-
-  let option = eOpts
-  chart.setOption(option);
-  return chart;
-}
 
 Page({
   data: {
@@ -85,7 +71,6 @@ Page({
     const res1 = await CtrlApi.getInfo({ builing_id })
     const res2 = await CtrlApi.getControlsWorkinfo({ builing_id })
     const res3 = await CtrlApi.getControlsQualityinfo({ builing_id })
-    console.log(res2)
     const infoList = {
       info1: [
         { key: '在册人数', value: `${res1.data.zc_num}人` },
@@ -104,10 +89,13 @@ Page({
         { key: '超期隐患', value: res3.quality_info.expirec },
       ]
     }
-    const { modelList } = this.data
+		const { modelList } = this.data
     modelList.rygl.content = infoList.info1
     modelList.jdgl.content = infoList.info2
-    modelList.zlgl.content = infoList.info3
+		modelList.zlgl.content = infoList.info3
+		modelList.rygl.isLoading = false
+		modelList.jdgl.isLoading = false
+		modelList.zlgl.isLoading = false
   },
   async getVideos(builing_id) {
     try {
@@ -145,7 +133,7 @@ Page({
       wx.showToast({
         icon: 'none',
         message: '获取环境监测信息失败',
-      })
+			})
     }
   },
   async getIndexData(builing_id) {

@@ -24,7 +24,7 @@
     </view>
   </view>
   <view wx:if="{{type === 'textarea'}}" class="textarea-box {{minContainer ? 'textarea-box-min' : ''}}">
-    <view class="label" wx:if="{{!hideLabel}}">{{label}}</view>
+    <view class="label" wx:if="{{!hideLabel}}"><text class="text-require" wx:if="{{isRequired}}">* </text>{{label}}</view>
     <l-textarea placeholder="{{placeholder}}"
                 l-class="textarea"
                 indicator="{{false}}"
@@ -42,6 +42,14 @@
       {{calendarCurrent || placeholder}}
       <l-icon name="right" size="28" color="#76849b"></l-icon>
     </view>
+  </view>
+  <view wx:if="{{type === 'upload'}}" class="select-box">
+    <view class="label {{labelNoPadding ? 'no-padding' : ''}}">
+      <text class="text-require" wx:if="{{isRequired}}">* </text>
+      {{label}}
+    </view>
+    <l-icon wx:if="{{!avatarSrc}}" name="add" size="48" color="#76849b" bindtap="selectPic"/>
+    <l-avatar bindtap="selectPic" wx:else size="56" src="{{avatarSrc}}" />
   </view>
 </view>
 <l-popup show="{{showPopup}}"

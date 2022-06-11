@@ -31,7 +31,7 @@ Page({
   },
 
   async getData() {
-    const info = await BaseDataApi.getMySystemInfo()
+		const info = await BaseDataApi.getMySystemInfo()
     this.setData({ info })
   },
 

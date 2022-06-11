@@ -43,15 +43,21 @@ Page({
 		const detailList = res.info
 		const currentData = res.info[0].inspection
 		let btnText = '立即复查'
-		if (currentData.state === '0') {
+		let pageTitle = '待复查'
+		if (currentData.state === '0' || currentData.state === '-1') {
 			btnText = '立即整改'
+			pageTitle = '待整改'
+		}
+		if (currentData.state === '2') {
+			pageTitle = '检查详情'
 		}
 		// if (Array.isArray(res.info[0].recification) &&
 		// 	res.info[0].recification.length == 0) btnText = '立即整改'
 		this.setData({
 			currentData,
 			detailList,
-			btnText
+			btnText,
+			pageTitle
 		})
 	},
 

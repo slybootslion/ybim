@@ -1,5 +1,6 @@
 // pages/personnel-manage/handle-add/handle-add.js
 import StorageCache from '../../../tools/storage-cache'
+import Upload from '../../../api/upload'
 
 Page({
 
@@ -60,10 +61,19 @@ Page({
     this.data.birthday = value
   },
 
-  async submit() {
-    let { staff_name, nation, card_no, sex, birthday, native_place, address, issuing_authority } = this.data
+  async avatarUpload(e) {
+    wx.showLoading({
+      title: '上传头像',
+    })
+    const res = await (new Upload).postImage2(e.detail.tempFilePaths, '/workers/upload')
+    this.data.avatar = res.data
+    wx.hideLoading()
+  },
 
-    if (!staff_name || !nation || !sex || !birthday || !card_no || !address || !issuing_authority) {
+  async submit() {
+    let { staff_name, nation, card_no, sex, birthday, native_place, address, issuing_authority, avatar } = this.data
+    console.log(avatar)
+    if (!staff_name || !nation || !sex || !birthday || !card_no || !address || !issuing_authority || !avatar) {
       wx.lin.showToast({
         title: '有必要信息未填写',
         icon: 'error',
@@ -82,11 +92,8 @@ Page({
       })
       return false
     }
-
     native_place = native_place ? native_place : ''
-
-    await StorageCache.setIdCardDetail({ staff_name, nation, card_no, sex, birthday, native_place, address, issuing_authority })
-
+    await StorageCache.setIdCardDetail({ staff_name, nation, card_no, sex, birthday, native_place, address, issuing_authority, avatar })
     wx.navigateTo({
       url: '/pages/personnel-manage/submit-add-workers/submit-add-workers',
     })

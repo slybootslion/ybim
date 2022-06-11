@@ -1,4 +1,5 @@
 // components/input-element/input-element.js
+import { promisic } from '../../lu-ui/utils/util'
 Component({
   /**
    * 组件的属性列表
@@ -84,7 +85,8 @@ Component({
     popupShow: false,
     selectedCurrent: '',
     showCalendar: false,
-    calendarCurrent: ''
+    calendarCurrent: '',
+    avatarSrc: '',
   },
 
   /**
@@ -135,6 +137,20 @@ Component({
         calendarCurrent: e.detail
       })
       this.triggerEvent('valueChange', { value: e.detail })
+    },
+
+    // 头像上传
+    async selectPic() {
+
+      const res = await promisic(wx.chooseImage)({
+        count: 1,
+        sizeType: 'compressed',
+      })
+      const tempFilePaths = res.tempFilePaths[0]
+      this.setData({
+        avatarSrc: tempFilePaths
+      })
+      this.triggerEvent('imageUpload', { tempFilePaths })
     }
   },
 })

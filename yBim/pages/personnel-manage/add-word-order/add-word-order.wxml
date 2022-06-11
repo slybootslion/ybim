@@ -25,6 +25,7 @@
     </view>
     <view class="input-item">
       <lu-input-element type="textarea"
+                      isRequired
                       label="备注"
                       value="{{remark}}"
                       bind:valueChange="onRemark"/>

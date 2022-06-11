@@ -72,7 +72,8 @@ Page({
   },
 
   async submit() {
-    const { mobile_phone, job_role, worktype_id, edubackground_id, company_id, group_id, in_space, job_id } = this.data
+    const { mobile_phone, job_role, worktype_id, edubackground_id,
+      company_id, group_id, in_space, job_id } = this.data
 
     const reg = /^1[3-9]\d{9}$/
     if (!reg.test(mobile_phone)) {

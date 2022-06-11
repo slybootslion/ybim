@@ -42,7 +42,22 @@
 .board .content .content-item{
   width: 25%;
   text-align: center;
-  margin-bottom: 20rpx;
+	margin-bottom: 20rpx;
+	position: relative;
+}
+
+.board .content .content-item .tag{
+	background-color: #f00;
+	position: absolute;
+	top: 0;
+	right: 20rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 10rpx;
+	padding: 5rpx 10rpx;
+	color: #fff;
+	font-size: 22rpx;
 }
 
 .board .content .icon{

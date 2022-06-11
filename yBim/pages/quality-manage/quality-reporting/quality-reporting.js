@@ -29,6 +29,7 @@ Page({
 		rectify_time: '',
 		id: '',
 		Model: null,
+		labelText: '检查'
 	},
 
 	/**
@@ -41,7 +42,13 @@ Page({
 			nickname: (await StorageCache.getUserInfo()).user.nickname,
 			nowTime: dayjs(new Date).format('YYYY-MM-DD')
 		}
-		data.Model = param === 'Safety' ? SafetyApi : QualityApi
+		if(param === 'Safety') {
+			data.Model = SafetyApi
+			data.labelText = '养护'
+		} else {
+			data.Model = QualityApi
+			data.labelText = '检查'
+		}
 		this.setData({
 			...data
 		})

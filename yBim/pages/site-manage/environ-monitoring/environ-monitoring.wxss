@@ -156,6 +156,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 10rpx;
 }
 
 .content-detail.detail-2 .detail-2-item .iconfont {

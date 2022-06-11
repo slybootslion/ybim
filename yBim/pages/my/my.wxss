@@ -7,9 +7,14 @@
   top: 60rpx;
 }
 
+.container{
+  background-image: url(http://bjbsite.com/images/xcx/page/index/banner2.jpg);
+}
+
 .wrapper .info-border {
   display: flex;
-  justify-content: space-between;
+	justify-content: space-between;
+	margin-top: -45rpx;
 }
 
 .wrapper .avatar {
@@ -24,12 +29,12 @@
 .wrapper .info {
   flex: 1;
   color: #fff;
-  margin-left: 40rpx;
+  margin-left: 30rpx;
   font-size: 30rpx;
 }
 
 .wrapper .info-item {
-  margin-bottom: 10rpx;
+  margin-bottom: 5rpx;
 }
 
 .content {

@@ -66,3 +66,4 @@
 </lu-page-container>
 <l-loading full-screen show="{{isLoading}}"/>
 <l-toast/>
+<image src="{{avatar}}"></image>
