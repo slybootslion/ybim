@@ -248,7 +248,7 @@ $alpBgc: rgba(0, 165, 255, .1);
       margin-bottom: 20px;
     }
 
-    .layui-form {
+    .form-box {
       width: 78%;
       display: flex;
       flex-wrap: wrap;
@@ -268,6 +268,8 @@ $alpBgc: rgba(0, 165, 255, .1);
 
         &.mt20 {
           margin-top: 20px;
+          display: flex;
+          flex-direction: column;
         }
       }
 
@@ -283,6 +285,34 @@ $alpBgc: rgba(0, 165, 255, .1);
         }
         .w350 {
           width: 350px;
+        }
+      }
+    }
+
+    .name-list-placeholder {
+      min-width: 130px;
+      margin-top: 20px;
+      position: relative;
+      left: 150px;
+      top: -10px;
+      display: inline-block;
+
+      .name-item {
+        width: max-content;
+        background-color: $sideBarBgc;
+        margin-bottom: 5px;
+        box-sizing: border-box;
+        padding: 0 5px;
+        font-size: 12px;
+
+        span {
+          margin-right: 10px;
+
+          &.icon-guanbi {
+            cursor: pointer;
+            margin: 0;
+            font-size: 12px;
+          }
         }
       }
     }

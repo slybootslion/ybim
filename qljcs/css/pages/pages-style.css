@@ -208,36 +208,62 @@
   font-size: 16px;
   margin-bottom: 20px;
 }
-.inner-body.equipment-form .info-block .layui-form {
+.inner-body.equipment-form .info-block .form-box {
   width: 78%;
   display: flex;
   flex-wrap: wrap;
 }
-.inner-body.equipment-form .info-block .layui-form .layui-form-item {
+.inner-body.equipment-form .info-block .form-box .layui-form-item {
   margin-right: 40px;
 }
-.inner-body.equipment-form .info-block .layui-form .layui-form-item .w120 {
+.inner-body.equipment-form .info-block .form-box .layui-form-item .w120 {
   width: 120px;
 }
-.inner-body.equipment-form .info-block .layui-form .layui-form-item .name-layer {
+.inner-body.equipment-form .info-block .form-box .layui-form-item .name-layer {
   color: #777;
   display: flex;
   align-items: center;
 }
-.inner-body.equipment-form .info-block .layui-form .layui-form-item.mt20 {
+.inner-body.equipment-form .info-block .form-box .layui-form-item.mt20 {
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
 }
-.inner-body.equipment-form .info-block .layui-form .layui-input-block {
+.inner-body.equipment-form .info-block .form-box .layui-input-block {
   display: flex;
 }
-.inner-body.equipment-form .info-block .layui-form .layui-input-block .layui-input {
+.inner-body.equipment-form .info-block .form-box .layui-input-block .layui-input {
   margin-right: 20px;
 }
-.inner-body.equipment-form .info-block .layui-form .layui-input-block .w160 {
+.inner-body.equipment-form .info-block .form-box .layui-input-block .w160 {
   width: 160px;
 }
-.inner-body.equipment-form .info-block .layui-form .layui-input-block .w350 {
+.inner-body.equipment-form .info-block .form-box .layui-input-block .w350 {
   width: 350px;
+}
+.inner-body.equipment-form .info-block .name-list-placeholder {
+  min-width: 130px;
+  margin-top: 20px;
+  position: relative;
+  left: 150px;
+  top: -10px;
+  display: inline-block;
+}
+.inner-body.equipment-form .info-block .name-list-placeholder .name-item {
+  width: max-content;
+  background-color: rgba(25, 121, 187, 0.5);
+  margin-bottom: 5px;
+  box-sizing: border-box;
+  padding: 0 5px;
+  font-size: 12px;
+}
+.inner-body.equipment-form .info-block .name-list-placeholder .name-item span {
+  margin-right: 10px;
+}
+.inner-body.equipment-form .info-block .name-list-placeholder .name-item span.icon-guanbi {
+  cursor: pointer;
+  margin: 0;
+  font-size: 12px;
 }
 
 .bridge-monitoring .nav,
