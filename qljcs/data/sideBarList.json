@@ -59,5 +59,11 @@
     "title": "设备管理",
     "href": "equipment-management/index",
     "icon": "icon-xitongguanlicopyx"
+  },
+  {
+    "id": "8",
+    "title": "设备管理",
+    "href": "equipment-management/equipment-form",
+    "hide": true
   }
 ]

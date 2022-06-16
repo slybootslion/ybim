@@ -55,7 +55,6 @@ layui.use(['LuCommonTemplate'], function () {
                 </div>
               </div>`
       }
-      console.log(selHtml)
       return `<div class="left">
                 ${selHtml.replace("class='layui-form-label'", "class='layui-form-label w120'")}${h}
                 <div class="name-list-placeholder"></div>

@@ -215,6 +215,80 @@ $alpBgc: rgba(0, 165, 255, .1);
   }
 }
 
+.inner-body.equipment-form {
+  .info-block {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, .3);
+    margin-bottom: 20px;
+
+    .top-title {
+      font-size: 18px;
+      line-height: 2;
+      margin-bottom: 16px;
+    }
+
+    .info-item-box {
+      display: flex;
+      align-content: center;
+
+      .info-item {
+        display: flex;
+        margin-right: 40px;
+        .label {
+          color: $paramColor;
+        }
+        .desc {
+          color: #fff;
+        }
+      }
+    }
+
+    .form-title {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .layui-form {
+      width: 78%;
+      display: flex;
+      flex-wrap: wrap;
+
+      .layui-form-item {
+        margin-right: 40px;
+
+        .w120 {
+          width: 120px;
+        }
+
+        .name-layer {
+          color: #777;
+          display: flex;
+          align-items: center;
+        }
+
+        &.mt20 {
+          margin-top: 20px;
+        }
+      }
+
+      .layui-input-block {
+        display: flex;
+
+        .layui-input {
+          margin-right: 20px;
+        }
+
+        .w160 {
+          width: 160px;
+        }
+        .w350 {
+          width: 350px;
+        }
+      }
+    }
+  }
+}
+
 .bridge-monitoring,
 .analysis-evaluation,
 .bim-body,
@@ -872,6 +946,7 @@ $alpBgc: rgba(0, 165, 255, .1);
   }
 }
 
+.inner-body.equipment-form,
 .inner-body.warning-setting {
   .nav {
     height: 40px;

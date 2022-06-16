@@ -104,33 +104,45 @@ layui.use(['LuCommonTemplate'], function () {
 
   async function renderTable () {
     const data = await $lulib.getMockData('/qljcs/mock/equipmentManagementTableData.json', 8, null, false)
+
+    const tableTemplate1 = d => `<span>${d.t7}, ${d.t8}</span>`
+    const tableTemplate2 = d => `<span>${d.t9}, ${d.t10}</span>`
+    const tableTemplate3 = d => `<span>${d.t11}, ${d.t12}</span>`
+    const tableTemplate4 = d => `<span>${d.t13}, ${d.t14}</span>`
+
     const tableOptions = {
       cols: [
         $lulib.tableSetCenter([
           { field: 'id', title: '编号', width: 60 },
           { field: 't1', title: '设备属性', width: 90 },
-          { field: 't2', title: '设备类型', minWidth: 120 },
-          { field: 't3', title: '设备名称', minWidth: 120 },
-          { field: 't4', title: '安装位置', minWidth: 150 },
+          { field: 't2', title: '设备类型' },
+          { field: 't3', title: '设备名称' },
+          { field: 't4', title: '安装位置' },
           { field: 't5', title: '安装时间', width: 110 },
           { field: 't6', title: '设备状态', width: 120 },
-          { field: 't7', title: '通讯状态', width: 120 },
-          { field: 't8', title: '通讯等级', width: 120 },
+          { title: '一级预警', templet: tableTemplate1 },
+          { title: '二级预警', templet: tableTemplate2 },
+          { title: '三级预警', templet: tableTemplate3 },
+          { title: '四级预警', templet: tableTemplate4 },
+          { field: 't15', title: '预警接收人', width: 120 },
+          { field: 't16', title: '接收电话', width: 120 },
         ]),
       ],
       ctrlData: [
         { eventStr: 'edit', iconStr: 'icon-bianji1', txtStr: '编辑' },
-        { eventStr: 'del', iconStr: 'icon-shanchu', txtStr: '删除' },
+        // { eventStr: 'del', iconStr: 'icon-shanchu', txtStr: '删除' },
       ],
       methods: {
         edit (data) {
-          renderForm(data)
+          // renderForm(data)
+          $lulib.pagePushHash(`equipment-management/equipment-form?id=${data.id}`)
         },
-        del (_, obj) {
-          LuLayer.confirm('确定删除？', () => obj.del())
-        },
+        // del (_, obj) {
+        //   LuLayer.confirm('确定删除？', () => obj.del())
+        // },
       },
     }
+    tableOptions.ctrlData.minWidth = 120
     luTable = new LuTable(data, tableOptions)
   }
 
