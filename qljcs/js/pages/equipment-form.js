@@ -91,8 +91,8 @@ layui.use(['LuCommonTemplate'], function () {
           </div>
         </div>
       </div>
-      <div class="right">
-        <button type="button" class="layui-btn" lay-submit lay-filter='submit'>添加阈值</button>
+      <div class="right" style="text-align: center">
+        <button type="button" class="layui-btn" lay-submit lay-filter='submit'>保存</button>
       </div>
     </form>
 `
