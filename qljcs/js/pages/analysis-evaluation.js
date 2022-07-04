@@ -130,8 +130,6 @@ layui.use(['LuCommonTemplate', 'echarts'], function () {
     echartsObj.setOption(option)
   }
 
-  renderEcharts()
-
   function echartsOptions () {
     const optsDict = {
       0: {
