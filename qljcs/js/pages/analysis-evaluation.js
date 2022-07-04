@@ -10,8 +10,8 @@ layui.use(['LuCommonTemplate', 'echarts'], function () {
     return {
       s1: [{ value: '1', key: '位移计1' }, { value: '2', key: '位移计2' }],
       s2: [{ value: '1', key: '位移计1' }, { value: '2', key: '位移计2' }],
-      s3: [{ value: '1', key: `传感器${$lulib.randomInt(2, 1)}` }, { value: '2', key: `传感器${$lulib.randomInt(5, 3)}` }],
-      s4: [{ value: '1', key: `传感器${$lulib.randomInt(7, 6)}` }, { value: '2', key: `传感器${$lulib.randomInt(10, 8)}` }]
+      s3: [{ value: '1', key: `传感器1` }, { value: '2', key: `传感器2` }],
+      s4: [{ value: '1', key: `传感器1` }, { value: '2', key: `传感器2` }]
     }
   }
 
@@ -77,7 +77,7 @@ layui.use(['LuCommonTemplate', 'echarts'], function () {
 
   const selectEvent = async obj => {
     const name = $(obj.elem).attr('name')
-    const renderSearchFormPar = async () => {
+    const renderSearchFormPar = async (type) => {
       const formData = luSearchForm.form.val('search-form')
       const data = await getSelectData()
       if (formData.s1) {
@@ -90,14 +90,26 @@ layui.use(['LuCommonTemplate', 'echarts'], function () {
           if (item.value === formData.s2) item.selected = true
         })
       }
+      if (formData.s3 && type === 's2') {
+        data.s3.forEach(item => {
+          if (item.value === formData.s3) item.selected = true
+        })
+      }
+      if (formData.s4 && type === 's1') {
+        data.s4.forEach(item => {
+          if (item.value === formData.s4) item.selected = true
+        })
+      }
       if (formData.sDate) data.sDate = formData.sDate
       if (formData.eDate) data.eDate = formData.eDate
       renderLuSearchForm(data)
     }
     switch (name) {
       case 's1':
+        await renderSearchFormPar('s1')
+        break
       case 's2':
-        await renderSearchFormPar()
+        await renderSearchFormPar('s2')
         break
       default:
         break
@@ -117,6 +129,8 @@ layui.use(['LuCommonTemplate', 'echarts'], function () {
     echartsObj = echarts.init(chartDom)
     echartsObj.setOption(option)
   }
+
+  renderEcharts()
 
   function echartsOptions () {
     const optsDict = {
@@ -156,9 +170,45 @@ layui.use(['LuCommonTemplate', 'echarts'], function () {
             lineStyle: {
               color: '#007fff',
             }
-          }
+          },
         },
-        yAxis: [],
+        yAxis: [
+          {
+            name: '传感器一数据',
+            type: 'value',
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: '#00bb08',
+              }
+            },
+            splitLine: {
+              show: false
+            },
+            axisLabel: {
+              textStyle: { color: '#00bb08' }
+            },
+            max: 35,
+            min: -10,
+          },
+          {
+            name: '传感器二数据',
+            type: 'value',
+            alignTicks: true,
+            splitLine: {
+              show: false
+            },
+            axisTick: {
+              show: true,
+            },
+            axisLine: {
+              show: true,
+              lineStyle: {
+                color: '#e59300',
+              }
+            },
+          }
+        ],
         series: [
           {
             name: '传感器一数据',
@@ -352,28 +402,11 @@ layui.use(['LuCommonTemplate', 'echarts'], function () {
         '2009/6/15 20:00', '2009/6/15 21:00', '2009/6/15 22:00', '2009/6/15 23:00', '2009/6/15 0:00', '2009/6/16 1:00',
         '2009/6/16 2:00', '2009/6/16 3:00', '2009/6/16 4:00', '2009/6/16 5:00',]
         .map(str => str.replace(' ', '\n'))
-      const data1 = makeData(100, 40, 15, 6)
+      const data1 = makeData(100, 26, 1, 6)
       const data2 = makeData(100, 50, 25, 3)
       const opts = optsDict[navIndex]
       opts.xAxis.data = xData
       for (let i = 0; i < 2; i++) {
-        opts.yAxis.push({
-          name: i < 1 ? '传感器一数据' : '传感器二数据',
-          type: 'value',
-          splitLine: {
-            show: false
-          },
-          axisTick: {
-            show: true,
-          },
-          axisLine: {
-            show: true,
-            lineStyle: {
-              color: i < 1 ? '#00bb08' : '#e59300',
-            }
-          },
-        })
-
         opts.series.push({
           name: i < 1 ? '传感器一数据' : '传感器二数据',
           type: 'line',
@@ -390,7 +423,6 @@ layui.use(['LuCommonTemplate', 'echarts'], function () {
           data: i < 1 ? data1 : data2,
         })
       }
-
       return opts
     }
     return optsDict[navIndex]
