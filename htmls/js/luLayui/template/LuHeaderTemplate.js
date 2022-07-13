@@ -23,7 +23,7 @@ layui.define(['laytpl', 'dropdown'], function (exports) {
           <div class='header-content-left'>
             <span id="headerLeft1" class="txt">{{d.projectName}}</span>
             <span id="headerLeft2">
-              <span class="iconfont icon-yingyong"></span><span>桥梁检测</span>
+              <span class="iconfont icon-yingyong"></span><span>其他功能</span>
             </span>
           </div>
           <div class='header-content-right'>
@@ -56,6 +56,15 @@ layui.define(['laytpl', 'dropdown'], function (exports) {
       }
       const html = template(headerHtml).render(data)
       $('.lu-header').html(html)
+
+      dropdown.render({
+        elem: '#headerLeft2',
+        data: [
+          { title: '桥梁检测', path: '/qljcs/' },
+          { title: '边坡检测', path: '/bpjcs/' },
+        ],
+        click: obj => $lulib.pageOpen(obj.path)
+      })
     }
 
     updateProjectName (name) {

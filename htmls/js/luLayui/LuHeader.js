@@ -76,10 +76,10 @@ layui.define(['util', 'LuHeaderTemplate'], function (exports) {
 
       headerEle.on('click', '#headerLeft1', () => $lulib.pagePushHash('bim/project/index'))
 
-      headerEle.on('click', '#headerLeft2', () => {
-        // window open to qljcs
-        $lulib.pageOpen('/qljcs/')
-      })
+      // headerEle.on('click', '#headerLeft2', () => {
+      //   // window open to qljcs
+      //   $lulib.pageOpen('/qljcs/')
+      // })
 
       $lulib.eventBus.on('backModelHash', () => {
         if (!this.beforeHash) $lulib.pageReplace('/htmls')

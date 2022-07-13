@@ -1,0 +1,28 @@
+[
+  {
+    "id": "1",
+    "title": "首页概况",
+    "href": "index/index",
+    "active": true
+  },
+  {
+    "id": "2",
+    "title": "预报预警",
+    "href": "warning/index"
+  },
+  {
+    "id": "3",
+    "title": "视频监控",
+    "href": "video-control/index"
+  },
+  {
+    "id": "4",
+    "title": "数据分析",
+    "href": "data-analysis/index"
+  },
+  {
+    "id": "5",
+    "title": "设备管理",
+    "href": "equipment/index"
+  }
+]

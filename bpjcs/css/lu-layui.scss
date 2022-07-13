@@ -1,0 +1,332 @@
+@import "reset-layui";
+$paramColor: #007fff;
+$paramColorHov: #3794ff;
+$bodyBgc: #ebf2fc;
+$sideBarBgc: rgba(25, 121, 187, 0.5);
+
+.layui-layout-admin {
+
+  .lu-menu {
+    .menu-child-level1 {
+      margin-left: 30px;
+    }
+
+    .children-menu-3 {
+      margin-left: 20px;
+    }
+  }
+
+  .lu-side {
+    transition: width .3s;
+    top: 57px;
+    bottom: 0;
+    background-color: transparent !important;
+
+    .layui-side-scroll {
+      width: 170px;
+      background-color: $sideBarBgc !important;
+      height: 100%;
+
+      .lu-nav-item {
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        cursor: pointer;
+      }
+
+      .layui-this {
+        background-color: $paramColor;
+        .iconfont {
+          color: #fff;
+        }
+      }
+
+      .layui-nav-bar {
+        background-color: $paramColor;
+      }
+    }
+  }
+
+  .lu-body {
+    top: 57px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    transition: left .3s;
+    background-color: transparent;
+    padding-bottom: 0;
+
+    .body-one-page {
+      .inner-body {
+        position: absolute;
+        top: 30px;
+        left: 120px;
+        right: 20px;
+      }
+    }
+  }
+
+  .lu-header-ql {
+    height: 70px;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url('../images/page/bpjc/top.png');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: $paramColor;
+
+    .right,
+    .left {
+      width: 260px;
+      height: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      top: -5px;
+    }
+
+    .left {
+      .icon {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .left-date {
+        font-size: 12px;
+      }
+
+      .project-box {
+        position: absolute;
+        right: -200px;
+        .name {
+          color: #fff;
+        }
+      }
+
+      .list-box {
+        position: absolute;
+        right: -420px;
+        cursor: pointer;
+        .name {
+          color: #fff;
+        }
+      }
+    }
+
+    .right {
+      .type-list {
+        width: 150px;
+        height: 30px;
+        background-color: #007fff;
+        position: absolute;
+        right: 260px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        box-sizing: border-box;
+        cursor: pointer;
+
+        .name {
+          margin: 0 5px;
+        }
+      }
+
+      .username {
+        position: relative;
+        left: 30px;
+      }
+    }
+
+    .middle {
+      font-size: 30px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+  }
+}
+
+.lu-sidebar-hover-ul {
+  .lu-menu-li {
+    &.layui-menu-item-checked {
+      background-color: rgba(0, 0, 0, .6) !important;
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, .6);
+    }
+
+    .lu-menu-item {
+      height: 45px;
+      line-height: 45px;
+      box-sizing: border-box;
+
+      a {
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+.lu-layout-mini {
+
+  .lu-side {
+    width: 60px;
+
+    .stretch-btn-box {
+      width: 60px;
+      transform: rotate(180deg);
+
+      .stretch-btn {
+        width: 100%;
+        border-radius: 0;
+      }
+    }
+
+    .layui-side-scroll {
+      width: 60px;
+
+      .lu-nav-item {
+        width: 60px;
+        height: 60px;
+
+        .iconfont {
+          margin-bottom: 0;
+          font-size: 26px;
+        }
+
+        .side-icon-txt {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .lu-body {
+    .body-one-page {
+      .inner-body {
+        left: 70px;
+      }
+    }
+  }
+
+  .popup-tips {
+    .layui-layer-content {
+      background-color: transparent;
+      padding: 0;
+      box-shadow: none;
+
+      .layui-layer-TipsG {
+        display: none;
+      }
+
+      .lu-layui-nav-zoom {
+        dd {
+          &.layui-this {
+            a {
+              background-color: #007fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.header-dropdown-block {
+  width: 370px;
+  padding: 0 15px;
+  box-shadow: 1px 1px 30px rgb(0 0 0 / 12%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .header-dd-b-item {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    .h-dd-b-i-pic {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+// 文件上传
+.upload-file-content {
+  width: 255px;
+  margin-top: 5px;
+
+  &.pic-type {
+    float: left;
+    width: 120px;
+    margin-right: 20px;
+  }
+
+  .file-box {
+    width: 100%;
+    color: $paramColor;
+    position: relative;
+    margin-bottom: 5px;
+
+    .filename {
+      width: 100%;
+    }
+
+    .del-file-icon {
+      position: absolute;
+      right: -20px;
+      top: -5px;
+      font-size: 26px;
+      cursor: pointer;
+    }
+
+    &.file-box-img {
+      width: 120px;
+      height: 120px;
+      margin: 0;
+
+      .layui-progress {
+        width: 100%;
+      }
+
+      .file-img {
+        width: 100%;
+        height: 100%;
+        background-position: center center;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+
+      .del-file-icon {
+        top: 0;
+        right: 0;
+      }
+    }
+  }
+}
+
+.upload-input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  left: -10000px;
+  z-index: -1;
+}
