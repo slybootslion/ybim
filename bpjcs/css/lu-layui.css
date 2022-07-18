@@ -70,9 +70,16 @@
 .inner-body .page-container .select-box {
   display: flex;
   flex-wrap: wrap;
-  padding: 10px;
+  flex-direction: column;
+  padding: 20px 10px;
   box-sizing: border-box;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+.inner-body .page-container .select-box .form-top {
+  margin-bottom: 20px;
+}
+.inner-body .page-container .select-box .form-top .title-left {
+  font-size: 18px;
 }
 .inner-body .page-container .select-box .layui-inline {
   margin-right: 40px;

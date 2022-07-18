@@ -24,5 +24,11 @@
     "id": "5",
     "title": "设备管理",
     "href": "equipment/index"
+  },
+  {
+    "id": "5",
+    "title": "设备管理",
+    "href": "equipment/equipment-form",
+    "hide": true
   }
 ]

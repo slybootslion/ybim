@@ -16,7 +16,10 @@ layui.define([], function (exports) {
       dropdown.render({
         elem: '#headerListBox',
         data: listData,
-        click: obj => $lulib.pagePushHash(`index/index?id=${obj.id}`)
+        click: obj => {
+          $lulib.pagePushHash(`index/index?id=${obj.id}`);
+          $("#headerListBox .name").html(obj.title)
+        }
       })
       dropdown.render({
         elem: '#typeList',

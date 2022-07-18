@@ -9,7 +9,6 @@ layui.use(['LuCommonTemplate'], function () {
 
   class PageTemplate {
     renderContainer (data) {
-      console.log(data)
       const html = `
     <form class="layui-form">
       <div class="info-block">
