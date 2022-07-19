@@ -4,18 +4,10 @@ layui.use(['LuCommonTemplate'], function () {
   const LuTable = layui.LuTable
   const LuLayer = layui.LuLayer
   let luTable, luLayer
-  const form = layui.form
-  const laydate = layui.laydate
-
-  class PageTemplate {
-
-  }
 
   ;(async () => {
     await renderTable()
   })()
-
-  const pt = new PageTemplate
 
   const luSearchForm = new LuSearchForm([
     { label: '设备属性', type: 'select', selectData: [], name: 's1' },
