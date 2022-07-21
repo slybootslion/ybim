@@ -184,6 +184,198 @@
   font-size: 12px;
 }
 
+.inner-body.video-control .page-container {
+  min-height: 600px;
+  margin-top: 20px;
+}
+.inner-body.video-control .page-container .left {
+  width: 78%;
+  height: 100%;
+  margin-right: 2%;
+}
+.inner-body.video-control .page-container .left .select-box {
+  background-color: #f2f2f2;
+  padding: 0 20px;
+  box-sizing: border-box;
+  height: 50px;
+  align-items: center;
+  color: #333;
+  flex-direction: row;
+}
+.inner-body.video-control .page-container .left .select-box .layui-inline {
+  margin-right: 10px;
+}
+.inner-body.video-control .page-container .left .video-box {
+  background-color: #ccc;
+  height: 692px;
+  margin-bottom: 50px;
+  position: relative;
+}
+.inner-body.video-control .page-container .left .video-box .video-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 16px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  line-height: 30px;
+  color: #333;
+}
+.inner-body.video-control .page-container .left .ctrl-box {
+  width: 100%;
+  height: 104px;
+  position: relative;
+}
+.inner-body.video-control .page-container .left .ctrl-box .btn-box {
+  width: 306px;
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  margin-left: -153px;
+}
+.inner-body.video-control .page-container .left .ctrl-box .btn-box .b-mid {
+  width: 155px;
+  height: 100%;
+  margin-top: -10px;
+}
+.inner-body.video-control .page-container .left .ctrl-box .btn-box .b-mid .b-p {
+  background-position: center center;
+  background-size: auto;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  opacity: 0.6;
+}
+.inner-body.video-control .page-container .left .ctrl-box .btn-box .b-mid .b-p:hover {
+  opacity: 1;
+}
+.inner-body.video-control .page-container .left .ctrl-box .btn-box .b-mid .b-m-top {
+  width: 72px;
+  height: 17px;
+  margin: 0 auto;
+  background-image: url(../../images/page/bpjc/up.png);
+}
+.inner-body.video-control .page-container .left .ctrl-box .btn-box .b-mid .b-m-mid {
+  width: 106px;
+  height: 72px;
+  margin: 0 auto;
+}
+.inner-body.video-control .page-container .left .ctrl-box .btn-box .b-mid .b-m-mid .btn-mb-l {
+  width: 17px;
+  height: 72px;
+  background-image: url(../../images/page/bpjc/left.png);
+}
+.inner-body.video-control .page-container .left .ctrl-box .btn-box .b-mid .b-m-mid .btn-mb-m {
+  width: 72px;
+  height: 72px;
+  background-image: url(../../images/page/bpjc/center.png);
+}
+.inner-body.video-control .page-container .left .ctrl-box .btn-box .b-mid .b-m-mid .btn-mb-r {
+  width: 17px;
+  height: 72px;
+  background-image: url(../../images/page/bpjc/right.png);
+}
+.inner-body.video-control .page-container .left .ctrl-box .btn-box .b-mid .b-m-bottom {
+  width: 72px;
+  height: 17px;
+  margin: 0 auto;
+  background-image: url(../../images/page/bpjc/down.png);
+}
+.inner-body.video-control .page-container .left .ctrl-box .btn-box .btn-item {
+  width: 74px;
+  height: 33px;
+  color: #fff;
+  border: 1px solid #007fff;
+  border-radius: 5px;
+  display: block;
+  background-color: transparent;
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+.inner-body.video-control .page-container .right {
+  width: 20%;
+  height: 100%;
+}
+.inner-body.video-control .page-container .right .right-content {
+  height: 740px;
+  border: 1px dotted #ededed;
+  margin-bottom: 10px;
+  background-color: #f2f2f2;
+}
+.inner-body.video-control .page-container .right .right-content .arrow {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+.inner-body.video-control .page-container .right .right-content .arrow:hover .iconfont {
+  color: #333;
+}
+.inner-body.video-control .page-container .right .right-content .arrow.up .icon-bofang {
+  transform: rotate(-90deg);
+}
+.inner-body.video-control .page-container .right .right-content .arrow.down .icon-bofang {
+  transform: rotate(90deg);
+}
+.inner-body.video-control .page-container .right .right-content .arrow .iconfont {
+  font-size: 32px;
+  color: #b1b1b1;
+}
+.inner-body.video-control .page-container .right .right-content .content {
+  height: 630px;
+  margin: 5px 0;
+  position: relative;
+  overflow: hidden;
+}
+.inner-body.video-control .page-container .right .right-content .content .content-slide {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 10px;
+  transition: top 0.3s;
+  box-sizing: border-box;
+}
+.inner-body.video-control .page-container .right .right-content .content .content-slide .content-item {
+  width: 100%;
+  height: 210px;
+  margin: 0 auto;
+  position: relative;
+}
+.inner-body.video-control .page-container .right .right-content .content .content-slide .content-item.active .play-icon {
+  display: none;
+}
+.inner-body.video-control .page-container .right .right-content .content .content-slide .content-item.active .pic {
+  border: 1px solid #007fff;
+}
+.inner-body.video-control .page-container .right .right-content .content .content-slide .content-item .pic {
+  width: 100%;
+  height: 158px;
+  margin-bottom: 10px;
+}
+.inner-body.video-control .page-container .right .right-content .content .content-slide .content-item .title {
+  color: #333;
+}
+.inner-body.video-control .page-container .right .right-content .content .content-slide .content-item .play-icon {
+  width: 45px;
+  height: 45px;
+  background-image: url(../../images/page/bpjc/bofang.png);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-top: -25px;
+}
+.inner-body.video-control .page-container .right .right-content .content .content-slide .content-item .cover {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
 #selectPeopleName .search-name-input {
   width: 220px;
   height: 30px;
