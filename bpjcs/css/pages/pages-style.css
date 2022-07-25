@@ -376,6 +376,34 @@
   cursor: pointer;
 }
 
+.inner-body.warning .select-box .top-sample-box {
+  display: flex;
+}
+.inner-body.warning .select-box .top-sample-box .sample-item {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+}
+.inner-body.warning .select-box .top-sample-box .sample-item .item-label {
+  margin: 0 5px;
+}
+.inner-body.warning .select-box .top-sample-box .sample-item .color {
+  width: 15px;
+  height: 15px;
+}
+.inner-body.warning .select-box .top-sample-box .sample-item .color.red {
+  background-color: red;
+}
+.inner-body.warning .select-box .top-sample-box .sample-item .color.orange {
+  background-color: orange;
+}
+.inner-body.warning .select-box .top-sample-box .sample-item .color.yellow {
+  background-color: yellow;
+}
+.inner-body.warning .select-box .top-sample-box .sample-item .color.blue {
+  background-color: blue;
+}
+
 #selectPeopleName .search-name-input {
   width: 220px;
   height: 30px;

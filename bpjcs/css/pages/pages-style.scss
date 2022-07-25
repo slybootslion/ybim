@@ -465,6 +465,41 @@ $alpBgc: rgba(0, 165, 255, .1);
   }
 }
 
+.inner-body.warning {
+  .select-box {
+    .top-sample-box {
+      display: flex;
+      .sample-item {
+        margin-left: 20px;
+        display: flex;
+        align-items: center;
+
+        .item-label {
+          margin: 0 5px;
+        }
+
+        .color {
+          width: 15px;
+          height: 15px;
+          &.red {
+            background-color: red;
+          }
+          &.orange {
+            background-color: orange;
+          }
+          &.yellow {
+            background-color: yellow;
+          }
+          &.blue {
+            background-color: blue;
+          }
+        }
+
+      }
+    }
+  }
+}
+
 #selectPeopleName {
   .search-name-input {
     width: 220px;

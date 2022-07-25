@@ -105,6 +105,9 @@ $redDeepColor: #c0451b;
 
       .form-top {
         margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
         .title-left {
           font-size: 18px;

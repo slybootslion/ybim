@@ -1,0 +1,91 @@
+<link rel="stylesheet" href="/bpjcs/css/pages/pages-style.css">
+<div class="inner-body warning">
+  <div class="page-container">
+    <div class="select-box luSearchBox">
+      <div class="form-top">
+        <div class="title-left">预报预警</div>
+        <div class="title-right">
+          <div class="top-sample-box">
+            <div class="sample-item">
+              <div class="color red"></div>
+              <span class="item-label">红色预警</span>
+              <span>15</span>
+            </div>
+            <div class="sample-item">
+              <div class="color orange"></div>
+              <span class="item-label">橙色预警</span>
+              <span>15</span>
+            </div>
+            <div class="sample-item">
+              <div class="color yellow"></div>
+              <span class="item-label">黄色预警</span>
+              <span>15</span>
+            </div>
+            <div class="sample-item">
+              <div class="color blue"></div>
+              <span class="item-label">蓝色预警</span>
+              <span>25</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form class="layui-form" lay-filter="search-form">
+        <div class="layui-inline">
+          <label class="layui-form-label">设备属性：</label>
+          <div class="layui-input-inline ">
+            <select name="s1" lay-filter="s1">
+              <option value="">请选择</option>
+            </select>
+            <div class="layui-unselect layui-form-select">
+              <div class="layui-select-title"><input type="text" placeholder="请选择" value="" readonly=""
+                                                     class="layui-input layui-unselect"><i class="layui-edge"></i></div>
+              <dl class="layui-anim layui-anim-upbit">
+                <dd lay-value="" class="layui-select-tips">请选择</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+        <div class="layui-inline">
+          <label class="layui-form-label">设备类型：</label>
+          <div class="layui-input-inline ">
+            <select name="s2" lay-filter="s2">
+              <option value="">请选择</option>
+            </select>
+            <div class="layui-unselect layui-form-select">
+              <div class="layui-select-title"><input type="text" placeholder="请选择" value="" readonly=""
+                                                     class="layui-input layui-unselect"><i class="layui-edge"></i></div>
+              <dl class="layui-anim layui-anim-upbit">
+                <dd lay-value="" class="layui-select-tips">请选择</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+        <div class="layui-inline">
+          <label class="layui-form-label">设备状态：</label>
+          <div class="layui-input-inline ">
+            <select name="s3" lay-filter="s3">
+              <option value="">请选择</option>
+              <option value="1">在线</option>
+              <option value="2">离线</option>
+            </select>
+            <div class="layui-unselect layui-form-select">
+              <div class="layui-select-title"><input type="text" placeholder="请选择" value="" readonly=""
+                                                     class="layui-input layui-unselect"><i class="layui-edge"></i></div>
+              <dl class="layui-anim layui-anim-upbit">
+                <dd lay-value="" class="layui-select-tips">请选择</dd>
+                <dd lay-value="1" class="">在线</dd>
+                <dd lay-value="2" class="">离线</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+        <div class="layui-inline">
+          <button type="button" class="layui-btn" lay-submit="" lay-filter="searchBtn">搜索</button>
+          <button class="layui-btn btn-weaken" type="reset">清除</button>
+        </div>
+      </form>
+    </div>
+    <div class='content-table luTable'></div>
+  </div>
+</div>
+<script src="/bpjcs/js/pages/warning.js" charset="utf-8"></script>
