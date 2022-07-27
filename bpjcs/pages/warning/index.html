@@ -29,59 +29,54 @@
           </div>
         </div>
       </div>
-      <form class="layui-form" lay-filter="search-form">
+      <form class="layui-form search-box" lay-filter="search-form">
+        <div class="btn-box">
+          <div>筛选：</div>
+          <div class="btn active">全部</div>
+          <div class="btn">今天</div>
+          <div class="btn">本周</div>
+          <div class="btn">本月</div>
+        </div>
         <div class="layui-inline">
-          <label class="layui-form-label">设备属性：</label>
-          <div class="layui-input-inline ">
-            <select name="s1" lay-filter="s1">
-              <option value="">请选择</option>
-            </select>
-            <div class="layui-unselect layui-form-select">
-              <div class="layui-select-title"><input type="text" placeholder="请选择" value="" readonly=""
-                                                     class="layui-input layui-unselect"><i class="layui-edge"></i></div>
-              <dl class="layui-anim layui-anim-upbit">
-                <dd lay-value="" class="layui-select-tips">请选择</dd>
-              </dl>
-            </div>
+          <div class="layui-input-inline">
+            <input type="text"
+                   name="sDate"
+                   autocomplete="off"
+                   class="layui-input"
+                   id="dateStartInput"
+                   placeholder="请选择开始时间">
           </div>
         </div>
         <div class="layui-inline">
-          <label class="layui-form-label">设备类型：</label>
-          <div class="layui-input-inline ">
-            <select name="s2" lay-filter="s2">
-              <option value="">请选择</option>
-            </select>
-            <div class="layui-unselect layui-form-select">
-              <div class="layui-select-title"><input type="text" placeholder="请选择" value="" readonly=""
-                                                     class="layui-input layui-unselect"><i class="layui-edge"></i></div>
-              <dl class="layui-anim layui-anim-upbit">
-                <dd lay-value="" class="layui-select-tips">请选择</dd>
-              </dl>
-            </div>
+          <div class="layui-input-inline dateEndBox">
+            <input type="text"
+                   name="eDate"
+                   autocomplete="off"
+                   class="layui-input"
+                   id="dateEndInput"
+                   disabled=""
+                   placeholder="请选择结束时间">
           </div>
         </div>
         <div class="layui-inline">
-          <label class="layui-form-label">设备状态：</label>
-          <div class="layui-input-inline ">
-            <select name="s3" lay-filter="s3">
-              <option value="">请选择</option>
-              <option value="1">在线</option>
-              <option value="2">离线</option>
-            </select>
-            <div class="layui-unselect layui-form-select">
-              <div class="layui-select-title"><input type="text" placeholder="请选择" value="" readonly=""
-                                                     class="layui-input layui-unselect"><i class="layui-edge"></i></div>
-              <dl class="layui-anim layui-anim-upbit">
-                <dd lay-value="" class="layui-select-tips">请选择</dd>
-                <dd lay-value="1" class="">在线</dd>
-                <dd lay-value="2" class="">离线</dd>
-              </dl>
-            </div>
-          </div>
+          <select name="s3" lay-verify="s3">
+            <option value="0">全部预警等级</option>
+            <option value="1">红色预警</option>
+            <option value="2">橙色预警</option>
+            <option value="3">黄色预警</option>
+            <option value="4">蓝色预警</option>
+          </select>
+        </div>
+        <div class="layui-inline">
+          <select name="s4" lay-verify="s4">
+            <option value="0">全部类型</option>
+            <option value="1">类型1</option>
+            <option value="2">类型2</option>
+          </select>
         </div>
         <div class="layui-inline">
           <button type="button" class="layui-btn" lay-submit="" lay-filter="searchBtn">搜索</button>
-          <button class="layui-btn btn-weaken" type="reset">清除</button>
+          <button class="layui-btn btn-weaken reset-btn" type="reset">清除</button>
         </div>
       </form>
     </div>

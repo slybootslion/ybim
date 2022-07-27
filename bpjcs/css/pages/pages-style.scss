@@ -497,6 +497,30 @@ $alpBgc: rgba(0, 165, 255, .1);
 
       }
     }
+
+    .search-box {
+      display: flex;
+
+      .btn-box {
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+
+        .btn {
+          margin-right: 10px;
+          cursor: pointer;
+          padding: 5px 10px;
+
+          &.active {
+            background-color: #007fff;
+          }
+        }
+      }
+
+      .layui-inline {
+        margin-right: 20px;
+      }
+    }
   }
 }
 

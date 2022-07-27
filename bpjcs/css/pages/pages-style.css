@@ -403,6 +403,25 @@
 .inner-body.warning .select-box .top-sample-box .sample-item .color.blue {
   background-color: blue;
 }
+.inner-body.warning .select-box .search-box {
+  display: flex;
+}
+.inner-body.warning .select-box .search-box .btn-box {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+.inner-body.warning .select-box .search-box .btn-box .btn {
+  margin-right: 10px;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+.inner-body.warning .select-box .search-box .btn-box .btn.active {
+  background-color: #007fff;
+}
+.inner-body.warning .select-box .search-box .layui-inline {
+  margin-right: 20px;
+}
 
 #selectPeopleName .search-name-input {
   width: 220px;
