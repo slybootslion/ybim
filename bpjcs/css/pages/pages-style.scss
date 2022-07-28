@@ -522,6 +522,24 @@ $alpBgc: rgba(0, 165, 255, .1);
       }
     }
   }
+
+  .iconfont.icon-yujing {
+    font-size: 20px;
+    margin-right: 5px;
+
+    &.red {
+      color: red;
+    }
+    &.orange {
+      color: orange;
+    }
+    &.yellow {
+      color: yellow;
+    }
+    &.blue {
+      color: #0051ff;
+    }
+  }
 }
 
 #selectPeopleName {

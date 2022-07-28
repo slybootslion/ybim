@@ -422,6 +422,22 @@
 .inner-body.warning .select-box .search-box .layui-inline {
   margin-right: 20px;
 }
+.inner-body.warning .iconfont.icon-yujing {
+  font-size: 20px;
+  margin-right: 5px;
+}
+.inner-body.warning .iconfont.icon-yujing.red {
+  color: red;
+}
+.inner-body.warning .iconfont.icon-yujing.orange {
+  color: orange;
+}
+.inner-body.warning .iconfont.icon-yujing.yellow {
+  color: yellow;
+}
+.inner-body.warning .iconfont.icon-yujing.blue {
+  color: #0051ff;
+}
 
 #selectPeopleName .search-name-input {
   width: 220px;

@@ -9,6 +9,7 @@ layui.use(['LuCommonTemplate'], function () {
     end: `#dateEndInput`,
   }
   let currentDate = '全部'
+  let luTable
 
   ;(() => {
     renderSearchForm()
@@ -88,6 +89,36 @@ layui.use(['LuCommonTemplate'], function () {
       .removeClass('active'));
   }
 
-  function renderTable () {
+
+  async function renderTable () {
+    const data = await $lulib.getMockData('/bpjcs/mock/warningTableData.json', 8, null, false)
+    const dict = { 1: 'red', 2: 'orange', 3: 'yellow', 4: 'blue' }
+    const handleT4Template = d => {
+      console.log(d)
+      const t5 = d.t5
+      if (!t5) return t5 + '级'
+      return `<span class="iconfont icon-yujing ${dict[t5]}"></span>`
+    }
+    const tableOptions = {
+      cols: [
+        $lulib.tableSetCenter([
+          { field: 'id', title: '编号', width: 60 },
+          { field: 't1', title: '预警时间', width: 150 },
+          { field: 't2', title: '传感器', width: 160 },
+          { field: 't3', title: '检测类型', width: 170 },
+          { field: 't4', title: '预警描述', width: 820 },
+          { title: '预警等级', width: 90, templet: handleT4Template },
+        ]),
+      ],
+      ctrlData: [
+        { eventStr: 'info', txtStr: '查看详情 》' },
+      ],
+      methods: {
+        info (data) {
+          console.log(data)
+        },
+      },
+    }
+    luTable = new LuTable(data, tableOptions)
   }
 })
