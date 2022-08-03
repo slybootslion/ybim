@@ -94,7 +94,6 @@ layui.use(['LuCommonTemplate'], function () {
     const data = await $lulib.getMockData('/bpjcs/mock/warningTableData.json', 8, null, false)
     const dict = { 1: 'red', 2: 'orange', 3: 'yellow', 4: 'blue' }
     const handleT4Template = d => {
-      console.log(d)
       const t5 = d.t5
       if (!t5) return t5 + '级'
       return `<span class="iconfont icon-yujing ${dict[t5]}"></span>`
