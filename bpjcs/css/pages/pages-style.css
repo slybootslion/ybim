@@ -563,5 +563,30 @@
 .full-body .right-content .block2 .block2-box .block2-bottom-item .text {
   margin: 0 15px;
 }
+.full-body .right-content .block3 .block3-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+.full-body .right-content .block3 .block3-box .block3-item {
+  width: 50%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.full-body .checkbox-content {
+  width: 540px;
+  height: 40px;
+  background-color: rgba(25, 121, 187, 0.5);
+  position: absolute;
+  top: 20px;
+  left: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.full-body .checkbox-content .layui-form .layui-form-checkbox span {
+  color: #fff;
+}
 
 /*# sourceMappingURL=pages-style.css.map */

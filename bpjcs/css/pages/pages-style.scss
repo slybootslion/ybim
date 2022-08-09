@@ -685,5 +685,40 @@ $alpBgc: rgba(0, 165, 255, .1);
         }
       }
     }
+
+    .block3 {
+      .block3-box {
+        display: flex;
+        flex-wrap: wrap;
+
+        .block3-item {
+          width: 50%;
+          height: 80px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  .checkbox-content {
+    width: 540px;
+    height: 40px;
+    background-color: $sideBarBgc;
+    position: absolute;
+    top: 20px;
+    left: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    .layui-form {
+      .layui-form-checkbox {
+        span {
+          color: #fff;
+        }
+      }
+    }
   }
 }
