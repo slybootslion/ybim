@@ -1,6 +1,7 @@
-layui.use([], function () {
+layui.use(['echarts'], function () {
   const $ = layui.$
   const form = layui.form
+  const echarts = layui.echarts
 
   checkboxRender()
   const checkItems = $(".layui-form .check-item")

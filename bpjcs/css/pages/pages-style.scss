@@ -721,4 +721,52 @@ $alpBgc: rgba(0, 165, 255, .1);
       }
     }
   }
+
+  .echarts-box {
+    position: fixed;
+    top: 309px;
+    left: 568px;
+    width: 900px;
+    height: 460px;
+    background-color: rgba(0, 0, 0, .6);
+    padding: 15px;
+    box-sizing: border-box;
+
+    .top-box {
+      .echarts-title {
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #fff;
+
+        .title {
+          font-size: 18px;
+        }
+
+        .iconfont {
+          font-size: 22px;
+          color: #a9a7a7;
+          cursor: pointer;
+        }
+      }
+
+      .echarts-status {
+        padding: 10px 0;
+        color: #a9a7a7;
+
+        .status-box {
+          span {
+            &.blue {
+              color: #007fff;
+            }
+          }
+        }
+
+        .time-box {
+
+        }
+      }
+    }
+  }
 }

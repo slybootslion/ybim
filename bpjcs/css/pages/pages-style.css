@@ -588,5 +588,37 @@
 .full-body .checkbox-content .layui-form .layui-form-checkbox span {
   color: #fff;
 }
+.full-body .echarts-box {
+  position: fixed;
+  top: 309px;
+  left: 568px;
+  width: 900px;
+  height: 460px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 15px;
+  box-sizing: border-box;
+}
+.full-body .echarts-box .top-box .echarts-title {
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #fff;
+}
+.full-body .echarts-box .top-box .echarts-title .title {
+  font-size: 18px;
+}
+.full-body .echarts-box .top-box .echarts-title .iconfont {
+  font-size: 22px;
+  color: #a9a7a7;
+  cursor: pointer;
+}
+.full-body .echarts-box .top-box .echarts-status {
+  padding: 10px 0;
+  color: #a9a7a7;
+}
+.full-body .echarts-box .top-box .echarts-status .status-box span.blue {
+  color: #007fff;
+}
 
 /*# sourceMappingURL=pages-style.css.map */
