@@ -56,15 +56,15 @@
   </div>
   <div class="checkbox-content">
     <form action="" class="layui-form" lay-filter="checkbox">
-      <input type="checkbox" name="checkAll" class="check-all" title="全部" lay-skin="primary">
-      <input type="checkbox" name="checkItem" class="check-item" title="CNSS" lay-skin="primary">
-      <input type="checkbox" name="checkItem" class="check-item" title="深度位移" lay-skin="primary">
-      <input type="checkbox" name="checkItem" class="check-item" title="裂缝" lay-skin="primary">
-      <input type="checkbox" name="checkItem" class="check-item" title="雨量计" lay-skin="primary">
-      <input type="checkbox" name="checkItem" class="check-item" title="地下水位" lay-skin="primary">
+      <input checked type="checkbox" name="checkAll" class="check-all" title="全部" lay-skin="primary">
+      <input checked type="checkbox" name="checkItem" class="check-item" title="CNSS" lay-skin="primary">
+      <input checked type="checkbox" name="checkItem" class="check-item" title="深度位移" lay-skin="primary">
+      <input checked type="checkbox" name="checkItem" class="check-item" title="裂缝" lay-skin="primary">
+      <input checked type="checkbox" name="checkItem" class="check-item" title="雨量计" lay-skin="primary">
+      <input checked type="checkbox" name="checkItem" class="check-item" title="地下水位" lay-skin="primary">
     </form>
   </div>
-  <div class="echarts-box" id="echartsBox">
+  <div class="echarts-box">
     <div class="top-box">
       <div class="echarts-title">
         <span class="title">CNSS一号点位</span>
@@ -74,9 +74,16 @@
         <div class="status-box">
           状态：<span class="blue">在线</span>
         </div>
-        <div class="time-box"></div>
+        <div class="time-box">
+          <span class="time-span active">实时</span>
+          <span class="time-span">一小时</span>
+          <span class="time-span">一天</span>
+          <span class="time-span">一周</span>
+          <span class="time-span">一月</span>
+        </div>
       </div>
     </div>
+    <div class="bottom-echarts" id="echartsBox"></div>
   </div>
 </div>
 <script src="/bpjcs/js/pages/index.js" charset="utf-8"></script>

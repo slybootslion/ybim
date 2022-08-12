@@ -729,7 +729,7 @@ $alpBgc: rgba(0, 165, 255, .1);
     width: 900px;
     height: 460px;
     background-color: rgba(0, 0, 0, .6);
-    padding: 15px;
+    padding: 10px 15px;
     box-sizing: border-box;
 
     .top-box {
@@ -754,6 +754,9 @@ $alpBgc: rgba(0, 165, 255, .1);
       .echarts-status {
         padding: 10px 0;
         color: #a9a7a7;
+        display: flex;
+        justify-content: space-between;
+
 
         .status-box {
           span {
@@ -764,9 +767,23 @@ $alpBgc: rgba(0, 165, 255, .1);
         }
 
         .time-box {
+          width: 260px;
+          display: flex;
+          justify-content: space-between;
 
+          .time-span {
+            cursor: pointer;
+
+            &.active {
+              color: #fff;
+            }
+          }
         }
       }
+    }
+
+    .bottom-echarts {
+      height: 350px;
     }
   }
 }

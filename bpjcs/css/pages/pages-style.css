@@ -595,7 +595,7 @@
   width: 900px;
   height: 460px;
   background-color: rgba(0, 0, 0, 0.6);
-  padding: 15px;
+  padding: 10px 15px;
   box-sizing: border-box;
 }
 .full-body .echarts-box .top-box .echarts-title {
@@ -616,9 +616,25 @@
 .full-body .echarts-box .top-box .echarts-status {
   padding: 10px 0;
   color: #a9a7a7;
+  display: flex;
+  justify-content: space-between;
 }
 .full-body .echarts-box .top-box .echarts-status .status-box span.blue {
   color: #007fff;
+}
+.full-body .echarts-box .top-box .echarts-status .time-box {
+  width: 260px;
+  display: flex;
+  justify-content: space-between;
+}
+.full-body .echarts-box .top-box .echarts-status .time-box .time-span {
+  cursor: pointer;
+}
+.full-body .echarts-box .top-box .echarts-status .time-box .time-span.active {
+  color: #fff;
+}
+.full-body .echarts-box .bottom-echarts {
+  height: 350px;
 }
 
 /*# sourceMappingURL=pages-style.css.map */
