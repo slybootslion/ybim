@@ -439,6 +439,64 @@
   color: #0051ff;
 }
 
+.inner-body.data-analysis {
+  background-image: url("../../images/page/bpjc/inspection-bg-r.png");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 0 50px;
+  box-sizing: border-box;
+}
+.inner-body.data-analysis .page-container {
+  padding: 0 0 20px;
+}
+.inner-body.data-analysis .page-container .container-nav {
+  display: flex;
+  margin-bottom: 10px;
+}
+.inner-body.data-analysis .page-container .container-nav .nav-item {
+  width: 130px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  cursor: pointer;
+  background-image: url("../../images/page/bpjc/down_.png");
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.inner-body.data-analysis .page-container .container-nav .nav-item.active {
+  background-image: url("../../images/page/bpjc/on.png");
+}
+.inner-body.data-analysis .page-container .table-box {
+  margin-top: 10px;
+  width: 100%;
+  height: 350px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.inner-body.data-analysis .page-container .echarts-box {
+  width: 100%;
+  height: 450px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.inner-body.data-analysis .page-container .echarts-box .echarts-title {
+  padding: 20px 30px 0;
+}
+.inner-body.data-analysis .page-container .echarts-box .echarts-container {
+  padding: 20px;
+}
+.inner-body.data-analysis .page-container .echarts-box .echarts-container .echarts {
+  height: 470px;
+  background-color: transparent;
+}
+.inner-body.data-analysis .page-container .empty {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 #selectPeopleName .search-name-input {
   width: 220px;
   height: 30px;
