@@ -4,6 +4,10 @@ layui.use(['echarts'], function () {
   const echarts = layui.echarts
   let echartsObj = null;
 
+  /*
+  * echarts 再次进入页面渲染
+  * */
+
   checkboxRender()
   const checkItems = $(".layui-form .check-item")
   const checkAll = $(".layui-form .check-all")

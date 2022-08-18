@@ -9,9 +9,37 @@
       <div class="nav-item">地下水位</div>
     </div>
     <div class="echarts-box">
-      <div class="empty">暂无数据</div>
+      <div class="title-box">
+        <div class="title">实时动态位移数据分析</div>
+        <div class="echarts-select-box">
+          <form class="layui-form">
+            <select name="e" lay-filter="e">
+              <option value=""></option>
+              <option value="0">数据分析0</option>
+              <option value="1">数据分析1</option>
+              <option value="2">数据分析2</option>
+            </select>
+          </form>
+        </div>
+      </div>
+      <div class="echarts-content">
+        <div class="empty">暂无数据</div>
+      </div>
     </div>
     <div class="table-box">
+      <div class="title-box">
+        <div class="title">表面位移数据列表</div>
+        <div class="table-select-box">
+          <form class="layui-form">
+            <select name="t" lay-filter="t">
+              <option value=""></option>
+              <option value="0">传感器0</option>
+              <option value="1">传感器1</option>
+              <option value="2">传感器2</option>
+            </select>
+          </form>
+        </div>
+      </div>
       <div class="empty">暂无数据</div>
     </div>
   </div>
