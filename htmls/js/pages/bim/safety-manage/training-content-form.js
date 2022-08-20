@@ -158,10 +158,13 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate'], function () {
   }
 
   form.on('submit(submit)', function (data) {
+    const { id } = $lulib.getHashParams()
+    if (!id) return
     if (luUpload.files.length < 1) {
       layer.msg('文件未上传')
       return false
     }
+    $lulib.pagePushHash(`bim/safety-manage/training-content-info?id=${id}`)
     return false
   })
 })
