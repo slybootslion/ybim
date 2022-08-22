@@ -1,13 +1,34 @@
-layui.use(['echarts'], function () {
+layui.use(['echarts', 'LuCommonTemplate'], function () {
   const $ = layui.$
   const echarts = layui.echarts
   const form = layui.form
+  const LuTable = layui.LuTable
 
   let echartsObj = null;
 
   form.render()
-  form.on("select(t)", function (data) {
-    console.log(data)
+  form.on("select(t)", async function (data) {
+    const tableData = await $lulib.getMockData('/bpjcs/mock/dataAnalysisTableData.json',
+      8, null, false)
+    const tableOptions = {
+      cols: [
+        $lulib.tableSetCenter([
+          { field: 't1', title: '时间', width: 160 },
+          { field: 't2', title: '测点名称', width: 220 },
+          { field: 't3', title: '东向（mm）', width: 130 },
+          { field: 't4', title: '西向（mm）', width: 130 },
+          { field: 't5', title: '垂直（mm）', width: 130 },
+          { field: 't6', title: '速率x（mm）', width: 130 },
+          { field: 't7', title: '速率y（mm）', width: 130 },
+          { field: 't8', title: '速率h（mm）', width: 130 },
+          { field: 't9', title: '加速度x（mm）', width: 130 },
+          { field: 't10', title: '加速度y（mm）', width: 130 },
+          { field: 't11', title: '加速度y（mm）', width: 130 },
+        ]),
+      ],
+    }
+    $(".table-box .table-content").html("<div class='content-table luTable'></div>")
+    new LuTable(tableData, tableOptions)
   })
 
   form.on("select(e)", function (data) {

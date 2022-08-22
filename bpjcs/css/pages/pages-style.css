@@ -474,6 +474,8 @@
   height: 350px;
   background-color: rgba(0, 0, 0, 0.3);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 .inner-body.data-analysis .page-container .echarts-box {
   width: 100%;
@@ -493,8 +495,12 @@
   height: 470px;
   background-color: transparent;
 }
+.inner-body.data-analysis .page-container .table-content,
 .inner-body.data-analysis .page-container .echarts-content {
   flex: 1;
+}
+.inner-body.data-analysis .page-container .table-content {
+  overflow-y: auto;
 }
 .inner-body.data-analysis .page-container .empty {
   width: 100%;

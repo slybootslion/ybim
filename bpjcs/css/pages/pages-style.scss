@@ -580,6 +580,8 @@ $alpBgc: rgba(0, 165, 255, .1);
       height: 350px;
       background-color: rgba(0, 0, 0, .3);
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
     .echarts-box {
@@ -604,8 +606,13 @@ $alpBgc: rgba(0, 165, 255, .1);
       }
     }
 
+    .table-content,
     .echarts-content {
       flex: 1;
+    }
+
+    .table-content {
+      overflow-y: auto;
     }
 
     .empty {
