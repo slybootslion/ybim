@@ -184,13 +184,17 @@ layui.use(['echarts', 'LuCommonTemplate'], function () {
     echartsObj.setOption(options)
   })
 
-
   $(".container-nav .nav-item").on('click', async function () {
     const $this = $(this)
     const isActive = $this.hasClass('active')
     if (isActive) return
     $this.addClass('active').siblings('.nav-item').removeClass('active')
-
+    const html = '<div class="empty">暂无数据</div>'
+    $(".table-box .table-content").html(html);
+    $(".echarts-box .echarts-content").html(html);
+    $(".echarts-box .layui-form").html(`<select name="t" lay-filter="e"><option value=""></option><option value="0">数据分析0</option><option value="1">数据分析1</option><option value="2">数据分析2</option></select>`)
+    $(".table-box .layui-form").html(`<select name="t" lay-filter="t"><option value=""></option><option value="0">传感器0</option><option value="1">传感器1</option><option value="2">传感器2</option></select>`)
+    form.render()
   })
 
   function makeData (count, max, min, interval = 5) {
