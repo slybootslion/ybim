@@ -11,7 +11,7 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable'], fun
   const LuLightBox = layui.LuLightBox
 
   class PageTemplate {
-    renderLayerForm(data) {
+    renderLayerForm (data) {
       const uploadHtml = `<div class='content-body content-upload layui-form'>
                             <div class='upload-box'>
                               <div class='file-box' id='fileBox'></div>
@@ -139,7 +139,7 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable'], fun
       `
     }
 
-    renderLayerInfo(data) {
+    renderLayerInfo (data) {
       const dictInfo = {
         i1: '任务名称',
         i2: '计划工程量(m)',
@@ -177,7 +177,7 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable'], fun
               j += `<div class='info-top-item'><span>${item}：</span><sapn>${lItem[key]}</sapn></div>`
             } else {
               let k = ''
-              lItem[key].forEach(picUrl => k += `<img class='l-pic light-box' src="${picUrl}" alt="">` )
+              lItem[key].forEach(picUrl => k += `<img class='l-pic light-box' src="${picUrl}" alt="">`)
               j += `<div class='info-top-item'><div>${item}：</div>${k}</div>`
             }
           })
@@ -195,6 +195,7 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable'], fun
       `
     }
   }
+
   const pt = new PageTemplate()
 
   let instanceTreeTable, luInnerHeader, currentLine, luLayer, luUpload, luInfoLayer, luLightBox
@@ -202,17 +203,17 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable'], fun
     innerHeaderRender()
     searchFormRender()
     tableRender()
-    luLightBox = new LuLightBox({zIndex: 20210609})
+    luLightBox = new LuLightBox({ zIndex: 20210609 })
   })()
 
-  function innerHeaderRender() {
+  function innerHeaderRender () {
     luInnerHeader = new LuInnerHeader({
       title: '施工进度',
       rightHtml: [{ txt: '进度填报' }],
     })
   }
 
-  function searchFormRender() {
+  function searchFormRender () {
     new LuSearchForm(
       [
         { label: '计划名称', type: 'text', name: 's1' },
@@ -221,18 +222,20 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable'], fun
         { label: '任务状态', type: 'select', selectData: [], name: 's4' },
       ],
       {
-        submit(data) {
+        submit (data) {
           console.log(data)
         },
       },
     )
   }
 
-  function getTreeTableOpts(page = 1, count = 10, noPageRender = false) {
-    function getTreeTableReqData(callback) {
+  function getTreeTableOpts (page = 1, count = 10, noPageRender = false) {
+    function getTreeTableReqData (callback) {
       return async (_, cb) => {
         // mock
-        const { data, count: c } = await $.get(`/htmls/mock/bim/constructionScheduleTableData.json?page=${page}&count=${count}`)
+        const {
+          data, count: c
+        } = await $.get(`/htmls/mock/bim/constructionScheduleTableData.json?page=${page}&count=${count}`)
         cb(data)
         callback && callback(c)
       }
@@ -280,24 +283,24 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable'], fun
         ),
       ],
       reqData,
-      done() {
+      done () {
         $("tr[data-indent='0']").addClass('root')
       },
     }
   }
 
-  function tableRender() {
+  function tableRender () {
     const opts = getTreeTableOpts()
     instanceTreeTable = LuTreeTable.render(opts)
   }
 
-  function renderPage(count) {
+  function renderPage (count) {
     laypage.render({
       elem: document.querySelector('.page'),
       count,
       limit: 10,
       layout: ['prev', 'page', 'next', 'count'],
-      jump(obj, first) {
+      jump (obj, first) {
         if (!first) {
           const opts = getTreeTableOpts(obj.curr, 10, true)
           instanceTreeTable.reload(opts)
@@ -328,7 +331,7 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable'], fun
 
   $lulib.bindMethod([{ dom: luInnerHeader.rightBtns[0], method: add }])
 
-  function add() {
+  function add () {
     if (!currentLine) {
       layer.msg('未选择任务')
       return
@@ -353,7 +356,7 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable'], fun
       limit: 10,
       accept: 'image/*',
       multiple: true,
-      success(files) {
+      success (files) {
         for (let i = 0; i < files.length; i++) {
           const file = files[i]
           // mock
@@ -365,11 +368,13 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable'], fun
     luUpload = new LuUpload(uploadOpts)
   }
 
-  function bindModelHandler(id) {
-    $lulib.pagePushHash(`bim/progress-control/bind-model?id=${id}`)
+  function bindModelHandler (id) {
+    $(".table-mod-content").addClass('half-active');
+
+    // $lulib.pagePushHash(`bim/progress-control/bind-model?id=${id}`)
   }
 
-  async function infoHandler(id) {
+  async function infoHandler (id) {
     const data = await $.get(`/htmls/mock/bim/constructionItemInfoData.json?id=${id}`)
 
     const opts = {

@@ -1,10 +1,55 @@
 <link rel='stylesheet' href='/htmls/css/pages/bim2.css'>
+<link rel='stylesheet' href='/htmls/css/pages/bim.css'>
 <div class='inner-body progress-control'>
   <div class='page-header luPageHeader'></div>
   <div class='page-container'>
     <div class='select-box luSearchBox'></div>
-    <div class='content-table luTable'></div>
+    <div class="table-mod-content">
+      <div class='content-table luTable'></div>
+      <div class="content-mod">
+        <div class='bim-body' id='bimBody'>
+          <div class='top-back-box'>
+            <div class='left'>
+              <span>关联模型</span>
+              <span class='top-left-tip'><span class='color-block'></span>当前关联任务</span>
+            </div>
+            <div class='top-close'>x</div>
+          </div>
+          <div class='main'>
+            <div class='tools-bg'></div>
+            <div class='tools-bar'></div>
+            <div class='page-container'>
+              <div class="bind-model">
+                <div class="bind-item">
+                  <span>任务名称：</span>
+                  <span class="txt">地面铺设</span>
+                </div>
+                <div class="bind-item">
+                  <span>计划工期：</span>
+                  <span>80天</span>
+                </div>
+                <div class="bind-item">
+                  <span>计划开始时间：</span>
+                  <span>2019-05-15</span>
+                </div>
+                <div class="bind-item">
+                  <span>计划结束时间：</span>
+                  <span>2020-05-20</span>
+                </div>
+                <div class="bind-item">
+                  <span>责任人：</span>
+                  <span>贺波</span>
+                </div>
+                <button class="bind-btn" id="bindBtn">确认标记</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class='page'></div>
   </div>
 </div>
 <script src="/htmls/js/pages/bim/progress-control/construction-schedule.js" charset="utf-8"></script>
+<script src='/htmls/js/pages/bim/bim/index.js' charset='utf-8'></script>
+

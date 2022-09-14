@@ -1596,4 +1596,938 @@ input[type=range]::-webkit-slider-thumb {
   left: 0;
 }
 
+.table-mod-content {
+  width: 100%;
+}
+.table-mod-content .content-mod {
+  display: none;
+}
+.table-mod-content.half-active {
+  display: flex;
+  justify-content: space-between;
+}
+.table-mod-content.half-active .ew-tree-table {
+  width: 50%;
+  height: 525px;
+  overflow-y: auto;
+}
+.table-mod-content.half-active .ew-tree-table::after {
+  background-color: transparent;
+}
+.table-mod-content.half-active .content-mod {
+  width: 50%;
+  height: 525px;
+  margin: 10px 0;
+  background-color: #c0c0c0;
+  display: block;
+}
+.table-mod-content.half-active .content-mod .bim-body {
+  width: 100%;
+  height: 100%;
+  color: #333;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: #0beeec;
+}
+.table-mod-content.half-active .content-mod .bim-body ::-webkit-scrollbar {
+  width: 0;
+}
+.table-mod-content.half-active .content-mod .bim-body .main {
+  flex: 1;
+  position: relative;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .tools-bg {
+  width: 50px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .tools-bar {
+  width: 50px;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .tools-bar:hover {
+  width: 198px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .tools-bar .tools-item {
+  width: 50px;
+  height: 50px;
+  color: #dedede;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .tools-bar .tools-item:nth-last-child(1) {
+  margin-bottom: 50px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .tools-bar .tools-item.more_::after, .table-mod-content.half-active .content-mod .bim-body .main .tools-bar .tools-item.more::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border: 7px solid transparent;
+  border-top: 7px solid rgba(255, 255, 255, 0.6);
+  display: block;
+  position: absolute;
+  bottom: -8px;
+  right: -7px;
+  transform: rotate(312deg);
+}
+.table-mod-content.half-active .content-mod .bim-body .main .tools-bar .tools-item.active {
+  color: rgba(0, 0, 0, 0.6);
+  background-color: #dedede;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .tools-bar .tools-item span.iconfont {
+  font-size: 30px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .tools-bar .tools-item .tools-child-box {
+  position: absolute;
+  right: 0;
+  top: 0;
+  opacity: 0;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .tools-bar .tools-item .tools-child-box span {
+  width: 100px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  display: inline-block;
+  padding: 0 20px;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.table-mod-content.half-active .content-mod .bim-body .main .tools-bar .tools-item .tools-child-box span:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #dedede;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .tools-bar .tools-item:hover {
+  color: rgba(0, 0, 0, 0.6);
+  background-color: #dedede;
+  transition: all 0.3s 0.2s;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .tools-bar .tools-item:hover .tools-child-box {
+  opacity: 1;
+  left: 50px;
+  transition: all 0.3s 0.2s;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .info-icon-box {
+  position: absolute;
+  top: 20px;
+  left: 70px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .info-icon-box .icon {
+  width: 35px;
+  height: 35px;
+  color: #dedede;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .info-icon-box .icon.base-info .icon-xinxi {
+  font-size: 20px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .info-icon-box .icon.base-info .base-info-content {
+  width: 233px;
+  top: 0;
+  left: 40px;
+  position: absolute;
+  display: none;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .info-icon-box .icon.base-info .base-info-content .title {
+  height: 40px;
+  background-color: #dedede;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #333333;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .info-icon-box .icon.base-info .base-info-content .title .close {
+  padding: 10px;
+  position: relative;
+  right: -10px;
+  cursor: pointer;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .info-icon-box .icon.base-info .base-info-content .info-content {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.6);
+  overflow-y: auto;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  color: #333333;
+  line-height: 2;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .info-icon-box .icon.hide-label {
+  margin-top: 5px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content {
+  width: 534px;
+  height: 500px;
+  background-color: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  overflow: hidden;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  top: 31px;
+  left: 107px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min {
+  width: 324px;
+  height: 450px;
+  position: fixed;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .detail-list {
+  max-height: 390px;
+  overflow: auto;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .detail-list .detail-item {
+  height: 40px;
+  line-height: 40px;
+  padding: 0 8px;
+  margin-bottom: 2px;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .detail-list .detail-item .pic {
+  width: 10%;
+  height: 40px;
+  background-image: url("/htmls/images/page/bim/pawn_glass_yellow.png");
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .detail-list .detail-item .desc {
+  width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .detail-list .detail-item .iconfont {
+  width: 10%;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .detail-list .detail-item .iconfont:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .detail-list .add-btn {
+  width: 78px;
+  height: 28px;
+  border-radius: 3px;
+  float: right;
+  margin-top: 10px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .detail-list .info {
+  margin-bottom: 20px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .detail-list .info .title {
+  font-size: 18px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .detail-list .info .info-desc .item {
+  display: flex;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .detail-list .info .info-desc .item span:nth-child(1) {
+  width: 30%;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .detail-list .info .info-desc .item span:nth-child(2) {
+  flex: 1;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .detail-list .notes-box {
+  margin-top: 20px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .detail-list .notes-box .top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .detail-list .notes-box .top .icon-box {
+  background-color: #fff;
+  border: 1px solid #1e9f24;
+  color: #1e9f24;
+  border-radius: 3px;
+  padding: 0 5px;
+  margin-right: 10px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .detail-list .notes-box .top .icon-box.blue {
+  border-color: #007eff;
+  color: #007eff;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .detail-list .notes-box .notes-content .item {
+  display: flex;
+  margin-bottom: 10px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .detail-list .notes-box .notes-content .item span:nth-child(1) {
+  width: 20%;
+  text-align: right;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .detail-list .notes-box .notes-content .item span:nth-child(2) {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .detail-list .notes-box .notes-content .item span:nth-child(2) img {
+  width: 78px;
+  height: 78px;
+  margin: 0 10px 10px 0;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .detail-list .message-box .item {
+  margin-top: 10px;
+  display: flex;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .detail-list .message-box .item .title {
+  width: 30%;
+  text-align: right;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .detail-list .message-box .item .desc {
+  flex: 1;
+  color: #333333;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .detail-list .message-box .item .desc a:hover {
+  color: #2773e6;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .item-box {
+  overflow: hidden;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .item-box .desc {
+  width: 80px;
+  display: inline-block;
+  text-align: right;
+  float: left;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .item-box .text {
+  width: 200px;
+  height: 28px;
+  float: left;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid #7b7b7b;
+  padding: 0 8px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .item-box .text-area {
+  width: 200px;
+  float: left;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid #7b7b7b;
+  padding: 0 8px;
+  color: #fff;
+  margin-bottom: 10px;
+  resize: none;
+  font-size: 14px;
+  line-height: 28px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .item-box .file-input {
+  width: 200px;
+  height: 28px;
+  line-height: 28px;
+  float: left;
+  padding: 0 8px;
+  background-color: rgba(0, 0, 0, 0.3);
+  text-align: center;
+  color: #ffffff;
+  border: 1px solid #7b7b7b;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .item-box #tagUploadBtn {
+  display: none;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .item-box .checks {
+  float: left;
+  height: 28px;
+  margin-bottom: 10px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .item-box .checks input[type=radio] + label span {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  margin: 0 4px;
+  vertical-align: middle;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  background-position: center center;
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .item-box .checks input[type=radio]:checked + label span {
+  position: relative;
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  margin: 0 4px;
+  vertical-align: middle;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  background-position: center center;
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .item-box .checks input[type=radio]:checked + label span::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .item-box .checks input[type=radio]:checked + label span::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-image: url(/htmls/images/page/bim/checked.png);
+  background-position: right bottom;
+  background-size: auto;
+  background-repeat: no-repeat;
+  z-index: 3;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .item-box .checks #c1 + label span {
+  background-image: url(/htmls/images/page/bim/biaoji.png);
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .item-box .checks #c2 + label span {
+  background-image: url(/htmls/images/page/bim/pawn_glass_yellow.png);
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .item-box .checks #c3 + label span {
+  background-image: url(/htmls/images/page/bim/flag_blue.png);
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .item-box .checks #c4 + label span {
+  background-image: url(/htmls/images/page/bim/datouzhen.png);
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .item-box .radiobox {
+  float: left;
+  height: 28px;
+  margin-bottom: 10px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .item-box .radiobox input[type=radio]:checked + label span {
+  border: 1px solid #00f5fe;
+  border-radius: 50%;
+  position: relative;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .item-box .radiobox input[type=radio]:checked + label span::after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -6px;
+  margin-top: -6px;
+  border-radius: 50%;
+  background-color: #00f5fe;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .item-box .radiobox input[type=radio] + label span {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin: 0 5px;
+  vertical-align: middle;
+  border: 1px solid #00f5fe;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .item-box input[type=radio] {
+  display: none;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .btn-box {
+  margin-top: 10px;
+  height: 28px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.layer-content-min .btn-box .add-btn {
+  width: 78px;
+  height: 28px;
+  border-radius: 3px;
+  background-color: #ffffff;
+  float: right;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.w400 {
+  width: 400px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.MyLabel {
+  top: 90px;
+  left: 390px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.ModelLabel {
+  top: 90px;
+  left: 390px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.BadLabel {
+  top: 90px;
+  left: 718px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.MarkLabel {
+  top: 90px;
+  left: 270px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content.active {
+  display: block;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .title-tab {
+  height: 37px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f1f1f1;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .title-tab .tab-box {
+  height: 100%;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .title-tab .tab-box .mod-title {
+  height: 100%;
+  line-height: 37px;
+  padding: 0 10px;
+  float: left;
+  cursor: pointer;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .title-tab .tab-box .mod-title.under-line.active {
+  border-bottom: 2px solid #2773e6;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .title-tab .icon-guanbi {
+  position: relative;
+  right: 10px;
+  cursor: pointer;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content {
+  margin: 12px auto 0;
+  padding-bottom: 10px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul {
+  width: 100%;
+  min-height: 100px;
+  position: relative;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item {
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+  display: none;
+  max-height: 440px;
+  overflow: auto;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item.active {
+  display: block;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .table-body {
+  height: 30px;
+  display: flex;
+  margin-bottom: 2px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .table-body .tr-td {
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .table-body .tr-td:nth-child(1) {
+  width: 40%;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .table-body .tr-td:nth-child(2) {
+  flex: 1;
+  margin-left: 2px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .table-body .tr-t {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333333;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .t-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .t-head .tr-th {
+  text-align: center;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .t-head .tr-th:nth-child(1) {
+  width: 35%;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .t-head .tr-th:nth-child(2) {
+  width: 15%;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .t-head .tr-th:nth-child(3) {
+  width: 20%;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .t-head .tr-th:nth-child(4) {
+  width: 20%;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .t-head .tr-th:nth-child(5) {
+  width: 10%;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .content .content-item {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  margin-bottom: 4px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .content .content-item .tr-td {
+  text-align: center;
+  line-height: 30px;
+  box-sizing: border-box;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .content .content-item .tr-td a {
+  transition: all 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .content .content-item .tr-td a .txt {
+  width: 130px;
+  padding: 0 2px 0 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .content .content-item .tr-td a .pic {
+  width: 15px;
+  height: 30px;
+  display: inline-block;
+  background-image: url(/htmls/images/page/bim/download.png);
+  background-position: center center;
+  background-size: auto;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: background-image 0.2s;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .content .content-item .tr-td a:hover {
+  color: #fff;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .content .content-item .tr-td:nth-child(1) {
+  width: 35%;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .content .content-item .tr-td:nth-child(2) {
+  width: 15%;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .content .content-item .tr-td:nth-child(3) {
+  width: 20%;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .content .content-item .tr-td:nth-child(4) {
+  width: 20%;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .content .content-item .tr-td:nth-child(5) {
+  width: 10%;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .content .content-item .tr-td:nth-child(5) button {
+  width: 45px;
+  height: 25px;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .input-file {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  top: -100000px;
+  left: -100000px;
+  z-index: -1;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .layer-content .detail-tab-content .detail-ul .detail-item .tablebox .add {
+  width: 100%;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  display: inline-block;
+  text-align: center;
+  line-height: 30px;
+  cursor: pointer;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .part-tank {
+  width: 200px;
+  height: 600px;
+  position: absolute;
+  right: 50px;
+  background-color: #dedede;
+  flex-direction: column;
+  z-index: 3;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .part-tank.active {
+  display: flex;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .part-tank .title {
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  color: #333333;
+  font-size: 16px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .part-tank .title .icon-guanbi {
+  cursor: pointer;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .part-tank .content {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 50px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .color-picker {
+  width: 200px;
+  height: 160px;
+  top: 495px;
+  left: 680px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .color-picker .content {
+  height: 123px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .bind-model {
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.6);
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .bind-model .bind-item {
+  line-height: 2;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .bind-model .bind-btn {
+  background-color: #2773e6;
+  padding: 5px 10px;
+  border-radius: 3px;
+  color: #ffffff;
+  margin-top: 20px;
+  border: none;
+  outline: none;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .info-box {
+  width: 482px;
+  height: 500px;
+  background-color: rgba(255, 255, 255, 0.6);
+  position: absolute;
+  top: 20px;
+  left: 100px;
+  display: flex;
+  flex-direction: column;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .info-box .title {
+  height: 40px;
+  background-color: #dedede;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .info-box .title span:nth-child(2) {
+  padding: 10px;
+  position: relative;
+  right: -10px;
+  cursor: pointer;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .info-box .info-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .info-box .info-content .content-title {
+  font-size: 18px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .info-box .info-content .desc-box {
+  margin-top: 10px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .info-box .info-content .desc-box .item {
+  display: flex;
+  margin-bottom: 5px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .info-box .info-content .desc-box .item span:nth-child(1) {
+  width: 20%;
+  text-align: right;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .info-box .info-content .desc-box .item span:nth-child(2) {
+  flex: 1;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .info-box .info-content .notes-box {
+  margin-top: 20px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .info-box .info-content .notes-box .top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .info-box .info-content .notes-box .top .icon-box {
+  background-color: #fff;
+  border: 1px solid #1e9f24;
+  color: #1e9f24;
+  border-radius: 3px;
+  padding: 0 5px;
+  margin-right: 10px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .info-box .info-content .notes-box .top .icon-box.blue {
+  border-color: #007eff;
+  color: #007eff;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .info-box .info-content .notes-box .notes-content .item {
+  display: flex;
+  margin-bottom: 10px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .info-box .info-content .notes-box .notes-content .item span:nth-child(1) {
+  width: 20%;
+  text-align: right;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .info-box .info-content .notes-box .notes-content .item span:nth-child(2) {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .page-container .info-box .info-content .notes-box .notes-content .item span:nth-child(2) img {
+  width: 78px;
+  height: 78px;
+  margin: 0 10px 10px 0;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .right-box {
+  position: fixed;
+  top: 90px;
+  right: 30px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .right-box .right-3 {
+  position: absolute;
+  top: 40px;
+  right: 0;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .right-box .right-3 .container {
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+.table-mod-content.half-active .content-mod .bim-body .main .right-box .right-3 .container .title {
+  height: 35px;
+  background-color: #f1f1f1;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  box-sizing: border-box;
+  font-weight: 700;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .right-box .right-3 .container .content {
+  max-height: 354px;
+  padding: 12px;
+  box-sizing: border-box;
+  display: none;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .right-box .right-3 .container .content .content-item {
+  line-height: 2.2;
+  cursor: pointer;
+  padding-left: 20px;
+  position: relative;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .right-box .right-3 .container .content .content-item:hover, .table-mod-content.half-active .content-mod .bim-body .main .right-box .right-3 .container .content .content-item.active {
+  color: #2068cb;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .right-box .right-3 .container .content .content-item:hover::before, .table-mod-content.half-active .content-mod .bim-body .main .right-box .right-3 .container .content .content-item.active::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  display: block;
+  position: absolute;
+  top: 8px;
+  left: 0;
+  background-image: url("/htmls/images/page/bim/position.png");
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .right-box .right-3 .container .slide-btn {
+  width: 32px;
+  height: 35px;
+  background-color: #f1f1f1;
+  position: absolute;
+  top: 0;
+  left: -34px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .right-box .right-3 .container .slide-btn.active .triangle {
+  transform: rotate(180deg);
+  left: 5px;
+}
+.table-mod-content.half-active .content-mod .bim-body .main .right-box .right-3 .container .slide-btn .triangle {
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-right: 10px solid #333;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid transparent;
+  position: relative;
+  right: 5px;
+}
+.table-mod-content.half-active .content-mod .bim-body .top-back-box {
+  height: 30px;
+  background-color: #c0c0c0;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.table-mod-content.half-active .content-mod .bim-body .top-back-box .left {
+  display: flex;
+  align-items: center;
+}
+.table-mod-content.half-active .content-mod .bim-body .top-back-box .left .top-left-tip {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+}
+.table-mod-content.half-active .content-mod .bim-body .top-back-box .left .top-left-tip .color-block {
+  width: 30px;
+  height: 20px;
+  background-color: #0beeec;
+  display: inline-block;
+  margin-right: 10px;
+}
+.table-mod-content.half-active .content-mod .bim-body .top-back-box .top-close {
+  cursor: pointer;
+}
+
 /*# sourceMappingURL=bim2.css.map */

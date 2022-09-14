@@ -269,7 +269,8 @@ layui.use(['LuUtilsTemplate', 'zTree'], function () {
   })
 
   $('.top-back-box .top-close').on('click', function () {
-    $lulib.pageGoBack()
+    // $lulib.pageGoBack()
+    $(".table-mod-content").removeClass('half-active');
   })
 
   $('#bindBtn').on('click', function () {
