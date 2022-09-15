@@ -1606,11 +1606,16 @@ input[type=range]::-webkit-slider-thumb {
   display: flex;
   justify-content: space-between;
 }
+.table-mod-content.half-active .content-table {
+  margin: 10px 0;
+}
+.table-mod-content.half-active .content-table,
 .table-mod-content.half-active .ew-tree-table {
   width: 50%;
   height: 525px;
   overflow-y: auto;
 }
+.table-mod-content.half-active .content-table::after,
 .table-mod-content.half-active .ew-tree-table::after {
   background-color: transparent;
 }
@@ -2337,8 +2342,8 @@ input[type=range]::-webkit-slider-thumb {
   outline: none;
 }
 .table-mod-content.half-active .content-mod .bim-body .main .page-container .info-box {
-  width: 482px;
-  height: 500px;
+  width: 390px;
+  height: 300px;
   background-color: rgba(255, 255, 255, 0.6);
   position: absolute;
   top: 20px;

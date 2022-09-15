@@ -132,6 +132,7 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate'], function () {
   }
 
   function bindModel(data) {
-    $lulib.pagePushHash(`bim/quality-manage/bind-model?id=${data.id}`)
+    $(".table-mod-content").addClass('half-active');
+    // $lulib.pagePushHash(`bim/quality-manage/bind-model?id=${data.id}`)
   }
 })
