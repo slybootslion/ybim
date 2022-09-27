@@ -263,6 +263,14 @@ layui.use(['LuCommonTemplate', 'LuLayer', 'zTree'], function () {
     searchFormRender()
     const data = await $lulib.getMockData('/htmls/mock/bim/filesTableData.json', 12, '', false)
 
+    const templet1 = `
+<span>
+  <span class='table-event-span' lay-event='edit'>编辑</span>
+  <span class='table-event-span' lay-event='download'>下载</span>
+  <span class='table-event-span' lay-event='del'>删除</span>
+  <span class="table-event-span" lay-event='bindModel'>{{d.t8 ? '取消关联' : '关联模型'}}</span>
+</span>`
+
     const tableOptions = {
       cols: [
         $lulib.tableSetCenter([
@@ -274,22 +282,41 @@ layui.use(['LuCommonTemplate', 'LuLayer', 'zTree'], function () {
           { field: 't5', title: '所属公司', minWidth: 90 },
           { field: 't6', title: '上传日期', minWidth: 90 },
           { field: 't7', title: '文件大小', minWidth: 120 },
+          { title: '操作', toolbar: templet1, minWidth: 220 },
         ]),
       ],
-      ctrlData: [
-        { eventStr: 'edit', txtStr: '编辑' },
-        { eventStr: 'download', txtStr: '下载' },
-        { eventStr: 'del', txtStr: '删除' },
-        { eventStr: 'bindModel', txtStr: '关联模型' },
-      ],
-      methods: {
-        edit,
-        download,
-        del,
-        bindModel,
-      },
+      // ctrlData: [
+      //   { eventStr: 'edit', txtStr: '编辑' },
+      //   { eventStr: 'download', txtStr: '下载' },
+      //   { eventStr: 'del', txtStr: '删除' },
+      //   { eventStr: 'bindModel', txtStr: '关联模型'},
+      // ],
+      // methods: {
+      //   edit,
+      //   download,
+      //   del,
+      //   bindModel,
+      // },
     }
     luTable = new LuTable(data, tableOptions)
+
+    luTable.$table.on(`tool(${luTable.options.filter})`, obj => {
+      const { event, data } = obj
+      switch (event) {
+        case 'edit':
+          edit(data)
+          break
+        case 'download':
+          download(data)
+          break
+        case 'del':
+          del(data)
+          break
+        case 'bindModel':
+          bindModel(data)
+          break
+      }
+    })
   }
 
   function edit (obj) {

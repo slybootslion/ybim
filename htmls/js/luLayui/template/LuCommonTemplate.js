@@ -151,7 +151,6 @@ layui.define(['LuUtilsTemplate'], function (exports) {
         this.tableOn()
       }
       this.containerEl.html(`<table class='layui-hide' id='${this.options.id}' lay-filter='${this.options.filter}'></table>`)
-
       this.$table.render(this.options)
       this.queue.length && this.queue.forEach(fn => fn())
     }

@@ -1803,4 +1803,9 @@
   width: 240px;
 }
 
+.table-event-span {
+  cursor: pointer;
+  margin-left: 3px;
+}
+
 /*# sourceMappingURL=bim.css.map */
