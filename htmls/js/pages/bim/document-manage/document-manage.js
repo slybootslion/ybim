@@ -19,7 +19,7 @@ layui.use(['LuCommonTemplate', 'LuLayer', 'zTree'], function () {
     luUpload
 
   class PageTemplate {
-    renderLayerForm(data) {
+    renderLayerForm (data) {
       const editData = { t1: '' }
       const s1 = luUtilsTemplate.renderSelectOptions(data.f1, editData.t1, 'key', 'value')
 
@@ -117,14 +117,14 @@ layui.use(['LuCommonTemplate', 'LuLayer', 'zTree'], function () {
     await initTable()
   })()
 
-  function innerHeaderRender() {
+  function innerHeaderRender () {
     luInnerHeader = new LuInnerHeader({
       title: '文档管理',
       rightHtml: [{ txt: '文件上传' }],
     })
   }
 
-  function renderTree() {
+  function renderTree () {
     // 树结构数据
     const zNodes = [
       {
@@ -235,19 +235,19 @@ layui.use(['LuCommonTemplate', 'LuLayer', 'zTree'], function () {
     }
 
     //树结构
-    function beforeClick(treeId, treeNode, clickFlag) {
+    function beforeClick (treeId, treeNode, clickFlag) {
       return treeNode.click !== false
     }
 
     //树结构 点击触发选中
-    function onClick(event, treeId, treeNode, clickFlag) {
+    function onClick (event, treeId, treeNode, clickFlag) {
       updateNode(treeNode)
     }
 
     zTree.init($('#fileList'), setting, zNodes)
   }
 
-  function computedTableBoxSize() {
+  function computedTableBoxSize () {
     const $bodyPage = $('#bodyOnePage')
     const bodyHeight = $bodyPage.height()
     const bodyWidth = $bodyPage.width()
@@ -258,7 +258,7 @@ layui.use(['LuCommonTemplate', 'LuLayer', 'zTree'], function () {
     $('.leftDom').css({ width: leftWidth })
   }
 
-  async function initTable() {
+  async function initTable () {
     computedTableBoxSize()
     searchFormRender()
     const data = await $lulib.getMockData('/htmls/mock/bim/filesTableData.json', 12, '', false)
@@ -280,27 +280,34 @@ layui.use(['LuCommonTemplate', 'LuLayer', 'zTree'], function () {
         { eventStr: 'edit', txtStr: '编辑' },
         { eventStr: 'download', txtStr: '下载' },
         { eventStr: 'del', txtStr: '删除' },
+        { eventStr: 'bindModel', txtStr: '关联模型' },
       ],
       methods: {
         edit,
         download,
         del,
+        bindModel,
       },
     }
     luTable = new LuTable(data, tableOptions)
   }
 
-  function edit(obj) {
+  function edit (obj) {
     uploadForm(obj)
   }
 
-  function download(obj) {}
+  function download (obj) {
+  }
 
-  function del(_, obj) {
+  function del (_, obj) {
     LuLayer.confirm('确定删除？', () => obj.del())
   }
 
-  function searchFormRender() {
+  function bindModel (obj) {
+    $lulib.pagePushHash(`bim/document-manage/bind-model?id=${obj.id}`)
+  }
+
+  function searchFormRender () {
     new LuSearchForm([
       {
         label: '所属标段',
@@ -317,7 +324,7 @@ layui.use(['LuCommonTemplate', 'LuLayer', 'zTree'], function () {
 
   $lulib.bindMethod([{ dom: luInnerHeader.rightBtns[0], method: uploadForm }])
 
-  function uploadForm(editData) {
+  function uploadForm (editData) {
     const opts = {
       title: '文件上传',
       id: 'fileUploadForm',
@@ -346,7 +353,7 @@ layui.use(['LuCommonTemplate', 'LuLayer', 'zTree'], function () {
       limit: 20,
       multiple: true,
       desc: '说明：最多上传10个文件，单个文件不超过20M',
-      success(files) {
+      success (files) {
         for (let i = 0; i < files.length; i++) {
           const file = files[i]
           // mock
@@ -359,7 +366,7 @@ layui.use(['LuCommonTemplate', 'LuLayer', 'zTree'], function () {
     patchForm()
   }
 
-  function patchForm() {
+  function patchForm () {
     $('#fileUploadForm').parents('.layui-layer.layui-layer-page').css({ height: 'auto' })
   }
 })

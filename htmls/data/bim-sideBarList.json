@@ -61,6 +61,12 @@
         "href": "document-manage/document-manage"
       },
       {
+        "id": "14-2",
+        "title": "文档管理",
+        "href": "document-manage/bind-model",
+        "hide": true
+      },
+      {
         "id": "14-3",
         "title": "成本管理",
         "href": "",

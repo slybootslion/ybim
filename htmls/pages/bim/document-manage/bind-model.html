@@ -1,0 +1,24 @@
+<link rel='stylesheet' href='/htmls/css/pages/bim.css'>
+<div class='bim-body' id='bimBody'>
+  <div class='top-back-box'>
+    <div class='left'>
+      <span>关联模型</span>
+      <span class='top-left-tip'><span class='color-block'></span>当前关联任务</span>
+    </div>
+    <div class='top-close'>x</div>
+  </div>
+  <div class='main'>
+    <div class='tools-bg'></div>
+    <div class='tools-bar'></div>
+  </div>
+</div>
+<script>
+!(function () {
+  const luBody = document.querySelector('.lu-body')
+  const bimBody = document.querySelector('#bimBody')
+  const parentHeight = luBody.clientHeight
+  bimBody.style.height = `${parentHeight}px`
+})()
+</script>
+<script src='/htmls/js/pages/bim/document-manage/bind-model.js' charset='utf-8'></script>
+<!--file:///D:/Code/SVN/S107/development/static/construction-quality.html-->
