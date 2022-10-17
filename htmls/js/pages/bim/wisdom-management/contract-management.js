@@ -12,12 +12,12 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
   let luInnerHeader, luTable, luLayer, luUpload
   // mock
   const selectData = [
-    { key: '施工', value: 1 },
-    { key: '监理', value: 2 },
-    { key: '业主', value: 3 },
-    { key: '设计', value: 4 },
-    { key: '分包', value: 5 },
-    { key: '施工合同', value: 6 },
+    { key: '人员', value: 1 },
+    { key: '分包', value: 2 },
+    { key: '施工', value: 3 },
+    { key: '监理', value: 4 },
+    { key: '设计', value: 5 },
+    { key: '设备', value: 6 },
   ]
 
   class PageTemplate {

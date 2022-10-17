@@ -1,4 +1,4 @@
-layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable'], function () {
+layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable', 'LuDrag'], function () {
   const $ = layui.$
   const laypage = layui.laypage
   const form = layui.form
@@ -9,6 +9,7 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable'], fun
   const LuUpload = layui.LuUpload
   const LuLayer = layui.LuLayer
   const LuLightBox = layui.LuLightBox
+  const LuDrag = layui.LuDrag
 
   class PageTemplate {
     renderLayerForm (data) {
@@ -209,7 +210,11 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable'], fun
   function innerHeaderRender () {
     luInnerHeader = new LuInnerHeader({
       title: '施工进度',
-      rightHtml: [{ txt: '进度填报' }],
+      rightHtml: [
+        { isIcon: true, icon: 'icon-moxingguanli' },
+        { isIcon: true, icon: 'icon-sequencev' },
+        { txt: '进度填报' },
+      ],
     })
   }
 
@@ -288,6 +293,13 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable'], fun
       },
     }
   }
+
+  let luDrag = new LuDrag({
+    dragClass: '.half-active',//拖拽盒子类名 (非必须)
+    leftClass: '.ew-tree-table',//左边盒子类名 (非必须)
+    rightClass: '.content-mod',//右边盒子类名 (非必须)
+    resizeClass: '.resize',//拖拽按钮类名 (非必须)
+  })
 
   function tableRender () {
     const opts = getTreeTableOpts()

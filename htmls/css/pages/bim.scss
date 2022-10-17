@@ -677,9 +677,9 @@
                       text-align: center;
                       margin-left: 2px;
                       font-size: 12px;
-                      overflow:hidden;
-                      text-overflow:ellipsis;
-                      white-space:nowrap;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                      white-space: nowrap;
                       display: flow-root
                     }
                   }
@@ -1903,4 +1903,7 @@
 .table-event-span {
   cursor: pointer;
   margin-left: 3px;
+  &:hover {
+    color: #007aff;
+  }
 }

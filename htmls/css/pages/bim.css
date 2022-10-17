@@ -1807,5 +1807,8 @@
   cursor: pointer;
   margin-left: 3px;
 }
+.table-event-span:hover {
+  color: #007aff;
+}
 
 /*# sourceMappingURL=bim.css.map */

@@ -1208,6 +1208,9 @@ input[type=range]::-webkit-slider-thumb {
   margin-right: 20px;
   cursor: pointer;
 }
+.construction-quality .table-event-span:hover {
+  color: #007fff;
+}
 .construction-quality .table-bind-model {
   float: left;
   margin-top: 5px;
@@ -1606,12 +1609,35 @@ input[type=range]::-webkit-slider-thumb {
   display: flex;
   justify-content: space-between;
 }
+.table-mod-content.half-active .resize {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.table-mod-content.half-active .resize .triangle {
+  width: 0;
+  height: 0;
+  border-top: 5px solid black;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  position: relative;
+  left: -3px;
+  cursor: pointer;
+}
+.table-mod-content.half-active .resize .triangle.to-right {
+  transform: rotate(-90deg);
+  top: -5px;
+}
+.table-mod-content.half-active .resize .triangle.to-left {
+  transform: rotate(90deg);
+  top: 5px;
+}
 .table-mod-content.half-active .content-table {
   margin: 10px 0;
 }
 .table-mod-content.half-active .content-table,
 .table-mod-content.half-active .ew-tree-table {
-  width: 50%;
   height: 525px;
   overflow-y: auto;
 }
@@ -1620,7 +1646,6 @@ input[type=range]::-webkit-slider-thumb {
   background-color: transparent;
 }
 .table-mod-content.half-active .content-mod {
-  width: 50%;
   height: 525px;
   margin: 10px 0;
   background-color: #c0c0c0;

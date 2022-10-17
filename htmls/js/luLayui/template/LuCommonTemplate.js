@@ -10,7 +10,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
   const LuUtilsTemplate = layui.LuUtilsTemplate
 
   class LuInnerHeader {
-    constructor(data, opts = {}) {
+    constructor (data, opts = {}) {
       this.data = data
       this.options = opts
       this.containerEl = opts.el || $('.luPageHeader')
@@ -18,19 +18,23 @@ layui.define(['LuUtilsTemplate'], function (exports) {
       this.rightBtns = $('.contentHeaderRigthBtn')
     }
 
-    renderContentHeader() {
+    renderContentHeader () {
       const data = this.data
       let h = ''
       const len = data.rightHtml?.length
       if (len) {
         for (let i = 0; i < len; i++) {
           const item = data.rightHtml[i]
-          const isWeaken = item.isWeaken ? ' btn-weaken' : ''
-          const icon = item.icon ? `<span class='iconfont ${item.icon}'></span>` : ''
-          h += `<button class='layui-btn contentHeaderRigthBtn btn${isWeaken}'>
+          if (!item.isIcon) {
+            const isWeaken = item.isWeaken ? ' btn-weaken' : ''
+            const icon = item.icon ? `<span class='iconfont ${item.icon}'></span>` : ''
+            h += `<button class='layui-btn contentHeaderRigthBtn btn${isWeaken}'>
                   ${icon}
                   <span>${item.txt}</span>
                 </button>`
+          } else {
+            h += `<span class="iconfont ${item.icon}" \>`
+          }
         }
       }
       this.containerEl.html(`<div class='left'><div class='title'>${data.title}</div></div><div class='right'>${h}</div>`)
@@ -38,7 +42,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
   }
 
   class LuSearchForm {
-    constructor(data, opts = {}) {
+    constructor (data, opts = {}) {
       this.data = data
       this.options = opts
       this.btnText = opts.btnText || '搜索'
@@ -50,7 +54,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
       this.renderSearchForm()
     }
 
-    renderSearchForm() {
+    renderSearchForm () {
       const data = this.data
       if (!Array.isArray(data)) return false
 
@@ -102,13 +106,13 @@ layui.define(['LuUtilsTemplate'], function (exports) {
       return $form
     }
 
-    bindSubmit() {
+    bindSubmit () {
       this.$form.on(`submit(${this.submitFilter})`, () => this.submit && this.submit.call(this, this.$form.val(this.filterStr)))
     }
   }
 
   class LuTable {
-    constructor(data, opts = {}) {
+    constructor (data, opts = {}) {
       if (!data) throw new Error('表格渲染需要传入数据')
       this.data = data
       this.$table = $table
@@ -125,7 +129,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
         loading: true,
         limit: 15,
         limits: [15, 30, 45, 60],
-        done() {
+        done () {
           layer.close(index)
         },
         data,
@@ -155,36 +159,36 @@ layui.define(['LuUtilsTemplate'], function (exports) {
       this.queue.length && this.queue.forEach(fn => fn())
     }
 
-    on(queryStr, cb) {
+    on (queryStr, cb) {
       this.$table.on(queryStr, cb)
     }
 
-    tableOn() {
+    tableOn () {
       this.$table.on(`tool(${this.options.filter})`, this.tableEventBind.bind(this))
     }
 
-    tableEventBind(obj) {
+    tableEventBind (obj) {
       const { methods } = this.options
       if (!methods) return false
       methods[obj.event] && methods[obj.event](obj.data, obj)
     }
 
-    tableCtrlTpl() {
+    tableCtrlTpl () {
       return _renderTableCtrl(this.options.ctrlData)
     }
 
-    reload(data) {
+    reload (data) {
       this.options.data = data
       this.$table.reload(this.options.id, this.options)
     }
 
-    checkStatus(id = this.options.id) {
+    checkStatus (id = this.options.id) {
       return this.$table.checkStatus(id)
     }
   }
 
   class LuUpload {
-    constructor(opts) {
+    constructor (opts) {
       this.options = opts
       this.el = typeof opts.el === 'string' ? $(opts.el) : opts.el
       this.elFile = typeof opts.elFile === 'string' ? $(opts.elFile) : opts.elFile
@@ -202,7 +206,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
       this.init()
     }
 
-    init() {
+    init () {
       const html = `<input type='file'
                            class='upload-input'
                            id='upload-input'
@@ -214,7 +218,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
       this.bindMethod()
     }
 
-    bindMethod() {
+    bindMethod () {
       this.el.on('change', '#upload-input', e => {
         const files = e.target.files
         const len = files.length
@@ -250,7 +254,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
       })
     }
 
-    async renderFileList(files, type = false) {
+    async renderFileList (files, type = false) {
       for (let i = 0; i < files.length; i++) {
         const file = files[i]
         const fileName = file.name
@@ -294,14 +298,14 @@ layui.define(['LuUtilsTemplate'], function (exports) {
         !type && this._setProgressPercentTimer(randomId, file)
         type && removePro(files, this)
 
-        function removePro(f, instance) {
+        function removePro (f, instance) {
           instance.files = [...f]
           $(`.layui-progress[lay-filter="Pr-${randomId}"]`).remove()
         }
       }
     }
 
-    clearFin(file) {
+    clearFin (file) {
       const obj = this.timerWMap.get(file)
       if (!obj) return
       $element.progress(`Pr-${obj.rId}`, '100%')
@@ -311,7 +315,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
       if (currentEl) setTimeout(() => currentEl.remove(), 800)
     }
 
-    _setProgressPercentTimer(rId, file) {
+    _setProgressPercentTimer (rId, file) {
       if (this.timerWMap.get(file)) return false
       let n = 0
       const timer = setInterval(() => {
@@ -327,7 +331,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
   }
 
   class LuAreaSelect {
-    constructor(options = {}) {
+    constructor (options = {}) {
       this.config = {
         elem: options.elem || '',
         title: options.title || '区域选择',
@@ -341,7 +345,8 @@ layui.define(['LuUtilsTemplate'], function (exports) {
           countyCode: 0,
         },
         type: options.type || 'normal',
-        change: options.change || function (result) {},
+        change: options.change || function (result) {
+        },
       }
       this._id = $lulib.randomStr(6)
       this.areaData = null
@@ -351,11 +356,11 @@ layui.define(['LuUtilsTemplate'], function (exports) {
       return this
     }
 
-    getData() {
+    getData () {
       return this.config.data
     }
 
-    resetData() {
+    resetData () {
       this.config.data = {
         city: '',
         cityCode: '',
@@ -366,7 +371,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
       }
     }
 
-    getCode(type, name, parentCode = 0) {
+    getCode (type, name, parentCode = 0) {
       let code = ''
       if (!this.areaData) this.areaData = []
       let list = this.areaData[type + '_list'] || {}
@@ -388,7 +393,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
       return code
     }
 
-    getList(type, code) {
+    getList (type, code) {
       let result = []
       if (type !== 'province' && !code) return result
       if (!this.areaData) this.areaData = []
@@ -411,7 +416,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
       return result
     }
 
-    events(options) {
+    events (options) {
       let provinceFilter = 'province-' + this._id
       let cityFilter = 'city-' + this._id
       let countyFilter = 'county-' + this._id
@@ -533,7 +538,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
       renderProvince()
     }
 
-    render() {
+    render () {
       const options = { ...this.config }
       this._renderContent()
       options.elem = $(options.elem)
@@ -541,7 +546,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
       this.events(options)
     }
 
-    _renderContent() {
+    _renderContent () {
       const { required = true, title, data, type } = this.config
       const isRequiredObj = {
         className: 'layui-form-label required',
@@ -591,7 +596,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
   }
 
   class LuTableSelect {
-    constructor() {
+    constructor () {
       if (window.top === window.self) {
         $(window).scroll(() => {
           this.hide()
@@ -599,10 +604,11 @@ layui.define(['LuUtilsTemplate'], function (exports) {
       }
     }
 
-    render(opt) {
+    render (opt) {
       let elem = $(opt.elem)
       console.log(elem.length)
-      let tableDone = opt.table.done || function () {}
+      let tableDone = opt.table.done || function () {
+      }
 
       let SearchKeys = []
 
@@ -706,7 +712,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
                 }
               } else {
                 //因为LAYUI问题，操作到变化全选状态时获取到的obj为空，这里用函数获取未选中的项。
-                function nu() {
+                function nu () {
                   let noCheckedKey = ''
                   for (let i = 0; i < $table.cache[tableName].length; i++) {
                     if (!$table.cache[tableName][i].LAY_CHECKED) {
@@ -732,7 +738,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
         })
 
         //渲染表格后选中
-        function setChecked(res, curr, count) {
+        function setChecked (res, curr, count) {
           for (let i = 0; i < res.data.length; i++) {
             for (let j = 0; j < checkedData.length; j++) {
               if (res.data[i][opt.checkedKey] == checkedData[j][opt.checkedKey]) {
@@ -765,7 +771,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
         }
 
         //写入默认选中值(puash checkedData)
-        function defaultChecked(res, curr, count) {
+        function defaultChecked (res, curr, count) {
           if (opt.checkedKey && elem.attr('ts-selected')) {
             let selected = elem.attr('ts-selected').split(',')
             for (let i = 0; i < res.data.length; i++) {
@@ -780,12 +786,12 @@ layui.define(['LuUtilsTemplate'], function (exports) {
         }
 
         //更新选中数量
-        function updataButton(n) {
+        function updataButton (n) {
           tableBox.find('.tableSelect_btn_select span').html(n == 0 ? '' : '(' + n + ')')
         }
 
         //数组去重
-        function uniqueObjArray(arr, type) {
+        function uniqueObjArray (arr, type) {
           let newArr = []
           let tArr = []
           if (arr.length == 0) {
@@ -846,7 +852,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
         })
 
         //写值回调和关闭
-        function selectDone(checkStatus) {
+        function selectDone (checkStatus) {
           if (opt.checkedKey) {
             let selected = []
             for (let i = 0; i < checkStatus.data.length; i++) {
@@ -873,13 +879,13 @@ layui.define(['LuUtilsTemplate'], function (exports) {
       })
     }
 
-    hide(opt) {
+    hide (opt) {
       $('.tableSelect').remove()
     }
   }
 
   class LuStep {
-    constructor(options) {
+    constructor (options) {
       this.currentStep = 1
       this.defaultOptions = {
         elem: '#stepForm',
@@ -909,25 +915,124 @@ layui.define(['LuUtilsTemplate'], function (exports) {
       this.bindChangeEvent()
     }
 
-    renderCarousel() {
+    renderCarousel () {
       $carousel.render(this.options)
       $(`${this.options.elem} .layui-carousel-arrow`).hide()
     }
 
-    bindChangeEvent() {
+    bindChangeEvent () {
       $carousel.on('change', obj => {
         const currentStep = obj.index + 1
       })
     }
 
-    next() {
+    next () {
       $('.layui-icon.layui-carousel-arrow[lay-type=add]').trigger('click')
       return ++this.currentStep
     }
 
-    prev() {
+    prev () {
       $('.layui-icon.layui-carousel-arrow[lay-type=sub]').trigger('click')
       return --this.currentStep
+    }
+  }
+
+  class LuDrag {
+    constructor (opts) {
+      this.options = $.extend({
+        id: this[0],
+        leftMinWidth: '0',//左边最小宽度
+        rightMinWidth: '0',//右边最小宽度
+        dragClass: '.drag-box',//拖拽盒子类名
+        leftClass: '.left',//左边盒子类名
+        rightClass: '.right',//右边盒子类名
+        resizeClass: '.resize',//拖拽按钮类名
+      }, opts)
+      this.init()
+    }
+
+    init () {
+      this.dragControllerDiv()
+    }
+
+    dragControllerDiv () {
+      const options = this.options
+      let resize = $(options.resizeClass);
+      let leftBox = $(options.leftClass);
+      let rightBox = $(options.rightClass);
+      let box = $(options.dragClass);
+      let toRight = resize.find('.to-right')
+      let toLeft = resize.find('.to-left')
+      let leftMinWidth = parseFloat(options.leftMinWidth);
+      let rightMinWidth = parseFloat(options.rightMinWidth);
+
+      leftBox.css({
+        // "width": `${parseFloat(options.leftMinWidth)}px`,
+        width: "50%"
+      })
+      rightBox.css({
+        // width: `calc(100% - ${parseFloat(options.leftMinWidth) + 20}px)`
+        width: "50%"
+      })
+
+      toRight.on('click',function (event) {
+        leftBox.width('100%')
+        rightBox.width(0)
+        event.stopPropagation()
+      });
+
+      toLeft.on('click',function (event) {
+        rightBox.width('100%')
+        leftBox.width(0)
+        event.stopPropagation()
+      });
+
+      for (let i = 0; i < resize.length; i++) {
+        // 鼠标按下事件
+        resize[i].onmousedown = function (e) {
+          //颜色改变提醒
+          resize[i].style.background = '#002240';
+          let startX = e.clientX;
+          // resize[i].left = resize[i].offsetLeft;
+          resize[i].left = leftBox.width()
+          // 鼠标拖动事件
+          document.onmousemove = function (e) {
+            let endX = e.clientX;
+            let moveLen = resize[i].left + (endX - startX); // （endx-startx）=移动的距离。resize[i].left+移动的距离=左边区域最后的宽度
+            let maxT = box[i].clientWidth - resize[i].offsetWidth; // 容器宽度 - 左边区域的宽度 = 右边区域的宽度
+            if (moveLen < leftMinWidth) moveLen = leftMinWidth; // 左边区域的最小宽度为200px
+            if (moveLen > maxT - rightMinWidth) moveLen = maxT - rightMinWidth; //右边区域最小宽度为500px
+            resize[i].style.left = moveLen; // 设置左侧区域的宽度
+            for (let j = 0; j < leftBox.length; j++) {
+              leftBox[j].style.width = moveLen + 'px';
+              rightBox[j].style.width = (box[i].clientWidth - moveLen) + 'px';
+            }
+          };
+          $(window).resize(() => {
+            let currentWidth = leftBox[0].offsetWidth;
+            let endX = e.clientX;
+            let moveLen = resize[i].left + (endX - startX); // （endx-startx）=移动的距离。resize[i].left+移动的距离=左边区域最后的宽度
+            let maxT = box[i].clientWidth - resize[i].offsetWidth; // 容器宽度 - 左边区域的宽度 = 右边区域的宽度
+            if (moveLen < leftMinWidth) moveLen = leftMinWidth; // 左边区域的最小宽度为200px
+            if (moveLen > maxT - rightMinWidth) moveLen = maxT - rightMinWidth; //右边区域最小宽度为500px
+            resize[i].style.left = moveLen; // 设置左侧区域的宽度
+            for (let j = 0; j < leftBox.length; j++) {
+              leftBox[j].style.width = currentWidth + 'px';
+              rightBox[j].style.width = (box[i].clientWidth - currentWidth) + 'px';
+            }
+          });
+          // 鼠标松开事件
+          document.onmouseup = function (evt) {
+            //颜色恢复
+            resize[i].style.background = '#fff';
+            document.onmousemove = null;
+            document.onmouseup = null;
+            resize[i].releaseCapture && resize[i].releaseCapture(); //当你不在需要继续获得鼠标消息就要应该调用ReleaseCapture()释放掉
+          };
+          resize[i].setCapture && resize[i].setCapture(); //该函数在属于当前线程的指定窗口里设置鼠标捕获
+          return false;
+        };
+      }
     }
   }
 
@@ -939,8 +1044,9 @@ layui.define(['LuUtilsTemplate'], function (exports) {
   exports('LuAreaSelect', LuAreaSelect)
   exports('LuTableSelect', LuTableSelect)
   exports('LuStep', LuStep)
+  exports('LuDrag', LuDrag)
 
-  function bindDateDMethod(opts) {
+  function bindDateDMethod (opts) {
     const { dateEndBox, endInputId, startInputId, endEleStr, noMaxDate } = opts
     const dateEndBoxEle = $(`.${dateEndBox}`)
     const maxDate = $util.toDateString(new Date(), 'yyyy-MM-dd')
@@ -949,7 +1055,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
       end: `#${endInputId}`,
     }
 
-    function renderDateInput(elem, done, min = '') {
+    function renderDateInput (elem, done, min = '') {
       const opts = {
         elem,
         theme: '#007fff',
@@ -978,7 +1084,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
     })
   }
 
-  function dateSMethod(data, type = 'normal') {
+  function dateSMethod (data, type = 'normal') {
     const opts = {
       elem: `#${data.selectDateId}`,
       theme: '#007fff',
@@ -989,7 +1095,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
     $laydate.render(opts)
   }
 
-  function _renderTableCtrl(list) {
+  function _renderTableCtrl (list) {
     let html = ''
     let i = 0
     let len = list.length
@@ -1004,7 +1110,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
     return `<span>${html}</span>`
   }
 
-  function _renderSelect(data) {
+  function _renderSelect (data) {
     let optionStr = "<option value=''>请选择</option>"
     const len = data.selectData.length
     let i = 0
@@ -1023,7 +1129,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
             </div>`
   }
 
-  function _renderText(data) {
+  function _renderText (data) {
     const placeholder = data.placeholder || '请输入'
     return `<div class='layui-inline'>
               <label class='layui-form-label'>${data.label}：</label>
@@ -1037,21 +1143,21 @@ layui.define(['LuUtilsTemplate'], function (exports) {
             </div>`
   }
 
-  function _renderDateS(opts) {
+  function _renderDateS (opts) {
     return LuUtilsTemplate.selectDateTemplate(opts)
   }
 
-  function _renderDateD(data) {
+  function _renderDateD (data) {
     const { html, domTag } = LuUtilsTemplate.selectDateDoubleTemplate(data.options)
     return { html, domTag }
   }
 
-  function _renderDateMo(opts) {
+  function _renderDateMo (opts) {
     const { html, domTag } = LuUtilsTemplate.selectDateMonthTemplate(opts)
     return { html, domTag }
   }
 
-  function hideHeadCheck() {
+  function hideHeadCheck () {
     $('.layui-table-header .laytable-cell-checkbox').empty()
   }
 })

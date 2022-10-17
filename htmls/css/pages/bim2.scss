@@ -1197,6 +1197,9 @@ input[type=range]::-webkit-slider-thumb {
     float: left;
     margin-right: 20px;
     cursor: pointer;
+    &:hover {
+      color: #007fff;
+    }
   }
 
   .table-bind-model {
@@ -1630,21 +1633,47 @@ input[type=range]::-webkit-slider-thumb {
     display: flex;
     justify-content: space-between;
 
+    .resize {
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      flex-direction: column;
+
+      .triangle {
+        width: 0;
+        height: 0;
+        border-top: 5px solid black;
+        border-right: 5px solid transparent;
+        border-left: 5px solid transparent;
+        position: relative;
+        left: -3px;
+        cursor: pointer;
+
+        &.to-right {
+          transform: rotate(-90deg);
+          top: -5px;
+        }
+
+        &.to-left {
+          transform: rotate(90deg);
+          top: 5px;
+        }
+      }
+    }
+
     .content-table {
       margin: 10px 0;
     }
 
     .content-table,
     .ew-tree-table {
-      width: 50%;
       height: 525px;
       overflow-y: auto;
-      &::after{
+      &::after {
         background-color: transparent;
       }
     }
     .content-mod {
-      width: 50%;
       height: 525px;
       margin: 10px 0;
       background-color: #c0c0c0;
