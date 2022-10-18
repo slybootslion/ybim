@@ -180,10 +180,12 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
       ctrlData: [
         { eventStr: 'edit', iconStr: 'icon-bianji', txtStr: '编辑' },
         { eventStr: 'del', iconStr: 'icon-shanchu1', txtStr: '删除' },
+        { eventStr: 'info', iconStr: 'icon-chakanxiangqing', txtStr: '查看详情' },
       ],
       methods: {
         edit,
         del,
+        info
       },
     }
     luTable = new LuTable(data, options)
@@ -195,6 +197,10 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
 
   function del (_, obj) {
     LuLayer.confirm('确定删除？', () => obj.del())
+  }
+
+  function info(data,obj) {
+    console.log(data, obj)
   }
 
   $lulib.bindMethod([{ dom: luInnerHeader.rightBtns[0], method: uploadForm }])
