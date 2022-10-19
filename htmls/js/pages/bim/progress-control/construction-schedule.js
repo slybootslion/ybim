@@ -295,6 +295,7 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable', 'LuD
   }
 
   let luDrag = new LuDrag({
+    rightMinWidth: 320,
     dragClass: '.half-active',//拖拽盒子类名 (非必须)
     leftClass: '.ew-tree-table',//左边盒子类名 (非必须)
     rightClass: '.content-mod',//右边盒子类名 (非必须)

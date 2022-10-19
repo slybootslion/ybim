@@ -8,13 +8,21 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
   const LuTable = layui.LuTable
   const LuLayer = layui.LuLayer
   const LuUpload = layui.LuUpload
+  const laydate = layui.laydate
 
   let luInnerHeader, luTable, luLayer, luUpload
 
+  const equipmentList = [
+    { id: 1, title: '路面机械' }, { id: 2, title: '起重机械' }, { id: 3, title: '混凝土机械' },
+    { id: 4, title: '隧道机械' }, { id: 5, title: '桩工机械' }, { id: 6, title: '桥梁机械' },
+    { id: 7, title: '养路机械' }, { id: 8, title: '压实机械' }, { id: 9, title: '土方机械' },
+    { id: 10, title: '港口机械' }, { id: 11, title: '沥青设备' }, { id: 12, title: '通用机械' },
+  ]
+
   class PageTemplate {
-    equipmentFormSetting(data) {
-      const { sel1, sel2 } = data
-      let editData = { t1: '', t2: '', t3: '', t4: '', t5: '', t6: '' }
+    equipmentFormSetting (data) {
+      const { sel1, sel2, sel3 } = data
+      let editData = { t1: '', t2: '', t3: '', t4: '', t5: '', t6: '', t7: '' }
       if (data.editData) {
         editData.t1 = data.editData.t1
         editData.t2 = data.editData.t3
@@ -22,9 +30,11 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
         editData.t4 = data.editData.t5
         editData.t5 = data.editData.t6
         editData.t6 = data.editData.t7
+        editData.t7 = data.editData.t11
       }
       const s1 = luUtilsTemplate.renderSelectOptions(sel1, editData.t4)
       const s2 = luUtilsTemplate.renderSelectOptions(sel2, editData.t6)
+      const s3 = luUtilsTemplate.renderSelectOptions(sel3, editData.t7)
 
       const uploadHtml = `<div class='content-body content-upload layui-form'>
                             <div class='upload-box'>
@@ -109,6 +119,16 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
               </div>
               <div class='layui-inline'>
                 <label class='layui-form-label required'>
+                  <span>设备类型：</span>
+                </label>
+                <div class='layui-input-inline'>
+                  <select name='t7' lay-verify='required'>
+                    ${s3}
+                  </select>
+                </div>
+              </div>
+              <div class='layui-inline'>
+                <label class='layui-form-label required'>
                   <span>进场日期：</span>
                 </label>
                 <div class='layui-input-inline'>
@@ -137,17 +157,21 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
     await tableRender()
   })()
 
-  function innerHeaderRender() {
+  function innerHeaderRender () {
     luInnerHeader = new LuInnerHeader({
       title: '设备台账',
       rightHtml: [{ txt: '添加设备' }, { txt: '导入' }, { txt: '导出' }],
     })
   }
 
-  function searchFormRender() {
+  function searchFormRender () {
     new LuSearchForm([
       { label: '设备名称', type: 'text' },
       { label: '设备编号', type: 'text' },
+      {
+        label: '设备类型', type: "select",
+        selectData: equipmentList.map(i => ({ value: i.id, key: i.title }))
+      },
       { label: '进场日期', type: 'date-s' },
       {
         label: '使用状态',
@@ -160,7 +184,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
     ])
   }
 
-  async function tableRender() {
+  async function tableRender () {
     const tableData = await $lulib.getMockData('/htmls/mock/bim/equipmentTableData.json', 17, '', false)
 
     const templet1 = `<span><div class="table-pic"><img src="{{d.t2}}" alt=""></div></span>`
@@ -179,6 +203,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
           },
           { field: 't3', title: '设备编号', minWidth: 120 },
           { field: 't4', title: '规格型号', minWidth: 120 },
+          { field: 't11', title: '设备类型', width: 100 },
           { field: 't5', title: '额定功率', width: 90 },
           { field: 't6', title: '进场日期', width: 90 },
           { field: 't7', title: '使用状态', width: 90 },
@@ -208,29 +233,29 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
     luTable = new LuTable(tableData, tableOptions)
   }
 
-  function del(_, obj) {
+  function del (_, obj) {
     LuLayer.confirm('确定删除？', () => obj.del())
   }
 
-  function m1(data) {
+  function m1 (data) {
     const { id } = data
     $lulib.pagePushHash(`bim/machinery-manage/machinery-info?id=${id}`)
   }
 
-  function m2(data) {
+  function m2 (data) {
     const { id } = data
     $lulib.pagePushHash(`bim/machinery-manage/add-records?id=${id}&type=m`)
   }
 
-  function m3(data) {
+  function m3 (data) {
     const { id } = data
     $lulib.pagePushHash(`bim/machinery-manage/add-records?id=${id}&type=used`)
   }
 
   $lulib.bindMethod([{ dom: luInnerHeader.rightBtns[0], method: addNew }])
 
-  async function addNew(editData) {
-    const { sel1, sel2 } = await new Promise(resolve => {
+  async function addNew (editData) {
+    const { sel1, sel2, sel3 } = await new Promise(resolve => {
       resolve({
         sel1: [
           { id: 1, title: '12V' },
@@ -240,9 +265,10 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
           { id: 1, title: '正常' },
           { id: 2, title: '异常' },
         ],
+        sel3: equipmentList
       })
     })
-    const data = { sel1, sel2 }
+    const data = { sel1, sel2, sel3 }
     const opts = {
       id: 'equipmentForm',
       area: ['860px', '500px'],
@@ -273,7 +299,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
       max: 1,
       multiple: true,
       accept: 'image/*',
-      success(files) {
+      success (files) {
         for (let i = 0; i < files.length; i++) {
           const file = files[i]
           // mock
