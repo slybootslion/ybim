@@ -33,7 +33,7 @@ layui.define(['LuUtilsTemplate'], function (exports) {
                   <span>${item.txt}</span>
                 </button>`
           } else {
-            h += `<span class="iconfont ${item.icon}" \>`
+            h += `<span class="icon-btn contentHeaderRigthBtn iconfont ${item.icon}"></span>`
           }
         }
       }

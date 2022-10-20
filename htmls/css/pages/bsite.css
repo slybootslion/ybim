@@ -74,6 +74,20 @@
 .inner-body .page-header .right {
   display: flex;
 }
+.inner-body .page-header .right .icon-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  margin-right: 10px;
+  color: #5e81a5;
+}
+.inner-body .page-header .right .icon-btn:hover {
+  color: #23b5df;
+}
+.inner-body .page-header .right .icon-btn.iconfont {
+  cursor: pointer;
+}
 .inner-body .page-header .right .btn {
   height: 35px;
   display: flex;

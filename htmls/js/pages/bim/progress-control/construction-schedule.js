@@ -211,6 +211,7 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable', 'LuD
     luInnerHeader = new LuInnerHeader({
       title: '施工进度',
       rightHtml: [
+        { isIcon: true, icon: 'icon-shijianchuliliangtongji' },
         { isIcon: true, icon: 'icon-moxingguanli' },
         { isIcon: true, icon: 'icon-sequencev' },
         { txt: '进度填报' },
@@ -328,10 +329,7 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable', 'LuD
   })
 
   LuTreeTable.on('tool(luTable)', obj => {
-    const {
-      data: { id },
-      event,
-    } = obj
+    const { data: { id }, event } = obj
     switch (event) {
       case 'bindModel':
         bindModelHandler(id)
@@ -343,6 +341,9 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable', 'LuD
   })
 
   $lulib.bindMethod([{ dom: luInnerHeader.rightBtns[0], method: add }])
+  $lulib.bindMethod([{ dom: luInnerHeader.rightBtns[1], method: add }])
+  $lulib.bindMethod([{ dom: luInnerHeader.rightBtns[2], method: add }])
+  $lulib.bindMethod([{ dom: luInnerHeader.rightBtns[3], method: add }])
 
   function add () {
     if (!currentLine) {

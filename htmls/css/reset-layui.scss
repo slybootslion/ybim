@@ -99,6 +99,23 @@ $redDeepColor: #c0451b;
     .right {
       display: flex;
 
+      .icon-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20px;
+        margin-right: 10px;
+        color: $tableLinkColor;
+
+        &:hover{
+          color: $paramColorSec;
+        }
+
+        &.iconfont {
+          cursor: pointer;
+        }
+      }
+
       .btn {
         height: 35px;
         display: flex;
