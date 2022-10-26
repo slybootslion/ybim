@@ -10,7 +10,9 @@
     "t8": "三秦路桥电工班组",
     "t9": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9HSMFcO7nViL3Y6NZLAMhdXCPwn2CLadPj1q3inIHgRrPj_5BtuWYwR_Tn2xvD7cGcXA",
     "t10": "电工班组",
-    "t11": "压实机械"
+    "t11": "压实机械",
+    "t12": "17小时15分钟",
+    "t13": "50.6%|77.48L"
   },
   {
     "t1": "YSBH2021环形球形机",
@@ -23,7 +25,9 @@
     "t8": "三秦路桥电工班组",
     "t9": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9HSMFcO7nViL3Y6NZLAMhdXCPwn2CLadPj1q3inIHgRrPj_5BtuWYwR_Tn2xvD7cGcXA",
     "t10": "电工班组",
-    "t11": "桩工机械"
+    "t11": "桩工机械",
+    "t12": "17小时15分钟",
+    "t13": "50.6%|77.48L"
   },
   {
     "t1": "YSBH2021环形球形机",
@@ -36,7 +40,9 @@
     "t8": "三秦路桥电工班组",
     "t9": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9HSMFcO7nViL3Y6NZLAMhdXCPwn2CLadPj1q3inIHgRrPj_5BtuWYwR_Tn2xvD7cGcXA",
     "t10": "电工班组",
-    "t11": "混凝土机械"
+    "t11": "混凝土机械",
+    "t12": "17小时15分钟",
+    "t13": "50.6%|77.48L"
   },
   {
     "t1": "YSBH2021环形球形机",
@@ -45,10 +51,12 @@
     "t4": "XM001-121123",
     "t5": "24V",
     "t6": "2021-05-12",
-    "t7": "正常",
+    "t7": "异常",
     "t8": "三秦路桥电工班组",
     "t9": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9HSMFcO7nViL3Y6NZLAMhdXCPwn2CLadPj1q3inIHgRrPj_5BtuWYwR_Tn2xvD7cGcXA",
     "t10": "电工班组",
-    "t11": "起重机械"
+    "t11": "起重机械",
+    "t12": "17小时15分钟",
+    "t13": "50.6%|77.48L"
   }
 ]
