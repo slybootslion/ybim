@@ -1539,17 +1539,27 @@
 .equipment-ledger .top-content .top-bottom .top-bottom-item span.green {
   color: limegreen;
 }
-.equipment-ledger .tab-box .layui-tab-card {
+.equipment-ledger .tab-box .layui-tab {
   position: relative;
 }
-.equipment-ledger .tab-box .layui-tab-card .table-out-btn {
+.equipment-ledger .tab-box .layui-tab .layui-tab-title .iconfont {
+  font-size: 12px;
+  margin-right: 3px;
+}
+.equipment-ledger .tab-box .layui-tab .table-out-btn {
   background-color: #fff;
   position: absolute;
   right: 10px;
   top: 5px;
 }
-.equipment-ledger .tab-box .layui-tab-card .table-out-btn:hover {
+.equipment-ledger .tab-box .layui-tab .table-out-btn.hide {
+  display: none;
+}
+.equipment-ledger .tab-box .layui-tab .table-out-btn:hover {
   border: 1px solid #333;
+}
+.equipment-ledger .tab-box .layui-table-cell {
+  line-height: 50px;
 }
 
 .stock-form .content-inner {

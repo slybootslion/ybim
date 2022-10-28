@@ -1592,8 +1592,15 @@
   }
 
   .tab-box {
-    .layui-tab-card {
+    .layui-tab {
       position: relative;
+
+      .layui-tab-title {
+        .iconfont {
+          font-size: 12px;
+          margin-right: 3px;
+        }
+      }
 
       .table-out-btn {
         background-color: #fff;
@@ -1601,10 +1608,18 @@
         right: 10px;
         top: 5px;
 
+        &.hide {
+          display: none;
+        }
+
         &:hover {
           border: 1px solid #333;
         }
       }
+    }
+
+    .layui-table-cell {
+      line-height: 50px;
     }
   }
 }

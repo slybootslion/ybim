@@ -11,26 +11,20 @@
       </div>
     </div>
     <div class="tab-box">
-      <div class="layui-tab layui-tab-card">
+      <div class="layui-tab layui-tab-brief" lay-filter='role'>
         <ul class="layui-tab-title">
-          <li class="layui-this">网站设置</li>
-          <li>用户管理</li>
-          <li>权限分配</li>
-          <li>商品管理</li>
-          <li>订单管理</li>
+          <li class="layui-this"><span class="iconfont icon-_jinduzhanshi"></span>列表</li>
+          <li><span class="iconfont icon-shuju"></span>图表</li>
         </ul>
         <div class="layui-btn layui-btn-primary layui-btn-sm table-out-btn">导出表格</div>
-        <div class="layui-tab-content" style="height: 100px;">
-          <div class="layui-tab-item layui-show">1</div>
+        <div class="layui-tab-content">
+          <div class="layui-tab-item layui-show">
+            <div class='content-table luTable'></div>
+          </div>
           <div class="layui-tab-item">2</div>
-          <div class="layui-tab-item">3</div>
-          <div class="layui-tab-item">4</div>
-          <div class="layui-tab-item">5</div>
-          <div class="layui-tab-item">6</div>
         </div>
       </div>
     </div>
-    <div class='content-table luTable'></div>
   </div>
 </div>
 <script src='/htmls/js/pages/bim/machinery-manage/equipment-monitoring-time.js' charset='utf-8'></script>
