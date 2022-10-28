@@ -96,7 +96,8 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
   }
 
   function m1 (data) {
-
+    const { id } = data
+    $lulib.pagePushHash(`bim/machinery-manage/equipment-monitoring-time?id=${id}`)
   }
 
   function m2 (data) {

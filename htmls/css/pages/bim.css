@@ -1525,6 +1525,32 @@
   background-color: #007fff;
   color: #ffffff;
 }
+.equipment-ledger .top-content .top-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+.equipment-ledger .top-content .top-bottom {
+  margin-top: 5px;
+  display: flex;
+}
+.equipment-ledger .top-content .top-bottom .top-bottom-item {
+  margin-right: 30px;
+}
+.equipment-ledger .top-content .top-bottom .top-bottom-item span.green {
+  color: limegreen;
+}
+.equipment-ledger .tab-box .layui-tab-card {
+  position: relative;
+}
+.equipment-ledger .tab-box .layui-tab-card .table-out-btn {
+  background-color: #fff;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+.equipment-ledger .tab-box .layui-tab-card .table-out-btn:hover {
+  border: 1px solid #333;
+}
 
 .stock-form .content-inner {
   margin-bottom: 20px;

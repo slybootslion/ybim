@@ -1571,6 +1571,42 @@
       }
     }
   }
+
+  .top-content {
+    .top-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .top-bottom {
+      margin-top: 5px;
+      display: flex;
+      .top-bottom-item {
+        margin-right: 30px;
+        span {
+          &.green {
+            color: limegreen;
+          }
+        }
+      }
+    }
+  }
+
+  .tab-box {
+    .layui-tab-card {
+      position: relative;
+
+      .table-out-btn {
+        background-color: #fff;
+        position: absolute;
+        right: 10px;
+        top: 5px;
+
+        &:hover {
+          border: 1px solid #333;
+        }
+      }
+    }
+  }
 }
 
 .stock-form {
