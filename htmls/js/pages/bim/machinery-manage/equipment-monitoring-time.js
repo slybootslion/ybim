@@ -46,133 +46,150 @@ layui.use(['LuCommonTemplate', 'laypage', 'echarts'], function () {
 
   // https://segmentfault.com/q/1010000041860085
   async function echartsRender () {
-    /*
-    const chartData = await $lulib.getMockData('/htmls/mock/bim/equipmentMonitoringTimeEchartsData.json', 1, '', false)
-
-    const formatDataIndex = () => {
-      const itemNameObj = {}
-      $lulib.unique(chartData.map(i => i.itemName)).forEach((item, idx) => itemNameObj[item] = idx)
-      console.log(itemNameObj)
-      chartData.forEach(item => item.value.unshift(itemNameObj[item.itemName]))
-    }
-    formatDataIndex()
-    * */
-
-    let chartData = []; // chart数据源
-    let startTime = ''; // X轴起始时间
-    let endTime = ''; // X轴终末时间
     let yData = []; // Y轴项目类目
     let dayTime = 3600 * 24 * 1000; // 一天的毫秒，因为01.01日-01.01日，也算一天
-    let initData = { // 可以认为是axios请求过来的数据res.data
-      startTime: '2020-12-01', // X轴起始时间
-      endTime: '2022-01-30', // X轴终末时间
-      value: [
-        {
-          itemName: '项目一', // 项目名
-          value: [
-            0, // 索引
-            '2021-06-01', // 项目开始时间
-            '2021-06-30', // 项目结束时间
-            1,
-          ]
-        },
-        {
-          itemName: '项目一', // 项目名
-          value: [
-            0, // 索引
-            '2021-09-01', // 项目实际开始时间
-            '2021-11-28', // 项目实际结束时间
-            0,
-          ]
-        },
-        {
-          itemName: '项目一', // 项目名
-          value: [
-            0, // 索引
-            '2021-01-30', // 项目实际开始时间
-            '2021-2-10', // 项目实际结束时间
-            1,
-          ]
-        },
-        {
-          itemName: '项目二',
-          value: [
-            1,
-            '2021-06-21',
-            '2021-07-21',
-            1,
-          ]
-        },
-        {
-          itemName: '项目三',
-          value: [
-            2,
-            '2021-06-01',
-            '2021-06-22',
-            1,
-          ]
-        },
-        {
-          itemName: '项目三',
-          value: [
-            2,
-            '2021-02-01',
-            '2021-03-22',
-            0,
-          ]
-        },
-        {
-          itemName: '项目四',
-          value: [
-            3,
-            '2021-06-22',
-            '2021-07-05',
-            1,
-          ]
-        },
-        {
-          itemName: '项目五',
-          value: [
-            4,
-            '2021-07-01',
-            '2021-07-30',
-            1,
-          ]
-        },
-        {
-          itemName: '项目六',
-          value: [
-            5,
-            '2021-07-01',
-            '2021-07-21',
-            1,
-          ]
-        },
-        {
-          itemName: '项目七',
-          value: [
-            6,
-            '2021-06-30',
-            '2021-10-10',
-            1,
-          ]
-        }
-      ]
+    let chartData = [
+      {
+        itemName: '2022-10-15', // 项目名
+        value: [
+          0, // 索引
+          1, // 项目开始时间
+          3, // 项目结束时间
+          1,
+        ]
+      },
+      {
+        itemName: '2022-10-15', // 项目名
+        value: [
+          0, // 索引
+          5, // 项目实际开始时间
+          7.6, // 项目实际结束时间
+          0,
+        ]
+      },
+      {
+        itemName: '2022-10-15', // 项目名
+        value: [
+          0, // 索引
+          7.9, // 项目实际开始时间
+          13.3, // 项目实际结束时间
+          1,
+        ]
+      },
+      {
+        itemName: '2022-10-17',
+        value: [
+          1,
+          14,
+          21.8,
+          1,
+        ]
+      },
+      {
+        itemName: '2022-10-18',
+        value: [
+          2,
+          7.54,
+          14.4,
+          1,
+        ]
+      },
+      {
+        itemName: '2022-10-18',
+        value: [
+          2,
+          4.1984,
+          5.2022,
+          0,
+        ]
+      },
+      {
+        itemName: '2022-10-19',
+        value: [
+          3,
+          9.9,
+          10.4,
+          1,
+        ]
+      },
+      {
+        itemName: '2022-10-20',
+        value: [
+          4,
+          0.4,
+          1,
+          1,
+        ]
+      },
+      {
+        itemName: '2022-10-21',
+        value: [
+          5,
+          1,
+          4,
+          1,
+        ]
+      },
+      {
+        itemName: '2022-10-22',
+        value: [
+          6,
+          2,
+          3,
+          1,
+        ]
+      },
+      {
+        itemName: '2022-10-22',
+        value: [
+          6,
+          6,
+          9,
+          0,
+        ]
+      },
+      {
+        itemName: '2022-10-23',
+        value: [
+          7,
+          5.5,
+          11,
+          1,
+        ]
+      },
+    ]
+
+    // const chartData = await $lulib.getMockData('/htmls/mock/bim/equipmentMonitoringTimeEchartsData.json', 1, '', false)
+
+    const formatYData = () => {
+      // const itemNameObj = {}
+      // $lulib.unique(chartData.map(i => i.itemName)).forEach((item, idx) => itemNameObj[item] = idx)
+      // console.log(itemNameObj)
+      // chartData.forEach(item => item.value.unshift(itemNameObj[item.itemName]))
+      yData = $lulib.unique(chartData.map(item => item.itemName))
+      console.log(yData)
+    }
+    formatYData()
+
+    const formatTooltip = params => {
+      const values = params.map(p => p.value).reduce((per, cur) => {
+        per[cur[3]] += Number((cur[2] - cur[1]).toFixed(2))
+        return per
+      }, { 1: 0, 0: 0 })
+
+      const numToTime = num => {
+        const timeArr = num.toString().split('.')
+        let str = `${timeArr[0]}小时`
+        return timeArr.length < 1 ? str :
+          str + `${Math.floor(60 * (+timeArr[1] < 10 ? +timeArr[1] * 10 : +timeArr[1]) / 100)}分钟`
+      }
+
+      return `${params[0].name}:<br\>
+                  累计运行：${numToTime(values[1])}<br\>
+                  累计怠速运行：${numToTime(values[0])}`
     }
 
-    getData()
-
-    function getData () {
-      chartData = initData.value // chart的数据
-      const arr = []
-      chartData.forEach(item => {
-        arr.push(item.itemName)
-      })
-      yData = arr // Y轴的类目标题
-      startTime = initData.startTime // X轴开始值
-      endTime = initData.endTime // X轴结束值
-      setData()
-    }
+    setData()
 
     function setData () {
       const param = {
@@ -183,31 +200,35 @@ layui.use(['LuCommonTemplate', 'laypage', 'echarts'], function () {
         tooltip: {
           // 自定义提示信息
           // params为当前点击图形元素的数据信息的对象
-          formatter (params) {
-            // 计划开始时间
-            let planStartDate = params[0].value[1]
-            // 计划结束时间
-            let planEndDate = params[0].value[2]
-            // 实际开始时间
-            let practiceStartDate = params[0].value[3]
-            // 实际结束时间
-            let practiceEndDate = params[0].value[4]
-            // 项目周期(毫秒值)：计划结束日期 - 计划开始日期
-            // eslint-disable-next-line
-            let projectCycle_millisecond = +echarts.number.parseDate(params[0].value[2]) - +echarts.number.parseDate(params[0].value[1])
-            // 项目周期(天数)
-            let projectCycle_days = projectCycle_millisecond / dayTime + 1
-            return params[0].name + '<br/>'
-              + '计划开始时间：' + planStartDate + '<br/>'
-              + '计划结束时间：' + planEndDate + '<br/>'
-              + '项目周期：' + projectCycle_days + '天<br/>'
-              + '实际开始时间：' + practiceStartDate + '<br/>'
-              + '实际结束时间：' + practiceEndDate
-          }
+          formatter: formatTooltip,
+          // (params) {
+          // console.log(params[0])
+
+          // return 'jhks'
+          // // 计划开始时间
+          // let planStartDate = params[0].value[1]
+          // // 计划结束时间
+          // let planEndDate = params[0].value[2]
+          // // 实际开始时间
+          // let practiceStartDate = params[0].value[3]
+          // // 实际结束时间
+          // let practiceEndDate = params[0].value[4]
+          // // 项目周期(毫秒值)：计划结束日期 - 计划开始日期
+          // // eslint-disable-next-line
+          // let projectCycle_millisecond = +echarts.number.parseDate(params[0].value[2]) - +echarts.number.parseDate(params[0].value[1])
+          // // 项目周期(天数)
+          // let projectCycle_days = projectCycle_millisecond / dayTime + 1
+          // return params[0].name + '<br/>'
+          //   + '计划开始时间：' + planStartDate + '<br/>'
+          //   + '计划结束时间：' + planEndDate + '<br/>'
+          //   + '项目周期：' + projectCycle_days + '天<br/>'
+          //   + '实际开始时间：' + practiceStartDate + '<br/>'
+          //   + '实际结束时间：' + practiceEndDate
+          // }
         },
         // 图表底板
         grid: {
-          height: 330,
+          height: 460,
           tooltip: {
             trigger: 'axis',
             axisPointer: {
@@ -216,19 +237,21 @@ layui.use(['LuCommonTemplate', 'laypage', 'echarts'], function () {
           }
         },
         xAxis: {
-          // x轴类型为时间轴
-          type: 'time',
-          // 最小值
-          min: startTime,
-          // 最大值
-          max: endTime,
+          type: 'value',
+          interval: 1,
+          min: 0,
+          max: 24,
           axisLabel: {
-            // 强制显示所有标签
             interval: 0
+          },
+          splitLine: {
+            lineStyle: {
+              type: 'dashed'
+            }
           }
         },
         yAxis: {
-          data: [1, 2, 3, 4, 5, 6, 7]
+          data: yData
         },
         legend: {
           selectedMode: false,
