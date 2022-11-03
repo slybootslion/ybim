@@ -1,12 +1,14 @@
-layui.use(['LuCommonTemplate', 'laypage', 'echarts'], function () {
+layui.use(['LuCommonTemplate', 'LuLayer', 'laypage', 'echarts'], function () {
   const $ = layui.$
   const LuInnerHeader = layui.LuInnerHeader
   const element = layui.element
   const LuTable = layui.LuTable
   const echarts = layui.echarts
   const laypage = layui.laypage
+  const LuLayer = layui.LuLayer
+  const table = layui.table
 
-  let luInnerHeader, luTable, echartsObj
+  let luInnerHeader, luTable, echartsObj, innerTable, currentInnerTable, luLayer
   ;(async () => {
     innerHeaderRender()
     tableRender()
@@ -25,12 +27,14 @@ layui.use(['LuCommonTemplate', 'laypage', 'echarts'], function () {
   async function tableRender () {
     const tableData = await $lulib.getMockData('/htmls/mock/bim/equipmentMonitoringTimeTableData.json', 17, '', false)
     const tableOptions = {
-      cols: [[
-        { field: 't1', title: '日期' },
-        { field: 't2', title: '运行时长' },
-        { field: 't3', title: '怠速时长' },
-        { field: 't4', title: '静止时长' },
-      ]],
+      cols: [
+        $lulib.tableSetCenter([
+          { field: 't1', title: '日期' },
+          { field: 't2', title: '运行时长' },
+          { field: 't3', title: '怠速时长' },
+          { field: 't4', title: '静止时长' },
+        ])
+      ],
       ctrlData: [
         { eventStr: 'info', txtStr: '查看详情' },
       ],
@@ -40,8 +44,46 @@ layui.use(['LuCommonTemplate', 'laypage', 'echarts'], function () {
     luTable = new LuTable(tableData, tableOptions)
   }
 
-  function info (data) {
-    console.log(data)
+  async function info (data) {
+    currentInnerTable = data.id;
+    const opts = {
+      id: 'innerEquipmentMonitoringTimeTable',
+      area: ['1260px', '680px'],
+      title: '工时详情',
+      content: `
+            <div class='inner-table-box'>
+            <div class="inner-table-top" style="width: 100%; display: flex; justify-content: flex-end; padding: 0 10px; box-sizing: border-box"><div class="layui-btn layui-btn-primary layui-btn-sm table-inner-btn" style="margin-top: 10px; background-color: #fff;">导出表格</div></div>
+              <table class='inner-table layui-hide'
+                     lay-filter='innerTable' 
+                     id='innerTableBox'></table>
+            </div>`,
+    }
+    luLayer = new LuLayer(opts)
+
+    const innerTableData = await $lulib.getMockData('/htmls/mock/bim/equipmentMonitoringTimeInnerTableData.json', 4, '', false)
+    console.log(innerTableData)
+    const template = `<span>
+        <div class="table-statue">
+          <span class="point {{d.t3 === '运行' ? 'blue' : 'orange'}}"></span>
+          <span>{{d.t3}}</span>
+        </div>
+      </span>`
+    const tableOpts = {
+      elem: '#innerTableBox',
+      page: true,
+      limit: 15,
+      data: innerTableData,
+      cols: [
+        $lulib.tableSetCenter([
+          { field: 't1', title: '开始时间' },
+          { field: 't2', title: '结束时间' },
+          // { field: 't3', title: '状态' },
+          { title: '状态', templet: template, width: 180 },
+          { field: 't4', title: '持续时长' },
+        ]),
+      ],
+    }
+    innerTable = table.render(tableOpts)
   }
 
   async function echartsRender () {

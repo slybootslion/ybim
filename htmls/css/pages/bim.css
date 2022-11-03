@@ -1344,6 +1344,34 @@
   color: #f00;
 }
 
+.table-statue {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.table-statue .red-text {
+  color: #f00;
+}
+.table-statue .point {
+  width: 8px;
+  height: 8px;
+  display: block;
+  margin: 0 8px;
+  border-radius: 50%;
+}
+.table-statue .point.green {
+  background-color: #0bab30;
+}
+.table-statue .point.red {
+  background-color: #f00;
+}
+.table-statue .point.blue {
+  background-color: #409EFF;
+}
+.table-statue .point.orange {
+  background-color: #ff9018;
+}
+
 .equipment-ledger .table-pic {
   height: 100px;
   display: flex;
@@ -1353,27 +1381,6 @@
 .equipment-ledger .table-pic img {
   width: 100%;
   height: auto;
-}
-.equipment-ledger .table-statue {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.equipment-ledger .table-statue .red-text {
-  color: #f00;
-}
-.equipment-ledger .table-statue .point {
-  width: 8px;
-  height: 8px;
-  display: block;
-  margin: 0 8px;
-  border-radius: 50%;
-}
-.equipment-ledger .table-statue .point.green {
-  background-color: #0bab30;
-}
-.equipment-ledger .table-statue .point.red {
-  background-color: #f00;
 }
 .equipment-ledger .layui-table-cell {
   height: auto;

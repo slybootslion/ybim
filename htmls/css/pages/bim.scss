@@ -1337,6 +1337,40 @@
   }
 }
 
+.table-statue {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .red-text {
+    color: #f00;
+  }
+
+  .point {
+    width: 8px;
+    height: 8px;
+    display: block;
+    margin: 0 8px;
+    border-radius: 50%;
+
+    &.green {
+      background-color: $greenColor;
+    }
+
+    &.red {
+      background-color: #f00;
+    }
+
+    &.blue {
+      background-color: #409EFF;
+    }
+
+    &.orange {
+      background-color: #ff9018;
+    }
+  }
+}
+
 .equipment-ledger {
   .table-pic {
     height: 100px;
@@ -1347,32 +1381,6 @@
     img {
       width: 100%;
       height: auto;
-    }
-  }
-
-  .table-statue {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .red-text {
-      color: #f00;
-    }
-
-    .point {
-      width: 8px;
-      height: 8px;
-      display: block;
-      margin: 0 8px;
-      border-radius: 50%;
-
-      &.green {
-        background-color: $greenColor;
-      }
-
-      &.red {
-        background-color: #f00;
-      }
     }
   }
 
