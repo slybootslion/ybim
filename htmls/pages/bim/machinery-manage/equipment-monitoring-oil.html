@@ -2,9 +2,40 @@
 <div class='inner-body equipment-ledger'>
   <div class='page-header luPageHeader'></div>
   <div class='page-container'>
-    oil
-    <div class='select-box luSearchBox'></div>
-    <div class='content-table luTable'></div>
+    <div class='top-content'>
+      <div class="top-title">摊铺机</div>
+      <div class="top-bottom">
+        <div class="top-bottom-item">设备编号：<span>DW124523</span></div>
+        <div class="top-bottom-item">设备类型：<span>路面机械</span></div>
+        <div class="top-bottom-item">状态：<span class="green">正常</span></div>
+      </div>
+    </div>
+    <div class="tab-box">
+      <div class="layui-tab layui-tab-brief" lay-filter='role'>
+        <ul class="layui-tab-title">
+          <li class="layui-this"><span class="iconfont icon-_jinduzhanshi"></span>每天</li>
+          <li><span class="iconfont icon-shuju"></span>每周</li>
+        </ul>
+        <div class="layui-tab-content">
+          <div class="layui-tab-item layui-show">
+            <div style="display: flex; justify-content: flex-start; align-items: center">
+              <div class="layui-inline">
+                <label class="layui-form-label">选择日期</label>
+                <div class="layui-input-inline">
+                  <input type="text" style="height: 38px;" class="layui-input" id="dayDate">
+                </div>
+              </div>
+              <div class="layui-btn layui-btn-primary table-date-btn preDay" style="margin: 0;">前一天</div>
+              <div class="layui-btn layui-btn-primary table-date-btn nextDay" style="margin: 0;">后一天</div>
+            </div>
+            <div class="echarts-box" style="width: 1736px; height: 400px" id="echartsBoxDay"></div>
+          </div>
+          <div class="layui-tab-item">
+            <div class="echarts-box" style="width: 1736px; height: 400px" id="echartsBoxWeek"></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <script src='/htmls/js/pages/bim/machinery-manage/equipment-monitoring-oil.js' charset='utf-8'></script>

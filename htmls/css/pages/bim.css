@@ -1553,6 +1553,12 @@
   font-size: 12px;
   margin-right: 3px;
 }
+.equipment-ledger .tab-box .layui-tab .table-date-btn {
+  background-color: #fff;
+}
+.equipment-ledger .tab-box .layui-tab .table-date-btn:hover {
+  border: 1px solid #333;
+}
 .equipment-ledger .tab-box .layui-tab .table-out-btn {
   background-color: #fff;
   position: absolute;
