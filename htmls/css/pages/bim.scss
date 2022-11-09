@@ -1389,6 +1389,13 @@
     line-height: 130px;
   }
 
+  .hei-origin {
+    .layui-table-cell {
+      height: auto;
+      line-height: 45px;
+    }
+  }
+
   .content-inner {
     margin-bottom: 20px;
 

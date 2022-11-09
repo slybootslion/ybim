@@ -239,9 +239,6 @@ layui.use(['LuCommonTemplate', 'LuLayer', 'laypage', 'echarts'], function () {
           interval: 1,
           min: 0,
           max: 24,
-          axisLabel: {
-            interval: 0
-          },
           splitLine: {
             lineStyle: {
               type: 'dashed'

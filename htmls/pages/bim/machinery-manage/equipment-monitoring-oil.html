@@ -14,7 +14,7 @@
       <div class="layui-tab layui-tab-brief" lay-filter='role'>
         <ul class="layui-tab-title">
           <li class="layui-this"><span class="iconfont icon-_jinduzhanshi"></span>每天</li>
-          <li><span class="iconfont icon-shuju"></span>每周</li>
+          <li class=""><span class="iconfont icon-shuju"></span>每周</li>
         </ul>
         <div class="layui-tab-content">
           <div class="layui-tab-item layui-show">
@@ -31,10 +31,24 @@
             <div class="echarts-box" style="width: 1736px; height: 400px" id="echartsBoxDay"></div>
           </div>
           <div class="layui-tab-item">
+            <div style="display: flex; justify-content: flex-start; align-items: center">
+              <div class="layui-inline">
+                <label class="layui-form-label">选择日期</label>
+                <div class="layui-input-inline">
+                  <input type="text" style="height: 38px;" class="layui-input" id="weekDate">
+                </div>
+              </div>
+              <div class="layui-btn layui-btn-primary table-date-btn preWeek" style="margin: 0;">前一天</div>
+              <div class="layui-btn layui-btn-primary table-date-btn nextWeek" style="margin: 0;">后一天</div>
+            </div>
             <div class="echarts-box" style="width: 1736px; height: 400px" id="echartsBoxWeek"></div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="table-box">
+      <div class="table-title">加油记录</div>
+      <div class='content-table hei-origin luTable'></div>
     </div>
   </div>
 </div>
