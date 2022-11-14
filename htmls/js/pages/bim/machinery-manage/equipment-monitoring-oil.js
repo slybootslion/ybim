@@ -43,6 +43,8 @@ layui.use(['LuCommonTemplate', 'laydate', 'echarts'], function () {
     })
   }
 
+  $lulib.bindMethod([{ dom: luInnerHeader.rightBtns[0], method: () => $lulib.pageGoBack() }])
+
   function initDateInput (date, el = "#dayDate") {
     dateStr = date || $lulib.dayjs(new Date()).format('YYYY-MM-DD')
     laydate.render({

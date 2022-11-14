@@ -1645,6 +1645,19 @@
       line-height: 50px;
     }
   }
+
+  .map-box {
+    margin-top: 20px;
+
+    .map-select-box {
+      height: 38px;
+      display: flex;
+      align-items: center;
+      .layui-inline {
+        margin-right: 20px;
+      }
+    }
+  }
 }
 
 .stock-form {

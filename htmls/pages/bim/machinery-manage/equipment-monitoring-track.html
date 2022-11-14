@@ -1,0 +1,42 @@
+<link rel='stylesheet' href='/htmls/css/pages/bim.css'>
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=W67E0DGCLziYgqivLGWcaPeS2RKcmmEv"></script>
+<div class='inner-body equipment-ledger'>
+  <div class='page-header luPageHeader'></div>
+  <div class='page-container'>
+    <div class='top-content'>
+      <div class="top-title">摊铺机</div>
+      <div class="top-bottom">
+        <div class="top-bottom-item">设备编号：<span>DW124523</span></div>
+        <div class="top-bottom-item">设备类型：<span>路面机械</span></div>
+        <div class="top-bottom-item">状态：<span class="green">正常</span></div>
+      </div>
+    </div>
+    <div class="map-box">
+      <div class="map-select-box layui-form">
+        <div class="layui-inline">
+          <label>选择日期：</label>
+          <div class="layui-input-inline">
+            <input type="text" class="layui-input" id="dateInput" placeholder="yyyy-MM-dd">
+          </div>
+        </div>
+        <div class="layui-inline">
+          <label>选择机械：</label>
+          <div class="layui-input-inline">
+            <select name="mechanical" lay-filter="mechanical">
+              <option value=""></option>
+              <option value="0" selected="">机械1</option>
+              <option value="1">机械2</option>
+              <option value="2">机械3</option>
+              <option value="3">机械4</option>
+              <option value="4">机械5</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="map-content">
+        <div style="width:1640px;height:660px;font-size:12px;margin-top:20px;" id="map"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src='/htmls/js/pages/bim/machinery-manage/equipment-monitoring-track.js' charset='utf-8'></script>

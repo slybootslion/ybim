@@ -1578,6 +1578,17 @@
 .equipment-ledger .tab-box .layui-table-cell {
   line-height: 50px;
 }
+.equipment-ledger .map-box {
+  margin-top: 20px;
+}
+.equipment-ledger .map-box .map-select-box {
+  height: 38px;
+  display: flex;
+  align-items: center;
+}
+.equipment-ledger .map-box .map-select-box .layui-inline {
+  margin-right: 20px;
+}
 
 .stock-form .content-inner {
   margin-bottom: 20px;

@@ -456,6 +456,12 @@
       {
         "id": "8-1-4",
         "title": "设备检测",
+        "href": "machinery-manage/equipment-monitoring-track",
+        "hide": true
+      },
+      {
+        "id": "8-1-4",
+        "title": "设备检测",
         "href": "machinery-manage/equipment-monitoring-oil",
         "hide": true
       },
