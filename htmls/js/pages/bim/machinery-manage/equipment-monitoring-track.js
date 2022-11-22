@@ -71,7 +71,7 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
       { 'lng': 108.752332, 'lat': 34.606764, },
       { 'lng': 108.752103, 'lat': 34.606894, },
       { 'lng': 108.752408, 'lat': 34.606961, },
-      { 'lng': 108.752817, 'lat': 34.60688, },
+      { 'lng': 108.752817, 'lat': 34.606883, },
       { 'lng': 108.752961, 'lat': 34.606731, },
       { 'lng': 108.753347, 'lat': 34.606586, },
       { 'lng': 108.753549, 'lat': 34.606493, },
@@ -134,8 +134,6 @@ layui.use(['LuCommonTemplate', 'LuLayer'], function () {
 
     markStart.addEventListener('click', showMsg)
     markEnd.addEventListener('click', showMsg)
-
-    // https://lbs.baidu.com/index.php?title=jspopularGL/guide/trackAnimation
     setTimeout(() => $(".anchorBL").remove(), 50)
     map.enableScrollWheelZoom(true);
   }
