@@ -1,5 +1,9 @@
 ;(function (global) {
   class LuLib {
+    constructor () {
+      this.methodProxy = new BindMethodProxy()
+    }
+
     getAllUrlParams (urls) {
       const url = urls || location.href
       let queryString = url ? url.split('?')[1] : window.location.search.slice(1)
@@ -43,6 +47,28 @@
         return { height: r.height, width: r.width }
       }
       return { height: 0, width: 0 }
+    }
+  }
+
+  class BindMethodProxy {
+    constructor () {
+      this.bodyBindEventFn = []
+    }
+
+    bindMethodProxy (methods) {
+      $(methods).each((_, item) => {
+        if (typeof item.dom === 'string') item.dom = $(item.dom)
+        if (!item.evStr) item.evStr = 'click'
+        if (item.dom.selector === 'body') this.bodyBindEventFn.push({ m: item.method, s: item.evStr })
+        item.dom.on(item.evStr, item.domStr, item.method)
+      })
+    }
+
+    offBodyEventFn () {
+      if (this.bodyBindEventFn.length) {
+        this.bodyBindEventFn.forEach(item => $('body').off(item.s, item.m))
+        this.bodyBindEventFn.length = 0
+      }
     }
   }
 

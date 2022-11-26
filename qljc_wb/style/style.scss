@@ -1,4 +1,4 @@
-html,body {
+html, body {
   padding: 0;
   margin: 0;
   width: 100%;
@@ -24,5 +24,38 @@ html,body {
     background-size: auto;
     background-repeat: no-repeat;
     position: relative;
+
+    .instrument-item {
+      width: 179px;
+      height: 31px;
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      position: absolute;
+      cursor: pointer;
+
+      &.jsd {
+        background-image: url('../images/jiasudu.7b2c9093.gif');
+      }
+      &.wy {
+        background-image: url('../images/weiyi.cb32ccbf.gif');
+      }
+      &.lf {
+        background-image: url('../images/liefeng.fe633f37.gif');
+      }
+      &.wd {
+        background-image: url('../images/wendu.dd95b56e.gif');
+      }
+      &.sd {
+        background-image: url('../images/shidu.09303456.gif');
+      }
+
+      .num-text {
+        position: absolute;
+        font-size: 12px;
+        top: 7px;
+        left: 72px;
+      }
+    }
   }
 }

@@ -25,5 +25,35 @@ html, body {
   background-repeat: no-repeat;
   position: relative;
 }
+.bridge-box .bridge-pic .instrument-item {
+  width: 179px;
+  height: 31px;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  cursor: pointer;
+}
+.bridge-box .bridge-pic .instrument-item.jsd {
+  background-image: url("../images/jiasudu.7b2c9093.gif");
+}
+.bridge-box .bridge-pic .instrument-item.wy {
+  background-image: url("../images/weiyi.cb32ccbf.gif");
+}
+.bridge-box .bridge-pic .instrument-item.lf {
+  background-image: url("../images/liefeng.fe633f37.gif");
+}
+.bridge-box .bridge-pic .instrument-item.wd {
+  background-image: url("../images/wendu.dd95b56e.gif");
+}
+.bridge-box .bridge-pic .instrument-item.sd {
+  background-image: url("../images/shidu.09303456.gif");
+}
+.bridge-box .bridge-pic .instrument-item .num-text {
+  position: absolute;
+  font-size: 12px;
+  top: 7px;
+  left: 72px;
+}
 
 /*# sourceMappingURL=style.css.map */
