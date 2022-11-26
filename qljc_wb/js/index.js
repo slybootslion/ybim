@@ -9,9 +9,9 @@ $(document).ready(function () {
       url: 'hualonggou',
       points: [
         { cname: 'wy', id: 'WY5', value: '113.14mm', top: 28, left: 142 },
-        { cname: 'lf', id: 'LF14', text: '1mm', top: 298, left: 152 },
-        { cname: 'lf', id: 'LF13', text: '-0.07mm', top: 360, left: 152 },
-        { cname: 'lf', id: 'LF16', text: '1mm', top: 422, left: 152 },
+        { cname: 'lf', id: 'LF14', value: '1mm', top: 298, left: 152 },
+        { cname: 'lf', id: 'LF13', value: '-0.07mm', top: 360, left: 152 },
+        { cname: 'lf', id: 'LF16', value: '1mm', top: 422, left: 152 },
         { cname: 'wy', id: 'WY6', text: '129.55mm', top: 552, left: 141 },
         { cname: 'jsd', id: 'ZD03', text: '23mg', top: 17, left: 1242 },
         { cname: 'lf', id: 'LF18', text: '-0.22mm', top: 66, left: 1242 },
@@ -52,12 +52,6 @@ $(document).ready(function () {
     const { bridgeId } = $lulib.getAllUrlParams()
     const data = bridgeData[bridgeId]
     if (!data) throw new Error("桥梁id未传入或者错误")
-
-    // let html = '<div style="position:absolute; top: 0; left: 0;">test</div>';
-    // for (let i = 0; i < bridgeData[bridgeId].length; i++) {
-    //   const item = data.points[i]
-    //   html += `<div class="instrument-item" data-id="${item.id}""></div>`
-    // }
     let html = ''
     for (let i = 0; i < data.points.length; i++) {
       const item = data.points[i]
@@ -65,7 +59,7 @@ $(document).ready(function () {
       html += `<div class="instrument-item ${item.cname}" 
                     data-id="${item.id}" 
                     style="${style}">
-        <span class="num-text">WY5:113.14mm</span>
+        <span class="num-text">${item.id}:${item.text}</span>
       </div>`
     }
     const { height } = $lulib.domWidthHeight('.bridge-box')
