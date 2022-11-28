@@ -18,6 +18,7 @@ layui
     zTree: 'z-tree/jquery.ztree.all',
     echarts: 'echarts/echarts.min',
     Swiper: 'swiper/swiper.min',
+    LuGanttView: 'ganttView/ganttView',
   })
 
 const appConfig = {
