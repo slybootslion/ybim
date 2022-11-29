@@ -87,6 +87,9 @@ $(document).ready(function () {
     pointList = bridgeData[bridgeId].points
     const data = bridgeData[bridgeId]
     if (!data) throw new Error("桥梁id未传入或者错误")
+
+    $(".bridge-name").html(data.name)
+
     let html = ''
     for (let i = 0; i < data.points.length; i++) {
       const item = data.points[i]
@@ -98,7 +101,7 @@ $(document).ready(function () {
       </div>`
     }
     const { height } = $lulib.domWidthHeight('.bridge-box')
-    const marginHeight = (height - 160 - data.height) / 2
+    const marginHeight = (height - 130 - data.height) / 2
     $(".bridge-pic").css({
       width: data.width, height: data.height, "margin-top": marginHeight,
       "background-image": `url('./images/0_${data.url}.png')`
@@ -110,17 +113,11 @@ $(document).ready(function () {
   function layerEchartsTemplate (info) {
     const picDict = {
       ST01: './images/pic3.gif',
+      ST05: './images/pic3.gif',
       ST03: './images/pic2.gif',
       ST02: './images/pic1.gif',
       ST04: './images/pic1.gif',
     }
-    // let h = ''
-    // for (let i = 0; i < data.info.length; i++) {
-    //   const item = data.info[i]
-    //   h += `<div class="info-item"><div class="label">${item.label}：</div><div class="desc">${item.desc}</div></div>`
-    // }
-// <div class="info-list">${h}</div>
-    //<img src="${data.pic}" alt="">
     return `<div class="echarts-layer-box">
         <div class="top-info-box">
           <h5 class="info-title">${info.sensor_name}</h5>
@@ -180,12 +177,14 @@ $(document).ready(function () {
     const chartDom = document.querySelector('#echartsContainer');
     echartsObj = echarts.init(chartDom)
     const opts = await getEchartsOptions(sensorCode)
-    const run = () => {
+    const run = async () => {
+      // 这里按时间请求log
+      // const res = await $lulib.ajax(`https://s107.jiaohuilian.com/sensor/v1/bridge.php?type=log&sensor_code=1669689102-B2020001-S202000014`)
       makeData()
       echartsObj.setOption(opts)
     }
     run()
-    echartsTimer = setInterval(run, 1000)
+    echartsTimer = setInterval(run, 3000)
   }
 
   function showSensor () {
