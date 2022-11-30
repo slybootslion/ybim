@@ -30,7 +30,7 @@ a {
 .bridge-box {
   width: 100%;
   height: 100%;
-  background-image: url(../images/bgi.jpg);
+  background-image: url(../public/bgi.jpg);
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -68,19 +68,19 @@ a {
       cursor: pointer;
 
       &.jsd {
-        background-image: url('../images/jiasudu.7b2c9093.gif');
+        background-image: url('../public/jiasudu.7b2c9093.gif');
       }
       &.wy {
-        background-image: url('../images/weiyi.cb32ccbf.gif');
+        background-image: url('../public/weiyi.cb32ccbf.gif');
       }
       &.lf {
-        background-image: url('../images/liefeng.fe633f37.gif');
+        background-image: url('../public/liefeng.fe633f37.gif');
       }
       &.wd {
-        background-image: url('../images/wendu.dd95b56e.gif');
+        background-image: url('../public/wendu.dd95b56e.gif');
       }
       &.sd {
-        background-image: url('../images/shidu.09303456.gif');
+        background-image: url('../public/shidu.09303456.gif');
       }
 
       .num-text {

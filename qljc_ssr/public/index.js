@@ -104,7 +104,7 @@ $(document).ready(function () {
     const marginHeight = (height - 130 - data.height) / 2
     $(".bridge-pic").css({
       width: data.width, height: data.height, "margin-top": marginHeight,
-      "background-image": `url('./images/0_${data.url}.png')`
+      "background-image": `url('./public/0_${data.url}.png')`
     }).html(html)
   }
 
@@ -112,11 +112,11 @@ $(document).ready(function () {
 
   function layerEchartsTemplate (info) {
     const picDict = {
-      ST01: './images/pic3.gif',
-      ST05: './images/pic3.gif',
-      ST03: './images/pic2.gif',
-      ST02: './images/pic1.gif',
-      ST04: './images/pic1.gif',
+      ST01: './public/pic3.gif',
+      ST05: './public/pic3.gif',
+      ST03: './public/pic2.gif',
+      ST02: './public/pic1.gif',
+      ST04: './public/pic1.gif',
     }
     return `<div class="echarts-layer-box">
         <div class="top-info-box">
@@ -183,7 +183,7 @@ $(document).ready(function () {
       makeData()
       echartsObj.setOption(opts)
     }
-    run()
+    await run()
     echartsTimer = setInterval(run, 3000)
   }
 
