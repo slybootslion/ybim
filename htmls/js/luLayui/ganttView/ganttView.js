@@ -2,6 +2,64 @@ layui.define([], function (exports) {
   const jQuery = layui.$;
   const Date = $lulib.dayjs
 
+  class Chart {
+    constructor (el, opts) {
+      this.div = el
+      this.opts = opts
+    }
+
+    render () {
+      this.addVtHeader(this.div, this.opts.data, this.opts.cellHeight)
+      const slideDiv = jQuery("<div>", {
+        "class": "ganttview-slide-container",
+        "css": { "width": this.opts.slideWidth + "px" }
+      });
+
+      this.date = this.getDate(this.opts.start, this.opts.end)
+    }
+
+    getDate (start, end) {
+      const dates = [];
+      console.log(start)
+      console.log(end)
+      dates[start.year()] = [];
+      dates[start.year()][start.month()] = [start]
+      var last = start;
+      while (last.compareTo(end) == -1) {
+        var next = last.clone().addDays(1);
+        if (!dates[next.getFullYear()]) {
+          dates[next.getFullYear()] = [];
+        }
+        if (!dates[next.getFullYear()][next.getMonth()]) {
+          dates[next.getFullYear()][next.getMonth()] = [];
+        }
+        dates[next.getFullYear()][next.getMonth()].push(next);
+        last = next;
+      }
+      return dates;
+    }
+
+    // 左侧表头
+    addVtHeader (div, data, cellHeight) {
+      const headerDiv = jQuery("<div>", { "class": "ganttview-vtheader" });
+      for (let i = 0; i < data.length; i++) {
+        const itemDiv = jQuery("<div>", { "class": "ganttview-vtheader-item" });
+        itemDiv.append(jQuery("<div>", {
+          "class": "ganttview-vtheader-item-name",
+          "css": { "height": (data[i].series.length * cellHeight) + "px" }
+        }).append(data[i].name));
+        const seriesDiv = jQuery("<div>", { "class": "ganttview-vtheader-series" });
+        for (let j = 0; j < data[i].series.length; j++) {
+          seriesDiv.append(jQuery("<div>", { "class": "ganttview-vtheader-series-name" })
+            .append(data[i].series[j].name));
+        }
+        itemDiv.append(seriesDiv);
+        headerDiv.append(itemDiv);
+      }
+      div.append(headerDiv);
+    }
+  }
+
   class LuGanttView {
     constructor (options) {
       const defaults = {
@@ -40,12 +98,9 @@ layui.define([], function (exports) {
       this.opts.start = startEnd[0]
       this.opts.end = startEnd[1]
 
-      console.log('======')
-
-      this.els.each((idx, el) => {
-        console.log(el)
-        console.log(idx)
-      })
+      const div = jQuery("<div>", { "class": "ganttview" })
+      new Chart(div, this.opts).render()
+      this.els.append(div)
     }
 
     getBoundaryDatesFromData (data, minDays) {
@@ -55,10 +110,6 @@ layui.define([], function (exports) {
         for (let j = 0; j < data[i].series.length; j++) {
           let start = Date(data[i].series[j].start);
           let end = Date(data[i].series[j].end)
-          console.log(start.format('YYYY,MM,DD'))
-          console.log(end.format('YYYY,MM,DD'))
-          console.log(minStart.isBefore(start))
-          console.log('====')
           if (i === 0 && j === 0) {
             minStart = start;
             maxEnd = end;
@@ -68,18 +119,15 @@ layui.define([], function (exports) {
         }
       }
       if (this.daysBetween(minStart, maxEnd) < minDays)
-        maxEnd = minStart.clone().addDays(minDays)
+        maxEnd = minStart.add(minDays, 'day')
+
       return [minStart, maxEnd];
     }
 
     daysBetween (start, end) {
       if (!start || !end) return 0
-      console.log(start.year())
       if (start.year() === 1901 || end.year() === 8099) return 0
       let count = 0, date = start.clone()
-      console.log(start.format('YYYY,MM,DD'))
-      console.log(end.format('YYYY,MM,DD'))
-      console.log(date.isAfter(end))
       while (!date.isAfter(end)) {
         count = count + 1;
         date.addDays(1);
