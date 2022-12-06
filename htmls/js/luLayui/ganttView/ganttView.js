@@ -6,6 +6,7 @@ layui.define([], function (exports) {
     constructor (el, opts) {
       this.div = el
       this.opts = opts
+      this.monthNames = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"]
     }
 
     render () {
@@ -15,28 +16,57 @@ layui.define([], function (exports) {
         "css": { "width": this.opts.slideWidth + "px" }
       });
 
-      this.date = this.getDate(this.opts.start, this.opts.end)
+      this.dates = this.getDate(this.opts.start, this.opts.end)
+      this.addHzHeader(slideDiv, this.dates, this.opts.cellWidth);
+
+      this.div.append(slideDiv);
+    }
+
+    addHzHeader (div, dates, cellWidth) {
+      const headerDiv = jQuery("<div>", { "class": "ganttview-hzheader" });
+      const monthsDiv = jQuery("<div>", { "class": "ganttview-hzheader-months" });
+      const daysDiv = jQuery("<div>", { "class": "ganttview-hzheader-days" });
+      let totalW = 0;
+      console.log(dates)
+      for (let y in dates) {
+        for (let m in dates[y]) {
+          let w = dates[y][m].length * cellWidth;
+          totalW = totalW + w;
+          monthsDiv.append(jQuery("<div>", {
+            "class": "ganttview-hzheader-month",
+            "css": { "width": (w - 1) + "px" }
+          }).append(`${y}/${this.monthNames[m]}`))
+          for (let d in dates[y][m]) {
+            daysDiv.append(jQuery("<div>", { "class": "ganttview-hzheader-day" })
+              .append(dates[y][m][d].day()))
+          }
+        }
+      }
+      monthsDiv.css("width", totalW + "px")
+      daysDiv.css("width", totalW + "px")
+      headerDiv.append(monthsDiv)
+      headerDiv.append(daysDiv)
+      console.log(div)
+      div.append(headerDiv)
     }
 
     getDate (start, end) {
-      const dates = [];
-      console.log(start)
-      console.log(end)
-      dates[start.year()] = [];
+      const dates = []
+      dates[start.year()] = []
       dates[start.year()][start.month()] = [start]
-      var last = start;
-      while (last.compareTo(end) == -1) {
-        var next = last.clone().addDays(1);
-        if (!dates[next.getFullYear()]) {
-          dates[next.getFullYear()] = [];
+      let last = start
+      while (last.isAfter(end)) {
+        let next = last.add(1, 'day')
+        if (!dates[next.year()]) {
+          dates[next.year()] = []
         }
-        if (!dates[next.getFullYear()][next.getMonth()]) {
-          dates[next.getFullYear()][next.getMonth()] = [];
+        if (!dates[next.year()][next.month()]) {
+          dates[next.year()][next.month()] = []
         }
-        dates[next.getFullYear()][next.getMonth()].push(next);
-        last = next;
+        dates[next.year()][next.month()].push(next)
+        last = next
       }
-      return dates;
+      return dates
     }
 
     // 左侧表头
@@ -94,7 +124,7 @@ layui.define([], function (exports) {
       if (!opts.data) throw new Error("没有渲染数据")
 
       const minDays = Math.floor((opts.slideWidth / opts.cellWidth) + 5)
-      const startEnd = this.getBoundaryDatesFromData(opts.data, minDays);
+      const startEnd = this.getBoundaryDatesFromData(opts.data, minDays)
       this.opts.start = startEnd[0]
       this.opts.end = startEnd[1]
 
@@ -108,7 +138,7 @@ layui.define([], function (exports) {
       let maxEnd = new Date()
       for (let i = 0; i < data.length; i++) {
         for (let j = 0; j < data[i].series.length; j++) {
-          let start = Date(data[i].series[j].start);
+          let start = Date(data[i].series[j].start)
           let end = Date(data[i].series[j].end)
           if (i === 0 && j === 0) {
             minStart = start;
@@ -118,9 +148,10 @@ layui.define([], function (exports) {
           if (maxEnd.isAfter(end)) maxEnd = end
         }
       }
+
+      console.log(minStart.format("YYYY-MM-DD"), maxEnd.format("YYYY-MM-DD"))
       if (this.daysBetween(minStart, maxEnd) < minDays)
         maxEnd = minStart.add(minDays, 'day')
-
       return [minStart, maxEnd];
     }
 
@@ -130,7 +161,7 @@ layui.define([], function (exports) {
       let count = 0, date = start.clone()
       while (!date.isAfter(end)) {
         count = count + 1;
-        date.addDays(1);
+        date.add(1, 'day');
       }
       return count;
     }
