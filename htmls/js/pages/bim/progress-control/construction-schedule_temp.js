@@ -2,6 +2,7 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable', 'LuD
   const $ = layui.$
   const laypage = layui.laypage
   const form = layui.form
+
   const LuInnerHeader = layui.LuInnerHeader
   const LuSearchForm = layui.LuSearchForm
   const LuTreeTable = layui.LuTreeTable
@@ -9,6 +10,7 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable', 'LuD
   const LuLayer = layui.LuLayer
   const LuLightBox = layui.LuLightBox
   const LuDrag = layui.LuDrag
+
   const LuGanttView = layui.LuGanttView
 
   class PageTemplate {
@@ -199,13 +201,11 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable', 'LuD
 
   const pt = new PageTemplate()
 
-  let instanceTreeTable, luInnerHeader, currentLine, luLayer, luUpload, luInfoLayer, luLightBox, luGanttLayer,
-    ganttData, luGantt
+  let instanceTreeTable, luInnerHeader, currentLine, luLayer, luUpload, luInfoLayer, luLightBox
   ;(async () => {
     innerHeaderRender()
     searchFormRender()
-    tableRender()
-    await getGanttData()
+    // tableRender()
     luLightBox = new LuLightBox({ zIndex: 20210609 })
   })()
 
@@ -251,6 +251,7 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable', 'LuD
 
     const pageCb = noPageRender ? null : renderPage
     const reqData = getTreeTableReqData(pageCb)
+// {{d.isBind ? "gray" : ""}}
     const ctrlHtml = `<span>
                         <a class="layui-btn layui-btn-xs {{!!d.isBind ? 'gray' : ''}}" 
                            style='float:left;' 
@@ -304,11 +305,6 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable', 'LuD
     resizeClass: '.resize',//拖拽按钮类名 (非必须)
   })
 
-  async function getGanttData () {
-    ganttData = await $.get(`/htmls/mock/bim/constructionScheduleGanttData.json`)
-    console.log(ganttData)
-  }
-
   function tableRender () {
     const opts = getTreeTableOpts()
     instanceTreeTable = LuTreeTable.render(opts)
@@ -348,19 +344,8 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable', 'LuD
 
   $lulib.bindMethod([{ dom: luInnerHeader.rightBtns[0], method: add }])
   $lulib.bindMethod([{ dom: luInnerHeader.rightBtns[1], method: add }])
-  $lulib.bindMethod([{ dom: luInnerHeader.rightBtns[2], method: showGantt }])
+  $lulib.bindMethod([{ dom: luInnerHeader.rightBtns[2], method: add }])
   $lulib.bindMethod([{ dom: luInnerHeader.rightBtns[3], method: add }])
-
-  function showGantt () {
-    const opts = {
-      title: '进度甘特图',
-      id: 'scheduleAddForm',
-      area: ['1860px', '1020px'],
-      content: '<div class="gantt"><div id="workSpace"></div></div>'
-    }
-    luGanttLayer = new LuLayer(opts)
-    luGantt = new LuGanttView()
-  }
 
   function add () {
     if (!currentLine) {
@@ -400,8 +385,8 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable', 'LuD
   }
 
   function bindModelHandler (id) {
-    luDrag.openRight()
-    // $(".table-mod-content").addClass('half-active');
+    $(".table-mod-content").addClass('half-active');
+
     // $lulib.pagePushHash(`bim/progress-control/bind-model?id=${id}`)
   }
 
@@ -436,4 +421,60 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable', 'LuD
   form.on('submit(submit)', function (data) {
     luLayer.close()
   })
+
+  const ganttData = [
+    {
+      id: 1, name: "Feature 1", series: [
+        { name: "Planned", start: new Date('2010-01-01'), end: new Date('2010-01-03') },
+        { name: "Actual", start: new Date('2010-01-02'), end: new Date('2010-01-05'), color: "#f0f0f0" }
+      ]
+    },
+    {
+      id: 2, name: "Feature 2", series: [
+        { name: "Planned", start: new Date('2010-01-05'), end: new Date('2010-01-20') },
+        { name: "Actual", start: new Date('2010-01-06'), end: new Date('2010-01-17'), color: "#f0f0f0" },
+        { name: "Projected", start: new Date('2010-01-06'), end: new Date('2010-01-17'), color: "#e0e0e0" }
+      ]
+    },
+    {
+      id: 3, name: "Feature 3", series: [
+        { name: "Planned", start: new Date('2010-01-11'), end: new Date('2010-02-03') },
+        { name: "Actual", start: new Date('2010-01-15'), end: new Date('2010-02-03'), color: "#f0f0f0" }
+      ]
+    },
+    {
+      id: 4, name: "Feature 4", series: [
+        { name: "Planned", start: new Date('2010-02-01'), end: new Date('2010-02-03') },
+        { name: "Actual", start: new Date('2010-02-01'), end: new Date('2010-02-05'), color: "#f0f0f0" }
+      ]
+    },
+    {
+      id: 5, name: "Feature 5", series: [
+        { name: "Planned", start: new Date('2010-03-01'), end: new Date('2010-03-20') },
+        { name: "Actual", start: new Date('2010-03-01'), end: new Date('2010-03-26'), color: "#f0f0f0" }
+      ]
+    },
+    {
+      id: 6, name: "Feature 6", series: [
+        { name: "Planned", start: new Date('2010-01-05'), end: new Date('2010-01-20') },
+        { name: "Actual", start: new Date('2010-01-06'), end: new Date('2010-01-17'), color: "#f0f0f0" },
+        { name: "Projected", start: new Date('2010-01-06'), end: new Date('2010-01-20'), color: "#e0e0e0" }
+      ]
+    },
+    {
+      id: 7, name: "Feature 7", series: [
+        { name: "Planned", start: new Date('2010-01-11'), end: new Date('2010-02-03') }
+      ]
+    },
+    {
+      id: 8, name: "Feature 8", series: [
+        { name: "Planned", start: new Date('2010-02-01'), end: new Date('2010-02-03') },
+        { name: "Actual", start: new Date('2010-02-01'), end: new Date('2010-02-05'), color: "#f0f0f0" }
+      ]
+    }
+  ]
+
+  const luGantt = new LuGanttView({ dom: "#ganttChart", data: ganttData })
+  console.log(luGantt)
+
 })

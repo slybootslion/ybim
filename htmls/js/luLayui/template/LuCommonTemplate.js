@@ -955,6 +955,11 @@ layui.define(['LuUtilsTemplate'], function (exports) {
       this.dragControllerDiv()
     }
 
+    openRight () {
+      $(this.options.rightClass).width('50%')
+      $(this.options.leftClass).width('50%')
+    }
+
     dragControllerDiv () {
       const options = this.options
       let resize = $(options.resizeClass);
@@ -968,28 +973,17 @@ layui.define(['LuUtilsTemplate'], function (exports) {
 
       leftBox.css({
         // "width": `${parseFloat(options.leftMinWidth)}px`,
-        width: "50%"
+        width: "100%"
       })
       rightBox.css({
         // width: `calc(100% - ${parseFloat(options.leftMinWidth) + 20}px)`
-        width: "50%"
+        width: "0"
       })
-
-      toRight.on('click',function (event) {
-        leftBox.width('100%')
-        rightBox.width(0)
-        event.stopPropagation()
-      });
-
-      toLeft.on('click',function (event) {
-        rightBox.width('100%')
-        leftBox.width(0)
-        event.stopPropagation()
-      });
 
       for (let i = 0; i < resize.length; i++) {
         // 鼠标按下事件
         resize[i].onmousedown = function (e) {
+          const startTime = e.timeStamp
           //颜色改变提醒
           resize[i].style.background = '#002240';
           let startX = e.clientX;
@@ -997,11 +991,12 @@ layui.define(['LuUtilsTemplate'], function (exports) {
           resize[i].left = leftBox.width()
           // 鼠标拖动事件
           document.onmousemove = function (e) {
+            if (e.timeStamp - startTime < 25) return;
             let endX = e.clientX;
             let moveLen = resize[i].left + (endX - startX); // （endx-startx）=移动的距离。resize[i].left+移动的距离=左边区域最后的宽度
             let maxT = box[i].clientWidth - resize[i].offsetWidth; // 容器宽度 - 左边区域的宽度 = 右边区域的宽度
-            if (moveLen < leftMinWidth) moveLen = leftMinWidth; // 左边区域的最小宽度为200px
-            if (moveLen > maxT - rightMinWidth) moveLen = maxT - rightMinWidth; //右边区域最小宽度为500px
+            // if (moveLen < leftMinWidth) moveLen = leftMinWidth; // 左边区域的最小宽度为200px
+            // if (moveLen > maxT - rightMinWidth) moveLen = maxT - rightMinWidth; //右边区域最小宽度为500px
             resize[i].style.left = moveLen; // 设置左侧区域的宽度
             for (let j = 0; j < leftBox.length; j++) {
               leftBox[j].style.width = moveLen + 'px';
@@ -1013,8 +1008,8 @@ layui.define(['LuUtilsTemplate'], function (exports) {
             let endX = e.clientX;
             let moveLen = resize[i].left + (endX - startX); // （endx-startx）=移动的距离。resize[i].left+移动的距离=左边区域最后的宽度
             let maxT = box[i].clientWidth - resize[i].offsetWidth; // 容器宽度 - 左边区域的宽度 = 右边区域的宽度
-            if (moveLen < leftMinWidth) moveLen = leftMinWidth; // 左边区域的最小宽度为200px
-            if (moveLen > maxT - rightMinWidth) moveLen = maxT - rightMinWidth; //右边区域最小宽度为500px
+            // if (moveLen < leftMinWidth) moveLen = leftMinWidth; // 左边区域的最小宽度为200px
+            // if (moveLen > maxT - rightMinWidth) moveLen = maxT - rightMinWidth; //右边区域最小宽度为500px
             resize[i].style.left = moveLen; // 设置左侧区域的宽度
             for (let j = 0; j < leftBox.length; j++) {
               leftBox[j].style.width = currentWidth + 'px';
@@ -1033,6 +1028,18 @@ layui.define(['LuUtilsTemplate'], function (exports) {
           return false;
         };
       }
+
+      toRight.on('click',function (event) {
+        leftBox.width('100%')
+        rightBox.width(0)
+        event.stopPropagation()
+      });
+
+      toLeft.on('click',function (event) {
+        rightBox.width('100%')
+        leftBox.width(0)
+        event.stopPropagation()
+      });
     }
   }
 

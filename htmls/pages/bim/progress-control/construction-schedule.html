@@ -1,110 +1,60 @@
+<link rel='stylesheet' href='/htmls/css/pages/bim2.css'>
 <link rel='stylesheet' href='/htmls/css/pages/bim.css'>
-<style>
-  div.ganttview-hzheader-month,
-  div.ganttview-hzheader-day,
-  div.ganttview-vtheader,
-  div.ganttview-vtheader-item-name,
-  div.ganttview-vtheader-series,
-  div.ganttview-grid,
-  div.ganttview-grid-row-cell {
-    float: left;
-  }
-  div.ganttview-hzheader-month,
-  div.ganttview-hzheader-day {
-    text-align: center;
-  }
-  div.ganttview-grid-row-cell.last,
-  div.ganttview-hzheader-day.last,
-  div.ganttview-hzheader-month.last {
-    border-right: none;
-  }
-  div.ganttview {
-    border: 1px solid #999;
-  }
-  div.ganttview-hzheader-month {
-    width: 60px;
-    height: 20px;
-    border-right: 1px solid #d0d0d0;
-    line-height: 20px;
-  }
-  div.ganttview-hzheader-day {
-    width: 20px;
-    height: 20px;
-    border-right: 1px solid #f0f0f0;
-    border-top: 1px solid #d0d0d0;
-    line-height: 20px;
-    color: #777;
-  }
-  div.ganttview-vtheader {
-    margin-top: 41px;
-    width: 240px;
-    overflow: hidden;
-    background-color: #fff;
-  }
-  div.ganttview-vtheader-item {
-    overflow: hidden;
-    color: #666;
-  }
-  div.ganttview-vtheader-item-name {
-    width: 100px;
-    padding-left: 5px;
-    border-top: 1px solid #d0d0d0;
-    line-height: 16px;
-  }
-  div.ganttview-vtheader-series-name {
-    width: 130px;
-    height: 31px;
-    border-top: 1px solid #d0d0d0;
-    line-height: 16px;
-    padding-left: 5px;
-  }
-  div.ganttview-slide-container {
-    overflow: auto;
-    border-left: 1px solid #999;
-  }
-  div.ganttview-grid-row-cell {
-    width: 20px;
-    height: 31px;
-    border-right: 1px solid #f0f0f0;
-    border-top: 1px solid #f0f0f0;
-  }
-  div.ganttview-grid-row-cell.ganttview-weekend {
-    background-color: #fafafa;
-  }
-  div.ganttview-blocks {
-    margin-top: 40px;
-  }
-  div.ganttview-block-container {
-    height: 28px;
-    padding-top: 4px;
-  }
-  div.ganttview-block {
-    position: relative;
-    height: 25px;
-    background-color: #E5ECF9;
-    border: 1px solid #c0c0c0;
-    border-radius: 3px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-  }
-  div.ganttview-block-text {
-    position: absolute;
-    height: 12px;
-    font-size: 0.8em;
-    color: #999;
-    padding: 2px 3px;
-  }
-  div.ganttview-block div.ui-resizable-handle.ui-resizable-s {
-    bottom: -0;
-  }
-</style>
 <div class='inner-body progress-control'>
   <div class='page-header luPageHeader'></div>
   <div class='page-container'>
     <div class='select-box luSearchBox'></div>
-    <div class="gantt">
-      <div id="ganttChart"></div>
+    <div class="table-mod-content half-active">
+      <div class='content-table luTable'></div>
+      <div class="resize" title="收缩侧边栏"
+           style="width: 10px; position:relative; background-color: #fff; margin: 10px 0;">
+        <div class="to-right triangle"></div>
+        <div class="to-left triangle"></div>
+      </div>
+      <div class="content-mod">
+        <div class='bim-body' id='bimBody'>
+          <div class='top-back-box'>
+            <div class='left'>
+              <span>关联模型</span>
+              <span class='top-left-tip'><span class='color-block'></span>当前关联任务</span>
+            </div>
+<!--            <div class='top-close'>x</div>-->
+          </div>
+          <div class='main'>
+            <div class='tools-bg'></div>
+            <div class='tools-bar'></div>
+            <div class='page-container'>
+              <div class="bind-model">
+                <div class="bind-item">
+                  <span>任务名称：</span>
+                  <span class="txt">地面铺设</span>
+                </div>
+                <div class="bind-item">
+                  <span>计划工期：</span>
+                  <span>80天</span>
+                </div>
+                <div class="bind-item">
+                  <span>计划开始时间：</span>
+                  <span>2019-05-15</span>
+                </div>
+                <div class="bind-item">
+                  <span>计划结束时间：</span>
+                  <span>2020-05-20</span>
+                </div>
+                <div class="bind-item">
+                  <span>责任人：</span>
+                  <span>贺波</span>
+                </div>
+                <button class="bind-btn" id="bindBtn">确认标记</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <div class='page'></div>
   </div>
 </div>
 <script src="/htmls/js/pages/bim/progress-control/construction-schedule.js" charset="utf-8"></script>
+<script src='/htmls/js/pages/bim/bim/index.js' charset='utf-8'></script>
+

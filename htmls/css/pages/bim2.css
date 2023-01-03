@@ -1632,12 +1632,13 @@ input[type=range]::-webkit-slider-thumb {
 .table-mod-content.half-active .resize .triangle {
   width: 0;
   height: 0;
-  border-top: 5px solid black;
-  border-right: 5px solid transparent;
-  border-left: 5px solid transparent;
+  border-top: 10px solid black;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
   position: relative;
-  left: -3px;
+  left: -5px;
   cursor: pointer;
+  z-index: 100;
 }
 .table-mod-content.half-active .resize .triangle.to-right {
   transform: rotate(-90deg);
