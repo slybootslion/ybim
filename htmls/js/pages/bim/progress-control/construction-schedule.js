@@ -355,7 +355,7 @@ layui.use(['LuCommonTemplate', 'LuUtilsTemplate', 'LuLayer', 'LuTreeTable', 'LuD
     const opts = {
       title: '进度甘特图',
       id: 'scheduleAddForm',
-      area: ['1860px', '1020px'],
+      area: ['1860px', '920px'],
       content: '<div class="gantt"><div id="workSpace"></div></div>'
     }
     luGanttLayer = new LuLayer(opts)

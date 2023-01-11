@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>生产经营管理系统</title>
+  <link rel="stylesheet" href="/scjyglxt/lib/layui/css/layui.css">
+  <link rel="stylesheet" href="/scjyglxt/css/lu-layui.css">
+  <link rel="stylesheet" href="/scjyglxt/css/public.css">
+</head>
+<body>
+<body class="layui-layout-body lu-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <!--render loading-->
+  <div class="loader-content">
+    <img src="/scjyglxt/images/public/loading.gif" alt="" class="loader-pic">
+  </div>
+  <!--header-->
+  <div class="layui-header lu-header-ql"></div>
+  <!--side bar-->
+  <div class="layui-side lu-side">
+    <div class="layui-side-scroll" id="sidebarListBox"></div>
+  </div>
+  <!--content-->
+  <div class="layui-body lu-body">
+    <div id="bodyOnePage" class="body-one-page"></div>
+  </div>
+</div>
+<script src="/scjyglxt/lib/layui/layui.js" charset="utf-8"></script>
+<script src='/scjyglxt/js/LuLibrary.js' charset="utf-8"></script>
+<script src="/scjyglxt/js/baseConfig.js" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+layui.use(['LuAdmin'], async function () {
+  const LuAdmin = layui.LuAdmin
+  const config = {
+    ...appConfig
+  }
+  // mock
+  config.username = 'fengjiajia'
+  config.projectName = 'S107关中环线大中修项目'
+  config.weather = { w1: 4, w2: '15℃', w3: '晴转多云' }
+  config.listData = [
+    { title: '将军岭隧道边坡检测', id: 1 },
+    { title: '将军岭隧道边坡检测2', id: 2 },
+    { title: '将军岭隧道边坡检测3', id: 3 },
+  ]
+  const la = new LuAdmin()
+  la.init(config)
+
+  // const $ = layui.$
+  // $("#stretchBtnBox").on('click', function () {
+  //   const $body = $(".lu-layout-body")
+  //   const isMini = $body.hasClass('lu-layout-mini')
+  //   if (!isMini) $body.addClass('lu-layout-mini')
+  //   else $body.removeClass('lu-layout-mini')
+  // })
+})
+</script>
+</body>
+</body>
+</html>
