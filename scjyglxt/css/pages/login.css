@@ -310,189 +310,81 @@
   text-overflow: ellipsis;
 }
 
-.layui-layout-admin .lu-menu .menu-child-level1 {
-  margin-left: 30px;
-}
-.layui-layout-admin .lu-menu .children-menu-3 {
-  margin-left: 20px;
-}
-.layui-layout-admin .lu-side {
-  width: 100px;
-  top: 57px;
-  bottom: 0;
-  background-color: #fff;
-}
-.layui-layout-admin .lu-side .layui-side-scroll {
-  width: 100px;
+html, body {
+  width: 100%;
   height: 100%;
-  border-right: 1px solid rgba(25, 121, 187, 0.7);
 }
-.layui-layout-admin .lu-side .layui-side-scroll .lu-nav-item {
-  width: 100px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  cursor: pointer;
-}
-.layui-layout-admin .lu-side .layui-side-scroll .layui-this {
-  background-color: rgba(25, 121, 187, 0.18);
-}
-.layui-layout-admin .lu-side .layui-side-scroll .layui-nav-bar {
-  background-color: #007fff;
-}
-.layui-layout-admin .lu-body {
-  top: 57px;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  transition: left 0.3s;
-  background-color: rgba(0, 0, 0, 0.1);
-  padding-bottom: 0;
-}
-.layui-layout-admin .lu-body .body-one-page .inner-body {
-  min-height: 870px;
-  background-color: #fff;
-  position: absolute;
-  top: 10px;
-  left: 110px;
-  right: 10px;
-}
-.layui-layout-admin .lu-header-ql {
-  height: 58px;
+
+.login-body {
   position: relative;
-  background-image: url("../images/public/head.jpg");
-  background-position: left center;
+}
+.login-body .bg {
+  height: 100%;
+  background-image: url(../../images/page/login/login_bg.jpg);
+  background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
-  color: #fff;
 }
-.layui-layout-admin .lu-header-ql .left,
-.layui-layout-admin .lu-header-ql .right {
-  width: 360px;
-  height: 58px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.layui-layout-admin .lu-header-ql .left {
+.login-body .login-form {
+  width: 460px;
+  height: 297px;
   position: absolute;
-  left: 0;
-}
-.layui-layout-admin .lu-header-ql .left .logo {
-  width: 170px;
-  height: 52px;
-}
-.layui-layout-admin .lu-header-ql .right {
-  position: absolute;
-  right: 0;
-}
-.layui-layout-admin .lu-header-ql .right .username {
-  position: relative;
-  left: 30px;
-  cursor: pointer;
-}
-.layui-layout-admin .lu-header-ql .middle {
-  width: 360px;
-  height: 40px;
-  font-size: 30px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-}
-
-.lu-sidebar-hover-ul .lu-menu-li.layui-menu-item-checked {
-  background-color: rgba(0, 0, 0, 0.6) !important;
-}
-.lu-sidebar-hover-ul .lu-menu-li:hover {
-  background-color: rgba(0, 0, 0, 0.6);
-}
-.lu-sidebar-hover-ul .lu-menu-li .lu-menu-item {
-  height: 45px;
-  line-height: 45px;
+  top: 50%;
+  left: 50%;
+  margin-left: 231px;
+  margin-top: -88px;
   box-sizing: border-box;
+  padding: 0 56px;
+  background-color: #fff;
 }
-
-.header-dropdown-block {
-  width: 370px;
-  padding: 0 15px;
-  box-shadow: 1px 1px 30px rgba(0, 0, 0, 0.12);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.header-dropdown-block .header-dd-b-item {
-  width: 100px;
-  height: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-.header-dropdown-block .header-dd-b-item .h-dd-b-i-pic {
-  width: 60px;
-  height: 60px;
-  margin-bottom: 5px;
-}
-
-.upload-file-content {
-  width: 255px;
-  margin-top: 5px;
-}
-.upload-file-content.pic-type {
-  float: left;
-  width: 120px;
-  margin-right: 20px;
-}
-.upload-file-content .file-box {
-  width: 100%;
-  color: #007fff;
-  position: relative;
-  margin-bottom: 5px;
-}
-.upload-file-content .file-box .filename {
-  width: 100%;
-}
-.upload-file-content .file-box .del-file-icon {
-  position: absolute;
-  right: -20px;
-  top: -5px;
-  font-size: 26px;
-  cursor: pointer;
-}
-.upload-file-content .file-box.file-box-img {
-  width: 120px;
-  height: 120px;
-  margin: 0;
-}
-.upload-file-content .file-box.file-box-img .layui-progress {
-  width: 100%;
-}
-.upload-file-content .file-box.file-box-img .file-img {
-  width: 100%;
-  height: 100%;
+.login-body .login-form::after {
+  content: "";
+  width: 460px;
+  height: 70px;
+  background-image: url(../../images/page/login/login_title.png);
   background-position: center center;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
-}
-.upload-file-content .file-box.file-box-img .del-file-icon {
-  top: 0;
-  right: 0;
-}
-
-.upload-input {
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
   position: absolute;
-  left: -10000px;
-  z-index: -1;
+  left: 0;
+  top: -90px;
+}
+.login-body .login-form .form-title {
+  font-size: 16px;
+  text-align: center;
+  margin: 30px 0 25px;
+  font-weight: 700;
 }
 
-/*# sourceMappingURL=lu-layui.css.map */
+.layui-form-item.t-right {
+  display: flex;
+  justify-content: flex-end;
+}
+.layui-form-item.t-right .layui-form-checkbox[lay-skin=primary] {
+  margin-top: 0;
+}
+.layui-form-item.t-right .alink-box a {
+  color: #007fff;
+}
+.layui-form-item.btn-box {
+  text-align: center;
+}
+.layui-form-item.btn-box .layui-btn {
+  width: 261px;
+  height: 43px;
+}
+.layui-form-item .layui-form-label {
+  width: 63px;
+  text-align: left;
+  box-sizing: border-box;
+  padding: 9px 0;
+}
+.layui-form-item .layui-input-block {
+  margin-left: 63px;
+}
+.layui-form-item .layui-input-block .layui-input {
+  width: 262px;
+  height: 35px;
+}
+
+/*# sourceMappingURL=login.css.map */

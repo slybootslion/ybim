@@ -6,12 +6,12 @@ layui.define(['LuHeader', 'LuSideBar'], function (exports) {
   class LuAdmin {
     async init (options) {
       this.options = options
-      const { loadingTime, projectName, weather, username, sideBarPath, listData } = this.options
-      console.log(listData)
-
-      return
+      const { loadingTime, sideBarPath, username, department } = this.options
       await $lulib.delay(loadingTime)
-      await (new LuHeader()).init({ projectName, weather, username, listData })
+      await (new LuHeader()).init({ username, department })
+
+      $(".loader-content").remove();
+
       $lulib.eventBus.on('bodyContentChange', data => this.renderBodyContent(data))
       const sidebarData = await $lulib.ajax(sideBarPath, 'json')
       await (new LuSideBar(sidebarData)).init()
@@ -29,10 +29,10 @@ layui.define(['LuHeader', 'LuSideBar'], function (exports) {
     }
 
     async bodyContentTemplate (href, title) {
-      const TITLE_SUFFIX = '结构物安全检测系统'
+      const TITLE_SUFFIX = '柏嘉集团生产经营管理系统'
       $('title').html(`${title} - ${TITLE_SUFFIX}`)
       const idUrl = href.replace(/\//g, '').toUpperCase()
-      const url = '/bpjcs/pages/' + href + '.html'
+      const url = '/scjyglxt/pages/' + href + '.html'
       return $lulib.ajax(url)
     }
   }

@@ -2,7 +2,7 @@
 $paramColor: #007fff;
 $paramColorHov: #3794ff;
 $bodyBgc: #ebf2fc;
-$sideBarBgc: rgba(25, 121, 187, 0.5);
+$sideBarBgc: rgba(25, 121, 187, 0.18);
 
 .layui-layout-admin {
 
@@ -17,28 +17,28 @@ $sideBarBgc: rgba(25, 121, 187, 0.5);
   }
 
   .lu-side {
-    transition: width .3s;
+    width: 100px;
     top: 57px;
     bottom: 0;
-    background-color: transparent !important;
+    background-color: #fff;
 
     .layui-side-scroll {
-      width: 170px;
-      background-color: $sideBarBgc !important;
+      width: 100px;
       height: 100%;
+      border-right: 1px solid rgba(25, 121, 187, .7);
 
       .lu-nav-item {
-        height: 40px;
-        text-align: center;
-        line-height: 40px;
+        width: 100px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
         cursor: pointer;
       }
 
       .layui-this {
-        background-color: $paramColor;
-        .iconfont {
-          color: #fff;
-        }
+        background-color: $sideBarBgc;
       }
 
       .layui-nav-bar {
@@ -53,102 +53,68 @@ $sideBarBgc: rgba(25, 121, 187, 0.5);
     right: 0;
     left: 0;
     transition: left .3s;
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, .1);
     padding-bottom: 0;
 
     .body-one-page {
       .inner-body {
+        min-height: 870px;
+        background-color: #fff;
         position: absolute;
-        top: 30px;
-        left: 180px;
-        right: 20px;
+        top: 10px;
+        left: 110px;
+        right: 10px;
       }
     }
   }
 
   .lu-header-ql {
     height: 58px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-position: center center;
+    position: relative;
+    background-image: url('../images/public/head.jpg');
+    background-position: left center;
     background-size: cover;
     background-repeat: no-repeat;
-    color: $paramColor;
+    color: #fff;
 
-    .right,
-    .left {
-      width: 260px;
+    .left,
+    .right {
+      width: 360px;
       height: 58px;
       display: flex;
       justify-content: center;
       align-items: center;
-      position: relative;
-      top: -5px;
     }
 
     .left {
-      .icon {
-        width: 40px;
-        height: 40px;
-        margin-right: 10px;
-        img {
-          width: 100%;
-          height: 100%;
-        }
-      }
-
-      .left-date {
-        font-size: 12px;
-      }
-
-      .project-box {
-        position: absolute;
-        right: -200px;
-        .name {
-          color: #fff;
-        }
-      }
-
-      .list-box {
-        position: absolute;
-        right: -420px;
-        cursor: pointer;
-        .name {
-          color: #fff;
-        }
+      position: absolute;
+      left: 0;
+      .logo {
+        width: 170px;
+        height: 52px;
       }
     }
 
     .right {
-      .type-list {
-        width: 150px;
-        height: 30px;
-        background-color: #007fff;
-        position: absolute;
-        right: 260px;
-        color: #fff;
-        display: flex;
-        align-items: center;
-        padding: 0 10px;
-        box-sizing: border-box;
-        cursor: pointer;
-
-        .name {
-          margin: 0 5px;
-        }
-      }
-
+      position: absolute;
+      right: 0;
       .username {
         position: relative;
         left: 30px;
+        cursor: pointer;
       }
     }
 
     .middle {
+      width: 360px;
+      height: 40px;
       font-size: 30px;
-      font-weight: 700;
-      color: #ffffff;
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
     }
   }
 }
@@ -167,75 +133,6 @@ $sideBarBgc: rgba(25, 121, 187, 0.5);
       height: 45px;
       line-height: 45px;
       box-sizing: border-box;
-
-      a {
-        color: #ffffff;
-      }
-    }
-  }
-}
-
-.lu-layout-mini {
-
-  .lu-side {
-    width: 60px;
-
-    .stretch-btn-box {
-      width: 60px;
-      transform: rotate(180deg);
-
-      .stretch-btn {
-        width: 100%;
-        border-radius: 0;
-      }
-    }
-
-    .layui-side-scroll {
-      width: 60px;
-
-      .lu-nav-item {
-        width: 60px;
-        height: 60px;
-
-        .iconfont {
-          margin-bottom: 0;
-          font-size: 26px;
-        }
-
-        .side-icon-txt {
-          display: none;
-        }
-      }
-    }
-  }
-
-  .lu-body {
-    .body-one-page {
-      .inner-body {
-        left: 70px;
-      }
-    }
-  }
-
-  .popup-tips {
-    .layui-layer-content {
-      background-color: transparent;
-      padding: 0;
-      box-shadow: none;
-
-      .layui-layer-TipsG {
-        display: none;
-      }
-
-      .lu-layui-nav-zoom {
-        dd {
-          &.layui-this {
-            a {
-              background-color: #007fff;
-            }
-          }
-        }
-      }
     }
   }
 }

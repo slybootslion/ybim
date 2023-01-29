@@ -30,20 +30,13 @@
 <script src="/scjyglxt/js/baseConfig.js" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
 layui.use(['LuAdmin'], async function () {
-  const LuAdmin = layui.LuAdmin
   const config = {
     ...appConfig
   }
   // mock
   config.username = 'fengjiajia'
-  config.projectName = 'S107关中环线大中修项目'
-  config.weather = { w1: 4, w2: '15℃', w3: '晴转多云' }
-  config.listData = [
-    { title: '将军岭隧道边坡检测', id: 1 },
-    { title: '将军岭隧道边坡检测2', id: 2 },
-    { title: '将军岭隧道边坡检测3', id: 3 },
-  ]
-  const la = new LuAdmin()
+  config.department = '智慧事业部'
+  const la = new layui.LuAdmin()
   la.init(config)
 
   // const $ = layui.$

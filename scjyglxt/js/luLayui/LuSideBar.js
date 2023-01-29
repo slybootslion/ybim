@@ -1,6 +1,6 @@
 layui.define([], function (exports) {
   const $ = layui.$
-  const error404Url = '/bpjcs/pages/error/404.html'
+  const error404Url = '/scjyglxt/pages/error/404.html'
 
   class LuSideBar {
     constructor (sidebarData) {

@@ -1,0 +1,51 @@
+[
+  {
+    "id": "1",
+    "title": "文档管理",
+    "href": "document/index",
+    "icon": "document",
+    "active": true
+  },
+  {
+    "id": "2",
+    "title": "资产管理",
+    "href": "assets/index",
+    "icon": "assets"
+  },
+  {
+    "id": "3",
+    "title": "合同管理",
+    "href": "contract/index",
+    "icon": "contract"
+  },
+  {
+    "id": "4",
+    "title": "运营管理",
+    "href": "operate/index",
+    "icon": "operate"
+  },
+  {
+    "id": "5",
+    "title": "项目管理",
+    "href": "project/index",
+    "icon": "project"
+  },
+  {
+    "id": "5",
+    "title": "报警设置",
+    "href": "project/warning-setting",
+    "hide": true
+  },
+  {
+    "id": "6",
+    "title": "市场管理",
+    "href": "market/index",
+    "icon": "market"
+  },
+  {
+    "id": "7",
+    "title": "生产管理",
+    "href": "production/index",
+    "icon": "production"
+  }
+]

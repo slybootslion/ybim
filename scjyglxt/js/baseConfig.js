@@ -16,5 +16,5 @@ layui
 const appConfig = {
   loadingTime: 0,
   bodyAnimation: true, // 滑入动画
-  sideBarPath: '/bpjcs/data/sideBarList.json'
+  sideBarPath: '/scjyglxt/data/sideBarList.json'
 }
