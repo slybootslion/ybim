@@ -336,6 +336,14 @@
   flex-direction: column;
   cursor: pointer;
 }
+.layui-layout-admin .lu-side .layui-side-scroll .lu-nav-item .side-icon-img {
+  width: 43px;
+  height: 43px;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 10px;
+}
 .layui-layout-admin .lu-side .layui-side-scroll .layui-this {
   background-color: rgba(25, 121, 187, 0.18);
 }

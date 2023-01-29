@@ -35,6 +35,15 @@ $sideBarBgc: rgba(25, 121, 187, 0.18);
         justify-content: center;
         flex-direction: column;
         cursor: pointer;
+
+        .side-icon-img {
+          width: 43px;
+          height: 43px;
+          background-position: center center;
+          background-size: cover;
+          background-repeat: no-repeat;
+          margin-bottom: 10px;
+        }
       }
 
       .layui-this {

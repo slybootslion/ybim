@@ -101,7 +101,10 @@ function sideBarTemplate (list, current) {
     if (item.hide) continue
     let activeClass = ''
     if (current.id === item.id) activeClass = 'layui-this'
-    h += `<div class="lu-nav-item ${activeClass}" title="${item.title}" data-lu-menuid="${item.id}"><span class="side-icon-txt">${item.title}</span></div>`
+    h += `<div class="lu-nav-item ${activeClass}" title="${item.title}" data-lu-menuid="${item.id}">
+            <img class="side-icon-img" src="/scjyglxt/images/public/${item.icon}.png" alt="">
+            <span class="side-icon-txt">${item.title}</span>
+          </div>`
   }
   return h
 }
