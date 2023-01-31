@@ -67,12 +67,12 @@ $sideBarBgc: rgba(25, 121, 187, 0.18);
 
     .body-one-page {
       .inner-body {
-        min-height: 870px;
-        background-color: #fff;
+        //min-height: 870px;
+        //background-color: #fff;
         position: absolute;
-        top: 10px;
-        left: 110px;
-        right: 10px;
+        top: 0;
+        left: 100px;
+        right: 0;
       }
     }
   }

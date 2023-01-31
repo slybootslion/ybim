@@ -1,0 +1,57 @@
+.document {
+  .top-search {
+    height: 60px;
+    background-color: #fff;
+    margin-bottom: 8px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+
+    .layui-btn {
+      &:hover {
+        border-color: #2D93CA;
+      }
+
+      &.layui-btn-normal {
+        color: #fff;
+      }
+    }
+  }
+
+  .main-body {
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: #fff;
+
+    .table-top {
+      display: flex;
+      justify-content: space-between;
+      box-sizing: border-box;
+      padding: 0 10px;
+
+      .layui-form {
+        .layui-form-item {
+          margin: 0;
+        }
+
+        .layui-input-inline {
+          position: relative;
+          display: flex;
+          align-items: center;
+
+          .layui-icon-search {
+            position: relative;
+            z-index: 1;
+            left: 5px;
+          }
+
+          .layui-input {
+            margin-left: -20px;
+            padding-left: 28px;
+          }
+        }
+      }
+    }
+  }
+}

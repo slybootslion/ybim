@@ -5,11 +5,6 @@
   color: #fff;
 }
 
-.layui-btn {
-  border-radius: 3px;
-  background-color: #007fff;
-}
-
 .layui-form-select dl dd.layui-this {
   background-color: #007fff;
 }
@@ -360,12 +355,10 @@
   padding-bottom: 0;
 }
 .layui-layout-admin .lu-body .body-one-page .inner-body {
-  min-height: 870px;
-  background-color: #fff;
   position: absolute;
-  top: 10px;
-  left: 110px;
-  right: 10px;
+  top: 0;
+  left: 100px;
+  right: 0;
 }
 .layui-layout-admin .lu-header-ql {
   height: 58px;

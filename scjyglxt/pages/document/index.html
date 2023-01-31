@@ -1,2 +1,36 @@
-<link rel="stylesheet" href="/scjyglxt/css/pages/pages-style.css">
-<div class="inner-body home">document</div>
+<link rel="stylesheet" href="/scjyglxt/css/pages/document.css">
+<div class="inner-body document">
+  <div class="top-search">
+    <span>筛选：</span>
+    <button type="button" class="layui-btn layui-btn-radius layui-btn-primary layui-btn-xs">公司动态</button>
+    <button type="button" class="layui-btn layui-btn-radius layui-btn-primary layui-btn-xs">规章制度</button>
+    <button type="button" class="layui-btn layui-btn-radius layui-btn-primary layui-btn-xs">体系文件</button>
+    <button type="button" class="layui-btn layui-btn-radius layui-btn-primary layui-btn-xs">培训资料</button>
+    <button type="button" class="layui-btn layui-btn-radius layui-btn-primary layui-btn-xs">设计图纸</button>
+    <button type="button" class="layui-btn layui-btn-radius layui-btn-primary layui-btn-xs">审批存档</button>
+    <button type="button" class="layui-btn layui-btn-radius layui-btn-primary layui-btn-xs">合同文件</button>
+    <button type="button" class="layui-btn layui-btn-radius layui-btn-primary layui-btn-xs">影像资料</button>
+    <button type="button" class="layui-btn layui-btn-radius layui-btn-primary layui-btn-xs">其他</button>
+  </div>
+  <div class="main-body">
+    <div class="table-top">
+      <form class="layui-form" action="" lay-filter="searchInput">
+        <div class="layui-form-item">
+          <div class="layui-input-inline">
+            <i class="layui-icon layui-icon-search"></i>
+            <input type="text" name="search" lay-verify="required" required lay-filter="searchInput"
+                   placeholder="高级检索" autocomplete="off" class="layui-input">
+          </div>
+        </div>
+      </form>
+      <button type="button" class="layui-btn layui-btn-normal add-btn">
+        <i class="layui-icon layui-icon-upload-drag"></i> 文档存储
+      </button>
+    </div>
+    <div class="table-content">
+      table
+    </div>
+  </div>
+</div>
+<script src="/scjyglxt/js/pages/document.js" charset="utf-8"></script>
+
