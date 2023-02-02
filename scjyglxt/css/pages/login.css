@@ -103,9 +103,6 @@
 .inner-body .page-container .content-table {
   margin-top: 10px;
 }
-.inner-body .layui-table-page {
-  color: #fff;
-}
 .inner-body .layui-table-page .layui-laypage {
   float: right;
 }
@@ -113,54 +110,17 @@
 .inner-body .layui-table-page .layui-laypage elect:focus {
   border-color: #007fff !important;
 }
-.inner-body .layui-table-page .layui-laypage a {
-  background-color: rgba(0, 165, 255, 0.1);
-  color: #fff;
-  margin: 0 5px;
-}
 .inner-body .layui-table-page .layui-laypage a:hover {
   color: #007fff;
-}
-.inner-body .layui-table-page .layui-laypage .layui-laypage-count {
-  margin: 0 3px;
-  color: #fff;
-  background-color: rgba(0, 165, 255, 0.1);
-  padding: 0 10px;
-  box-sizing: border-box;
-}
-.inner-body .layui-table-page .layui-laypage .layui-laypage-curr {
-  margin: 0 3px;
 }
 .inner-body .layui-table-page .layui-laypage .layui-laypage-curr .layui-laypage-em {
   background-color: #007fff;
 }
-.inner-body .content-table .layui-table tbody tr:hover, .inner-body .content-table .layui-table thead tr, .inner-body .content-table .layui-table-click, .inner-body .content-table .layui-table-header, .inner-body .content-table .layui-table-hover, .inner-body .content-table .layui-table-mend, .inner-body .content-table .layui-table-patch, .inner-body .content-table .layui-table-tool, .inner-body .content-table .layui-table-total, .inner-body .content-table .layui-table-total tr, .inner-body .content-table .layui-table[lay-even] tr:nth-child(even) {
-  background-color: transparent;
-}
-.inner-body .content-table .layui-table-page,
-.inner-body .content-table .layui-table-header,
-.inner-body .content-table .layui-table-view {
-  border-color: transparent;
-}
-.inner-body .content-table .layui-table {
-  background-color: transparent;
-  color: #fff;
-}
-.inner-body .content-table .layui-table td {
-  border-color: transparent;
-  background-color: rgba(0, 165, 255, 0.1);
-}
-.inner-body .content-table .layui-table th {
-  color: #0beeec;
-  font-weight: 700;
-  border-color: transparent;
-  background-color: rgba(0, 165, 255, 0.3);
-}
-.inner-body .content-table .table-tool-link {
+.inner-body .table-tool-link {
   margin-right: 10px;
   color: #2372a9;
 }
-.inner-body .content-table .table-tool-link:hover {
+.inner-body .table-tool-link:hover {
   color: #007fff;
 }
 .inner-body .btn-primary-sec {
