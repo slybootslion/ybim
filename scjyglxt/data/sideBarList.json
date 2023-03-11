@@ -1,51 +1,39 @@
 [
   {
     "id": "1",
-    "title": "文档管理",
-    "href": "document/index",
-    "icon": "wendang",
+    "title": "控制台",
+    "href": "console/index",
+    "icon": "kongzhitai",
     "active": true
   },
   {
     "id": "2",
-    "title": "资产管理",
-    "href": "assets/index",
-    "icon": "zichan"
-  },
-  {
-    "id": "3",
-    "title": "合同管理",
-    "href": "contract/index",
-    "icon": "hetong"
-  },
-  {
-    "id": "4",
-    "title": "运营管理",
+    "title": "经营管理",
     "href": "operate/index",
     "icon": "yunying"
   },
   {
-    "id": "5",
-    "title": "项目管理",
-    "href": "project/index",
-    "icon": "xiangmu"
-  },
-  {
-    "id": "5",
-    "title": "报警设置",
-    "href": "project/warning-setting",
-    "hide": true
-  },
-  {
-    "id": "6",
-    "title": "市场管理",
-    "href": "market/index",
-    "icon": "shichang"
-  },
-  {
-    "id": "7",
+    "id": "3",
     "title": "生产管理",
     "href": "production/index",
     "icon": "shengchan"
+  },
+  {
+    "id": "5",
+    "title": "成果管理",
+    "href": "achievement/index",
+    "icon": "xiangmu"
+  },
+  {
+    "id": "6",
+    "title": "科研管理",
+    "href": "research/index",
+    "icon": "hetong"
+  },
+  {
+    "id": "7",
+    "title": "系统管理",
+    "href": "assets/index",
+    "icon": "xitong"
   }
 ]

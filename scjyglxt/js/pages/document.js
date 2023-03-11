@@ -23,7 +23,6 @@ layui.use(['form', 'LuCommonTemplate'], function () {
   layuiForm.on('submit(searchInput)', function (data) {
     const val = layuiForm.val('searchInput')
     console.log(val.search)
-
     return false;
   })
 
@@ -32,7 +31,7 @@ layui.use(['form', 'LuCommonTemplate'], function () {
   });
 
   async function renderTable () {
-    const data = await $lulib.getMockData('/scjyglxt/mock/warningTableData.json', 8, null, false)
+    const data = await $lulib.getMockData('/scjyglxt/mock/docData.json', 8, null, false)
     const linkTemplate = `
       <span>
         <a href="javascript:void(0)" class="table-tool-link" lay-event="m1" title="a">
@@ -55,13 +54,14 @@ layui.use(['form', 'LuCommonTemplate'], function () {
           { field: 't3', title: '所属项目', width: 400 },
           { field: 't4', title: '项目编码', width: 200 },
           { field: 't5', title: '所属部门', width: 130 },
-          { field: 't6', title: '上传人', width: 120 },
+          { field: 't6', title: '上传人', width: 110 },
           { field: 't7', title: '上传时间', width: 140 },
           { title: '附件', width: 60 },
           { field: 't8', title: '文件大小', width: 90 },
-          { title: '操作', templet: linkTemplate, width: 120, align: 'center' },
+          { title: '操作', templet: linkTemplate, align: 'center' },
         ]),
       ],
+      limit: 16,
       methods: { m1, m2, m3 },
     }
     luTable = new LuTable(data, tableOptions)

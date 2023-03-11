@@ -29,7 +29,7 @@ layui.define(['LuHeader', 'LuSideBar'], function (exports) {
     }
 
     async bodyContentTemplate (href, title) {
-      const TITLE_SUFFIX = '柏嘉集团生产经营管理系统'
+      const TITLE_SUFFIX = '中交柏嘉生产经营管理系统'
       $('title').html(`${title} - ${TITLE_SUFFIX}`)
       const idUrl = href.replace(/\//g, '').toUpperCase()
       const url = '/scjyglxt/pages/' + href + '.html'

@@ -61,7 +61,7 @@
     contentLoad (el = 'body.inner-body') {
       const html = `
         <div class='content-load'>
-          <img src='/htmls/images/public/loading.gif' alt='' class='loader-pic'>
+          <img src='/scjyglxt/images/public/loading.gif' alt='' class='loader-pic'>
         </div>
       `
       if (el === 'body.inner-body') {

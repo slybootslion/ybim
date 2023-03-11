@@ -154,6 +154,19 @@ $redDeepColor: #c0451b;
     }
   }
 
+  .layui-table-box {
+    .layui-table-header {
+      tr {
+        background-color: #e6f1ff;
+        color: $tableLinkColor;
+
+        th {
+          border-color: transparent;
+        }
+      }
+    }
+  }
+
   .layui-table-page {
     .layui-laypage {
       float: right;

@@ -103,6 +103,13 @@
 .inner-body .page-container .content-table {
   margin-top: 10px;
 }
+.inner-body .layui-table-box .layui-table-header tr {
+  background-color: #e6f1ff;
+  color: #2372a9;
+}
+.inner-body .layui-table-box .layui-table-header tr th {
+  border-color: transparent;
+}
 .inner-body .layui-table-page .layui-laypage {
   float: right;
 }

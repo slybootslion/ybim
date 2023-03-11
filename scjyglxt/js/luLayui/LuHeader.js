@@ -30,7 +30,7 @@ layui.define([], function (exports) {
     return `<div class="left">
             <img class="logo" src="/scjyglxt/images/public/logo.png" alt="">
           </div>
-          <div class="middle">柏嘉集团生产经营管理系统</div>
+          <div class="middle">中交柏嘉生产经营管理系统</div>
           <div class="right">
             <div class="type-list" id="typeList">
               <span class="name">${department}</span>
