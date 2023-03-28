@@ -40,6 +40,22 @@
         background-color: #cccccc;
       }
     }
+
+    .block3 {
+      .block3-item {
+        display: flex;
+        justify-content: space-between;
+        line-height: 32px;
+        .t0 {
+          text-align: left;
+          flex: 2;
+        }
+        .t1 {
+          flex: 1;
+          text-align: center;
+        }
+      }
+    }
   }
 
   .console-box {

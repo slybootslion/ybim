@@ -34,6 +34,19 @@
   height: 80px;
   background-color: #cccccc;
 }
+.console .console-block .block3 .block3-item {
+  display: flex;
+  justify-content: space-between;
+  line-height: 32px;
+}
+.console .console-block .block3 .block3-item .t0 {
+  text-align: left;
+  flex: 2;
+}
+.console .console-block .block3 .block3-item .t1 {
+  flex: 1;
+  text-align: center;
+}
 .console .console-box {
   display: flex;
   margin: 10px 0;

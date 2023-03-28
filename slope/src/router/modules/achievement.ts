@@ -1,0 +1,77 @@
+import type { RouteRecordRaw } from 'vue-router'
+
+const Layout = () => import('@/layouts/index.vue')
+
+const Contract: RouteRecordRaw = {
+  path: '/achievement-contract',
+  component: Layout,
+  redirect: '/achievement-contract/contract',
+  name: 'achievementContract',
+  meta: {
+    title: '合同管理',
+    icon: 'ep:notebook',
+  },
+  children: [
+    {
+      path: 'contract',
+      name: 'achievementManageContract',
+      component: () => import('@/views/achievement/contract.vue'),
+      meta: {
+        title: '合同管理',
+        sidebar: false,
+        breadcrumb: false,
+        activeMenu: '/achievement-contract',
+      },
+    },
+  ],
+}
+
+const Knowledge: RouteRecordRaw = {
+  path: '/achievement-knowledge',
+  component: Layout,
+  redirect: '/achievement-knowledge/knowledge',
+  name: 'achievementKnowledge',
+  meta: {
+    title: '知识管理',
+    icon: 'ep:star',
+  },
+  children: [
+    {
+      path: 'knowledge',
+      name: 'achievementKnowledgeKnowledge',
+      component: () => import('@/views/achievement/knowledge.vue'),
+      meta: {
+        title: '知识管理',
+        sidebar: false,
+        breadcrumb: false,
+        activeMenu: '/achievement-knowledge',
+      },
+    },
+  ],
+}
+
+const Qualification: RouteRecordRaw = {
+  path: '/achievement-qualification',
+  component: Layout,
+  redirect: '/achievement-qualification/qualification',
+  name: 'achievementQualification',
+  meta: {
+    title: '资质管理',
+    icon: 'ep:message-box',
+  },
+  children: [
+    {
+      path: 'qualification',
+      name: 'achievementQualificationQualification',
+      component: () => import('@/views/achievement/qualification.vue'),
+      meta: {
+        title: '资质管理',
+        sidebar: false,
+        breadcrumb: false,
+        activeMenu: '/achievement-qualification',
+      },
+    },
+  ],
+}
+
+export { Contract, Knowledge, Qualification }
