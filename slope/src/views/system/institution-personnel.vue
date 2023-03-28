@@ -1,45 +1,16 @@
 <script setup lang="ts">
-import type { FormInstance, FormRules } from 'element-plus'
-import { addDepartment, editDepartment, getDepartmentList } from '@/views/system/system-api'
+import type { FormInstance } from 'element-plus'
+import type { TreeNode } from '@/views/system/system-method'
+import {
+  addDepartment, departmentList, editDepartment, getTableData, getTreeList, level3List, ruleFormRef, rules, tableData,
+  treeData,
+} from '@/views/system/system-method'
 import { pageLoading } from '@/utils/tools'
 
 const loading = pageLoading()
 
-interface TreeNode {
-  children?: TreeNode[]
-  department_id: string
-  department_parent_id: string
-  department_name: string
-  value?: string
-  label?: string
-}
-
-const treeData = ref<TreeNode[]>()
-const departmentList = ref<TreeNode[]>([])
-const level2List = ref<TreeNode[]>([])
-const level3List = ref<TreeNode[]>([])
-const getTreeList = async () => {
-  const res = await getDepartmentList()
-  treeData.value = res.data
-  const flatTree = (node: TreeNode, level: number) => {
-    if (level === 3) {
-      level3List.value.push(node)
-      return
-    }
-    if (level === 2) level2List.value.push(node)
-    node.value = node.department_id
-    node.label = node.department_name
-    departmentList.value?.push(node)
-    if (node.children?.length) {
-      for (const child of node.children) {
-        flatTree(child, level + 1)
-      }
-    }
-  }
-  flatTree(res.data[0], 1)
-  loading.close()
-}
-getTreeList()
+getTreeList().then(() => loading.close())
+getTableData().then(() => loading.close())
 const dialogShow = ref(false)
 const dialogForm = reactive({
   name: '',
@@ -62,11 +33,6 @@ const remove = (node: Node, data: TreeNode) => {
   // children.splice(index, 1)
   // treeData.value = [...treeData.value]
 }
-const ruleFormRef = ref<FormInstance>()
-const rules = reactive<FormRules>({
-  name: [{ required: true, message: '输入部门名称', trigger: 'blur' }],
-  department: [{ required: true, message: '选择部门', trigger: 'change' }],
-})
 
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
@@ -93,6 +59,12 @@ const addNew = () => {
   dialogForm.department = ''
   dialogShow.value = true
   editId.value = ''
+}
+const searchDepartment = ref('')
+const searchKeyword = ref('')
+
+const handleSelectionChange = (val: any[]) => {
+  console.log(val)
 }
 </script>
 
@@ -135,16 +107,58 @@ const addNew = () => {
     </div>
     <div class="right">
       <div class="right-top">
-        <div>
-          <div>search</div>
-          <div>select</div>
+        <div class="right-top-search">
+          <div style="margin-right: 10px;">
+            <el-input v-model="searchKeyword" placeholder="搜索姓名" clearable />
+          </div>
+          <div>
+            <el-select v-model="searchDepartment" clearable placeholder="选择部门">
+              <el-option
+                v-for="item in level3List"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select>
+          </div>
         </div>
         <div class="right-top-btn">
-          <el-button size="large" type="primary">添加人员</el-button>
+          <el-button size="large" type="primary">
+            添加人员
+          </el-button>
         </div>
       </div>
       <div class="right-bottom">
-        table
+        <el-table
+          border
+          :data="tableData"
+          @selection-change="handleSelectionChange"
+        >
+          <el-table-column type="selection" width="55" />
+          <el-table-column property="user_name" label="姓名" />
+          <el-table-column property="user_sex" label="性别" />
+          <el-table-column property="user_age" label="年龄" />
+          <el-table-column property="user_empno" label="工号" width="140" />
+          <el-table-column property="user_organization_name" label="所属机构" width="230" />
+          <el-table-column property="user_department_name" label="部门" width="140" />
+          <el-table-column property="user_phone" label="手机号码" width="140" />
+          <el-table-column property="user_email" label="企业邮箱" width="170" />
+          <el-table-column property="user_work_age" label="司龄" />
+          <el-table-column property="entry_time" label="入职时间" width="130" />
+          <el-table-column property="in_service_label" label="当前状态" />
+          <el-table-column fixed="right" label="操作" width="120">
+            <template #default="scope">
+              <el-button
+                link
+                type="primary"
+                size="small"
+                @click.prevent="deleteRow(scope.$index)"
+              >
+                Remove
+              </el-button>
+            </template>
+          </el-table-column>
+        </el-table>
       </div>
     </div>
     <el-dialog
@@ -165,13 +179,14 @@ const addNew = () => {
           <el-input v-model="dialogForm.name" placeholder="部门名称" />
         </el-form-item>
         <el-form-item label="上级部门" prop="department">
-          <el-select-v2
-            v-model="dialogForm.department"
-            style="width:100%"
-            placeholder="上级部门"
-            clearable
-            :options="departmentList"
-          />
+          <el-select v-model="dialogForm.department" style="width:100%" clearable placeholder="上级部门">
+            <el-option
+              v-for="item in departmentList"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm(ruleFormRef)">
@@ -210,11 +225,19 @@ const addNew = () => {
   }
   .right {
     flex: 1;
+    overflow: auto;
+    margin-left: 10px;
     .right-top {
       height: 50px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      .right-top-search {
+        display: flex;
+      }
+    }
+    .right-bottom {
+      flex: 1;
     }
   }
 }
