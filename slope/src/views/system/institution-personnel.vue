@@ -1,18 +1,24 @@
 <script setup lang="ts">
-import type { FormInstance } from 'element-plus'
-import type { TreeNode } from '@/views/system/system-method'
+import { FormInstance } from 'element-plus'
+import type { TreeNode } from '@/views/system/personnel-method'
 import {
-  addDepartment, departmentList, editDepartment, getTableData, getTreeList, level3List, ruleFormRef, rules, tableData,
+  addDepartment, addPerson, departmentList, editDepartment, editTableItem, getTableData, getTreeList, level3List,
+  logoutTableItem,
+  ruleFormRef,
+  rules,
+  searchName,
+  tableData, tableLoading,
+  tableSelect,
   treeData,
-} from '@/views/system/system-method'
+} from '@/views/system/personnel-method'
 import { pageLoading } from '@/utils/tools'
 
 const loading = pageLoading()
 
 getTreeList().then(() => loading.close())
-getTableData().then(() => loading.close())
+getTableData().then(() => tableLoading.value = false)
 const dialogShow = ref(false)
-const dialogForm = reactive({
+const dialogForm: Record<string, string> = reactive({
   name: '',
   department: '',
 })
@@ -60,9 +66,9 @@ const addNew = () => {
   dialogShow.value = true
   editId.value = ''
 }
+
 const searchDepartment = ref('')
 const searchKeyword = ref('')
-
 const handleSelectionChange = (val: any[]) => {
   console.log(val)
 }
@@ -109,10 +115,10 @@ const handleSelectionChange = (val: any[]) => {
       <div class="right-top">
         <div class="right-top-search">
           <div style="margin-right: 10px;">
-            <el-input v-model="searchKeyword" placeholder="搜索姓名" clearable />
+            <el-input v-model="searchKeyword" placeholder="搜索姓名" clearable @change="searchName" />
           </div>
           <div>
-            <el-select v-model="searchDepartment" clearable placeholder="选择部门">
+            <el-select v-model="searchDepartment" clearable placeholder="选择部门" @change="tableSelect">
               <el-option
                 v-for="item in level3List"
                 :key="item.value"
@@ -123,13 +129,14 @@ const handleSelectionChange = (val: any[]) => {
           </div>
         </div>
         <div class="right-top-btn">
-          <el-button size="large" type="primary">
+          <el-button size="large" type="primary" @click="addPerson">
             添加人员
           </el-button>
         </div>
       </div>
       <div class="right-bottom">
         <el-table
+          v-loading="tableLoading"
           border
           :data="tableData"
           @selection-change="handleSelectionChange"
@@ -144,17 +151,34 @@ const handleSelectionChange = (val: any[]) => {
           <el-table-column property="user_phone" label="手机号码" width="140" />
           <el-table-column property="user_email" label="企业邮箱" width="170" />
           <el-table-column property="user_work_age" label="司龄" />
-          <el-table-column property="entry_time" label="入职时间" width="130" />
-          <el-table-column property="in_service_label" label="当前状态" />
+          <el-table-column property="entry_time" label="入职时间" width="110" />
+          <el-table-column label="当前状态" width="90">
+            <template #default="scope">
+              <el-tag
+                :type="scope.row.in_service_label === '离职' ? '' : 'success'"
+                disable-transitions
+              >
+                {{ scope.row.in_service_label }}
+              </el-tag>
+            </template>
+          </el-table-column>
           <el-table-column fixed="right" label="操作" width="120">
             <template #default="scope">
               <el-button
                 link
                 type="primary"
                 size="small"
-                @click.prevent="deleteRow(scope.$index)"
+                @click.prevent="editTableItem(scope.row)"
               >
-                Remove
+                编辑
+              </el-button>
+              <el-button
+                link
+                type="primary"
+                size="small"
+                @click.prevent="logoutTableItem(scope.row)"
+              >
+                注销
               </el-button>
             </template>
           </el-table-column>
@@ -189,7 +213,7 @@ const handleSelectionChange = (val: any[]) => {
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitForm(ruleFormRef)">
+          <el-button type="primary" @click="submitForm(ruleFormRef as FormInstance)">
             确定
           </el-button>
         </el-form-item>
