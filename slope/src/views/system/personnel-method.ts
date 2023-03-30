@@ -1,6 +1,6 @@
 import type { FormInstance, FormRules } from 'element-plus'
-import type { Arrayable } from '@vueuse/core'
 import { ElMessage, ElMessageBox } from 'element-plus'
+import type { Arrayable } from '@vueuse/core'
 import api from '@/api'
 
 export const addDepartment = async (department_parent_id: string, department_name: string) => {
@@ -12,7 +12,23 @@ export const editDepartment = async (department_parent_id: string, department_na
 }
 export const getDepartmentList = async () => api.get('/personnel/getDepartmentList')
 
-export const getUserList = async (user_department_id = '') => api.get(`/personnel/getUserList?user_department_id=${ user_department_id }`)
+export const getUserList = async (user_department_id = '') => {
+  const res = await api.get(`/personnel/getUserList?user_department_id=${ user_department_id }`)
+  return res.data
+}
+
+export const getRoleList = async () => {
+  const res = await api.get('/permission/getRoleList')
+  return res.data
+}
+
+export interface RoleItem {
+  role_id: string
+  role_memo: string
+  role_name: string
+}
+
+export const roleData = ref<RoleItem[]>([])
 
 export interface TreeNode {
   children?: TreeNode[]
@@ -60,7 +76,7 @@ interface tableItem {
   user_empno: string
   entry_time: string
   in_service: number
-  user_age: number
+  user_age: number | string
   user_work_age: number
   in_service_label: string
   user_department_name: string
@@ -71,11 +87,8 @@ export const tableLoading = ref(false)
 export const tableData = ref<tableItem[]>([])
 export const getTableData = async (user_department_id = '') => {
   tableLoading.value = true
-  const res: any = await getUserList(user_department_id)
-  if (res.code === 0) {
-    tableData.value = res.data
-    tableLoading.value = false
-  }
+  tableData.value = await getUserList(user_department_id)
+  tableLoading.value = false
 }
 export const tableSelect = async (val: string) => {
   console.log(val)
@@ -120,9 +133,60 @@ export const logoutTableItem = async (row: tableItem) => {
       })
     })
 }
+export const drawerForm: Record<string, string | number> = reactive({
+  user_id: '',
+  user_name: '',
+  user_sex: '',
+  user_brithday: '',
+  user_phone: '',
+  user_email: '',
+  user_role_id: '',
+  user_empno: '',
+  entry_time: '',
+  user_department_name: '',
+})
+export const drawerShow = ref(false)
+export const addUser = () => {
+  console.log('---')
+  drawerForm.user_id = ''
+  drawerForm.user_name = ''
+  drawerForm.user_sex = ''
+  drawerForm.user_brithday = ''
+  drawerForm.user_empno = ''
+  drawerForm.organization_name = ''
+  drawerForm.department_name = ''
+  drawerForm.role_id = ''
+  drawerForm.user_phone = ''
+  drawerForm.user_email = ''
+  drawerForm.entry_time = ''
+  drawerShow.value = true
+  console.log(drawerForm)
+}
+export const editUser = () => {
+}
+export const drawerRules: Partial<Record<string, Arrayable<any>>> = reactive<FormRules>({
+  user_name: [{ required: true, message: '输入人员姓名', trigger: 'blur' }],
+  user_empno: [{ required: true, message: '输入工号', trigger: 'blur' }],
+  user_sex: [{ required: true, message: '选择性别', trigger: 'change' }],
+  user_brithday: [{ required: true, message: '选择生日', trigger: 'change' }],
+  user_department_name: [{ required: true, message: '选择部门', trigger: 'change' }],
+  user_role_id: [{ required: true, message: '选择权限', trigger: 'change' }],
+  user_phone: [{ required: true, message: '输入手机号', trigger: 'blur' }],
+  user_email: [{ required: true, message: '输入邮箱', trigger: 'blur' }],
+  entry_time: [{ required: true, message: '输入入职时间', trigger: 'blur' }],
+})
+export const submitUser = async (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  // new
+  if (!drawerForm.user_id) {
+    await formEl.validate(async (valid: boolean) => {
+      if (valid) {
+        console.log('pass')
+      }
+    })
+  } else { // edit
 
-export const addPerson = () => {
-
+  }
 }
 
 export const ruleFormRef = ref<FormInstance>()

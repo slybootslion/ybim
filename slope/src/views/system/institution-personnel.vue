@@ -2,11 +2,16 @@
 import { FormInstance } from 'element-plus'
 import type { TreeNode } from '@/views/system/personnel-method'
 import {
-  addDepartment, addPerson, departmentList, editDepartment, editTableItem, getTableData, getTreeList, level3List,
-  logoutTableItem,
+  addDepartment, addUser, departmentList, drawerForm, drawerRules, drawerShow, editDepartment, editTableItem,
+  getRoleList,
+  getTableData,
+  getTreeList,
+  level3List,
+  logoutTableItem, roleData,
   ruleFormRef,
   rules,
   searchName,
+  submitUser,
   tableData, tableLoading,
   tableSelect,
   treeData,
@@ -17,6 +22,12 @@ const loading = pageLoading()
 
 getTreeList().then(() => loading.close())
 getTableData().then(() => tableLoading.value = false)
+const getRole = async () => {
+  const res = await getRoleList()
+  roleData.value = res
+}
+getRole()
+
 const dialogShow = ref(false)
 const dialogForm: Record<string, string> = reactive({
   name: '',
@@ -24,7 +35,6 @@ const dialogForm: Record<string, string> = reactive({
 })
 const editId = ref('')
 const edit = (data: TreeNode) => {
-  console.log(data)
   dialogForm.name = data.department_name
   dialogForm.department = data.department_parent_id
   editId.value = data.department_id
@@ -129,7 +139,7 @@ const handleSelectionChange = (val: any[]) => {
           </div>
         </div>
         <div class="right-top-btn">
-          <el-button size="large" type="primary" @click="addPerson">
+          <el-button size="large" type="primary" @click="addUser">
             添加人员
           </el-button>
         </div>
@@ -219,6 +229,57 @@ const handleSelectionChange = (val: any[]) => {
         </el-form-item>
       </el-form>
     </el-dialog>
+    <el-drawer
+      ref="drawerRef"
+      v-model="drawerShow"
+      title="添加人员"
+      direction="ltr"
+      size="50%"
+    >
+      <div class="demo-drawer__content">
+        <el-form ref="ruleFormRef" :model="drawerForm" :rules="drawerRules" label-width="120px">
+          <el-form-item label="人员姓名" prop="user_name">
+            <el-input v-model="drawerForm.user_name" autocomplete="off" style="width: 320px" />
+          </el-form-item>
+          <el-form-item label="性别" prop="user_sex">
+            <el-select v-model="drawerForm.user_sex" placeholder="输入性别">
+              <el-option label="男" value="男" />
+              <el-option label="女" value="女" />
+            </el-select>
+          </el-form-item>
+          <el-form-item label="生日" prop="user_brithday">
+            <el-date-picker v-model="drawerForm.user_brithday" type="date" placeholder="选择日期" />
+          </el-form-item>
+          <el-form-item label="工号" prop="user_name">
+            <el-input v-model="drawerForm.user_name" autocomplete="off" style="width: 320px" />
+          </el-form-item>
+          <el-form-item label="所属部门" prop="user_department_name">
+            <el-select v-model="drawerForm.user_department_name" placeholder="选择部门">
+              <el-option v-for="item in level3List" :key="item.value" :label="item.label" :value="item.value" />
+            </el-select>
+          </el-form-item>
+          <el-form-item label="人员角色" prop="user_role_id">
+            <el-select v-model="drawerForm.user_role_id" placeholder="选择角色">
+              <el-option v-for="item in roleData" :key="item.role_id" :label="item.role_name" :value="item.role_id" />
+            </el-select>
+          </el-form-item>
+          <el-form-item label="手机号码" prop="user_phone">
+            <el-input v-model="drawerForm.user_phone" style="width: 320px" />
+          </el-form-item>
+          <el-form-item label="企业邮箱" prop="user_email">
+            <el-input v-model="drawerForm.user_email" style="width: 320px" />
+          </el-form-item>
+          <el-form-item label="入职时间" prop="entry_time">
+            <el-date-picker v-model="drawerForm.entry_time" type="date" placeholder="选择日期" />
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="submitUser(ruleFormRef as FormInstance)">
+              确定
+            </el-button>
+          </el-form-item>
+        </el-form>
+      </div>
+    </el-drawer>
   </page-main>
 </template>
 
