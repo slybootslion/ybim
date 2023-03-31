@@ -7,6 +7,30 @@ export const addDepartment = async (department_parent_id: string, department_nam
   return api.post('/personnel/addDepartment', { department_parent_id, department_name })
 }
 
+interface addUserPar {
+  user_name: string
+  user_sex: string
+  user_brithday: string
+  user_phone: number
+  user_email: string
+  user_department_id: string
+  user_role_id: string
+  user_empno: string
+  entry_time: string
+}
+
+interface editUserPar extends addUserPar {
+  user_id: string
+}
+
+const addUser = async (parameter: addUserPar) => {
+  return api.post('/personnel/addUser', parameter)
+}
+
+const editUser = async (parameter: editUserPar) => {
+  return api.post('/personnel/editUser', parameter)
+}
+
 export const editDepartment = async (department_parent_id: string, department_name: string, department_id: string) => {
   return api.post('/personnel/editDepartment', { department_parent_id, department_name, department_id })
 }
@@ -106,9 +130,6 @@ export const searchName = async (val: string) => {
   tableData.value = list
 }
 
-export const editTableItem = async (row: tableItem) => {
-  console.log(row)
-}
 export const logoutTableItem = async (row: tableItem) => {
   console.log(row)
   ElMessageBox.confirm(
@@ -133,43 +154,53 @@ export const logoutTableItem = async (row: tableItem) => {
       })
     })
 }
-export const drawerForm: Record<string, string | number> = reactive({
-  user_id: '',
+const editUserId = ref('')
+export const drawerForm: Record<string, string | number> = reactive<addUserPar>({
   user_name: '',
   user_sex: '',
   user_brithday: '',
-  user_phone: '',
+  user_phone: 0,
   user_email: '',
   user_role_id: '',
   user_empno: '',
   entry_time: '',
-  user_department_name: '',
+  user_department_id: '',
 })
 export const drawerShow = ref(false)
-export const addUser = () => {
+export const addUserHandle = () => {
   console.log('---')
-  drawerForm.user_id = ''
+  editUserId.value = ''
   drawerForm.user_name = ''
   drawerForm.user_sex = ''
   drawerForm.user_brithday = ''
   drawerForm.user_empno = ''
-  drawerForm.organization_name = ''
-  drawerForm.department_name = ''
-  drawerForm.role_id = ''
+  drawerForm.user_department_id = ''
+  drawerForm.user_role_id = ''
   drawerForm.user_phone = ''
   drawerForm.user_email = ''
   drawerForm.entry_time = ''
   drawerShow.value = true
-  console.log(drawerForm)
 }
-export const editUser = () => {
+export const editTableItem = async (row: tableItem) => {
+  console.log(row)
+  editUserId.value = row.user_id
+  drawerForm.user_name = row.user_name
+  drawerForm.user_sex = row.user_sex
+  drawerForm.user_brithday = row.user_brithday
+  drawerForm.user_empno = row.user_empno
+  drawerForm.user_department_id = row.user_department_id
+  drawerForm.user_role_id = row.user_role_id
+  drawerForm.user_phone = row.user_phone
+  drawerForm.user_email = row.user_email
+  drawerForm.entry_time = row.entry_time
+  drawerShow.value = true
 }
 export const drawerRules: Partial<Record<string, Arrayable<any>>> = reactive<FormRules>({
   user_name: [{ required: true, message: '输入人员姓名', trigger: 'blur' }],
   user_empno: [{ required: true, message: '输入工号', trigger: 'blur' }],
   user_sex: [{ required: true, message: '选择性别', trigger: 'change' }],
   user_brithday: [{ required: true, message: '选择生日', trigger: 'change' }],
-  user_department_name: [{ required: true, message: '选择部门', trigger: 'change' }],
+  user_department_id: [{ required: true, message: '选择部门', trigger: 'change' }],
   user_role_id: [{ required: true, message: '选择权限', trigger: 'change' }],
   user_phone: [{ required: true, message: '输入手机号', trigger: 'blur' }],
   user_email: [{ required: true, message: '输入邮箱', trigger: 'blur' }],
@@ -178,15 +209,19 @@ export const drawerRules: Partial<Record<string, Arrayable<any>>> = reactive<For
 export const submitUser = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   // new
-  if (!drawerForm.user_id) {
+  if (!editUserId.value) {
     await formEl.validate(async (valid: boolean) => {
       if (valid) {
-        console.log('pass')
+        await addUser(drawerForm as unknown as addUserPar)
+        drawerShow.value = false
       }
     })
   } else { // edit
-
+    drawerForm.user_id = editUserId.value
+    await editUser(drawerForm as unknown as editUserPar)
+    drawerShow.value = false
   }
+  await getTableData()
 }
 
 export const ruleFormRef = ref<FormInstance>()

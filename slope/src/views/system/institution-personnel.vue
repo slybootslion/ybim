@@ -2,7 +2,8 @@
 import { FormInstance } from 'element-plus'
 import type { TreeNode } from '@/views/system/personnel-method'
 import {
-  addDepartment, addUser, departmentList, drawerForm, drawerRules, drawerShow, editDepartment, editTableItem,
+  addDepartment, addUser, addUserHandle, departmentList, drawerForm, drawerRules, drawerShow, editDepartment,
+  editTableItem,
   getRoleList,
   getTableData,
   getTreeList,
@@ -139,7 +140,7 @@ const handleSelectionChange = (val: any[]) => {
           </div>
         </div>
         <div class="right-top-btn">
-          <el-button size="large" type="primary" @click="addUser">
+          <el-button size="large" type="primary" @click="addUserHandle">
             添加人员
           </el-button>
         </div>
@@ -152,7 +153,7 @@ const handleSelectionChange = (val: any[]) => {
           @selection-change="handleSelectionChange"
         >
           <el-table-column type="selection" width="55" />
-          <el-table-column property="user_name" label="姓名" />
+          <el-table-column property="user_name" label="姓名" width="110" />
           <el-table-column property="user_sex" label="性别" />
           <el-table-column property="user_age" label="年龄" />
           <el-table-column property="user_empno" label="工号" width="140" />
@@ -239,7 +240,7 @@ const handleSelectionChange = (val: any[]) => {
       <div class="demo-drawer__content">
         <el-form ref="ruleFormRef" :model="drawerForm" :rules="drawerRules" label-width="120px">
           <el-form-item label="人员姓名" prop="user_name">
-            <el-input v-model="drawerForm.user_name" autocomplete="off" style="width: 320px" />
+            <el-input v-model="drawerForm.user_name" autocomplete="off" placeholder="输入姓名" style="width: 320px" />
           </el-form-item>
           <el-form-item label="性别" prop="user_sex">
             <el-select v-model="drawerForm.user_sex" placeholder="输入性别">
@@ -248,13 +249,13 @@ const handleSelectionChange = (val: any[]) => {
             </el-select>
           </el-form-item>
           <el-form-item label="生日" prop="user_brithday">
-            <el-date-picker v-model="drawerForm.user_brithday" type="date" placeholder="选择日期" />
+            <el-date-picker v-model="drawerForm.user_brithday" value-format="YYYY-MM-DD" type="date" placeholder="选择日期" />
           </el-form-item>
-          <el-form-item label="工号" prop="user_name">
-            <el-input v-model="drawerForm.user_name" autocomplete="off" style="width: 320px" />
+          <el-form-item label="工号" prop="user_empno">
+            <el-input v-model="drawerForm.user_empno" placeholder="输入工号" autocomplete="off" style="width: 320px" />
           </el-form-item>
-          <el-form-item label="所属部门" prop="user_department_name">
-            <el-select v-model="drawerForm.user_department_name" placeholder="选择部门">
+          <el-form-item label="所属部门" prop="user_department_id">
+            <el-select v-model="drawerForm.user_department_id" placeholder="选择部门">
               <el-option v-for="item in level3List" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
           </el-form-item>
@@ -264,13 +265,13 @@ const handleSelectionChange = (val: any[]) => {
             </el-select>
           </el-form-item>
           <el-form-item label="手机号码" prop="user_phone">
-            <el-input v-model="drawerForm.user_phone" style="width: 320px" />
+            <el-input v-model="drawerForm.user_phone" placeholder="输入手机号" style="width: 320px" />
           </el-form-item>
           <el-form-item label="企业邮箱" prop="user_email">
-            <el-input v-model="drawerForm.user_email" style="width: 320px" />
+            <el-input v-model="drawerForm.user_email" placeholder="输入邮箱" style="width: 320px" />
           </el-form-item>
           <el-form-item label="入职时间" prop="entry_time">
-            <el-date-picker v-model="drawerForm.entry_time" type="date" placeholder="选择日期" />
+            <el-date-picker v-model="drawerForm.entry_time" value-format="YYYY-MM-DD" type="date" placeholder="选择日期" />
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="submitUser(ruleFormRef as FormInstance)">
@@ -287,7 +288,7 @@ const handleSelectionChange = (val: any[]) => {
 .page-main {
   display: flex;
   .left {
-    width: 330px;
+    width: 290px;
     .left-top {
       padding: 10px;
       border-bottom: 1px solid var(--el-border-color);
