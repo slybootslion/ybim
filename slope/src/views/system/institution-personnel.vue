@@ -2,20 +2,9 @@
 import { FormInstance } from 'element-plus'
 import type { TreeNode } from '@/views/system/personnel-method'
 import {
-  addDepartment, addUser, addUserHandle, departmentList, drawerForm, drawerRules, drawerShow, editDepartment,
-  editTableItem,
-  getRoleList,
-  getTableData,
-  getTreeList,
-  level3List,
-  logoutTableItem, roleData,
-  ruleFormRef,
-  rules,
-  searchName,
-  submitUser,
-  tableData, tableLoading,
-  tableSelect,
-  treeData,
+  addDepartment, addUserHandle, departmentList, drawerForm, drawerRules, drawerShow, editDepartment,
+  editTableItem, getRoleList, getTableData, getTreeList, level3List, logoutTableItem, roleData, ruleFormRef, rules,
+  searchName, submitUser, tableData, tableLoading, tableSelect, treeData,
 } from '@/views/system/personnel-method'
 import { pageLoading } from '@/utils/tools'
 
@@ -249,7 +238,8 @@ const handleSelectionChange = (val: any[]) => {
             </el-select>
           </el-form-item>
           <el-form-item label="生日" prop="user_brithday">
-            <el-date-picker v-model="drawerForm.user_brithday" value-format="YYYY-MM-DD" type="date" placeholder="选择日期" />
+            <el-date-picker v-model="drawerForm.user_brithday" value-format="YYYY-MM-DD" type="date"
+                            placeholder="选择日期" />
           </el-form-item>
           <el-form-item label="工号" prop="user_empno">
             <el-input v-model="drawerForm.user_empno" placeholder="输入工号" autocomplete="off" style="width: 320px" />
@@ -271,7 +261,8 @@ const handleSelectionChange = (val: any[]) => {
             <el-input v-model="drawerForm.user_email" placeholder="输入邮箱" style="width: 320px" />
           </el-form-item>
           <el-form-item label="入职时间" prop="entry_time">
-            <el-date-picker v-model="drawerForm.entry_time" value-format="YYYY-MM-DD" type="date" placeholder="选择日期" />
+            <el-date-picker v-model="drawerForm.entry_time" value-format="YYYY-MM-DD" type="date"
+                            placeholder="选择日期" />
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="submitUser(ruleFormRef as FormInstance)">
