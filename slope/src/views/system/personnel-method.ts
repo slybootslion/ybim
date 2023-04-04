@@ -41,7 +41,7 @@ export const getUserList = async (user_department_id = '') => {
   return res.data
 }
 
-export const getRoleList = async () => {
+export const getRoleList: any = async () => {
   const res = await api.get('/permission/getRoleList')
   return res.data
 }
