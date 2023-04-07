@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { tableItem } from '@/views/system/role-method'
+import type { tableItemI } from '@/views/system/role-method'
 defineProps<{
-  tableData: tableItem[]
+  tableData: tableItemI[]
 }>()
 </script>
 

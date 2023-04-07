@@ -18,6 +18,22 @@ export const getUserList = async (role_id: string) => {
   const res: any = await api.get(`/permission/getUserList?role_id=${ role_id }`)
   return res.data
 }
+export const getRolePowerMenus = async (role_id: string) => {
+  const res: any = await api.get(`/permission/getRolePowerMenus?role_id=${ role_id }`)
+  return res.data
+}
+export const setRolePowerMenus = async (parameter: any) => {
+  const res: any = await api.post('/permission/setRolePowerMenus', parameter)
+  return res.data
+}
+export const getRolePowerData = async (role_id: string) => {
+  const res: any = await api.get(`/permission/getRolePowerData?role_id=${ role_id }`)
+  return res.data
+}
+export const setRolePowerData = async (parameter: any) => {
+  const res: any = await api.post('/permission/setRolePowerData', parameter)
+  return res.data
+}
 export const activeRoleName = ref('')
 export const activeRoleId = ref('')
 export const getRole = async () => {
@@ -73,7 +89,8 @@ export const editRoleHandle = (data: RoleItem) => {
   editRoleId.value = data.role_id
   dialogShow.value = true
 }
-export interface tableItem {
+
+export interface tableItemI {
   'user_id': string
   'user_name': string
   'user_sex': string
@@ -91,8 +108,19 @@ export interface tableItem {
   'user_department_name': string
   'user_organization_name': string
 }
+
+export interface funItemI {
+  'menu_id': string
+  'menu_parent_id': string
+  'menu_name': string
+  'is_menu': number
+  'checked': boolean
+  'children': funItemI[]
+}
+
 export const tabLoading = ref(false)
-export const UserListData = ref<tableItem[]>([])
+export const UserListData = ref<tableItemI[]>([])
+export const FunListData = ref<funItemI[]>([])
 export const activeName = ref('角色成员')
 export const changeActive = async (data: RoleItem) => {
   tabLoading.value = true
@@ -100,8 +128,83 @@ export const changeActive = async (data: RoleItem) => {
   activeRoleName.value = data.role_name
   // 角色成员
   UserListData.value = await getUserList(activeRoleId.value)
+  // 功能权限
+  FunListData.value = await getRolePowerMenus(activeRoleId.value)
+  // 数据权限
+  const r = await getRolePowerData(activeRoleId.value)
+  console.log(r)
   tabLoading.value = false
 }
-export const handleClick = (tab: TabsPaneContext, event: Event) => {
-  console.log(tab, event)
+// 合并表格
+let rowspanArray: any
+
+export function spanRow ({ row, column, rowIndex, columnIndex }: any, data: any, option: any) {
+  if (rowIndex === 0 && columnIndex === 0) computeSpanRow(data, option)
+  if (is(option, columnIndex)) {
+    const rowspan = rowspanArray[columnIndex][rowIndex]
+    const colspan = rowspan > 0 ? 1 : 0
+    return { rowspan, colspan }
+  }
+  return { rowspan: 1, colspan: 1 }
+}
+
+// 获取分组得个数集合
+function getCollection (data: any) {
+  return computed(() => {
+    const newData: any = {}
+    const arr: any = []
+    data.forEach((items: any) => {
+      const keys: any = items.field1
+      // eslint-disable-next-line no-prototype-builtins
+      if (!newData.hasOwnProperty(items.field1)) {
+        newData[keys] = [items]
+      } else {
+        newData[keys].push(items)
+      }
+    })
+    Object.keys(newData).forEach((res: any, index: number) => {
+      if (newData[res].length) {
+        if (!arr.length) {
+          arr.push(newData[res].length - 1)
+        } else {
+          arr.push(newData[res].length + arr[arr.length - 1])
+        }
+      }
+    })
+    return arr
+  })
+}
+
+function computeSpanRow (data: any, option: any) {
+  rowspanArray = []
+  const tempRow = []
+  for (let i = 0; i < data.length; i++) {
+    for (let j = 0; j < option.length; j++) {
+      const index = option[j].index
+      const field = option[j].field
+
+      if (i === 0) {
+        tempRow[index] = 0
+        rowspanArray[index] = []
+        rowspanArray[index].push(1)
+      } else {
+        if (data[i][field] === data[i - 1][field]) {
+          rowspanArray[index][tempRow[index]] += 1
+          rowspanArray[index].push(0)
+        } else {
+          rowspanArray[index].push(1)
+          tempRow[index] = i
+        }
+      }
+    }
+  }
+}
+
+function is (option: any, index: any) {
+  for (let i = 0; i < option.length; i++) {
+    if (option[i].index === index) {
+      return true
+    }
+  }
+  return false
 }

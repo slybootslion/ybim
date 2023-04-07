@@ -1,18 +1,14 @@
 <script setup lang="ts">
 import { FormInstance } from 'element-plus'
 import {
-  UserListData,
-  activeName, activeRoleId, activeRoleName, addNew, changeActive, dialogForm, dialogShow, editRoleHandle, getRole,
-  handleClick,
-  ruleFormRef,
-  rules, submitForm, tabLoading, tableItem,
+  FunListData, UserListData, activeName, activeRoleId, activeRoleName, addNew, changeActive, dialogForm,
+  dialogShow, editRoleHandle, funItemI, getRole, ruleFormRef, rules, submitForm, tabLoading, tableItemI,
 } from '@/views/system/role-method'
 import { pageLoading } from '@/utils/tools'
 import { RoleItem, roleData } from '@/views/system/personnel-method'
 import RoleMember from '@/views/system/components/role-member.vue'
-
+import FunComponent from '@/views/system/components/fun-component.vue'
 const loading = pageLoading()
-
 getRole().then(() => {
   changeActive({ role_id: activeRoleId.value, role_name: activeRoleName.value, role_memo: activeRoleName.value })
   loading.close()
@@ -52,12 +48,12 @@ getRole().then(() => {
           {{ activeRoleName }}
         </div>
         <div v-loading="tabLoading" class="right-bottom">
-          <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
+          <el-tabs v-model="activeName" class="demo-tabs">
             <el-tab-pane label="角色成员" name="角色成员">
-              <RoleMember :table-data="UserListData as tableItem[]" />
+              <RoleMember :table-data="UserListData as tableItemI[]" />
             </el-tab-pane>
             <el-tab-pane label="功能权限" name="功能权限">
-              功能权限
+              <FunComponent :table-data="FunListData as funItemI[]" :role_id="activeRoleId as string" />
             </el-tab-pane>
             <el-tab-pane label="数据权限" name="数据权限">
               数据权限

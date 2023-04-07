@@ -6,6 +6,7 @@
     "no-console": "off",
     "template-curly-spacing": "off",
     "@typescript-eslint/brace-style": "off",
+    "@typescript-eslint/space-before-function-paren": "off",
     "vue/component-tags-order": ["error", {
       "order": ["route", "script", "template", "style"]
     }]
