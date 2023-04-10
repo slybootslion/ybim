@@ -5,16 +5,8 @@ import { setRolePowerMenus, spanRow } from '@/views/system/role-method'
 
 const props = defineProps<{
   tableData: funItemI[]
-  role_id: string
+  roleId: string
 }>()
-
-interface User {
-  id: string
-  name: string
-  amount1: string
-  amount2: string
-  amount3: number
-}
 
 interface tableLineItemI {
   level1?: funItemI
@@ -81,7 +73,7 @@ const changeRole = async () => {
     const line = tableLineData[i]
     findLineChecked(line)
   }
-  await setRolePowerMenus({ role_id: props.role_id, menu_ids: menu_ids.value.join(',') })
+  await setRolePowerMenus({ role_id: props.roleId, menu_ids: menu_ids.value.join(',') })
 }
 </script>
 
@@ -113,7 +105,3 @@ const changeRole = async () => {
     </el-table-column>
   </el-table>
 </template>
-
-<style scoped lang="scss">
-//
-</style>

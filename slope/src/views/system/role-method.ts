@@ -1,4 +1,4 @@
-import type { FormInstance, FormRules, TabsPaneContext } from 'element-plus'
+import type { FormInstance, FormRules } from 'element-plus'
 import type { Arrayable } from '@vueuse/core'
 import type { RoleItem } from '@/views/system/personnel-method'
 import { getRoleList, roleData } from '@/views/system/personnel-method'
@@ -118,9 +118,16 @@ export interface funItemI {
   'children': funItemI[]
 }
 
+export interface sampleItemI {
+  'data_id': string
+  'data_name': string
+  'data_level': number
+}
+
 export const tabLoading = ref(false)
 export const UserListData = ref<tableItemI[]>([])
 export const FunListData = ref<funItemI[]>([])
+export const SampleListData = ref<sampleItemI[]>([])
 export const activeName = ref('角色成员')
 export const changeActive = async (data: RoleItem) => {
   tabLoading.value = true
@@ -131,14 +138,13 @@ export const changeActive = async (data: RoleItem) => {
   // 功能权限
   FunListData.value = await getRolePowerMenus(activeRoleId.value)
   // 数据权限
-  const r = await getRolePowerData(activeRoleId.value)
-  console.log(r)
+  SampleListData.value = await getRolePowerData(activeRoleId.value)
   tabLoading.value = false
 }
 // 合并表格
 let rowspanArray: any
 
-export function spanRow ({ row, column, rowIndex, columnIndex }: any, data: any, option: any) {
+export function spanRow ({ rowIndex, columnIndex }: any, data: any, option: any) {
   if (rowIndex === 0 && columnIndex === 0) computeSpanRow(data, option)
   if (is(option, columnIndex)) {
     const rowspan = rowspanArray[columnIndex][rowIndex]
@@ -146,33 +152,6 @@ export function spanRow ({ row, column, rowIndex, columnIndex }: any, data: any,
     return { rowspan, colspan }
   }
   return { rowspan: 1, colspan: 1 }
-}
-
-// 获取分组得个数集合
-function getCollection (data: any) {
-  return computed(() => {
-    const newData: any = {}
-    const arr: any = []
-    data.forEach((items: any) => {
-      const keys: any = items.field1
-      // eslint-disable-next-line no-prototype-builtins
-      if (!newData.hasOwnProperty(items.field1)) {
-        newData[keys] = [items]
-      } else {
-        newData[keys].push(items)
-      }
-    })
-    Object.keys(newData).forEach((res: any, index: number) => {
-      if (newData[res].length) {
-        if (!arr.length) {
-          arr.push(newData[res].length - 1)
-        } else {
-          arr.push(newData[res].length + arr[arr.length - 1])
-        }
-      }
-    })
-    return arr
-  })
 }
 
 function computeSpanRow (data: any, option: any) {

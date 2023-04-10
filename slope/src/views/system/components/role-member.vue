@@ -20,7 +20,3 @@ defineProps<{
     <el-table-column property="entry_time" label="入职时间" width="110" />
   </el-table>
 </template>
-
-<style scoped lang="scss">
-//
-</style>
