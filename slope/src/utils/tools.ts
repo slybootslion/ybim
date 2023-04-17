@@ -11,5 +11,5 @@ export const pageLoading = () => {
 export interface pageI {
   page_size: number
   page_number: number
-  total: number
+  total?: number
 }

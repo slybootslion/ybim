@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { pageData } from '@/views/scientific_research/project-method'
 
-const emit = defineEmits(['sizeChange', 'currentChange'])
+const emit = defineEmits(['pageChange'])
 const handleSizeChange = (s: number) => {
   pageData.page_size = s
-  emit('sizeChange', s)
+  emit('pageChange', s)
 }
 const handleCurrentChange = (n: number) => {
   pageData.page_number = n
-  emit('currentChange', n)
+  emit('pageChange', n)
 }
 </script>
 
@@ -18,7 +18,7 @@ const handleCurrentChange = (n: number) => {
       v-model:current-page="pageData.page_number"
       v-model:page-size="pageData.page_size"
       class="pagination"
-      :page-sizes="[10, 20, 30]"
+      :page-sizes="[10, 20]"
       layout="total, sizes, prev, pager, next, jumper"
       :total="pageData.total"
       @size-change="handleSizeChange"
@@ -27,7 +27,7 @@ const handleCurrentChange = (n: number) => {
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .pagination {
   margin-top: 10px;
   display: flex;

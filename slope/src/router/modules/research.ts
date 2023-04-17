@@ -23,6 +23,28 @@ const routes: RouteRecordRaw = {
         activeMenu: '/scientific-research',
       },
     },
+    {
+      path: 'project-form',
+      name: 'scientificResearchProjectForm',
+      component: () => import('@/views/scientific_research/project-form.vue'),
+      meta: {
+        title: '科研项目登记',
+        sidebar: false,
+        breadcrumb: false,
+        activeMenu: '/scientific-research',
+      },
+    },
+    {
+      path: 'project-detail',
+      name: 'scientificResearchProjectDetail',
+      component: () => import('@/views/scientific_research/project-detail.vue'),
+      meta: {
+        title: '科研项目登记',
+        sidebar: false,
+        breadcrumb: false,
+        activeMenu: '/scientific-research',
+      },
+    },
   ],
 }
 

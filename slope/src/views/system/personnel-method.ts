@@ -115,7 +115,6 @@ export const getTableData = async (user_department_id = '') => {
   tableLoading.value = false
 }
 export const tableSelect = async (val: string) => {
-  console.log(val)
   if (!val) await getTableData()
   else await getTableData(val)
 }

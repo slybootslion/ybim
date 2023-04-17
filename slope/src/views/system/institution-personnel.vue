@@ -2,9 +2,9 @@
 import { FormInstance } from 'element-plus'
 import type { TreeNode } from '@/views/system/personnel-method'
 import {
-  addDepartment, addUserHandle, departmentList, drawerForm, drawerRules, drawerShow, editDepartment,
-  editTableItem, getRoleList, getTableData, getTreeList, level3List, logoutTableItem, roleData, ruleFormRef, rules,
-  searchName, submitUser, tableData, tableLoading, tableSelect, treeData,
+  addDepartment, addUserHandle, departmentList, drawerForm, drawerRules, drawerShow, editDepartment, editTableItem,
+  getRoleList, getTableData, getTreeList, level3List, logoutTableItem, roleData, ruleFormRef, rules, searchName,
+  submitUser, tableData, tableLoading, tableSelect, treeData,
 } from '@/views/system/personnel-method'
 import { pageLoading } from '@/utils/tools'
 
@@ -12,10 +12,7 @@ const loading = pageLoading()
 
 getTreeList().then(() => loading.close())
 getTableData().then(() => tableLoading.value = false)
-const getRole = async () => {
-  const res = await getRoleList()
-  roleData.value = res
-}
+const getRole = async () => roleData.value = await getRoleList()
 getRole()
 
 const dialogShow = ref(false)
@@ -30,15 +27,15 @@ const edit = (data: TreeNode) => {
   editId.value = data.department_id
   dialogShow.value = true
 }
-const remove = (node: Node, data: TreeNode) => {
-  console.log(node)
-  console.log(data)
-  // const parent = (node as any).parent
-  // const children: Tree[] = parent.data.children || parent.data
-  // const index = children.findIndex(d => d.id === data.id)
-  // children.splice(index, 1)
-  // treeData.value = [...treeData.value]
-}
+// const remove = (node: Node, data: TreeNode) => {
+//   console.log(node)
+//   console.log(data)
+//   // const parent = (node as any).parent
+//   // const children: Tree[] = parent.data.children || parent.data
+//   // const index = children.findIndex(d => d.id === data.id)
+//   // children.splice(index, 1)
+//   // treeData.value = [...treeData.value]
+// }
 
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
