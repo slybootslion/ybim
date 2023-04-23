@@ -50,8 +50,7 @@ defineProps<{
       </el-descriptions-item>
     </el-descriptions>
   </div>
-  <!--  v-if="detailData.research_type === '科研课题'" -->
-  <div v-if="detailData.research_type === '科研课题'" class="block">
+  <div v-if="detailData.research_type === '科研课题'" class="block block-text">
     <el-descriptions title="其他信息" :column="1">
       <el-descriptions-item label="项目概况：">
         {{ detailData.project_general }}
@@ -69,7 +68,9 @@ defineProps<{
         {{ detailData.remarks }}
       </el-descriptions-item>
       <el-descriptions-item label="附件：">
-        <a :href="`http://management.ayphp.com/${detailData.attachment_url}`" target="_blank">{{ detailData.attachment_name }}</a>
+        <a :href="`http://management.ayphp.com/${detailData.attachment_url}`" target="_blank">
+          {{ detailData.attachment_name }}
+        </a>
       </el-descriptions-item>
     </el-descriptions>
   </div>
@@ -80,6 +81,18 @@ defineProps<{
   margin-top: 10px;
   :deep(.el-descriptions__body) {
     padding: 0 20px;
+    white-space: pre-wrap;
+  }
+}
+.block-text {
+  :deep(.el-descriptions__cell) {
+    display: flex;
+    .el-descriptions__label {
+      width: 100px;
+    }
+    .el-descriptions__content {
+      flex: 1;
+    }
   }
 }
 </style>

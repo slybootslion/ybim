@@ -1,6 +1,10 @@
 <script setup lang="ts">
-import { FormInstance, FormRules } from 'element-plus'
-import { back, formData, getPersonData, loading, personList, submit } from '@/views/scientific_research/project-method'
+import { FormInstance, FormRules, UploadUserFile } from 'element-plus'
+import {
+  back, beforeUploadFile, fileList, formData, getPersonData, handlePreviewFile, handleRemoveFile, handleUploadFile,
+  loading, personList,
+  submit,
+} from '@/views/scientific_research/project-method'
 import { getTreeList, level3List } from '@/views/system/personnel-method'
 import { customerList, getCustomerList } from '@/views/operate/customer-method'
 
@@ -133,6 +137,22 @@ const rules = reactive<FormRules>({
               v-model="formData.remarks" maxlength="800" type="textarea" :rows="4"
               placeholder="请输入800字以内的项目概况信息，如（项目总规模及我司承接工作内容、规模、等级等）"
             />
+          </el-form-item>
+          <el-form-item label="附件：">
+            <!-- eslint-disable-next-line -->
+            <el-upload v-model:file-list="fileList as UploadUserFile[]" action="" accept=".pdf"
+                       :http-request="handleUploadFile" :before-upload="beforeUploadFile"
+                       :on-preview="handlePreviewFile" :on-remove="handleRemoveFile"
+            >
+              <el-button type="primary">
+                上传
+              </el-button>
+              <template #tip>
+                <div class="el-upload__tip">
+                  上传pdf文件
+                </div>
+              </template>
+            </el-upload>
           </el-form-item>
         </el-form>
       </div>

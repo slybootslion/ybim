@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { ElMessage } from 'element-plus'
-import { activeProjectData, back, getProject, projectDataI } from '@/views/scientific_research/project-method'
+import {
+  activeProjectData, activeProjectFileList, back, getProject,
+  getQuestsFileList, projectDataI, projectFileListI,
+} from '@/views/scientific_research/project-method'
 import Tab1Comp from '@/views/scientific_research/components/tab1-comp.vue'
+import Tab2Comp from '@/views/scientific_research/components/tab2-comp.vue'
 
 const loading = ref(false)
 
@@ -16,11 +20,13 @@ const getDetail = async () => {
   }
   loading.value = true
   const data = await getProject(research_id)
+  const fileList = await getQuestsFileList(research_id)
   activeProjectData.value = data as unknown as projectDataI
+  activeProjectFileList.value = fileList as unknown as projectFileListI
   loading.value = false
 }
 getDetail()
-const activeName = ref('基本信息')
+const activeName = ref('科研任务资料')
 </script>
 
 <template>
@@ -47,7 +53,7 @@ const activeName = ref('基本信息')
           <Tab1Comp :detail-data="activeProjectData as unknown as projectDataI" />
         </el-tab-pane>
         <el-tab-pane label="科研任务资料" name="科研任务资料">
-          科研任务资料
+          <Tab2Comp :detail-file-list="activeProjectFileList as unknown as projectFileListI" />
         </el-tab-pane>
       </el-tabs>
     </div>

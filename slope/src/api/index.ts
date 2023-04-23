@@ -34,6 +34,25 @@ api.interceptors.request.use(
       // request.headers.Token = userStore.token
       request.headers.Authorization = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJCSjAwMDE1QzY4OTQiLCJpYXQiOjE2Nzk4OTkzMDksImV4cCI6MTY3OTk0MjUwOX0.BqjSXntLUb98ziP6pYCx5PCZTkZeZfcZpkYqwQXPl9o'
     }
+    if (request.method === 'post' && request.data) {
+      let hasFile = false
+      Object.keys(request.data).forEach((key) => {
+        if (typeof request.data[key] === 'object') {
+          const item = request.data[key]
+          if (item instanceof FileList
+            || item instanceof File
+            || item instanceof Blob) {
+            hasFile = true
+          }
+        }
+      })
+      // 检测到存在文件使用FormData提交数据
+      if (hasFile) {
+        const formData = new FormData()
+        Reflect.ownKeys(request.data).forEach(key => formData.append(key as string, request.data[key]))
+        request.data = formData
+      }
+    }
     // 是否将 POST 请求参数进行字符串化处理
     if (request.method === 'post') {
       // request.data = qs.stringify(request.data, {

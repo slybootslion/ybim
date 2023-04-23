@@ -1,4 +1,5 @@
-import type { FormInstance } from 'element-plus'
+import type { FormInstance, UploadUserFile } from 'element-plus'
+import type { UploadRequestOptions } from 'element-plus/lib/components'
 import api from '@/api'
 import type { pageI } from '@/utils/tools'
 import router from '@/router'
@@ -39,6 +40,14 @@ export const getProjectList: any = async (parameter: getProjectListParamI) => {
 }
 export const getProject: any = async (research_id: string) => {
   const res = await api.get(`/science/getProject?research_id=${ research_id }`)
+  return res.data
+}
+export const getQuestsFileList: any = async (research_id: string) => {
+  const res: any = await api.get(`/science/getQuestsFileList?research_id=${research_id}`)
+  return res.data
+}
+export const uploadProAttach: any = async (file: File) => {
+  const res = await api.post('/science/uploadProAttach', { file })
   return res.data
 }
 export const addProject: any = async (data: projectDataI) => api.post('/science/addProject', data)
@@ -91,12 +100,33 @@ export interface projectDataI {
   pcas?: []
   participants_user_list?: []
   initiation_year_string?: string
+  file_id?: string
+}
+
+interface FileItemI {
+  'research_file_id': string
+  'research_file_name': string
+  'create_time': string
+  'upload_user': string
+  'file_url': string
+}
+
+export interface projectFileListI {
+  prepare: FileItemI[]
+  development: []
+  inspection: FileItemI[]
+  promotion: []
 }
 
 export const editId = ref('')
 
 export const activeProjectData = ref<projectDataI>({})
-
+export const activeProjectFileList = ref<projectFileListI>({
+  prepare: [],
+  development: [],
+  inspection: [],
+  promotion: [],
+})
 export const formData: projectDataI = reactive<projectDataI>({
   research_name: '标准项目名称',
   research_code: 'bzxj-901273987',
@@ -124,6 +154,7 @@ export const formData: projectDataI = reactive<projectDataI>({
   attachment_name: '',
   participants_user_list: [],
   initiation_year_string: '2019',
+  file_id: '',
 })
 
 export const submit = async (formEl: FormInstance | undefined) => {
@@ -142,6 +173,7 @@ export const submit = async (formEl: FormInstance | undefined) => {
       if (!formData.research_contents) delete formData.research_contents
       if (!formData.performance) delete formData.performance
       if (!formData.remarks) delete formData.remarks
+      if (!formData.file_id) delete formData.file_id
       loading.value = true
       const res = await addProject(formData)
       if (res.code === 0) back()
@@ -149,3 +181,20 @@ export const submit = async (formEl: FormInstance | undefined) => {
     }
   })
 }
+
+export const fileList = ref<UploadUserFile[]>([])
+
+export const handleUploadFile = async (obj: UploadRequestOptions) => {
+  const res = await uploadProAttach(obj.file)
+  formData.file_id = res.file_id
+}
+
+export const beforeUploadFile = () => {
+  if (formData.file_id !== '') return false
+}
+
+export const handlePreviewFile = () => {
+  console.log('handlePreview')
+}
+
+export const handleRemoveFile = () => formData.file_id = ''
