@@ -11,8 +11,10 @@ const loading = ref(false)
 
 const route = useRoute()
 const router = useRouter()
+let research_id = ''
 const getDetail = async () => {
-  const { research_id } = route.query
+  const { research_id: editId } = route.query
+  research_id = editId as string
   if (!research_id) {
     ElMessage.warning('项目id不正确')
     router.push('/scientific-research/project')
@@ -26,7 +28,11 @@ const getDetail = async () => {
   loading.value = false
 }
 getDetail()
-const activeName = ref('科研任务资料')
+const activeName = ref('基本信息')
+
+const toEdit = () => router.push(`/scientific-research/project-form?research_id=${ research_id }`)
+
+const uploadSuccess = () => getDetail()
 </script>
 
 <template>
@@ -36,7 +42,7 @@ const activeName = ref('科研任务资料')
         科研项目登记
       </div>
       <div>
-        <el-button type="primary">
+        <el-button type="primary" @click="toEdit">
           编辑
         </el-button>
         <el-button type="primary">
@@ -53,7 +59,7 @@ const activeName = ref('科研任务资料')
           <Tab1Comp :detail-data="activeProjectData as unknown as projectDataI" />
         </el-tab-pane>
         <el-tab-pane label="科研任务资料" name="科研任务资料">
-          <Tab2Comp :detail-file-list="activeProjectFileList as unknown as projectFileListI" />
+          <Tab2Comp :detail-file-list="activeProjectFileList as unknown as projectFileListI" :research-id="research_id" @upload-success="uploadSuccess" />
         </el-tab-pane>
       </el-tabs>
     </div>

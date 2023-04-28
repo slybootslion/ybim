@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import { FormInstance, FormRules, UploadUserFile } from 'element-plus'
 import {
-  back, beforeUploadFile, fileList, formData, getPersonData, handlePreviewFile, handleRemoveFile, handleUploadFile,
-  loading, personList,
-  submit,
+  back, beforeUploadFile, cleanFormData, fileList, formData, getEditData, getPersonData,
+  handleRemoveFile, handleUploadFile, loading, personList, submit,
 } from '@/views/scientific_research/project-method'
 import { getTreeList, level3List } from '@/views/system/personnel-method'
 import { customerList, getCustomerList } from '@/views/operate/customer-method'
+
+const route = useRoute()
+if (route.query.research_id) {
+  getEditData(route.query.research_id as string)
+} else {
+  cleanFormData()
+}
 
 const ruleFormRef = ref<FormInstance>()
 getCustomerList()
@@ -21,9 +27,11 @@ const rules = reactive<FormRules>({
   end_time: [{ required: true, message: '输入截止时间', trigger: 'change' }],
   pcas: [{ required: true, message: '输入项目属地', trigger: 'change' }],
   proprietor_customer_id: [{ required: true, message: '输入业主', trigger: 'change' }],
-  competent_department: [{ required: true, message: '输入主体部门', trigger: 'change' }],
-  project_leader_user: [{ required: true, message: '输入项目负责人', trigger: 'change' }],
+  competent_department_id: [{ required: true, message: '输入主体部门', trigger: 'change' }],
+  project_leader_user_id: [{ required: true, message: '输入项目负责人', trigger: 'change' }],
 })
+// const router = useRouter()
+// const backPage = () => router.push('/scientific-research/project')
 </script>
 
 <template>
@@ -142,7 +150,7 @@ const rules = reactive<FormRules>({
             <!-- eslint-disable-next-line -->
             <el-upload v-model:file-list="fileList as UploadUserFile[]" action="" accept=".pdf"
                        :http-request="handleUploadFile" :before-upload="beforeUploadFile"
-                       :on-preview="handlePreviewFile" :on-remove="handleRemoveFile"
+                       :on-remove="handleRemoveFile"
             >
               <el-button type="primary">
                 上传

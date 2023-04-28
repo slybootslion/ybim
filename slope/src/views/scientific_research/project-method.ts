@@ -1,6 +1,6 @@
 import type { FormInstance, UploadUserFile } from 'element-plus'
 import type { UploadRequestOptions } from 'element-plus/lib/components'
-import api from '@/api'
+import api, { baseURL } from '@/api'
 import type { pageI } from '@/utils/tools'
 import router from '@/router'
 import { getUserList } from '@/views/system/personnel-method'
@@ -43,15 +43,19 @@ export const getProject: any = async (research_id: string) => {
   return res.data
 }
 export const getQuestsFileList: any = async (research_id: string) => {
-  const res: any = await api.get(`/science/getQuestsFileList?research_id=${research_id}`)
+  const res: any = await api.get(`/science/getQuestsFileList?research_id=${ research_id }`)
   return res.data
 }
 export const uploadProAttach: any = async (file: File) => {
   const res = await api.post('/science/uploadProAttach', { file })
   return res.data
 }
+export const getDownloadUrl: any = async (url: string) => {
+  const res: any = await api.get(url)
+  return res.data
+}
 export const addProject: any = async (data: projectDataI) => api.post('/science/addProject', data)
-
+export const editProject: any = async (data: projectDataI) => api.post('/science/editProject', data)
 export const personList = ref([])
 
 export const getPersonData = async () => {
@@ -97,13 +101,13 @@ export interface projectDataI {
   status?: number
   attachment_url?: string
   attachment_name?: string
-  pcas?: []
-  participants_user_list?: []
+  pcas?: string[]
+  participants_user_list?: string[]
   initiation_year_string?: string
   file_id?: string
 }
 
-interface FileItemI {
+export interface fileItemI {
   'research_file_id': string
   'research_file_name': string
   'create_time': string
@@ -112,10 +116,10 @@ interface FileItemI {
 }
 
 export interface projectFileListI {
-  prepare: FileItemI[]
-  development: []
-  inspection: FileItemI[]
-  promotion: []
+  prepare: fileItemI[]
+  development: fileItemI[]
+  inspection: fileItemI[]
+  promotion: fileItemI[]
 }
 
 export const editId = ref('')
@@ -131,8 +135,8 @@ export const formData: projectDataI = reactive<projectDataI>({
   research_name: '标准项目名称',
   research_code: 'bzxj-901273987',
   research_type: '科研课题',
-  start_time: '2021-02-03',
-  end_time: '2023-03-09',
+  start_time: '',
+  end_time: '',
   pcas: [],
   initiation_year: 0,
   project_dependency_province: '',
@@ -152,16 +156,16 @@ export const formData: projectDataI = reactive<projectDataI>({
   remarks: '',
   attachment_url: '',
   attachment_name: '',
+  attachment: '',
   participants_user_list: [],
-  initiation_year_string: '2019',
-  file_id: '',
+  initiation_year_string: '',
 })
 
 export const submit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate(async (valid) => {
     if (valid) {
-      console.log(formData)
+      loading.value = true
       if (formData.participants_user_list && formData.participants_user_list.length) formData.participants_user_id = (formData.participants_user_list as string[]).join(',')
       formData.project_dependency_province = (formData.pcas as string[])[0]
       formData.project_dependency_city = (formData.pcas as string[])[1]
@@ -173,10 +177,16 @@ export const submit = async (formEl: FormInstance | undefined) => {
       if (!formData.research_contents) delete formData.research_contents
       if (!formData.performance) delete formData.performance
       if (!formData.remarks) delete formData.remarks
-      if (!formData.file_id) delete formData.file_id
-      loading.value = true
-      const res = await addProject(formData)
-      if (res.code === 0) back()
+      if (!formData.attachment) delete formData.attachment
+      if (editId.value) {
+        formData.research_id = editId.value
+        const res = await editProject(formData)
+        if (res.code === 0) back()
+      } else {
+        const res = await addProject(formData)
+        if (res.code === 0) back()
+      }
+      editId.value = ''
       loading.value = false
     }
   })
@@ -186,15 +196,63 @@ export const fileList = ref<UploadUserFile[]>([])
 
 export const handleUploadFile = async (obj: UploadRequestOptions) => {
   const res = await uploadProAttach(obj.file)
-  formData.file_id = res.file_id
+  formData.attachment = res.file_id
 }
 
 export const beforeUploadFile = () => {
-  if (formData.file_id !== '') return false
+  if (formData.attachment !== '') return false
 }
 
-export const handlePreviewFile = () => {
-  console.log('handlePreview')
+export const handleRemoveFile = () => formData.attachment = ''
+export const getEditData = async (ei: string) => {
+  loading.value = true
+  editId.value = ei
+  const data = await getProject(editId.value)
+  activeProjectData.value = data as unknown as projectDataI
+  console.log(activeProjectData.value)
+  formData.research_name = activeProjectData.value.research_name
+  formData.research_code = activeProjectData.value.research_code
+  formData.research_type = activeProjectData.value.research_type
+  formData.initiation_year_string = activeProjectData.value.initiation_year!.toString()
+  formData.start_time = activeProjectData.value.start_time
+  formData.end_time = activeProjectData.value.end_time
+  formData.proprietor_customer_id = activeProjectData.value.proprietor_customer_id
+  formData.competent_department_id = activeProjectData.value.competent_department_id
+  formData.project_leader_user_id = activeProjectData.value.project_leader_user_id
+  formData.participating_department_id = activeProjectData.value.participating_department_id
+  formData.participants_user_list = activeProjectData.value.participants_user_id!.split(',')
+  formData.project_general = activeProjectData.value.project_general
+  formData.research_purpose = activeProjectData.value.research_purpose
+  formData.research_contents = activeProjectData.value.research_contents
+  formData.pcas = [activeProjectData.value.project_dependency_province as string,
+    activeProjectData.value.project_dependency_city as string]
+  formData.performance = activeProjectData.value.performance
+  formData.remarks = activeProjectData.value.remarks
+  if (formData.attachment) {
+    formData.attachment = activeProjectData.value.attachment
+    fileList.value = [{ name: activeProjectData.value.attachment_name as string, url: baseURL + activeProjectData.value.attachment_url!.slice(4) }]
+  }
+  loading.value = false
 }
-
-export const handleRemoveFile = () => formData.file_id = ''
+export const cleanFormData = () => {
+  loading.value = true
+  editId.value = ''
+  formData.research_name = ''
+  formData.research_code = ''
+  formData.research_type = ''
+  formData.initiation_year_string = ''
+  formData.start_time = ''
+  formData.end_time = ''
+  formData.proprietor_customer_id = ''
+  formData.competent_department_id = ''
+  formData.project_leader_user_id = ''
+  formData.participating_department_id = ''
+  formData.participants_user_list = []
+  formData.project_general = ''
+  formData.research_purpose = ''
+  formData.research_contents = ''
+  formData.pcas = []
+  formData.performance = ''
+  formData.remarks = ''
+  loading.value = false
+}
