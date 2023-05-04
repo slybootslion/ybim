@@ -70,6 +70,8 @@ export const level3List = ref<TreeNode[]>([])
 export const getTreeList = async () => {
   const res = await getDepartmentList()
   treeData.value = res.data
+  level3List.value = []
+  level2List.value = []
   const flatTree = (node: TreeNode, level: number) => {
     node.value = node.department_id
     node.label = node.department_name

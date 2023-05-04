@@ -132,9 +132,9 @@ export const activeProjectFileList = ref<projectFileListI>({
   promotion: [],
 })
 export const formData: projectDataI = reactive<projectDataI>({
-  research_name: '标准项目名称',
-  research_code: 'bzxj-901273987',
-  research_type: '科研课题',
+  research_name: '',
+  research_code: '',
+  research_type: '',
   start_time: '',
   end_time: '',
   pcas: [],

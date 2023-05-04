@@ -167,6 +167,28 @@ const Customer: RouteRecordRaw = {
         activeMenu: '/customer-management',
       },
     },
+    {
+      path: 'customer-form',
+      name: 'customer-management-customer-form',
+      component: () => import('@/views/operate/customer-form.vue'),
+      meta: {
+        title: '客户登记',
+        sidebar: false,
+        breadcrumb: false,
+        activeMenu: '/customer-management',
+      },
+    },
+    {
+      path: 'customer-detail',
+      name: 'customer-management-customer-detail',
+      component: () => import('@/views/operate/customer-detail.vue'),
+      meta: {
+        title: '客户信息',
+        sidebar: false,
+        breadcrumb: false,
+        activeMenu: '/customer-management',
+      },
+    },
   ],
 }
 

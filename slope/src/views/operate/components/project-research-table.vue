@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
-import type { getProjectListParamI, resProjectListI } from '@/views/operate/customer-method'
-import { getProjectList, pageData } from '@/views/operate/customer-method'
+import type { getProjectListParamI, resProjectListI } from '@/views/operate/project-method'
+import { getProjectList, pageData } from '@/views/operate/project-method'
 
 const tableLoading = ref(false)
 const tableData = ref<resProjectListI[]>([])
