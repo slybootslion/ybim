@@ -213,6 +213,17 @@ const Record: RouteRecordRaw = {
         activeMenu: '/record-management',
       },
     },
+    {
+      path: 'record-form',
+      name: 'record-management-record-form',
+      component: () => import('@/views/operate/record-form.vue'),
+      meta: {
+        title: '备案登记',
+        sidebar: false,
+        breadcrumb: false,
+        activeMenu: '/record-management',
+      },
+    },
   ],
 }
 
