@@ -4,6 +4,7 @@ import api, { baseURL } from '@/api'
 import type { pageI } from '@/utils/tools'
 import router from '@/router'
 import { getUserList } from '@/views/system/personnel-method'
+import { ElMessage } from "element-plus";
 
 export const pageData = reactive<pageI>({
   page_size: 10, page_number: 1, total: 0,
@@ -195,12 +196,17 @@ export const submit = async (formEl: FormInstance | undefined) => {
 export const fileList = ref<UploadUserFile[]>([])
 
 export const handleUploadFile = async (obj: UploadRequestOptions) => {
+  loading.value = true
   const res = await uploadProAttach(obj.file)
   formData.attachment = res.file_id
+  loading.value = false
 }
 
 export const beforeUploadFile = () => {
-  if (formData.attachment !== '') return false
+  if (formData.attachment !== '') {
+    ElMessage.error('删除之前上传文件再重新上传')
+    return false
+  }
 }
 
 export const handleRemoveFile = () => formData.attachment = ''
@@ -209,7 +215,6 @@ export const getEditData = async (ei: string) => {
   editId.value = ei
   const data = await getProject(editId.value)
   activeProjectData.value = data as unknown as projectDataI
-  console.log(activeProjectData.value)
   formData.research_name = activeProjectData.value.research_name
   formData.research_code = activeProjectData.value.research_code
   formData.research_type = activeProjectData.value.research_type
@@ -228,7 +233,7 @@ export const getEditData = async (ei: string) => {
     activeProjectData.value.project_dependency_city as string]
   formData.performance = activeProjectData.value.performance
   formData.remarks = activeProjectData.value.remarks
-  if (formData.attachment) {
+  if (activeProjectData.value.attachment) {
     formData.attachment = activeProjectData.value.attachment
     fileList.value = [{ name: activeProjectData.value.attachment_name as string, url: baseURL + activeProjectData.value.attachment_url!.slice(4) }]
   }

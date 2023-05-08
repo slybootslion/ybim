@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { getRecordTableListI, resRecordItemI } from '@/views/record-method'
-import { getFilingList, pageData } from '@/views/record-method'
+import type { getRecordTableListI, resRecordItemI } from '@/views/operate/record-method'
+import { getFilingList, pageData } from '@/views/operate/record-method'
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
 
 const tableLoading = ref(false)
@@ -41,12 +41,11 @@ const searchHandle = () => {
   pageData.page_number = 1
   pageChange()
 }
-const researchNameClick = (row: resRecordItemI) => {
-  console.log('researchNameClick', row)
-}
-const editItem = (row: resRecordItemI) => {
-}
-const delItem = (row: resRecordItemI) => {
+const router = useRouter()
+const researchNameClick = (row: resRecordItemI) => router.push(`/record-management/record-detail?filing_id=${row.filing_id}`)
+const editItem = (filing_id: string) => router.push(`/record-management/record-form?filing_id=${filing_id}`)
+const delItem = (filing_id: string) => {
+  console.log(filing_id)
 }
 </script>
 
@@ -100,7 +99,7 @@ const delItem = (row: resRecordItemI) => {
     <el-table-column property="valid" label="有效状态" width="90" />
     <el-table-column label="操作" width="130">
       <template #default="scope">
-        <el-button link type="primary" size="small" @click.prevent="editItem(scope.row)">
+        <el-button link type="primary" size="small" @click.prevent="editItem(scope.row.filing_id)">
           编辑
         </el-button>
         <el-button link type="primary" size="small" @click.prevent="delItem(scope.row)">

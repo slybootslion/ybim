@@ -2,9 +2,14 @@
 import { FormInstance, FormRules, UploadUserFile } from 'element-plus'
 import { back } from '@/views/scientific_research/project-method'
 import {
-  beforeUploadFile, formData, handleRemoveFile, handleUploadFile, loading, submit,
-} from '@/views/record-method'
+  beforeUploadFile, clearFormData, formData, getEditData,
+  handleRemoveFile, handleUploadFile, loading, submit,
+} from '@/views/operate/record-method'
 
+const route = useRoute()
+const query = route.query
+if (query.filing_id) getEditData(query.filing_id as string)
+else clearFormData()
 const ruleFormRef = ref<FormInstance>()
 const rules = reactive<FormRules>({
   filing_type: [{ required: true, message: '输入备案类型', trigger: 'change' }],
