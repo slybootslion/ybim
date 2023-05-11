@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ElMessageBox } from 'element-plus'
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
 import type { getCustomerTableListParamI, resCustomerItemI } from '@/views/operate/customer-method'
 import { getCustomerListTable, pageData } from '@/views/operate/customer-method'
 import api from '@/api'
+import { delItemHandle } from '@/utils/tools'
 
 const tableLoading = ref(false)
 
@@ -44,17 +44,11 @@ const searchHandle = () => {
 const router = useRouter()
 const researchNameClick = (row: resCustomerItemI) => router.push(`/customer-management/customer-detail?customer_id=${ row.customer_id }`)
 const editItem = (row: resCustomerItemI) => router.push(`/customer-management/customer-form?customer_id=${ row.customer_id }`)
-const delItem = (row: resCustomerItemI) => {
-  ElMessageBox.confirm(`确定删除 ${ row.customer_name } 这条记录？`, '注意',
-    {
-      confirmButtonText: '确定',
-      cancelButtonText: '取消',
-      type: 'warning',
-    }).then(async () => {
-    await api.post('/customer/delCustomer', { customer_id: row.customer_id })
-    await getList(pageData)
-  }).catch(console.log)
+const delCb = async (id: string) => {
+  await api.post('/customer/delCustomer', { customer_id: id })
+  pageChange()
 }
+const delItem = async (row: resCustomerItemI) => delItemHandle(row.customer_name, delCb, row.customer_id)
 </script>
 
 <template>

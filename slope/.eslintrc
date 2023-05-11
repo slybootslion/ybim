@@ -4,11 +4,20 @@
     "curly": "off",
     "antfu/if-newline": "off",
     "no-console": "off",
+    "vue/template-curly-spacing": "off",
     "template-curly-spacing": "off",
     "@typescript-eslint/brace-style": "off",
     "@typescript-eslint/space-before-function-paren": "off",
-    "vue/component-tags-order": ["error", {
-      "order": ["route", "script", "template", "style"]
-    }]
+    "vue/component-tags-order": [
+      "error",
+      {
+        "order": [
+          "route",
+          "script",
+          "template",
+          "style"
+        ]
+      }
+    ]
   }
 }

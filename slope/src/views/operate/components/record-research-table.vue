@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { getRecordTableListI, resRecordItemI } from '@/views/operate/record-method'
-import { getFilingList, pageData } from '@/views/operate/record-method'
+import { delFiling, getFilingList, pageData } from '@/views/operate/record-method'
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
+import { delItemHandle } from '@/utils/tools'
 
 const tableLoading = ref(false)
 const tableData = ref<resRecordItemI[]>([])
@@ -44,8 +45,9 @@ const searchHandle = () => {
 const router = useRouter()
 const researchNameClick = (row: resRecordItemI) => router.push(`/record-management/record-detail?filing_id=${row.filing_id}`)
 const editItem = (filing_id: string) => router.push(`/record-management/record-form?filing_id=${filing_id}`)
-const delItem = (filing_id: string) => {
-  console.log(filing_id)
+const delItem = async (row: resRecordItemI) => {
+  await delItemHandle(row.filing_platform, delFiling, row.filing_id)
+  pageChange()
 }
 </script>
 

@@ -1,10 +1,10 @@
 import type { FormInstance, UploadUserFile } from 'element-plus'
 import type { UploadRequestOptions } from 'element-plus/lib/components'
+import { ElMessage } from 'element-plus'
 import api, { baseURL } from '@/api'
 import type { pageI } from '@/utils/tools'
 import router from '@/router'
 import { getUserList } from '@/views/system/personnel-method'
-import { ElMessage } from "element-plus";
 
 export const pageData = reactive<pageI>({
   page_size: 10, page_number: 1, total: 0,

@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { FormInstance, FormRules } from 'element-plus'
 import { back } from '@/views/scientific_research/project-method'
-import { cleanFormData, formData, getEditData, loading, submit } from '@/views/operate/customer-method'
+import {
+  cleanFormData, formData, getEditData, loading, primaryBusinessOptions, submit
+} from '@/views/operate/customer-method'
 
 const route = useRoute()
 const query = route.query
@@ -18,8 +20,6 @@ const rules = reactive<FormRules>({
   linkman_post: [{ required: true, message: '输入职务', trigger: 'blur' }],
   customer_general: [{ required: true, message: '输入客户概况', trigger: 'blur' }],
 })
-const primaryBusinessOptions = ['规划科研', '技术咨询', '软件开发', '勘察设计', '检测监理', '全过程咨询',
-  '材料供销', '系统集成', '劳务安装', '施工建造', '建设管理', '运营管理', '其它']
 </script>
 
 <template>

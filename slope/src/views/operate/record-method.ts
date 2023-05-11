@@ -133,6 +133,8 @@ const editFiling = async (paramter: filingFormI) => {
   return res.code
 }
 
+export const delFiling = async (filing_id: string) => api.post('/filing/delFiling', { filing_id })
+
 export const submit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate(async (valid) => {
@@ -188,7 +190,7 @@ export const getEditData = async (id: string) => {
   formData.valid_status = res.valid_status
   formData.trick_lock = res.trick_lock
   formData.trick_lock_custodian = res.trick_lock_custodian
-  formData.trick_lock_principal_phone = res.trick_lock
+  formData.trick_lock_principal_phone = res.trick_lock_principal_phone
   formData.filing_cert = res.filing_cert
   formData.filing_cert_attachment = res.filing_cert_attachment
   formData.other = res.other

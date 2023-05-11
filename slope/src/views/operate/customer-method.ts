@@ -119,6 +119,9 @@ export const getCustomer = async (customer_id: string) => {
   return res.data
 }
 
+export const primaryBusinessOptions = ['规划科研', '技术咨询', '软件开发', '勘察设计', '检测监理', '全过程咨询',
+  '材料供销', '系统集成', '劳务安装', '施工建造', '建设管理', '运营管理', '其它']
+
 export const getEditData = async (id: string) => {
   loading.value = true
   editId.value = id

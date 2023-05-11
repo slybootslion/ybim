@@ -5,7 +5,7 @@ const Layout = () => import('@/layouts/index.vue')
 const ProductionProject: RouteRecordRaw = {
   path: '/production-management',
   component: Layout,
-  redirect: '/production-management/index',
+  redirect: '/production-management/production-list',
   name: 'productionManagement',
   meta: {
     title: '生产项目管理',
@@ -13,11 +13,22 @@ const ProductionProject: RouteRecordRaw = {
   },
   children: [
     {
-      path: 'index',
-      name: 'productionManagementProject',
+      path: 'production-list',
+      name: 'productionManagementProjectProductionList',
       component: () => import('@/views/production/project.vue'),
       meta: {
         title: '生产项目管理',
+        sidebar: false,
+        breadcrumb: false,
+        activeMenu: '/production-management',
+      },
+    },
+    {
+      path: 'production-form',
+      name: 'productionManagementProjectproductionForm',
+      component: () => import('@/views/production/project-form.vue'),
+      meta: {
+        title: '生产任务下单',
         sidebar: false,
         breadcrumb: false,
         activeMenu: '/production-management',
@@ -49,6 +60,7 @@ const TaskOrder: RouteRecordRaw = {
     },
   ],
 }
+
 const Supplier: RouteRecordRaw = {
   path: '/supplier-management',
   component: Layout,
