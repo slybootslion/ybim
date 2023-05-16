@@ -1,10 +1,8 @@
 <script lang="ts" setup>
 import SupplierResearchTable from '@/views/production/components/supplier-research-table.vue'
 
-console.log('setup')
-const addNew = () => {
-  console.log('addNew')
-}
+const router = useRouter()
+const addNew = () => router.push('/supplier-management/supplier-form')
 </script>
 
 <template>

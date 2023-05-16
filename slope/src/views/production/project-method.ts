@@ -45,12 +45,23 @@ export const getProjectList = async (paramter: getProjectTableListI) => {
   return { list: res.data.list, total: res.data.total }
 }
 
+export interface participatingOrgI {
+  task_name: string
+  task_code: string
+  main_department_id: string
+  allocation_ratio: string
+  production_user_id: string
+  deadline: string
+  task_explain: string
+}
+
 export interface projectFormDataI {
   task_id?: string
   project_id: string
   industry_type: string
   project_type: string
-  major: string
+  major: string | string[]
+  days?: string
   start_time: string
   end_time: string
   task_code: string
@@ -59,8 +70,10 @@ export interface projectFormDataI {
   production_user_id: string
   deadline: string
   task_explain: string
-  participating_organization: string
+  participating_organization?: string
   task_name: string
+  datePick?: string[]
+  poArr?: participatingOrgI[]
 }
 
 export const formData: projectFormDataI = reactive<projectFormDataI>({
@@ -68,6 +81,7 @@ export const formData: projectFormDataI = reactive<projectFormDataI>({
   industry_type: '',
   project_type: '',
   major: '',
+  days: '',
   start_time: '',
   end_time: '',
   task_code: '',
@@ -76,6 +90,8 @@ export const formData: projectFormDataI = reactive<projectFormDataI>({
   production_user_id: '',
   deadline: '',
   task_explain: '',
-  participating_organization: '',
+  participating_organization: '[]',
   task_name: '',
+  poArr: [],
+  datePick: [],
 })

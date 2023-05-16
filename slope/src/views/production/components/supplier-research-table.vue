@@ -13,7 +13,6 @@ const getList = async (param: getSupplierTableListI) => {
   const res = await getSupplierList(param)
   tableData = res.list
   pageData.total = res.total
-  console.log(tableData)
   tableLoading.value = false
 }
 getList(pageData)
@@ -40,11 +39,9 @@ const searchHandle = () => {
   pageData.page_number = 1
   pageChange()
 }
-const researchNameClick = (row: resSupplierTableItemI) => {
-  console.log(row)
-}
-const editItem = async (id: string) => {
-}
+const router = useRouter()
+const researchNameClick = (id: string) => router.push(`/supplier-management/supplier-detail?supplier_id=${ id }`)
+const editItem = async (id: string) => router.push(`/supplier-management/supplier-form?supplier_id=${ id }`)
 const delCb = async (id: string) => {
   await api.post('/supplier/delSupplier', { supplier_id: id })
   pageChange()
@@ -77,13 +74,13 @@ const delItem = (row: resSupplierTableItemI) => delItemHandle(row.supplier_name,
     <el-table-column label="序号" type="index" width="50" />
     <el-table-column label="供应商名称" min-width="230">
       <template #default="scope">
-        <el-button link type="primary" @click="researchNameClick(scope.row)">
+        <el-button link type="primary" @click="researchNameClick(scope.row.supplier_id)">
           {{ scope.row.supplier_name }}
         </el-button>
       </template>
     </el-table-column>
     <el-table-column property="supplier_type" label="供应商分类" width="120" />
-    <el-table-column property="primary_business" label="主营业务" width="110" />
+    <el-table-column property="primary_business" label="主营业务" width="310" />
     <el-table-column label="地址" width="190">
       <template #default="scope">
         {{ scope.row.address_province }} {{ scope.row.address_city }}

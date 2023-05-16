@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { FormInstance } from 'element-plus'
 import {
-  FunListData, UserListData, activeName, activeRoleId, activeRoleName, addNew, changeActive, dialogForm,
-  dialogShow, editRoleHandle, funItemI, getRole, ruleFormRef, rules, submitForm, tabLoading, tableItemI, SampleListData,
-  sampleItemI,
+  FunListData, SampleListData, UserListData, activeName, activeRoleId, activeRoleName, addNew, changeActive,
+  dialogForm, dialogShow, editRoleHandle, funItemI, getRole, ruleFormRef, rules, sampleItemI, submitForm, tabLoading,
+  tableItemI,
 } from '@/views/system/role-method'
 import { pageLoading } from '@/utils/tools'
 import { RoleItem, roleData } from '@/views/system/personnel-method'
 import RoleMember from '@/views/system/components/role-member.vue'
 import FunComponent from '@/views/system/components/fun-component.vue'
-import SampleComponent from "@/views/system/components/sample-component.vue";
+import SampleComponent from '@/views/system/components/sample-component.vue'
 const loading = pageLoading()
 getRole().then(() => {
   changeActive({ role_id: activeRoleId.value, role_name: activeRoleName.value, role_memo: activeRoleName.value })

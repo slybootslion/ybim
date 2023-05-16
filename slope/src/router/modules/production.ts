@@ -24,9 +24,9 @@ const ProductionProject: RouteRecordRaw = {
       },
     },
     {
-      path: 'production-form',
-      name: 'productionManagementProjectproductionForm',
-      component: () => import('@/views/production/project-form.vue'),
+      path: 'task-detail',
+      name: 'productionManagementProjectTaskDetail',
+      component: () => import('@/views/production/task-detail.vue'),
       meta: {
         title: '生产任务下单',
         sidebar: false,
@@ -64,7 +64,7 @@ const TaskOrder: RouteRecordRaw = {
 const Supplier: RouteRecordRaw = {
   path: '/supplier-management',
   component: Layout,
-  redirect: '/supplier-management/index',
+  redirect: '/supplier-management/supplier-list',
   name: 'supplierManagement',
   meta: {
     title: '供应商管理',
@@ -72,11 +72,33 @@ const Supplier: RouteRecordRaw = {
   },
   children: [
     {
-      path: 'index',
+      path: 'supplier-list',
       name: 'supplierManagementProject',
       component: () => import('@/views/production/supplier.vue'),
       meta: {
         title: '供应商管理',
+        sidebar: false,
+        breadcrumb: false,
+        activeMenu: '/supplier-management',
+      },
+    },
+    {
+      path: 'supplier-form',
+      name: 'supplierManagementProjectSupplierForm',
+      component: () => import('@/views/production/supplier-form.vue'),
+      meta: {
+        title: '供应商登记',
+        sidebar: false,
+        breadcrumb: false,
+        activeMenu: '/supplier-management',
+      },
+    },
+    {
+      path: 'supplier-detail',
+      name: 'supplierManagementProjectSupplierDetail',
+      component: () => import('@/views/production/supplier-detail.vue'),
+      meta: {
+        title: '供应商详情',
         sidebar: false,
         breadcrumb: false,
         activeMenu: '/supplier-management',

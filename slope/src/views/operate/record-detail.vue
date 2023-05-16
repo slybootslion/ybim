@@ -20,14 +20,11 @@ const getDetail = async () => {
   loading.value = true
   const data = await getFiling(filing_id)
   activeFilingData.value = data as resFilingI
-  console.log(activeFilingData.value)
   loading.value = false
 }
 getDetail()
 
-const toEdit = () => {
-  console.log('edit')
-}
+const toEdit = () => router.push(`/record-management/record-form?filing_id=${ filing_id }`)
 
 const downloadItem = async (url: string) => {
   loading.value = true
@@ -53,7 +50,7 @@ const downloadItem = async (url: string) => {
       </div>
     </div>
     <div class="bottom">
-      <el-descriptions :column="2">
+      <el-descriptions :column="1">
         <el-descriptions-item label="备案类型：">
           {{ activeFilingData.filing_type }}
         </el-descriptions-item>

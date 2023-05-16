@@ -27,12 +27,12 @@ const researchNameClick = (row: resProjectListI) => {
     search-box
   </div>
   <el-table v-loading="tableLoading" :data="tableData" border style="width: 100%">
-    <el-table-column type="selection" width="55" />
-    <el-table-column label="序号" type="index" width="50" />
+    <el-table-column type="selection" width="50" />
+    <el-table-column label="序号" type="index" width="55" />
     <el-table-column label="项目名称">
       <template #default="scope">
         <el-button link type="primary" @click="researchNameClick(scope.row)">
-          {{ scope.row.project_code }}
+          {{ scope.row.project_name }}
         </el-button>
       </template>
     </el-table-column>

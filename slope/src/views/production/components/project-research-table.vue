@@ -10,7 +10,6 @@ const getList = async (param: getProjectTableListI) => {
   tableLoading.value = true
   delete param.total
   const res = await getProjectList(param)
-  console.log(res)
   tableData = res.list
   pageData.total = res.total
   tableLoading.value = false
@@ -46,7 +45,10 @@ const pageChange = () => {
   }
   getList(data)
 }
-const researchNameClick = (row: resProjectTableItemI) => console.log(row.project_name)
+const router = useRouter()
+const researchNameClick = (row: resProjectTableItemI) => {
+  router.push(`/production-management/task-detail?task_id=${row.task_id}`)
+}
 const searchHandle = () => {
   pageData.page_number = 1
   pageChange()

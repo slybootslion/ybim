@@ -1,4 +1,4 @@
-import { ElLoading, ElMessageBox } from 'element-plus'
+import { ElLoading, ElMessage, ElMessageBox } from 'element-plus'
 
 export const pageLoading = () => {
   return ElLoading.service({
@@ -22,4 +22,16 @@ export const delItemHandle = (msg: string, cb: Function, params: any) => {
   }).then(async () => {
     await cb(params)
   }).catch(console.log)
+}
+
+export const beforeUploadFile = async (fileId: string) => {
+  console.log(fileId)
+  if (fileId !== '') {
+    ElMessage.error('删除之前上传文件再重新上传')
+    return false
+  }
+}
+
+export const handleRemoveFile = async (obj: any, fileIdName: string) => {
+  obj[fileIdName] = ''
 }

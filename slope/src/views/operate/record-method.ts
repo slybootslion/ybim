@@ -159,7 +159,6 @@ export const handleUploadFile = async (obj: UploadRequestOptions) => {
   loading.value = true
   const res = await uploadFilingCertAttach(obj.file)
   if (!res) {
-    console.log(formData.fileList)
     loading.value = false
     return
   }
