@@ -3,6 +3,7 @@ import { FormInstance, FormRules } from 'element-plus'
 import dayjs from 'dayjs'
 import type { projectFormDataI } from '@/views/production/project-method'
 import {
+  clearFormData,
   formData, loading, primaryIndustryTypeOptions, primaryMajorTypeOption,
 } from '@/views/production/project-method'
 import { primaryBusinessOptions } from '@/views/operate/customer-method'
@@ -89,6 +90,7 @@ const submit = async (formEl: FormInstance | undefined) => {
         console.log('edit')
       }
       loading.value = false
+      clearFormData()
       await router.push('/production-management/production-list')
     }
   })

@@ -95,3 +95,23 @@ export const formData: projectFormDataI = reactive<projectFormDataI>({
   poArr: [],
   datePick: [],
 })
+
+export const clearFormData = () => {
+  formData.project_id = ''
+  formData.industry_type = ''
+  formData.project_type = ''
+  formData.major = ''
+  formData.days = ''
+  formData.start_time = ''
+  formData.end_time = ''
+  formData.task_code = ''
+  formData.main_department_id = ''
+  formData.allocation_ratio = ''
+  formData.production_user_id = ''
+  formData.deadline = ''
+  formData.task_explain = ''
+  formData.participating_organization = '[]'
+  formData.task_name = ''
+  formData.poArr = []
+  formData.datePick = []
+}

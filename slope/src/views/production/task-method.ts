@@ -55,6 +55,36 @@ export const activeTaskData: Ref<resTaskDataI> = ref<resTaskDataI>({
   participating_organization: [],
 })
 
+export interface taskFileI {
+  produce_file_id: string
+  produce_file_name: string
+  task_id: string
+  status: number
+  create_time: string
+  upload_user: string
+  file_url: string
+}
+
+interface resFileDataI {
+  field: taskFileI[]
+  achievement: taskFileI[]
+  drawing: taskFileI[]
+  reply: taskFileI[]
+  variation: taskFileI[]
+  video: taskFileI[]
+  other: taskFileI[]
+}
+
+export const activeFileData: Ref<resFileDataI> = ref<resFileDataI>({
+  field: [],
+  achievement: [],
+  drawing: [],
+  reply: [],
+  variation: [],
+  video: [],
+  other: [],
+})
+
 export const getTask = async (task_id: string) => {
   const res = await api.get(`/produce/getTask?task_id=${ task_id }`)
   return res.data

@@ -1,3 +1,2 @@
 api文档
 http://apinpdoc.jiaohuilian.com/web/#/7?page_id=230
-https://github.com/kesixin/QuestionWeChatApp
