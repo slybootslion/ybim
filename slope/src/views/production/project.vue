@@ -6,7 +6,7 @@ const addNew = () => router.push('/task-order/task')
 </script>
 
 <template>
-  <page-main>
+  <page-main class="page-main">
     <div class="top">
       <div class="top-left">
         <div class="title">

@@ -23,6 +23,17 @@ const Contract: RouteRecordRaw = {
         activeMenu: '/achievement-contract',
       },
     },
+    {
+      path: 'contract-form',
+      name: 'achievementManageContractForm',
+      component: () => import('@/views/achievement/contract-form.vue'),
+      meta: {
+        title: '合同存档登记',
+        sidebar: false,
+        breadcrumb: false,
+        activeMenu: '/achievement-contract',
+      },
+    },
   ],
 }
 

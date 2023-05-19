@@ -7,9 +7,9 @@ import {
   formData, loading, primaryIndustryTypeOptions, primaryMajorTypeOption,
 } from '@/views/production/project-method'
 import { primaryBusinessOptions } from '@/views/operate/customer-method'
-import { getProjectList } from '@/views/operate/project-method'
 import { getTreeList, getUserList, level3List } from '@/views/system/personnel-method'
 import api from '@/api'
+import { projectOptions, projectSearchLoading, remoteMethod } from '@/views/production/task-method'
 
 const router = useRouter()
 const route = useRoute()
@@ -42,15 +42,6 @@ const subRules = reactive<FormRules>({
   allocation_ratio: [{ required: true, message: '输入任划分产值金额', trigger: 'blur' }],
   deadline: [{ required: true, message: '输入成果提交时间', trigger: 'change' }],
 })
-const projectOptions = ref([])
-const projectSearchLoading = ref(false)
-const remoteMethod = async (query: string) => {
-  if (!query) return
-  projectSearchLoading.value = true
-  const r = await getProjectList({ page_size: 8, page_number: 1, project_name: query })
-  projectOptions.value = r.list
-  projectSearchLoading.value = false
-}
 const computedDay = () => formData.days = `${ dayjs(formData.datePick![1]).diff(formData.datePick![0], 'day') }`
 const addTask = async (data: projectFormDataI) => {
   const res = await api.post('/produce/addTask', data)

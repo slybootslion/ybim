@@ -1,5 +1,6 @@
 import type { Ref } from 'vue'
 import api from '@/api'
+import { getProjectList } from '@/views/operate/project-method'
 
 interface resTaskOpI {
   task_name: string
@@ -88,4 +89,14 @@ export const activeFileData: Ref<resFileDataI> = ref<resFileDataI>({
 export const getTask = async (task_id: string) => {
   const res = await api.get(`/produce/getTask?task_id=${ task_id }`)
   return res.data
+}
+
+export const projectOptions = ref([])
+export const projectSearchLoading = ref(false)
+export const remoteMethod = async (query: string) => {
+  if (!query) query = ''
+  projectSearchLoading.value = true
+  const r = await getProjectList({ page_size: 8, page_number: 1, project_name: query })
+  projectOptions.value = r.list
+  projectSearchLoading.value = false
 }

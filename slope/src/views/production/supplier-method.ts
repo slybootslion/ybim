@@ -1,9 +1,9 @@
 import type { FormInstance, UploadUserFile } from 'element-plus'
 import type { UploadRequestOptions } from 'element-plus/lib/components'
+import type { Ref } from 'vue'
 import type { pageI } from '@/utils/tools'
 import api, { baseURL } from '@/api'
 import { back } from '@/views/scientific_research/project-method'
-import { Ref } from "vue";
 
 export const loading = ref(false)
 
