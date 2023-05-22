@@ -34,6 +34,17 @@ const Contract: RouteRecordRaw = {
         activeMenu: '/achievement-contract',
       },
     },
+    {
+      path: 'contract-detail',
+      name: 'achievementManageContractDetail',
+      component: () => import('@/views/achievement/contract-detail.vue'),
+      meta: {
+        title: '合同登记',
+        sidebar: false,
+        breadcrumb: false,
+        activeMenu: '/achievement-contract',
+      },
+    },
   ],
 }
 
@@ -77,6 +88,28 @@ const Qualification: RouteRecordRaw = {
       component: () => import('@/views/achievement/qualification.vue'),
       meta: {
         title: '资质管理',
+        sidebar: false,
+        breadcrumb: false,
+        activeMenu: '/achievement-qualification',
+      },
+    },
+    {
+      path: 'qualification-form',
+      name: 'achievementQualificationQualificationForm',
+      component: () => import('@/views/achievement/qualification-form.vue'),
+      meta: {
+        title: '资质建立',
+        sidebar: false,
+        breadcrumb: false,
+        activeMenu: '/achievement-qualification',
+      },
+    },
+    {
+      path: 'qualification-detail',
+      name: 'achievementQualificationQualificationDetail',
+      component: () => import('@/views/achievement/qualification-detail.vue'),
+      meta: {
+        title: '资质详情',
         sidebar: false,
         breadcrumb: false,
         activeMenu: '/achievement-qualification',

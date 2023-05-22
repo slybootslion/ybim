@@ -123,7 +123,7 @@ setTimeout(() => ruleFormRef.value!.clearValidate())
         <el-form ref="ruleFormRef" inline :model="formData" :rules="rules as FormRules" label-width="180px">
           <el-form-item label="关联项目：" prop="project_id">
             <el-select
-              v-model="formData.project_id" multiple filterable remote reserve-keyword placeholder="输入项目名称查找"
+              v-model="formData.project_id" filterable remote reserve-keyword placeholder="输入项目名称查找"
               :remote-method="remoteMethod" :loading="projectSearchLoading"
             >
               <el-option

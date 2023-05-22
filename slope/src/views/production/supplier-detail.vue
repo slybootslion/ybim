@@ -9,9 +9,8 @@ let supplier_id = ''
 const route = useRoute()
 const router = useRouter()
 const query = route.query
-console.log(query)
 const getDetail = async () => {
-  const { supplier_id: editId } = route.query
+  const { supplier_id: editId } = query
   supplier_id = editId as string
   if (!supplier_id) {
     ElMessage.error('供应商id不正确')

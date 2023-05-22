@@ -25,7 +25,6 @@ export const delItemHandle = (msg: string, cb: Function, params: any) => {
 }
 
 export const beforeUploadFile = async (fileId: string) => {
-  console.log(fileId)
   if (fileId !== '') {
     ElMessage.error('删除之前上传文件再重新上传')
     return false

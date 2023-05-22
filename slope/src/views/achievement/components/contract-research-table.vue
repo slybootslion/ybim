@@ -4,6 +4,7 @@ import type { getProjectTableListI } from '@/views/production/project-method'
 import { pageData } from '@/views/production/project-method'
 import { contractTypeOptions, getContractList, industryTypeOption } from '@/views/achievement/contract-method'
 import { getTreeList, level3List } from '@/views/system/personnel-method'
+import PaginationComp from '@/views/public-components/pagination-comp.vue'
 
 getTreeList()
 const tableLoading = ref(false)
@@ -39,11 +40,9 @@ const searchHandle = () => {
   pageData.page_number = 1
   pageChange()
 }
-const researchNameClick = (row: resContractListItemI) => {
-  console.log(row)
-}
-const editItem = (id: string) => {
-}
+const router = useRouter()
+const researchNameClick = (id: string) => router.push(`/achievement-contract/contract-detail?contract_id=${ id }`)
+const editItem = (id: string) => router.push(`/achievement-contract/contract-form?contract_id=${ id }`)
 const delItem = (row: resContractListItemI) => {
 }
 const downloadItem = (row: resContractListItemI) => {
@@ -87,9 +86,9 @@ const downloadItem = (row: resContractListItemI) => {
   <el-table v-loading="tableLoading" :data="tableData" border style="width: 100%">
     <el-table-column label="序号" type="index" width="60" />
     <el-table-column property="contract_number" label="合同编码" width="160" />
-    <el-table-column label="合同名称" min-width="230">
+    <el-table-column label="合同名称" min-width="330">
       <template #default="scope">
-        <el-button link type="primary" @click="researchNameClick(scope.row)">
+        <el-button link type="primary" @click="researchNameClick(scope.row.contract_id)">
           {{ scope.row.contract_name }}
         </el-button>
       </template>
@@ -108,7 +107,7 @@ const downloadItem = (row: resContractListItemI) => {
     <el-table-column property="create_time" label="登记日期" width="160" />
     <el-table-column label="操作" width="180">
       <template #default="scope">
-        <el-button link type="primary" size="small" @click.prevent="editItem(scope.row.customer_id)">
+        <el-button link type="primary" size="small" @click.prevent="editItem(scope.row.contract_id)">
           编辑
         </el-button>
         <el-button link type="primary" size="small" @click.prevent="delItem(scope.row)">
@@ -120,6 +119,7 @@ const downloadItem = (row: resContractListItemI) => {
       </template>
     </el-table-column>
   </el-table>
+  <PaginationComp @page-change="pageChange" />
 </template>
 
 <style scoped lang="scss">
