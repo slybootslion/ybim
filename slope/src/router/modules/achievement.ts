@@ -69,6 +69,28 @@ const Knowledge: RouteRecordRaw = {
         activeMenu: '/achievement-knowledge',
       },
     },
+    {
+      path: 'knowledge-form',
+      name: 'achievementKnowledgeKnowledgeForm',
+      component: () => import('@/views/achievement/knowledge-form.vue'),
+      meta: {
+        title: '知识产权信息登记',
+        sidebar: false,
+        breadcrumb: false,
+        activeMenu: '/achievement-knowledge',
+      },
+    },
+    {
+      path: 'knowledge-detail',
+      name: 'achievementKnowledgeKnowledgeDetail',
+      component: () => import('@/views/achievement/knowledge-detail.vue'),
+      meta: {
+        title: '知识产权信息',
+        sidebar: false,
+        breadcrumb: false,
+        activeMenu: '/achievement-knowledge',
+      },
+    },
   ],
 }
 

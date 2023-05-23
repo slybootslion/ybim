@@ -18,9 +18,8 @@ const searchData: getKnowledgeTableListI = reactive<getKnowledgeTableListI>({
   page_number: 0,
   page_size: 0,
 })
-const researchNameClick = (id: string) => {
-  console.log(id)
-}
+const router = useRouter()
+const researchNameClick = (id: string) => router.push(`/achievement-knowledge/knowledge-detail?ip_id=${id}`)
 const pageChange = () => {
   const data: getKnowledgeTableListI = { ...pageData }
   if (searchData.result_type) data.result_type = searchData.result_type
@@ -69,7 +68,7 @@ const delItem = (row: resKnowledgeTableItemI) => {
     <el-table-column property="request_code" label="申请号" width="120" />
     <el-table-column label="名称" min-width="230">
       <template #default="scope">
-        <el-button link type="primary" @click="researchNameClick(scope.row.supplier_id)">
+        <el-button link type="primary" @click="researchNameClick(scope.row.ip_id)">
           {{ scope.row.result_name }}
         </el-button>
       </template>

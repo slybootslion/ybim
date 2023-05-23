@@ -2,7 +2,7 @@
 import KnowledgeResearchTable from '@/views/achievement/components/knowledge-research-table.vue'
 
 const router = useRouter()
-const addNew = () => {}
+const addNew = () => router.push('/achievement-knowledge/knowledge-form')
 </script>
 
 <template>
