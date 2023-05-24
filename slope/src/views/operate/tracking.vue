@@ -15,8 +15,8 @@ const submit = async (formEl: FormInstance | undefined) => {
 }
 const rules = reactive<FormRules>({
   project_id: [{ required: true, message: '输入项目名称', trigger: 'blur' }],
-  datePick: [{ required: true, message: '选择跟踪时间', trigger: 'blur' }],
-  tail_user_id: [{ required: true, message: '输入人员', trigger: 'change' }],
+  business_trip_users: [{ required: true, message: '输入人员', trigger: 'blur' }],
+  datePick: [{ required: true, message: '选择跟踪时间', trigger: 'change' }],
 })
 </script>
 
@@ -48,9 +48,9 @@ const rules = reactive<FormRules>({
               />
             </el-form-item>
           </div>
-          <!--          <el-form-item label="跟踪/出差人员：" prop="tail_user_id"> -->
-          <!--            <el-input v-model="formData.tail_user_id" /> -->
-          <!--          </el-form-item> -->
+          <el-form-item label="跟踪/出差人员：" prop="business_trip_users">
+            <el-input v-model="formData.business_trip_users" />
+          </el-form-item>
         </el-form>
       </div>
     </page-main>

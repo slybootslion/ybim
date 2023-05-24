@@ -3,6 +3,7 @@ export const loading = ref(false)
 export interface trackingFormDataI {
   project_id: string
   project_code: string
+  business_trip_users: string
   tail_start_time: string
   tail_end_time: string
   visiting_clients_company: string
@@ -22,6 +23,7 @@ export interface trackingFormDataI {
 export const formData: trackingFormDataI = reactive<trackingFormDataI>({
   project_id: '',
   project_code: '',
+  business_trip_users: '',
   tail_start_time: '',
   tail_end_time: '',
   visiting_clients_company: '',
