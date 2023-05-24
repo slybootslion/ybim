@@ -96,8 +96,7 @@ const changeYear = (type: string, num: number) => statisticsSumByYear(type, +num
         </div>
         <div class="m2">
           <el-date-picker
-            v-model="y1s"
-            type="year"
+            v-model="y1s" type="year"
             value-format="YYYY"
             :clearable="false"
             @change="(a) => changeYear('收入', a)"

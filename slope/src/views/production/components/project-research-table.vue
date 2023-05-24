@@ -61,7 +61,7 @@ const searchHandle = () => {
       <el-form-item label="项目名称：">
         <el-input v-model="searchData.project_name" clearable />
       </el-form-item>
-      <el-form-item label="客户名称：">
+      <el-form-item label="国家：">
         <el-select v-model="searchData.project_dependency_country" clearable>
           <el-option label="国内" value="国内" />
           <el-option label="国外" value="国外" />

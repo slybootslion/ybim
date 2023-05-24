@@ -24,7 +24,7 @@ const rules = reactive<FormRules>({
   trick_lock: [{ required: true, message: '是否有密码锁', trigger: 'change' }],
   filing_cert: [{ required: true, message: '是否有密码锁', trigger: 'change' }],
   fileList: [{ required: true, message: '上传扫描件', trigger: 'change' }],
-  trick_lock_custodian: [{ required: true, message: '输入详细地址', trigger: 'blur' }],
+  trick_lock_custodian: [{ required: true, message: '未输入', trigger: 'blur' }],
   trick_lock_principal_phone: [{ required: true, message: '输入联系人', trigger: 'blur' }],
   other: [{ required: true, message: '输入联系人', trigger: 'blur' }],
 })

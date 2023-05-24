@@ -18,6 +18,18 @@ export interface getProjectListParamI extends pageI {
   project_status?: number
 }
 
+export const projectStatusOptions = {
+  0: '待立项',
+  1: '已立项',
+  2: '招投标',
+  3: '放弃',
+  4: '放弃',
+  5: '落标',
+  6: '中标',
+  7: '合同评审',
+  8: '结束',
+}
+
 export interface resProjectListI {
   project_id: string
   project_code: string

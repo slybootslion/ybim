@@ -109,7 +109,7 @@ const makeSelfOptionList = async () => {
   await getTreeList()
 }
 makeSelfOptionList()
-const makeCustomerList = async (query: string) => {
+export const makeCustomerList = async (query: string) => {
   const r = await getCustomerListTable({ page_size: 8, page_number: 1, customer_name: query })
   return r.list
 }

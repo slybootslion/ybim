@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
 import type { getProjectListParamI, resProjectListI } from '@/views/operate/project-method'
-import { getProjectList, pageData } from '@/views/operate/project-method'
+import { getProjectList, pageData, projectStatusOptions } from '@/views/operate/project-method'
+import { primaryIndustryTypeOptions } from '@/views/production/project-method'
+import { primaryBusinessOptions } from '@/views/operate/customer-method'
 
 const tableLoading = ref(false)
 const tableData = ref<resProjectListI[]>([])
@@ -13,18 +15,78 @@ const getList = async (otherParam: getProjectListParamI) => {
   tableLoading.value = false
 }
 getList(pageData)
+const searchData: getProjectListParamI = reactive<getProjectListParamI>({
+  page_number: 0,
+  page_size: 0,
+})
+const pcas = ref<string[]>([])
 const pageChange = () => {
-  console.log('pageChange')
+  const data: getProjectListParamI = { ...pageData }
+  if (searchData.project_name) data.project_name = searchData.project_name
+  if (searchData.project_code) data.project_code = searchData.project_code
+  if (searchData.project_type) data.project_type = searchData.project_type
+  if (searchData.project_dependency_country === '国外') data.project_dependency_country = searchData.project_dependency_country
+  if (searchData.industry_type) data.industry_type = searchData.industry_type
+  if (searchData.operation_user) data.operation_user = searchData.operation_user
+  if (searchData.production_user) data.production_user = searchData.production_user
+  if (searchData.project_status) data.project_status = searchData.project_status
+  if (pcas.value && pcas.value.length) {
+    data.project_dependency_province = pcas.value[0]
+    data.project_dependency_city = pcas.value[1]
+  }
+  getList(data)
 }
-
 const researchNameClick = (row: resProjectListI) => {
   console.log('researchNameClick', row)
+}
+const searchHandle = () => {
+  pageData.page_number = 1
+  pageChange()
 }
 </script>
 
 <template>
   <div class="search-box">
-    search-box
+    <el-form class="search-form" :model="searchData" inline>
+      <el-form-item label="项目名称：">
+        <el-input v-model="searchData.project_name" clearable />
+      </el-form-item>
+      <el-form-item label="国家：">
+        <el-select v-model="searchData.project_dependency_country" clearable>
+          <el-option label="国内" value="国内" />
+          <el-option label="国外" value="国外" />
+        </el-select>
+      </el-form-item>
+      <el-form-item v-if="searchData.project_dependency_country === '国内'" label="地区：">
+        <pcas-cascader v-model="pcas" type="pc" format="name" />
+      </el-form-item>
+      <el-form-item label="行业类型：">
+        <el-select v-model="searchData.industry_type" clearable>
+          <el-option v-for="ind in primaryIndustryTypeOptions" :key="ind" :label="ind" :value="ind" />
+        </el-select>
+      </el-form-item>
+      <el-form-item label="项目类型：">
+        <el-select v-model="searchData.project_type">
+          <el-option v-for="bus in primaryBusinessOptions" :key="bus" :label="bus" :value="bus" />
+        </el-select>
+      </el-form-item>
+      <el-form-item label="经营负责人：">
+        <el-input v-model="searchData.operation_user" clearable />
+      </el-form-item>
+      <el-form-item label="任务编码：">
+        <el-input v-model="searchData.production_user" clearable />
+      </el-form-item>
+      <el-form-item label="项目状态：">
+        <el-select v-model="searchData.project_status">
+          <el-option v-for="(key, val) in projectStatusOptions" :key="val" :label="key" :value="val" />
+        </el-select>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="searchHandle">
+          搜索
+        </el-button>
+      </el-form-item>
+    </el-form>
   </div>
   <el-table v-loading="tableLoading" :data="tableData" border style="width: 100%">
     <el-table-column type="selection" width="50" />
@@ -65,6 +127,7 @@ const researchNameClick = (row: resProjectListI) => {
     width: 220px !important;
   }
 }
+
 .pagination {
   margin-top: 10px;
 }

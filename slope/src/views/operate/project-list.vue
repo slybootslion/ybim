@@ -13,8 +13,8 @@ const openDialog = () => {
   form.user_id = ''
   dialogFormVisible.value = true
 }
-
-const addNew = () => console.log('addNew')
+const router = useRouter()
+const addNew = () => router.push('/project-approval/approval')
 </script>
 
 <template>

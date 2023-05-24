@@ -2,7 +2,7 @@
 import { FormInstance, FormRules } from 'element-plus'
 import { back } from '@/views/scientific_research/project-method'
 import {
-  cleanFormData, formData, getEditData, loading, primaryBusinessOptions, submit
+  cleanFormData, formData, getEditData, loading, primaryBusinessOptions, submit,
 } from '@/views/operate/customer-method'
 
 const route = useRoute()
@@ -49,7 +49,7 @@ const rules = reactive<FormRules>({
             <el-input v-model="formData.customer_department" />
           </el-form-item>
           <el-form-item label="科研项目类别：" prop="primary_business_list">
-            <el-select v-model="formData.primary_business_list" multiple>
+            <el-select v-model="formData.primary_business_list" multiple collapse-tags collapse-tags-tooltip :max-collapse-tags="2">
               <el-option v-for="bus in primaryBusinessOptions" :key="bus" :label="bus" :value="bus" />
             </el-select>
           </el-form-item>
