@@ -125,7 +125,7 @@ const Bid: RouteRecordRaw = {
 const ContractRating: RouteRecordRaw = {
   path: '/contract-rating',
   component: Layout,
-  redirect: '/contract-rating/level',
+  redirect: '/contract-rating/contract-review',
   name: 'contract-rating',
   meta: {
     title: '合同评审',
@@ -133,9 +133,9 @@ const ContractRating: RouteRecordRaw = {
   },
   children: [
     {
-      path: 'level',
-      name: 'contract-rating-level',
-      component: () => import('@/views/operate/contract.vue'),
+      path: 'contract-review',
+      name: 'contract-rating-contract-review',
+      component: () => import('@/views/operate/contract-review.vue'),
       meta: {
         title: '合同评审',
         sidebar: false,

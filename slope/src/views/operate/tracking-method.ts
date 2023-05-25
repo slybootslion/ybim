@@ -1,4 +1,10 @@
+import type {UploadRequestOptions} from 'element-plus/lib/components'
+import type {UploadUserFile} from 'element-plus'
+import {uploadProjectAttach} from '@/views/operate/approval-method'
+import api from "@/api";
+
 export const loading = ref(false)
+export const editId = ref('')
 
 export interface trackingFormDataI {
   project_id: string
@@ -18,6 +24,7 @@ export interface trackingFormDataI {
   attachment: string
   others: string
   datePick?: string[]
+  fileList?: UploadUserFile[]
 }
 
 export const formData: trackingFormDataI = reactive<trackingFormDataI>({
@@ -38,4 +45,40 @@ export const formData: trackingFormDataI = reactive<trackingFormDataI>({
   attachment: '',
   others: '',
   datePick: [],
+  fileList: [],
 })
+
+export const handleUploadFile = async (obj: UploadRequestOptions) => {
+  loading.value = true
+  const res: any = await uploadProjectAttach(obj)
+  if (!res || !res.file_id) {
+    loading.value = false
+    return
+  }
+  formData.attachment = res.file_id
+  loading.value = false
+}
+
+export const clearFormData = () => {
+  editId.value = ''
+  formData.project_id = ''
+  formData.project_code = ''
+  formData.business_trip_users = ''
+  formData.tail_start_time = ''
+  formData.tail_end_time = ''
+  formData.visiting_clients_company = ''
+  formData.visiting_clients_man = ''
+  formData.visiting_clients_man_phone = ''
+  formData.subject = ''
+  formData.purchase_way = ''
+  formData.service_class = ''
+  formData.business_relations = ''
+  formData.docking_content = ''
+  formData.follow_up_plan = ''
+  formData.attachment = ''
+  formData.others = ''
+  formData.datePick = []
+  formData.fileList = []
+}
+
+export const addTail = async (parameter: trackingFormDataI) => api.post('/project/addTail', parameter)
