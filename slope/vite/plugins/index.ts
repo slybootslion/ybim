@@ -19,7 +19,7 @@ export default function createVitePlugins(viteEnv, isBuild = false) {
     vue(),
     vueJsx(),
   ]
-  vitePlugins.push(createInspector())
+  // vitePlugins.push(createInspector())
   vitePlugins.push(createAutoImport())
   vitePlugins.push(createComponents())
   vitePlugins.push(createSetupExtend())

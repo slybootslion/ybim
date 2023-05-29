@@ -37,7 +37,7 @@ const downloadItem = async (url: string) => {
   <page-main v-loading="loading" class="page-main">
     <div class="top">
       <div>
-        备案信息
+        供应商信息
       </div>
       <div>
         <el-button type="primary" @click="toEdit">

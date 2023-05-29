@@ -23,6 +23,17 @@ const Initiation: RouteRecordRaw = {
         activeMenu: '/project-initiation',
       },
     },
+    {
+      path: 'project-detail',
+      name: 'project-initiation-detail',
+      component: () => import('@/views/operate/project-detail.vue'),
+      meta: {
+        title: '立项项目信息',
+        sidebar: false,
+        breadcrumb: false,
+        activeMenu: '/project-initiation',
+      },
+    },
   ],
 }
 

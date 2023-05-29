@@ -32,6 +32,7 @@ const submit = async (formEl: FormInstance | undefined) => {
     if (valid) {
       loading.value = true
       formData.joint_bid = +formData.joint_bid
+      if (formData.joint_bid === 0) delete formData.joint_company
       delete formData.fileList
       if (!editId.value) {
         const res: any = await addTender(formData)

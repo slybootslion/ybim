@@ -36,9 +36,8 @@ const pageChange = () => {
   }
   getList(data)
 }
-const researchNameClick = (row: resProjectListI) => {
-  console.log('researchNameClick', row)
-}
+const router = useRouter()
+const researchNameClick = (row: resProjectListI) => router.push(`/project-initiation/project-detail?project_id=${row.project_id}`)
 const searchHandle = () => {
   pageData.page_number = 1
   pageChange()
@@ -77,7 +76,7 @@ const searchHandle = () => {
         <el-input v-model="searchData.production_user" clearable />
       </el-form-item>
       <el-form-item label="项目状态：">
-        <el-select v-model="searchData.project_status">
+        <el-select v-model="searchData.project_status" clearable>
           <el-option v-for="(key, val) in projectStatusOptions" :key="val" :label="key" :value="val" />
         </el-select>
       </el-form-item>
