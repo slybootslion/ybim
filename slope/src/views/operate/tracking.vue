@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { FormInstance, FormRules, UploadUserFile } from 'element-plus'
-import { addTail, clearFormData, editId, formData, handleUploadFile, loading } from '@/views/operate/tracking-method'
+import { addTail, clearFormData, formData, handleUploadFile, loading } from '@/views/operate/tracking-method'
 import { getTreeList } from '@/views/system/personnel-method'
 import { beforeUploadFile, handleRemoveFile } from '@/utils/tools'
 import { projectOptions, projectSearchLoading, remoteMethod } from '@/views/production/task-method'
 
 getTreeList()
+remoteMethod('')
+const route = useRoute()
+const query = route.query
 const ruleFormRef = ref<FormInstance>()
-const router = useRouter()
 const submit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate(async (valid) => {
@@ -17,14 +19,10 @@ const submit = async (formEl: FormInstance | undefined) => {
       delete formData.datePick
       delete formData.fileList
       loading.value = true
-      if (!editId.value) {
-        const res: any = await addTail(formData)
-        if (res!.code !== 0) {
-          loading.value = false
-          return
-        }
-      } else {
-        console.log('edit')
+      const res: any = await addTail(formData)
+      if (res!.code !== 0) {
+        loading.value = false
+        return
       }
       clearFormData()
       loading.value = false
@@ -40,7 +38,9 @@ const rules = reactive<FormRules>({
   subject: [{ required: true, message: '输入主题', trigger: 'blur' }],
   datePick: [{ required: true, message: '选择跟踪时间', trigger: 'change' }],
 })
-remoteMethod('')
+if (query.project_id) {
+  formData.project_id = query.project_id as string
+} else clearFormData()
 </script>
 
 <template>

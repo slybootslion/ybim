@@ -32,7 +32,8 @@ api.interceptors.request.use(
     }
     if (userStore.isLogin && request.headers) {
       // request.headers.Token = userStore.token
-      request.headers.Authorization = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJCSjAwMDE1QzY4OTQiLCJpYXQiOjE2Nzk4OTkzMDksImV4cCI6MTY3OTk0MjUwOX0.BqjSXntLUb98ziP6pYCx5PCZTkZeZfcZpkYqwQXPl9o'
+      // request.headers.Authorization = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJCSjAwMDE1QzY4OTQiLCJpYXQiOjE2Nzk4OTkzMDksImV4cCI6MTY3OTk0MjUwOX0.BqjSXntLUb98ziP6pYCx5PCZTkZeZfcZpkYqwQXPl9o'
+      request.headers.Authorization = userStore.token
     }
     if (request.method === 'post' && request.data) {
       let hasFile = false

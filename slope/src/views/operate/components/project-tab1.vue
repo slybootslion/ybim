@@ -10,7 +10,9 @@ import {
 const props = defineProps<{
   projectId: string
 }>()
+const emit = defineEmits(['goRouter'])
 const loading = ref(false)
+const ruleFormRef = ref<FormInstance>()
 const formData: approveFormDataI = reactive<approveFormDataI>({
   approve_contents: '',
   approve_id: '',
@@ -23,13 +25,31 @@ const getDetail = async () => {
   loading.value = false
 }
 getDetail()
-
-const ruleFormRef = ref<FormInstance>()
 </script>
 
 <template>
   <div v-loading="loading">
     <div class="block">
+      <div class="top-button">
+        <el-button type="primary">
+          取消
+        </el-button>
+        <el-button type="primary" @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-approval/approval' })">
+          重新发起
+        </el-button>
+        <el-button type="primary" @click="() => emit('goRouter', { projectId: props.projectId, url: '/tracking-information/tracking' })">
+          跟踪记录
+        </el-button>
+        <el-button type="primary" @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-bidding/bidding' })">
+          新建投标评审
+        </el-button>
+        <el-button type="primary" @click="() => emit('goRouter', { projectId: props.projectId, url: '/contract-rating/contract-review' })">
+          合同评审
+        </el-button>
+        <el-button type="primary">
+          项目完结
+        </el-button>
+      </div>
       <el-descriptions title="基本信息" :column="2">
         <el-descriptions-item label="项目名称：">
           {{ (activeProjectData as resProjectDataI).project_name }}

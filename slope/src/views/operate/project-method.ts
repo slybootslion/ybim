@@ -1,8 +1,7 @@
-import type { FormRules } from 'element-plus'
+import type { FormInstance, FormRules } from 'element-plus'
 import type { pageI } from '@/utils/tools'
 import api, { baseURL } from '@/api'
 import { getDownloadUrl } from '@/views/scientific_research/project-method'
-import {FormInstance} from "element-plus";
 
 export const pageData = reactive<pageI>({
   page_size: 10, page_number: 1, total: 0,
@@ -114,6 +113,7 @@ export const projectStatusOptions = {
 
 export interface resProjectListI {
   project_id: string
+  project_name: string
   project_code: string
   industry_type: string
   project_type: string
@@ -172,6 +172,7 @@ export interface resContractReviewI {
   approve_id: string
   conre_approve: approveItemI[]
 }
+
 export const activeContractReviewData: Ref<resContractReviewI> = ref<resContractReviewI>({
   conre_id: '',
   project_id: '',
@@ -195,6 +196,10 @@ export const getContractReview = async (project_id: string) => {
   const res: any = await api.get(`/project/getContractReview?project_id=${project_id}`)
   return res.data
 }
+export const getTailList = async (project_id: string) => {
+  const res: any = await api.get(`/project/getTailList?project_id=${project_id}`)
+  return res.data
+}
 export const rules = reactive<FormRules>({
   approve_result: [{ required: true, message: '选择审核结果', trigger: 'change' }],
   approve_contents: [{ required: true, message: '输入审核意见', trigger: 'blur' }],
@@ -216,6 +221,7 @@ export const approveSubmit = async (formEl: FormInstance | undefined, formData: 
     }
   })
 }
+
 export interface resTenderI {
   applicant_user: string
   tender_id: string
@@ -253,6 +259,7 @@ export interface resTenderI {
   approve_id: string
   tender_approve: approveItemI[]
 }
+
 export const activeTenderData: Ref<resTenderI> = ref<resTenderI>({
   applicant_user: '',
   tender_id: '',
@@ -290,3 +297,32 @@ export const activeTenderData: Ref<resTenderI> = ref<resTenderI>({
   approve_id: '',
   tender_approve: [],
 })
+
+export interface tailItemI {
+  tail_start_time: string
+  tail_end_time: string
+  visiting_clients_company: string
+  visiting_clients_man: string
+  visiting_clients_man_phone: string
+  subject: string
+  purchase_way: string
+  service_class: string
+  business_relations: string
+  docking_content: string
+  follow_up_plan: string
+  attachment: string
+  others: string
+  tail_user: string
+}
+
+export const activeTailList: Ref<tailItemI[]> = ref<tailItemI[]>([])
+
+export const tableLoading = ref(false)
+export const tableData = ref<resProjectListI[]>([])
+export const getList = async (otherParam: getProjectListParamI) => {
+  tableLoading.value = true
+  const res = await getProjectList(otherParam)
+  tableData.value = res.list as resProjectListI[]
+  pageData.total = res.total
+  tableLoading.value = false
+}

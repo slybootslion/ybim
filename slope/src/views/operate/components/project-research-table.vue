@@ -1,19 +1,10 @@
 <script lang="ts" setup>
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
 import type { getProjectListParamI, resProjectListI } from '@/views/operate/project-method'
-import { getProjectList, pageData, projectStatusOptions } from '@/views/operate/project-method'
+import {getList, pageData, projectStatusOptions, tableData, tableLoading} from '@/views/operate/project-method'
 import { primaryIndustryTypeOptions } from '@/views/production/project-method'
 import { primaryBusinessOptions } from '@/views/operate/customer-method'
 
-const tableLoading = ref(false)
-const tableData = ref<resProjectListI[]>([])
-const getList = async (otherParam: getProjectListParamI) => {
-  tableLoading.value = true
-  const res = await getProjectList(otherParam)
-  tableData.value = res.list as resProjectListI[]
-  pageData.total = res.total
-  tableLoading.value = false
-}
 getList(pageData)
 const searchData: getProjectListParamI = reactive<getProjectListParamI>({
   page_number: 0,

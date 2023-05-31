@@ -25,7 +25,7 @@ const redirect = ref(route.query.redirect?.toString() ?? '/')
 
 // 登录
 const loginFormRef = ref<FormInstance>()
-const loginForm = ref({
+const loginForm: Ref = ref({
   account: localStorage.login_account || '',
   password: '',
   remember: !!localStorage.login_account,
@@ -61,7 +61,7 @@ function handleLogin() {
 
 // 重置密码
 const resetFormRef = ref<FormInstance>()
-const resetForm = ref({
+const resetForm: Ref = ref({
   account: localStorage.login_account || '',
   captcha: '',
   newPassword: '',
@@ -101,7 +101,7 @@ function testAccount(account: string) {
   <div>
     <div class="bg-banner" />
     <div id="login-box">
-      <el-form v-show="formType === 'login'" ref="loginFormRef" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on">
+      <el-form v-show="formType === 'login'" ref="loginFormRef" :model="loginForm" :rules="loginRules as FormRules" class="login-form" autocomplete="on">
         <div class="title-container">
           <h3 class="title">
             {{ title }}
@@ -139,7 +139,7 @@ function testAccount(account: string) {
           登录
         </el-button>
       </el-form>
-      <el-form v-show="formType === 'reset'" ref="resetFormRef" :model="resetForm" :rules="resetRules" class="login-form" auto-complete="on">
+      <el-form v-show="formType === 'reset'" ref="resetFormRef" :model="resetForm" :rules="resetRules as FormRules" class="login-form" auto-complete="on">
         <div class="title-container">
           <h3 class="title">
             忘记密码了? 🔒

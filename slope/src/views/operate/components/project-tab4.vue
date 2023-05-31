@@ -30,6 +30,14 @@ const ruleFormRef = ref<FormInstance>()
 <template>
   <div v-loading="loading">
     <div class="block">
+      <div class="top-button">
+        <el-button type="primary">
+          取消
+        </el-button>
+        <el-button type="primary">
+          重新发起
+        </el-button>
+      </div>
       <el-descriptions title="基本信息" :column="2" style="margin-bottom: 20px;">
         <el-descriptions-item label="所属项目：">
           {{ (activeProjectData as resProjectDataI).project_name }}

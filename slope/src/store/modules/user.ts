@@ -11,14 +11,15 @@ const useUserStore = defineStore(
 
     const account = ref(localStorage.account ?? '')
     const token = ref(localStorage.token ?? '')
-    const failure_time = ref(localStorage.failure_time ?? '')
+    // const failure_time = ref(localStorage.failure_time ?? '')
     const permissions = ref<string[]>([])
     const isLogin = computed(() => {
       let retn = false
       if (token.value) {
-        if (new Date().getTime() < parseInt(failure_time.value) * 1000) {
-          retn = true
-        }
+        // if (new Date().getTime() < parseInt(failure_time.value) * 1000) {
+        //   retn = true
+        // }
+        retn = true
       }
       return retn
     })
@@ -29,27 +30,34 @@ const useUserStore = defineStore(
       password: string
     }) {
       // 通过 mock 进行登录
-      const res = await api.post('member/login', data, {
-        baseURL: '/mock/',
-      })
-      localStorage.setItem('account', res.data.account)
+      // const res = await api.post('member/login', data, {
+      //   baseURL: '/mock/',
+      // })
+      // localStorage.setItem('account', res.data.account)
+      // localStorage.setItem('token', res.data.token)
+      // localStorage.setItem('failure_time', res.data.failure_time)
+      // account.value = res.data.account
+      // token.value = res.data.token
+      // failure_time.value = res.data.failure_time
+      const res = await api.post('/index/login', { user_name: data.account, user_password: data.password })
+      localStorage.setItem('account', res.data.user_name)
       localStorage.setItem('token', res.data.token)
-      localStorage.setItem('failure_time', res.data.failure_time)
-      account.value = res.data.account
+      account.value = res.data.user_name
       token.value = res.data.token
-      failure_time.value = res.data.failure_time
     }
+
     // 登出
     async function logout() {
       localStorage.removeItem('account')
       localStorage.removeItem('token')
-      localStorage.removeItem('failure_time')
+      // // localStorage.removeItem('failure_time')
       account.value = ''
       token.value = ''
-      failure_time.value = ''
+      // failure_time.value = ''
       routeStore.removeRoutes()
       menuStore.setActived(0)
     }
+
     // 获取我的权限
     async function getPermissions() {
       // 通过 mock 获取权限
@@ -62,6 +70,7 @@ const useUserStore = defineStore(
       permissions.value = res.data.permissions
       return permissions.value
     }
+
     // 修改密码
     async function editPassword(data: {
       password: string

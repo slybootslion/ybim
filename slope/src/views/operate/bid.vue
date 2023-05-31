@@ -2,15 +2,16 @@
 import { FormInstance, FormRules, UploadUserFile } from 'element-plus'
 import { projectOptions, projectSearchLoading, remoteMethod } from '@/views/production/task-method'
 import {
-  clearFormData,
-  editId,
-  formData, handleUploadFile1, handleUploadFile2, handleUploadFile3, loading,
+  clearFormData, formData, getProject, handleUploadFile1, handleUploadFile2, handleUploadFile3, loading,
   projectHandle, registerTenderResult, selectBlur, selectChange,
 } from '@/views/operate/bid-method'
 import { getTreeList, level2List } from '@/views/system/personnel-method'
 import { beforeUploadFile, handleRemoveFile } from '@/utils/tools'
 
 getTreeList()
+remoteMethod('')
+const route = useRoute()
+const query = route.query
 const ruleFormRef = ref<FormInstance>()
 const rules = reactive<FormRules>({
   project_id: [{ required: true, message: '输入项目名称', trigger: 'change' }],
@@ -33,22 +34,23 @@ const submit = async (formEl: FormInstance | undefined) => {
         delete formData.win_time
         delete formData.win_bidder
       }
-      if (!editId.value) {
-        const res: any = await registerTenderResult(formData)
-        console.log(res)
-        if (res.code !== 0) {
-          loading.value = false
-          return
-        }
-      } else {
-        console.log('edit')
+      const res: any = await registerTenderResult(formData)
+      if (res.code !== 0) {
+        loading.value = false
+        return
       }
       loading.value = false
       clearFormData()
     }
   })
 }
-remoteMethod('')
+const initProject = async (id: string) => {
+  const res = await getProject(id)
+  formData.project_id = query.project_id as string
+  formData.project_general = res.project_general
+}
+if (query.project_id) initProject(query.project_id as string)
+else clearFormData()
 </script>
 
 <template>

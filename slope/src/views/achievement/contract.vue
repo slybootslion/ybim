@@ -53,86 +53,84 @@ const changeYear = (type: string, num: number) => statisticsSumByYear(type, +num
 </script>
 
 <template>
-  <div>
-    <page-main class="page-main">
-      <div class="top">
-        <div class="top-left">
-          <div class="title">
-            合同管理
-          </div>
-        </div>
-        <div class="top-right">
-          <el-button size="large" type="primary" @click="addNew">
-            合同存档
-          </el-button>
+  <page-main class="page-main">
+    <div class="top">
+      <div class="top-left">
+        <div class="title">
+          合同管理
         </div>
       </div>
-      <div class="middle">
-        <div class="m1">
-          <div class="m-item">
-            <div class="label">
-              合同总数：
-            </div>
-            <div class="number">
-              {{ staTypeCount.all_count }}
-            </div>
+      <div class="top-right">
+        <el-button size="large" type="primary" @click="addNew">
+          合同存档
+        </el-button>
+      </div>
+    </div>
+    <div class="middle">
+      <div class="m1">
+        <div class="m-item">
+          <div class="label">
+            合同总数：
           </div>
-          <div class="m-item">
-            <div class="label">
-              收入合同：
-            </div>
-            <div class="number">
-              {{ staTypeCount.in_count }}
-            </div>
-          </div>
-          <div class="m-item">
-            <div class="label">
-              支出合同：
-            </div>
-            <div class="number">
-              {{ staTypeCount.out_count }}
-            </div>
+          <div class="number">
+            {{ staTypeCount.all_count }}
           </div>
         </div>
-        <div class="m2">
-          <el-date-picker
-            v-model="y1s" type="year"
-            value-format="YYYY"
-            :clearable="false"
-            @change="(a) => changeYear('收入', a)"
-          />
-          <div class="m-item">
-            <div class="label">
-              收入总合同额：
-            </div>
-            <div class="number">
-              {{ inNum }}
-            </div>
+        <div class="m-item">
+          <div class="label">
+            收入合同：
+          </div>
+          <div class="number">
+            {{ staTypeCount.in_count }}
           </div>
         </div>
-        <div class="m2">
-          <el-date-picker
-            v-model="y2s"
-            type="year"
-            value-format="YYYY"
-            :clearable="false"
-            @change="(a) => changeYear('支出', a)"
-          />
-          <div class="m-item">
-            <div class="label">
-              支出总合同额：
-            </div>
-            <div class="number">
-              {{ outNum }}
-            </div>
+        <div class="m-item">
+          <div class="label">
+            支出合同：
+          </div>
+          <div class="number">
+            {{ staTypeCount.out_count }}
           </div>
         </div>
       </div>
-      <div class="bottom">
-        <ContractResearchTable />
+      <div class="m2">
+        <el-date-picker
+          v-model="y1s" type="year"
+          value-format="YYYY"
+          :clearable="false"
+          @change="(a) => changeYear('收入', a)"
+        />
+        <div class="m-item">
+          <div class="label">
+            收入总合同额：
+          </div>
+          <div class="number">
+            {{ inNum }}
+          </div>
+        </div>
       </div>
-    </page-main>
-  </div>
+      <div class="m2">
+        <el-date-picker
+          v-model="y2s"
+          type="year"
+          value-format="YYYY"
+          :clearable="false"
+          @change="(a) => changeYear('支出', a)"
+        />
+        <div class="m-item">
+          <div class="label">
+            支出总合同额：
+          </div>
+          <div class="number">
+            {{ outNum }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+      <ContractResearchTable />
+    </div>
+  </page-main>
 </template>
 
 <style lang="scss" scoped>

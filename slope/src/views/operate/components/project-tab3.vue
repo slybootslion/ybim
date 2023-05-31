@@ -9,16 +9,16 @@ import {
   activeProjectData, activeTenderData, approveSubmit,
   downloadItem, resProjectDataI, resTenderI, rules,
 } from '@/views/operate/project-method'
-
 const props = defineProps<{
   projectId: string
 }>()
+const emit = defineEmits(['goRouter'])
+const ruleFormRef = ref<FormInstance>()
 const loading = ref(false)
 const formData: approveFormDataI = reactive<approveFormDataI>({
   approve_contents: '',
   approve_id: '',
 })
-
 const getDetail = async () => {
   loading.value = true
   const data = await getTender(props.projectId)
@@ -27,12 +27,22 @@ const getDetail = async () => {
   loading.value = false
 }
 getDetail()
-const ruleFormRef = ref<FormInstance>()
 </script>
 
 <template>
   <div v-loading="loading">
     <div class="block">
+      <div class="top-button">
+        <el-button type="primary">
+          取消投标
+        </el-button>
+        <el-button type="primary" @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-bidding/bidding' })">
+          重新发起投标
+        </el-button>
+        <el-button type="primary" @click="() => emit('goRouter', { projectId: props.projectId, url: '/register-bid/bid' })">
+          登记投标结果
+        </el-button>
+      </div>
       <el-descriptions title="基本信息" :column="2">
         <el-descriptions-item label="项目名称：">
           {{ (activeProjectData as resProjectDataI).project_name }}

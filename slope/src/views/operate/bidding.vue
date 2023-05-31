@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { FormInstance, FormRules, UploadUserFile } from 'element-plus'
 import {
-  addTender, clearFormData, editId,
+  addTender, clearFormData,
   formData, handleUploadFile, loading, primaryPurchaseWayOptions,
 } from '@/views/operate/bidding-method'
 import { projectOptions, projectSearchLoading, remoteMethod } from '@/views/production/task-method'
@@ -9,6 +9,9 @@ import { getTreeList, level2List } from '@/views/system/personnel-method'
 import { beforeUploadFile, handleRemoveFile } from '@/utils/tools'
 
 getTreeList()
+remoteMethod('')
+const route = useRoute()
+const query = route.query
 const ruleFormRef = ref<FormInstance>()
 const rules = reactive<FormRules>({
   project_id: [{ required: true, message: '输入项目名称', trigger: 'change' }],
@@ -34,21 +37,19 @@ const submit = async (formEl: FormInstance | undefined) => {
       formData.joint_bid = +formData.joint_bid
       if (formData.joint_bid === 0) delete formData.joint_company
       delete formData.fileList
-      if (!editId.value) {
-        const res: any = await addTender(formData)
-        if (res.code !== 0) {
-          loading.value = false
-          return
-        }
-      } else {
-        console.log('edit')
+      const res: any = await addTender(formData)
+      if (res.code !== 0) {
+        loading.value = false
+        return
       }
       clearFormData()
       loading.value = false
     }
   })
 }
-remoteMethod('')
+if (query.project_id) {
+  formData.project_id = query.project_id as string
+} else clearFormData()
 </script>
 
 <template>

@@ -2,14 +2,18 @@
 import { FormInstance, FormRules, UploadUserFile } from 'element-plus'
 import {
   addProject, clearFormData,
-  customerOptions, editId, formData, getCustomerHandle, handleUploadFile,
+  customerOptions, formData, getCustomerHandle, handleUploadFile,
   loading, searchLoading,
 } from '@/views/operate/approval-method'
 import { primaryIndustryTypeOptions } from '@/views/production/project-method'
 import { primaryBusinessOptions } from '@/views/operate/customer-method'
 import { getTreeList, getUserList, level3List } from '@/views/system/personnel-method'
 import { beforeUploadFile, handleRemoveFile } from '@/utils/tools'
+import { getProject } from '@/views/operate/bid-method'
+import { baseURL } from '@/api'
 
+const route = useRoute()
+const query = route.query
 const userList = ref([])
 const initUserList = async () => userList.value = await getUserList()
 initUserList()
@@ -41,17 +45,44 @@ const submit = async (formEl: FormInstance | undefined) => {
       delete formData.fileList
       delete formData.project_type_arr
       loading.value = true
-      if (!editId.value) {
-        await addProject(formData)
-      } else {
-        console.log('edit')
-      }
+      await addProject(formData)
       loading.value = false
       clearFormData()
       await router.push('/project-initiation/project-list')
     }
   })
 }
+const initProject = async (id: string) => {
+  const res = await getProject(id)
+  formData.project_name = res.project_name
+  formData.project_general = res.project_general
+  formData.project_code = res.project_code
+  formData.project_type = ''
+  formData.project_type_arr = res.project_type.split(',')
+  formData.project_dependency_country = res.project_dependency_country
+  formData.project_dependency_province = ''
+  formData.project_dependency_city = ''
+  formData.industry_type = res.industry_type
+  formData.expect_amount = res.expect_amount
+  formData.proprietor_customer_id = res.proprietor_customer_id
+  formData.proprietor_linkman = res.proprietor_linkman
+  formData.proprietor_linkman_phone = res.proprietor_linkman_phone
+  formData.business_partner = res.business_partner
+  formData.business_partner_phone = res.business_partner_phone
+  formData.operation_department_id = res.operation_department_id
+  formData.operation_user_id = res.operation_user_id
+  formData.production_department_id = res.production_department_id
+  formData.production_user_id = res.production_user_id
+  formData.attachment = res.attachment
+  formData.others = res.others
+  formData.pcas = [res.project_dependency_province, res.project_dependency_city]
+  formData.fileList = [{
+    name: res.attachment_name,
+    url: baseURL + res.attachment_url.slice(4),
+  }]
+}
+if (query.project_id) initProject(query.project_id as string)
+else clearFormData()
 </script>
 
 <template>

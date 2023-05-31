@@ -193,7 +193,7 @@ export const submit = async (formEl: FormInstance | undefined) => {
   })
 }
 
-export const fileList = ref<UploadUserFile[]>([])
+export const fileList: Ref<UploadUserFile[]> = ref<UploadUserFile[]>([])
 
 export const handleUploadFile = async (obj: UploadRequestOptions) => {
   loading.value = true

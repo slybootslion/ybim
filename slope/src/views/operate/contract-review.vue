@@ -3,7 +3,6 @@ import { FormInstance, FormRules, UploadUserFile } from 'element-plus'
 import {
   addContractReview,
   clearFormData,
-  editId,
   formData,
   handleUploadFile,
   loading,
@@ -15,7 +14,10 @@ import { customerOptions, getCustomerHandle, searchLoading } from '@/views/opera
 import { beforeUploadFile, handleRemoveFile } from '@/utils/tools'
 
 getTreeList()
+remoteMethod('')
 getCustomerHandle('')
+const route = useRoute()
+const query = route.query
 const ruleFormRef = ref<FormInstance>()
 const submit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
@@ -23,14 +25,10 @@ const submit = async (formEl: FormInstance | undefined) => {
     if (valid) {
       loading.value = true
       delete formData.fileList
-      if (!editId.value) {
-        const res: any = await addContractReview(formData)
-        if (!res || res.code !== 0) {
-          loading.value = false
-          return
-        }
-      } else {
-        console.log('edit')
+      const res: any = await addContractReview(formData)
+      if (!res || res.code !== 0) {
+        loading.value = false
+        return
       }
       formData.attachment = ''
       loading.value = false
@@ -46,7 +44,9 @@ const rules = reactive<FormRules>({
   contract_number: [{ required: true, message: '输入编号', trigger: 'blur' }],
   contract_money: [{ required: true, message: '输入金额', trigger: 'blur' }],
 })
-remoteMethod('')
+if (query.project_id) {
+  formData.project_id = query.project_id as string
+} else clearFormData()
 </script>
 
 <template>

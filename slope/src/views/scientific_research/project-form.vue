@@ -148,7 +148,7 @@ const rules = reactive<FormRules>({
           </el-form-item>
           <el-form-item label="附件：">
             <!-- eslint-disable-next-line -->
-            <el-upload v-model:file-list="fileList as UploadUserFile[]" action="" accept=".pdf"
+            <el-upload v-model:file-list="fileList" action="" accept=".pdf"
                        :http-request="handleUploadFile" :before-upload="beforeUploadFile"
                        :on-remove="handleRemoveFile"
             >
