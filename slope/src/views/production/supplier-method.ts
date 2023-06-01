@@ -125,7 +125,6 @@ const uploadSupplierAttach = async (file: File) => {
 export const handleUploadFile = async (obj: UploadRequestOptions) => {
   loading.value = true
   const res = await uploadSupplierAttach(obj.file)
-  console.log(res)
   if (!res || !res.file_id) {
     loading.value = false
     return
