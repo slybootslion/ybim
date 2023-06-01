@@ -94,7 +94,6 @@ const getStatistics = async () => {
   statisticsData.customer = res.data.customer
 }
 getStatistics()
-setTimeout(() => console.log(statisticsData), 1500)
 const clickToDetail = (id: string, type: number) => {
   if (type === 3) {
     router.push(`/production-management/task-detail?task_id=${id}`)
