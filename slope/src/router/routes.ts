@@ -151,16 +151,16 @@ const asyncRoutes: Route.recordMainRaw[] = [
       Role,
     ],
   },
-  {
-    meta: {
-      title: '演示',
-      icon: 'sidebar-default',
-    },
-    children: [
-      MultilevelMenuExample,
-      BreadcrumbExample,
-    ],
-  },
+  // {
+  //   meta: {
+  //     title: '演示',
+  //     icon: 'sidebar-default',
+  //   },
+  //   children: [
+  //     MultilevelMenuExample,
+  //     BreadcrumbExample,
+  //   ],
+  // },
 ]
 
 const constantRoutesByFilesystem = generatedRoutes.filter((item) => {

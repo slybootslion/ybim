@@ -40,6 +40,7 @@ watchEffect(() => {
   if (props.tableData.length) {
     tableLineData = []
     for (const tableDataItem of props.tableData) flatDataHandle(tableDataItem, 1)
+    console.log(tableLineData)
   }
 })
 
@@ -51,7 +52,9 @@ interface SpanMethodProps {
 }
 
 const option = [
-  { index: 0, field: '' },
+  { index: 0, field: 'level1' },
+  { index: 1, field: 'level2' },
+  { index: 2, field: 'level3' },
 ]
 const objectSpanMethod = ({ row, column, rowIndex, columnIndex }: SpanMethodProps) => {
   return spanRow({ row, column, rowIndex, columnIndex },
@@ -65,7 +68,7 @@ const findLineChecked = (line: tableLineItemI) => {
   const l2 = line.level2
   if (l2?.checked) menu_ids.value.push(l2!.menu_id)
   const l3 = line.level3
-  for (const l3el of l3!) if (l3el.checked) menu_ids.value.push(l3el.menu_id)
+  if (l3) for (const l3el of l3!) if (l3el.checked) menu_ids.value.push(l3el.menu_id)
 }
 const changeRole = async () => {
   menu_ids.value = []

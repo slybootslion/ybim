@@ -144,14 +144,23 @@ export const changeActive = async (data: RoleItem) => {
 // 合并表格
 let rowspanArray: any
 
-export function spanRow ({ rowIndex, columnIndex }: any, data: any, option: any) {
-  if (rowIndex === 0 && columnIndex === 0) computeSpanRow(data, option)
+export function spanRow({ rowIndex, columnIndex }: any, data: any, option: any) {
+  if (rowIndex === 0 && columnIndex === 0) {
+    computeSpanRow(data, option)
+  }
   if (is(option, columnIndex)) {
     const rowspan = rowspanArray[columnIndex][rowIndex]
     const colspan = rowspan > 0 ? 1 : 0
-    return { rowspan, colspan }
+    return {
+      rowspan,
+      colspan,
+    }
   }
-  return { rowspan: 1, colspan: 1 }
+
+  return {
+    rowspan: 1,
+    colspan: 1,
+  }
 }
 
 function computeSpanRow (data: any, option: any) {
@@ -161,7 +170,6 @@ function computeSpanRow (data: any, option: any) {
     for (let j = 0; j < option.length; j++) {
       const index = option[j].index
       const field = option[j].field
-
       if (i === 0) {
         tempRow[index] = 0
         rowspanArray[index] = []
