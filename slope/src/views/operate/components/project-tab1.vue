@@ -21,6 +21,7 @@ const getDetail = async () => {
   loading.value = true
   const data = await getProject(props.projectId)
   activeProjectData.value = data as resProjectDataI
+  console.log(activeProjectData.value)
   formData.approve_id = data.approve_id
   loading.value = false
 }
@@ -108,6 +109,11 @@ getDetail()
       <el-descriptions title="" :column="1">
         <el-descriptions-item label="项目概况：">
           {{ (activeProjectData as resProjectDataI).project_general }}
+        </el-descriptions-item>
+      </el-descriptions>
+      <el-descriptions title="" :column="1">
+        <el-descriptions-item label="其他事项说明：">
+          {{ (activeProjectData as resProjectDataI).others }}
         </el-descriptions-item>
       </el-descriptions>
       <el-descriptions style="margin-bottom: 20px;" title="" :column="1">

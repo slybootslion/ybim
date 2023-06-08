@@ -40,7 +40,6 @@ watchEffect(() => {
   if (props.tableData.length) {
     tableLineData = []
     for (const tableDataItem of props.tableData) flatDataHandle(tableDataItem, 1)
-    console.log(tableLineData)
   }
 })
 
