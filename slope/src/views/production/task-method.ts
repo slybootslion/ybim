@@ -1,5 +1,6 @@
 import type { Ref } from 'vue'
 import api from '@/api'
+import type { approveItemI } from '@/views/operate/project-method'
 import { getProjectList } from '@/views/operate/project-method'
 
 interface resTaskOpI {
@@ -33,6 +34,9 @@ export interface resTaskDataI {
   main_department: string
   production_user: string
   participating_organization: resTaskOpI[]
+  registrant_user: string
+  approve_id: string
+  task_approve: approveItemI[]
 }
 
 export const activeTaskData: Ref<resTaskDataI> = ref<resTaskDataI>({
@@ -54,6 +58,9 @@ export const activeTaskData: Ref<resTaskDataI> = ref<resTaskDataI>({
   main_department: '',
   production_user: '',
   participating_organization: [],
+  registrant_user: '',
+  approve_id: '',
+  task_approve: [],
 })
 
 export interface taskFileI {

@@ -99,8 +99,8 @@ export const submit = async (formEl: FormInstance | undefined) => {
       formData.address_city = (formData.pcas as string[])[1]
       formData.primary_business = formData.primary_business_list!.join(',')
       if (!formData.customer_department) delete formData.customer_department
-      delete formData.pcas
-      delete formData.primary_business_list
+      // delete formData.pcas
+      // delete formData.primary_business_list
       if (!editId.value) {
         await addCustomer(formData)
       } else {

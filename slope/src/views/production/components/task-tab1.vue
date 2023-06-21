@@ -1,17 +1,26 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
+import { FormInstance, FormRules } from 'element-plus'
 import type { resTaskDataI } from '@/views/production/task-method'
 import { activeTaskData, getTask } from '@/views/production/task-method'
+import type { approveFormDataI } from '@/views/operate/project-method'
+import {activeTenderData, approveSubmit, rules} from "@/views/operate/project-method";
 
 const props = defineProps<{
   taskId: string
 }>()
 const loading = ref(false)
 const days = ref('')
+const ruleFormRef = ref<FormInstance>()
+const formData: approveFormDataI = reactive<approveFormDataI>({
+  approve_contents: '',
+  approve_id: '',
+})
 const getDetail = async () => {
   const data = await getTask(props.taskId)
   activeTaskData.value = data as resTaskDataI
-  days.value = `${ dayjs(data.end_time).diff(data.start_time, 'day') }`
+  if (data && data.approve_id) formData.approve_id = data.approve_id
+  if (data && data.end_time && data.start_time) days.value = `${ dayjs(data.end_time).diff(data.start_time, 'day') }`
 }
 getDetail()
 </script>
@@ -40,6 +49,9 @@ getDetail()
         </el-descriptions-item>
         <el-descriptions-item label="项目工期：">
           {{ days }}天
+        </el-descriptions-item>
+        <el-descriptions-item label="经办人：">
+          {{ activeTaskData.registrant_user }}天
         </el-descriptions-item>
       </el-descriptions>
       <el-descriptions :column="2" style="margin-top: 40px;">
@@ -89,6 +101,47 @@ getDetail()
         </el-descriptions-item>
         <el-descriptions-item label="生产任务情况说明：">
           {{ op.task_explain }}
+        </el-descriptions-item>
+      </el-descriptions>
+      <el-form
+        v-if="(activeTaskData as resTaskDataI).approve_id"
+        ref="ruleFormRef" inline :model="formData" :rules="rules as FormRules" label-width="130px"
+        style="margin-bottom: 20px;"
+      >
+        <el-descriptions title="审核信息" :column="1">
+          <el-descriptions-item label="审核：">
+            <el-form-item label="" prop="approve_result">
+              <el-radio-group v-model="formData.approve_result">
+                <el-radio :label="1">
+                  通过
+                </el-radio>
+                <el-radio :label="-1">
+                  不通过
+                </el-radio>
+              </el-radio-group>
+            </el-form-item>
+          </el-descriptions-item>
+          <el-descriptions-item label="审核意见：">
+            <el-form-item label="" prop="approve_contents">
+              <el-input v-model="formData.approve_contents" type="textarea" rows="1" />
+            </el-form-item>
+          </el-descriptions-item>
+          <el-descriptions-item label="">
+            <el-button type="primary" @click="approveSubmit(ruleFormRef as FormInstance, formData, getDetail)">
+              提交
+            </el-button>
+          </el-descriptions-item>
+        </el-descriptions>
+      </el-form>
+      <el-descriptions style="margin-top: 20px;" title="审批意见" :column="1">
+        <el-descriptions-item
+          v-for="(item, index) in (activeTaskData as resTaskDataI).task_approve"
+          :key="index" label="审核人："
+        >
+          {{ item.approve_user }} (<span>{{ item.approve_result }}</span>)
+          <div style="margin: 10px 0;">
+            {{ item.approve_contents }}
+          </div>
         </el-descriptions-item>
       </el-descriptions>
     </div>

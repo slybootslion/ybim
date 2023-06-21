@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { FormInstance, FormRules, UploadUserFile } from 'element-plus'
+import { FormInstance, FormRules } from 'element-plus'
 import {
   back, beforeUploadFile, cleanFormData, fileList, formData, getEditData, getPersonData,
   handleRemoveFile, handleUploadFile, loading, personList, submit,
@@ -22,7 +22,7 @@ const rules = reactive<FormRules>({
   research_name: [{ required: true, message: '输入项目名称', trigger: 'blur' }],
   research_code: [{ required: true, message: '输入项目编码', trigger: 'blur' }],
   research_type: [{ required: true, message: '输入项目类别', trigger: 'change' }],
-  initiation_year: [{ required: true, message: '输入立项年度', trigger: 'change' }],
+  initiation_year_string: [{ required: true, message: '输入立项年度', trigger: 'change' }],
   start_time: [{ required: true, message: '输入起始时间', trigger: 'change' }],
   end_time: [{ required: true, message: '输入截止时间', trigger: 'change' }],
   pcas: [{ required: true, message: '输入项目属地', trigger: 'change' }],

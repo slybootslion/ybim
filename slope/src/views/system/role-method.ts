@@ -3,6 +3,7 @@ import type { Arrayable } from '@vueuse/core'
 import type { RoleItem } from '@/views/system/personnel-method'
 import { getRoleList, roleData } from '@/views/system/personnel-method'
 import api from '@/api'
+import { delItemHandle } from '@/utils/tools'
 
 export interface userRole {
   role_name: string
@@ -15,11 +16,11 @@ export const editRole = (parameter: any) => {
   return api.post('/permission/editRole', parameter)
 }
 export const getUserList = async (role_id: string) => {
-  const res: any = await api.get(`/permission/getUserList?role_id=${ role_id }`)
+  const res: any = await api.get(`/permission/getUserList?role_id=${role_id}`)
   return res.data
 }
 export const getRolePowerMenus = async (role_id: string) => {
-  const res: any = await api.get(`/permission/getRolePowerMenus?role_id=${ role_id }`)
+  const res: any = await api.get(`/permission/getRolePowerMenus?role_id=${role_id}`)
   return res.data
 }
 export const setRolePowerMenus = async (parameter: any) => {
@@ -27,7 +28,7 @@ export const setRolePowerMenus = async (parameter: any) => {
   return res.data
 }
 export const getRolePowerData = async (role_id: string) => {
-  const res: any = await api.get(`/permission/getRolePowerData?role_id=${ role_id }`)
+  const res: any = await api.get(`/permission/getRolePowerData?role_id=${role_id}`)
   return res.data
 }
 export const setRolePowerData = async (parameter: any) => {
@@ -89,6 +90,13 @@ export const editRoleHandle = (data: RoleItem) => {
   editRoleId.value = data.role_id
   dialogShow.value = true
 }
+
+export const removeRole = async (role_id: string) => {
+  await api.post('/permission/removeRole', { role_id })
+  roleData.value = roleData.value.filter(item => item.role_id !== role_id)
+}
+
+export const delRoleHandle = (data: RoleItem) => delItemHandle(data.role_name, removeRole, data.role_id)
 
 export interface tableItemI {
   'user_id': string
@@ -163,7 +171,7 @@ export function spanRow({ rowIndex, columnIndex }: any, data: any, option: any) 
   }
 }
 
-function computeSpanRow (data: any, option: any) {
+function computeSpanRow(data: any, option: any) {
   rowspanArray = []
   const tempRow = []
   for (let i = 0; i < data.length; i++) {
@@ -187,7 +195,7 @@ function computeSpanRow (data: any, option: any) {
   }
 }
 
-function is (option: any, index: any) {
+function is(option: any, index: any) {
   for (let i = 0; i < option.length; i++) {
     if (option[i].index === index) {
       return true

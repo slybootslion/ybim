@@ -40,11 +40,11 @@ export const getProjectList: any = async (parameter: getProjectListParamI) => {
   return { list: res.data.list, total: res.data.total }
 }
 export const getProject: any = async (research_id: string) => {
-  const res = await api.get(`/science/getProject?research_id=${ research_id }`)
+  const res = await api.get(`/science/getProject?research_id=${research_id}`)
   return res.data
 }
 export const getQuestsFileList: any = async (research_id: string) => {
-  const res: any = await api.get(`/science/getQuestsFileList?research_id=${ research_id }`)
+  const res: any = await api.get(`/science/getQuestsFileList?research_id=${research_id}`)
   return res.data
 }
 export const uploadProAttach: any = async (file: File) => {
@@ -69,7 +69,7 @@ export const addNew = () => router.push('/scientific-research/project-form')
 
 export const back = () => router.back()
 
-export const researchNameClick = async (row: resProjectListI) => router.push(`/scientific-research/project-detail?research_id=${ row.research_id }`)
+export const researchNameClick = async (row: resProjectListI) => router.push(`/scientific-research/project-detail?research_id=${row.research_id}`)
 
 export interface projectDataI {
   research_id?: string
@@ -171,8 +171,8 @@ export const submit = async (formEl: FormInstance | undefined) => {
       formData.project_dependency_province = (formData.pcas as string[])[0]
       formData.project_dependency_city = (formData.pcas as string[])[1]
       formData.initiation_year = +(formData.initiation_year_string as string)
-      delete formData.pcas
-      delete formData.participants_user_list
+      // delete formData.pcas
+      // delete formData.participants_user_list
       if (!formData.project_general) delete formData.project_general
       if (!formData.research_purpose) delete formData.research_purpose
       if (!formData.research_contents) delete formData.research_contents
@@ -182,12 +182,14 @@ export const submit = async (formEl: FormInstance | undefined) => {
       if (editId.value) {
         formData.research_id = editId.value
         const res = await editProject(formData)
-        if (res.code === 0) back()
+        if (res.code === 0) {
+          back()
+          editId.value = ''
+        }
       } else {
         const res = await addProject(formData)
         if (res.code === 0) back()
       }
-      editId.value = ''
       loading.value = false
     }
   })
@@ -235,7 +237,10 @@ export const getEditData = async (ei: string) => {
   formData.remarks = activeProjectData.value.remarks
   if (activeProjectData.value.attachment) {
     formData.attachment = activeProjectData.value.attachment
-    fileList.value = [{ name: activeProjectData.value.attachment_name as string, url: baseURL + activeProjectData.value.attachment_url!.slice(4) }]
+    fileList.value = [{
+      name: activeProjectData.value.attachment_name as string,
+      url: baseURL + activeProjectData.value.attachment_url!.slice(4),
+    }]
   }
   loading.value = false
 }
@@ -261,3 +266,5 @@ export const cleanFormData = () => {
   formData.remarks = ''
   loading.value = false
 }
+
+export const modifyOperation = async (params: { operation_user_id: string; project_ids: string }) => await api.post('/project/modifyOperation', params)

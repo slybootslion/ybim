@@ -1,16 +1,28 @@
 <script lang="ts" setup>
+import { ElMessage } from 'element-plus'
 import ProjectResearchTable from '@/views/operate/components/project-research-table.vue'
-import { getPersonData, personList } from '@/views/scientific_research/project-method'
-
+import { getPersonData, modifyOperation, personList } from '@/views/scientific_research/project-method'
+import { getList, pageData } from '@/views/operate/project-method'
 const dialogFormVisible = ref(false)
 const form = reactive({ user_id: '' })
 getPersonData()
-const handoverProject = () => {
-  console.log(form.user_id)
-  dialogFormVisible.value = false
+const projectIds = ref('')
+const getSelectedProjectId = (project_ids: string) => projectIds.value = project_ids
+const handoverProject = async () => {
+  const res: any = await modifyOperation({ operation_user_id: form.user_id, project_ids: projectIds.value })
+  if (res && res.code === 0) {
+    form.user_id = ''
+    await getList(pageData)
+    dialogFormVisible.value = false
+  }
 }
 const openDialog = () => {
-  form.user_id = ''
+  // form.user_id = ''
+  if (projectIds.value === '') {
+    ElMessage.error('未选择项目')
+    return
+  }
+  console.log(form.user_id)
   dialogFormVisible.value = true
 }
 const router = useRouter()
@@ -35,7 +47,7 @@ const addNew = () => router.push('/project-approval/approval')
       </div>
     </div>
     <div class="bottom">
-      <ProjectResearchTable />
+      <ProjectResearchTable @get-selected-project-id="getSelectedProjectId" />
     </div>
     <el-dialog v-model="dialogFormVisible" title="确认转让" destroy-on-close>
       <el-form :model="form as Record<string, any>">

@@ -4,10 +4,11 @@ import type { Ref } from 'vue'
 import type { UploadRequestOptions } from 'element-plus/lib/components'
 import api, { baseURL } from '@/api'
 import type { pageI } from '@/utils/tools'
-import { projectSearchLoading, remoteMethod } from '@/views/production/task-method'
 import { getTreeList, level2List } from '@/views/system/personnel-method'
 import { getSupplierList } from '@/views/production/supplier-method'
 import { getCustomerListTable } from '@/views/operate/customer-method'
+import { getProjectList } from '@/views/operate/project-method'
+import { getProjectList as getProjectListScientific } from '@/views/scientific_research/project-method'
 
 export const loading = ref(false)
 
@@ -114,6 +115,7 @@ const makeSupplierList = async (query: string) => {
   const r = await getSupplierList({ page_size: 8, page_number: 1, supplier_name: query })
   return r.list
 }
+export const projectSearchLoading = ref(false)
 export const remoteFirstPartyMethod = async (query: string) => {
   if (!checkPaymentIsEmpty()) return
   if (!query) query = ''
@@ -178,11 +180,17 @@ export const handleUploadFile = async (obj: UploadRequestOptions) => {
   loading.value = false
 }
 
-export const addContract = async (params: contractFormDataI) => api.post('/contract/addContract', params)
-export const editContract = async (params: contractFormDataI) => api.post('/contract/editContract', params)
+export const addContract = async (params: contractFormDataI) => {
+  // delete params.fileList
+  return api.post('/contract/addContract', params)
+}
+export const editContract = async (params: contractFormDataI) => {
+  // delete params.fileList
+  return api.post('/contract/editContract', params)
+}
 
 export const getContract = async (contract_id: string) => {
-  const res = await api.get(`/contract/getContract?contract_id=${ contract_id }`)
+  const res = await api.get(`/contract/getContract?contract_id=${contract_id}`)
   return res.data
 }
 
@@ -213,9 +221,30 @@ export interface resEditDataI {
   attachment_name: string
 }
 
+export const projectOptions = ref([])
+export const projectOptionsSci = ref([])
+export const remoteMethodSci = async (query: string) => {
+  console.log(query)
+  if (!query) query = ''
+  projectSearchLoading.value = true
+  const res = await getProjectListScientific({ page_size: 8, page_number: 1, research_name: query })
+  console.log(res)
+  projectOptionsSci.value = res.list
+  projectSearchLoading.value = false
+}
+export const remoteMethod = async (query: string) => {
+  if (!query) query = ''
+  projectSearchLoading.value = true
+  const res = await getProjectList({ page_size: 8, page_number: 1, project_name: query })
+  projectOptions.value = res.list
+  projectSearchLoading.value = false
+}
+remoteMethod('')
+remoteMethodSci('')
 export const getEditData = async (id: string) => {
   loading.value = true
   await remoteMethod('')
+  await remoteMethodSci('')
   const res: resEditDataI = await getContract(id)
   editId.value = res.contract_id
   formData.contract_type = res.contract_type
@@ -290,3 +319,5 @@ export const activeContract: Ref<resEditDataI> = ref<resEditDataI>({
   attachment_url: '',
   attachment_name: '',
 })
+
+export const typeChange = () => formData.project_id = ''

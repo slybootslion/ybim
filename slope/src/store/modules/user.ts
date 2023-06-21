@@ -24,6 +24,17 @@ const useUserStore = defineStore(
       return retn
     })
 
+    const timerIns = ref(null)
+
+    async function setTimer (ins: any) {
+      timerIns.value = ins
+    }
+    async function clearTimer () {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      (timerIns.value!.simulateClearInterval as Function)()
+    }
+
     // 登录
     async function login(data: {
       account: string
@@ -90,6 +101,9 @@ const useUserStore = defineStore(
       token,
       permissions,
       isLogin,
+      timerIns,
+      setTimer,
+      clearTimer,
       login,
       logout,
       getPermissions,

@@ -84,7 +84,6 @@ export interface supplierFormDataI {
   supplier_id?: string
   supplier_name: string
   supplier_type: string
-  supplier_department: string
   primary_business: string
   address_province: string
   address_city: string
@@ -102,7 +101,6 @@ export interface supplierFormDataI {
 export const formData: supplierFormDataI = reactive<supplierFormDataI>({
   supplier_name: '',
   supplier_type: '',
-  supplier_department: '',
   primary_business: '',
   address_province: '',
   address_city: '',
@@ -144,13 +142,18 @@ export const submit = async (formEl: FormInstance | undefined) => {
       loading.value = true
       formData.address_province = (formData.pcas as string[])[0]
       formData.address_city = (formData.pcas as string[])[1]
-      delete formData.pcas
-      delete formData.fileList
+      // delete formData.pcas
+      // delete formData.fileList
+      let res: any
       if (!editId.value) {
-        await addSupplier(formData)
+        res = await addSupplier(formData)
       } else {
         formData.supplier_id = editId.value
-        await editSupplier(formData)
+        res = await editSupplier(formData)
+      }
+      if (!res || res.code !== 0) {
+        loading.value = false
+        return
       }
       editId.value = ''
       loading.value = false
@@ -170,7 +173,6 @@ export const getEditData = async (id: string) => {
   const res = await getSupplier(editId.value)
   formData.supplier_name = res.supplier_name
   formData.supplier_type = res.supplier_type
-  formData.supplier_department = res.supplier_department
   formData.primary_business = res.primary_business
   formData.address_detail = res.address_detail
   formData.linkman = res.linkman
@@ -189,7 +191,6 @@ export const clearFormData = () => {
   editId.value = ''
   formData.supplier_name = ''
   formData.supplier_type = ''
-  formData.supplier_department = ''
   formData.primary_business = ''
   formData.address_province = ''
   formData.address_city = ''

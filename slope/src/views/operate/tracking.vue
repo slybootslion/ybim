@@ -16,8 +16,8 @@ const submit = async (formEl: FormInstance | undefined) => {
     if (valid) {
       formData.tail_start_time = formData.datePick![0]
       formData.tail_end_time = formData.datePick![1]
-      delete formData.datePick
-      delete formData.fileList
+      // delete formData.datePick
+      // delete formData.fileList
       loading.value = true
       const res: any = await addTail(formData)
       if (res!.code !== 0) {
@@ -48,7 +48,7 @@ if (query.project_id) {
     <page-main class="page-main">
       <div class="top">
         <div>
-          生产任务单
+          跟踪信息记录
         </div>
         <div>
           <el-button type="primary" @click="submit(ruleFormRef as FormInstance)">

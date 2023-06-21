@@ -37,7 +37,7 @@ export const editDepartment = async (department_parent_id: string, department_na
 export const getDepartmentList = async () => api.get('/personnel/getDepartmentList')
 
 export const getUserList = async (user_department_id = '') => {
-  const res = await api.get(`/personnel/getUserList?user_department_id=${ user_department_id }`)
+  const res = await api.get(`/personnel/getUserList?user_department_id=${user_department_id}`)
   return res.data
 }
 
@@ -67,6 +67,7 @@ export const treeData = ref<TreeNode[]>()
 export const departmentList = ref<TreeNode[]>([])
 export const level2List = ref<TreeNode[]>([])
 export const level3List = ref<TreeNode[]>([])
+export const selectDepartment = ref<TreeNode[]>([])
 export const getTreeList = async () => {
   const res = await getDepartmentList()
   treeData.value = res.data
@@ -88,6 +89,7 @@ export const getTreeList = async () => {
     }
   }
   flatTree(res.data[0], 1)
+  selectDepartment.value = level2List.value.concat(level3List.value)
 }
 
 interface tableItem {
@@ -132,28 +134,20 @@ export const searchName = async (val: string) => {
 }
 
 export const logoutTableItem = async (row: tableItem) => {
-  console.log(row)
   ElMessageBox.confirm(
-    'proxy will permanently delete the file. Continue?',
-    'Warning',
+    `将注销人员${row.user_name}，是否继续？`,
+    '注意',
     {
       confirmButtonText: 'OK',
       cancelButtonText: 'Cancel',
       type: 'warning',
     },
-  )
-    .then(() => {
-      ElMessage({
-        type: 'success',
-        message: 'Delete completed',
-      })
+  ).then(() => {
+    ElMessage({
+      type: 'success',
+      message: `${row.user_name}已注销`,
     })
-    .catch(() => {
-      ElMessage({
-        type: 'info',
-        message: 'Delete canceled',
-      })
-    })
+  }).catch(console.log)
 }
 const editUserId = ref('')
 export const drawerForm: Record<string, string | number> = reactive<addUserPar>({
@@ -168,8 +162,8 @@ export const drawerForm: Record<string, string | number> = reactive<addUserPar>(
   user_department_id: '',
 })
 export const drawerShow = ref(false)
+export const ruleFormRef = ref<FormInstance>()
 export const addUserHandle = () => {
-  console.log('---')
   editUserId.value = ''
   drawerForm.user_name = ''
   drawerForm.user_sex = ''
@@ -180,10 +174,11 @@ export const addUserHandle = () => {
   drawerForm.user_phone = ''
   drawerForm.user_email = ''
   drawerForm.entry_time = ''
+  delete drawerForm.user_id
+  setTimeout(() => ruleFormRef.value!.clearValidate(), 0)
   drawerShow.value = true
 }
 export const editTableItem = async (row: tableItem) => {
-  console.log(row)
   editUserId.value = row.user_id
   drawerForm.user_name = row.user_name
   drawerForm.user_sex = row.user_sex
@@ -209,23 +204,24 @@ export const drawerRules: Partial<Record<string, Arrayable<any>>> = reactive<For
 })
 export const submitUser = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
+  console.log(editUserId.value)
   // new
   if (!editUserId.value) {
     await formEl.validate(async (valid: boolean) => {
       if (valid) {
-        await addUser(drawerForm as unknown as addUserPar)
-        drawerShow.value = false
+        const res: any = await addUser(drawerForm as unknown as addUserPar)
+        if (res.code === 0) drawerShow.value = false
+        await getTableData()
       }
     })
   } else { // edit
     drawerForm.user_id = editUserId.value
-    await editUser(drawerForm as unknown as editUserPar)
-    drawerShow.value = false
+    const res: any = await editUser(drawerForm as unknown as editUserPar)
+    if (res.code === 0) drawerShow.value = false
+    await getTableData()
   }
-  await getTableData()
 }
 
-export const ruleFormRef = ref<FormInstance>()
 export const rules: Partial<Record<string, Arrayable<any>>> = reactive<FormRules>({
   name: [{ required: true, message: '输入部门名称', trigger: 'blur' }],
   department: [{ required: true, message: '选择部门', trigger: 'change' }],

@@ -22,7 +22,7 @@ const activeNames = ref(0)
         <el-button type="primary" @click="() => emit('goRouter', { projectId: props.projectId, url: '/tracking-information/tracking' })">
           跟踪记录
         </el-button>
-        <el-button type="primary" @click="() => emit('goRouter', {})">
+        <el-button type="primary" @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-bidding/bidding' })">
           新建投标评审
         </el-button>
       </div>

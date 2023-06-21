@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { FormInstance, FormRules } from 'element-plus'
+import { ElMessage, ElMessageBox, FormInstance, FormRules } from 'element-plus'
 import type {
   approveFormDataI,
 } from '@/views/operate/project-method'
@@ -9,6 +9,9 @@ import {
   activeProjectData, activeTenderData, approveSubmit,
   downloadItem, resProjectDataI, resTenderI, rules,
 } from '@/views/operate/project-method'
+import api from '@/api'
+import { back } from '@/views/scientific_research/project-method'
+
 const props = defineProps<{
   projectId: string
 }>()
@@ -23,96 +26,160 @@ const getDetail = async () => {
   loading.value = true
   const data = await getTender(props.projectId)
   activeTenderData.value = data as resTenderI
-  formData.approve_id = data.approve_id
+  if (data && data.approve_id) formData.approve_id = data.approve_id
   loading.value = false
 }
 getDetail()
+
+const cancel = async () => {
+  ElMessageBox.confirm('点击确定后将无法恢复，是否继续？', '注意', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning',
+  }).then(async () => {
+    const res: any = await api.post('/project/cancelTender', { tender_id: activeTenderData.value.tender_id })
+    if (res && res.code === 0) {
+      ElMessage({ type: 'success', message: '已取消' })
+      back()
+    }
+  }).catch(console.log)
+}
 </script>
 
 <template>
   <div v-loading="loading">
     <div class="block">
       <div class="top-button">
-        <el-button type="primary">
+        <el-button type="primary" @click="cancel">
           取消投标
         </el-button>
-        <el-button type="primary" @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-bidding/bidding' })">
+        <el-button
+          type="primary"
+          @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-bidding/bidding' })"
+        >
           重新发起投标
         </el-button>
-        <el-button type="primary" @click="() => emit('goRouter', { projectId: props.projectId, url: '/register-bid/bid' })">
+        <el-button
+          type="primary"
+          @click="() => emit('goRouter', { projectId: props.projectId, url: '/register-bid/bid' })"
+        >
           登记投标结果
         </el-button>
       </div>
       <el-descriptions title="基本信息" :column="2">
         <el-descriptions-item label="项目名称：">
-          {{ (activeProjectData as resProjectDataI).project_name }}
+          {{ activeProjectData && (activeProjectData as resProjectDataI).project_name }}
         </el-descriptions-item>
         <el-descriptions-item label="项目类型：">
-          {{ (activeProjectData as resProjectDataI).project_type }}
+          {{ activeProjectData && (activeProjectData as resProjectDataI).project_type }}
         </el-descriptions-item>
         <el-descriptions-item label="投标类型：">
-          {{ (activeTenderData as resTenderI).purchase_way }}
+          {{ activeTenderData && (activeTenderData as resTenderI).purchase_way }}
         </el-descriptions-item>
         <el-descriptions-item label="是否联合体投标：">
-          {{ (activeTenderData as resTenderI).joint_bid === 1 ? '是' : '否' }}
+          {{ activeTenderData && (activeTenderData as resTenderI).joint_bid === 1 ? '是' : '否' }}
         </el-descriptions-item>
         <el-descriptions-item label="保证金金额：">
-          {{ (activeTenderData as resTenderI).earnest_money }} 万元
+          {{ activeTenderData && (activeTenderData as resTenderI).earnest_money }} 万元
         </el-descriptions-item>
         <el-descriptions-item label="项目所在地：">
-          {{ (activeProjectData as resProjectDataI).project_dependency_country }}
-          {{ (activeProjectData as resProjectDataI).project_dependency_province }}
-          {{ (activeProjectData as resProjectDataI).project_dependency_city }}
+          {{ activeProjectData && (activeProjectData as resProjectDataI).project_dependency_country }}
+          {{ activeProjectData && (activeProjectData as resProjectDataI).project_dependency_province }}
+          {{ activeProjectData && (activeProjectData as resProjectDataI).project_dependency_city }}
         </el-descriptions-item>
       </el-descriptions>
       <el-descriptions>
         <el-descriptions-item label="项目概况：">
-          {{ (activeProjectData as resProjectDataI).project_general }}
+          {{ activeProjectData && (activeProjectData as resProjectDataI).project_general }}
         </el-descriptions-item>
       </el-descriptions>
       <el-descriptions :column="2" style="margin-bottom: 20px;">
         <el-descriptions-item label="招标人：">
-          {{ (activeTenderData as resTenderI).tenderee }}
+          {{ activeTenderData && (activeTenderData as resTenderI).tenderee }}
         </el-descriptions-item>
         <el-descriptions-item label="招标主体单位：">
-          {{ (activeTenderData as resTenderI).main_bidder }}
+          {{ activeTenderData && (activeTenderData as resTenderI).main_bidder }}
         </el-descriptions-item>
         <el-descriptions-item label="报名日期：">
-          {{ (activeTenderData as resTenderI).apply_time }}
+          {{ activeTenderData && (activeTenderData as resTenderI).apply_time }}
         </el-descriptions-item>
         <el-descriptions-item label="交标日期：">
-          {{ (activeTenderData as resTenderI).receip_time }}
+          {{ activeTenderData && (activeTenderData as resTenderI).receip_time }}
         </el-descriptions-item>
         <el-descriptions-item label="开标日期：">
-          {{ (activeTenderData as resTenderI).opentender_time }}
+          {{ activeTenderData && (activeTenderData as resTenderI).opentender_time }}
         </el-descriptions-item>
         <el-descriptions-item label="申请人：">
-          {{ (activeTenderData as resTenderI).applicant_user }}
+          {{ activeTenderData && (activeTenderData as resTenderI).applicant_user }}
         </el-descriptions-item>
         <el-descriptions-item label="申请时间：">
-          {{ (activeTenderData as resTenderI).applicant_time }}
+          {{ activeTenderData && (activeTenderData as resTenderI).applicant_time }}
         </el-descriptions-item>
       </el-descriptions>
       <el-descriptions title="授权信息" :column="2" style="margin-bottom: 20px;">
         <el-descriptions-item label="授权人姓名：">
-          {{ (activeTenderData as resTenderI).authorized_attachment_name }}
+          {{ activeTenderData && (activeTenderData as resTenderI).authorized_attachment_name }}
         </el-descriptions-item>
         <el-descriptions-item label="身份证号码：">
-          {{ (activeTenderData as resTenderI).authorized_person_code }}
+          {{ activeTenderData && (activeTenderData as resTenderI).authorized_person_code }}
         </el-descriptions-item>
         <el-descriptions-item label="授权截止日期：">
-          {{ (activeTenderData as resTenderI).authorized_end_time }}
+          {{ activeTenderData && (activeTenderData as resTenderI).authorized_end_time }}
         </el-descriptions-item>
         <el-descriptions-item label="附件：">
           <el-button
             link type="primary"
             @click="downloadItem((activeTenderData as resTenderI).authorized_attachment_url as string)"
           >
-            {{ (activeTenderData as resTenderI).authorized_attachment_name }}
+            {{ activeTenderData && (activeTenderData as resTenderI).authorized_attachment_name }}
           </el-button>
         </el-descriptions-item>
       </el-descriptions>
+      <el-descriptions title="投标结果信息" :column="2" style="margin-bottom: 20px;">
+        <el-descriptions-item label="投标结果：">
+          {{ activeTenderData && (activeTenderData as resTenderI).tender_result }}
+        </el-descriptions-item>
+        <el-descriptions-item label="中标单位：">
+          {{ activeTenderData && (activeTenderData as resTenderI).win_bidder }}
+        </el-descriptions-item>
+        <el-descriptions-item label="中标日期：">
+          {{ activeTenderData && (activeTenderData as resTenderI).win_time }}
+        </el-descriptions-item>
+        <el-descriptions-item label="中标价格：">
+          {{ activeTenderData && (activeTenderData as resTenderI).tender_money }}
+        </el-descriptions-item>
+        <el-descriptions-item label="投标报价清单：">
+          <el-button
+            link type="primary"
+            @click="downloadItem((activeTenderData as resTenderI).tender_offer_url as string)"
+          >
+            {{ activeTenderData && (activeTenderData as resTenderI).tender_offer_name }}
+          </el-button>
+        </el-descriptions-item>
+        <el-descriptions-item label="中标通知书：">
+          <el-button
+            link type="primary"
+            @click="downloadItem((activeTenderData as resTenderI).win_tender_inform_url as string)"
+          >
+            {{ activeTenderData && (activeTenderData as resTenderI).win_tender_inform_name }}
+          </el-button>
+        </el-descriptions-item>
+      </el-descriptions>
+      <el-descriptions title="标书信息" :column="1" style="margin-bottom: 20px;">
+        <el-descriptions-item label="标书文件：">
+          <el-button
+            link type="primary"
+            @click="downloadItem((activeTenderData as resTenderI).tender_documents_url as string)"
+          >
+            {{ activeTenderData && (activeTenderData as resTenderI).tender_documents_name }}
+          </el-button>
+        </el-descriptions-item>
+        <el-descriptions-item label="备注：">
+          {{ activeTenderData && (activeTenderData as resTenderI).tender_documents_note }}
+        </el-descriptions-item>
+      </el-descriptions>
       <el-form
+        v-if="(activeTenderData as resProjectDataI).approve_id"
         ref="ruleFormRef" inline :model="formData" :rules="rules as FormRules" label-width="130px"
         style="margin-bottom: 20px;"
       >
@@ -143,10 +210,10 @@ getDetail()
       </el-form>
       <el-descriptions style="margin-top: 20px;" title="审批意见" :column="1">
         <el-descriptions-item
-          v-for="(item, index) in (activeTenderData as resTenderI).tender_approve"
+          v-for="(item, index) in (activeTenderData && (activeTenderData as resTenderI).tender_approve)"
           :key="index" label="审核人："
         >
-          审核人： {{ item.approve_user }} (<span>{{ item.approve_result }}</span>)
+          {{ item.approve_user }} (<span>{{ item.approve_result }}</span>)
           <div style="margin: 10px 0;">
             {{ item.approve_contents }}
           </div>

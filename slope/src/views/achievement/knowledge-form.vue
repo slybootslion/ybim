@@ -2,15 +2,20 @@
 import { FormInstance, FormRules, UploadUserFile } from 'element-plus'
 import { back } from '@/views/scientific_research/project-method'
 import {
-  addIpr, editId, formData, handleUploadFile1,
+  addIpr, clearFormData, editId, editIpr, formData, getEditData, handleUploadFile1,
   handleUploadFile2, loading, primaryResultTypeOptions,
 } from '@/views/achievement/knowledge-method'
 import { beforeUploadFile, handleRemoveFile } from '@/utils/tools'
 
+const route = useRoute()
+const query = route.query
+if (!query.ip_id) clearFormData()
+else getEditData(query.ip_id as string)
 const ruleFormRef = ref<FormInstance>()
 const rules = reactive<FormRules>({
   result_type: [{ required: true, message: '选择类型', trigger: 'change' }],
   application_time: [{ required: true, message: '选择日期', trigger: 'change' }],
+  validity: [{ required: true, message: '选择日期', trigger: 'change' }],
   result_name: [{ required: true, message: '输入成果名称', trigger: 'blur' }],
   property_owner: [{ required: true, message: '输入权属人', trigger: 'blur' }],
   copyright_owner: [{ required: true, message: '输入著作人', trigger: 'blur' }],
@@ -20,14 +25,23 @@ const submit = async (formEl: FormInstance | undefined) => {
   await formEl.validate(async (valid) => {
     if (valid) {
       loading.value = true
-      delete formData.fileList2
-      delete formData.fileList1
+      // delete formData.fileList2
+      // delete formData.fileList1
       formData.application_year = +!formData.application_year_str
-      delete formData.application_year_str
+      // delete formData.application_year_str
       if (!editId.value) {
-        await addIpr(formData)
+        const res: any = await addIpr(formData)
+        if (!res || res.code !== 0) {
+          loading.value = false
+          return
+        }
       } else {
-        //
+        formData.ip_id = editId.value
+        const res: any = await editIpr(formData)
+        if (!res || res.code !== 0) {
+          loading.value = false
+          return
+        }
       }
       loading.value = false
       back()
@@ -88,7 +102,7 @@ const submit = async (formEl: FormInstance | undefined) => {
           <el-form-item label="失效日期：" prop="expiry_time">
             <el-date-picker v-model="formData.expiry_time" value-format="YYYY-MM-DD" type="date" />
           </el-form-item>
-          <el-form-item label="主体生产机构：">
+          <el-form-item label="申请部门：">
             <!--            <el-select v-model="formData.application_department"> -->
             <!--              <el-option v-for="item in level3List" :key="item.value" :label="item.label" :value="item.value" /> -->
             <!--            </el-select> -->

@@ -1,13 +1,22 @@
 <script setup lang="ts">
-import { pageData } from '@/views/scientific_research/project-method'
+import type { pageI } from '@/utils/tools'
+
+const props = defineProps<{
+  pageData: pageI
+}>()
 
 const emit = defineEmits(['pageChange'])
+const total = ref(0)
+watchEffect(() => {
+  total.value = props.pageData.total ? props.pageData.total : 0
+})
+
 const handleSizeChange = (s: number) => {
-  pageData.page_size = s
+  props!.pageData.page_size = s
   emit('pageChange', s)
 }
 const handleCurrentChange = (n: number) => {
-  pageData.page_number = n
+  props!.pageData.page_number = n
   emit('pageChange', n)
 }
 </script>
@@ -15,12 +24,11 @@ const handleCurrentChange = (n: number) => {
 <template>
   <div class="pagination">
     <el-pagination
-      v-model:current-page="pageData.page_number"
-      v-model:page-size="pageData.page_size"
-      class="pagination"
+      v-model:current-page="pageData!.page_number"
+      v-model:page-size="pageData!.page_size"
       :page-sizes="[10, 20]"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="pageData.total"
+      :total="total"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
     />

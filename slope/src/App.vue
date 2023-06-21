@@ -5,6 +5,9 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import hotkeys from 'hotkeys-js'
 import eventBus from './utils/eventBus'
 import useSettingsStore from '@/store/modules/settings'
+import api from '@/api'
+import { TimerSimulateInterval } from '@/utils/tools'
+import useUserStore from '@/store/modules/user'
 
 const settingsStore = useSettingsStore()
 const { auth } = useAuth()
@@ -58,6 +61,16 @@ onMounted(() => {
 
 import.meta.env.VITE_APP_DEBUG_TOOL === 'eruda' && eruda.init()
 import.meta.env.VITE_APP_DEBUG_TOOL === 'vconsole' && new VConsole()
+
+setTimeout(() => api.get('/down/toDo'), 10)
+const o = new TimerSimulateInterval()
+o.simulateInterval({
+  callback: async () => api.get('/down/toDo'),
+  interval: 6000,
+  countLimit: Infinity,
+})
+const userStore = useUserStore()
+userStore.setTimer(o)
 </script>
 
 <template>

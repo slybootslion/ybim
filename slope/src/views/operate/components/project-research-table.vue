@@ -1,10 +1,18 @@
 <script lang="ts" setup>
+import type { TableInstance } from 'element-plus'
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
-import type { getProjectListParamI, resProjectListI } from '@/views/operate/project-method'
-import {getList, pageData, projectStatusOptions, tableData, tableLoading} from '@/views/operate/project-method'
+import type {
+  getProjectListParamI, resProjectDataI,
+  resProjectListI,
+} from '@/views/operate/project-method'
+import {
+  getList, pageData, projectStatusOptions, tableData, tableLoading,
+} from '@/views/operate/project-method'
 import { primaryIndustryTypeOptions } from '@/views/production/project-method'
 import { primaryBusinessOptions } from '@/views/operate/customer-method'
+import { pageI } from '@/utils/tools'
 
+const emit = defineEmits(['getSelectedProjectId'])
 getList(pageData)
 const searchData: getProjectListParamI = reactive<getProjectListParamI>({
   page_number: 0,
@@ -32,6 +40,12 @@ const researchNameClick = (row: resProjectListI) => router.push(`/project-initia
 const searchHandle = () => {
   pageData.page_number = 1
   pageChange()
+}
+const multipleTable = ref<TableInstance>()
+function selectAnalysis(selection: resProjectDataI[]) {
+  const arr: string[] = []
+  selection.forEach(i => arr.push(i.project_id))
+  emit('getSelectedProjectId', arr.join(','))
 }
 </script>
 
@@ -63,9 +77,9 @@ const searchHandle = () => {
       <el-form-item label="经营负责人：">
         <el-input v-model="searchData.operation_user" clearable />
       </el-form-item>
-      <el-form-item label="任务编码：">
-        <el-input v-model="searchData.production_user" clearable />
-      </el-form-item>
+      <!--      <el-form-item label="任务编码："> -->
+      <!--        <el-input v-model="searchData.production_user" clearable /> -->
+      <!--      </el-form-item> -->
       <el-form-item label="项目状态：">
         <el-select v-model="searchData.project_status" clearable>
           <el-option v-for="(key, val) in projectStatusOptions" :key="val" :label="key" :value="val" />
@@ -78,10 +92,13 @@ const searchHandle = () => {
       </el-form-item>
     </el-form>
   </div>
-  <el-table v-loading="tableLoading" :data="tableData" border style="width: 100%">
+  <el-table
+    ref="multipleTable" v-loading="tableLoading" :data="tableData" border style="width: 100%"
+    @select="selectAnalysis" @select-all="selectAnalysis"
+  >
     <el-table-column type="selection" width="50" />
     <el-table-column label="序号" type="index" width="55" />
-    <el-table-column label="项目名称">
+    <el-table-column label="项目名称" min-width="140">
       <template #default="scope">
         <el-button link type="primary" @click="researchNameClick(scope.row)">
           {{ scope.row.project_name }}
@@ -108,7 +125,7 @@ const searchHandle = () => {
     <el-table-column property="registrant_user" label="备案人员" width="100" />
     <el-table-column property="registration_time" label="备案登记时间" width="120" />
   </el-table>
-  <PaginationComp @page-change="pageChange" />
+  <PaginationComp :page-data="pageData as pageI" @page-change="pageChange" />
 </template>
 
 <style scoped lang="scss">

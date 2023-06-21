@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import type {getQualificationTableListI, resQualificationTableItemI} from '@/views/achievement/qualification-method'
+import type { getQualificationTableListI, resQualificationTableItemI } from '@/views/achievement/qualification-method'
 import {
   getAptitudeList, pageData, primaryAptitudeGradeOption, primaryAptitudeTypeOption,
 } from '@/views/achievement/qualification-method'
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
+import { pageI } from '@/utils/tools'
 
 const tableLoading = ref(false)
 let tableData = reactive<resQualificationTableItemI[]>([])
@@ -21,7 +22,7 @@ const searchData: getQualificationTableListI = reactive<getQualificationTableLis
   page_number: 0,
 })
 const pageChange = () => {
-  const data: getQualificationTableListI = {...pageData}
+  const data: getQualificationTableListI = { ...pageData }
   if (searchData.aptitude_type) data.aptitude_type = searchData.aptitude_type
   if (searchData.aptitude_name) data.aptitude_name = searchData.aptitude_name
   if (searchData.aptitude_grade) data.aptitude_grade = searchData.aptitude_grade
@@ -42,16 +43,16 @@ const delItem = (row: resQualificationTableItemI) => {
   <div class="search-box">
     <el-form class="search-form" :model="searchData" inline>
       <el-form-item label="资质名称：">
-        <el-input v-model="searchData.aptitude_name" clearable/>
+        <el-input v-model="searchData.aptitude_name" clearable />
       </el-form-item>
       <el-form-item label="资质等级：">
         <el-select v-model="searchData.aptitude_grade" clearable>
-          <el-option v-for="aptg in primaryAptitudeGradeOption" :key="aptg" :label="aptg" :value="aptg"/>
+          <el-option v-for="aptg in primaryAptitudeGradeOption" :key="aptg" :label="aptg" :value="aptg" />
         </el-select>
       </el-form-item>
       <el-form-item label="资质类别：">
         <el-select v-model="searchData.aptitude_type" clearable>
-          <el-option v-for="aptt in primaryAptitudeTypeOption" :key="aptt" :label="aptt" :value="aptt"/>
+          <el-option v-for="aptt in primaryAptitudeTypeOption" :key="aptt" :label="aptt" :value="aptt" />
         </el-select>
       </el-form-item>
       <el-form-item>
@@ -62,7 +63,7 @@ const delItem = (row: resQualificationTableItemI) => {
     </el-form>
   </div>
   <el-table v-loading="tableLoading" :data="tableData" border style="width: 100%">
-    <el-table-column label="序号" type="index" width="50"/>
+    <el-table-column label="序号" type="index" width="50" />
     <el-table-column label="资质名称" min-width="230">
       <template #default="scope">
         <el-button link type="primary" @click="researchNameClick(scope.row.aptitude_id)">
@@ -70,14 +71,14 @@ const delItem = (row: resQualificationTableItemI) => {
         </el-button>
       </template>
     </el-table-column>
-    <el-table-column property="cert_number" label="证书号码" width="120"/>
-    <el-table-column property="aptitude_type" label="资质类别" width="120"/>
-    <el-table-column property="aptitude_grade" label="资质等级" width="100"/>
-    <el-table-column property="department" label="所属单位" width="260"/>
-    <el-table-column property="original_amount" label="原件总数" width="100"/>
-    <el-table-column property="extant_original_amount" label="现原件总数" width="100"/>
-    <el-table-column property="original_keeper" label="原件保管人" width="100"/>
-    <el-table-column property="principal_phone" label="联系电话" width="160"/>
+    <el-table-column property="cert_number" label="证书号码" width="120" />
+    <el-table-column property="aptitude_type" label="资质类别" width="120" />
+    <el-table-column property="aptitude_grade" label="资质等级" width="100" />
+    <el-table-column property="department" label="所属单位" width="260" />
+    <el-table-column property="original_amount" label="原件总数" width="100" />
+    <el-table-column property="extant_original_amount" label="现原件总数" width="100" />
+    <el-table-column property="original_keeper" label="原件保管人" width="100" />
+    <el-table-column property="principal_phone" label="联系电话" width="160" />
     <el-table-column label="操作" width="130">
       <template #default="scope">
         <el-button link type="primary" size="small" @click.prevent="editItem(scope.row.aptitude_id)">
@@ -89,7 +90,7 @@ const delItem = (row: resQualificationTableItemI) => {
       </template>
     </el-table-column>
   </el-table>
-  <PaginationComp @page-change="pageChange"/>
+  <PaginationComp :page-data="pageData as pageI" @page-change="pageChange" />
 </template>
 
 <style scoped lang="scss">

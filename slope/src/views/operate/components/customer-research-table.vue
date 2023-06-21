@@ -3,7 +3,7 @@ import PaginationComp from '@/views/public-components/pagination-comp.vue'
 import type { getCustomerTableListParamI, resCustomerItemI } from '@/views/operate/customer-method'
 import { getCustomerListTable, pageData } from '@/views/operate/customer-method'
 import api from '@/api'
-import { delItemHandle } from '@/utils/tools'
+import { delItemHandle, pageI } from '@/utils/tools'
 
 const tableLoading = ref(false)
 
@@ -99,7 +99,7 @@ const delItem = async (row: resCustomerItemI) => delItemHandle(row.customer_name
       </template>
     </el-table-column>
   </el-table>
-  <PaginationComp @page-change="pageChange" />
+  <PaginationComp :page-data="pageData as pageI" @page-change="pageChange" />
 </template>
 
 <style scoped lang="scss">

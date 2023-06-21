@@ -3,13 +3,14 @@ import { FormInstance, FormRules } from 'element-plus'
 import dayjs from 'dayjs'
 import type { projectFormDataI } from '@/views/production/project-method'
 import {
-  clearFormData,
-  formData, loading, primaryIndustryTypeOptions, primaryMajorTypeOption,
+  clearFormData, formData, loading,
+  primaryIndustryTypeOptions, primaryMajorTypeOption,
 } from '@/views/production/project-method'
 import { primaryBusinessOptions } from '@/views/operate/customer-method'
 import { getTreeList, getUserList, level3List } from '@/views/system/personnel-method'
 import api from '@/api'
 import { projectOptions, projectSearchLoading, remoteMethod } from '@/views/production/task-method'
+import { getProject } from '@/views/operate/bid-method'
 
 const router = useRouter()
 const route = useRoute()
@@ -24,7 +25,7 @@ const rules = reactive<FormRules>({
   project_id: [{ required: true, message: '输入项目名称', trigger: 'change' }],
   industry_type: [{ required: true, message: '输入行业类型', trigger: 'change' }],
   project_type: [{ required: true, message: '输入项目类型', trigger: 'change' }],
-  major: [{ required: true, message: '输入专业要求', trigger: 'change' }],
+  majorArr: [{ required: true, message: '输入专业要求', trigger: 'change' }],
   datePick: [{ required: true, message: '输入日期', trigger: 'change' }],
   main_department_id: [{ required: true, message: '输入主体部门', trigger: 'change' }],
   production_user_id: [{ required: true, message: '输入负责人', trigger: 'change' }],
@@ -42,7 +43,7 @@ const subRules = reactive<FormRules>({
   allocation_ratio: [{ required: true, message: '输入任划分产值金额', trigger: 'blur' }],
   deadline: [{ required: true, message: '输入成果提交时间', trigger: 'change' }],
 })
-const computedDay = () => formData.days = `${ dayjs(formData.datePick![1]).diff(formData.datePick![0], 'day') }`
+const computedDay = () => formData.days = `${dayjs(formData.datePick![1]).diff(formData.datePick![0], 'day')}`
 const addTask = async (data: projectFormDataI) => {
   const res = await api.post('/produce/addTask', data)
   return res.data
@@ -54,10 +55,10 @@ const submit = async (formEl: FormInstance | undefined) => {
     if (valid) {
       formData.start_time = formData.datePick![0]
       formData.end_time = formData.datePick![1]
-      formData.major = (formData.major as string[]).join(',')
-      formData.project_id = formData.project_id[0]
-      delete formData.datePick
-      delete formData.days
+      formData.major = formData.majorArr.join(',')
+      // formData.project_id = formData.project_id[0]
+      // delete formData.datePick
+      // delete formData.days
       if (isMore.value === false)
         formData.participating_organization = '[]'
       else {
@@ -70,13 +71,16 @@ const submit = async (formEl: FormInstance | undefined) => {
         }
         if (checkCount === formData.poArr?.length) {
           formData.participating_organization = JSON.stringify(formData.poArr)
-        }
-        else return false
+        } else return false
       }
-      delete formData.poArr
+      // delete formData.poArr
       loading.value = true
       if (!editId.value) {
-        await addTask(formData)
+        const res = await addTask(formData)
+        if (!res || res.code !== 0) {
+          loading.value = false
+          return
+        }
       } else {
         console.log('edit')
       }
@@ -102,6 +106,13 @@ const delOp = (index: number) => {
   if (formData.poArr?.length === 0) isMore.value = false
 }
 setTimeout(() => ruleFormRef.value!.clearValidate())
+remoteMethod('')
+
+const projectSelected = async (id: string) => {
+  const res: any = await getProject(id)
+  formData.project_type = res.project_type
+  formData.industry_type = res.industry_type
+}
 </script>
 
 <template>
@@ -123,8 +134,9 @@ setTimeout(() => ruleFormRef.value!.clearValidate())
         <el-form ref="ruleFormRef" inline :model="formData" :rules="rules as FormRules" label-width="180px">
           <el-form-item label="关联项目：" prop="project_id">
             <el-select
-              v-model="formData.project_id" filterable remote reserve-keyword placeholder="输入项目名称查找"
-              :remote-method="remoteMethod" :loading="projectSearchLoading"
+              v-model="formData.project_id"
+              filterable remote reserve-keyword placeholder="输入项目名称查找" :remote-method="remoteMethod"
+              :loading="projectSearchLoading" @change="projectSelected"
             >
               <el-option
                 v-for="p in projectOptions" :key="p.project_id" :label="p.project_name"
@@ -133,17 +145,17 @@ setTimeout(() => ruleFormRef.value!.clearValidate())
             </el-select>
           </el-form-item>
           <el-form-item label="行业类型：" prop="industry_type">
-            <el-select v-model="formData.industry_type">
+            <el-select v-model="formData.industry_type" disabled>
               <el-option v-for="ind in primaryIndustryTypeOptions" :key="ind" :label="ind" :value="ind" />
             </el-select>
           </el-form-item>
           <el-form-item label="项目类型：" prop="project_type">
-            <el-select v-model="formData.project_type">
+            <el-select v-model="formData.project_type" disabled>
               <el-option v-for="bus in primaryBusinessOptions" :key="bus" :label="bus" :value="bus" />
             </el-select>
           </el-form-item>
-          <el-form-item label="专业要求：" prop="major">
-            <el-select v-model="formData.major" multiple collapse-tags collapse-tags-tooltip :max-collapse-tags="2">
+          <el-form-item label="专业要求：" prop="majorArr">
+            <el-select v-model="formData.majorArr" multiple collapse-tags collapse-tags-tooltip :max-collapse-tags="2">
               <el-option v-for="maj in primaryMajorTypeOption" :key="maj" :label="maj" :value="maj" />
             </el-select>
           </el-form-item>
@@ -224,6 +236,7 @@ setTimeout(() => ruleFormRef.value!.clearValidate())
               </el-form-item>
               <el-form-item label="其他说明：">
                 <el-input
+                  class="sub-textarea"
                   v-model="poForm.task_explain" maxlength="800" type="textarea" :rows="5"
                   placeholder="请输入800字以内的说明"
                 />
@@ -253,16 +266,19 @@ setTimeout(() => ruleFormRef.value!.clearValidate())
   }
 
   :deep(.el-textarea) {
-    width: 1160px;
+    width:1060px;
   }
+
   .more-box {
-    margin-left: 120px;
+    //margin-left: 120px;
     margin-top: 20px;
+
     .po-item {
       margin-top: 10px;
       border-top: 1px solid #cfcfcf;
       padding-top: 10px;
       position: relative;
+
       .op-icon {
         position: absolute;
         cursor: pointer;
@@ -271,6 +287,10 @@ setTimeout(() => ruleFormRef.value!.clearValidate())
         color: #c0c0c0;
       }
     }
+  }
+
+  .sub-textarea {
+    width: 880px;
   }
 }
 </style>

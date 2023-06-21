@@ -39,11 +39,11 @@ export const formData: contractReviewFormDataI = reactive<contractReviewFormData
 export const handleUploadFile = async (obj: UploadRequestOptions) => {
   loading.value = true
   const res = await uploadProjectAttach(obj)
-  if (!res.data || !res.data.file_id) {
+  if (!res || !res.file_id) {
     loading.value = false
     return
   }
-  formData.attachment = res.data.file_id
+  formData.attachment = res.file_id
   loading.value = false
 }
 

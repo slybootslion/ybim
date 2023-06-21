@@ -67,16 +67,20 @@ export const getCustomerHandle = async (q: string) => {
   searchLoading.value = false
 }
 
-export const uploadProjectAttach = async (obj: UploadRequestOptions) => api.post('/project/uploadProjectAttach', { file: obj.file })
+export const uploadProjectAttach = async (obj: UploadRequestOptions) => {
+  const res: any = await api.post('/project/uploadProjectAttach', { file: obj.file })
+  if (res.code === 0) return res.data
+  return undefined
+}
 
 export const handleUploadFile = async (obj: UploadRequestOptions) => {
   loading.value = true
   const res = await uploadProjectAttach(obj)
-  if (!res.data || !res.data.file_id) {
+  if (!res || !res.file_id) {
     loading.value = false
     return
   }
-  formData.attachment = res.data.file_id
+  formData.attachment = res.file_id
   loading.value = false
 }
 

@@ -29,6 +29,7 @@ const rules = reactive<FormRules>({
   authorized_person_code: [{ required: true, message: '输入身份号码', trigger: 'blur' }],
   fileList: [{ required: true, message: '上传附件', trigger: 'change' }],
 })
+
 const submit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate(async (valid) => {
@@ -36,13 +37,13 @@ const submit = async (formEl: FormInstance | undefined) => {
       loading.value = true
       formData.joint_bid = +formData.joint_bid
       if (formData.joint_bid === 0) delete formData.joint_company
-      delete formData.fileList
       const res: any = await addTender(formData)
       if (res.code !== 0) {
         loading.value = false
         return
       }
       clearFormData()
+      ruleFormRef.value!.clearValidate()
       loading.value = false
     }
   })
@@ -93,7 +94,7 @@ if (query.project_id) {
           </div>
           <div>
             <el-form-item label="保证金类型：" prop="earnest_type">
-              <el-select v-model="formData.earnest_type">
+              <el-select v-model="formData.earnest_type" clearable>
                 <el-option label="现金" value="现金" />
                 <el-option label="保函" value="保函" />
               </el-select>

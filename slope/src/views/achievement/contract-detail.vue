@@ -89,8 +89,8 @@ const downloadItem = async (url: string) => {
         <el-descriptions-item label="登记时间：">
           {{ activeContract.create_time }}
         </el-descriptions-item>
-        <el-descriptions-item label="合同内容概述：">
-          {{ activeContract.attachment }}
+        <el-descriptions-item label="项目规模：">
+          {{ activeContract.project_scale }}
         </el-descriptions-item>
         <el-descriptions-item label="需重点关注问题及其他必要情况说明：">
           {{ activeContract.attention }}

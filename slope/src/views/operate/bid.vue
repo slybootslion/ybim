@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { FormInstance, FormRules, UploadUserFile } from 'element-plus'
+import { ElMessage, FormInstance, FormRules, UploadUserFile } from 'element-plus'
 import { projectOptions, projectSearchLoading, remoteMethod } from '@/views/production/task-method'
 import {
-  clearFormData, formData, getProject, handleUploadFile1, handleUploadFile2, handleUploadFile3, loading,
+  clearFormData, formData, getProject, getTender, handleUploadFile1, handleUploadFile2, handleUploadFile3, loading,
   projectHandle, registerTenderResult, selectBlur, selectChange,
 } from '@/views/operate/bid-method'
 import { getTreeList, level2List } from '@/views/system/personnel-method'
 import { beforeUploadFile, handleRemoveFile } from '@/utils/tools'
+import { back } from '@/views/scientific_research/project-method'
 
 getTreeList()
 remoteMethod('')
@@ -24,11 +25,10 @@ const submit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate(async (valid) => {
     if (valid) {
-      console.log(formData)
       loading.value = true
-      delete formData.fileList1
-      delete formData.fileList2
-      delete formData.fileList3
+      // delete formData.fileList1
+      // delete formData.fileList2
+      // delete formData.fileList3
       delete formData.project_id
       if (formData.tender_result !== '中标') {
         delete formData.win_time
@@ -39,13 +39,22 @@ const submit = async (formEl: FormInstance | undefined) => {
         loading.value = false
         return
       }
-      loading.value = false
       clearFormData()
+      setTimeout(() => ruleFormRef.value!.clearValidate(), 300)
+      if (query.project_id) back()
+      loading.value = false
     }
   })
 }
 const initProject = async (id: string) => {
   const res = await getProject(id)
+  const tenderRes = await getTender(id)
+  if (!tenderRes.tender_id) {
+    ElMessage.error('投标id不存在')
+    back()
+    return
+  }
+  formData.tender_id = tenderRes.tender_id
   formData.project_id = query.project_id as string
   formData.project_general = res.project_general
 }
@@ -58,7 +67,7 @@ else clearFormData()
     <page-main class="page-main">
       <div class="top">
         <div>
-          项目投标申请
+          登记投标结果
         </div>
         <div>
           <el-button type="primary" @click="submit(ruleFormRef as FormInstance)">
@@ -109,7 +118,7 @@ else clearFormData()
             </el-form-item>
           </div>
           <div class="block-title">
-            项目信息
+            投标结果信息
           </div>
           <div v-if="formData.tender_result === '中标' || formData.tender_result === ''">
             <el-form-item label="中标单位：" prop="win_bidder">
@@ -123,7 +132,7 @@ else clearFormData()
             <el-form-item label="中标日期：" prop="win_time">
               <el-date-picker v-model="formData.win_time" value-format="YYYY-MM-DD" type="date" />
             </el-form-item>
-            <el-form-item label="保证金金额：" prop="tender_money">
+            <el-form-item label="中标金额：" prop="tender_money">
               <el-input-number v-model="formData.tender_money" controls-position="right" />
             </el-form-item>
             <div>
@@ -168,7 +177,7 @@ else clearFormData()
             </el-form-item>
           </div>
           <div class="block-title">
-            项目信息
+            标书信息上传
           </div>
           <div>
             <el-form-item label="标书文件：">

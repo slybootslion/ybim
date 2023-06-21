@@ -2,7 +2,6 @@
 import api from '@/api'
 import { getList, pageData, resProjectListI, tableData } from '@/views/operate/project-method'
 
-getList(pageData)
 const tabActiveName = ref('待办事项')
 const leftQuickLink = [
   { name: '项目备案立项', url: '/project-approval/approval' },
@@ -35,7 +34,6 @@ const getMatter = async () => {
   todos.value = res.data.todos
   finished.value = res.data.finished
 }
-getMatter()
 
 interface statisticsDataI {
   project: {
@@ -93,12 +91,20 @@ const getStatistics = async () => {
   statisticsData.supplier = res.data.supplier
   statisticsData.customer = res.data.customer
 }
-getStatistics()
+
 const clickToDetail = (id: string, type: number) => {
   if (type === 3) {
     router.push(`/production-management/task-detail?task_id=${id}`)
-  } else router.push(`/project-initiation/project-detail?project_id=${id}`)
+  } else {
+    router.push(`/project-initiation/project-detail?project_id=${id}`)
+  }
 }
+
+setTimeout(() => {
+  getStatistics()
+  getMatter()
+  getList(pageData)
+}, 30)
 </script>
 
 <template>

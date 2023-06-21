@@ -35,7 +35,7 @@ const rules = reactive<FormRules>({
     <page-main class="page-main">
       <div class="top">
         <div>
-          客户登记
+          备案管理
         </div>
         <div>
           <el-button type="primary" @click="submit(ruleFormRef as FormInstance)">
@@ -84,7 +84,7 @@ const rules = reactive<FormRules>({
             <el-date-picker v-model="formData.filing_valid_time" value-format="YYYY-MM-DD" type="date" />
           </el-form-item>
           <el-form-item label="有效状态：" prop="valid_status">
-            <el-select v-model="formData.valid_status">
+            <el-select v-model="formData.valid_status" clearable>
               <el-option label="有效" :value="1" />
               <el-option label="无效" :value="0" />
             </el-select>

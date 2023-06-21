@@ -24,7 +24,7 @@ const rules = reactive<FormRules>({
   project_code: [{ required: true, message: '输入项目编码', trigger: 'blur' }],
   proprietor_linkman: [{ required: true, message: '输入联系人', trigger: 'blur' }],
   proprietor_linkman_phone: [{ required: true, message: '输入电话', trigger: 'blur' }],
-  project_general: [{ required: true, message: '输入电话', trigger: 'blur' }],
+  project_general: [{ required: true, message: '输入项目概况', trigger: 'blur' }],
   industry_type: [{ required: true, message: '选择类型', trigger: 'change' }],
   project_type_arr: [{ required: true, message: '选择类型', trigger: 'change' }],
   proprietor_customer_id: [{ required: true, message: '选择业主/甲方单位', trigger: 'change' }],
@@ -41,11 +41,15 @@ const submit = async (formEl: FormInstance | undefined) => {
       formData.project_type = formData.project_type_arr!.join(',')
       formData.project_dependency_province = (formData.pcas as string[])[0]
       formData.project_dependency_city = (formData.pcas as string[])[1]
-      delete formData.pcas
-      delete formData.fileList
-      delete formData.project_type_arr
+      // delete formData.pcas
+      // delete formData.fileList
+      // delete formData.project_type_arr
       loading.value = true
-      await addProject(formData)
+      const res: any = await addProject(formData)
+      if (res && res.code !== 0) {
+        loading.value = false
+        return
+      }
       loading.value = false
       clearFormData()
       await router.push('/project-initiation/project-list')
@@ -83,6 +87,7 @@ const initProject = async (id: string) => {
 }
 if (query.project_id) initProject(query.project_id as string)
 else clearFormData()
+getCustomerHandle('')
 </script>
 
 <template>
@@ -90,7 +95,7 @@ else clearFormData()
     <page-main class="page-main">
       <div class="top">
         <div>
-          生产任务单
+          项目备案申请单
         </div>
         <div>
           <el-button type="primary" @click="submit(ruleFormRef as FormInstance)">
@@ -167,12 +172,12 @@ else clearFormData()
             </el-select>
           </el-form-item>
           <el-form-item label="生产负责人：">
-            <el-select v-model="formData.production_user_id">
+            <el-select v-model="formData.production_user_id" clearable>
               <el-option v-for="item in userList" :key="item.user_id" :label="item.user_name" :value="item.user_id" />
             </el-select>
           </el-form-item>
           <el-form-item label="所属生产单位：" prop="production_department_id">
-            <el-select v-model="formData.production_department_id">
+            <el-select v-model="formData.production_department_id" clearable>
               <el-option v-for="item in level3List" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
           </el-form-item>
@@ -221,7 +226,7 @@ else clearFormData()
   }
 
   :deep(.el-textarea) {
-    width: 1160px;
+    width: 980px;
   }
 
   .more-box {

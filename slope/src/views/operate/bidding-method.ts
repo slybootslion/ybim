@@ -53,7 +53,6 @@ export const formData: biddingFormDataI = reactive<biddingFormDataI>({
   authorized_attachment: '',
   fileList: [],
 })
-
 export const primaryPurchaseWayOptions = ['公开招标', '委托招标', '询价招标', '竞争磋商', '其他']
 
 export const handleUploadFile = async (obj: UploadRequestOptions) => {

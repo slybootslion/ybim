@@ -2,6 +2,9 @@
 import type { getKnowledgeTableListI, resKnowledgeTableItemI } from '@/views/achievement/knowledge-method'
 import { getIprList, pageData } from '@/views/achievement/knowledge-method'
 import { primaryAptitudeGradeOption } from '@/views/achievement/qualification-method'
+import { delItemHandle, pageI } from '@/utils/tools'
+import PaginationComp from '@/views/public-components/pagination-comp.vue'
+import api from '@/api'
 
 const tableLoading = ref(false)
 let tableData = reactive<resKnowledgeTableItemI[]>([])
@@ -36,10 +39,12 @@ const searchHandle = () => {
   pageData.page_number = 1
   pageChange()
 }
-const editItem = (id: string) => {
+const editItem = (row: resKnowledgeTableItemI) => router.push(`/achievement-knowledge/knowledge-form?ip_id=${ row.ip_id }`)
+const delCb = async (ip_id: string) => {
+  await api.post('/ipr/delIpr', { ip_id })
+  pageChange()
 }
-const delItem = (row: resKnowledgeTableItemI) => {
-}
+const delItem = (row: resKnowledgeTableItemI) => delItemHandle(row.result_name, delCb, row.ip_id)
 </script>
 
 <template>
@@ -81,7 +86,7 @@ const delItem = (row: resKnowledgeTableItemI) => {
     <el-table-column property="validity" label="有效期" width="120" />
     <el-table-column label="操作" width="180">
       <template #default="scope">
-        <el-button link type="primary" size="small" @click.prevent="editItem(scope.row.aptitude_id)">
+        <el-button link type="primary" size="small" @click.prevent="editItem(scope.row)">
           编辑
         </el-button>
         <el-button link type="primary" size="small" @click.prevent="delItem(scope.row)">
@@ -90,6 +95,7 @@ const delItem = (row: resKnowledgeTableItemI) => {
       </template>
     </el-table-column>
   </el-table>
+  <PaginationComp :page-data="pageData as pageI" @page-change="pageChange" />
 </template>
 
 <style scoped lang="scss">

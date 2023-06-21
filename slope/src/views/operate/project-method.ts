@@ -258,6 +258,13 @@ export interface resTenderI {
   authorized_attachment_name: string
   approve_id: string
   tender_approve: approveItemI[]
+  win_bidder: string
+  tender_offer_url: string
+  tender_offer_name: string
+  win_tender_inform_url: string
+  win_tender_inform_name: string
+  tender_documents_url: string
+  tender_documents_name: string
 }
 
 export const activeTenderData: Ref<resTenderI> = ref<resTenderI>({
@@ -296,6 +303,13 @@ export const activeTenderData: Ref<resTenderI> = ref<resTenderI>({
   authorized_attachment_name: '',
   approve_id: '',
   tender_approve: [],
+  win_bidder: '',
+  tender_offer_url: '',
+  tender_offer_name: '',
+  win_tender_inform_url: '',
+  win_tender_inform_name: '',
+  tender_documents_url: '',
+  tender_documents_name: '',
 })
 
 export interface tailItemI {

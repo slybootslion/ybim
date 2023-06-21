@@ -142,8 +142,8 @@ export const submit = async (formEl: FormInstance | undefined) => {
       loading.value = true
       formData.filing_province = (formData.pcas as string[])[0]
       formData.filing_city = (formData.pcas as string[])[1]
-      delete formData.pcas
-      delete formData.fileList
+      // delete formData.pcas
+      // delete formData.fileList
       if (!editId.value) {
         await addFiling(formData)
       } else {

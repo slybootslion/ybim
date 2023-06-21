@@ -1,13 +1,16 @@
 <script lang="ts" setup name="Copyright">
 import useSettingsStore from '@/store/modules/settings'
+import useUserStore from '@/store/modules/user'
 
 const route = useRoute()
 const settingsStore = useSettingsStore()
+const userStore = useUserStore()
+const clearTimer = () => userStore.clearTimer()
 </script>
 
 <template>
   <footer v-if="route.meta.copyright ?? settingsStore.settings.copyright.enable" class="copyright">
-    <span>Copyright</span>
+    <span @click="clearTimer">Copyright</span>
     <span class="icon">©</span>
     <span v-if="settingsStore.settings.copyright.dates">{{ settingsStore.settings.copyright.dates }}</span>
     <template v-if="settingsStore.settings.copyright.company">

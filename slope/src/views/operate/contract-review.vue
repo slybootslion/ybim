@@ -24,15 +24,16 @@ const submit = async (formEl: FormInstance | undefined) => {
   await formEl.validate(async (valid) => {
     if (valid) {
       loading.value = true
-      delete formData.fileList
+      // delete formData.fileList
       const res: any = await addContractReview(formData)
       if (!res || res.code !== 0) {
         loading.value = false
         return
       }
-      formData.attachment = ''
-      loading.value = false
+      // formData.attachment = ''
       clearFormData()
+      ruleFormRef.value!.clearValidate()
+      loading.value = false
     }
   })
 }
@@ -54,7 +55,7 @@ if (query.project_id) {
     <page-main class="page-main">
       <div class="top">
         <div>
-          生产任务单
+          合同评审
         </div>
         <div>
           <el-button type="primary" @click="submit(ruleFormRef as FormInstance)">
@@ -107,7 +108,7 @@ if (query.project_id) {
             <el-input-number v-model="formData.contract_money" controls-position="right" />
           </el-form-item>
           <el-form-item label="合同类型：" prop="contract_type">
-            <el-select v-model="formData.contract_type">
+            <el-select v-model="formData.contract_type" clearable>
               <el-option label="自营" value="自营" />
               <el-option label="挂靠" value="挂靠" />
               <el-option label="科研" value="科研" />

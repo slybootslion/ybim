@@ -2,7 +2,7 @@
 import type { getRecordTableListI, resRecordItemI } from '@/views/operate/record-method'
 import { delFiling, getFilingList, pageData } from '@/views/operate/record-method'
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
-import { delItemHandle } from '@/utils/tools'
+import { delItemHandle, pageI } from '@/utils/tools'
 
 const tableLoading = ref(false)
 const tableData = ref<resRecordItemI[]>([])
@@ -110,7 +110,7 @@ const delItem = async (row: resRecordItemI) => {
       </template>
     </el-table-column>
   </el-table>
-  <PaginationComp @page-change="pageChange" />
+  <PaginationComp :page-data="pageData as pageI" @page-change="pageChange" />
 </template>
 
 <style scoped lang="scss">

@@ -74,33 +74,33 @@ export const selectChange = (s: string) => formData.win_bidder = s
 export const handleUploadFile1 = async (obj: UploadRequestOptions) => {
   loading.value = true
   const res = await uploadProjectAttach(obj)
-  if (!res.data || !res.data.file_id) {
+  if (!res || !res.file_id) {
     loading.value = false
     return
   }
-  formData.tender_offer = res.data.file_id
+  formData.tender_offer = res.file_id
   loading.value = false
 }
 
 export const handleUploadFile2 = async (obj: UploadRequestOptions) => {
   loading.value = true
   const res = await uploadProjectAttach(obj)
-  if (!res.data || !res.data.file_id) {
+  if (!res || !res.file_id) {
     loading.value = false
     return
   }
-  formData.win_tender_inform = res.data.file_id
+  formData.win_tender_inform = res.file_id
   loading.value = false
 }
 
 export const handleUploadFile3 = async (obj: UploadRequestOptions) => {
   loading.value = true
   const res = await uploadProjectAttach(obj)
-  if (!res.data || !res.data.file_id) {
+  if (!res || !res.file_id) {
     loading.value = false
     return
   }
-  formData.tender_documents = res.data.file_id
+  formData.tender_documents = res.file_id
   loading.value = false
 }
 

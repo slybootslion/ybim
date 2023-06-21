@@ -2,7 +2,7 @@
 import type { getSupplierTableListI, resSupplierTableItemI } from '@/views/production/supplier-method'
 import { getSupplierList, pageData, primarySupplierTypeOption } from '@/views/production/supplier-method'
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
-import { delItemHandle } from '@/utils/tools'
+import { delItemHandle, pageI } from '@/utils/tools'
 import api from '@/api'
 
 const tableLoading = ref(false)
@@ -101,7 +101,7 @@ const delItem = (row: resSupplierTableItemI) => delItemHandle(row.supplier_name,
       </template>
     </el-table-column>
   </el-table>
-  <PaginationComp @page-change="pageChange" />
+  <PaginationComp :page-data="pageData as pageI" @page-change="pageChange" />
 </template>
 
 <style scoped lang="scss">

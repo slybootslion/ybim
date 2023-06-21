@@ -2,6 +2,7 @@
 import type { getProjectListParamI, resProjectListI } from '@/views/scientific_research/project-method'
 import { getProjectList, pageData, researchNameClick } from '@/views/scientific_research/project-method'
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
+import { pageI } from '@/utils/tools'
 
 const tableLoading = ref(false)
 const tableData = ref<resProjectListI[]>([])
@@ -101,7 +102,7 @@ const searchHandle = () => {
     <el-table-column property="registrant_user" label="登记人员" width="140" />
     <el-table-column property="create_time" label="登记时间" width="170" />
   </el-table>
-  <PaginationComp @page-change="pageChange" />
+  <PaginationComp :page-data="pageData as pageI" @page-change="pageChange" />
 </template>
 
 <style lang="scss" scoped>

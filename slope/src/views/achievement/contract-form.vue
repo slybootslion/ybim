@@ -1,16 +1,29 @@
 <script setup lang="ts">
 import { FormInstance, FormRules, UploadUserFile } from 'element-plus'
 import {
-  activeSubIndTypeOptions, addContract, clearFormData, editContract, editId,
-  firstPartyKeyOption, firstPartyLabelOption,
-  firstPartyOption, formData, getEditData, handleUploadFile, industryTypeChange, loading, paymentTypeChange,
+  activeSubIndTypeOptions,
+  addContract,
+  clearFormData,
+  editContract,
+  editId,
+  firstPartyKeyOption,
+  firstPartyLabelOption,
+  firstPartyOption,
+  formData,
+  getEditData,
+  handleUploadFile,
+  industryTypeChange,
+  loading,
+  paymentTypeChange, projectOptions, projectOptionsSci,
+  projectSearchLoading,
   remoteFirstPartyMethod,
+  remoteMethod, remoteMethodSci,
   remoteSecondPartyMethod,
-  secondPartyKeyOption, secondPartyLabelOption,
-  secondPartyOption,
+  secondPartyKeyOption,
+  secondPartyLabelOption,
+  secondPartyOption, typeChange,
 } from '@/views/achievement/contract-method'
 import { back } from '@/views/scientific_research/project-method'
-import { projectOptions, projectSearchLoading, remoteMethod } from '@/views/production/task-method'
 import { level3List } from '@/views/system/personnel-method'
 import { primaryIndustryTypeOptions } from '@/views/production/project-method'
 import { beforeUploadFile, handleRemoveFile } from '@/utils/tools'
@@ -39,17 +52,26 @@ const rules = reactive<FormRules>({
   project_scale: [{ required: true, message: '输入金额', trigger: 'blur' }],
   fileList: [{ required: true, message: '上传合同附件', trigger: 'change' }],
 })
+
 const submit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate(async (valid) => {
     if (valid) {
       loading.value = true
-      delete formData.fileList
+      // delete formData.fileList
       if (!editId.value) {
-        await addContract(formData)
+        const res: any = await addContract(formData)
+        if (!res || res.data.code !== 0) {
+          loading.value = false
+          return
+        }
       } else {
         formData.contract_id = editId.value
-        await editContract(formData)
+        const res: any = await editContract(formData)
+        if (!res || res.data.code !== 0) {
+          loading.value = false
+          return
+        }
       }
       loading.value = false
       back()
@@ -88,7 +110,7 @@ setTimeout(() => ruleFormRef.value!.clearValidate())
               </el-select>
             </el-form-item>
             <el-form-item label="合同类型：" prop="contract_type">
-              <el-select v-model="formData.contract_type">
+              <el-select v-model="formData.contract_type" @change="typeChange">
                 <el-option label="自营" value="自营" />
                 <el-option label="挂靠" value="挂靠" />
                 <el-option label="科研" value="科研" />
@@ -96,7 +118,18 @@ setTimeout(() => ruleFormRef.value!.clearValidate())
               </el-select>
             </el-form-item>
           </div>
-          <el-form-item label="关联项目：" prop="project_id">
+          <el-form-item v-if="formData.contract_type === '科研'" label="关联项目：" prop="project_id">
+            <el-select
+              v-model="formData.project_id" filterable remote reserve-keyword placeholder="输入项目名称查找"
+              :remote-method="remoteMethodSci" :loading="projectSearchLoading"
+            >
+              <el-option
+                v-for="p in projectOptionsSci" :key="p.research_id" :label="p.research_name"
+                :value="p.research_id"
+              />
+            </el-select>
+          </el-form-item>
+          <el-form-item v-else label="关联项目：" prop="project_id">
             <el-select
               v-model="formData.project_id" filterable remote reserve-keyword placeholder="输入项目名称查找"
               :remote-method="remoteMethod" :loading="projectSearchLoading"
@@ -173,18 +206,20 @@ setTimeout(() => ruleFormRef.value!.clearValidate())
               placeholder=""
             />
           </el-form-item>
-          <el-form-item label="合同附件：" prop="fileList">
-            <!-- eslint-disable-next-line -->
-            <el-upload v-model:file-list="formData.fileList as UploadUserFile[]" action="" accept=".pdf"
-                       :http-request="handleUploadFile"
-                       :before-upload="() => beforeUploadFile(formData.attachment)"
-                       :on-remove="() => handleRemoveFile(formData, 'attachment')"
-            >
-              <el-button type="primary">
-                上传
-              </el-button>
-            </el-upload>
-          </el-form-item>
+          <div>
+            <el-form-item label="合同附件：" prop="fileList">
+              <!-- eslint-disable-next-line -->
+              <el-upload v-model:file-list="formData.fileList as UploadUserFile[]" action="" accept=".pdf"
+                         :http-request="handleUploadFile"
+                         :before-upload="() => beforeUploadFile(formData.attachment)"
+                         :on-remove="() => handleRemoveFile(formData, 'attachment')"
+              >
+                <el-button type="primary">
+                  上传
+                </el-button>
+              </el-upload>
+            </el-form-item>
+          </div>
         </el-form>
       </div>
     </page-main>
@@ -205,7 +240,7 @@ setTimeout(() => ruleFormRef.value!.clearValidate())
   }
 
   :deep(.el-textarea) {
-    width: 1260px;
+    width: 1060px;
   }
 }
 </style>

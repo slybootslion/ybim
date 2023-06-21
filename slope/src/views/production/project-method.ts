@@ -38,6 +38,7 @@ export interface resProjectTableItemI {
   task_code: string
   production_user: string
   main_department: string
+  registrant_user: string
 }
 
 export const getProjectList = async (paramter: getProjectTableListI) => {
@@ -60,7 +61,8 @@ export interface projectFormDataI {
   project_id: string
   industry_type: string
   project_type: string
-  major: string | string[]
+  major: string
+  majorArr: string[]
   days?: string
   start_time: string
   end_time: string
@@ -81,6 +83,7 @@ export const formData: projectFormDataI = reactive<projectFormDataI>({
   industry_type: '',
   project_type: '',
   major: '',
+  majorArr: [],
   days: '',
   start_time: '',
   end_time: '',
@@ -101,6 +104,7 @@ export const clearFormData = () => {
   formData.industry_type = ''
   formData.project_type = ''
   formData.major = ''
+  formData.majorArr = []
   formData.days = ''
   formData.start_time = ''
   formData.end_time = ''

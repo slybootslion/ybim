@@ -2,8 +2,9 @@
 import { FormInstance } from 'element-plus'
 import type { TreeNode } from '@/views/system/personnel-method'
 import {
-  addDepartment, addUserHandle, departmentList, drawerForm, drawerRules, drawerShow, editDepartment, editTableItem,
-  getRoleList, getTableData, getTreeList, level3List, logoutTableItem, roleData, ruleFormRef, rules, searchName,
+  addDepartment, addUserHandle, departmentList, drawerForm, drawerRules, drawerShow,
+  editDepartment, editTableItem, getRoleList, getTableData,
+  getTreeList, level3List, logoutTableItem, roleData, ruleFormRef, rules, searchName, selectDepartment,
   submitUser, tableData, tableLoading, tableSelect, treeData,
 } from '@/views/system/personnel-method'
 import { pageLoading } from '@/utils/tools'
@@ -63,7 +64,6 @@ const addNew = () => {
   dialogShow.value = true
   editId.value = ''
 }
-
 const searchDepartment = ref('')
 const searchKeyword = ref('')
 const handleSelectionChange = (val: any[]) => {
@@ -139,6 +139,7 @@ const handleSelectionChange = (val: any[]) => {
           @selection-change="handleSelectionChange"
         >
           <el-table-column type="selection" width="55" />
+          <el-table-column label="序号" type="index" width="50" />
           <el-table-column property="user_name" label="姓名" width="110" />
           <el-table-column property="user_sex" label="性别" />
           <el-table-column property="user_age" label="年龄" />
@@ -235,15 +236,17 @@ const handleSelectionChange = (val: any[]) => {
             </el-select>
           </el-form-item>
           <el-form-item label="生日" prop="user_brithday">
-            <el-date-picker v-model="drawerForm.user_brithday" value-format="YYYY-MM-DD" type="date"
-                            placeholder="选择日期" />
+            <el-date-picker
+              v-model="drawerForm.user_brithday" value-format="YYYY-MM-DD" type="date"
+              placeholder="选择日期"
+            />
           </el-form-item>
           <el-form-item label="工号" prop="user_empno">
             <el-input v-model="drawerForm.user_empno" placeholder="输入工号" autocomplete="off" style="width: 320px" />
           </el-form-item>
           <el-form-item label="所属部门" prop="user_department_id">
             <el-select v-model="drawerForm.user_department_id" placeholder="选择部门">
-              <el-option v-for="item in level3List" :key="item.value" :label="item.label" :value="item.value" />
+              <el-option v-for="item in selectDepartment" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
           </el-form-item>
           <el-form-item label="人员角色" prop="user_role_id">
@@ -258,8 +261,10 @@ const handleSelectionChange = (val: any[]) => {
             <el-input v-model="drawerForm.user_email" placeholder="输入邮箱" style="width: 320px" />
           </el-form-item>
           <el-form-item label="入职时间" prop="entry_time">
-            <el-date-picker v-model="drawerForm.entry_time" value-format="YYYY-MM-DD" type="date"
-                            placeholder="选择日期" />
+            <el-date-picker
+              v-model="drawerForm.entry_time" value-format="YYYY-MM-DD" type="date"
+              placeholder="选择日期"
+            />
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="submitUser(ruleFormRef as FormInstance)">
@@ -275,18 +280,23 @@ const handleSelectionChange = (val: any[]) => {
 <style scoped lang="scss">
 .page-main {
   display: flex;
+
   .left {
     width: 290px;
+
     .left-top {
       padding: 10px;
       border-bottom: 1px solid var(--el-border-color);
+
       .title {
         font-size: 18px;
         margin-bottom: 10px;
       }
     }
+
     .left-bottom {
       padding: 10px;
+
       .custom-tree-node {
         flex: 1;
         display: flex;
@@ -297,19 +307,23 @@ const handleSelectionChange = (val: any[]) => {
       }
     }
   }
+
   .right {
     flex: 1;
     overflow: auto;
     margin-left: 10px;
+
     .right-top {
       height: 50px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+
       .right-top-search {
         display: flex;
       }
     }
+
     .right-bottom {
       flex: 1;
     }

@@ -1,7 +1,7 @@
-import type {UploadUserFile} from 'element-plus'
-import type {UploadRequestOptions} from 'element-plus/lib/components'
-import type {pageI} from '@/utils/tools'
-import api, {baseURL} from '@/api'
+import type { UploadUserFile } from 'element-plus'
+import type { UploadRequestOptions } from 'element-plus/lib/components'
+import type { pageI } from '@/utils/tools'
+import api, { baseURL } from '@/api'
 
 export const loading = ref(false)
 
@@ -30,8 +30,8 @@ export const pageData = reactive<pageI>({
 })
 
 export const getAptitudeList = async (params: getQualificationTableListI) => {
-  const res: any = await api.get('/aptitude/getAptitudeList', {params: {...params}})
-  return {list: res.data.list, total: res.data.total}
+  const res: any = await api.get('/aptitude/getAptitudeList', { params: { ...params } })
+  return { list: res.data.list, total: res.data.total }
 }
 
 export const getAptitude = async (aptitude_id: string) => {
@@ -41,7 +41,7 @@ export const getAptitude = async (aptitude_id: string) => {
 
 export const primaryAptitudeTypeOption = ['勘察', '设计', '咨询、规划、审查', '地质灾害治理', '测绘',
   '试验检测', '工商财务', '管理体系', '其他', '涉外', '安全生产', '施工']
-export const primaryAptitudeGradeOption = ['甲级', '乙级', '丙级']
+export const primaryAptitudeGradeOption = ['甲级', '乙级', '丙级', '一级', '二级', '三级']
 export const editId = ref('')
 
 export interface qualificationFormDataI {
@@ -49,6 +49,7 @@ export interface qualificationFormDataI {
   aptitude_name: string
   cert_number: string
   aptitude_type: string
+  issuer: string
   department_id: string
   cert_valid_time: string
   aptitude_grade: string
@@ -66,6 +67,7 @@ export const formData: qualificationFormDataI = reactive<qualificationFormDataI>
   aptitude_name: '',
   cert_number: '',
   aptitude_type: '',
+  issuer: '',
   department_id: '',
   cert_valid_time: '',
   aptitude_grade: '',
@@ -76,6 +78,7 @@ export interface resQualificationI {
   aptitude_id: string
   aptitude_name: string
   cert_number: string
+  issuer: string
   aptitude_type: string
   department_id: string
   cert_valid_time: string
@@ -99,6 +102,7 @@ export const activeQualification: Ref<resQualificationI> = ref<resQualificationI
   cert_number: '',
   aptitude_type: '',
   department_id: '',
+  issuer: '',
   cert_valid_time: '',
   aptitude_grade: '',
   principal: '',
@@ -118,7 +122,7 @@ export const addAptitude = async (params: qualificationFormDataI) => api.post('/
 export const editAptitude = async (params: qualificationFormDataI) => api.post('/aptitude/editAptitude', params)
 
 export const uploadAptitudeAttach = async (file: File) => {
-  const res = await api.post('/aptitude/uploadAptitudeAttach', {file})
+  const res = await api.post('/aptitude/uploadAptitudeAttach', { file })
   return res.data
 }
 
@@ -141,6 +145,7 @@ export const getEditData = async (id: string) => {
   formData.cert_number = res.cert_number
   formData.aptitude_type = res.aptitude_type
   formData.department_id = res.department_id
+  formData.issuer = res.issuer
   formData.cert_valid_time = res.cert_valid_time
   formData.aptitude_grade = res.aptitude_grade
   formData.principal = res.principal

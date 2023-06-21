@@ -56,6 +56,9 @@ const toEdit = () => router.push(`/achievement-qualification/qualification-form?
         <el-descriptions-item label="资质类别：">
           {{ (activeQualification as resQualificationI).aptitude_type }}
         </el-descriptions-item>
+        <el-descriptions-item label="发证机关：">
+          {{ (activeQualification as resQualificationI).issuer }}
+        </el-descriptions-item>
         <el-descriptions-item label="所属单位：">
           {{ (activeQualification as resQualificationI).department }}
         </el-descriptions-item>

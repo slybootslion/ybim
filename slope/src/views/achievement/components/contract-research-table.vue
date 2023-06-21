@@ -5,6 +5,7 @@ import { pageData } from '@/views/production/project-method'
 import { contractTypeOptions, getContractList, industryTypeOption } from '@/views/achievement/contract-method'
 import { getTreeList, level3List } from '@/views/system/personnel-method'
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
+import {pageI} from "@/utils/tools";
 
 getTreeList()
 const tableLoading = ref(false)
@@ -64,12 +65,12 @@ const downloadItem = (row: resContractListItemI) => {
         </el-select>
       </el-form-item>
       <el-form-item label="行业类型：">
-        <el-select v-model="searchData.industry_type">
+        <el-select v-model="searchData.industry_type" clearable>
           <el-option v-for="ind in industryTypeOption" :key="ind" :label="ind" :value="ind" />
         </el-select>
       </el-form-item>
       <el-form-item label="所属部门：">
-        <el-select v-model="searchData.operation_department">
+        <el-select v-model="searchData.operation_department" clearable>
           <el-option v-for="item in level3List" :key="item.value" :label="item.label" :value="item.value" />
         </el-select>
       </el-form-item>
@@ -119,7 +120,7 @@ const downloadItem = (row: resContractListItemI) => {
       </template>
     </el-table-column>
   </el-table>
-  <PaginationComp @page-change="pageChange" />
+  <PaginationComp :page-data="pageData as pageI" @page-change="pageChange" />
 </template>
 
 <style scoped lang="scss">

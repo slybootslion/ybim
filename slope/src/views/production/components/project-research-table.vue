@@ -3,6 +3,7 @@ import PaginationComp from '@/views/public-components/pagination-comp.vue'
 import type { getProjectTableListI, resProjectTableItemI } from '@/views/production/project-method'
 import { getProjectList, pageData, primaryIndustryTypeOptions } from '@/views/production/project-method'
 import { primaryBusinessOptions } from '@/views/operate/customer-method'
+import {pageI} from "@/utils/tools";
 
 const tableLoading = ref(false)
 let tableData = reactive<resProjectTableItemI[]>([])
@@ -124,8 +125,9 @@ const searchHandle = () => {
     <el-table-column property="task_code" label="任务编码" width="160" />
     <el-table-column property="main_department" label="生产机构" width="130" />
     <el-table-column property="production_user" label="生产负责人" width="100" />
+    <el-table-column property="registrant_user" label="经办人" width="100" />
   </el-table>
-  <PaginationComp @page-change="pageChange" />
+  <PaginationComp :page-data="pageData as pageI" @page-change="pageChange" />
 </template>
 
 <style scoped lang="scss">

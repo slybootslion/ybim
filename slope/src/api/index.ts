@@ -3,6 +3,7 @@ import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import router from '@/router/index'
 import useUserStore from '@/store/modules/user'
+import { filterMoreField } from '@/utils/tools'
 
 const toLogin = () => {
   useUserStore().logout().then(() => {
@@ -27,13 +28,15 @@ api.interceptors.request.use(
      * 全局拦截请求发送前提交的参数
      * 以下代码为示例，在请求头里带上 token 信息
      */
-    if (request.method === 'post') {
-      request.headers.setContentType('application/x-www-form-urlencoded')
-    }
+    // if (request.method === 'post') {
+    //   request.headers.setContentType('application/x-www-form-urlencoded')
+    // }
+    request.headers.setContentType('application/x-www-form-urlencoded')
     if (userStore.isLogin && request.headers) {
       // request.headers.Token = userStore.token
       // request.headers.Authorization = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJCSjAwMDE1QzY4OTQiLCJpYXQiOjE2Nzk4OTkzMDksImV4cCI6MTY3OTk0MjUwOX0.BqjSXntLUb98ziP6pYCx5PCZTkZeZfcZpkYqwQXPl9o'
       request.headers.Authorization = userStore.token
+      // request.headers.FJOASIJFOAIJSDF = 'aaaaa'
     }
     if (request.method === 'post' && request.data) {
       let hasFile = false
@@ -54,12 +57,13 @@ api.interceptors.request.use(
         request.data = formData
       }
     }
+    if (request.method === 'post' && !(request.data instanceof FormData)) request.data = filterMoreField(request.data)
     // 是否将 POST 请求参数进行字符串化处理
-    if (request.method === 'post') {
-      // request.data = qs.stringify(request.data, {
-      //   arrayFormat: 'brackets',
-      // })
-    }
+    // if (request.method === 'post') {
+    // request.data = qs.stringify(request.data, {
+    //   arrayFormat: 'brackets',
+    // })
+    // }
     return request
   },
 )
@@ -88,14 +92,15 @@ api.interceptors.response.use(
     return Promise.resolve(response.data)
   },
   (error) => {
+    if (error.config.url === '/down/toDo') {
+      return Promise.reject(error)
+    }
     let message = error.message
     if (message === 'Network Error') {
       message = '后端网络故障'
-    }
-    else if (message.includes('timeout')) {
+    } else if (message.includes('timeout')) {
       message = '接口请求超时'
-    }
-    else if (message.includes('Request failed with status code')) {
+    } else if (message.includes('Request failed with status code')) {
       message = `接口${message.substr(message.length - 3)}异常`
     }
     ElMessage({

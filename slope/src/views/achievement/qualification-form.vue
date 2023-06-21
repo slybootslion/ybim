@@ -5,7 +5,7 @@ import {
   addAptitude, clearFormData, editAptitude, editId,
   formData, getEditData, handleUploadFile, loading, primaryAptitudeGradeOption, primaryAptitudeTypeOption,
 } from '@/views/achievement/qualification-method'
-import { getTreeList, level3List } from '@/views/system/personnel-method'
+import { getTreeList, level2List } from '@/views/system/personnel-method'
 import { beforeUploadFile, handleRemoveFile } from '@/utils/tools'
 
 getTreeList()
@@ -19,6 +19,7 @@ const ruleFormRef = ref<FormInstance>()
 const rules = reactive<FormRules>({
   aptitude_name: [{ required: true, message: '输入资质名称', trigger: 'blur' }],
   cert_number: [{ required: true, message: '输入证书号码', trigger: 'blur' }],
+  issuer: [{ required: true, message: '输入发证机关', trigger: 'blur' }],
   aptitude_type: [{ required: true, message: '选择资质类别', trigger: 'change' }],
   aptitude_grade: [{ required: true, message: '选择资质等级', trigger: 'change' }],
   cert_valid_time: [{ required: true, message: '选择日期', trigger: 'change' }],
@@ -29,7 +30,7 @@ const submit = async (formEl: FormInstance | undefined) => {
   await formEl.validate(async (valid) => {
     if (valid) {
       loading.value = true
-      delete formData.fileList
+      // delete formData.fileList
       if (!editId.value) await addAptitude(formData)
       else {
         formData.aptitude_id = editId.value
@@ -78,12 +79,15 @@ const submit = async (formEl: FormInstance | undefined) => {
               <el-option v-for="aptg in primaryAptitudeGradeOption" :key="aptg" :label="aptg" :value="aptg" />
             </el-select>
           </el-form-item>
+          <el-form-item label="发证机关：" prop="issuer">
+            <el-input v-model="formData.issuer" />
+          </el-form-item>
           <el-form-item label="证书有效日期：" prop="cert_valid_time">
             <el-date-picker v-model="formData.cert_valid_time" value-format="YYYY-MM-DD" type="date" />
           </el-form-item>
           <el-form-item label="所属单位" prop="department_id">
             <el-select v-model="formData.department_id">
-              <el-option v-for="item in level3List" :key="item.value" :label="item.label" :value="item.value" />
+              <el-option v-for="item in level2List" :key="item.value" :label="item.label" :value="item.value" />
             </el-select>
           </el-form-item>
           <el-form-item label="负责人：" prop="principal">
