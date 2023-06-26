@@ -3,7 +3,7 @@ import PaginationComp from '@/views/public-components/pagination-comp.vue'
 import type { getProjectTableListI, resProjectTableItemI } from '@/views/production/project-method'
 import { getProjectList, pageData, primaryIndustryTypeOptions } from '@/views/production/project-method'
 import { primaryBusinessOptions } from '@/views/operate/customer-method'
-import {pageI} from "@/utils/tools";
+import { pageI } from '@/utils/tools'
 
 const tableLoading = ref(false)
 let tableData = reactive<resProjectTableItemI[]>([])
@@ -11,7 +11,15 @@ const getList = async (param: getProjectTableListI) => {
   tableLoading.value = true
   delete param.total
   const res = await getProjectList(param)
-  tableData = res.list
+  tableData = res.list.map((item: any) => {
+    if (item.participating_organization) {
+      item.children = item.participating_organization
+      item.children.forEach((subItem: any) => {
+        subItem.main_department = subItem.department
+      })
+    }
+    return item
+  })
   pageData.total = res.total
   tableLoading.value = false
 }
@@ -100,7 +108,10 @@ const searchHandle = () => {
       </el-form-item>
     </el-form>
   </div>
-  <el-table v-loading="tableLoading" :data="tableData" border style="width: 100%">
+  <el-table
+    v-loading="tableLoading" :data="tableData" row-key="task_code" border default-expand-all
+    style="width: 100%"
+  >
     <el-table-column type="selection" width="55" />
     <el-table-column label="序号" type="index" width="50" />
     <el-table-column label="项目名称" min-width="230">
@@ -116,7 +127,7 @@ const searchHandle = () => {
       <template #default="scope">
         {{
           scope.row.project_dependency_country === '国内'
-            ? `${ scope.row.project_dependency_province } ${ scope.row.project_dependency_city }`
+            ? `${scope.row.project_dependency_province} ${scope.row.project_dependency_city}`
             : scope.row.project_dependency_country
         }}
       </template>
@@ -136,6 +147,7 @@ const searchHandle = () => {
     width: 150px !important;
   }
 }
+
 .pagination {
   margin-top: 10px;
 }

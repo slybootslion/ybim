@@ -4,7 +4,8 @@ import {
   getAptitudeList, pageData, primaryAptitudeGradeOption, primaryAptitudeTypeOption,
 } from '@/views/achievement/qualification-method'
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
-import { pageI } from '@/utils/tools'
+import {delItemHandle, pageI} from '@/utils/tools'
+import api from '@/api'
 
 const tableLoading = ref(false)
 let tableData = reactive<resQualificationTableItemI[]>([])
@@ -35,8 +36,11 @@ const searchHandle = () => {
 const router = useRouter()
 const researchNameClick = (id: string) => router.push(`/achievement-qualification/qualification-detail?aptitude_id=${id}`)
 const editItem = (id: string) => router.push(`/achievement-qualification/qualification-form?aptitude_id=${id}`)
-const delItem = (row: resQualificationTableItemI) => {
+const delCb = async (id: string) => {
+  await api.post('/aptitude/delAptitude', { aptitude_id: id })
+  pageChange()
 }
+const delItem = (row: resQualificationTableItemI) => delItemHandle(row.aptitude_name, delCb, row.aptitude_id)
 </script>
 
 <template>

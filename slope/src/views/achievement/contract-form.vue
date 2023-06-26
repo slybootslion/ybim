@@ -14,14 +14,14 @@ import {
   handleUploadFile,
   industryTypeChange,
   loading,
-  paymentTypeChange, projectOptions, projectOptionsSci,
+  paymentTypeChange, projectOptions,
   projectSearchLoading,
   remoteFirstPartyMethod,
-  remoteMethod, remoteMethodSci,
+  remoteMethod,
   remoteSecondPartyMethod,
   secondPartyKeyOption,
   secondPartyLabelOption,
-  secondPartyOption, typeChange,
+  secondPartyOption,
 } from '@/views/achievement/contract-method'
 import { back } from '@/views/scientific_research/project-method'
 import { level3List } from '@/views/system/personnel-method'
@@ -110,7 +110,7 @@ setTimeout(() => ruleFormRef.value!.clearValidate())
               </el-select>
             </el-form-item>
             <el-form-item label="合同类型：" prop="contract_type">
-              <el-select v-model="formData.contract_type" @change="typeChange">
+              <el-select v-model="formData.contract_type">
                 <el-option label="自营" value="自营" />
                 <el-option label="挂靠" value="挂靠" />
                 <el-option label="科研" value="科研" />
@@ -118,18 +118,18 @@ setTimeout(() => ruleFormRef.value!.clearValidate())
               </el-select>
             </el-form-item>
           </div>
-          <el-form-item v-if="formData.contract_type === '科研'" label="关联项目：" prop="project_id">
-            <el-select
-              v-model="formData.project_id" filterable remote reserve-keyword placeholder="输入项目名称查找"
-              :remote-method="remoteMethodSci" :loading="projectSearchLoading"
-            >
-              <el-option
-                v-for="p in projectOptionsSci" :key="p.research_id" :label="p.research_name"
-                :value="p.research_id"
-              />
-            </el-select>
-          </el-form-item>
-          <el-form-item v-else label="关联项目：" prop="project_id">
+          <!--          <el-form-item v-if="formData.contract_type === '科研'" label="关联项目：" prop="project_id"> -->
+          <!--            <el-select -->
+          <!--              v-model="formData.project_id" filterable remote reserve-keyword placeholder="输入项目名称查找" -->
+          <!--              :remote-method="remoteMethodSci" :loading="projectSearchLoading" -->
+          <!--            > -->
+          <!--              <el-option -->
+          <!--                v-for="p in projectOptionsSci" :key="p.research_id" :label="p.research_name" -->
+          <!--                :value="p.research_id" -->
+          <!--              /> -->
+          <!--            </el-select> -->
+          <!--          </el-form-item> -->
+          <el-form-item label="关联项目：" prop="project_id">
             <el-select
               v-model="formData.project_id" filterable remote reserve-keyword placeholder="输入项目名称查找"
               :remote-method="remoteMethod" :loading="projectSearchLoading"
