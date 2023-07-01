@@ -44,10 +44,7 @@ const subRules = reactive<FormRules>({
   deadline: [{ required: true, message: '输入成果提交时间', trigger: 'change' }],
 })
 const computedDay = () => formData.days = `${dayjs(formData.datePick![1]).diff(formData.datePick![0], 'day')}`
-const addTask = async (data: projectFormDataI) => {
-  const res = await api.post('/produce/addTask', data)
-  return res.data
-}
+const addTask = async (data: projectFormDataI) => api.post('/produce/addTask', data)
 const isMore = ref(false)
 const submit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
@@ -76,7 +73,7 @@ const submit = async (formEl: FormInstance | undefined) => {
       // delete formData.poArr
       loading.value = true
       if (!editId.value) {
-        const res = await addTask(formData)
+        const res: any = await addTask(formData)
         if (!res || res.code !== 0) {
           loading.value = false
           return

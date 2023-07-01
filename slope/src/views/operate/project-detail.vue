@@ -7,19 +7,36 @@ import ProjectTab4 from '@/views/operate/components/project-tab4.vue'
 import ProjectTab3 from '@/views/operate/components/project-tab3.vue'
 import ProjectTab2 from '@/views/operate/components/project-tab2.vue'
 
+const activeName = ref('基本信息')
 const route = useRoute()
 const query = route.query
 if (!query.project_id) {
   ElMessage.error('项目id错误')
   back()
-} else projectId.value = query.project_id as string
-const activeName = ref('基本信息')
+} else {
+  projectId.value = query.project_id as string
+  activeName.value = query.type === '1' ? '投标信息' : query.type === '2' ? '合同评审' : '基本信息'
+}
 const router = useRouter()
+
 interface goRouterParams {
   url: string
   projectId: string
+  r: boolean
 }
-const goRouter = ({ url, projectId }: goRouterParams) => router.push(`${url}?project_id=${projectId}`)
+
+const goRouter = ({ url, ...o }: goRouterParams) => {
+  let u = `${url}?`
+  for (const oKey in o) {
+    if (oKey === 'projectId') {
+      u += `project_id=${o.projectId}`
+    }
+    if (oKey === 'r') {
+      u += `&r=${o.r}`
+    }
+  }
+  router.push(u)
+}
 </script>
 
 <template>

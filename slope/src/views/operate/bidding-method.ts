@@ -1,6 +1,6 @@
-import type { UploadUserFile } from 'element-plus'
-import type { UploadRequestOptions } from 'element-plus/lib/components'
-import { uploadProjectAttach } from '@/views/operate/approval-method'
+import type {UploadUserFile} from 'element-plus'
+import type {UploadRequestOptions} from 'element-plus/lib/components'
+import {uploadProjectAttach} from '@/views/operate/approval-method'
 import api from '@/api'
 
 export const loading = ref(false)
@@ -8,7 +8,7 @@ export const loading = ref(false)
 export interface biddingFormDataI {
   project_id: string
   project_type: string
-  joint_bid: number
+  joint_bid: number | boolean
   joint_company?: string
   earnest_money: number
   earnest_type: string

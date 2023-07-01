@@ -98,7 +98,16 @@ const delItem = async (row: resRecordItemI) => {
     <el-table-column property="filing_valid_time" label="备案有效日期" width="130" />
     <el-table-column property="responsible_person" label="经办人" width="160" />
     <el-table-column property="filing_time" label="备案时间" width="130" />
-    <el-table-column property="valid" label="有效状态" width="90" />
+    <el-table-column label="有效状态" width="90">
+      <template #default="scope">
+        <el-tag
+          :type="scope.row.valid.includes('无效') ? 'danger' : ''"
+          disable-transitions
+        >
+          {{ scope.row.valid }}
+        </el-tag>
+      </template>
+    </el-table-column>
     <el-table-column label="操作" width="130">
       <template #default="scope">
         <el-button link type="primary" size="small" @click.prevent="editItem(scope.row.filing_id)">

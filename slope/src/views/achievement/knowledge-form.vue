@@ -30,6 +30,7 @@ const submit = async (formEl: FormInstance | undefined) => {
       formData.application_year = +!formData.application_year_str
       // delete formData.application_year_str
       if (!editId.value) {
+        delete formData.ip_id
         const res: any = await addIpr(formData)
         if (!res || res.code !== 0) {
           loading.value = false

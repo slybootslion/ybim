@@ -55,7 +55,7 @@ const cancel = async () => {
         </el-button>
         <el-button
           type="primary"
-          @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-bidding/bidding' })"
+          @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-bidding/bidding', r: true })"
         >
           重新发起投标
         </el-button>
@@ -89,8 +89,13 @@ const cancel = async () => {
         </el-descriptions-item>
       </el-descriptions>
       <el-descriptions>
-        <el-descriptions-item label="项目概况：">
+        <el-descriptions-item label="项目等级与规模：">
           {{ activeProjectData && (activeProjectData as resProjectDataI).project_general }}
+        </el-descriptions-item>
+      </el-descriptions>
+      <el-descriptions>
+        <el-descriptions-item label="项目实施方案：">
+          {{ activeProjectData && (activeTenderData as resTenderI).implement_solution }}
         </el-descriptions-item>
       </el-descriptions>
       <el-descriptions :column="2" style="margin-bottom: 20px;">

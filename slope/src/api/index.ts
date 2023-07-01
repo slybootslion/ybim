@@ -93,6 +93,7 @@ api.interceptors.response.use(
   },
   (error) => {
     if (error.config.url === '/down/toDo') {
+      console.log('--error--')
       return Promise.reject(error)
     }
     let message = error.message

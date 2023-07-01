@@ -3,7 +3,7 @@ import { ElMessage, ElMessageBox, FormInstance, FormRules } from 'element-plus'
 import { getProject } from '@/views/operate/bid-method'
 import type { approveFormDataI } from '@/views/operate/project-method'
 import {
-  activeProjectData, approveSubmit,
+  activeProjectData, activeTenderData, approveSubmit,
   downloadItem, resProjectDataI, rules,
 } from '@/views/operate/project-method'
 import api from '@/api'
@@ -54,6 +54,20 @@ const cancelActive = () => {
     }
   }).catch(console.log)
 }
+
+const end = async () => {
+  ElMessageBox.confirm('是否完结该项目？', '注意', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning',
+  }).then(async () => {
+    const res: any = await api.post('/project/endProject', { project_id: props.projectId })
+    if (!res || res.code !== 0) {
+      return
+    }
+    emit('goRouter', { projectId: props.projectId, url: '/project-initiation/project-list' })
+  }).catch(console.log)
+}
 </script>
 
 <template>
@@ -63,19 +77,31 @@ const cancelActive = () => {
         <el-button type="primary" @click="cancelActive">
           取消
         </el-button>
-        <el-button type="primary" @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-approval/approval' })">
+        <el-button
+          type="primary"
+          @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-approval/approval' })"
+        >
           重新发起
         </el-button>
-        <el-button type="primary" @click="() => emit('goRouter', { projectId: props.projectId, url: '/tracking-information/tracking' })">
+        <el-button
+          type="primary"
+          @click="() => emit('goRouter', { projectId: props.projectId, url: '/tracking-information/tracking' })"
+        >
           跟踪记录
         </el-button>
-        <el-button type="primary" @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-bidding/bidding' })">
+        <el-button
+          type="primary"
+          @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-bidding/bidding' })"
+        >
           新建投标评审
         </el-button>
-        <el-button type="primary" @click="() => emit('goRouter', { projectId: props.projectId, url: '/contract-rating/contract-review' })">
+        <el-button
+          type="primary"
+          @click="() => emit('goRouter', { projectId: props.projectId, url: '/contract-rating/contract-review' })"
+        >
           合同评审
         </el-button>
-        <el-button type="primary">
+        <el-button type="primary" @click="end">
           项目完结
         </el-button>
       </div>
@@ -183,7 +209,7 @@ const cancelActive = () => {
           </el-descriptions-item>
         </el-descriptions>
       </el-form>
-      <el-descriptions style="margin-top: 20px;" title="审核信息" :column="1" v-if="activeProjectData">
+      <el-descriptions v-if="activeProjectData" style="margin-top: 20px;" title="审核信息" :column="1">
         <el-descriptions-item
           v-for="(item, index) in (activeProjectData as resProjectDataI).project_approve"
           :key="index" label="审核人："

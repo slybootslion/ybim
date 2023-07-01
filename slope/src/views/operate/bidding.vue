@@ -7,6 +7,8 @@ import {
 import { projectOptions, projectSearchLoading, remoteMethod } from '@/views/production/task-method'
 import { getTreeList, level2List } from '@/views/system/personnel-method'
 import { beforeUploadFile, handleRemoveFile } from '@/utils/tools'
+import { getTender } from '@/views/operate/bid-method'
+import {baseURL} from "@/api";
 
 getTreeList()
 remoteMethod('')
@@ -48,8 +50,38 @@ const submit = async (formEl: FormInstance | undefined) => {
     }
   })
 }
+const initForm = async (projectId: string) => {
+  const res = await getTender(projectId)
+  formData.project_type = res.project_type
+  formData.joint_bid = res.joint_bid === 1
+  formData.joint_company = res.joint_company
+  formData.earnest_money = res.earnest_money
+  formData.earnest_type = res.earnest_type
+  formData.tenderee = res.tenderee
+  formData.main_bidder = res.main_bidder
+  formData.grade_scale = res.grade_scale
+  formData.tender_agent = res.tender_agent
+  formData.purchase_way = res.purchase_way
+  formData.implement_solution = res.implement_solution
+  formData.apply_time = res.apply_time
+  formData.receip_time = res.receip_time
+  formData.opentender_time = res.opentender_time
+  formData.applicant_time = res.applicant_time
+  formData.specific_note = res.specific_note
+  formData.authorized_person = res.authorized_person
+  formData.authorized_person_code = res.authorized_person_code
+  formData.authorized_end_time = res.authorized_end_time
+  formData.authorized_attachment = res.authorized_attachment
+  formData.fileList = [{
+    name: res.authorized_attachment_name,
+    url: baseURL + res.authorized_attachment_url.slice(4),
+  }]
+}
 if (query.project_id) {
   formData.project_id = query.project_id as string
+  if (query.r === 'true') {
+    initForm(query.project_id as string)
+  }
 } else clearFormData()
 </script>
 

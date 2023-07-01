@@ -224,11 +224,9 @@ export interface resEditDataI {
 export const projectOptions = ref([])
 export const projectOptionsSci = ref([])
 export const remoteMethodSci = async (query: string) => {
-  console.log(query)
   if (!query) query = ''
   projectSearchLoading.value = true
   const res = await getProjectListScientific({ page_size: 8, page_number: 1, research_name: query })
-  console.log(res)
   projectOptionsSci.value = res.list
   projectSearchLoading.value = false
 }

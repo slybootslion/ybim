@@ -96,7 +96,7 @@ const clickToDetail = (id: string, type: number) => {
   if (type === 3) {
     router.push(`/production-management/task-detail?task_id=${id}`)
   } else {
-    router.push(`/project-initiation/project-detail?project_id=${id}`)
+    router.push(`/project-initiation/project-detail?project_id=${id}&type=${type}`)
   }
 }
 

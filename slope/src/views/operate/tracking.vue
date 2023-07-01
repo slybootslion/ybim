@@ -145,7 +145,7 @@ if (query.project_id) {
   }
 
   :deep(.el-textarea) {
-    width: 1160px;
+    width: 960px;
   }
 
   .more-box {
