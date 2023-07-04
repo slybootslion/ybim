@@ -94,16 +94,23 @@ export const activeFileData: Ref<resFileDataI> = ref<resFileDataI>({
 })
 
 export const getTask = async (task_id: string) => {
-  const res = await api.get(`/produce/getTask?task_id=${ task_id }`)
+  const res = await api.get(`/produce/getTask?task_id=${task_id}`)
   return res.data
 }
 
 export const projectOptions = ref([])
 export const projectSearchLoading = ref(false)
-export const remoteMethod = async (query: string) => {
+export const remoteMethod = async (query: string, more: false | Object = false) => {
   if (!query) query = ''
   projectSearchLoading.value = true
-  const r = await getProjectList({ page_size: 8, page_number: 1, project_name: query })
+  let data = { page_size: 8, page_number: 1, project_name: query }
+  if (more !== false) {
+    data = {
+      ...data,
+      ...more,
+    }
+  }
+  const r = await getProjectList(data)
   projectOptions.value = r.list
   projectSearchLoading.value = false
 }

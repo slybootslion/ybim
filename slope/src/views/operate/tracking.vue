@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { FormInstance, FormRules, UploadUserFile } from 'element-plus'
-import { addTail, clearFormData, formData, handleUploadFile, loading } from '@/views/operate/tracking-method'
+import {
+  addTail, clearFormData, editTail,
+  formData, getDetail, handleUploadFile, loading,
+} from '@/views/operate/tracking-method'
 import { getTreeList } from '@/views/system/personnel-method'
 import { beforeUploadFile, handleRemoveFile } from '@/utils/tools'
 import { projectOptions, projectSearchLoading, remoteMethod } from '@/views/production/task-method'
@@ -10,6 +13,7 @@ remoteMethod('')
 const route = useRoute()
 const query = route.query
 const ruleFormRef = ref<FormInstance>()
+const router = useRouter()
 const submit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate(async (valid) => {
@@ -19,12 +23,23 @@ const submit = async (formEl: FormInstance | undefined) => {
       // delete formData.datePick
       // delete formData.fileList
       loading.value = true
-      const res: any = await addTail(formData)
-      if (res!.code !== 0) {
-        loading.value = false
-        return
+      if (!query.tail_id) {
+        delete formData.tail_id
+        const res: any = await addTail(formData)
+        if (!res || res.code !== 0) {
+          loading.value = false
+          return
+        }
+      } else {
+        formData.tail_id = query.tail_id as string
+        const res: any = await editTail(formData)
+        if (!res || res.code !== 0) {
+          loading.value = false
+          return
+        }
       }
       clearFormData()
+      if (query.tail_id) await router.push(`/project-initiation/project-detail?project_id=${query.project_id}`)
       loading.value = false
     }
   })
@@ -40,6 +55,9 @@ const rules = reactive<FormRules>({
 })
 if (query.project_id) {
   formData.project_id = query.project_id as string
+  if (query.tail_id) {
+    getDetail(query.tail_id as string, query.project_id as string)
+  }
 } else clearFormData()
 </script>
 

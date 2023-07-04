@@ -313,6 +313,7 @@ export const activeTenderData: Ref<resTenderI> = ref<resTenderI>({
 })
 
 export interface tailItemI {
+  tail_id: string
   tail_start_time: string
   tail_end_time: string
   visiting_clients_company: string
@@ -327,6 +328,8 @@ export interface tailItemI {
   attachment: string
   others: string
   tail_user: string
+  attachment_url: string
+  attachment_name: string
 }
 
 export const activeTailList: Ref<tailItemI[]> = ref<tailItemI[]>([])

@@ -170,7 +170,7 @@ setTimeout(() => ruleFormRef.value!.clearValidate())
               </el-select>
             </el-form-item>
           </div>
-          <el-form-item label="合同金额：" prop="contract_money">
+          <el-form-item label="合同金额（万元）：" prop="contract_money">
             <el-input v-model="formData.contract_money" />
           </el-form-item>
           <el-form-item label="合同签订时间：" prop="sign_time">

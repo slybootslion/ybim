@@ -132,7 +132,7 @@ else clearFormData()
             <el-form-item label="中标日期：" prop="win_time">
               <el-date-picker v-model="formData.win_time" value-format="YYYY-MM-DD" type="date" />
             </el-form-item>
-            <el-form-item label="中标金额：" prop="tender_money">
+            <el-form-item label="中标金额（万元）：" prop="tender_money">
               <el-input-number v-model="formData.tender_money" controls-position="right" />
             </el-form-item>
             <div>

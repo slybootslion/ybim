@@ -14,7 +14,7 @@ import { customerOptions, getCustomerHandle, searchLoading } from '@/views/opera
 import { beforeUploadFile, handleRemoveFile } from '@/utils/tools'
 
 getTreeList()
-remoteMethod('')
+remoteMethod('', {})
 getCustomerHandle('')
 const route = useRoute()
 const query = route.query
@@ -51,7 +51,7 @@ if (query.project_id) {
 </script>
 
 <template>
-  <div>
+  <div v-loading="loading">
     <page-main class="page-main">
       <div class="top">
         <div>
@@ -104,7 +104,7 @@ if (query.project_id) {
               <el-option v-for="item in level2List" :key="item.label" :label="item.label" :value="item.label" />
             </el-select>
           </el-form-item>
-          <el-form-item label="合同金额：" prop="contract_money">
+          <el-form-item label="合同金额（万元）：" prop="contract_money">
             <el-input-number v-model="formData.contract_money" controls-position="right" />
           </el-form-item>
           <el-form-item label="合同类型：" prop="contract_type">

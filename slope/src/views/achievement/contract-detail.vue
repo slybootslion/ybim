@@ -62,7 +62,7 @@ const downloadItem = async (url: string) => {
         <el-descriptions-item label="乙方：">
           {{ activeContract.second_party_name }}
         </el-descriptions-item>
-        <el-descriptions-item label="合同金额：">
+        <el-descriptions-item label="合同金额（万元）：">
           {{ activeContract.contract_money }} 万
         </el-descriptions-item>
         <el-descriptions-item label="合同类型：">

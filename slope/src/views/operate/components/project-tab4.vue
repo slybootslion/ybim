@@ -74,7 +74,7 @@ const cancel = () => {
         <el-descriptions-item label="乙方：">
           {{ activeContractReviewData && (activeContractReviewData as resContractReviewI).second_party }}
         </el-descriptions-item>
-        <el-descriptions-item label="合同金额：">
+        <el-descriptions-item label="合同金额（万元）：">
           {{ activeContractReviewData && (activeContractReviewData as resContractReviewI).contract_money }} 万元
         </el-descriptions-item>
         <el-descriptions-item label="合同类型：">

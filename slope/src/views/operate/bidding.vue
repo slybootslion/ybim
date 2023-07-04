@@ -8,7 +8,7 @@ import { projectOptions, projectSearchLoading, remoteMethod } from '@/views/prod
 import { getTreeList, level2List } from '@/views/system/personnel-method'
 import { beforeUploadFile, handleRemoveFile } from '@/utils/tools'
 import { getTender } from '@/views/operate/bid-method'
-import {baseURL} from "@/api";
+import { baseURL } from '@/api'
 
 getTreeList()
 remoteMethod('')
@@ -71,11 +71,13 @@ const initForm = async (projectId: string) => {
   formData.authorized_person = res.authorized_person
   formData.authorized_person_code = res.authorized_person_code
   formData.authorized_end_time = res.authorized_end_time
-  formData.authorized_attachment = res.authorized_attachment
-  formData.fileList = [{
-    name: res.authorized_attachment_name,
-    url: baseURL + res.authorized_attachment_url.slice(4),
-  }]
+  if (res.authorized_attachment) {
+    formData.authorized_attachment = res.authorized_attachment
+    formData.fileList = [{
+      name: res.authorized_attachment_name,
+      url: baseURL + res.authorized_attachment_url.slice(4),
+    }]
+  }
 }
 if (query.project_id) {
   formData.project_id = query.project_id as string
@@ -101,7 +103,7 @@ if (query.project_id) {
     </page-main>
     <page-main class="page-main">
       <div class="block">
-        <el-form ref="ruleFormRef" inline :model="formData" :rules="rules as FormRules" label-width="140px">
+        <el-form ref="ruleFormRef" inline :model="formData" :rules="rules as FormRules" label-width="170px">
           <div class="block-title">
             基本信息
           </div>
@@ -131,7 +133,7 @@ if (query.project_id) {
                 <el-option label="保函" value="保函" />
               </el-select>
             </el-form-item>
-            <el-form-item label="保证金金额：" prop="earnest_money">
+            <el-form-item label="保证金金额（万元）：" prop="earnest_money">
               <el-input-number v-model="formData.earnest_money" controls-position="right" />
             </el-form-item>
           </div>

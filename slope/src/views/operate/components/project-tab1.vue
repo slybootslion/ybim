@@ -3,7 +3,7 @@ import { ElMessage, ElMessageBox, FormInstance, FormRules } from 'element-plus'
 import { getProject } from '@/views/operate/bid-method'
 import type { approveFormDataI } from '@/views/operate/project-method'
 import {
-  activeProjectData, activeTenderData, approveSubmit,
+  activeProjectData, approveSubmit,
   downloadItem, resProjectDataI, rules,
 } from '@/views/operate/project-method'
 import api from '@/api'
@@ -61,11 +61,14 @@ const end = async () => {
     cancelButtonText: '取消',
     type: 'warning',
   }).then(async () => {
+    loading.value = true
     const res: any = await api.post('/project/endProject', { project_id: props.projectId })
     if (!res || res.code !== 0) {
+      loading.value = false
       return
     }
     emit('goRouter', { projectId: props.projectId, url: '/project-initiation/project-list' })
+    loading.value = false
   }).catch(console.log)
 }
 </script>

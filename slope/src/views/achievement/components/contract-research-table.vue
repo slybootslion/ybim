@@ -5,7 +5,7 @@ import { pageData } from '@/views/production/project-method'
 import { contractTypeOptions, getContractList, industryTypeOption } from '@/views/achievement/contract-method'
 import { getTreeList, level3List } from '@/views/system/personnel-method'
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
-import {pageI} from "@/utils/tools";
+import { pageI } from '@/utils/tools'
 
 getTreeList()
 const tableLoading = ref(false)
@@ -85,9 +85,9 @@ const downloadItem = (row: resContractListItemI) => {
     </el-form>
   </div>
   <el-table v-loading="tableLoading" :data="tableData" border style="width: 100%">
-    <el-table-column label="序号" type="index" width="60" />
-    <el-table-column property="contract_number" label="合同编码" width="160" />
-    <el-table-column label="合同名称" min-width="330">
+    <el-table-column label="序号" type="index" fixed width="60" />
+    <el-table-column property="contract_number" fixed label="合同编码" width="160" />
+    <el-table-column label="合同名称" min-width="330" fixed>
       <template #default="scope">
         <el-button link type="primary" @click="researchNameClick(scope.row.contract_id)">
           {{ scope.row.contract_name }}
@@ -96,7 +96,7 @@ const downloadItem = (row: resContractListItemI) => {
     </el-table-column>
     <el-table-column property="contract_type" label="合同类型" width="110" />
     <el-table-column property="payment_type" label="收支类型" width="110" />
-    <el-table-column property="contract_money" label="合同金额" width="160" />
+    <el-table-column property="contract_money" label="合同金额（万元）" width="160" />
     <el-table-column property="first_party" label="甲方" width="260" />
     <el-table-column property="second_party" label="乙方" width="260" />
     <el-table-column property="project_name" label="所属项目" width="280" />

@@ -79,7 +79,7 @@ const cancel = async () => {
         <el-descriptions-item label="是否联合体投标：">
           {{ activeTenderData && (activeTenderData as resTenderI).joint_bid === 1 ? '是' : '否' }}
         </el-descriptions-item>
-        <el-descriptions-item label="保证金金额：">
+        <el-descriptions-item label="保证金金额（万元）：">
           {{ activeTenderData && (activeTenderData as resTenderI).earnest_money }} 万元
         </el-descriptions-item>
         <el-descriptions-item label="项目所在地：">

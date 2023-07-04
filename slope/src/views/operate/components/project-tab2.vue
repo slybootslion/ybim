@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { activeTailList, getTailList, tailItemI } from '@/views/operate/project-method'
+import {
+  activeTailList, downloadItem,
+  getTailList,
+  tailItemI,
+} from '@/views/operate/project-method'
+import { delItemHandle } from '@/utils/tools'
+import api from '@/api'
 
 const props = defineProps<{
   projectId: string
@@ -13,16 +19,30 @@ const getDetail = async () => {
 }
 getDetail()
 const activeNames = ref(0)
+
+const del = async (tail_id: string) => {
+  await api.post('/project/delTail', { tail_id })
+  await getDetail()
+}
+const delItem = (id: string) => delItemHandle('', del, id)
+const router = useRouter()
+const editItem = (id: string) => router.push(`/tracking-information/tracking?project_id=${props.projectId}&tail_id=${id}`)
 </script>
 
 <template>
   <div v-loading="loading">
     <div class="block">
       <div class="top-button">
-        <el-button type="primary" @click="() => emit('goRouter', { projectId: props.projectId, url: '/tracking-information/tracking' })">
+        <el-button
+          type="primary"
+          @click="() => emit('goRouter', { projectId: props.projectId, url: '/tracking-information/tracking' })"
+        >
           跟踪记录
         </el-button>
-        <el-button type="primary" @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-bidding/bidding' })">
+        <el-button
+          type="primary"
+          @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-bidding/bidding' })"
+        >
           新建投标评审
         </el-button>
       </div>
@@ -40,11 +60,17 @@ const activeNames = ref(0)
             <el-descriptions-item label="拜访人员：">
               {{ (item as tailItemI).visiting_clients_man }}
             </el-descriptions-item>
+            <el-descriptions-item label="联系方式：">
+              {{ (item as tailItemI).visiting_clients_man_phone }}
+            </el-descriptions-item>
             <el-descriptions-item label="沟通主题：">
               {{ (item as tailItemI).subject }}
             </el-descriptions-item>
-            <el-descriptions-item label="实施或招标方式：">
+            <el-descriptions-item label="采购方式：">
               {{ (item as tailItemI).purchase_way }}
+            </el-descriptions-item>
+            <el-descriptions-item label="业务类别：">
+              {{ (item as tailItemI).service_class }}
             </el-descriptions-item>
             <el-descriptions-item label="商务关系情况说明：">
               {{ (item as tailItemI).business_relations }}
@@ -58,7 +84,20 @@ const activeNames = ref(0)
             <el-descriptions-item label="其他事项说明：">
               {{ (item as tailItemI).others }}
             </el-descriptions-item>
+            <el-descriptions-item v-if="(item as tailItemI).attachment_url" label="附件：">
+              <el-button link type="primary" @click="downloadItem((item as tailItemI).attachment_url as string)">
+                {{ (item as tailItemI).attachment_name }}.
+              </el-button>
+            </el-descriptions-item>
           </el-descriptions>
+          <div style="display: flex; justify-content: flex-end">
+            <el-button @click="editItem((item as tailItemI).tail_id)">
+              编辑
+            </el-button>
+            <el-button @click="delItem((item as tailItemI).tail_id)">
+              删除
+            </el-button>
+          </div>
         </el-collapse-item>
       </el-collapse>
     </div>
@@ -67,6 +106,7 @@ const activeNames = ref(0)
 
 <style scoped lang="scss">
 @import "tab-comp-style";
+
 .block {
   :deep(.el-collapse-item__header) {
     font-size: 18px;
