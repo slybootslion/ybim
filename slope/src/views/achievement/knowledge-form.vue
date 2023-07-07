@@ -15,7 +15,7 @@ const ruleFormRef = ref<FormInstance>()
 const rules = reactive<FormRules>({
   result_type: [{ required: true, message: '选择类型', trigger: 'change' }],
   application_time: [{ required: true, message: '选择日期', trigger: 'change' }],
-  validity: [{ required: true, message: '选择日期', trigger: 'change' }],
+  authorize_time: [{ required: true, message: '选择日期', trigger: 'change' }],
   result_name: [{ required: true, message: '输入成果名称', trigger: 'blur' }],
   property_owner: [{ required: true, message: '输入权属人', trigger: 'blur' }],
   copyright_owner: [{ required: true, message: '输入著作人', trigger: 'blur' }],
@@ -27,7 +27,7 @@ const submit = async (formEl: FormInstance | undefined) => {
       loading.value = true
       // delete formData.fileList2
       // delete formData.fileList1
-      formData.application_year = +!formData.application_year_str
+      console.log(formData)
       // delete formData.application_year_str
       if (!editId.value) {
         delete formData.ip_id
@@ -71,18 +71,18 @@ const submit = async (formEl: FormInstance | undefined) => {
     <page-main class="page-main">
       <div class="block">
         <el-form ref="ruleFormRef" inline :model="formData" :rules="rules as FormRules" label-width="180px">
-          <el-form-item label="行业类型：" prop="result_type">
+          <el-form-item label="成果类型：" prop="result_type">
             <el-select v-model="formData.result_type">
               <el-option v-for="rt in primaryResultTypeOptions" :key="rt" :label="rt" :value="rt" />
             </el-select>
           </el-form-item>
-          <el-form-item label="申请号：" prop="request_code">
+          <el-form-item label="申请号/授权号/专利号：" prop="request_code">
             <el-input v-model="formData.request_code" />
           </el-form-item>
           <el-form-item label="成果名称：" prop="result_name">
             <el-input v-model="formData.result_name" />
           </el-form-item>
-          <el-form-item label="权属人：" prop="property_owner">
+          <el-form-item label="权属人（专利权人）：" prop="property_owner">
             <el-input v-model="formData.property_owner" />
           </el-form-item>
           <el-form-item label="著作人：" prop="copyright_owner">
@@ -91,17 +91,17 @@ const submit = async (formEl: FormInstance | undefined) => {
           <el-form-item label="代理机构：">
             <el-input v-model="formData.agent" />
           </el-form-item>
-          <el-form-item label="申请年度：">
-            <el-date-picker v-model="formData.application_year" value-format="YYYY" type="year" />
-          </el-form-item>
-          <el-form-item label="申请日期：" prop="application_time">
+          <!--          <el-form-item label="申请年度："> -->
+          <!--            <el-date-picker v-model="formData.application_year_str" value-format="YYYY" type="year" /> -->
+          <!--          </el-form-item> -->
+          <el-form-item label="申请时间：" prop="application_time">
             <el-date-picker v-model="formData.application_time" value-format="YYYY-MM-DD" type="date" />
+          </el-form-item>
+          <el-form-item label="授权/受理时间：" prop="authorize_time">
+            <el-date-picker v-model="formData.authorize_time" value-format="YYYY-MM-DD" type="date" />
           </el-form-item>
           <el-form-item label="有效期：" prop="validity">
             <el-date-picker v-model="formData.validity" value-format="YYYY-MM-DD" type="date" />
-          </el-form-item>
-          <el-form-item label="失效日期：" prop="expiry_time">
-            <el-date-picker v-model="formData.expiry_time" value-format="YYYY-MM-DD" type="date" />
           </el-form-item>
           <el-form-item label="申请部门：">
             <!--            <el-select v-model="formData.application_department"> -->
@@ -113,26 +113,17 @@ const submit = async (formEl: FormInstance | undefined) => {
             <el-input v-model="formData.linkman" />
           </el-form-item>
           <el-form-item label="缴纳年费：">
+            <el-select v-model="formData.yearly_payment_status">
+              <el-option label="已缴纳" value="已缴纳" />
+              <el-option label="未缴纳" value="未缴纳" />
+            </el-select>
+          </el-form-item>
+          <el-form-item label="年费（元）：">
             <el-input v-model="formData.yearly_payment" />
           </el-form-item>
-          <el-form-item label="年费时间：">
-            <el-date-picker v-model="formData.yearly_payment_time" value-format="YYYY-MM-DD" type="date" />
-          </el-form-item>
-          <div>
-            <el-form-item label="附件其他：" prop="fileList">
-              <!-- eslint-disable-next-line -->
-              <el-upload v-model:file-list="formData.fileList1 as UploadUserFile[]" action=""
-                         accept=".pdf,.jpg,.png,jpeg"
-                         :http-request="handleUploadFile1"
-                         :before-upload="() => beforeUploadFile(formData.other_attachment)"
-                         :on-remove="() => handleRemoveFile(formData, 'other_attachment')"
-              >
-                <el-button type="primary">
-                  上传
-                </el-button>
-              </el-upload>
-            </el-form-item>
-          </div>
+          <!--          <el-form-item label="年费时间："> -->
+          <!--            <el-date-picker v-model="formData.yearly_payment_time" value-format="YYYY-MM-DD" type="date" /> -->
+          <!--          </el-form-item> -->
           <div>
             <el-form-item label="成果证书：" prop="fileList">
               <!-- eslint-disable-next-line -->
@@ -141,6 +132,21 @@ const submit = async (formEl: FormInstance | undefined) => {
                          :http-request="handleUploadFile2"
                          :before-upload="() => beforeUploadFile(formData.result_cert_attachment)"
                          :on-remove="() => handleRemoveFile(formData, 'result_cert_attachment')"
+              >
+                <el-button type="primary">
+                  上传
+                </el-button>
+              </el-upload>
+            </el-form-item>
+          </div>
+          <div>
+            <el-form-item label="附件其他：" prop="fileList">
+              <!-- eslint-disable-next-line -->
+              <el-upload v-model:file-list="formData.fileList1 as UploadUserFile[]" action=""
+                         accept=".pdf,.jpg,.png,jpeg"
+                         :http-request="handleUploadFile1"
+                         :before-upload="() => beforeUploadFile(formData.other_attachment)"
+                         :on-remove="() => handleRemoveFile(formData, 'other_attachment')"
               >
                 <el-button type="primary">
                   上传

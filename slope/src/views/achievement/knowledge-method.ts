@@ -16,19 +16,18 @@ export interface resKnowledgeTableItemI {
   result_name: string
   property_owner: string
   copyright_owner: string
-  application_year: number
   application_time: string
   validity: string
 }
 
 export interface getKnowledgeTableListI extends pageI {
   result_type?: string
+  authorize_time?: string
   request_code?: string
   result_name?: string
   property_owner?: string
   copyright_owner?: string
   agent?: string
-  application_year?: number
   application_time?: string
 }
 
@@ -45,17 +44,15 @@ export interface iprFormDataI {
   property_owner: string
   copyright_owner: string
   agent?: string
-  application_year?: number
-  application_year_str?: string
   application_time: string
   validity: string
-  expiry_time: string
   application_department?: string
   linkman?: string
   yearly_payment?: string
-  yearly_payment_time?: string
   other_attachment: string
   result_cert_attachment: string
+  authorize_time: string
+  yearly_payment_status: string
   fileList1?: UploadUserFile[]
   fileList2?: UploadUserFile[]
 }
@@ -67,17 +64,15 @@ export const formData: iprFormDataI = reactive<iprFormDataI>({
   property_owner: '',
   copyright_owner: '',
   agent: '',
-  application_year: 0,
-  application_year_str: '',
   application_time: '',
   validity: '',
-  expiry_time: '',
   application_department: '',
   linkman: '',
   yearly_payment: '',
-  yearly_payment_time: '',
   other_attachment: '',
   result_cert_attachment: '',
+  authorize_time: '',
+  yearly_payment_status: '',
   fileList1: [],
   fileList2: [],
 })
@@ -90,18 +85,17 @@ export interface resKnowledgeI {
   property_owner: string
   copyright_owner: string
   agent: string
-  application_year: number
   application_time: string
   validity: number
-  expiry_time: number
   application_department: string
   linkman: string
   yearly_payment: string
-  yearly_payment_time: string
   other_attachment: string
   result_cert_attachment: string
   other_attachment_url: string
+  authorize_time: string
   other_attachment_name: string
+  yearly_payment_status: string
   result_cert_attachment_url: string
   result_cert_attachment_name: string
 }
@@ -114,18 +108,17 @@ export const activeKnowledge: Ref<resKnowledgeI> = ref<resKnowledgeI>({
   property_owner: '',
   copyright_owner: '',
   agent: '',
-  application_year: 0,
   application_time: '',
   validity: 0,
-  expiry_time: 0,
   application_department: '',
   linkman: '',
   yearly_payment: '',
-  yearly_payment_time: '',
   other_attachment: '',
   result_cert_attachment: '',
   other_attachment_url: '',
+  authorize_time: '',
   other_attachment_name: '',
+  yearly_payment_status: '',
   result_cert_attachment_url: '',
   result_cert_attachment_name: '',
 })
@@ -170,15 +163,11 @@ export const clearFormData = () => {
   formData.property_owner = ''
   formData.copyright_owner = ''
   formData.agent = ''
-  formData.application_year = 0
-  formData.application_year_str = ''
   formData.application_time = ''
   formData.validity = ''
-  formData.expiry_time = ''
   formData.application_department = ''
   formData.linkman = ''
   formData.yearly_payment = ''
-  formData.yearly_payment_time = ''
   formData.other_attachment = ''
   formData.result_cert_attachment = ''
   formData.fileList1 = []
@@ -193,15 +182,13 @@ export const getEditData = async (ip_id: string) => {
   formData.result_name = res.result_name
   formData.property_owner = res.property_owner
   formData.copyright_owner = res.copyright_owner
-  formData.application_year = res.application_year
-  formData.application_year_str = `${res.application_year}`
   formData.application_time = res.application_time
   formData.validity = `${res.validity}`
-  formData.expiry_time = `${res.expiry_time}`
+  formData.authorize_time = res.authorize_time
+  formData.yearly_payment_status = res.yearly_payment_status
   formData.application_department = res.application_department
   formData.linkman = res.linkman
   formData.yearly_payment = res.yearly_payment
-  formData.yearly_payment_time = res.yearly_payment_time
   formData.other_attachment = res.other_attachment
   formData.result_cert_attachment = res.result_cert_attachment
   res.other_attachment_name && (formData.fileList1 = [{

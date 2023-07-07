@@ -8,6 +8,7 @@ import useSettingsStore from '@/store/modules/settings'
 import api from '@/api'
 import { TimerSimulateInterval } from '@/utils/tools'
 import useUserStore from '@/store/modules/user'
+import { loadWatermark } from '@/utils/watermark'
 
 const settingsStore = useSettingsStore()
 const { auth } = useAuth()
@@ -71,6 +72,9 @@ o.simulateInterval({
 })
 const userStore = useUserStore()
 userStore.setTimer(o)
+onMounted(() => {
+  loadWatermark(`${userStore.account}\n13248378722`)
+})
 </script>
 
 <template>

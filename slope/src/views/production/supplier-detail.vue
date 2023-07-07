@@ -49,7 +49,7 @@ const downloadItem = async (url: string) => {
       </div>
     </div>
     <div class="bottom">
-      <el-descriptions :column="1">
+      <el-descriptions :column="2">
         <el-descriptions-item label="供应商名称：">
           {{ activeSupplier.supplier_name }}
         </el-descriptions-item>
@@ -62,7 +62,7 @@ const downloadItem = async (url: string) => {
           {{ activeSupplier.primary_business }}
         </el-descriptions-item>
       </el-descriptions>
-      <el-descriptions :column="1">
+      <el-descriptions :column="2">
         <el-descriptions-item label="地址：">
           {{ activeSupplier.address_province }} {{ activeSupplier.address_city }} {{ activeSupplier.address_detail }}
         </el-descriptions-item>

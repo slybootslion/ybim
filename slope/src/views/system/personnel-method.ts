@@ -138,8 +138,8 @@ export const logoutTableItem = async (row: tableItem) => {
     `将注销人员${row.user_name}，是否继续？`,
     '注意',
     {
-      confirmButtonText: 'OK',
-      cancelButtonText: 'Cancel',
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
       type: 'warning',
     },
   ).then(() => {

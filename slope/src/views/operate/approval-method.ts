@@ -7,6 +7,7 @@ export const loading = ref(false)
 export const editId = ref('')
 
 export interface approvalFormDataI {
+  project_id?: string
   project_name: string
   project_code: string
   project_type: string
@@ -86,6 +87,7 @@ export const handleUploadFile = async (obj: UploadRequestOptions) => {
 
 export const addProject = async (parameter: approvalFormDataI) => api.post('/project/addProject', parameter)
 export const clearFormData = () => {
+  delete formData.project_id
   formData.project_name = ''
   formData.project_code = ''
   formData.project_type = ''

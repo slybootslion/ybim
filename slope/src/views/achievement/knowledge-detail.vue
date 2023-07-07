@@ -48,33 +48,33 @@ const downloadItem = async (url: string) => {
       </div>
     </div>
     <div class="bottom">
-      <el-descriptions :column="1">
+      <el-descriptions :column="2">
         <el-descriptions-item label="类型：">
           {{ (activeKnowledge as resKnowledgeI).result_type }}
         </el-descriptions-item>
-        <el-descriptions-item label="申请号：">
+        <el-descriptions-item label="专利/授权/申请号：">
           {{ (activeKnowledge as resKnowledgeI).request_code }}
         </el-descriptions-item>
         <el-descriptions-item label="名称：">
           {{ (activeKnowledge as resKnowledgeI).result_name }}
         </el-descriptions-item>
-        <el-descriptions-item label="软著权人：">
+        <el-descriptions-item label="权属人：">
           {{ (activeKnowledge as resKnowledgeI).property_owner }}
+        </el-descriptions-item>
+        <el-descriptions-item label="著作人：">
+          {{ (activeKnowledge as resKnowledgeI).copyright_owner }}
         </el-descriptions-item>
         <el-descriptions-item label="代理机构：">
           {{ (activeKnowledge as resKnowledgeI).agent }}
         </el-descriptions-item>
-        <el-descriptions-item label="申请年度：">
-          {{ (activeKnowledge as resKnowledgeI).application_year }}
-        </el-descriptions-item>
-        <el-descriptions-item label="申请日期：">
+        <el-descriptions-item label="申请时间：">
           {{ (activeKnowledge as resKnowledgeI).application_time }}
         </el-descriptions-item>
-        <el-descriptions-item label="开发完成日期：">
-          {{ (activeKnowledge as resKnowledgeI).validity }}
+        <el-descriptions-item label="授权/受理时间：">
+          {{ (activeKnowledge as resKnowledgeI).authorize_time }}
         </el-descriptions-item>
-        <el-descriptions-item label="首次发表日期：">
-          {{ (activeKnowledge as resKnowledgeI).expiry_time }}
+        <el-descriptions-item label="有效期：">
+          {{ (activeKnowledge as resKnowledgeI).validity }}
         </el-descriptions-item>
         <el-descriptions-item label="申请部门：">
           {{ (activeKnowledge as resKnowledgeI).application_department }}
@@ -82,6 +82,14 @@ const downloadItem = async (url: string) => {
         <el-descriptions-item label="联系人：">
           {{ (activeKnowledge as resKnowledgeI).linkman }}
         </el-descriptions-item>
+        <el-descriptions-item label="缴纳年费：">
+          {{ (activeKnowledge as resKnowledgeI).yearly_payment_status }}
+        </el-descriptions-item>
+        <el-descriptions-item label="年费（元）：">
+          {{ (activeKnowledge as resKnowledgeI).yearly_payment }}
+        </el-descriptions-item>
+      </el-descriptions>
+      <el-descriptions :column="1">
         <el-descriptions-item label="附件其他：">
           <el-button
             link type="primary"

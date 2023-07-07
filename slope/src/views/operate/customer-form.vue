@@ -12,6 +12,7 @@ else cleanFormData()
 const ruleFormRef = ref<FormInstance>()
 const rules = reactive<FormRules>({
   customer_name: [{ required: true, message: '输入名称', trigger: 'blur' }],
+  customer_department: [{ required: true, message: '输入部门', trigger: 'blur' }],
   address_detail: [{ required: true, message: '输入详细地址', trigger: 'blur' }],
   primary_business_list: [{ required: true, message: '输入主营业务', trigger: 'change' }],
   pcas: [{ required: true, message: '输入地址', trigger: 'change' }],
@@ -45,7 +46,7 @@ const rules = reactive<FormRules>({
           <el-form-item label="客户名称：" prop="customer_name">
             <el-input v-model="formData.customer_name" />
           </el-form-item>
-          <el-form-item label="部门：">
+          <el-form-item label="部门：" prop="customer_department">
             <el-input v-model="formData.customer_department" />
           </el-form-item>
           <el-form-item label="主营业务：" prop="primary_business_list">

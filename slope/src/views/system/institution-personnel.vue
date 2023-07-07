@@ -153,7 +153,7 @@ const handleSelectionChange = (val: any[]) => {
           <el-table-column label="当前状态" width="90">
             <template #default="scope">
               <el-tag
-                :type="scope.row.in_service_label === '离职' ? '' : 'success'"
+                :type="scope.row.in_service_label === '离职' ? 'danger' : 'success'"
                 disable-transitions
               >
                 {{ scope.row.in_service_label }}

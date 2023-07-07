@@ -45,10 +45,20 @@ const submit = async (formEl: FormInstance | undefined) => {
       // delete formData.fileList
       // delete formData.project_type_arr
       loading.value = true
-      const res: any = await addProject(formData)
-      if (res && res.code !== 0) {
-        loading.value = false
-        return
+      if (query.project_id) {
+        formData.project_id = query.project_id as string
+        const res: any = await addProject(formData)
+        if (res && res.code !== 0) {
+          loading.value = false
+          return
+        }
+      } else {
+        delete formData.project_id
+        const res: any = await addProject(formData)
+        if (res && res.code !== 0) {
+          loading.value = false
+          return
+        }
       }
       loading.value = false
       clearFormData()

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import api from '@/api'
 import { getList, pageData, resProjectListI, tableData } from '@/views/operate/project-method'
+import watermark from "watermark-dom";
 
 const tabActiveName = ref('待办事项')
 const leftQuickLink = [
@@ -25,6 +26,7 @@ interface todoListItemI {
   create_time?: number
   approve_type: number
   approve_time?: number
+  item_name?: string
 }
 
 const todos: Ref<todoListItemI[]> = ref<todoListItemI[]>([])
@@ -115,20 +117,35 @@ setTimeout(() => {
           <el-tabs v-model="tabActiveName" class="tabs">
             <el-tab-pane label="待办事项" name="待办事项">
               <div v-for="item in todos" :key="item.item_id" class="tab-list-item">
-                <span @click="clickToDetail(item.item_id, item.approve_type)">
-                  您有新的<span style="color: #409EFF">{{
-                    approveTypeDict[(item as todoListItemI).approve_type]
-                  }}</span>信息需要审核!
-                </span>
-                <span>{{ (item as todoListItemI).create_time }}</span>
+                <!--                <span @click="clickToDetail(item.item_id, item.approve_type)"> -->
+                <!--                  您有新的<span style="color: #409EFF">{{ -->
+                <!--                    approveTypeDict[(item as todoListItemI).approve_type] -->
+                <!--                  }}</span>信息需要审核! -->
+                <!--                </span> -->
+                <div style="cursor:pointer;" @click="clickToDetail(item.item_id, item.approve_type)">
+                  <div>
+                    项目名称：{{ (item as todoListItemI).item_name }}
+                  </div>
+                  <div>
+                    <span style="color: #409EFF">{{ approveTypeDict[(item as todoListItemI).approve_type] }}</span>信息需要处理!
+                    <span style="margin-left: 30px;"> {{ (item as todoListItemI).create_time }}</span>
+                  </div>
+                </div>
               </div>
             </el-tab-pane>
             <el-tab-pane label="已办事项" name="已办事项">
               <div v-for="item in finished" :key="item.item_id" class="tab-list-item">
-                <span @click="clickToDetail(item.item_id, item.approve_type)">
-                  <span style="color: #409EFF">{{ approveTypeDict[(item as todoListItemI).approve_type] }}</span>已审核!
-                </span>
-                <span>{{ (item as todoListItemI).approve_time }}</span>
+                <div @click="clickToDetail(item.item_id, item.approve_type)">
+                  <span>
+                    <div>
+                      项目名称：{{ (item as todoListItemI).item_name }}
+                    </div>
+                  </span>
+                  <div>
+                    <span style="color: #409EFF">{{ approveTypeDict[(item as todoListItemI).approve_type] }}</span>已处理!
+                    <span style="margin-left: 30px;"> {{ (item as todoListItemI).approve_time }}</span>
+                  </div>
+                </div>
               </div>
             </el-tab-pane>
           </el-tabs>
@@ -241,6 +258,7 @@ setTimeout(() => {
 .page-main {
   background-color: var(--g-main-bg);
   padding: 0;
+  font-size: 14px;
 
   .left-box {
     background-color: #fff;
@@ -249,10 +267,11 @@ setTimeout(() => {
     height: 380px;
 
     .tab-list-item {
-      height: 30px;
-      line-height: 30px;
+      //height: 30px;
+      //line-height: 30px;
+      margin-bottom: 10px;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
     }
 
     :deep(.el-tabs__content) {
@@ -270,6 +289,7 @@ setTimeout(() => {
       justify-content: space-between;
       align-items: center;
       height: 200px;
+      font-size: 16px;
 
       .left-btn {
         height: 50px;

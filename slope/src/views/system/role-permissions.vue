@@ -116,6 +116,7 @@ getRole().then(() => {
         align-items: center;
         box-sizing: border-box;
         padding: 0 10px;
+        font-size: 14px;
         &.active {
           color: #fff;
           background-color: #409EFF;

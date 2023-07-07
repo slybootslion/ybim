@@ -99,6 +99,16 @@ const searchHandle = () => {
     <el-table-column property="research_type" label="项目类别" width="130" />
     <el-table-column property="research_code" label="项目编码" width="220" />
     <el-table-column property="status" label="项目执行状态" width="120" />
+    <el-table-column label="项目执行状态" width="120">
+      <template #default="scope">
+        <el-tag
+          :type="scope.row.status.includes('完结') ? 'danger' : scope.row.status.includes('执行中') ? 'success' : ''"
+          disable-transitions
+        >
+          {{ scope.row.status }}
+        </el-tag>
+      </template>
+    </el-table-column>
     <el-table-column property="registrant_user" label="登记人员" width="140" />
     <el-table-column property="create_time" label="登记时间" width="170" />
   </el-table>

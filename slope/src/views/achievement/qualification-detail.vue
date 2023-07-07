@@ -46,7 +46,7 @@ const toEdit = () => router.push(`/achievement-qualification/qualification-form?
       </div>
     </div>
     <div class="bottom">
-      <el-descriptions :column="1">
+      <el-descriptions :column="2">
         <el-descriptions-item label="资质名称：">
           {{ (activeQualification as resQualificationI).aptitude_name }}
         </el-descriptions-item>
@@ -86,6 +86,8 @@ const toEdit = () => router.push(`/achievement-qualification/qualification-form?
         <el-descriptions-item label="现存原件数：">
           {{ (activeQualification as resQualificationI).extant_original_amount }}
         </el-descriptions-item>
+      </el-descriptions>
+      <el-descriptions :column="1">
         <el-descriptions-item label="资质描述：">
           {{ (activeQualification as resQualificationI).aptitude_description }}
         </el-descriptions-item>
