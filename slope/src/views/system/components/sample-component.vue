@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { sampleItemI } from '@/views/system/role-method'
 import { setRolePowerData } from '@/views/system/role-method'
+import {tableHeaderCellStyle} from "@/utils/tools";
 
 const props = defineProps<{
   tableData: sampleItemI[]
@@ -11,7 +12,7 @@ const changeRole = async (row: sampleItemI) => setRolePowerData({ role_id: props
 </script>
 
 <template>
-  <el-table :data="tableData" border style="width: 100%">
+  <el-table :data="tableData" border style="width: 100%" stripe :header-cell-style="tableHeaderCellStyle">
     <el-table-column property="data_name" label="全部" width="160" />
     <el-table-column label="数据权限">
       <template #default="scope">

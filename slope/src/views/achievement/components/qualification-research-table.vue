@@ -4,7 +4,7 @@ import {
   getAptitudeList, pageData, primaryAptitudeGradeOption, primaryAptitudeTypeOption,
 } from '@/views/achievement/qualification-method'
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
-import {delItemHandle, pageI} from '@/utils/tools'
+import {delItemHandle, pageI, tableHeaderCellStyle} from '@/utils/tools'
 import api from '@/api'
 
 const tableLoading = ref(false)
@@ -66,8 +66,8 @@ const delItem = (row: resQualificationTableItemI) => delItemHandle(row.aptitude_
       </el-form-item>
     </el-form>
   </div>
-  <el-table v-loading="tableLoading" :data="tableData" border style="width: 100%">
-    <el-table-column label="序号" type="index" width="50" />
+  <el-table v-loading="tableLoading" :data="tableData" border style="width: 100%" stripe :header-cell-style="tableHeaderCellStyle">
+    <el-table-column label="序号" type="index" width="60" />
     <el-table-column label="资质名称" min-width="230">
       <template #default="scope">
         <el-button link type="primary" @click="researchNameClick(scope.row.aptitude_id)">

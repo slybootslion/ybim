@@ -1,8 +1,8 @@
 <route lang="yaml">
 meta:
-  title: 登录
-  constant: true
-  layout: false
+title: 登录
+constant: true
+layout: false
 </route>
 
 <script lang="ts" setup name="Login">
@@ -15,7 +15,7 @@ const router = useRouter()
 
 const userStore = useUserStore()
 
-const banner = new URL('../assets/images/login-banner.png', import.meta.url).href
+// const banner = new URL('../assets/images/login-banner.png', import.meta.url).href
 const title = import.meta.env.VITE_APP_TITLE
 
 // 表单类型，login 登录，reset 重置密码
@@ -39,6 +39,7 @@ const loginRules = ref<FormRules>({
     { min: 6, max: 18, trigger: 'blur', message: '密码长度为6到18位' },
   ],
 })
+
 function handleLogin() {
   loginFormRef.value && loginFormRef.value.validate((valid) => {
     if (valid) {
@@ -47,8 +48,7 @@ function handleLogin() {
         loading.value = false
         if (loginForm.value.remember) {
           localStorage.setItem('login_account', loginForm.value.account)
-        }
-        else {
+        } else {
           localStorage.removeItem('login_account')
         }
         router.push(redirect.value)
@@ -78,6 +78,7 @@ const resetRules = ref<FormRules>({
     { min: 6, max: 18, trigger: 'blur', message: '密码长度为6到18位' },
   ],
 })
+
 function handleReset() {
   ElMessage({
     message: '重置密码模块仅提供界面演示，无实际功能，需开发者自行扩展',
@@ -99,6 +100,11 @@ function testAccount(account: string) {
 
 <template>
   <div>
+    <!--    <iframe -->
+    <!--      style="position: fixed; z-index: 1; left: 0; right: 0; bottom: 0; top: 0; margin: auto;" -->
+    <!--      scrolling="no" -->
+    <!--      src="https://www.bing.com" width="220px" height="220px" -->
+    <!--    /> -->
     <div class="bg-banner" />
     <div id="login-box">
       <el-form v-show="formType === 'login'" ref="loginFormRef" :model="loginForm" :rules="loginRules as FormRules" class="login-form" autocomplete="on">
@@ -127,14 +133,14 @@ function testAccount(account: string) {
             </el-input>
           </el-form-item>
         </div>
-        <div class="flex-bar">
-          <el-checkbox v-model="loginForm.remember">
-            记住我
-          </el-checkbox>
-          <el-link type="primary" :underline="false" @click="formType = 'reset'">
-            忘记密码了?
-          </el-link>
-        </div>
+        <!--        <div class="flex-bar"> -->
+        <!--          <el-checkbox v-model="loginForm.remember"> -->
+        <!--            记住我 -->
+        <!--          </el-checkbox> -->
+        <!--          <el-link type="primary" :underline="false" @click="formType = 'reset'"> -->
+        <!--            忘记密码了? -->
+        <!--          </el-link> -->
+        <!--        </div> -->
         <el-button :loading="loading" type="primary" size="large" style="width: 100%;" @click.prevent="handleLogin">
           登录
         </el-button>
@@ -194,7 +200,7 @@ function testAccount(account: string) {
 <style lang="scss" scoped>
 [data-mode="mobile"] {
   #login-box {
-    position: relative;
+    position: fixed;
     width: 100%;
     height: 100%;
     top: inherit;
@@ -259,6 +265,7 @@ function testAccount(account: string) {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: var(--el-box-shadow);
+  z-index: 2;
 
   .login-form {
     display: flex;

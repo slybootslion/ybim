@@ -4,7 +4,7 @@ import {
   addTender, clearFormData,
   formData, handleUploadFile, loading, primaryPurchaseWayOptions,
 } from '@/views/operate/bidding-method'
-import { projectOptions, projectSearchLoading, remoteMethod } from '@/views/production/task-method'
+import {projectIdSelect, projectOptions, projectSearchLoading, remoteMethod} from '@/views/production/task-method'
 import { getTreeList, level2List } from '@/views/system/personnel-method'
 import { beforeUploadFile, handleRemoveFile } from '@/utils/tools'
 import { getTender } from '@/views/operate/bid-method'
@@ -31,7 +31,7 @@ const rules = reactive<FormRules>({
   authorized_person_code: [{ required: true, message: '输入身份号码', trigger: 'blur' }],
   fileList: [{ required: true, message: '上传附件', trigger: 'change' }],
 })
-
+const router = useRouter()
 const submit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate(async (valid) => {
@@ -44,8 +44,9 @@ const submit = async (formEl: FormInstance | undefined) => {
         loading.value = false
         return
       }
+      await router.push(`/project-initiation/project-detail?project_id=${formData.project_id}&type=1`)
       clearFormData()
-      ruleFormRef.value!.clearValidate()
+      // ruleFormRef.value!.clearValidate()
       loading.value = false
     }
   })
@@ -80,6 +81,7 @@ const initForm = async (projectId: string) => {
   }
 }
 if (query.project_id) {
+  projectIdSelect(query.project_id as string)
   formData.project_id = query.project_id as string
   if (query.r === 'true') {
     initForm(query.project_id as string)

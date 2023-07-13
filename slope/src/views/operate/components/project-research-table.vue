@@ -10,7 +10,7 @@ import {
 } from '@/views/operate/project-method'
 import { primaryIndustryTypeOptions } from '@/views/production/project-method'
 import { primaryBusinessOptions } from '@/views/operate/customer-method'
-import { pageI } from '@/utils/tools'
+import { pageI, tableHeaderCellStyle } from '@/utils/tools'
 
 const emit = defineEmits(['getSelectedProjectId'])
 getList(pageData)
@@ -94,7 +94,7 @@ function selectAnalysis(selection: resProjectDataI[]) {
   </div>
   <el-table
     ref="multipleTable" v-loading="tableLoading" :data="tableData" border style="width: 100%"
-    @select="selectAnalysis" @select-all="selectAnalysis"
+    stripe :header-cell-style="tableHeaderCellStyle" @select="selectAnalysis" @select-all="selectAnalysis"
   >
     <el-table-column type="selection" width="50" />
     <el-table-column label="序号" type="index" width="55" />

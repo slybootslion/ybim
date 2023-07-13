@@ -2,6 +2,7 @@ import type { Ref } from 'vue'
 import api from '@/api'
 import type { approveItemI } from '@/views/operate/project-method'
 import { getProjectList } from '@/views/operate/project-method'
+import { getProject } from '@/views/operate/bid-method'
 
 interface resTaskOpI {
   task_name: string
@@ -113,4 +114,10 @@ export const remoteMethod = async (query: string, more: false | Object = false) 
   const r = await getProjectList(data)
   projectOptions.value = r.list
   projectSearchLoading.value = false
+}
+export const projectIdSelect = async (project_id: string) => {
+  const res = await getProject(project_id)
+  if (res && res.project_name) {
+    await remoteMethod(res.project_name)
+  }
 }

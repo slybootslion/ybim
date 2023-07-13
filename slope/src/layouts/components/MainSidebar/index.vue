@@ -68,7 +68,7 @@ const { switchTo } = useMenu()
       justify-content: center;
       flex-direction: column;
       text-align: center;
-      height: 60px;
+      height: 80px;
       padding: 0 5px;
       cursor: pointer;
       color: var(--g-main-sidebar-menu-color);
@@ -86,7 +86,7 @@ const { switchTo } = useMenu()
       }
 
       .el-icon {
-        margin: 0 auto;
+        margin: 0 auto 10px;
         font-size: 24px;
       }
 

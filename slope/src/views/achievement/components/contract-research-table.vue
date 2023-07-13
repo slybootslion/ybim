@@ -5,7 +5,7 @@ import { pageData } from '@/views/production/project-method'
 import { contractTypeOptions, getContractList, industryTypeOption } from '@/views/achievement/contract-method'
 import { getTreeList, level3List } from '@/views/system/personnel-method'
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
-import { pageI } from '@/utils/tools'
+import {pageI, tableHeaderCellStyle} from '@/utils/tools'
 
 getTreeList()
 const tableLoading = ref(false)
@@ -84,7 +84,7 @@ const downloadItem = (row: resContractListItemI) => {
       </el-form-item>
     </el-form>
   </div>
-  <el-table v-loading="tableLoading" :data="tableData" border style="width: 100%">
+  <el-table v-loading="tableLoading" :data="tableData" border style="width: 100%" stripe :header-cell-style="tableHeaderCellStyle">
     <el-table-column label="序号" type="index" fixed width="60" />
     <el-table-column property="contract_number" fixed label="合同编码" width="160" />
     <el-table-column label="合同名称" min-width="330" fixed>

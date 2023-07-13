@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>中交柏嘉生产经营管理系统</title>
+</head>
+<style>
+  .bg-banner {
+    position: fixed;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./login_bg.jpg');
+  }
+
+  .content-box {
+    width: 500px;
+    height: 550px;
+    background-color: #fff;
+    position: fixed;
+    z-index: 1;
+    right: 240px;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    text-align: center;
+  }
+
+  .content-box h2 {
+    margin-top: 60px;
+  }
+
+  .form-content {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 40px;
+  }
+
+  .form-content .warning {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 16px;
+  }
+
+</style>
+<body>
+<div class="bg-banner"></div>
+<div class="content-box">
+  <h2>中交柏嘉生产经营管理系统</h2>
+  <div class="form-content">
+    <iframe
+      scrolling="no"
+      src="https://example.com" width="220px" height="220px"
+    ></iframe>
+    <div class="warning">扫码登录</div>
+  </div>
+</div>
+</body>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(() => {
+    console.log('qrcode')
+  })
+</script>
+</html>

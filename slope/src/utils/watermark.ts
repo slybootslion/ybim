@@ -246,16 +246,18 @@ function wmFn() {
 }
 
 export function loadWatermark(text = '水印') {
-  const { init } = wmFn()
+  const { init, remove } = wmFn()
   // 水印更多设置请查看 watermark.ts
   init({
     text,
-    width: 150,
+    width: 110,
     x: 0,
     y: 0,
+    fontsize: '14px',
     x_space: 50,
     y_space: 50,
-    alpha: 0.1,
+    alpha: 0.08,
     color: 'black',
   })
+  return remove
 }

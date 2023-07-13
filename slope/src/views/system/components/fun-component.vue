@@ -2,6 +2,7 @@
 import type { TableColumnCtx } from 'element-plus'
 import type { funItemI } from '@/views/system/role-method'
 import { setRolePowerMenus, spanRow } from '@/views/system/role-method'
+import {tableHeaderCellStyle} from "@/utils/tools";
 
 const props = defineProps<{
   tableData: funItemI[]
@@ -80,7 +81,7 @@ const changeRole = async () => {
 </script>
 
 <template>
-  <el-table :data="tableLineData" :span-method="objectSpanMethod" border style="width: 100%; margin-top: 20px">
+  <el-table :data="tableLineData" :span-method="objectSpanMethod" border style="width: 100%; margin-top: 20px" stripe :header-cell-style="tableHeaderCellStyle">
     <el-table-column label="全部" width="220">
       <template #default="scope">
         <el-checkbox

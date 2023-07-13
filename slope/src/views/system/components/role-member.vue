@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import type { tableItemI } from '@/views/system/role-method'
+import {tableHeaderCellStyle} from "@/utils/tools";
 defineProps<{
   tableData: tableItemI[]
 }>()
 </script>
 
 <template>
-  <el-table :data="tableData" border style="width: 100%">
-    <el-table-column label="序号" type="index" width="50" />
+  <el-table :data="tableData" border style="width: 100%" stripe :header-cell-style="tableHeaderCellStyle">
+    <el-table-column label="序号" type="index" width="60" />
     <el-table-column property="user_name" label="姓名" width="110" />
     <el-table-column property="user_sex" label="性别" />
     <el-table-column property="user_age" label="年龄" />

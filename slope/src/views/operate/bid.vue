@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ElMessage, FormInstance, FormRules, UploadUserFile } from 'element-plus'
-import { projectOptions, projectSearchLoading, remoteMethod } from '@/views/production/task-method'
+import {projectIdSelect, projectOptions, projectSearchLoading, remoteMethod} from '@/views/production/task-method'
 import {
   clearFormData, formData, getProject, getTender, handleUploadFile1, handleUploadFile2, handleUploadFile3, loading,
   projectHandle, registerTenderResult, selectBlur, selectChange,
@@ -21,6 +21,7 @@ const rules = reactive<FormRules>({
   tender_result: [{ required: true, message: '选择结果', trigger: 'change' }],
   tender_money: [{ required: true, message: '输入金额', trigger: 'blur' }],
 })
+const router = useRouter()
 const submit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate(async (valid) => {
@@ -39,8 +40,9 @@ const submit = async (formEl: FormInstance | undefined) => {
         loading.value = false
         return
       }
+      await router.push(`/project-initiation/project-detail?project_id=${formData.project_id}&type=1`)
       clearFormData()
-      setTimeout(() => ruleFormRef.value!.clearValidate(), 300)
+      // setTimeout(() => ruleFormRef.value!.clearValidate(), 300)
       if (query.project_id) back()
       loading.value = false
     }
@@ -58,7 +60,10 @@ const initProject = async (id: string) => {
   formData.project_id = query.project_id as string
   formData.project_general = res.project_general
 }
-if (query.project_id) initProject(query.project_id as string)
+if (query.project_id) {
+  projectIdSelect(query.project_id as string)
+  initProject(query.project_id as string)
+}
 else clearFormData()
 </script>
 

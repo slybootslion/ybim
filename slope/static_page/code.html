@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>中交柏嘉生产经营管理系统</title>
+</head>
+<style>
+  .bg-banner {
+    position: fixed;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./login_bg.jpg');
+  }
+
+  .content-box {
+    width: 500px;
+    height: 550px;
+    background-color: #fff;
+    position: fixed;
+    z-index: 1;
+    right: 240px;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    text-align: center;
+  }
+
+  .content-box h2 {
+    margin-top: 60px;
+  }
+
+  .form-content {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 40px;
+  }
+
+  .form-content input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    box-sizing: border-box;
+    background-color: #dddddd;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    height: 40px;
+    padding: 8px;
+    color: #333333;
+  }
+
+  .form-content .warning {
+    color: #ff0000;
+    width: 100%;
+    text-align: left;
+    margin-top: 5px;
+    display: none;
+  }
+
+  .form-content .warning.show {
+    display: inline;
+  }
+
+  .form-content button {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    box-sizing: border-box;
+    background-color: #4099ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    height: 40px;
+    padding: 0 16px;
+    margin-top: 30px;
+    cursor: pointer;
+  }
+</style>
+<body>
+<div class="bg-banner"></div>
+<div class="content-box">
+  <h2>中交柏嘉生产经营管理系统</h2>
+  <div class="form-content">
+    <input id="i" type="text" placeholder="请输入绑定口令">
+    <span class="warning">口令输入错误，您还有2次机会，请输入正确口令</span>
+    <button id="btn">提交</button>
+  </div>
+</div>
+</body>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $("#btn").click(function() {
+      var inputContent = $("#i").val();
+      if (!inputContent) return
+      console.log("输入框内容:", inputContent);
+      $(".warning").addClass('show')
+    });
+  });
+</script>
+</html>

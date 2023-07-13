@@ -7,3 +7,6 @@
 // );
 @use "element-plus/theme-chalk/src/index.scss" as *;
 @use "./dark.scss";
+thead {
+  background-color: #ccc !important;
+}

@@ -53,7 +53,7 @@ export class TimerSimulateInterval {
   private timer: number | undefined
   private countLimit: number
 
-  constructor () {
+  constructor() {
     this.timer = undefined
     this.clear = false
     this.countLimit = 0
@@ -91,9 +91,17 @@ export class TimerSimulateInterval {
     setTimeout(fn, interval)
   }
 
-  simulateClearInterval (callback?: Function) {
+  simulateClearInterval(callback?: Function) {
     clearTimeout(this.timer)
     this.clear = true
     callback && callback()
+  }
+}
+
+export function tableHeaderCellStyle({ row, column, rowIndex, columnIndex }: never) {
+  return {
+    // textAlign: 'center',
+    color: '#333',
+    background: '#f3f3f3',
   }
 }

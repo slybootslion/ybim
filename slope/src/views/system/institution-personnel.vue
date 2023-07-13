@@ -7,7 +7,7 @@ import {
   getTreeList, level3List, logoutTableItem, roleData, ruleFormRef, rules, searchName, selectDepartment,
   submitUser, tableData, tableLoading, tableSelect, treeData,
 } from '@/views/system/personnel-method'
-import { pageLoading } from '@/utils/tools'
+import { pageLoading, tableHeaderCellStyle } from '@/utils/tools'
 
 const loading = pageLoading()
 
@@ -134,12 +134,12 @@ const handleSelectionChange = (val: any[]) => {
       <div class="right-bottom">
         <el-table
           v-loading="tableLoading"
-          border
+          border stripe :header-cell-style="tableHeaderCellStyle"
           :data="tableData"
           @selection-change="handleSelectionChange"
         >
           <el-table-column type="selection" width="55" />
-          <el-table-column label="序号" type="index" width="50" />
+          <el-table-column label="序号" type="index" width="60" />
           <el-table-column property="user_name" label="姓名" width="110" />
           <el-table-column property="user_sex" label="性别" />
           <el-table-column property="user_age" label="年龄" />

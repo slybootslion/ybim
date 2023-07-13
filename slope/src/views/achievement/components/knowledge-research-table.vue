@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { getKnowledgeTableListI, resKnowledgeTableItemI } from '@/views/achievement/knowledge-method'
 import { getIprList, pageData, primaryResultTypeOptions } from '@/views/achievement/knowledge-method'
-import { delItemHandle, pageI } from '@/utils/tools'
+import {delItemHandle, pageI, tableHeaderCellStyle} from '@/utils/tools'
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
 import api from '@/api'
 
@@ -74,8 +74,8 @@ const delItem = (row: resKnowledgeTableItemI) => delItemHandle(row.result_name, 
       </el-form-item>
     </el-form>
   </div>
-  <el-table v-loading="tableLoading" :data="tableData" border style="width: 100%">
-    <el-table-column label="序号" type="index" width="50" />
+  <el-table v-loading="tableLoading" :data="tableData" border style="width: 100%" stripe :header-cell-style="tableHeaderCellStyle">
+    <el-table-column label="序号" type="index" width="60" />
     <el-table-column property="request_code" label="申请号/授权/专利号" width="120" />
     <el-table-column label="名称" min-width="230">
       <template #default="scope">

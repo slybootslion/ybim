@@ -15,7 +15,7 @@ if (!query.project_id) {
   back()
 } else {
   projectId.value = query.project_id as string
-  activeName.value = query.type === '1' ? '投标信息' : query.type === '2' ? '合同评审' : '基本信息'
+  activeName.value = query.type === '1' ? '投标信息' : query.type === '2' ? '合同评审' : query.type === '4' ? '跟踪信息' : '基本信息'
 }
 const router = useRouter()
 

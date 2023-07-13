@@ -7,7 +7,7 @@ import {
   handleUploadFile,
   loading,
 } from '@/views/operate/contract-review-methods'
-import { projectOptions, projectSearchLoading, remoteMethod } from '@/views/production/task-method'
+import { projectIdSelect, projectOptions, projectSearchLoading, remoteMethod } from '@/views/production/task-method'
 import { selectBlur, selectChange } from '@/views/operate/bid-method'
 import { getTreeList, level2List } from '@/views/system/personnel-method'
 import { customerOptions, getCustomerHandle, searchLoading } from '@/views/operate/approval-method'
@@ -19,6 +19,7 @@ getCustomerHandle('')
 const route = useRoute()
 const query = route.query
 const ruleFormRef = ref<FormInstance>()
+const router = useRouter()
 const submit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate(async (valid) => {
@@ -26,13 +27,15 @@ const submit = async (formEl: FormInstance | undefined) => {
       loading.value = true
       // delete formData.fileList
       const res: any = await addContractReview(formData)
+      console.log(res)
       if (!res || res.code !== 0) {
         loading.value = false
         return
       }
       // formData.attachment = ''
+      await router.push(`/project-initiation/project-detail?project_id=${formData.project_id}&type=2`)
       clearFormData()
-      ruleFormRef.value!.clearValidate()
+      // ruleFormRef.value!.clearValidate()
       loading.value = false
     }
   })
@@ -46,6 +49,7 @@ const rules = reactive<FormRules>({
   contract_money: [{ required: true, message: '输入金额', trigger: 'blur' }],
 })
 if (query.project_id) {
+  projectIdSelect(query.project_id as string)
   formData.project_id = query.project_id as string
 } else clearFormData()
 </script>

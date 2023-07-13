@@ -8,9 +8,8 @@ const useUserStore = defineStore(
   () => {
     const routeStore = useRouteStore()
     const menuStore = useMenuStore()
-
-    const account = ref(localStorage.account ?? '')
-    const token = ref(localStorage.token ?? '')
+    const account = ref(sessionStorage.getItem('account') ?? '')
+    const token = ref(sessionStorage.getItem('token') ?? '')
     // const failure_time = ref(localStorage.failure_time ?? '')
     const permissions = ref<string[]>([])
     const isLogin = computed(() => {
@@ -51,16 +50,20 @@ const useUserStore = defineStore(
       // token.value = res.data.token
       // failure_time.value = res.data.failure_time
       const res = await api.post('/index/login', { user_name: data.account, user_password: data.password })
-      localStorage.setItem('account', res.data.user_name)
-      localStorage.setItem('token', res.data.token)
+      // localStorage.setItem('account', res.data.user_name)
+      // localStorage.setItem('token', res.data.token)
+      sessionStorage.setItem('account', res.data.user_name)
+      sessionStorage.setItem('token', res.data.token)
       account.value = res.data.user_name
       token.value = res.data.token
     }
 
     // 登出
     async function logout() {
-      localStorage.removeItem('account')
-      localStorage.removeItem('token')
+      // localStorage.removeItem('account')
+      // localStorage.removeItem('token')
+      sessionStorage.removeItem('account')
+      sessionStorage.removeItem('token')
       // // localStorage.removeItem('failure_time')
       account.value = ''
       token.value = ''

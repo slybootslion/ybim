@@ -2,7 +2,7 @@
 import type { getProjectListParamI, resProjectListI } from '@/views/scientific_research/project-method'
 import { getProjectList, pageData, researchNameClick } from '@/views/scientific_research/project-method'
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
-import { pageI } from '@/utils/tools'
+import {pageI, tableHeaderCellStyle} from '@/utils/tools'
 
 const tableLoading = ref(false)
 const tableData = ref<resProjectListI[]>([])
@@ -86,8 +86,8 @@ const searchHandle = () => {
       </el-form-item>
     </el-form>
   </div>
-  <el-table v-loading="tableLoading" :data="tableData" border style="width: 100%">
-    <el-table-column label="序号" type="index" width="50" />
+  <el-table v-loading="tableLoading" :data="tableData" border stripe :header-cell-style="tableHeaderCellStyle" style="width: 100%">
+    <el-table-column label="序号" type="index" width="60" />
     <el-table-column property="initiation_year" label="立项年度" width="110" />
     <el-table-column label="项目名称">
       <template #default="scope">

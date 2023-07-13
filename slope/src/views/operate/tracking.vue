@@ -6,7 +6,7 @@ import {
 } from '@/views/operate/tracking-method'
 import { getTreeList } from '@/views/system/personnel-method'
 import { beforeUploadFile, handleRemoveFile } from '@/utils/tools'
-import { projectOptions, projectSearchLoading, remoteMethod } from '@/views/production/task-method'
+import {projectIdSelect, projectOptions, projectSearchLoading, remoteMethod} from '@/views/production/task-method'
 
 getTreeList()
 remoteMethod('')
@@ -38,8 +38,8 @@ const submit = async (formEl: FormInstance | undefined) => {
           return
         }
       }
+      await router.push(`/project-initiation/project-detail?project_id=${formData.project_id}&type=4`)
       clearFormData()
-      if (query.tail_id) await router.push(`/project-initiation/project-detail?project_id=${query.project_id}`)
       loading.value = false
     }
   })
@@ -54,6 +54,7 @@ const rules = reactive<FormRules>({
   datePick: [{ required: true, message: '选择跟踪时间', trigger: 'change' }],
 })
 if (query.project_id) {
+  projectIdSelect(query.project_id as string)
   formData.project_id = query.project_id as string
   if (query.tail_id) {
     getDetail(query.tail_id as string, query.project_id as string)

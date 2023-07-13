@@ -8,6 +8,9 @@ const globalSettings: Settings.all = {
   menu: {
     enableSubMenuCollapseButton: true,
   },
+  copyright: {
+    enable: false,
+  },
 }
 
 export default globalSettings

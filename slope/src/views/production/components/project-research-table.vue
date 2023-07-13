@@ -3,7 +3,7 @@ import PaginationComp from '@/views/public-components/pagination-comp.vue'
 import type { getProjectTableListI, resProjectTableItemI } from '@/views/production/project-method'
 import { getProjectList, pageData, primaryIndustryTypeOptions } from '@/views/production/project-method'
 import { primaryBusinessOptions } from '@/views/operate/customer-method'
-import { pageI } from '@/utils/tools'
+import { pageI, tableHeaderCellStyle } from '@/utils/tools'
 
 const tableLoading = ref(false)
 let tableData = reactive<resProjectTableItemI[]>([])
@@ -110,10 +110,10 @@ const searchHandle = () => {
   </div>
   <el-table
     v-loading="tableLoading" :data="tableData" row-key="task_code" border default-expand-all
-    style="width: 100%"
+    style="width: 100%" stripe :header-cell-style="tableHeaderCellStyle"
   >
     <el-table-column type="selection" width="55" />
-    <el-table-column label="序号" type="index" width="50" />
+    <el-table-column label="序号" type="index" width="60" />
     <el-table-column label="项目名称" min-width="230">
       <template #default="scope">
         <el-button link type="primary" @click="researchNameClick(scope.row)">

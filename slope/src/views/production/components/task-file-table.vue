@@ -3,6 +3,7 @@ import type { UploadRequestOptions } from 'element-plus/lib/components'
 import type { taskFileI } from '@/views/production/task-method'
 import { getDownloadUrl } from '@/views/scientific_research/project-method'
 import api, { baseURL } from '@/api'
+import { tableHeaderCellStyle } from '@/utils/tools'
 
 const props = defineProps<{
   fileList: taskFileI[]
@@ -32,7 +33,7 @@ const upload = async (obj: UploadRequestOptions) => uploadMaterialFile(obj.file,
       上传资料
     </el-button>
   </el-upload>
-  <el-table v-loading="loading" :data="fileList" border style="width: 100%">
+  <el-table v-loading="loading" :data="fileList" border style="width: 100%" stripe :header-cell-style="tableHeaderCellStyle">
     <el-table-column prop="research_file_name" label="文件">
       <template #default="scope">
         <el-button link type="primary" @click="downloadItem(scope.row.file_url)">

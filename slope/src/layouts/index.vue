@@ -11,6 +11,8 @@ import HotkeysIntro from './components/HotkeysIntro/index.vue'
 import useSettingsStore from '@/store/modules/settings'
 import useKeepAliveStore from '@/store/modules/keepAlive'
 import useMenuStore from '@/store/modules/menu'
+import { loadWatermark } from '@/utils/watermark'
+import useUserStore from '@/store/modules/user'
 
 const routeInfo = useRoute()
 
@@ -39,6 +41,8 @@ watch(() => routeInfo.path, () => {
   }
 })
 
+const userStore = useUserStore()
+let waterMarkRemove: Function
 onMounted(() => {
   hotkeys('f5', (e) => {
     if (settingsStore.settings.toolbar.enablePageReload) {
@@ -52,10 +56,12 @@ onMounted(() => {
       useMenu().switchTo(menuStore.actived + 1 < menuStore.allMenus.length ? menuStore.actived + 1 : 0)
     }
   })
+  waterMarkRemove = loadWatermark(`${userStore.account}\n12345678901`)
 })
 onUnmounted(() => {
   hotkeys.unbind('f5')
   hotkeys.unbind('alt+`')
+  waterMarkRemove()
 })
 </script>
 

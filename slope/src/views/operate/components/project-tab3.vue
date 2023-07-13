@@ -218,7 +218,7 @@ const cancel = async () => {
           v-for="(item, index) in (activeTenderData && (activeTenderData as resTenderI).tender_approve)"
           :key="index" label="审核人："
         >
-          {{ item.approve_user }} (<span>{{ item.approve_result }}</span>)
+          {{ item.approve_user }} <span :class="item.approve_result.includes('通过') ? 'blue' : 'red'">（{{ item.approve_result }}）</span>
           <div style="margin: 10px 0;">
             {{ item.approve_contents }}
           </div>

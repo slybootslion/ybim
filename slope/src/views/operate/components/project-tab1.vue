@@ -217,7 +217,7 @@ const end = async () => {
           v-for="(item, index) in (activeProjectData as resProjectDataI).project_approve"
           :key="index" label="审核人："
         >
-          {{ item.approve_user }} <span :class="item.approve_result.includes('通过') ? 'blue' : 'red'">{{ item.approve_result }}</span>
+          {{ item.approve_user }} <span :class="item.approve_result.includes('通过') ? 'blue' : 'red'">（{{ item.approve_result }}）</span>
           <div style="margin-top: 5px; margin-bottom: 10px;">
             {{ item.approve_contents }}
           </div>
@@ -229,10 +229,4 @@ const end = async () => {
 
 <style scoped lang="scss">
 @import "./tab-comp-style";
-.blue {
-  color: #409eff;
-}
-.red {
-  color: red;
-}
 </style>

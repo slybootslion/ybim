@@ -22,5 +22,4 @@ directive(app)
 if (useSettingsStore().settings.app.iconifyOfflineUse) {
   downloadAndInstall()
 }
-
 app.mount('#app')
