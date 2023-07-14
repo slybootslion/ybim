@@ -10,6 +10,7 @@ const useUserStore = defineStore(
     const menuStore = useMenuStore()
     const account = ref(sessionStorage.getItem('account') ?? '')
     const token = ref(sessionStorage.getItem('token') ?? '')
+    const user_rights = ref(sessionStorage.getItem('user_rights') ?? '')
     // const failure_time = ref(localStorage.failure_time ?? '')
     const permissions = ref<string[]>([])
     const isLogin = computed(() => {
@@ -54,6 +55,7 @@ const useUserStore = defineStore(
       // localStorage.setItem('token', res.data.token)
       sessionStorage.setItem('account', res.data.user_name)
       sessionStorage.setItem('token', res.data.token)
+      sessionStorage.setItem('user_rights', res.data.user_rights)
       account.value = res.data.user_name
       token.value = res.data.token
     }
@@ -64,6 +66,7 @@ const useUserStore = defineStore(
       // localStorage.removeItem('token')
       sessionStorage.removeItem('account')
       sessionStorage.removeItem('token')
+      sessionStorage.removeItem('user_rights')
       // // localStorage.removeItem('failure_time')
       account.value = ''
       token.value = ''

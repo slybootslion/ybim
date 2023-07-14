@@ -14,7 +14,11 @@
   --g-sidebar-logo-height: 50px;
   // 顶栏高度
   --g-topbar-height: 50px;
+  //
+  --el-text-color-primary: #333;
+  --el-text-color-regular: #333;
 }
+
 // 全局样式
 ::-webkit-scrollbar {
   width: 12px;
@@ -55,6 +59,7 @@ body {
 * {
   box-sizing: inherit;
 }
+
 // 右侧内容区针对fixed元素，有横向铺满的需求，可在fixed元素上设置 [data-fixed-calc-width]
 [data-fixed-calc-width] {
   position: fixed;
@@ -70,10 +75,12 @@ body {
     transform: translateX(-50%) !important;
   }
 }
+
 // textarea 字体跟随系统
 textarea {
   font-family: inherit;
 }
+
 // 列表页全局样式
 .el-table.list-table {
   margin: 20px 0;
@@ -85,4 +92,17 @@ textarea {
 
 .el-loading-mask {
   z-index: 900 !important;
+}
+
+.el-table__row {
+
+  &.el-table__row--striped {
+    background-color: #e8f1f5;
+  }
+}
+
+.el-table__body {
+  tr:hover > td {
+    background-color: #cae4fe !important;
+  }
 }

@@ -101,7 +101,7 @@ export class TimerSimulateInterval {
 export function tableHeaderCellStyle({ row, column, rowIndex, columnIndex }: never) {
   return {
     // textAlign: 'center',
-    color: '#333',
-    background: '#f3f3f3',
+    color: '#004da5',
+    background: '#e9f2f5',
   }
 }

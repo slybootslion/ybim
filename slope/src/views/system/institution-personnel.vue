@@ -150,6 +150,7 @@ const handleSelectionChange = (val: any[]) => {
           <el-table-column property="user_email" label="企业邮箱" width="170" />
           <el-table-column property="user_work_age" label="司龄" />
           <el-table-column property="entry_time" label="入职时间" width="110" />
+          <el-table-column property="watchword" label="口令" width="110" />
           <el-table-column label="当前状态" width="90">
             <template #default="scope">
               <el-tag
