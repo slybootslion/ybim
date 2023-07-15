@@ -78,14 +78,16 @@ const useUserStore = defineStore(
     // 获取我的权限
     async function getPermissions() {
       // 通过 mock 获取权限
-      const res = await api.get('member/permission', {
+      /* const res = await api.get('member/permission', {
         baseURL: '/mock/',
         params: {
           account: account.value,
         },
       })
       permissions.value = res.data.permissions
-      return permissions.value
+      return permissions.value */
+      permissions.value = user_rights.value.split(',')
+      return user_rights.value.split(',')
     }
 
     // 修改密码
@@ -105,6 +107,7 @@ const useUserStore = defineStore(
     return {
       account,
       token,
+      user_rights,
       permissions,
       isLogin,
       timerIns,

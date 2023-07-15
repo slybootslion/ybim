@@ -1,15 +1,13 @@
 import { setupLayouts } from 'virtual:generated-layouts'
 import generatedRoutes from 'virtual:generated-pages'
 import type { RouteRecordRaw } from 'vue-router'
-import MultilevelMenuExample from './modules/multilevel.menu.example'
-import BreadcrumbExample from './modules/breadcrumb.example'
 import Console from './modules/console'
 import Research from './modules/research'
 import { Person, Role } from './modules/system'
 import { Contract, Knowledge, Qualification } from './modules/achievement'
 import { ProductionProject, Supplier, TaskOrder } from '@/router/modules/production'
 import {
-  Approval, Bid, Bidding, ContractRating, Customer, Initiation, Record, Tracking
+  Approval, Bid, Bidding, ContractRating, Customer, Initiation, Record, Tracking,
 } from '@/router/modules/operate'
 import type { Route } from '#/global'
 import useSettingsStore from '@/store/modules/settings'
@@ -98,6 +96,7 @@ const asyncRoutes: Route.recordMainRaw[] = [
     meta: {
       title: '经营管理',
       icon: 'ep:document-copy',
+      auth: ['PM00100000'],
     },
     children: [
       Initiation,

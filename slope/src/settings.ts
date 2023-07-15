@@ -11,6 +11,9 @@ const globalSettings: Settings.all = {
   copyright: {
     enable: false,
   },
+  app: {
+    enablePermission: true,
+  },
 }
 
 export default globalSettings

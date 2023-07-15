@@ -2,7 +2,7 @@
 import type { TableColumnCtx } from 'element-plus'
 import type { funItemI } from '@/views/system/role-method'
 import { setRolePowerMenus, spanRow } from '@/views/system/role-method'
-import {tableHeaderCellStyle} from "@/utils/tools";
+import { tableHeaderCellStyle } from '@/utils/tools'
 
 const props = defineProps<{
   tableData: funItemI[]
@@ -70,7 +70,8 @@ const findLineChecked = (line: tableLineItemI) => {
   const l3 = line.level3
   if (l3) for (const l3el of l3!) if (l3el.checked) menu_ids.value.push(l3el.menu_id)
 }
-const changeRole = async () => {
+const changeRole = async (menu_name: string, menu_id: string) => {
+  console.log(menu_name, menu_id)
   menu_ids.value = []
   for (let i = 0; i < tableLineData.length; i++) {
     const line = tableLineData[i]
@@ -86,7 +87,7 @@ const changeRole = async () => {
       <template #default="scope">
         <el-checkbox
           v-model="scope.row.level1.checked" :label="scope.row.level1.menu_name" size="large"
-          @change="changeRole"
+          @change="changeRole(scope.row.level1.menu_name, scope.row.level1.menu_id)"
         />
       </template>
     </el-table-column>
@@ -94,7 +95,7 @@ const changeRole = async () => {
       <template #default="scope">
         <el-checkbox
           v-model="scope.row.level2.checked" :label="scope.row.level2.menu_name" size="large"
-          @change="changeRole"
+          @change="changeRole(scope.row.level2.menu_name, scope.row.level2.menu_id)"
         />
       </template>
     </el-table-column>
@@ -102,7 +103,7 @@ const changeRole = async () => {
       <template #default="scope">
         <el-checkbox
           v-for="item in scope.row.level3" :key="item.menu_id" v-model="item.checked"
-          :label="item.menu_name" size="large" @change="changeRole"
+          :label="item.menu_name" size="large" @change="changeRole(item.menu_name, item.menu_id)"
         />
       </template>
     </el-table-column>

@@ -3,6 +3,7 @@ import i1_1 from '../assets/images/01项目备案立项-down.png'
 import i1_2 from '../assets/images/01项目备案立项-on.png'
 import api from '@/api'
 import { getList, pageData, resProjectListI, tableData } from '@/views/operate/project-method'
+import PermissionDeniedComp from '@/views/public-components/permission-denied-comp.vue'
 
 const tabActiveName = ref('待办事项')
 const leftQuickLink = [
@@ -172,175 +173,180 @@ const projectClick = (project_id: string) => router.push(`/project-initiation/pr
 
 <template>
   <page-main class="page-main">
-    <el-row :gutter="8">
-      <div class="row1">
-        <div class="index-item-title">
-          项目统计
-        </div>
-        <div class="row1-content">
-          <div class="row1-item">
-            <div class="box">
-              <img src="../assets/images/立项数量统计.png" alt="" class="row1-item-img">
-              <div class="txt-box">
-                <div class="txt-box-title">
-                  立项数量
-                </div>
-                <div class="num">
-                  {{ statisticsData.project.all_count }}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row1-item">
-            <div class="box">
-              <img src="../assets/images/跟踪数量统计.png" alt="" class="row1-item-img">
-              <div class="txt-box">
-                <div class="txt-box-title">
-                  跟踪数量
-                </div>
-                <div class="num">
-                  {{ statisticsData.project.tail_count }}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row1-item">
-            <div class="box">
-              <img src="../assets/images/生产项目统计.png" alt="" class="row1-item-img">
-              <div class="txt-box">
-                <div class="txt-box-title">
-                  生产项目
-                </div>
-                <div class="num">
-                  {{ statisticsData.project.work_count }}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row1-item">
-            <div class="box">
-              <img src="../assets/images/科研项目统计.png" alt="" class="row1-item-img">
-              <div class="txt-box">
-                <div class="txt-box-title">
-                  科研项目
-                </div>
-                <div class="num">
-                  {{ statisticsData.science.all_count }}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row1-item">
-            <div class="box">
-              <img src="../assets/images/已完结项目统计.png" alt="" class="row1-item-img">
-              <div class="txt-box">
-                <div class="txt-box-title">
-                  已完结项目
-                </div>
-                <div class="num">
-                  {{ statisticsData.science.finish_count }}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </el-row>
-    <el-row :gutter="8">
-      <el-col :span="8">
-        <div class="row2">
+    <Auth :value="['PM00000001']">
+      <el-row :gutter="8">
+        <div class="row1">
           <div class="index-item-title">
-            待办事项
+            项目统计
           </div>
-          <div class="row2-content">
-            <div v-for="item in todos" :key="item.item_id" class="tab-list-item">
-              <div style="cursor:pointer;" @click="clickToDetail(item.item_id, item.approve_type)">
-                <div>
-                  项目名称：{{ (item as todoListItemI).item_name }}
+          <div class="row1-content">
+            <div class="row1-item">
+              <div class="box">
+                <img src="../assets/images/立项数量统计.png" alt="" class="row1-item-img">
+                <div class="txt-box">
+                  <div class="txt-box-title">
+                    立项数量
+                  </div>
+                  <div class="num">
+                    {{ statisticsData.project.all_count }}
+                  </div>
                 </div>
-                <div>
-                  <span style="color: #409EFF">{{ approveTypeDict[(item as todoListItemI).approve_type] }}</span>信息需要处理!
-                  <span style="margin-left: 30px;"> {{ (item as todoListItemI).create_time }}</span>
+              </div>
+            </div>
+            <div class="row1-item">
+              <div class="box">
+                <img src="../assets/images/跟踪数量统计.png" alt="" class="row1-item-img">
+                <div class="txt-box">
+                  <div class="txt-box-title">
+                    跟踪数量
+                  </div>
+                  <div class="num">
+                    {{ statisticsData.project.tail_count }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row1-item">
+              <div class="box">
+                <img src="../assets/images/生产项目统计.png" alt="" class="row1-item-img">
+                <div class="txt-box">
+                  <div class="txt-box-title">
+                    生产项目
+                  </div>
+                  <div class="num">
+                    {{ statisticsData.project.work_count }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row1-item">
+              <div class="box">
+                <img src="../assets/images/科研项目统计.png" alt="" class="row1-item-img">
+                <div class="txt-box">
+                  <div class="txt-box-title">
+                    科研项目
+                  </div>
+                  <div class="num">
+                    {{ statisticsData.science.all_count }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row1-item">
+              <div class="box">
+                <img src="../assets/images/已完结项目统计.png" alt="" class="row1-item-img">
+                <div class="txt-box">
+                  <div class="txt-box-title">
+                    已完结项目
+                  </div>
+                  <div class="num">
+                    {{ statisticsData.science.finish_count }}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </el-col>
-      <el-col :span="10">
-        <div class="row2">
+      </el-row>
+      <el-row :gutter="8">
+        <el-col :span="8">
+          <div class="row2">
+            <div class="index-item-title">
+              待办事项
+            </div>
+            <div class="row2-content">
+              <div v-for="item in todos" :key="item.item_id" class="tab-list-item">
+                <div style="cursor:pointer;" @click="clickToDetail(item.item_id, item.approve_type)">
+                  <div>
+                    项目名称：{{ (item as todoListItemI).item_name }}
+                  </div>
+                  <div>
+                    <span style="color: #409EFF">{{ approveTypeDict[(item as todoListItemI).approve_type] }}</span>信息需要处理!
+                    <span style="margin-left: 30px;"> {{ (item as todoListItemI).create_time }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </el-col>
+        <el-col :span="10">
+          <div class="row2">
+            <div class="index-item-title">
+              业务办理
+            </div>
+            <div class="row2-content">
+              <div class="btn-box">
+                <div
+                  v-for="(q, idx) in leftQuickLink" :key="idx" class="row2-btn-item"
+                  @click="handleQuickLink(q.url)"
+                >
+                  <div class="row2-icon" />
+                  <div>{{ q.name }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </el-col>
+        <el-col :span="6">
+          <div class="row2">
+            <div class="index-item-title">
+              合同统计
+            </div>
+            <div class="row2-content">
+              <div class="row2-3-top">
+                合同总数： <span class="num">{{ statisticsData.contract.all_count }}</span>
+              </div>
+              <div class="row2-3-bottom">
+                <div class="row2-3-bottom-item">
+                  <img src="../assets/images/收入.png" alt="">
+                  <div class="bottom-item-t">
+                    <div class="txt">
+                      收入合同额：
+                    </div>
+                    <div class="num in">
+                      {{ inNum }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row2-3-bottom-item">
+                  <img src="../assets/images/支出.png" alt="">
+                  <div class="bottom-item-t">
+                    <div class="txt">
+                      支出合同额：
+                    </div>
+                    <div class="num out">
+                      {{ outNum }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row>
+        <div class="row1">
           <div class="index-item-title">
-            业务办理
+            项目信息
           </div>
-          <div class="row2-content">
-            <div class="btn-box">
-              <div
-                v-for="(q, idx) in leftQuickLink" :key="idx" class="row2-btn-item"
-                @click="handleQuickLink(q.url)"
-              >
-                <div class="row2-icon" />
-                <div>{{ q.name }}</div>
-              </div>
+          <div class="r-list-content">
+            <div v-for="item in tableData" :key="item.project_id" class="list-item">
+              <span class="project-hover" @click="projectClick(item.project_id)">{{
+                (item as resProjectListI).project_name
+              }}</span>
+              <span>{{
+                (item as resProjectListI).project_dependency_province
+              }} {{ (item as resProjectListI).project_dependency_city }}</span>
+              <span>{{ (item as resProjectListI).expect_amount }}万元</span>
+              <span>{{ (item as resProjectListI).registration_time }}</span>
             </div>
           </div>
         </div>
-      </el-col>
-      <el-col :span="6">
-        <div class="row2">
-          <div class="index-item-title">
-            合同统计
-          </div>
-          <div class="row2-content">
-            <div class="row2-3-top">
-              合同总数： <span class="num">{{ statisticsData.contract.all_count }}</span>
-            </div>
-            <div class="row2-3-bottom">
-              <div class="row2-3-bottom-item">
-                <img src="../assets/images/收入.png" alt="">
-                <div class="bottom-item-t">
-                  <div class="txt">
-                    收入合同额：
-                  </div>
-                  <div class="num in">
-                    {{ inNum }}
-                  </div>
-                </div>
-              </div>
-              <div class="row2-3-bottom-item">
-                <img src="../assets/images/支出.png" alt="">
-                <div class="bottom-item-t">
-                  <div class="txt">
-                    支出合同额：
-                  </div>
-                  <div class="num out">
-                    {{ outNum }}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </el-col>
-    </el-row>
-    <el-row>
-      <div class="row1">
-        <div class="index-item-title">
-          项目信息
-        </div>
-        <div class="r-list-content">
-          <div v-for="item in tableData" :key="item.project_id" class="list-item">
-            <span class="project-hover" @click="projectClick(item.project_id)">{{
-              (item as resProjectListI).project_name
-            }}</span>
-            <span>{{
-              (item as resProjectListI).project_dependency_province
-            }} {{ (item as resProjectListI).project_dependency_city }}</span>
-            <span>{{ (item as resProjectListI).expect_amount }}万元</span>
-            <span>{{ (item as resProjectListI).registration_time }}</span>
-          </div>
-        </div>
-      </div>
-    </el-row>
+      </el-row>
+      <template #no-auth>
+        <PermissionDeniedComp />
+      </template>
+    </Auth>
     <!--    <el-row :gutter="10"> -->
     <!--      <el-col :span="8"> -->
     <!--        <div class="left-box"> -->

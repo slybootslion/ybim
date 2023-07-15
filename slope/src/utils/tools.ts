@@ -1,5 +1,6 @@
 import { ElLoading, ElMessage, ElMessageBox } from 'element-plus'
 import { cloneDeep } from 'lodash-es'
+import useUserStore from '@/store/modules/user'
 
 export const pageLoading = () => {
   return ElLoading.service({
@@ -104,4 +105,9 @@ export function tableHeaderCellStyle({ row, column, rowIndex, columnIndex }: nev
     color: '#004da5',
     background: '#e9f2f5',
   }
+}
+
+export function checkAuth(cStr: string): boolean {
+  const urArr = useUserStore().user_rights.split(',')
+  return urArr.includes(cStr)
 }

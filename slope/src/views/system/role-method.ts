@@ -136,7 +136,7 @@ export const tabLoading = ref(false)
 export const UserListData = ref<tableItemI[]>([])
 export const FunListData = ref<funItemI[]>([])
 export const SampleListData = ref<sampleItemI[]>([])
-export const activeName = ref('角色成员')
+export const activeName = ref('功能权限')
 export const changeActive = async (data: RoleItem) => {
   tabLoading.value = true
   activeRoleId.value = data.role_id

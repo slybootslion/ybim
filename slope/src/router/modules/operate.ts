@@ -10,6 +10,7 @@ const Initiation: RouteRecordRaw = {
   meta: {
     title: '立项项目管理',
     icon: 'ep:document-add',
+    auth: ['PM00101000'],
   },
   children: [
     {
@@ -170,6 +171,7 @@ const Customer: RouteRecordRaw = {
   meta: {
     title: '客户管理',
     icon: 'ep:user',
+    auth: ['PM00102000'],
   },
   children: [
     {
@@ -216,6 +218,7 @@ const Record: RouteRecordRaw = {
   meta: {
     title: '备案管理',
     icon: 'ep:suitcase',
+    auth: ['PM00103000'],
   },
   children: [
     {
