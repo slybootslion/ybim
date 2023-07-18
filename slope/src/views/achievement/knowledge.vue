@@ -15,7 +15,7 @@ const addNew = () => router.push('/achievement-knowledge/knowledge-form')
           </div>
         </div>
         <div class="top-right">
-          <el-button size="large" type="primary" @click="addNew">
+          <el-button v-auth="['PM00303002']" size="large" type="primary" @click="addNew">
             新建
           </el-button>
         </div>

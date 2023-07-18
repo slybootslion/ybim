@@ -11,6 +11,7 @@ import { getTreeList, getUserList, level3List } from '@/views/system/personnel-m
 import api from '@/api'
 import { projectOptions, projectSearchLoading, remoteMethod } from '@/views/production/task-method'
 import { getProject } from '@/views/operate/bid-method'
+import PermissionDeniedComp from '@/views/public-components/permission-denied-comp.vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -127,124 +128,132 @@ const projectSelected = async (id: string) => {
       </div>
     </page-main>
     <page-main class="page-main">
-      <div class="block">
-        <el-form ref="ruleFormRef" inline :model="formData" :rules="rules as FormRules" label-width="180px">
-          <el-form-item label="关联项目：" prop="project_id">
-            <el-select
-              v-model="formData.project_id"
-              filterable remote reserve-keyword placeholder="输入项目名称查找" :remote-method="remoteMethod"
-              :loading="projectSearchLoading" @change="projectSelected"
-            >
-              <el-option
-                v-for="p in projectOptions" :key="p.project_id" :label="p.project_name"
-                :value="p.project_id"
-              />
-            </el-select>
-          </el-form-item>
-          <el-form-item label="行业类型：" prop="industry_type">
-            <el-select v-model="formData.industry_type" disabled>
-              <el-option v-for="ind in primaryIndustryTypeOptions" :key="ind" :label="ind" :value="ind" />
-            </el-select>
-          </el-form-item>
-          <el-form-item label="项目类型：" prop="project_type">
-            <el-select v-model="formData.project_type" disabled>
-              <el-option v-for="bus in primaryBusinessOptions" :key="bus" :label="bus" :value="bus" />
-            </el-select>
-          </el-form-item>
-          <el-form-item label="专业要求：" prop="majorArr">
-            <el-select v-model="formData.majorArr" multiple collapse-tags collapse-tags-tooltip :max-collapse-tags="2">
-              <el-option v-for="maj in primaryMajorTypeOption" :key="maj" :label="maj" :value="maj" />
-            </el-select>
-          </el-form-item>
-          <el-form-item label="项目起止时间：" prop="datePick">
-            <el-date-picker
-              v-model="formData.datePick" type="daterange" range-separator="至"
-              start-placeholder="开始日期" end-placeholder="结束日期" value-format="YYYY-MM-DD" @change="computedDay"
-            />
-          </el-form-item>
-          <el-form-item label="项目工期：">
-            <el-input v-model="formData.days" disabled />
-          </el-form-item>
-          <el-form-item label="任务名称：" prop="task_name">
-            <el-input v-model="formData.task_name" />
-          </el-form-item>
-          <el-form-item label="任务编码：" prop="task_code">
-            <el-input v-model="formData.task_code" />
-          </el-form-item>
-          <el-form-item label="主体生产机构：" prop="main_department_id">
-            <el-select v-model="formData.main_department_id">
-              <el-option v-for="item in level3List" :key="item.value" :label="item.label" :value="item.value" />
-            </el-select>
-          </el-form-item>
-          <el-form-item label="划分产值金额（比例）：" prop="allocation_ratio">
-            <el-input v-model="formData.allocation_ratio" />
-          </el-form-item>
-          <el-form-item label="生产负责人：" prop="production_user_id">
-            <el-select v-model="formData.production_user_id">
-              <el-option v-for="item in userList" :key="item.user_id" :label="item.user_name" :value="item.user_id" />
-            </el-select>
-          </el-form-item>
-          <el-form-item label="成果提交时间：" prop="deadline">
-            <el-date-picker v-model="formData.deadline" value-format="YYYY-MM-DD" type="date" />
-          </el-form-item>
-          <el-form-item label="其他说明：">
-            <el-input
-              v-model="formData.task_explain" maxlength="800" type="textarea" :rows="5"
-              placeholder="请输入800字以内的说明"
-            />
-          </el-form-item>
-          <el-form-item label="有无参与机构：">
-            <el-switch v-model="isMore" />
-          </el-form-item>
-        </el-form>
-        <div v-if="isMore" class="more-box">
-          <div v-for="(poForm, index) in formData.poArr" :key="index" class="po-item">
-            <el-form
-              ref="subRuleFormRef" inline :model="formData.poArr![index]" :rules="subRules as FormRules"
-              label-width="180px"
-            >
-              <el-icon class="op-icon" @click="delOp(index)">
-                <svg-icon name="ep:circle-close" />
-              </el-icon>
-              <el-form-item label="任务名称：" prop="task_name">
-                <el-input v-model="poForm.task_name" />
-              </el-form-item>
-              <el-form-item label="任务编码：" prop="task_code">
-                <el-input v-model="poForm.task_code" />
-              </el-form-item>
-              <el-form-item label="主体生产机构：" prop="main_department_id">
-                <el-select v-model="poForm.main_department_id">
-                  <el-option v-for="item in level3List" :key="item.value" :label="item.label" :value="item.value" />
-                </el-select>
-              </el-form-item>
-              <el-form-item label="划分产值金额（比例）：" prop="allocation_ratio">
-                <el-input v-model="poForm.allocation_ratio" />
-              </el-form-item>
-              <el-form-item label="生产负责人：" prop="production_user_id">
-                <el-select v-model="poForm.production_user_id">
-                  <el-option
-                    v-for="item in userList" :key="item.user_id" :label="item.user_name"
-                    :value="item.user_id"
-                  />
-                </el-select>
-              </el-form-item>
-              <el-form-item label="成果提交时间：" prop="deadline">
-                <el-date-picker v-model="poForm.deadline" value-format="YYYY-MM-DD" type="date" />
-              </el-form-item>
-              <el-form-item label="其他说明：">
-                <el-input
-                  class="sub-textarea"
-                  v-model="poForm.task_explain" maxlength="800" type="textarea" :rows="5"
-                  placeholder="请输入800字以内的说明"
+      <Auth :value="['PM00201001']">
+        <div class="block">
+          <el-form ref="ruleFormRef" inline :model="formData" :rules="rules as FormRules" label-width="180px">
+            <el-form-item label="关联项目：" prop="project_id">
+              <el-select
+                v-model="formData.project_id"
+                filterable remote reserve-keyword placeholder="输入项目名称查找" :remote-method="remoteMethod"
+                :loading="projectSearchLoading" @change="projectSelected"
+              >
+                <el-option
+                  v-for="p in projectOptions" :key="p.project_id" :label="p.project_name"
+                  :value="p.project_id"
                 />
-              </el-form-item>
-            </el-form>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="行业类型：" prop="industry_type">
+              <el-select v-model="formData.industry_type" disabled>
+                <el-option v-for="ind in primaryIndustryTypeOptions" :key="ind" :label="ind" :value="ind" />
+              </el-select>
+            </el-form-item>
+            <el-form-item label="项目类型：" prop="project_type">
+              <el-select v-model="formData.project_type" disabled>
+                <el-option v-for="bus in primaryBusinessOptions" :key="bus" :label="bus" :value="bus" />
+              </el-select>
+            </el-form-item>
+            <el-form-item label="专业要求：" prop="majorArr">
+              <el-select
+                v-model="formData.majorArr" multiple collapse-tags collapse-tags-tooltip
+                :max-collapse-tags="2"
+              >
+                <el-option v-for="maj in primaryMajorTypeOption" :key="maj" :label="maj" :value="maj" />
+              </el-select>
+            </el-form-item>
+            <el-form-item label="项目起止时间：" prop="datePick">
+              <el-date-picker
+                v-model="formData.datePick" type="daterange" range-separator="至"
+                start-placeholder="开始日期" end-placeholder="结束日期" value-format="YYYY-MM-DD" @change="computedDay"
+              />
+            </el-form-item>
+            <el-form-item label="项目工期：">
+              <el-input v-model="formData.days" disabled />
+            </el-form-item>
+            <el-form-item label="任务名称：" prop="task_name">
+              <el-input v-model="formData.task_name" />
+            </el-form-item>
+            <el-form-item label="任务编码：" prop="task_code">
+              <el-input v-model="formData.task_code" />
+            </el-form-item>
+            <el-form-item label="主体生产机构：" prop="main_department_id">
+              <el-select v-model="formData.main_department_id">
+                <el-option v-for="item in level3List" :key="item.value" :label="item.label" :value="item.value" />
+              </el-select>
+            </el-form-item>
+            <el-form-item label="划分产值金额（比例）：" prop="allocation_ratio">
+              <el-input v-model="formData.allocation_ratio" />
+            </el-form-item>
+            <el-form-item label="生产负责人：" prop="production_user_id">
+              <el-select v-model="formData.production_user_id">
+                <el-option v-for="item in userList" :key="item.user_id" :label="item.user_name" :value="item.user_id" />
+              </el-select>
+            </el-form-item>
+            <el-form-item label="成果提交时间：" prop="deadline">
+              <el-date-picker v-model="formData.deadline" value-format="YYYY-MM-DD" type="date" />
+            </el-form-item>
+            <el-form-item label="其他说明：">
+              <el-input
+                v-model="formData.task_explain" maxlength="800" type="textarea" :rows="5"
+                placeholder="请输入800字以内的说明"
+              />
+            </el-form-item>
+            <el-form-item label="有无参与机构：">
+              <el-switch v-model="isMore" />
+            </el-form-item>
+          </el-form>
+          <div v-if="isMore" class="more-box">
+            <div v-for="(poForm, index) in formData.poArr" :key="index" class="po-item">
+              <el-form
+                ref="subRuleFormRef" inline :model="formData.poArr![index]" :rules="subRules as FormRules"
+                label-width="180px"
+              >
+                <el-icon class="op-icon" @click="delOp(index)">
+                  <svg-icon name="ep:circle-close" />
+                </el-icon>
+                <el-form-item label="任务名称：" prop="task_name">
+                  <el-input v-model="poForm.task_name" />
+                </el-form-item>
+                <el-form-item label="任务编码：" prop="task_code">
+                  <el-input v-model="poForm.task_code" />
+                </el-form-item>
+                <el-form-item label="主体生产机构：" prop="main_department_id">
+                  <el-select v-model="poForm.main_department_id">
+                    <el-option v-for="item in level3List" :key="item.value" :label="item.label" :value="item.value" />
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="划分产值金额（比例）：" prop="allocation_ratio">
+                  <el-input v-model="poForm.allocation_ratio" />
+                </el-form-item>
+                <el-form-item label="生产负责人：" prop="production_user_id">
+                  <el-select v-model="poForm.production_user_id">
+                    <el-option
+                      v-for="item in userList" :key="item.user_id" :label="item.user_name"
+                      :value="item.user_id"
+                    />
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="成果提交时间：" prop="deadline">
+                  <el-date-picker v-model="poForm.deadline" value-format="YYYY-MM-DD" type="date" />
+                </el-form-item>
+                <el-form-item label="其他说明：">
+                  <el-input
+                    v-model="poForm.task_explain"
+                    class="sub-textarea" maxlength="800" type="textarea" :rows="5"
+                    placeholder="请输入800字以内的说明"
+                  />
+                </el-form-item>
+              </el-form>
+            </div>
+            <el-button @click="addPo">
+              +新增参与机构
+            </el-button>
           </div>
-          <el-button @click="addPo">
-            +新增参与机构
-          </el-button>
         </div>
-      </div>
+        <template #no-auth>
+          <PermissionDeniedComp />
+        </template>
+      </Auth>
     </page-main>
   </div>
 </template>
@@ -263,7 +272,7 @@ const projectSelected = async (id: string) => {
   }
 
   :deep(.el-textarea) {
-    width:1060px;
+    width: 1060px;
   }
 
   .more-box {

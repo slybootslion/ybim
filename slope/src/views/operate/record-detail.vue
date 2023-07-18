@@ -41,7 +41,7 @@ const downloadItem = async (url: string) => {
         备案信息
       </div>
       <div>
-        <el-button type="primary" @click="toEdit">
+        <el-button v-auth="['PM00103003']" type="primary" @click="toEdit">
           编辑
         </el-button>
         <el-button @click="back">

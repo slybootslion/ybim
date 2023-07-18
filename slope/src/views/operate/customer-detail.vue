@@ -3,6 +3,8 @@ import { ElMessage } from 'element-plus'
 import { back } from '@/views/scientific_research/project-method'
 import type { customerDataI } from '@/views/operate/customer-method'
 import { getCustomer, loading } from '@/views/operate/customer-method'
+import PermissionDeniedComp from '@/views/public-components/permission-denied-comp.vue'
+import { checkAuth, checkIsOwn } from '@/utils/tools'
 
 const route = useRoute()
 const query = route.query
@@ -56,55 +58,60 @@ const editItem = () => router.push(`/customer-management/customer-form?customer_
 
 <template>
   <page-main v-loading="loading" class="page-main">
-    <div class="top">
-      <div>
-        客户信息
+    <Auth :value="['PM00102002']">
+      <div class="top">
+        <div>
+          客户信息
+        </div>
+        <div>
+          <el-button v-if="checkAuth('PM00102003') && checkIsOwn(detailData.registrant_user)" type="primary" @click="editItem">
+            编辑
+          </el-button>
+          <el-button @click="back">
+            返回
+          </el-button>
+        </div>
       </div>
-      <div>
-        <el-button type="primary" @click="editItem">
-          编辑
-        </el-button>
-        <el-button @click="back">
-          返回
-        </el-button>
+      <div class="block">
+        <el-descriptions :column="2">
+          <el-descriptions-item label="客户名称：">
+            {{ detailData.customer_name }}
+          </el-descriptions-item>
+          <el-descriptions-item label="部门：">
+            {{ detailData.customer_department }}
+          </el-descriptions-item>
+          <el-descriptions-item label="主营业务：">
+            {{ detailData.primary_business }}
+          </el-descriptions-item>
+          <el-descriptions-item label="地址：">
+            {{ detailData.address_province }}, {{ detailData.address_city }}, {{ detailData.address_detail }}
+          </el-descriptions-item>
+          <el-descriptions-item label="联系人：">
+            {{ detailData.linkman }}
+          </el-descriptions-item>
+          <el-descriptions-item label="联系人电话：">
+            {{ detailData.linkman_phone }}
+          </el-descriptions-item>
+          <el-descriptions-item label="联系人职务：">
+            {{ detailData.linkman_post }}
+          </el-descriptions-item>
+          <el-descriptions-item label="登记人：">
+            {{ detailData.registrant_user }}
+          </el-descriptions-item>
+          <el-descriptions-item label="登记时间：">
+            {{ detailData.registration_time }}
+          </el-descriptions-item>
+        </el-descriptions>
+        <el-descriptions :column="1">
+          <el-descriptions-item label="客户概况：">
+            {{ detailData.customer_general }}
+          </el-descriptions-item>
+        </el-descriptions>
       </div>
-    </div>
-    <div class="block">
-      <el-descriptions :column="2">
-        <el-descriptions-item label="客户名称：">
-          {{ detailData.customer_name }}
-        </el-descriptions-item>
-        <el-descriptions-item label="部门：">
-          {{ detailData.customer_department }}
-        </el-descriptions-item>
-        <el-descriptions-item label="主营业务：">
-          {{ detailData.primary_business }}
-        </el-descriptions-item>
-        <el-descriptions-item label="地址：">
-          {{ detailData.address_province }}, {{ detailData.address_city }}, {{ detailData.address_detail }}
-        </el-descriptions-item>
-        <el-descriptions-item label="联系人：">
-          {{ detailData.linkman }}
-        </el-descriptions-item>
-        <el-descriptions-item label="联系人电话：">
-          {{ detailData.linkman_phone }}
-        </el-descriptions-item>
-        <el-descriptions-item label="联系人职务：">
-          {{ detailData.linkman_post }}
-        </el-descriptions-item>
-        <el-descriptions-item label="登记人：">
-          {{ detailData.registrant_user }}
-        </el-descriptions-item>
-        <el-descriptions-item label="登记时间：">
-          {{ detailData.registration_time }}
-        </el-descriptions-item>
-      </el-descriptions>
-      <el-descriptions :column="1">
-        <el-descriptions-item label="客户概况：">
-          {{ detailData.customer_general }}
-        </el-descriptions-item>
-      </el-descriptions>
-    </div>
+      <template #no-auth>
+        <PermissionDeniedComp />
+      </template>
+    </Auth>
   </page-main>
 </template>
 

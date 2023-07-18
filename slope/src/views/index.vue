@@ -4,6 +4,7 @@ import i1_2 from '../assets/images/01项目备案立项-on.png'
 import api from '@/api'
 import { getList, pageData, resProjectListI, tableData } from '@/views/operate/project-method'
 import PermissionDeniedComp from '@/views/public-components/permission-denied-comp.vue'
+import { checkAuth } from '@/utils/tools'
 
 const tabActiveName = ref('待办事项')
 const leftQuickLink = [
@@ -82,6 +83,7 @@ interface todoListItemI {
 const todos: Ref<todoListItemI[]> = ref<todoListItemI[]>([])
 const finished: Ref<todoListItemI[]> = ref<todoListItemI[]>([])
 const getMatter = async () => {
+  if (!checkAuth('PM00000001')) return
   const res: any = await api.get('/index/getMatter')
   todos.value = res.data.todos
   finished.value = res.data.finished
@@ -129,6 +131,7 @@ const statisticsData: statisticsDataI = reactive<statisticsDataI>({
   customer: 0,
 })
 const getStatistics = async () => {
+  if (!checkAuth('PM00000001')) return
   const res: any = await api.get('/index/getStatistics')
   statisticsData.contract.all_count = res.data.contract.all_count
   statisticsData.contract.in_count = res.data.contract.in_count
@@ -161,6 +164,7 @@ setTimeout(() => {
 const inNum = ref(0)
 const outNum = ref(0)
 const statisticsSumByYear = async (payment_type: string) => {
+  if (!checkAuth('PM00301001')) return
   const res = await api.get('/contract/statisticsSumByYear', { params: { payment_type } })
   if (payment_type === '收入') inNum.value = res.data.contract_money_sum
   if (payment_type === '支出') outNum.value = res.data.contract_money_sum
@@ -297,28 +301,33 @@ const projectClick = (project_id: string) => router.push(`/project-initiation/pr
                 合同总数： <span class="num">{{ statisticsData.contract.all_count }}</span>
               </div>
               <div class="row2-3-bottom">
-                <div class="row2-3-bottom-item">
-                  <img src="../assets/images/收入.png" alt="">
-                  <div class="bottom-item-t">
-                    <div class="txt">
-                      收入合同额：
-                    </div>
-                    <div class="num in">
-                      {{ inNum }}
-                    </div>
-                  </div>
-                </div>
-                <div class="row2-3-bottom-item">
-                  <img src="../assets/images/支出.png" alt="">
-                  <div class="bottom-item-t">
-                    <div class="txt">
-                      支出合同额：
-                    </div>
-                    <div class="num out">
-                      {{ outNum }}
+                <Auth :value="['PM00301001']">
+                  <div class="row2-3-bottom-item">
+                    <img src="../assets/images/收入.png" alt="">
+                    <div class="bottom-item-t">
+                      <div class="txt">
+                        收入合同额：
+                      </div>
+                      <div class="num in">
+                        {{ inNum }}
+                      </div>
                     </div>
                   </div>
-                </div>
+                  <div class="row2-3-bottom-item">
+                    <img src="../assets/images/支出.png" alt="">
+                    <div class="bottom-item-t">
+                      <div class="txt">
+                        支出合同额：
+                      </div>
+                      <div class="num out">
+                        {{ outNum }}
+                      </div>
+                    </div>
+                  </div>
+                  <template #no-auth>
+                    <PermissionDeniedComp />
+                  </template>
+                </Auth>
               </div>
             </div>
           </div>
@@ -347,146 +356,6 @@ const projectClick = (project_id: string) => router.push(`/project-initiation/pr
         <PermissionDeniedComp />
       </template>
     </Auth>
-    <!--    <el-row :gutter="10"> -->
-    <!--      <el-col :span="8"> -->
-    <!--        <div class="left-box"> -->
-    <!--          <el-tabs v-model="tabActiveName" class="tabs"> -->
-    <!--            <el-tab-pane label="待办事项" name="待办事项"> -->
-    <!--              <div v-for="item in todos" :key="item.item_id" class="tab-list-item"> -->
-    <!--                &lt;!&ndash;                <span @click="clickToDetail(item.item_id, item.approve_type)"> &ndash;&gt; -->
-    <!--                &lt;!&ndash;                  您有新的<span style="color: #409EFF">{{ &ndash;&gt; -->
-    <!--                &lt;!&ndash;                    approveTypeDict[(item as todoListItemI).approve_type] &ndash;&gt; -->
-    <!--                &lt;!&ndash;                  }}</span>信息需要审核! &ndash;&gt; -->
-    <!--                &lt;!&ndash;                </span> &ndash;&gt; -->
-    <!--                <div style="cursor:pointer;" @click="clickToDetail(item.item_id, item.approve_type)"> -->
-    <!--                  <div> -->
-    <!--                    项目名称：{{ (item as todoListItemI).item_name }} -->
-    <!--                  </div> -->
-    <!--                  <div> -->
-    <!--                    <span style="color: #409EFF">{{ approveTypeDict[(item as todoListItemI).approve_type] }}</span>信息需要处理! -->
-    <!--                    <span style="margin-left: 30px;"> {{ (item as todoListItemI).create_time }}</span> -->
-    <!--                  </div> -->
-    <!--                </div> -->
-    <!--              </div> -->
-    <!--            </el-tab-pane> -->
-    <!--            <el-tab-pane label="已办事项" name="已办事项"> -->
-    <!--              <div v-for="item in finished" :key="item.item_id" class="tab-list-item"> -->
-    <!--                <div @click="clickToDetail(item.item_id, item.approve_type)"> -->
-    <!--                  <span> -->
-    <!--                    <div> -->
-    <!--                      项目名称：{{ (item as todoListItemI).item_name }} -->
-    <!--                    </div> -->
-    <!--                  </span> -->
-    <!--                  <div> -->
-    <!--                    <span style="color: #409EFF">{{ approveTypeDict[(item as todoListItemI).approve_type] }}</span>已处理! -->
-    <!--                    <span style="margin-left: 30px;"> {{ (item as todoListItemI).approve_time }}</span> -->
-    <!--                  </div> -->
-    <!--                </div> -->
-    <!--              </div> -->
-    <!--            </el-tab-pane> -->
-    <!--          </el-tabs> -->
-    <!--        </div> -->
-    <!--        <div class="left-box"> -->
-    <!--          <div class="box-title"> -->
-    <!--            业务办理入口 -->
-    <!--          </div> -->
-    <!--          <div class="btn-box"> -->
-    <!--            <el-button v-for="(q, idx) in leftQuickLink" :key="idx" class="left-btn" @click="handleQuickLink(q.url)"> -->
-    <!--              {{ q.name }} -->
-    <!--            </el-button> -->
-    <!--          </div> -->
-    <!--        </div> -->
-    <!--      </el-col> -->
-    <!--      <el-col :span="16"> -->
-    <!--        <div class="right-box"> -->
-    <!--          <el-row :gutter="10"> -->
-    <!--            <el-col :span="6"> -->
-    <!--              <div class="r-block h60"> -->
-    <!--                项目总数：<span class="num">{{ statisticsData.project.all_count }}</span> -->
-    <!--              </div> -->
-    <!--            </el-col> -->
-    <!--            <el-col :span="6"> -->
-    <!--              <div class="r-block h60"> -->
-    <!--                在跟踪：<span class="num">{{ statisticsData.project.tail_count }}</span> -->
-    <!--              </div> -->
-    <!--            </el-col> -->
-    <!--            <el-col :span="6"> -->
-    <!--              <div class="r-block h60"> -->
-    <!--                中标数：<span class="num">{{ statisticsData.project.tender_count }}</span> -->
-    <!--              </div> -->
-    <!--            </el-col> -->
-    <!--            <el-col :span="6"> -->
-    <!--              <div class="r-block h60"> -->
-    <!--                在生产数：<span class="num">{{ statisticsData.project.work_count }}</span> -->
-    <!--              </div> -->
-    <!--            </el-col> -->
-    <!--          </el-row> -->
-    <!--        </div> -->
-    <!--        <div class="right-box"> -->
-    <!--          <el-row :gutter="10"> -->
-    <!--            <el-col :span="8"> -->
-    <!--              <div class="r-block h60"> -->
-    <!--                科研项目总数：<span class="num">{{ statisticsData.science.all_count }}</span> -->
-    <!--              </div> -->
-    <!--            </el-col> -->
-    <!--            <el-col :span="8"> -->
-    <!--              <div class="r-block h60"> -->
-    <!--                执行中：<span class="num">{{ statisticsData.science.run_count }}</span> -->
-    <!--              </div> -->
-    <!--            </el-col> -->
-    <!--            <el-col :span="8"> -->
-    <!--              <div class="r-block h60"> -->
-    <!--                已完成：<span class="num">{{ statisticsData.science.finish_count }}</span> -->
-    <!--              </div> -->
-    <!--            </el-col> -->
-    <!--          </el-row> -->
-    <!--        </div> -->
-    <!--        <div class="right-box"> -->
-    <!--          <div class="r-list"> -->
-    <!--            <div class="box-title"> -->
-    <!--              项目信息 -->
-    <!--            </div> -->
-    <!--            <div class="r-list-content"> -->
-    <!--              <div v-for="item in tableData" :key="item.project_id" class="list-item"> -->
-    <!--                <span>{{ (item as resProjectListI).project_name }}</span> -->
-    <!--                <span>{{ -->
-    <!--                  (item as resProjectListI).project_dependency_province -->
-    <!--                }} {{ (item as resProjectListI).project_dependency_city }}</span> -->
-    <!--                <span>{{ (item as resProjectListI).expect_amount }}万元</span> -->
-    <!--                <span>{{ (item as resProjectListI).registration_time }}</span> -->
-    <!--              </div> -->
-    <!--            </div> -->
-    <!--          </div> -->
-    <!--        </div> -->
-    <!--        <div class="right-box"> -->
-    <!--          <el-row :gutter="10"> -->
-    <!--            <el-col :span="12"> -->
-    <!--              <div class="r-block h60"> -->
-    <!--                <span class="r-block-item">合同总数：<span class="num">{{ -->
-    <!--                  statisticsData.contract.all_count -->
-    <!--                }}</span></span> -->
-    <!--                <span class="r-block-item">合同总数：<span class="num">{{ -->
-    <!--                  statisticsData.contract.in_count -->
-    <!--                }}</span></span> -->
-    <!--                <span class="r-block-item">支出合同：<span class="num">{{ -->
-    <!--                  statisticsData.contract.out_count -->
-    <!--                }}</span></span> -->
-    <!--              </div> -->
-    <!--            </el-col> -->
-    <!--            <el-col :span="6"> -->
-    <!--              <div class="r-block h60"> -->
-    <!--                供应商：<span class="num">{{ statisticsData!.supplier }}</span> -->
-    <!--              </div> -->
-    <!--            </el-col> -->
-    <!--            <el-col :span="6"> -->
-    <!--              <div class="r-block h60"> -->
-    <!--                客户数：<span class="num">{{ statisticsData!.customer }}</span> -->
-    <!--              </div> -->
-    <!--            </el-col> -->
-    <!--          </el-row> -->
-    <!--        </div> -->
-    <!--      </el-col> -->
-    <!--    </el-row> -->
   </page-main>
 </template>
 

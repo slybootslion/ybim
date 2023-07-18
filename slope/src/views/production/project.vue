@@ -14,7 +14,7 @@ const addNew = () => router.push('/task-order/task')
         </div>
       </div>
       <div class="top-right">
-        <el-button size="large" type="primary" @click="addNew">
+        <el-button v-auth="['PM00201001']" size="large" type="primary" @click="addNew">
           生产任务下单
         </el-button>
       </div>

@@ -2,6 +2,8 @@
 import dayjs from 'dayjs'
 import ContractResearchTable from '@/views/achievement/components/contract-research-table.vue'
 import api from '@/api'
+import PermissionDeniedComp from '@/views/public-components/permission-denied-comp.vue'
+import {checkAuth} from "@/utils/tools";
 
 const router = useRouter()
 const addNew = () => router.push('/achievement-contract/contract-form')
@@ -11,8 +13,8 @@ const y2 = ref(0)
 const y1s = ref('')
 const y2s = ref('')
 watchEffect(() => {
-  y1s.value = `${ y1.value }`
-  y2s.value = `${ y2.value }`
+  y1s.value = `${y1.value}`
+  y2s.value = `${y2.value}`
 })
 
 interface staTypeCountI {
@@ -34,6 +36,7 @@ const staTypeCount: staTypeCountI = reactive<staTypeCountI>({
   out_count: 0,
 })
 const statisticsTypeCount = async () => {
+  if (!checkAuth('PM00301001')) return
   const res = await api.get('/contract/statisticsTypeCount')
   staTypeCount.all_count = res.data.all_count
   staTypeCount.in_count = res.data.in_count
@@ -43,6 +46,7 @@ statisticsTypeCount()
 const inNum = ref(0)
 const outNum = ref(0)
 const statisticsSumByYear = async (payment_type: string, year: number) => {
+  if (!checkAuth('PM00301001')) return
   const res = await api.get('/contract/statisticsSumByYear', { params: { payment_type, year } })
   if (payment_type === '收入') inNum.value = res.data.contract_money_sum
   if (payment_type === '支出') outNum.value = res.data.contract_money_sum
@@ -61,75 +65,80 @@ const changeYear = (type: string, num: number) => statisticsSumByYear(type, +num
         </div>
       </div>
       <div class="top-right">
-        <el-button size="large" type="primary" @click="addNew">
+        <el-button v-auth="['PM00301002']" size="large" type="primary" @click="addNew">
           合同存档
         </el-button>
       </div>
     </div>
-    <div class="middle">
-      <div class="m1">
-        <div class="m-item">
-          <div class="label">
-            合同总数：
+    <Auth :value="['PM00301001']">
+      <div class="middle">
+        <div class="m1">
+          <div class="m-item">
+            <div class="label">
+              合同总数：
+            </div>
+            <div class="number">
+              {{ staTypeCount.all_count }}
+            </div>
           </div>
-          <div class="number">
-            {{ staTypeCount.all_count }}
+          <div class="m-item">
+            <div class="label">
+              收入合同：
+            </div>
+            <div class="number">
+              {{ staTypeCount.in_count }}
+            </div>
+          </div>
+          <div class="m-item">
+            <div class="label">
+              支出合同：
+            </div>
+            <div class="number">
+              {{ staTypeCount.out_count }}
+            </div>
           </div>
         </div>
-        <div class="m-item">
-          <div class="label">
-            收入合同：
-          </div>
-          <div class="number">
-            {{ staTypeCount.in_count }}
+        <div class="m2">
+          <el-date-picker
+            v-model="y1s" type="year"
+            value-format="YYYY"
+            :clearable="false"
+            @change="(a) => changeYear('收入', a)"
+          />
+          <div class="m-item">
+            <div class="label">
+              收入总合同额：
+            </div>
+            <div class="number">
+              {{ inNum }}
+            </div>
           </div>
         </div>
-        <div class="m-item">
-          <div class="label">
-            支出合同：
-          </div>
-          <div class="number">
-            {{ staTypeCount.out_count }}
+        <div class="m2">
+          <el-date-picker
+            v-model="y2s"
+            type="year"
+            value-format="YYYY"
+            :clearable="false"
+            @change="(a) => changeYear('支出', a)"
+          />
+          <div class="m-item">
+            <div class="label">
+              支出总合同额：
+            </div>
+            <div class="number">
+              {{ outNum }}
+            </div>
           </div>
         </div>
       </div>
-      <div class="m2">
-        <el-date-picker
-          v-model="y1s" type="year"
-          value-format="YYYY"
-          :clearable="false"
-          @change="(a) => changeYear('收入', a)"
-        />
-        <div class="m-item">
-          <div class="label">
-            收入总合同额：
-          </div>
-          <div class="number">
-            {{ inNum }}
-          </div>
-        </div>
+      <div class="bottom">
+        <ContractResearchTable />
       </div>
-      <div class="m2">
-        <el-date-picker
-          v-model="y2s"
-          type="year"
-          value-format="YYYY"
-          :clearable="false"
-          @change="(a) => changeYear('支出', a)"
-        />
-        <div class="m-item">
-          <div class="label">
-            支出总合同额：
-          </div>
-          <div class="number">
-            {{ outNum }}
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="bottom">
-      <ContractResearchTable />
-    </div>
+      <template #no-auth>
+        <PermissionDeniedComp />
+      </template>
+    </Auth>
   </page-main>
 </template>
 
@@ -140,43 +149,54 @@ const changeYear = (type: string, num: number) => statisticsSumByYear(type, +num
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     .top-left {
       font-size: 18px;
     }
   }
+
   .middle {
     height: 60px;
     display: flex;
     align-items: center;
     margin: 20px 0;
+
     .m1, .m2 {
       flex: 1;
       display: flex;
     }
+
     .m2 {
       justify-content: center;
+
       .label {
         margin-left: 20px;
       }
     }
+
     .m2:nth-child(2) {
       border-left: 1px solid #c0c0c0;
       border-right: 1px solid #c0c0c0;
     }
+
     .m1 {
       justify-content: flex-start;
+
       .m-item {
         flex: 1;
       }
     }
+
     .m-item {
       display: flex;
       align-items: center;
+
       .number {
         font-size: 18px;
         font-weight: 700;
       }
     }
+
     :deep(.el-date-editor) {
       width: 90px !important;
     }

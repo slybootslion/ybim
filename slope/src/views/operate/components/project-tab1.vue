@@ -8,6 +8,7 @@ import {
 } from '@/views/operate/project-method'
 import api from '@/api'
 import { back } from '@/views/scientific_research/project-method'
+import { checkAuth, checkIsOwn, findLastAppItem } from '@/utils/tools'
 
 const props = defineProps<{
   projectId: string
@@ -71,40 +72,58 @@ const end = async () => {
     loading.value = false
   }).catch(console.log)
 }
+
+const checkCancel = () => {
+  const isOwn = checkIsOwn(activeProjectData.value.registrant_user)
+  const last = findLastAppItem(activeProjectData.value.project_approve)
+  const isAuth = checkAuth('PM00101013')
+  return last && isAuth && isOwn && (last.approve_result === '等待审核' || last.approve_result === '驳回')
+}
+
+const checkReStart = () => {
+  const isAuth = checkAuth('PM00101001')
+  const last = findLastAppItem(activeProjectData.value.project_approve)
+  return last && isAuth && (last.approve_result === '驳回' || last.approve_result !== '通过')
+}
+
+const checkFinish = () => {
+  const isOwn = checkIsOwn(activeProjectData.value.registrant_user)
+  return isOwn && checkAuth('PM00101012')
+}
 </script>
 
 <template>
   <div v-loading="loading">
     <div class="block">
       <div class="top-button">
-        <el-button type="primary" @click="cancelActive">
+        <el-button v-if="checkCancel()" type="primary" @click="cancelActive">
           取消
         </el-button>
         <el-button
-          type="primary"
+          v-if="checkReStart()" type="primary"
           @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-approval/approval' })"
         >
           重新发起
         </el-button>
         <el-button
-          type="primary"
+          v-auth="['PM00101011']" type="primary"
           @click="() => emit('goRouter', { projectId: props.projectId, url: '/tracking-information/tracking' })"
         >
           跟踪记录
         </el-button>
         <el-button
-          type="primary"
+          v-auth="['PM00101004']" type="primary"
           @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-bidding/bidding' })"
         >
           新建投标评审
         </el-button>
         <el-button
-          type="primary"
+          v-auth="['PM00101007']" type="primary"
           @click="() => emit('goRouter', { projectId: props.projectId, url: '/contract-rating/contract-review' })"
         >
           合同评审
         </el-button>
-        <el-button type="primary" @click="end">
+        <el-button v-if="checkFinish()" type="primary" @click="end">
           项目完结
         </el-button>
       </div>
@@ -212,7 +231,7 @@ const end = async () => {
           </el-descriptions-item>
         </el-descriptions>
       </el-form>
-      <el-descriptions v-if="activeProjectData" style="margin-top: 20px;" title="审核信息" :column="1">
+      <el-descriptions v-if="activeProjectData.project_approve.length" style="margin-top: 20px;" title="审核信息" :column="1">
         <el-descriptions-item
           v-for="(item, index) in (activeProjectData as resProjectDataI).project_approve"
           :key="index" label="审核人："

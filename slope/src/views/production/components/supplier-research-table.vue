@@ -2,12 +2,14 @@
 import type { getSupplierTableListI, resSupplierTableItemI } from '@/views/production/supplier-method'
 import { getSupplierList, pageData, primarySupplierTypeOption } from '@/views/production/supplier-method'
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
-import {delItemHandle, pageI, tableHeaderCellStyle} from '@/utils/tools'
+import { checkAuth, delItemHandle, pageI, tableHeaderCellStyle } from '@/utils/tools'
 import api from '@/api'
+import PermissionDeniedComp from '@/views/public-components/permission-denied-comp.vue'
 
 const tableLoading = ref(false)
 let tableData = reactive<resSupplierTableItemI[]>([])
 const getList = async (param: getSupplierTableListI) => {
+  if (!checkAuth('PM00202002')) return
   tableLoading.value = true
   delete param.total
   const res = await getSupplierList(param)
@@ -50,58 +52,63 @@ const delItem = (row: resSupplierTableItemI) => delItemHandle(row.supplier_name,
 </script>
 
 <template>
-  <div class="search-box">
-    <el-form class="search-form" :model="searchData" inline>
-      <el-form-item label="供应商名称：">
-        <el-input v-model="searchData.supplier_name" clearable />
-      </el-form-item>
-      <el-form-item label="地区：">
-        <pcas-cascader v-model="pcas" type="pc" format="name" />
-      </el-form-item>
-      <el-form-item label="供应商分类：">
-        <el-select v-model="searchData.supplier_type" clearable>
-          <el-option v-for="sup in primarySupplierTypeOption" :key="sup" :label="sup" :value="sup" />
-        </el-select>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="searchHandle">
-          搜索
-        </el-button>
-      </el-form-item>
-    </el-form>
-  </div>
-  <el-table v-loading="tableLoading" :data="tableData" border style="width: 100%" stripe :header-cell-style="tableHeaderCellStyle">
-    <el-table-column label="序号" type="index" width="60" />
-    <el-table-column label="供应商名称" min-width="230">
-      <template #default="scope">
-        <el-button link type="primary" @click="researchNameClick(scope.row.supplier_id)">
-          {{ scope.row.supplier_name }}
-        </el-button>
-      </template>
-    </el-table-column>
-    <el-table-column property="supplier_type" label="供应商分类" width="120" />
-    <el-table-column property="primary_business" label="主营业务" width="310" />
-    <el-table-column label="地址" width="190">
-      <template #default="scope">
-        {{ scope.row.address_province }} {{ scope.row.address_city }}
-      </template>
-    </el-table-column>
-    <el-table-column property="linkman" label="联系人" width="90" />
-    <el-table-column property="linkman_phone" label="联系人电话" width="130" />
-    <el-table-column property="registrant_user" label="登记人" width="90" />
-    <el-table-column property="registration_time" label="登记时间" width="160" />
-    <el-table-column label="操作" width="130">
-      <template #default="scope">
-        <el-button link type="primary" size="small" @click.prevent="editItem(scope.row.supplier_id)">
-          编辑
-        </el-button>
-        <el-button link type="primary" size="small" @click.prevent="delItem(scope.row)">
-          删除
-        </el-button>
-      </template>
-    </el-table-column>
-  </el-table>
-  <PaginationComp :page-data="pageData as pageI" @page-change="pageChange" />
+  <Auth :value="['PM00202002']">
+    <div class="search-box">
+      <el-form class="search-form" :model="searchData" inline>
+        <el-form-item label="供应商名称：">
+          <el-input v-model="searchData.supplier_name" clearable />
+        </el-form-item>
+        <el-form-item label="地区：">
+          <pcas-cascader v-model="pcas" type="pc" format="name" />
+        </el-form-item>
+        <el-form-item label="供应商分类：">
+          <el-select v-model="searchData.supplier_type" clearable>
+            <el-option v-for="sup in primarySupplierTypeOption" :key="sup" :label="sup" :value="sup" />
+          </el-select>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="searchHandle">
+            搜索
+          </el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+    <el-table v-loading="tableLoading" :data="tableData" border style="width: 100%" stripe :header-cell-style="tableHeaderCellStyle">
+      <el-table-column label="序号" type="index" width="60" />
+      <el-table-column label="供应商名称" min-width="230">
+        <template #default="scope">
+          <el-button link type="primary" @click="researchNameClick(scope.row.supplier_id)">
+            {{ scope.row.supplier_name }}
+          </el-button>
+        </template>
+      </el-table-column>
+      <el-table-column property="supplier_type" label="供应商分类" width="120" />
+      <el-table-column property="primary_business" label="主营业务" width="310" />
+      <el-table-column label="地址" width="190">
+        <template #default="scope">
+          {{ scope.row.address_province }} {{ scope.row.address_city }}
+        </template>
+      </el-table-column>
+      <el-table-column property="linkman" label="联系人" width="90" />
+      <el-table-column property="linkman_phone" label="联系人电话" width="130" />
+      <el-table-column property="registrant_user" label="登记人" width="90" />
+      <el-table-column property="registration_time" label="登记时间" width="160" />
+      <el-table-column label="操作" width="130">
+        <template #default="scope">
+          <el-button link type="primary" size="small" @click.prevent="editItem(scope.row.supplier_id)">
+            编辑
+          </el-button>
+          <el-button link type="primary" size="small" @click.prevent="delItem(scope.row)">
+            删除
+          </el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <PaginationComp :page-data="pageData as pageI" @page-change="pageChange" />
+    <template #no-auth>
+      <PermissionDeniedComp />
+    </template>
+  </Auth>
 </template>
 
 <style scoped lang="scss">

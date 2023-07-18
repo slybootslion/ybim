@@ -29,7 +29,7 @@ const upload = async (obj: UploadRequestOptions) => uploadMaterialFile(obj.file,
 
 <template>
   <el-upload :http-request="upload" :show-file-list="false" style="margin-bottom: 20px;">
-    <el-button type="primary">
+    <el-button v-auth="['PM00201003']" type="primary">
       上传资料
     </el-button>
   </el-upload>

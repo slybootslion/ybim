@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import type { getKnowledgeTableListI, resKnowledgeTableItemI } from '@/views/achievement/knowledge-method'
 import { getIprList, pageData, primaryResultTypeOptions } from '@/views/achievement/knowledge-method'
-import {delItemHandle, pageI, tableHeaderCellStyle} from '@/utils/tools'
+import { checkAuth, delItemHandle, pageI, tableHeaderCellStyle } from '@/utils/tools'
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
 import api from '@/api'
 
 const tableLoading = ref(false)
 let tableData = reactive<resKnowledgeTableItemI[]>([])
 const getList = async (param: getKnowledgeTableListI) => {
+  if (!checkAuth('PM00303001')) return
   tableLoading.value = true
   // if (param.application_year) param.application_year = +param.application_year
   delete param.total
@@ -79,9 +80,14 @@ const delItem = (row: resKnowledgeTableItemI) => delItemHandle(row.result_name, 
     <el-table-column property="request_code" label="申请号/授权/专利号" width="120" />
     <el-table-column label="名称" min-width="230">
       <template #default="scope">
-        <el-button link type="primary" @click="researchNameClick(scope.row.ip_id)">
-          {{ scope.row.result_name }}
-        </el-button>
+        <Auth :value="['PM00303001']">
+          <a style="color: #4099ff; cursor:pointer;" @click="researchNameClick(scope.row.ip_id)">
+            {{ scope.row.result_name }}
+          </a>
+          <template #no-auth>
+            {{ scope.row.result_name }}
+          </template>
+        </Auth>
       </template>
     </el-table-column>
     <el-table-column property="result_type" label="类型" width="150" />
@@ -89,12 +95,12 @@ const delItem = (row: resKnowledgeTableItemI) => delItemHandle(row.result_name, 
     <el-table-column property="application_time" label="申请时间" width="120" />
     <el-table-column property="authorize_time" label="授权时间" width="120" />
     <el-table-column property="validity" label="有效期" width="120" />
-    <el-table-column label="操作" width="180">
+    <el-table-column v-auth="['PM00303003', 'PM00303004']" label="操作" width="180">
       <template #default="scope">
-        <el-button link type="primary" size="small" @click.prevent="editItem(scope.row)">
+        <el-button v-auth="['PM00303003']" link type="primary" size="small" @click.prevent="editItem(scope.row)">
           编辑
         </el-button>
-        <el-button link type="primary" size="small" @click.prevent="delItem(scope.row)">
+        <el-button v-auth="['PM00303004']" link type="primary" size="small" @click.prevent="delItem(scope.row)">
           删除
         </el-button>
       </template>

@@ -10,6 +10,7 @@ const ProductionProject: RouteRecordRaw = {
   meta: {
     title: '生产项目管理',
     icon: 'ep:brush',
+    auth: ['PM00201000'],
   },
   children: [
     {
@@ -45,6 +46,7 @@ const TaskOrder: RouteRecordRaw = {
   meta: {
     title: '任务下单',
     icon: 'ep:folder-add',
+    auth: ['PM00201001'],
   },
   children: [
     {
@@ -69,6 +71,7 @@ const Supplier: RouteRecordRaw = {
   meta: {
     title: '供应商管理',
     icon: 'ep:box',
+    auth: ['PM00202000'],
   },
   children: [
     {

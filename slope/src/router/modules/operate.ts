@@ -46,6 +46,7 @@ const Approval: RouteRecordRaw = {
   meta: {
     title: '项目备案立项申请',
     icon: 'ep:finished',
+    auth: ['PM00101001'],
   },
   children: [
     {
@@ -71,6 +72,7 @@ const Tracking: RouteRecordRaw = {
   meta: {
     title: '跟踪信息录入',
     icon: 'ep:discount',
+    auth: ['PM00101011'],
   },
   children: [
     {
@@ -96,6 +98,7 @@ const Bidding: RouteRecordRaw = {
   meta: {
     title: '项目投标申请',
     icon: 'ep:edit-pen',
+    auth: ['PM00101004'],
   },
   children: [
     {
@@ -121,6 +124,7 @@ const Bid: RouteRecordRaw = {
   meta: {
     title: '登记投标结果',
     icon: 'ep:tickets',
+    auth: ['PM00101006'],
   },
   children: [
     {
@@ -146,6 +150,7 @@ const ContractRating: RouteRecordRaw = {
   meta: {
     title: '合同评审',
     icon: 'ep:memo',
+    auth: ['PM00101007'],
   },
   children: [
     {

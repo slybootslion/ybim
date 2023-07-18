@@ -5,12 +5,13 @@ import { pageData } from '@/views/production/project-method'
 import { contractTypeOptions, getContractList, industryTypeOption } from '@/views/achievement/contract-method'
 import { getTreeList, level3List } from '@/views/system/personnel-method'
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
-import {pageI, tableHeaderCellStyle} from '@/utils/tools'
+import { checkAuth, pageI, tableHeaderCellStyle } from '@/utils/tools'
 
 getTreeList()
 const tableLoading = ref(false)
 let tableData = reactive<resContractListItemI[]>([])
 const getList = async (param: getProjectTableListI) => {
+  if (!checkAuth('PM00301001')) return
   tableLoading.value = true
   delete param.total
   const res = await getContractList(param)
@@ -89,9 +90,14 @@ const downloadItem = (row: resContractListItemI) => {
     <el-table-column property="contract_number" fixed label="合同编码" width="160" />
     <el-table-column label="合同名称" min-width="330" fixed>
       <template #default="scope">
-        <el-button link type="primary" @click="researchNameClick(scope.row.contract_id)">
-          {{ scope.row.contract_name }}
-        </el-button>
+        <Auth :value="['PM00301001']">
+          <a style="color: #4099ff; cursor:pointer;" @click="researchNameClick(scope.row.contract_id)">
+            {{ scope.row.contract_name }}
+          </a>
+          <template #no-auth>
+            {{ scope.row.contract_name }}
+          </template>
+        </Auth>
       </template>
     </el-table-column>
     <el-table-column property="contract_type" label="合同类型" width="110" />
@@ -108,13 +114,13 @@ const downloadItem = (row: resContractListItemI) => {
     <el-table-column property="create_time" label="登记日期" width="160" />
     <el-table-column label="操作" width="180">
       <template #default="scope">
-        <el-button link type="primary" size="small" @click.prevent="editItem(scope.row.contract_id)">
+        <el-button v-auth="['PM00301003']" link type="primary" size="small" @click.prevent="editItem(scope.row.contract_id)">
           编辑
         </el-button>
-        <el-button link type="primary" size="small" @click.prevent="delItem(scope.row)">
+        <el-button v-auth="['PM00301004']" link type="primary" size="small" @click.prevent="delItem(scope.row)">
           删除
         </el-button>
-        <el-button link type="primary" size="small" @click.prevent="downloadItem(scope.row)">
+        <el-button v-auth="['PM00301005']" link type="primary" size="small" @click.prevent="downloadItem(scope.row)">
           下载
         </el-button>
       </template>

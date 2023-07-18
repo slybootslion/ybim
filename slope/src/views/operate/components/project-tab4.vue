@@ -46,13 +46,13 @@ const cancel = () => {
 
 <template>
   <div v-loading="loading">
-    <div class="block">
+    <div v-if="activeContractReviewData.conre_id" class="block">
       <div class="top-button">
-        <el-button type="primary" @click="cancel">
+        <el-button v-auth="['PM00101015']" type="primary" @click="cancel">
           取消
         </el-button>
         <el-button
-          type="primary"
+          v-auth="['PM00101007']" type="primary"
           @click="() => emit('goRouter', { projectId: props.projectId, url: '/contract-rating/contract-review' })"
         >
           重新发起
@@ -142,6 +142,7 @@ const cancel = () => {
         </el-descriptions-item>
       </el-descriptions>
     </div>
+    <el-empty v-else />
   </div>
 </template>
 

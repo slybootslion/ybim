@@ -113,6 +113,7 @@ const asyncRoutes: Route.recordMainRaw[] = [
     meta: {
       title: '生产管理',
       icon: 'ep:list',
+      auth: ['PM00200000'],
     },
     children: [
       ProductionProject,
@@ -124,6 +125,7 @@ const asyncRoutes: Route.recordMainRaw[] = [
     meta: {
       title: '成果管理',
       icon: 'ep:files',
+      auth: ['PM00300000'],
     },
     children: [
       Contract,

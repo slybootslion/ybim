@@ -14,7 +14,7 @@ const addNew = () => router.push('/record-management/record-form')
         </div>
       </div>
       <div class="top-right">
-        <el-button size="large" type="primary" @click="addNew">
+        <el-button v-auth="['PM00103001']" size="large" type="primary" @click="addNew">
           新建备案
         </el-button>
       </div>

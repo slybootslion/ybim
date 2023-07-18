@@ -4,7 +4,7 @@ import {
   getTailList,
   tailItemI,
 } from '@/views/operate/project-method'
-import { delItemHandle } from '@/utils/tools'
+import { checkAuth, checkIsOwn, delItemHandle } from '@/utils/tools'
 import api from '@/api'
 
 const props = defineProps<{
@@ -34,19 +34,19 @@ const editItem = (id: string) => router.push(`/tracking-information/tracking?pro
     <div class="block">
       <div class="top-button">
         <el-button
-          type="primary"
+          v-auth="['PM00101011']" type="primary"
           @click="() => emit('goRouter', { projectId: props.projectId, url: '/tracking-information/tracking' })"
         >
           跟踪记录
         </el-button>
         <el-button
-          type="primary"
+          v-auth="['PM00101004']" type="primary"
           @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-bidding/bidding' })"
         >
           新建投标评审
         </el-button>
       </div>
-      <el-collapse v-model="activeNames">
+      <el-collapse v-if="activeTailList.length" v-model="activeNames">
         <el-collapse-item
           v-for="(item, index) in activeTailList"
           :key="index"
@@ -91,15 +91,16 @@ const editItem = (id: string) => router.push(`/tracking-information/tracking?pro
             </el-descriptions-item>
           </el-descriptions>
           <div style="display: flex; justify-content: flex-end">
-            <el-button @click="editItem((item as tailItemI).tail_id)">
+            <el-button v-if="checkIsOwn(item.tail_user) && checkAuth('PM00101016')" @click="editItem((item as tailItemI).tail_id)">
               编辑
             </el-button>
-            <el-button @click="delItem((item as tailItemI).tail_id)">
+            <el-button v-if="checkIsOwn(item.tail_user) && checkAuth('PM00101017')" @click="delItem((item as tailItemI).tail_id)">
               删除
             </el-button>
           </div>
         </el-collapse-item>
       </el-collapse>
+      <el-empty v-else />
     </div>
   </div>
 </template>

@@ -10,6 +10,7 @@ const Contract: RouteRecordRaw = {
   meta: {
     title: '合同管理',
     icon: 'ep:notebook',
+    auth: ['PM00301000'],
   },
   children: [
     {
@@ -56,6 +57,7 @@ const Knowledge: RouteRecordRaw = {
   meta: {
     title: '知识管理',
     icon: 'ep:star',
+    auth: ['PM00303000'],
   },
   children: [
     {
@@ -102,6 +104,7 @@ const Qualification: RouteRecordRaw = {
   meta: {
     title: '资质管理',
     icon: 'ep:message-box',
+    auth: ['PM00302000'],
   },
   children: [
     {

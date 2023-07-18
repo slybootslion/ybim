@@ -6,6 +6,7 @@ import ProjectTab1 from '@/views/operate/components/project-tab1.vue'
 import ProjectTab4 from '@/views/operate/components/project-tab4.vue'
 import ProjectTab3 from '@/views/operate/components/project-tab3.vue'
 import ProjectTab2 from '@/views/operate/components/project-tab2.vue'
+import PermissionDeniedComp from '@/views/public-components/permission-denied-comp.vue'
 
 const activeName = ref('基本信息')
 const route = useRoute()
@@ -51,22 +52,27 @@ const goRouter = ({ url, ...o }: goRouterParams) => {
         </el-button>
       </div>
     </div>
-    <div class="bottom">
-      <el-tabs v-model="activeName">
-        <el-tab-pane label="基本信息" name="基本信息">
-          <ProjectTab1 :project-id="projectId as string" @go-router="goRouter" />
-        </el-tab-pane>
-        <el-tab-pane label="跟踪信息" name="跟踪信息">
-          <ProjectTab2 :project-id="projectId as string" @go-router="goRouter" />
-        </el-tab-pane>
-        <el-tab-pane label="投标信息" name="投标信息">
-          <ProjectTab3 :project-id="projectId as string" @go-router="goRouter" />
-        </el-tab-pane>
-        <el-tab-pane label="合同评审" name="合同评审">
-          <ProjectTab4 :project-id="projectId as string" @go-router="goRouter" />
-        </el-tab-pane>
-      </el-tabs>
-    </div>
+    <Auth :value="['PM00101002']">
+      <div class="bottom">
+        <el-tabs v-model="activeName">
+          <el-tab-pane label="基本信息" name="基本信息">
+            <ProjectTab1 :project-id="projectId as string" @go-router="goRouter" />
+          </el-tab-pane>
+          <el-tab-pane label="跟踪信息" name="跟踪信息">
+            <ProjectTab2 :project-id="projectId as string" @go-router="goRouter" />
+          </el-tab-pane>
+          <el-tab-pane label="投标信息" name="投标信息">
+            <ProjectTab3 :project-id="projectId as string" @go-router="goRouter" />
+          </el-tab-pane>
+          <el-tab-pane label="合同评审" name="合同评审">
+            <ProjectTab4 :project-id="projectId as string" @go-router="goRouter" />
+          </el-tab-pane>
+        </el-tabs>
+      </div>
+      <template #no-auth>
+        <PermissionDeniedComp />
+      </template>
+    </Auth>
   </page-main>
 </template>
 

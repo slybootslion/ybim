@@ -1,6 +1,7 @@
-import { ElLoading, ElMessage, ElMessageBox } from 'element-plus'
-import { cloneDeep } from 'lodash-es'
+import {ElLoading, ElMessage, ElMessageBox} from 'element-plus'
+import {cloneDeep} from 'lodash-es'
 import useUserStore from '@/store/modules/user'
+import {activeProjectData, approveItemI} from "@/views/operate/project-method";
 
 export const pageLoading = () => {
   return ElLoading.service({
@@ -66,7 +67,7 @@ export class TimerSimulateInterval {
   * 2参数：每次定时器执行间隔时长，默认1秒
   * 3参数：定时器执行次数，默认5次，可传Infinity不限制次数
   * */
-  simulateInterval({ callback, interval = 1000, countLimit = 5 }: {
+  simulateInterval({callback, interval = 1000, countLimit = 5}: {
     callback: any
     interval?: any
     countLimit?: any
@@ -99,7 +100,7 @@ export class TimerSimulateInterval {
   }
 }
 
-export function tableHeaderCellStyle({ row, column, rowIndex, columnIndex }: never) {
+export function tableHeaderCellStyle({row, column, rowIndex, columnIndex}: never) {
   return {
     // textAlign: 'center',
     color: '#004da5',
@@ -108,6 +109,19 @@ export function tableHeaderCellStyle({ row, column, rowIndex, columnIndex }: nev
 }
 
 export function checkAuth(cStr: string): boolean {
-  const urArr = useUserStore().user_rights.split(',')
+  const userStore = useUserStore()
+  const urArr = userStore.user_rights.split(',')
   return urArr.includes(cStr)
+}
+
+export function checkIsOwn(username: string) {
+  const userStore = useUserStore()
+  const u = userStore.account
+  return u === username
+}
+
+export function findLastAppItem(appList: approveItemI[]) {
+  if (!appList.length) return false
+  const len = appList.length
+  return appList[len - 1]
 }

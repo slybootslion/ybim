@@ -15,7 +15,7 @@ const addNew = () => router.push('/customer-management/customer-form')
           </div>
         </div>
         <div class="top-right">
-          <el-button size="large" type="primary" @click="addNew">
+          <el-button v-auth="['PM00102001']" size="large" type="primary" @click="addNew">
             添加客户
           </el-button>
         </div>

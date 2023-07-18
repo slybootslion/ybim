@@ -38,10 +38,10 @@ const addNew = () => router.push('/project-approval/approval')
         </div>
       </div>
       <div class="top-right">
-        <el-button size="large" @click="openDialog">
+        <el-button size="large" style="margin-right: 10px;" @click="openDialog">
           项目转让/移交
         </el-button>
-        <el-button size="large" type="primary" @click="addNew">
+        <el-button v-auth="['PM00101001']" size="large" type="primary" @click="addNew">
           项目备案立项
         </el-button>
       </div>

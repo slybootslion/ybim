@@ -98,11 +98,16 @@ function selectAnalysis(selection: resProjectDataI[]) {
   >
     <el-table-column type="selection" width="50" />
     <el-table-column label="序号" type="index" width="55" />
-    <el-table-column label="项目名称" min-width="140">
+    <el-table-column label="项目名称" min-width="240">
       <template #default="scope">
-        <el-button link type="primary" @click="researchNameClick(scope.row)">
-          {{ scope.row.project_name }}
-        </el-button>
+        <Auth :value="['PM00101002']">
+          <a style="color: #4099ff; cursor:pointer;" @click="researchNameClick(scope.row)">
+            {{ scope.row.project_name }}
+          </a>
+          <template #no-auth>
+            {{ scope.row.project_name }}
+          </template>
+        </Auth>
       </template>
     </el-table-column>
     <el-table-column property="project_code" label="项目编码" width="140" />

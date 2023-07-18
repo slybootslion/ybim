@@ -2,11 +2,13 @@
 import type { getRecordTableListI, resRecordItemI } from '@/views/operate/record-method'
 import { delFiling, getFilingList, pageData } from '@/views/operate/record-method'
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
-import {delItemHandle, pageI, tableHeaderCellStyle} from '@/utils/tools'
+import {checkAuth, delItemHandle, pageI, tableHeaderCellStyle} from '@/utils/tools'
+import PermissionDeniedComp from "@/views/public-components/permission-denied-comp.vue";
 
 const tableLoading = ref(false)
 const tableData = ref<resRecordItemI[]>([])
 const getList = async (param: getRecordTableListI) => {
+  if (!checkAuth('PM00103002')) return
   tableLoading.value = true
   delete param.total
   const res = await getFilingList(param)
@@ -52,80 +54,85 @@ const delItem = async (row: resRecordItemI) => {
 </script>
 
 <template>
-  <div class="search-box">
-    <el-form class="search-form" :model="searchData" inline>
-      <el-form-item label="客户名称：">
-        <el-select v-model="searchData.filing_type" clearable>
-          <el-option label="本地备案" value="本地备案" />
-          <el-option label="网络备案" value="网络备案" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="备案地区：">
-        <pcas-cascader v-model="pcas" type="pc" format="name" />
-      </el-form-item>
-      <el-form-item label="备案平台名称/部门：">
-        <el-input v-model="searchData.filing_platform" clearable />
-      </el-form-item>
-      <el-form-item label="备案单位：">
-        <el-input v-model="searchData.filing_department" clearable />
-      </el-form-item>
-      <el-form-item label="经办人：">
-        <el-input v-model="searchData.responsible_person" clearable />
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="searchHandle">
-          搜索
-        </el-button>
-      </el-form-item>
-    </el-form>
-  </div>
-  <el-table v-loading="tableLoading" :data="tableData" border style="width: 100%" stripe :header-cell-style="tableHeaderCellStyle">
-    <el-table-column label="序号" type="index" width="60" />
-    <el-table-column label="备案平台名称/部门" min-width="230">
-      <template #default="scope">
-        <el-button link type="primary" @click="researchNameClick(scope.row)">
-          {{ scope.row.filing_platform }}
-        </el-button>
-      </template>
-    </el-table-column>
-    <el-table-column property="filing_type" label="备案类型" width="120" />
-    <el-table-column property="filing_department" label="备案单位" width="230" />
-    <el-table-column label="备案省份城市" width="190">
-      <template #default="scope">
-        {{ scope.row.filing_province }} {{ scope.row.filing_city }}
-      </template>
-    </el-table-column>
-    <el-table-column property="filing_valid_time" label="备案有效日期" width="130" />
-    <el-table-column property="responsible_person" label="经办人" width="160" />
-    <el-table-column property="filing_time" label="备案时间" width="130" />
-    <el-table-column label="有效状态" width="90">
-      <template #default="scope">
-        <el-tag
-          :type="scope.row.valid.includes('无效') ? 'danger' : ''"
-          disable-transitions
-        >
-          {{ scope.row.valid }}
-        </el-tag>
-      </template>
-    </el-table-column>
-    <el-table-column label="操作" width="130">
-      <template #default="scope">
-        <el-button link type="primary" size="small" @click.prevent="editItem(scope.row.filing_id)">
-          编辑
-        </el-button>
-        <el-button link type="primary" size="small" @click.prevent="delItem(scope.row)">
-          删除
-        </el-button>
-      </template>
-    </el-table-column>
-  </el-table>
-  <PaginationComp :page-data="pageData as pageI" @page-change="pageChange" />
+  <Auth :value="['PM00103002']">
+    <div class="search-box">
+      <el-form class="search-form" :model="searchData" inline>
+        <el-form-item label="客户名称：">
+          <el-select v-model="searchData.filing_type" clearable>
+            <el-option label="本地备案" value="本地备案" />
+            <el-option label="网络备案" value="网络备案" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="备案地区：">
+          <pcas-cascader v-model="pcas" type="pc" format="name" />
+        </el-form-item>
+        <el-form-item label="备案平台名称/部门：">
+          <el-input v-model="searchData.filing_platform" clearable />
+        </el-form-item>
+        <el-form-item label="备案单位：">
+          <el-input v-model="searchData.filing_department" clearable />
+        </el-form-item>
+        <el-form-item label="经办人：">
+          <el-input v-model="searchData.responsible_person" clearable />
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="searchHandle">
+            搜索
+          </el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+    <el-table v-loading="tableLoading" :data="tableData" border style="width: 100%" stripe :header-cell-style="tableHeaderCellStyle">
+      <el-table-column label="序号" type="index" width="60" />
+      <el-table-column label="备案平台名称/部门" min-width="230">
+        <template #default="scope">
+          <el-button link type="primary" @click="researchNameClick(scope.row)">
+            {{ scope.row.filing_platform }}
+          </el-button>
+        </template>
+      </el-table-column>
+      <el-table-column property="filing_type" label="备案类型" width="120" />
+      <el-table-column property="filing_department" label="备案单位" width="230" />
+      <el-table-column label="备案省份城市" width="190">
+        <template #default="scope">
+          {{ scope.row.filing_province }} {{ scope.row.filing_city }}
+        </template>
+      </el-table-column>
+      <el-table-column property="filing_valid_time" label="备案有效日期" width="130" />
+      <el-table-column property="responsible_person" label="经办人" width="160" />
+      <el-table-column property="filing_time" label="备案时间" width="130" />
+      <el-table-column label="有效状态" width="90">
+        <template #default="scope">
+          <el-tag
+            :type="scope.row.valid.includes('无效') ? 'danger' : ''"
+            disable-transitions
+          >
+            {{ scope.row.valid }}
+          </el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column label="操作" width="130">
+        <template #default="scope">
+          <el-button v-auth="['PM00103003']" link type="primary" size="small" @click.prevent="editItem(scope.row.filing_id)">
+            编辑
+          </el-button>
+          <el-button link type="primary" size="small" @click.prevent="delItem(scope.row)">
+            删除
+          </el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <PaginationComp :page-data="pageData as pageI" @page-change="pageChange" />
+    <template #no-auth>
+      <PermissionDeniedComp />
+    </template>
+  </Auth>
 </template>
 
 <style scoped lang="scss">
 .search-box {
   :deep(.el-form-item__content) {
-    width: 150px !important;
+    width: 210px !important;
   }
 }
 .pagination {

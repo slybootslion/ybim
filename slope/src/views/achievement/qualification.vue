@@ -14,7 +14,7 @@ const addNew = () => router.push('/achievement-qualification/qualification-form'
         </div>
       </div>
       <div class="top-right">
-        <el-button size="large" type="primary" @click="addNew">
+        <el-button v-auth="['PM00302002']" size="large" type="primary" @click="addNew">
           新建资质
         </el-button>
       </div>

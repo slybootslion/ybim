@@ -48,19 +48,19 @@ const cancel = async () => {
 
 <template>
   <div v-loading="loading">
-    <div class="block">
+    <div v-if="activeTenderData.tender_id" class="block">
       <div class="top-button">
-        <el-button type="primary" @click="cancel">
+        <el-button v-auth="['PM00101014']" type="primary" @click="cancel">
           取消投标
         </el-button>
         <el-button
-          type="primary"
+          v-auth="['PM00101014']" type="primary"
           @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-bidding/bidding', r: true })"
         >
           重新发起投标
         </el-button>
         <el-button
-          type="primary"
+          v-auth="['PM00101006']" type="primary"
           @click="() => emit('goRouter', { projectId: props.projectId, url: '/register-bid/bid' })"
         >
           登记投标结果
@@ -225,6 +225,7 @@ const cancel = async () => {
         </el-descriptions-item>
       </el-descriptions>
     </div>
+    <el-empty v-else />
   </div>
 </template>
 

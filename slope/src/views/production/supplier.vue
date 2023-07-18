@@ -14,7 +14,7 @@ const addNew = () => router.push('/supplier-management/supplier-form')
         </div>
       </div>
       <div class="top-right">
-        <el-button size="large" type="primary" @click="addNew">
+        <el-button v-auth="['PM00202001']" size="large" type="primary" @click="addNew">
           新建供应商
         </el-button>
       </div>
