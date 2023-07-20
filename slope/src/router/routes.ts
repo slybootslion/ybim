@@ -137,6 +137,7 @@ const asyncRoutes: Route.recordMainRaw[] = [
     meta: {
       title: '科研管理',
       icon: 'ep:collection',
+      auth: ['PM00400000'],
     },
     children: [
       Research,
@@ -146,6 +147,7 @@ const asyncRoutes: Route.recordMainRaw[] = [
     meta: {
       title: '系统设置',
       icon: 'ep:monitor',
+      auth: ['PM00500000'],
     },
     children: [
       Person,

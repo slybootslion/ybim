@@ -12,7 +12,7 @@ import ResearchTable from '@/views/scientific_research/components/research-table
         </div>
       </div>
       <div class="top-right">
-        <el-button size="large" type="primary" @click="addNew">
+        <el-button v-auth="['PM00401001']" size="large" type="primary" @click="addNew">
           科研项目登记
         </el-button>
       </div>

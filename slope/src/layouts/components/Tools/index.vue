@@ -94,13 +94,13 @@ function userCommand(command: 'home' | 'setting' | 'hotkeys' | 'logout') {
           <!--          <el-dropdown-item v-if="settingsStore.settings.home.enable" command="home"> -->
           <!--            {{ settingsStore.settings.home.title }} -->
           <!--          </el-dropdown-item> -->
-          <el-dropdown-item command="setting">
+          <!--          <el-dropdown-item command="setting">
             个人设置
-          </el-dropdown-item>
+          </el-dropdown-item> -->
           <!--          <el-dropdown-item v-if="settingsStore.mode === 'pc'" divided command="hotkeys"> -->
           <!--            快捷键介绍 -->
           <!--          </el-dropdown-item> -->
-          <el-dropdown-item divided command="logout">
+          <el-dropdown-item command="logout">
             退出登录
           </el-dropdown-item>
         </el-dropdown-menu>

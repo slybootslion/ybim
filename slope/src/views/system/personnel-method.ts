@@ -2,6 +2,7 @@ import type { FormInstance, FormRules } from 'element-plus'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import type { Arrayable } from '@vueuse/core'
 import api from '@/api'
+import { checkAuth } from '@/utils/tools'
 
 export const addDepartment = async (department_parent_id: string, department_name: string) => {
   return api.post('/personnel/addDepartment', { department_parent_id, department_name })
@@ -34,14 +35,19 @@ const editUser = async (parameter: editUserPar) => {
 export const editDepartment = async (department_parent_id: string, department_name: string, department_id: string) => {
   return api.post('/personnel/editDepartment', { department_parent_id, department_name, department_id })
 }
-export const getDepartmentList = async () => api.get('/personnel/getDepartmentList')
+export const getDepartmentList = async () => {
+  if (!checkAuth('PM00501001')) return
+  return api.get('/personnel/getDepartmentList')
+}
 
 export const getUserList = async (user_department_id = '') => {
+  if (!checkAuth('PM00501001')) return
   const res = await api.get(`/personnel/getUserList?user_department_id=${user_department_id}`)
   return res.data
 }
 
 export const getRoleList: any = async () => {
+  if (!checkAuth('PM00502001')) return
   const res = await api.get('/permission/getRoleList')
   return res.data
 }
@@ -69,7 +75,7 @@ export const level2List = ref<TreeNode[]>([])
 export const level3List = ref<TreeNode[]>([])
 export const selectDepartment = ref<TreeNode[]>([])
 export const getTreeList = async () => {
-  const res = await getDepartmentList()
+  const res: any = await getDepartmentList()
   treeData.value = res.data
   level3List.value = []
   level2List.value = []

@@ -74,10 +74,10 @@ const end = async () => {
 }
 
 const checkCancel = () => {
-  const isOwn = checkIsOwn(activeProjectData.value.registrant_user)
+  // const isOwn = checkIsOwn(activeProjectData.value.registrant_user)
   const last = findLastAppItem(activeProjectData.value.project_approve)
   const isAuth = checkAuth('PM00101013')
-  return last && isAuth && isOwn && (last.approve_result === '等待审核' || last.approve_result === '驳回')
+  return last && isAuth && (last.approve_result === '等待审核' || last.approve_result === '驳回')
 }
 
 const checkReStart = () => {
@@ -87,8 +87,8 @@ const checkReStart = () => {
 }
 
 const checkFinish = () => {
-  const isOwn = checkIsOwn(activeProjectData.value.registrant_user)
-  return isOwn && checkAuth('PM00101012')
+  // const isOwn = checkIsOwn(activeProjectData.value.registrant_user)
+  return checkAuth('PM00101012')
 }
 </script>
 

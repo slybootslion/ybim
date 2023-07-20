@@ -7,10 +7,13 @@ import {
   getTreeList, level3List, logoutTableItem, roleData, ruleFormRef, rules, searchName, selectDepartment,
   submitUser, tableData, tableLoading, tableSelect, treeData,
 } from '@/views/system/personnel-method'
-import { pageLoading, tableHeaderCellStyle } from '@/utils/tools'
+import { checkAuth, pageLoading, tableHeaderCellStyle } from '@/utils/tools'
+import PermissionDeniedComp from '@/views/public-components/permission-denied-comp.vue'
 
 const loading = pageLoading()
-
+if (!checkAuth('PM00501001')) {
+  loading.close()
+}
 getTreeList().then(() => loading.close())
 getTableData().then(() => tableLoading.value = false)
 const getRole = async () => roleData.value = await getRoleList()
@@ -72,209 +75,216 @@ const handleSelectionChange = (val: any[]) => {
 </script>
 
 <template>
-  <page-main class="page-main">
-    <div class="left">
-      <div class="left-top">
-        <div class="title">
-          组织架构
-        </div>
-        <el-button size="large" type="primary" style="width: 100%;" @click="addNew">
-          添加部门
-        </el-button>
-      </div>
-      <div class="left-bottom">
-        <el-tree
-          :data="treeData"
-          node-key="department_id"
-          default-expand-all
-          :expand-on-click-node="false"
-        >
-          <template #default="{ data }">
-            <span class="custom-tree-node">
-              <span>{{ data.department_name }}</span>
-              <span>
-                <el-icon v-if="data.department_parent_id !== 'DPTOP'" @click="edit(data)">
-                  <svg-icon name="ep:edit" />
-                </el-icon>
-                <!--                <el-icon -->
-                <!--                  v-if="data.department_parent_id !== 'DPTOP'" style="margin-left: 8px" -->
-                <!--                  @click="remove(node, data)" -->
-                <!--                > -->
-                <!--                  <svg-icon name="ep:delete" /> -->
-                <!--                </el-icon> -->
-              </span>
-            </span>
-          </template>
-        </el-tree>
-      </div>
-    </div>
-    <div class="right">
-      <div class="right-top">
-        <div class="right-top-search">
-          <div style="margin-right: 10px;">
-            <el-input v-model="searchKeyword" placeholder="搜索姓名" clearable @change="searchName" />
-          </div>
-          <div>
-            <el-select v-model="searchDepartment" clearable placeholder="选择部门" @change="tableSelect">
-              <el-option
-                v-for="item in level3List"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              />
-            </el-select>
-          </div>
-        </div>
-        <div class="right-top-btn">
-          <el-button size="large" type="primary" @click="addUserHandle">
-            添加人员
-          </el-button>
-        </div>
-      </div>
-      <div class="right-bottom">
-        <el-table
-          v-loading="tableLoading"
-          border stripe :header-cell-style="tableHeaderCellStyle"
-          :data="tableData"
-          @selection-change="handleSelectionChange"
-        >
-          <el-table-column type="selection" width="55" />
-          <el-table-column label="序号" type="index" width="60" />
-          <el-table-column property="user_name" label="姓名" width="110" />
-          <el-table-column property="user_sex" label="性别" />
-          <el-table-column property="user_age" label="年龄" />
-          <el-table-column property="user_empno" label="工号" width="140" />
-          <el-table-column property="user_organization_name" label="所属机构" width="230" />
-          <el-table-column property="user_department_name" label="部门" width="140" />
-          <el-table-column property="user_phone" label="手机号码" width="140" />
-          <el-table-column property="user_email" label="企业邮箱" width="170" />
-          <el-table-column property="user_work_age" label="司龄" />
-          <el-table-column property="entry_time" label="入职时间" width="110" />
-          <el-table-column property="watchword" label="口令" width="110" />
-          <el-table-column label="当前状态" width="90">
-            <template #default="scope">
-              <el-tag
-                :type="scope.row.in_service_label === '离职' ? 'danger' : 'success'"
-                disable-transitions
-              >
-                {{ scope.row.in_service_label }}
-              </el-tag>
-            </template>
-          </el-table-column>
-          <el-table-column fixed="right" label="操作" width="120">
-            <template #default="scope">
-              <el-button
-                link
-                type="primary"
-                size="small"
-                @click.prevent="editTableItem(scope.row)"
-              >
-                编辑
-              </el-button>
-              <el-button
-                link
-                type="primary"
-                size="small"
-                @click.prevent="logoutTableItem(scope.row)"
-              >
-                注销
-              </el-button>
-            </template>
-          </el-table-column>
-        </el-table>
-      </div>
-    </div>
-    <el-dialog
-      v-model="dialogShow"
-      title="添加部门"
-      width="30%"
-      destroy-on-close
-      draggable
-    >
-      <el-form
-        ref="ruleFormRef"
-        :model="dialogForm"
-        :rules="rules"
-        label-width="120px"
-        status-icon
-      >
-        <el-form-item label="部门名称" prop="name">
-          <el-input v-model="dialogForm.name" placeholder="部门名称" />
-        </el-form-item>
-        <el-form-item label="上级部门" prop="department">
-          <el-select v-model="dialogForm.department" style="width:100%" clearable placeholder="上级部门">
-            <el-option
-              v-for="item in departmentList"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
-          </el-select>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="submitForm(ruleFormRef as FormInstance)">
-            确定
-          </el-button>
-        </el-form-item>
-      </el-form>
-    </el-dialog>
-    <el-drawer
-      ref="drawerRef"
-      v-model="drawerShow"
-      title="添加人员"
-      direction="ltr"
-      size="50%"
-    >
-      <div class="demo-drawer__content">
-        <el-form ref="ruleFormRef" :model="drawerForm" :rules="drawerRules" label-width="120px">
-          <el-form-item label="人员姓名" prop="user_name">
-            <el-input v-model="drawerForm.user_name" autocomplete="off" placeholder="输入姓名" style="width: 320px" />
-          </el-form-item>
-          <el-form-item label="性别" prop="user_sex">
-            <el-select v-model="drawerForm.user_sex" placeholder="输入性别">
-              <el-option label="男" value="男" />
-              <el-option label="女" value="女" />
-            </el-select>
-          </el-form-item>
-          <el-form-item label="生日" prop="user_brithday">
-            <el-date-picker
-              v-model="drawerForm.user_brithday" value-format="YYYY-MM-DD" type="date"
-              placeholder="选择日期"
-            />
-          </el-form-item>
-          <el-form-item label="工号" prop="user_empno">
-            <el-input v-model="drawerForm.user_empno" placeholder="输入工号" autocomplete="off" style="width: 320px" />
-          </el-form-item>
-          <el-form-item label="所属部门" prop="user_department_id">
-            <el-select v-model="drawerForm.user_department_id" placeholder="选择部门">
-              <el-option v-for="item in selectDepartment" :key="item.value" :label="item.label" :value="item.value" />
-            </el-select>
-          </el-form-item>
-          <el-form-item label="人员角色" prop="user_role_id">
-            <el-select v-model="drawerForm.user_role_id" placeholder="选择角色">
-              <el-option v-for="item in roleData" :key="item.role_id" :label="item.role_name" :value="item.role_id" />
-            </el-select>
-          </el-form-item>
-          <el-form-item label="手机号码" prop="user_phone">
-            <el-input v-model="drawerForm.user_phone" placeholder="输入手机号" style="width: 320px" />
-          </el-form-item>
-          <el-form-item label="企业邮箱" prop="user_email">
-            <el-input v-model="drawerForm.user_email" placeholder="输入邮箱" style="width: 320px" />
-          </el-form-item>
-          <el-form-item label="入职时间" prop="entry_time">
-            <el-date-picker
-              v-model="drawerForm.entry_time" value-format="YYYY-MM-DD" type="date"
-              placeholder="选择日期"
-            />
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" @click="submitUser(ruleFormRef as FormInstance)">
-              确定
+  <page-main>
+    <Auth :value="['PM00501001']" style="width: 100%">
+      <div class="page-main">
+        <div class="left">
+          <div class="left-top">
+            <div class="title">
+              组织架构
+            </div>
+            <el-button v-auth="['PM00501002']" size="large" type="primary" style="width: 100%;" @click="addNew">
+              添加部门
             </el-button>
-          </el-form-item>
-        </el-form>
+          </div>
+          <div class="left-bottom">
+            <el-tree
+              :data="treeData"
+              node-key="department_id"
+              default-expand-all
+              :expand-on-click-node="false"
+            >
+              <template #default="{ data }">
+                <span class="custom-tree-node">
+                  <span>{{ data.department_name }}</span>
+                  <span>
+                    <el-icon v-if="data.department_parent_id !== 'DPTOP'" @click="edit(data)">
+                      <svg-icon name="ep:edit" />
+                    </el-icon>
+                  <!--                <el-icon -->
+                  <!--                  v-if="data.department_parent_id !== 'DPTOP'" style="margin-left: 8px" -->
+                  <!--                  @click="remove(node, data)" -->
+                  <!--                > -->
+                  <!--                  <svg-icon name="ep:delete" /> -->
+                  <!--                </el-icon> -->
+                  </span>
+                </span>
+              </template>
+            </el-tree>
+          </div>
+        </div>
+        <div class="right">
+          <div class="right-top">
+            <div class="right-top-search">
+              <div style="margin-right: 10px;">
+                <el-input v-model="searchKeyword" placeholder="搜索姓名" clearable @change="searchName" />
+              </div>
+              <div>
+                <el-select v-model="searchDepartment" clearable placeholder="选择部门" @change="tableSelect">
+                  <el-option
+                    v-for="item in level3List"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value"
+                  />
+                </el-select>
+              </div>
+            </div>
+            <div class="right-top-btn">
+              <el-button v-auth="['PM00501003']" size="large" type="primary" @click="addUserHandle">
+                添加人员
+              </el-button>
+            </div>
+          </div>
+          <div class="right-bottom">
+            <el-table
+              v-loading="tableLoading"
+              border stripe :header-cell-style="tableHeaderCellStyle"
+              :data="tableData"
+              @selection-change="handleSelectionChange"
+            >
+              <!--              <el-table-column type="selection" width="55" /> -->
+              <el-table-column label="序号" type="index" width="60" />
+              <el-table-column property="user_name" label="姓名" width="110" />
+              <el-table-column property="user_sex" label="性别" />
+              <el-table-column property="user_age" label="年龄" />
+              <el-table-column property="user_empno" label="工号" width="140" />
+              <el-table-column property="user_organization_name" label="所属机构" width="230" />
+              <el-table-column property="user_department_name" label="部门" width="140" />
+              <el-table-column property="user_phone" label="手机号码" width="140" />
+              <el-table-column property="user_email" label="企业邮箱" width="170" />
+              <el-table-column property="user_work_age" label="司龄" />
+              <el-table-column property="entry_time" label="入职时间" width="110" />
+              <el-table-column property="watchword" label="口令" width="110" />
+              <el-table-column label="当前状态" width="90">
+                <template #default="scope">
+                  <el-tag
+                    :type="scope.row.in_service_label === '离职' ? 'danger' : 'success'"
+                    disable-transitions
+                  >
+                    {{ scope.row.in_service_label }}
+                  </el-tag>
+                </template>
+              </el-table-column>
+              <el-table-column fixed="right" label="操作" width="120">
+                <template #default="scope">
+                  <el-button
+                    link
+                    type="primary"
+                    size="small"
+                    @click.prevent="editTableItem(scope.row)"
+                  >
+                    编辑
+                  </el-button>
+                  <el-button
+                    link
+                    type="primary"
+                    size="small"
+                    @click.prevent="logoutTableItem(scope.row)"
+                  >
+                    注销
+                  </el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
+        </div>
+        <el-dialog
+          v-model="dialogShow"
+          title="添加部门"
+          width="30%"
+          destroy-on-close
+          draggable
+        >
+          <el-form
+            ref="ruleFormRef"
+            :model="dialogForm"
+            :rules="rules"
+            label-width="120px"
+            status-icon
+          >
+            <el-form-item label="部门名称" prop="name">
+              <el-input v-model="dialogForm.name" placeholder="部门名称" />
+            </el-form-item>
+            <el-form-item label="上级部门" prop="department">
+              <el-select v-model="dialogForm.department" style="width:100%" clearable placeholder="上级部门">
+                <el-option
+                  v-for="item in departmentList"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                />
+              </el-select>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="submitForm(ruleFormRef as FormInstance)">
+                确定
+              </el-button>
+            </el-form-item>
+          </el-form>
+        </el-dialog>
+        <el-drawer
+          ref="drawerRef"
+          v-model="drawerShow"
+          title="添加人员"
+          direction="ltr"
+          size="50%"
+        >
+          <div class="demo-drawer__content">
+            <el-form ref="ruleFormRef" :model="drawerForm" :rules="drawerRules" label-width="120px">
+              <el-form-item label="人员姓名" prop="user_name">
+                <el-input v-model="drawerForm.user_name" autocomplete="off" placeholder="输入姓名" style="width: 320px" />
+              </el-form-item>
+              <el-form-item label="性别" prop="user_sex">
+                <el-select v-model="drawerForm.user_sex" placeholder="输入性别">
+                  <el-option label="男" value="男" />
+                  <el-option label="女" value="女" />
+                </el-select>
+              </el-form-item>
+              <el-form-item label="生日" prop="user_brithday">
+                <el-date-picker
+                  v-model="drawerForm.user_brithday" value-format="YYYY-MM-DD" type="date"
+                  placeholder="选择日期"
+                />
+              </el-form-item>
+              <el-form-item label="工号" prop="user_empno">
+                <el-input v-model="drawerForm.user_empno" placeholder="输入工号" autocomplete="off" style="width: 320px" />
+              </el-form-item>
+              <el-form-item label="所属部门" prop="user_department_id">
+                <el-select v-model="drawerForm.user_department_id" placeholder="选择部门">
+                  <el-option v-for="item in selectDepartment" :key="item.value" :label="item.label" :value="item.value" />
+                </el-select>
+              </el-form-item>
+              <el-form-item label="人员角色" prop="user_role_id">
+                <el-select v-model="drawerForm.user_role_id" placeholder="选择角色">
+                  <el-option v-for="item in roleData" :key="item.role_id" :label="item.role_name" :value="item.role_id" />
+                </el-select>
+              </el-form-item>
+              <el-form-item label="手机号码" prop="user_phone">
+                <el-input v-model="drawerForm.user_phone" placeholder="输入手机号" style="width: 320px" />
+              </el-form-item>
+              <el-form-item label="企业邮箱" prop="user_email">
+                <el-input v-model="drawerForm.user_email" placeholder="输入邮箱" style="width: 320px" />
+              </el-form-item>
+              <el-form-item label="入职时间" prop="entry_time">
+                <el-date-picker
+                  v-model="drawerForm.entry_time" value-format="YYYY-MM-DD" type="date"
+                  placeholder="选择日期"
+                />
+              </el-form-item>
+              <el-form-item>
+                <el-button type="primary" @click="submitUser(ruleFormRef as FormInstance)">
+                  确定
+                </el-button>
+              </el-form-item>
+            </el-form>
+          </div>
+        </el-drawer>
       </div>
-    </el-drawer>
+      <template #no-auth>
+        <PermissionDeniedComp />
+      </template>
+    </Auth>
   </page-main>
 </template>
 

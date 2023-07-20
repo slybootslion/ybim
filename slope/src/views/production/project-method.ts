@@ -39,6 +39,7 @@ export interface resProjectTableItemI {
   production_user: string
   main_department: string
   registrant_user: string
+  children?: any[]
 }
 
 export const getProjectList = async (paramter: getProjectTableListI) => {

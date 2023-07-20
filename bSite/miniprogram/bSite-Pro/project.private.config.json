@@ -1,231 +1,223 @@
 {
-  "setting": {},
-  "condition": {
-    "plugin": {
-      "list": []
-    },
-    "game": {
-      "list": []
-    },
-    "gamePlugin": {
-      "list": []
-    },
-    "miniprogram": {
-      "list": [
-        {
-          "id": -1,
-          "name": "登录",
-          "pathName": "pages/login/login",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "应用",
-          "pathName": "pages/application/application",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "添加工人",
-          "pathName": "pages/personnel-manage/add-workers/add-workers",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "记工单",
-          "pathName": "pages/attendance-manage/record-work-order/record-work-order",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "考勤管理",
-          "pathName": "pages/attendance-manage/attendance-statistics/attendance-statistics",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "班组考勤详情",
-          "pathName": "pages/attendance-manage/group-attendance-detail/group-attendance-detail",
-          "query": "group_id=14&builing_id=15&s_date=2021-05-25",
-          "scene": null
-        },
-        {
-          "name": "环境监测",
-          "pathName": "pages/site-manage/environ-monitoring/environ-monitoring",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "设备管理",
-          "pathName": "pages/site-manage/equipment-manage/equipment-manage",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "设备添加、修改",
-          "pathName": "pages/site-manage/equipment-form/equipment-form",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "视频监控",
-          "pathName": "pages/site-manage/video-surveillance/video-surveillance",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "视频监控详情",
-          "pathName": "pages/site-manage/video-surveillance-detail/video-surveillance-detail",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "视频设备列表",
-          "pathName": "pages/site-manage/video-manage/video-manage",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "花名册-列表",
-          "pathName": "pages/personnel-manage/roster-list/roster-list",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "工人查询",
-          "pathName": "pages/personnel-manage/search-page/search-page",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "工人详情",
-          "pathName": "pages/personnel-manage/person-detail/person-detail",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "查考勤",
-          "pathName": "pages/personnel-manage/check-attendance/check-attendance",
-          "query": "emp_id=38",
-          "scene": null
-        },
-        {
-          "name": "班组管理",
-          "pathName": "pages/personnel-manage/team-manage/team-manage",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "我的",
-          "pathName": "pages/my/my",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "个人信息",
-          "pathName": "pages/my-app/my-info/my-info",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "修改密码",
-          "pathName": "pages/my-app/edit-password/edit-password",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "工种管理",
-          "pathName": "pages/my-app/work-manage/work-manage",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "新增班组",
-          "pathName": "pages/personnel-manage/add-groups/add-groups",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "班组详细",
-          "pathName": "pages/personnel-manage/group-detail/group-detail",
-          "query": "group_id=3",
-          "scene": null
-        },
-        {
-          "name": "人员变动",
-          "pathName": "pages/personnel-manage/personnel-change/personnel-change",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "人员变动表单",
-          "pathName": "pages/personnel-manage/personnel-change-form/personnel-change-form",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "手动添加工人",
-          "pathName": "pages/personnel-manage/handle-add/handle-add",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "添加工人提交",
-          "pathName": "pages/personnel-manage/submit-add-workers/submit-add-workers",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "记工单",
-          "pathName": "pages/attendance-manage/record-work-order/record-work-order",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "工资单",
-          "pathName": "pages/attendance-manage/payroll-page/payroll-page",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "记工单-表单",
-          "pathName": "pages/attendance-manage/add-word-order/add-word-order",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "选择工友",
-          "pathName": "pages/attendance-manage/select-workers/select-workers",
-          "query": "builing_id=1",
-          "scene": null
-        },
-        {
-          "name": "视频监控回放",
-          "pathName": "pages/site-manage/video-palyback/video-palyback",
-          "query": "accessToken=at.byj48cqx990hqcj27vc0benqd6bq1svf-3nq7myun86-0xf6swm-owxltxdmm&deviceSerial=E72777271&channelNo=1",
-          "scene": null
-        },
-        {
-          "name": "工资单",
-          "pathName": "pages/attendance-manage/payroll-page/payroll-page",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "工资单详细",
-          "pathName": "pages/attendance-manage/payroll-info/payroll-info",
-          "query": "ticket_id=60",
-          "scene": null
-        },
-        {
-          "name": "工资发放",
-          "pathName": "pages/attendance-manage/pay-page/pay-page",
-          "query": "ticket_id=60",
-          "scene": null
-        }
-      ]
-    }
-  }
+	"setting": {
+		"compileHotReLoad": true
+	},
+	"condition": {
+		"miniprogram": {
+			"list": [
+				{
+					"name": "登录",
+					"pathName": "pages/login/login",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "应用",
+					"pathName": "pages/application/application",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "添加工人",
+					"pathName": "pages/personnel-manage/add-workers/add-workers",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "记工单",
+					"pathName": "pages/attendance-manage/record-work-order/record-work-order",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "考勤管理",
+					"pathName": "pages/attendance-manage/attendance-statistics/attendance-statistics",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "班组考勤详情",
+					"pathName": "pages/attendance-manage/group-attendance-detail/group-attendance-detail",
+					"query": "group_id=14&builing_id=15&s_date=2021-05-25",
+					"scene": null
+				},
+				{
+					"name": "环境监测",
+					"pathName": "pages/site-manage/environ-monitoring/environ-monitoring",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "设备管理",
+					"pathName": "pages/site-manage/equipment-manage/equipment-manage",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "设备添加、修改",
+					"pathName": "pages/site-manage/equipment-form/equipment-form",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "视频监控",
+					"pathName": "pages/site-manage/video-surveillance/video-surveillance",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "视频监控详情",
+					"pathName": "pages/site-manage/video-surveillance-detail/video-surveillance-detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "视频设备列表",
+					"pathName": "pages/site-manage/video-manage/video-manage",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "花名册-列表",
+					"pathName": "pages/personnel-manage/roster-list/roster-list",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "工人查询",
+					"pathName": "pages/personnel-manage/search-page/search-page",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "工人详情",
+					"pathName": "pages/personnel-manage/person-detail/person-detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "查考勤",
+					"pathName": "pages/personnel-manage/check-attendance/check-attendance",
+					"query": "emp_id=38",
+					"scene": null
+				},
+				{
+					"name": "班组管理",
+					"pathName": "pages/personnel-manage/team-manage/team-manage",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "我的",
+					"pathName": "pages/my/my",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "个人信息",
+					"pathName": "pages/my-app/my-info/my-info",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "修改密码",
+					"pathName": "pages/my-app/edit-password/edit-password",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "工种管理",
+					"pathName": "pages/my-app/work-manage/work-manage",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "新增班组",
+					"pathName": "pages/personnel-manage/add-groups/add-groups",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "班组详细",
+					"pathName": "pages/personnel-manage/group-detail/group-detail",
+					"query": "group_id=3",
+					"scene": null
+				},
+				{
+					"name": "人员变动",
+					"pathName": "pages/personnel-manage/personnel-change/personnel-change",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "人员变动表单",
+					"pathName": "pages/personnel-manage/personnel-change-form/personnel-change-form",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "手动添加工人",
+					"pathName": "pages/personnel-manage/handle-add/handle-add",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "添加工人提交",
+					"pathName": "pages/personnel-manage/submit-add-workers/submit-add-workers",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "记工单",
+					"pathName": "pages/attendance-manage/record-work-order/record-work-order",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "工资单",
+					"pathName": "pages/attendance-manage/payroll-page/payroll-page",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "记工单-表单",
+					"pathName": "pages/attendance-manage/add-word-order/add-word-order",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "选择工友",
+					"pathName": "pages/attendance-manage/select-workers/select-workers",
+					"query": "builing_id=1",
+					"scene": null
+				},
+				{
+					"name": "视频监控回放",
+					"pathName": "pages/site-manage/video-palyback/video-palyback",
+					"query": "accessToken=at.byj48cqx990hqcj27vc0benqd6bq1svf-3nq7myun86-0xf6swm-owxltxdmm&deviceSerial=E72777271&channelNo=1",
+					"scene": null
+				},
+				{
+					"name": "工资单",
+					"pathName": "pages/attendance-manage/payroll-page/payroll-page",
+					"query": "",
+					"scene": null
+				},
+				{
+					"name": "工资单详细",
+					"pathName": "pages/attendance-manage/payroll-info/payroll-info",
+					"query": "ticket_id=60",
+					"scene": null
+				},
+				{
+					"name": "工资发放",
+					"pathName": "pages/attendance-manage/pay-page/pay-page",
+					"query": "ticket_id=60",
+					"scene": null
+				}
+			]
+		}
+	},
+	"description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+	"projectname": "bSite-Pro"
 }

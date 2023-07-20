@@ -2,6 +2,7 @@ import type { FormInstance } from 'element-plus'
 import api from '@/api'
 import type { pageI } from '@/utils/tools'
 import { back } from '@/views/scientific_research/project-method'
+import {checkAuth} from "@/utils/tools";
 
 export interface customerI {
   customer_id: string
@@ -23,6 +24,7 @@ export interface resCustomerItemI extends customerI {
 export const customerList = ref<customerI[]>([])
 export const customerListTable = ref<resCustomerItemI[]>([])
 export const getCustomers = async () => {
+  if (!checkAuth('PM00102002')) return
   const res = await api.get('/customer/getCustomers')
   return res.data
 }

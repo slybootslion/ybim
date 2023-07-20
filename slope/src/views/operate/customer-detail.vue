@@ -64,7 +64,7 @@ const editItem = () => router.push(`/customer-management/customer-form?customer_
           客户信息
         </div>
         <div>
-          <el-button v-if="checkAuth('PM00102003') && checkIsOwn(detailData.registrant_user)" type="primary" @click="editItem">
+          <el-button v-if="checkAuth('PM00102003')" type="primary" @click="editItem">
             编辑
           </el-button>
           <el-button @click="back">

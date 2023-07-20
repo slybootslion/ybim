@@ -7,6 +7,7 @@ import {
 import Tab1Comp from '@/views/scientific_research/components/tab1-comp.vue'
 import Tab2Comp from '@/views/scientific_research/components/tab2-comp.vue'
 import api from '@/api'
+import PermissionDeniedComp from "@/views/public-components/permission-denied-comp.vue";
 
 const loading = ref(false)
 
@@ -60,7 +61,7 @@ const end = () => {
         科研项目信息
       </div>
       <div>
-        <el-button type="primary" @click="toEdit">
+        <el-button v-auth="['PM00401003']" type="primary" @click="toEdit">
           编辑
         </el-button>
         <el-button type="primary" @click="end">
@@ -71,19 +72,24 @@ const end = () => {
         </el-button>
       </div>
     </div>
-    <div class="bottom">
-      <el-tabs v-model="activeName">
-        <el-tab-pane label="基本信息" name="基本信息">
-          <Tab1Comp :detail-data="activeProjectData as unknown as projectDataI" />
-        </el-tab-pane>
-        <el-tab-pane label="科研任务资料" name="科研任务资料">
-          <Tab2Comp
-            :detail-file-list="activeProjectFileList as unknown as projectFileListI" :research-id="research_id"
-            @upload-success="uploadSuccess"
-          />
-        </el-tab-pane>
-      </el-tabs>
-    </div>
+    <Auth :value="['PM00401002']">
+      <div class="bottom">
+        <el-tabs v-model="activeName">
+          <el-tab-pane label="基本信息" name="基本信息">
+            <Tab1Comp :detail-data="activeProjectData as unknown as projectDataI" />
+          </el-tab-pane>
+          <el-tab-pane label="科研任务资料" name="科研任务资料">
+            <Tab2Comp
+              :detail-file-list="activeProjectFileList as unknown as projectFileListI" :research-id="research_id"
+              @upload-success="uploadSuccess"
+            />
+          </el-tab-pane>
+        </el-tabs>
+      </div>
+      <template #no-auth>
+        <PermissionDeniedComp />
+      </template>
+    </Auth>
   </page-main>
 </template>
 

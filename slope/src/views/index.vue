@@ -262,10 +262,10 @@ const projectClick = (project_id: string) => router.push(`/project-initiation/pr
               <div v-for="item in todos" :key="item.item_id" class="tab-list-item">
                 <div style="cursor:pointer;" @click="clickToDetail(item.item_id, item.approve_type)">
                   <div>
-                    项目名称：{{ (item as todoListItemI).item_name }}
+                    项目名称：<span style="font-weight: bold">{{ (item as todoListItemI).item_name }}</span>
                   </div>
-                  <div>
-                    <span style="color: #409EFF">{{ approveTypeDict[(item as todoListItemI).approve_type] }}</span>信息需要处理!
+                  <div style="display: flex; justify-content: space-between; width: 100%;">
+                    <span><span style="color: #409EFF">{{ approveTypeDict[(item as todoListItemI).approve_type] }}</span><span>信息需要处理!</span></span>
                     <span style="margin-left: 30px;"> {{ (item as todoListItemI).create_time }}</span>
                   </div>
                 </div>
@@ -682,13 +682,13 @@ const projectClick = (project_id: string) => router.push(`/project-initiation/pr
 //    padding: 10px;
 //    height: 380px;
 //
-//    .tab-list-item {
-//      //height: 30px;
-//      //line-height: 30px;
-//      margin-bottom: 10px;
-//      display: flex;
-//      flex-direction: column;
-//    }
+    .tab-list-item {
+      //height: 30px;
+      //line-height: 30px;
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+    }
 //
 //    :deep(.el-tabs__content) {
 //      height: 280px;

@@ -10,6 +10,7 @@ const Person: RouteRecordRaw = {
   meta: {
     title: '机构人员',
     icon: 'ep:user',
+    auth: ['PM00501000'],
   },
   children: [
     {
@@ -34,6 +35,7 @@ const Role: RouteRecordRaw = {
   meta: {
     title: '角色权限',
     icon: 'ep:lock',
+    auth: ['PM00502000'],
   },
   children: [
     {
