@@ -101,12 +101,17 @@ router.beforeEach(async (to, from, next) => {
   }
   else {
     if (to.name !== 'login') {
-      next({
-        name: 'login',
-        query: {
-          redirect: to.fullPath !== '/' ? to.fullPath : undefined,
-        },
-      })
+      if (import.meta.env.DEV) {
+        next({
+          name: 'login',
+          query: {
+            redirect: to.fullPath !== '/' ? to.fullPath : undefined,
+          },
+        })
+      } else {
+        window.open('https://manage.baijiagroup.com/api/weixin/', '_self')
+        next()
+      }
     }
     else {
       next()

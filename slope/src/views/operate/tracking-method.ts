@@ -89,11 +89,10 @@ export const editTail = async (parameter: trackingFormDataI) => api.post('/proje
 export const getDetail = async (tail_id: string, project_id: string) => {
   const tailList = await getTailList(project_id)
   const activeItem = tailList.find((item: tailItemI) => item.tail_id === tail_id)
-  console.log(activeItem)
   formData.business_trip_users = activeItem.business_trip_users
   formData.visiting_clients_company = activeItem.visiting_clients_company
   formData.visiting_clients_man = activeItem.visiting_clients_man
-  formData.visiting_clients_man_phone = activeItem.visiting_clients_man_phone
+  formData.visiting_clients_man_phone = activeItem.visiting_clients_man_phone.toString()
   formData.subject = activeItem.subject
   formData.purchase_way = activeItem.purchase_way
   formData.service_class = activeItem.service_class

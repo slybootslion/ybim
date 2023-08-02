@@ -3,7 +3,7 @@ import { FormInstance } from 'element-plus'
 import {
   FunListData, SampleListData, UserListData, activeName, activeRoleId, activeRoleName, addNew, changeActive,
   delRoleHandle, dialogForm, dialogShow, editRoleHandle, funItemI, getRole, ruleFormRef, rules, sampleItemI, submitForm,
-  tabLoading, tableItemI,
+  tabLoading, tableItemI, dialogTitle,
 } from '@/views/system/role-method'
 import { checkAuth, pageLoading } from '@/utils/tools'
 import { RoleItem, roleData } from '@/views/system/personnel-method'
@@ -74,7 +74,7 @@ getRole().then(() => {
         </div>
         <el-dialog
           v-model="dialogShow"
-          title="添加部门"
+          :title="dialogTitle"
           width="30%"
           destroy-on-close
           draggable

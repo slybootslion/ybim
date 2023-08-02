@@ -22,6 +22,9 @@ const rules = reactive<FormRules>({
   issuer: [{ required: true, message: '输入发证机关', trigger: 'blur' }],
   aptitude_type: [{ required: true, message: '选择资质类别', trigger: 'change' }],
   aptitude_grade: [{ required: true, message: '选择资质等级', trigger: 'change' }],
+  principal_phone: [
+    { min: 11, max: 11, message: '输入正确手机号', trigger: ['blur', 'change'] }
+  ],
   cert_valid_time: [{ required: true, message: '选择日期', trigger: 'change' }],
   department_id: [{ required: true, message: '选择日期', trigger: 'change' }],
 })

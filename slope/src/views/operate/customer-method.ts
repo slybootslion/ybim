@@ -134,7 +134,7 @@ export const getEditData = async (id: string) => {
   formData.primary_business_list = res.primary_business.split(',')
   formData.address_detail = res.address_detail
   formData.linkman = res.linkman
-  formData.linkman_phone = res.linkman_phone
+  formData.linkman_phone = res.linkman_phone.toString()
   formData.linkman_post = res.linkman_post
   formData.pcas = []
   formData.pcas = [res.address_province as string, res.address_city as string]

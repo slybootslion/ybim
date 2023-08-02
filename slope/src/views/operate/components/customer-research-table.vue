@@ -3,7 +3,7 @@ import PaginationComp from '@/views/public-components/pagination-comp.vue'
 import type { getCustomerTableListParamI, resCustomerItemI } from '@/views/operate/customer-method'
 import { getCustomerListTable, pageData } from '@/views/operate/customer-method'
 import api from '@/api'
-import { checkAuth, delItemHandle, pageI, tableHeaderCellStyle } from '@/utils/tools'
+import { checkAuth, checkIsOwn, delItemHandle, pageI, tableHeaderCellStyle } from '@/utils/tools'
 import PermissionDeniedComp from '@/views/public-components/permission-denied-comp.vue'
 
 const tableLoading = ref(false)
@@ -51,6 +51,12 @@ const delCb = async (id: string) => {
   pageChange()
 }
 const delItem = async (row: resCustomerItemI) => delItemHandle(row.customer_name, delCb, row.customer_id)
+
+const checkEditAuth = (item: resCustomerItemI) => {
+  const isOwn = checkIsOwn(item.registrant_user)
+  const isHadAuth = checkAuth('PM00102003')
+  return isOwn && isHadAuth
+}
 </script>
 
 <template>
@@ -98,10 +104,10 @@ const delItem = async (row: resCustomerItemI) => delItemHandle(row.customer_name
       <el-table-column property="registration_time" label="登记时间" width="160" />
       <el-table-column label="操作" width="130">
         <template #default="scope">
-          <el-button v-auth="['PM00102003']" link type="primary" size="small" @click.prevent="editItem(scope.row)">
+          <el-button v-if="checkEditAuth(scope.row)" link type="primary" size="small" @click.prevent="editItem(scope.row)">
             编辑
           </el-button>
-          <el-button link type="primary" size="small" @click.prevent="delItem(scope.row)">
+          <el-button v-if="checkIsOwn(scope.row.registrant_user)" link type="primary" size="small" @click.prevent="delItem(scope.row)">
             删除
           </el-button>
         </template>

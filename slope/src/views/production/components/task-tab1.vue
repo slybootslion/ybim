@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
-import { FormInstance, FormRules } from 'element-plus'
-import type { resTaskDataI } from '@/views/production/task-method'
-import { activeTaskData, getTask } from '@/views/production/task-method'
+import { ElMessage, ElMessageBox, FormInstance, FormRules } from 'element-plus'
+import { activeTaskData, getTask, resTaskDataI } from '@/views/production/task-method'
 import type { approveFormDataI } from '@/views/operate/project-method'
-import {activeTenderData, approveSubmit, rules} from "@/views/operate/project-method";
+import { approveSubmit, rules } from '@/views/operate/project-method'
+import api from '@/api'
+import { checkAuth, checkIsOwn, findLastAppItem } from '@/utils/tools'
+import { back } from '@/views/scientific_research/project-method'
+import ApproveList from '@/views/operate/components/approve-list.vue'
 
 const props = defineProps<{
   taskId: string
@@ -23,10 +26,58 @@ const getDetail = async () => {
   if (data && data.end_time && data.start_time) days.value = `${ dayjs(data.end_time).diff(data.start_time, 'day') }`
 }
 getDetail()
+
+const router = useRouter()
+const endProject = async () => {
+  await api.post('/project/endProject', { project_id: activeTaskData.value.project_id })
+  router.back()
+}
+
+const toEdit = () => router.push(`/task-order/task?task_id=${ props.taskId }`)
+
+const cancel = () => {
+  ElMessageBox.confirm(
+    '点击确定后将无法恢复该任务单，是否继续？',
+    '注意',
+    {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning',
+    },
+  ).then(async () => {
+    const res: any = await api.post('/produce/cancelTask', { task_id: props.taskId })
+    if (res && res.code === 0) {
+      ElMessage({
+        type: 'success',
+        message: '任务单已取消',
+      })
+      back()
+    }
+  }).catch(console.log)
+}
+
+const checkCancel = () => {
+  const isOwn = checkIsOwn(activeTaskData.value.registrant_user)
+  const last = findLastAppItem(activeTaskData.value.task_approve)
+  const isAuth = checkAuth('PM00201007')
+  return isOwn && isAuth && last && (last.approve_result === '等待审核' || last.approve_result === '驳回')
+}
+
+defineExpose({
+  endProject,
+})
 </script>
 
 <template>
   <div v-loading="loading">
+    <div class="btn-edit-box">
+      <el-button v-if="checkCancel()" type="primary" @click="cancel">
+        取消
+      </el-button>
+      <el-button v-if="checkCancel()" type="primary" @click="toEdit">
+        重新下单
+      </el-button>
+    </div>
     <div class="block">
       <el-descriptions title="" :column="2">
         <el-descriptions-item label="科研项目名称：">
@@ -105,7 +156,9 @@ getDetail()
       </el-descriptions>
       <el-form
         v-if="(activeTaskData as resTaskDataI).approve_id"
-        ref="ruleFormRef" inline :model="formData" :rules="rules as FormRules" label-width="130px"
+        ref="ruleFormRef"
+        v-auth="['PM00201005']" inline :model="formData"
+        :rules="rules as FormRules" label-width="130px"
         style="margin-bottom: 20px;"
       >
         <el-descriptions title="审核信息" :column="1">
@@ -133,17 +186,7 @@ getDetail()
           </el-descriptions-item>
         </el-descriptions>
       </el-form>
-      <el-descriptions style="margin-top: 20px;" title="审批意见" :column="1">
-        <el-descriptions-item
-          v-for="(item, index) in (activeTaskData as resTaskDataI).task_approve"
-          :key="index" label="审核人："
-        >
-          {{ item.approve_user }} <span :class="item.approve_result.includes('通过') ? 'blue' : 'red'">（{{ item.approve_result }}）</span>
-          <div style="margin: 10px 0;">
-            {{ item.approve_contents }}
-          </div>
-        </el-descriptions-item>
-      </el-descriptions>
+      <ApproveList v-if="activeTaskData.task_approve.length" :conre-approve="activeTaskData.task_approve" />
     </div>
   </div>
 </template>
@@ -167,5 +210,10 @@ getDetail()
       flex: 1;
     }
   }
+}
+.btn-edit-box {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-end;
 }
 </style>

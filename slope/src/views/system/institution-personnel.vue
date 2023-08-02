@@ -2,9 +2,9 @@
 import { FormInstance } from 'element-plus'
 import type { TreeNode } from '@/views/system/personnel-method'
 import {
-  addDepartment, addUserHandle, departmentList, drawerForm, drawerRules, drawerShow,
+  addDepartment, addUserHandle, departmentList, drawerForm, drawerRules, drawerShow, drawerTitle,
   editDepartment, editTableItem, getRoleList, getTableData,
-  getTreeList, level3List, logoutTableItem, roleData, ruleFormRef, rules, searchName, selectDepartment,
+  getTreeList, logoutTableItem, roleData, ruleFormRef, rules, searchName, selectDepartment,
   submitUser, tableData, tableLoading, tableSelect, treeData,
 } from '@/views/system/personnel-method'
 import { checkAuth, pageLoading, tableHeaderCellStyle } from '@/utils/tools'
@@ -24,12 +24,18 @@ const dialogForm: Record<string, string> = reactive({
   name: '',
   department: '',
 })
+const dialogTitle = ref('添加部门')
 const editId = ref('')
 const edit = (data: TreeNode) => {
+  dialogTitle.value = '编辑部门'
   dialogForm.name = data.department_name
   dialogForm.department = data.department_parent_id
   editId.value = data.department_id
   dialogShow.value = true
+}
+
+const nodeTap = (data: TreeNode) => {
+  tableSelect(data.department_id)
 }
 // const remove = (node: Node, data: TreeNode) => {
 //   console.log(node)
@@ -62,6 +68,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   await getTreeList()
 }
 const addNew = () => {
+  dialogTitle.value = '添加部门'
   dialogForm.name = ''
   dialogForm.department = ''
   dialogShow.value = true
@@ -95,18 +102,18 @@ const handleSelectionChange = (val: any[]) => {
               :expand-on-click-node="false"
             >
               <template #default="{ data }">
-                <span class="custom-tree-node">
+                <span class="custom-tree-node" @click="nodeTap(data)">
                   <span>{{ data.department_name }}</span>
                   <span>
-                    <el-icon v-if="data.department_parent_id !== 'DPTOP'" @click="edit(data)">
+                    <el-icon v-if="data.department_parent_id !== 'DPTOP'" @click.stop="edit(data)">
                       <svg-icon name="ep:edit" />
                     </el-icon>
-                  <!--                <el-icon -->
-                  <!--                  v-if="data.department_parent_id !== 'DPTOP'" style="margin-left: 8px" -->
-                  <!--                  @click="remove(node, data)" -->
-                  <!--                > -->
-                  <!--                  <svg-icon name="ep:delete" /> -->
-                  <!--                </el-icon> -->
+                    <!--                <el-icon -->
+                    <!--                  v-if="data.department_parent_id !== 'DPTOP'" style="margin-left: 8px" -->
+                    <!--                  @click="remove(node, data)" -->
+                    <!--                > -->
+                    <!--                  <svg-icon name="ep:delete" /> -->
+                    <!--                </el-icon> -->
                   </span>
                 </span>
               </template>
@@ -119,16 +126,16 @@ const handleSelectionChange = (val: any[]) => {
               <div style="margin-right: 10px;">
                 <el-input v-model="searchKeyword" placeholder="搜索姓名" clearable @change="searchName" />
               </div>
-              <div>
-                <el-select v-model="searchDepartment" clearable placeholder="选择部门" @change="tableSelect">
-                  <el-option
-                    v-for="item in level3List"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  />
-                </el-select>
-              </div>
+              <!--              <div> -->
+              <!--                <el-select v-model="searchDepartment" clearable placeholder="选择部门" @change="tableSelect"> -->
+              <!--                  <el-option -->
+              <!--                    v-for="item in level3List" -->
+              <!--                    :key="item.value" -->
+              <!--                    :label="item.label" -->
+              <!--                    :value="item.value" -->
+              <!--                  /> -->
+              <!--                </el-select> -->
+              <!--              </div> -->
             </div>
             <div class="right-top-btn">
               <el-button v-auth="['PM00501003']" size="large" type="primary" @click="addUserHandle">
@@ -144,8 +151,8 @@ const handleSelectionChange = (val: any[]) => {
               @selection-change="handleSelectionChange"
             >
               <!--              <el-table-column type="selection" width="55" /> -->
-              <el-table-column label="序号" type="index" width="60" />
-              <el-table-column property="user_name" label="姓名" width="110" />
+              <el-table-column label="序号" type="index" width="60" fixed />
+              <el-table-column property="user_name" label="姓名" fixed width="110" />
               <el-table-column property="user_sex" label="性别" />
               <el-table-column property="user_age" label="年龄" />
               <el-table-column property="user_empno" label="工号" width="140" />
@@ -191,7 +198,7 @@ const handleSelectionChange = (val: any[]) => {
         </div>
         <el-dialog
           v-model="dialogShow"
-          title="添加部门"
+          :title="dialogTitle"
           width="30%"
           destroy-on-close
           draggable
@@ -226,14 +233,17 @@ const handleSelectionChange = (val: any[]) => {
         <el-drawer
           ref="drawerRef"
           v-model="drawerShow"
-          title="添加人员"
+          :title="drawerTitle"
           direction="ltr"
           size="50%"
         >
           <div class="demo-drawer__content">
             <el-form ref="ruleFormRef" :model="drawerForm" :rules="drawerRules" label-width="120px">
               <el-form-item label="人员姓名" prop="user_name">
-                <el-input v-model="drawerForm.user_name" autocomplete="off" placeholder="输入姓名" style="width: 320px" />
+                <el-input
+                  v-model="drawerForm.user_name" autocomplete="off" placeholder="输入姓名"
+                  style="width: 320px"
+                />
               </el-form-item>
               <el-form-item label="性别" prop="user_sex">
                 <el-select v-model="drawerForm.user_sex" placeholder="输入性别">
@@ -248,16 +258,25 @@ const handleSelectionChange = (val: any[]) => {
                 />
               </el-form-item>
               <el-form-item label="工号" prop="user_empno">
-                <el-input v-model="drawerForm.user_empno" placeholder="输入工号" autocomplete="off" style="width: 320px" />
+                <el-input
+                  v-model="drawerForm.user_empno" placeholder="输入工号" autocomplete="off"
+                  style="width: 320px"
+                />
               </el-form-item>
               <el-form-item label="所属部门" prop="user_department_id">
                 <el-select v-model="drawerForm.user_department_id" placeholder="选择部门">
-                  <el-option v-for="item in selectDepartment" :key="item.value" :label="item.label" :value="item.value" />
+                  <el-option
+                    v-for="item in selectDepartment" :key="item.value" :label="item.label"
+                    :value="item.value"
+                  />
                 </el-select>
               </el-form-item>
               <el-form-item label="人员角色" prop="user_role_id">
                 <el-select v-model="drawerForm.user_role_id" placeholder="选择角色">
-                  <el-option v-for="item in roleData" :key="item.role_id" :label="item.role_name" :value="item.role_id" />
+                  <el-option
+                    v-for="item in roleData" :key="item.role_id" :label="item.role_name"
+                    :value="item.role_id"
+                  />
                 </el-select>
               </el-form-item>
               <el-form-item label="手机号码" prop="user_phone">

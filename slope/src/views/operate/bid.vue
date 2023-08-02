@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ElMessage, FormInstance, FormRules, UploadUserFile } from 'element-plus'
-import {projectIdSelect, projectOptions, projectSearchLoading, remoteMethod} from '@/views/production/task-method'
+import { projectIdSelect, projectOptions, projectSearchLoading, remoteMethod } from '@/views/production/task-method'
 import {
   clearFormData, formData, getProject, getTender, handleUploadFile1, handleUploadFile2, handleUploadFile3, loading,
   projectHandle, registerTenderResult, selectBlur, selectChange,
@@ -30,7 +30,6 @@ const submit = async (formEl: FormInstance | undefined) => {
       // delete formData.fileList1
       // delete formData.fileList2
       // delete formData.fileList3
-      delete formData.project_id
       if (formData.tender_result !== '中标') {
         delete formData.win_time
         delete formData.win_bidder
@@ -40,10 +39,9 @@ const submit = async (formEl: FormInstance | undefined) => {
         loading.value = false
         return
       }
+      // setTimeout(() => ruleFormRef.value!.clearValidate(), 300)
       await router.push(`/project-initiation/project-detail?project_id=${formData.project_id}&type=1`)
       clearFormData()
-      // setTimeout(() => ruleFormRef.value!.clearValidate(), 300)
-      if (query.project_id) back()
       loading.value = false
     }
   })
@@ -83,7 +81,7 @@ else clearFormData()
     </page-main>
     <page-main class="page-main">
       <div class="block">
-        <el-form ref="ruleFormRef" inline :model="formData" :rules="rules as FormRules" label-width="146px">
+        <el-form ref="ruleFormRef" inline :model="formData" :rules="rules as FormRules" label-width="150px">
           <div class="block-title">
             项目信息
           </div>

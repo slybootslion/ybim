@@ -9,6 +9,7 @@ import {
 import api from '@/api'
 import { back } from '@/views/scientific_research/project-method'
 import { checkAuth, checkIsOwn, findLastAppItem } from '@/utils/tools'
+import ApproveList from '@/views/operate/components/approve-list.vue'
 
 const props = defineProps<{
   projectId: string
@@ -74,10 +75,10 @@ const end = async () => {
 }
 
 const checkCancel = () => {
-  // const isOwn = checkIsOwn(activeProjectData.value.registrant_user)
+  const isOwn = checkIsOwn(activeProjectData.value.registrant_user)
   const last = findLastAppItem(activeProjectData.value.project_approve)
   const isAuth = checkAuth('PM00101013')
-  return last && isAuth && (last.approve_result === '等待审核' || last.approve_result === '驳回')
+  return isOwn && last && isAuth && (last.approve_result === '等待审核' || last.approve_result === '驳回')
 }
 
 const checkReStart = () => {
@@ -87,8 +88,8 @@ const checkReStart = () => {
 }
 
 const checkFinish = () => {
-  // const isOwn = checkIsOwn(activeProjectData.value.registrant_user)
-  return checkAuth('PM00101012')
+  const isOwn = checkIsOwn(activeProjectData.value.registrant_user)
+  return isOwn && checkAuth('PM00101012')
 }
 </script>
 
@@ -231,17 +232,7 @@ const checkFinish = () => {
           </el-descriptions-item>
         </el-descriptions>
       </el-form>
-      <el-descriptions v-if="activeProjectData.project_approve.length" style="margin-top: 20px;" title="审核信息" :column="1">
-        <el-descriptions-item
-          v-for="(item, index) in (activeProjectData as resProjectDataI).project_approve"
-          :key="index" label="审核人："
-        >
-          {{ item.approve_user }} <span :class="item.approve_result.includes('通过') ? 'blue' : 'red'">（{{ item.approve_result }}）</span>
-          <div style="margin-top: 5px; margin-bottom: 10px;">
-            {{ item.approve_contents }}
-          </div>
-        </el-descriptions-item>
-      </el-descriptions>
+      <ApproveList v-if="activeProjectData.project_approve.length" :conre-approve="activeProjectData.project_approve" />
     </div>
   </div>
 </template>

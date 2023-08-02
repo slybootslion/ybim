@@ -11,6 +11,7 @@ import {
 } from '@/views/operate/project-method'
 import api from '@/api'
 import { back } from '@/views/scientific_research/project-method'
+import ApproveList from '@/views/operate/components/approve-list.vue'
 
 const props = defineProps<{
   projectId: string
@@ -102,6 +103,9 @@ const cancel = async () => {
         <el-descriptions-item label="招标人：">
           {{ activeTenderData && (activeTenderData as resTenderI).tenderee }}
         </el-descriptions-item>
+        <el-descriptions-item label="采购方式：">
+          {{ activeTenderData && (activeTenderData as resTenderI).purchase_way }}
+        </el-descriptions-item>
         <el-descriptions-item label="招标主体单位：">
           {{ activeTenderData && (activeTenderData as resTenderI).main_bidder }}
         </el-descriptions-item>
@@ -123,7 +127,7 @@ const cancel = async () => {
       </el-descriptions>
       <el-descriptions title="授权信息" :column="2" style="margin-bottom: 20px;">
         <el-descriptions-item label="授权人姓名：">
-          {{ activeTenderData && (activeTenderData as resTenderI).authorized_attachment_name }}
+          {{ activeTenderData && (activeTenderData as resTenderI).authorized_person }}
         </el-descriptions-item>
         <el-descriptions-item label="身份证号码：">
           {{ activeTenderData && (activeTenderData as resTenderI).authorized_person_code }}
@@ -150,7 +154,7 @@ const cancel = async () => {
         <el-descriptions-item label="中标日期：">
           {{ activeTenderData && (activeTenderData as resTenderI).win_time }}
         </el-descriptions-item>
-        <el-descriptions-item label="中标价格：">
+        <el-descriptions-item label="中标价格（万元）：">
           {{ activeTenderData && (activeTenderData as resTenderI).tender_money }}
         </el-descriptions-item>
         <el-descriptions-item label="投标报价清单：">
@@ -170,7 +174,7 @@ const cancel = async () => {
           </el-button>
         </el-descriptions-item>
       </el-descriptions>
-      <el-descriptions title="标书信息" :column="1" style="margin-bottom: 20px;">
+      <el-descriptions title="标书信息" :column="1" style="margin-bottom: 20px;" class="block-text">
         <el-descriptions-item label="标书文件：">
           <el-button
             link type="primary"
@@ -213,17 +217,7 @@ const cancel = async () => {
           </el-descriptions-item>
         </el-descriptions>
       </el-form>
-      <el-descriptions style="margin-top: 20px;" title="审批意见" :column="1">
-        <el-descriptions-item
-          v-for="(item, index) in (activeTenderData && (activeTenderData as resTenderI).tender_approve)"
-          :key="index" label="审核人："
-        >
-          {{ item.approve_user }} <span :class="item.approve_result.includes('通过') ? 'blue' : 'red'">（{{ item.approve_result }}）</span>
-          <div style="margin: 10px 0;">
-            {{ item.approve_contents }}
-          </div>
-        </el-descriptions-item>
-      </el-descriptions>
+      <ApproveList v-if="activeTenderData.tender_approve.length" :conre-approve="activeTenderData.tender_approve" />
     </div>
     <el-empty v-else />
   </div>

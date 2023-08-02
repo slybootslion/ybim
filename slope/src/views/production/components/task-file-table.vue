@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { UploadRequestOptions } from 'element-plus/lib/components'
+import { ElMessageBox } from 'element-plus'
 import type { taskFileI } from '@/views/production/task-method'
 import { getDownloadUrl } from '@/views/scientific_research/project-method'
 import api, { baseURL } from '@/api'
-import { tableHeaderCellStyle } from '@/utils/tools'
+import { checkAuth, checkIsOwn, tableHeaderCellStyle } from '@/utils/tools'
 
 const props = defineProps<{
   fileList: taskFileI[]
@@ -25,15 +26,31 @@ const uploadMaterialFile = async (file: File, task_id: string, produce_file_type
   loading.value = false
 }
 const upload = async (obj: UploadRequestOptions) => uploadMaterialFile(obj.file, props.taskId, props.produceFileType)
+
+const delItem = async (file_id: string) => {
+  ElMessageBox.confirm('确定删除该文件？', '注意', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning',
+  }).then(async () => {
+    const res: any = await api.post('/produce/removeMaterialFile', { file_id })
+    if (res.code === 0) emit('uploadSuccess')
+  }).catch(console.log)
+}
+
+const checkDel = (item: taskFileI) => checkIsOwn(item.upload_user) && checkAuth('PM00201008')
 </script>
 
 <template>
-  <el-upload :http-request="upload" :show-file-list="false" style="margin-bottom: 20px;">
+  <el-upload :http-request="upload" :show-file-list="false" multiple style="margin-bottom: 20px;">
     <el-button v-auth="['PM00201003']" type="primary">
       上传资料
     </el-button>
   </el-upload>
-  <el-table v-loading="loading" :data="fileList" border style="width: 100%" stripe :header-cell-style="tableHeaderCellStyle">
+  <el-table
+    v-loading="loading" :data="fileList" border style="width: 100%" stripe
+    :header-cell-style="tableHeaderCellStyle"
+  >
     <el-table-column prop="research_file_name" label="文件">
       <template #default="scope">
         <el-button link type="primary" @click="downloadItem(scope.row.file_url)">
@@ -47,6 +64,12 @@ const upload = async (obj: UploadRequestOptions) => uploadMaterialFile(obj.file,
       <template #default="scope">
         <el-button link type="primary" size="small" @click.prevent="downloadItem(scope.row.file_url)">
           下载
+        </el-button>
+        <el-button
+          v-if="checkDel(scope.row)" link type="primary" size="small"
+          @click.prevent="delItem(scope.row.produce_file_id)"
+        >
+          删除
         </el-button>
       </template>
     </el-table-column>

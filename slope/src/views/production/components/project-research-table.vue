@@ -24,12 +24,13 @@ const getList = async (param: getProjectTableListI) => {
       task_code: item.task_code,
       main_department: item.main_department,
       production_user: item.production_user,
+      allocation_ratio: item.allocation_ratio,
+      deadline: item.deadline,
     })
     return item
   })
   pageData.total = res.total
   tableLoading.value = false
-  console.log(tableData)
 }
 getList(pageData)
 
@@ -164,7 +165,7 @@ const searchHandle = () => {
                     : tableItem.project_dependency_country
                 }} </span>
                 <span class="ival"><span style="color: #333;">经办人：</span>{{ tableItem.registrant_user }}</span>
-                <span class="ival"><span style="color: #333;">发布时间：</span>{{ tableItem.registrant_user }}</span>
+                <span class="ival"><span style="color: #333;">发布时间：</span>{{ tableItem.create_time }}</span>
               </div>
             </div>
           </div>
@@ -175,8 +176,8 @@ const searchHandle = () => {
         <td>{{ subItem.task_code }}</td>
         <td>{{ subItem.main_department }}</td>
         <td>{{ subItem.production_user }}</td>
-        <td>{{ subItem.production_user }}</td>
-        <td>{{ subItem.production_user }}</td>
+        <td>{{ subItem.allocation_ratio }}</td>
+        <td>{{ subItem.deadline }}</td>
       </tr>
     </tbody>
   </table>
@@ -229,6 +230,7 @@ const searchHandle = () => {
   width: 99.99%;
   border-collapse: collapse;
   table-layout: fixed;
+  font-size: 14px;
 }
 
 .task-table th {

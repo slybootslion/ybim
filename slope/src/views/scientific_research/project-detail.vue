@@ -7,7 +7,8 @@ import {
 import Tab1Comp from '@/views/scientific_research/components/tab1-comp.vue'
 import Tab2Comp from '@/views/scientific_research/components/tab2-comp.vue'
 import api from '@/api'
-import PermissionDeniedComp from "@/views/public-components/permission-denied-comp.vue";
+import PermissionDeniedComp from '@/views/public-components/permission-denied-comp.vue'
+import { checkIsOwn } from '@/utils/tools'
 
 const loading = ref(false)
 
@@ -32,7 +33,7 @@ const getDetail = async () => {
 getDetail()
 const activeName = ref('基本信息')
 
-const toEdit = () => router.push(`/scientific-research/project-form?research_id=${research_id}`)
+const toEdit = () => router.push(`/scientific-research/project-form?research_id=${ research_id }`)
 
 const uploadSuccess = () => getDetail()
 
@@ -61,10 +62,13 @@ const end = () => {
         科研项目信息
       </div>
       <div>
-        <el-button v-auth="['PM00401003']" type="primary" @click="toEdit">
+        <el-button
+          v-if="checkIsOwn((activeProjectData as projectDataI).registrant_user)"
+          v-auth="['PM00401003']" type="primary" @click="toEdit"
+        >
           编辑
         </el-button>
-        <el-button type="primary" @click="end">
+        <el-button v-if="checkIsOwn((activeProjectData as projectDataI).registrant_user)" type="primary" @click="end">
           完结
         </el-button>
         <el-button @click="back">

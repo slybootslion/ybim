@@ -5,7 +5,9 @@ import { pageData } from '@/views/production/project-method'
 import { contractTypeOptions, getContractList, industryTypeOption } from '@/views/achievement/contract-method'
 import { getTreeList, level3List } from '@/views/system/personnel-method'
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
-import { checkAuth, pageI, tableHeaderCellStyle } from '@/utils/tools'
+import { checkAuth, checkIsOwn, delItemHandle, pageI, tableHeaderCellStyle } from '@/utils/tools'
+import { getDownloadUrl } from '@/views/scientific_research/project-method'
+import api, { baseURL } from '@/api'
 
 getTreeList()
 const tableLoading = ref(false)
@@ -45,9 +47,27 @@ const searchHandle = () => {
 const router = useRouter()
 const researchNameClick = (id: string) => router.push(`/achievement-contract/contract-detail?contract_id=${ id }`)
 const editItem = (id: string) => router.push(`/achievement-contract/contract-form?contract_id=${ id }`)
-const delItem = (row: resContractListItemI) => {
+const delCb = async (contract_id: string) => {
+  await api.post('/contract/delContract', { contract_id })
+  pageChange()
 }
-const downloadItem = (row: resContractListItemI) => {
+const delItem = (row: resContractListItemI) => delItemHandle(row.contract_name, delCb, row.contract_id)
+const downloadItem = async (row: resContractListItemI) => {
+  tableLoading.value = true
+  const res = await getDownloadUrl(row.attachment_url.slice(4))
+  window.open(baseURL + res.down_url.slice(3))
+  tableLoading.value = false
+}
+const checkEditAuth = (row: resContractListItemI) => {
+  const isOwn = checkIsOwn(row.registrant_user)
+  const isAuth = checkAuth('PM00301003')
+  return isOwn && isAuth
+}
+
+const checkDelAuth = (row: resContractListItemI) => {
+  const isOwn = checkIsOwn(row.registrant_user)
+  const isAuth = checkAuth('PM00301004')
+  return isOwn && isAuth
 }
 </script>
 
@@ -72,7 +92,7 @@ const downloadItem = (row: resContractListItemI) => {
       </el-form-item>
       <el-form-item label="所属部门：">
         <el-select v-model="searchData.operation_department" clearable>
-          <el-option v-for="item in level3List" :key="item.value" :label="item.label" :value="item.value" />
+          <el-option v-for="item in level3List" :key="item.value" :label="item.label as string" :value="item.value" />
         </el-select>
       </el-form-item>
       <el-form-item label="项目名称：">
@@ -112,12 +132,12 @@ const downloadItem = (row: resContractListItemI) => {
     <el-table-column property="sign_time" label="签订日期" width="160" />
     <el-table-column property="registrant_user" label="登记人" width="110" />
     <el-table-column property="create_time" label="登记日期" width="160" />
-    <el-table-column label="操作" width="180">
+    <el-table-column v-auth="['PM00301003', 'PM00301004', 'PM00301005']" label="操作" width="180">
       <template #default="scope">
-        <el-button v-auth="['PM00301003']" link type="primary" size="small" @click.prevent="editItem(scope.row.contract_id)">
+        <el-button v-if="checkEditAuth(scope.row)" link type="primary" size="small" @click.prevent="editItem(scope.row.contract_id)">
           编辑
         </el-button>
-        <el-button v-auth="['PM00301004']" link type="primary" size="small" @click.prevent="delItem(scope.row)">
+        <el-button v-if="checkDelAuth(scope.row)" link type="primary" size="small" @click.prevent="delItem(scope.row)">
           删除
         </el-button>
         <el-button v-auth="['PM00301005']" link type="primary" size="small" @click.prevent="downloadItem(scope.row)">

@@ -28,7 +28,10 @@ const rules = reactive<FormRules>({
   tenderee: [{ required: true, message: '输入招标人', trigger: 'blur' }],
   main_bidder: [{ required: true, message: '输入主体单位', trigger: 'blur' }],
   authorized_person: [{ required: true, message: '输入姓名', trigger: 'blur' }],
-  authorized_person_code: [{ required: true, message: '输入身份号码', trigger: 'blur' }],
+  authorized_person_code: [
+    { required: true, message: '输入身份证号码', trigger: 'blur' },
+    { min: 18, max: 18, message: '输入正确身份证号码', trigger: ['blur', 'change'] },
+  ],
   fileList: [{ required: true, message: '上传附件', trigger: 'change' }],
 })
 const router = useRouter()

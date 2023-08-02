@@ -247,7 +247,6 @@ function wmFn() {
 
 export function loadWatermark(text = '水印') {
   const { init, remove } = wmFn()
-  // 水印更多设置请查看 watermark.ts
   init({
     text,
     width: 110,

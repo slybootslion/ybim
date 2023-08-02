@@ -149,9 +149,9 @@ const getStatistics = async () => {
 
 const clickToDetail = (id: string, type: number) => {
   if (type === 3) {
-    router.push(`/production-management/task-detail?task_id=${id}`)
+    router.push(`/production-management/task-detail?task_id=${ id }`)
   } else {
-    router.push(`/project-initiation/project-detail?project_id=${id}&type=${type}`)
+    router.push(`/project-initiation/project-detail?project_id=${ id }&type=${ type }`)
   }
 }
 
@@ -172,7 +172,7 @@ const statisticsSumByYear = async (payment_type: string) => {
 statisticsSumByYear('收入')
 statisticsSumByYear('支出')
 
-const projectClick = (project_id: string) => router.push(`/project-initiation/project-detail?project_id=${project_id}`)
+const projectClick = (project_id: string) => router.push(`/project-initiation/project-detail?project_id=${ project_id }`)
 </script>
 
 <template>
@@ -238,7 +238,7 @@ const projectClick = (project_id: string) => router.push(`/project-initiation/pr
             </div>
             <div class="row1-item">
               <div class="box">
-                <img src="../assets/images/已完结项目统计.png" alt="" class="row1-item-img">
+                <img src="../assets/images/ywj.png" alt="" class="row1-item-img">
                 <div class="txt-box">
                   <div class="txt-box-title">
                     已完结项目
@@ -265,7 +265,9 @@ const projectClick = (project_id: string) => router.push(`/project-initiation/pr
                     项目名称：<span style="font-weight: bold">{{ (item as todoListItemI).item_name }}</span>
                   </div>
                   <div style="display: flex; justify-content: space-between; width: 100%;">
-                    <span><span style="color: #409EFF">{{ approveTypeDict[(item as todoListItemI).approve_type] }}</span><span>信息需要处理!</span></span>
+                    <span><span style="color: #409EFF">{{
+                        approveTypeDict[(item as todoListItemI).approve_type]
+                      }}</span><span>信息需要处理!</span></span>
                     <span style="margin-left: 30px;"> {{ (item as todoListItemI).create_time }}</span>
                   </div>
                 </div>
@@ -306,7 +308,7 @@ const projectClick = (project_id: string) => router.push(`/project-initiation/pr
                     <img src="../assets/images/收入.png" alt="">
                     <div class="bottom-item-t">
                       <div class="txt">
-                        收入合同额：
+                        收入合同额（万元）：
                       </div>
                       <div class="num in">
                         {{ inNum }}
@@ -317,7 +319,7 @@ const projectClick = (project_id: string) => router.push(`/project-initiation/pr
                     <img src="../assets/images/支出.png" alt="">
                     <div class="bottom-item-t">
                       <div class="txt">
-                        支出合同额：
+                        支出合同额（万元）：
                       </div>
                       <div class="num out">
                         {{ outNum }}
@@ -341,11 +343,11 @@ const projectClick = (project_id: string) => router.push(`/project-initiation/pr
           <div class="r-list-content">
             <div v-for="item in tableData" :key="item.project_id" class="list-item">
               <span class="project-hover" @click="projectClick(item.project_id)">{{
-                (item as resProjectListI).project_name
-              }}</span>
+                  (item as resProjectListI).project_name
+                }}</span>
               <span>{{
-                (item as resProjectListI).project_dependency_province
-              }} {{ (item as resProjectListI).project_dependency_city }}</span>
+                  (item as resProjectListI).project_dependency_province
+                }} {{ (item as resProjectListI).project_dependency_city }}</span>
               <span>{{ (item as resProjectListI).expect_amount }}万元</span>
               <span>{{ (item as resProjectListI).registration_time }}</span>
             </div>
@@ -453,6 +455,10 @@ const projectClick = (project_id: string) => router.push(`/project-initiation/pr
         display: flex;
         height: 30px;
         line-height: 30px;
+
+        &:hover {
+          background-color: rgba(64, 158, 255, .3);
+        }
 
         span:nth-child(1) {
           flex: 2.5;
@@ -682,13 +688,13 @@ const projectClick = (project_id: string) => router.push(`/project-initiation/pr
 //    padding: 10px;
 //    height: 380px;
 //
-    .tab-list-item {
-      //height: 30px;
-      //line-height: 30px;
-      margin-bottom: 10px;
-      display: flex;
-      flex-direction: column;
-    }
+.tab-list-item {
+  //height: 30px;
+  //line-height: 30px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
 //
 //    :deep(.el-tabs__content) {
 //      height: 280px;

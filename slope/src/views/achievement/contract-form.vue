@@ -62,6 +62,7 @@ const submit = async (formEl: FormInstance | undefined) => {
       // delete formData.fileList
       if (!editId.value) {
         const res: any = await addContract(formData)
+        console.log(res)
         if (!res || res.code !== 0) {
           loading.value = false
           return
@@ -69,7 +70,7 @@ const submit = async (formEl: FormInstance | undefined) => {
       } else {
         formData.contract_id = editId.value
         const res: any = await editContract(formData)
-        if (!res || res.data.code !== 0) {
+        if (!res || res.code !== 0) {
           loading.value = false
           return
         }

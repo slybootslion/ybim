@@ -9,12 +9,13 @@ import {
 import { primaryBusinessOptions } from '@/views/operate/customer-method'
 import { getTreeList, getUserList, level3List } from '@/views/system/personnel-method'
 import api from '@/api'
-import { projectOptions, projectSearchLoading, remoteMethod } from '@/views/production/task-method'
+import { getTask, projectOptions, projectSearchLoading, remoteMethod } from '@/views/production/task-method'
 import { getProject } from '@/views/operate/bid-method'
 import PermissionDeniedComp from '@/views/public-components/permission-denied-comp.vue'
 
 const router = useRouter()
 const route = useRoute()
+const query = route.query
 getTreeList()
 const userList = ref([])
 const initUserList = async () => userList.value = await getUserList()
@@ -44,7 +45,7 @@ const subRules = reactive<FormRules>({
   allocation_ratio: [{ required: true, message: '输入任划分产值金额', trigger: 'blur' }],
   deadline: [{ required: true, message: '输入成果提交时间', trigger: 'change' }],
 })
-const computedDay = () => formData.days = `${dayjs(formData.datePick![1]).diff(formData.datePick![0], 'day')}`
+const computedDay = () => formData.days = `${ dayjs(formData.datePick![1]).diff(formData.datePick![0], 'day') }`
 const addTask = async (data: projectFormDataI) => api.post('/produce/addTask', data)
 const isMore = ref(false)
 const submit = async (formEl: FormInstance | undefined) => {
@@ -73,14 +74,20 @@ const submit = async (formEl: FormInstance | undefined) => {
       }
       // delete formData.poArr
       loading.value = true
-      if (!editId.value) {
+      if (!query.task_id) {
+        delete formData.task_id
         const res: any = await addTask(formData)
         if (!res || res.code !== 0) {
           loading.value = false
           return
         }
       } else {
-        console.log('edit')
+        formData.task_id = query.task_id as string
+        const res: any = await addTask(formData)
+        if (!res || res.code !== 0) {
+          loading.value = false
+          return
+        }
       }
       loading.value = false
       clearFormData()
@@ -111,6 +118,33 @@ const projectSelected = async (id: string) => {
   formData.project_type = res.project_type
   formData.industry_type = res.industry_type
 }
+
+const initTask = async (task_id: string) => {
+  const data = await getTask(task_id)
+  formData.project_id = data.project_id
+  formData.industry_type = data.industry_type
+  formData.project_type = data.project_type
+  formData.majorArr = data.major.split(',')
+  formData.datePick = [data.start_time, data.end_time]
+  formData.task_name = data.task_name
+  formData.task_code = data.task_code
+  formData.main_department_id = data.main_department_id
+  formData.allocation_ratio = data.allocation_ratio
+  computedDay()
+  formData.production_user_id = data.production_user_id
+  formData.deadline = data.deadline
+  formData.task_explain = data.task_explain
+  isMore.value = !!data.participating_organization.length
+  if (isMore) {
+    for (let i = 0; i < data.participating_organization.length; i++) {
+      const item = data.participating_organization[i]
+      formData.poArr!.push(item)
+    }
+  }
+}
+
+if (query.task_id) initTask(query.task_id as string)
+else clearFormData()
 </script>
 
 <template>
@@ -198,9 +232,11 @@ const projectSelected = async (id: string) => {
                 placeholder="请输入800字以内的说明"
               />
             </el-form-item>
-            <el-form-item label="有无参与机构：">
-              <el-switch v-model="isMore" />
-            </el-form-item>
+            <div>
+              <el-form-item label="有无参与机构：">
+                <el-switch v-model="isMore" />
+              </el-form-item>
+            </div>
           </el-form>
           <div v-if="isMore" class="more-box">
             <div v-for="(poForm, index) in formData.poArr" :key="index" class="po-item">

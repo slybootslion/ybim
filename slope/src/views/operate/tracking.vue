@@ -6,7 +6,7 @@ import {
 } from '@/views/operate/tracking-method'
 import { getTreeList } from '@/views/system/personnel-method'
 import { beforeUploadFile, handleRemoveFile } from '@/utils/tools'
-import {projectIdSelect, projectOptions, projectSearchLoading, remoteMethod} from '@/views/production/task-method'
+import { projectIdSelect, projectOptions, projectSearchLoading, remoteMethod } from '@/views/production/task-method'
 
 getTreeList()
 remoteMethod('')
@@ -49,6 +49,9 @@ const rules = reactive<FormRules>({
   business_trip_users: [{ required: true, message: '输入人员', trigger: 'blur' }],
   visiting_clients_company: [{ required: true, message: '输入客户', trigger: 'blur' }],
   visiting_clients_man: [{ required: true, message: '输入人员', trigger: 'blur' }],
+  visiting_clients_man_phone: [
+    { min: 11, max: 11, message: '输入正确手机号', trigger: ['blur', 'change'] },
+  ],
   docking_content: [{ required: true, message: '输入人员', trigger: 'blur' }],
   subject: [{ required: true, message: '输入主题', trigger: 'blur' }],
   datePick: [{ required: true, message: '选择跟踪时间', trigger: 'change' }],
@@ -91,7 +94,7 @@ if (query.project_id) {
                 />
               </el-select>
             </el-form-item>
-            <el-form-item label="项目起止时间：" prop="datePick">
+            <el-form-item label="跟踪时间：" prop="datePick">
               <el-date-picker
                 v-model="formData.datePick" type="daterange" range-separator="至"
                 start-placeholder="开始日期" end-placeholder="结束日期" value-format="YYYY-MM-DD"
@@ -107,7 +110,7 @@ if (query.project_id) {
           <el-form-item label="拜访人员：" prop="visiting_clients_man">
             <el-input v-model="formData.visiting_clients_man" />
           </el-form-item>
-          <el-form-item label="联系方式：">
+          <el-form-item label="联系方式：" prop="visiting_clients_man_phone">
             <el-input v-model="formData.visiting_clients_man_phone" />
           </el-form-item>
           <el-form-item label="沟通主题：" prop="subject">

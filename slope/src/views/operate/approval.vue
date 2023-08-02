@@ -23,7 +23,13 @@ const rules = reactive<FormRules>({
   project_name: [{ required: true, message: '输入项目名称', trigger: 'blur' }],
   project_code: [{ required: true, message: '输入项目编码', trigger: 'blur' }],
   proprietor_linkman: [{ required: true, message: '输入联系人', trigger: 'blur' }],
-  proprietor_linkman_phone: [{ required: true, message: '输入电话', trigger: 'blur' }],
+  proprietor_linkman_phone: [
+    { required: true, message: '输入电话', trigger: 'blur' },
+    { min: 11, max: 11, message: '输入正确手机号', trigger: ['blur', 'change'] },
+  ],
+  business_partner_phone: [
+    { min: 11, max: 11, message: '输入正确手机号', trigger: ['blur', 'change'] },
+  ],
   project_general: [{ required: true, message: '输入项目概况', trigger: 'blur' }],
   industry_type: [{ required: true, message: '选择类型', trigger: 'change' }],
   project_type_arr: [{ required: true, message: '选择类型', trigger: 'change' }],
@@ -80,9 +86,9 @@ const initProject = async (id: string) => {
   formData.expect_amount = res.expect_amount
   formData.proprietor_customer_id = res.proprietor_customer_id
   formData.proprietor_linkman = res.proprietor_linkman
-  formData.proprietor_linkman_phone = res.proprietor_linkman_phone
+  formData.proprietor_linkman_phone = res.proprietor_linkman_phone.toString()
   formData.business_partner = res.business_partner
-  formData.business_partner_phone = res.business_partner_phone
+  formData.business_partner_phone = res.business_partner_phone.toString()
   formData.operation_department_id = res.operation_department_id
   formData.operation_user_id = res.operation_user_id
   formData.production_department_id = res.production_department_id
@@ -90,10 +96,12 @@ const initProject = async (id: string) => {
   formData.attachment = res.attachment
   formData.others = res.others
   formData.pcas = [res.project_dependency_province, res.project_dependency_city]
-  formData.fileList = [{
-    name: res.attachment_name,
-    url: baseURL + res.attachment_url.slice(4),
-  }]
+  if (res.attachment_url) {
+    formData.fileList = [{
+      name: res.attachment_name,
+      url: baseURL + res.attachment_url.slice(4),
+    }]
+  }
 }
 if (query.project_id) initProject(query.project_id as string)
 else clearFormData()
@@ -136,7 +144,7 @@ getCustomerHandle('')
               <el-option v-for="bus in primaryBusinessOptions" :key="bus" :label="bus" :value="bus" />
             </el-select>
           </el-form-item>
-          <el-form-item label="预计标的：">
+          <el-form-item label="预计标的（万元）：">
             <el-input-number v-model="formData.expect_amount" controls-position="right" />
           </el-form-item>
           <el-form-item label="业主/甲方单位：" prop="proprietor_customer_id">
@@ -159,7 +167,7 @@ getCustomerHandle('')
           <el-form-item label="商务合作伙伴：">
             <el-input v-model="formData.business_partner" />
           </el-form-item>
-          <el-form-item label="商务合作伙伴联系电话：">
+          <el-form-item label="商务合作伙伴联系电话：" prop="business_partner_phone">
             <el-input v-model="formData.business_partner_phone" />
           </el-form-item>
           <el-form-item label="国家：" prop="project_dependency_country">
@@ -203,18 +211,20 @@ getCustomerHandle('')
               placeholder="其他事项说明"
             />
           </el-form-item>
-          <el-form-item label="附件上传：" prop="fileList">
-            <!-- eslint-disable-next-line -->
-            <el-upload v-model:file-list="formData.fileList as UploadUserFile[]" action="" accept=".jpg,.jpeg,.png"
-                       :http-request="handleUploadFile"
-                       :before-upload="() => beforeUploadFile(formData.attachment as string)"
-                       :on-remove="() => handleRemoveFile(formData, 'attachment')"
-            >
-              <el-button type="primary">
-                上传
-              </el-button>
-            </el-upload>
-          </el-form-item>
+          <div>
+            <el-form-item label="附件上传：" prop="fileList">
+              <!-- eslint-disable-next-line -->
+              <el-upload v-model:file-list="formData.fileList as UploadUserFile[]" action="" accept=".jpg,.jpeg,.png"
+                         :http-request="handleUploadFile"
+                         :before-upload="() => beforeUploadFile(formData.attachment as string)"
+                         :on-remove="() => handleRemoveFile(formData, 'attachment')"
+              >
+                <el-button type="primary">
+                  上传
+                </el-button>
+              </el-upload>
+            </el-form-item>
+          </div>
         </el-form>
       </div>
     </page-main>

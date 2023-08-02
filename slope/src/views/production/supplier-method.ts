@@ -176,7 +176,7 @@ export const getEditData = async (id: string) => {
   formData.primary_business = res.primary_business
   formData.address_detail = res.address_detail
   formData.linkman = res.linkman
-  formData.linkman_phone = res.linkman_phone
+  formData.linkman_phone = res.linkman_phone.toString()
   formData.linkman_post = res.linkman_post
   formData.supplier_general = res.supplier_general
   formData.enterprise_qualification = res.enterprise_qualification

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { getKnowledgeTableListI, resKnowledgeTableItemI } from '@/views/achievement/knowledge-method'
 import { getIprList, pageData, primaryResultTypeOptions } from '@/views/achievement/knowledge-method'
-import { checkAuth, delItemHandle, pageI, tableHeaderCellStyle } from '@/utils/tools'
+import { checkAuth, checkIsOwn, delItemHandle, pageI, tableHeaderCellStyle } from '@/utils/tools'
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
 import api from '@/api'
 
@@ -43,6 +43,18 @@ const delCb = async (ip_id: string) => {
   pageChange()
 }
 const delItem = (row: resKnowledgeTableItemI) => delItemHandle(row.result_name, delCb, row.ip_id)
+
+const checkEditAuth = (row: resKnowledgeTableItemI) => {
+  const isOwn = checkIsOwn(row.registrant_user)
+  const isAuth = checkAuth('PM00303003')
+  return isOwn && isAuth
+}
+
+const checkDelAuth = (row: resKnowledgeTableItemI) => {
+  const isOwn = checkIsOwn(row.registrant_user)
+  const isAuth = checkAuth('PM00303004')
+  return isOwn && isAuth
+}
 </script>
 
 <template>
@@ -97,10 +109,10 @@ const delItem = (row: resKnowledgeTableItemI) => delItemHandle(row.result_name, 
     <el-table-column property="validity" label="有效期" width="120" />
     <el-table-column v-auth="['PM00303003', 'PM00303004']" label="操作" width="180">
       <template #default="scope">
-        <el-button v-auth="['PM00303003']" link type="primary" size="small" @click.prevent="editItem(scope.row)">
+        <el-button v-if="checkEditAuth(scope.row)" link type="primary" size="small" @click.prevent="editItem(scope.row)">
           编辑
         </el-button>
-        <el-button v-auth="['PM00303004']" link type="primary" size="small" @click.prevent="delItem(scope.row)">
+        <el-button v-if="checkDelAuth(scope.row)" link type="primary" size="small" @click.prevent="delItem(scope.row)">
           删除
         </el-button>
       </template>

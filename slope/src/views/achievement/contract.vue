@@ -3,7 +3,7 @@ import dayjs from 'dayjs'
 import ContractResearchTable from '@/views/achievement/components/contract-research-table.vue'
 import api from '@/api'
 import PermissionDeniedComp from '@/views/public-components/permission-denied-comp.vue'
-import {checkAuth} from "@/utils/tools";
+import { checkAuth } from '@/utils/tools'
 
 const router = useRouter()
 const addNew = () => router.push('/achievement-contract/contract-form')
@@ -13,8 +13,8 @@ const y2 = ref(0)
 const y1s = ref('')
 const y2s = ref('')
 watchEffect(() => {
-  y1s.value = `${y1.value}`
-  y2s.value = `${y2.value}`
+  y1s.value = `${ y1.value }`
+  y2s.value = `${ y2.value }`
 })
 
 interface staTypeCountI {
@@ -23,10 +23,18 @@ interface staTypeCountI {
   out_count: number
 }
 
+const selectYears = ['全部']
 const initYear = () => {
-  const year = dayjs().year()
-  y1.value = year
-  y2.value = year
+  const LIMITER = 2015
+  let year = dayjs().year()
+  y1s.value = selectYears[0]
+  y2s.value = selectYears[0]
+  y1.value = 0
+  y2.value = 0
+  while (year >= LIMITER) {
+    selectYears.push(`${year}`)
+    year--
+  }
 }
 initYear()
 
@@ -45,15 +53,18 @@ const statisticsTypeCount = async () => {
 statisticsTypeCount()
 const inNum = ref(0)
 const outNum = ref(0)
-const statisticsSumByYear = async (payment_type: string, year: number) => {
+const statisticsSumByYear = async (payment_type: string, year: number | string) => {
   if (!checkAuth('PM00301001')) return
   const res = await api.get('/contract/statisticsSumByYear', { params: { payment_type, year } })
-  if (payment_type === '收入') inNum.value = res.data.contract_money_sum
-  if (payment_type === '支出') outNum.value = res.data.contract_money_sum
+  if (payment_type === '收入') inNum.value = res.data.contract_money_sum || 0
+  if (payment_type === '支出') outNum.value = res.data.contract_money_sum || 0
 }
 statisticsSumByYear('收入', y1.value)
 statisticsSumByYear('支出', y2.value)
-const changeYear = (type: string, num: number) => statisticsSumByYear(type, +num)
+const changeYear = (type: string, num: number | string) => {
+  if (num === '全部') num = 0
+  statisticsSumByYear(type, +num)
+}
 </script>
 
 <template>
@@ -99,15 +110,21 @@ const changeYear = (type: string, num: number) => statisticsSumByYear(type, +num
           </div>
         </div>
         <div class="m2">
-          <el-date-picker
-            v-model="y1s" type="year"
-            value-format="YYYY"
-            :clearable="false"
-            @change="(a) => changeYear('收入', a)"
-          />
+          <!--          <el-date-picker -->
+          <!--            v-model="y1s" type="year" -->
+          <!--            value-format="YYYY" -->
+          <!--            :clearable="false" -->
+          <!--            @change="(a) => changeYear('收入', a)" -->
+          <!--          /> -->
+          <el-select v-model="y1s" @change="(a) => changeYear('收入', a)">
+            <el-option
+              v-for="y in selectYears" :key="y"
+              :label="y" :value="y"
+            />
+          </el-select>
           <div class="m-item">
             <div class="label">
-              收入总合同额：
+              收入总合同额（万元）：
             </div>
             <div class="number">
               {{ inNum }}
@@ -115,16 +132,22 @@ const changeYear = (type: string, num: number) => statisticsSumByYear(type, +num
           </div>
         </div>
         <div class="m2">
-          <el-date-picker
-            v-model="y2s"
-            type="year"
-            value-format="YYYY"
-            :clearable="false"
-            @change="(a) => changeYear('支出', a)"
-          />
+          <!--          <el-date-picker -->
+          <!--            v-model="y2s" -->
+          <!--            type="year" -->
+          <!--            value-format="YYYY" -->
+          <!--            :clearable="false" -->
+          <!--            @change="(a) => changeYear('支出', a)" -->
+          <!--          /> -->
+          <el-select v-model="y2s" @change="(a) => changeYear('支出', a)">
+            <el-option
+              v-for="y in selectYears" :key="y"
+              :label="y" :value="y"
+            />
+          </el-select>
           <div class="m-item">
             <div class="label">
-              支出总合同额：
+              支出总合同额（万元）：
             </div>
             <div class="number">
               {{ outNum }}
@@ -164,6 +187,7 @@ const changeYear = (type: string, num: number) => statisticsSumByYear(type, +num
     .m1, .m2 {
       flex: 1;
       display: flex;
+      max-width: 470px;
     }
 
     .m2 {
@@ -199,6 +223,10 @@ const changeYear = (type: string, num: number) => statisticsSumByYear(type, +num
 
     :deep(.el-date-editor) {
       width: 90px !important;
+    }
+
+    :deep(.el-select) {
+      width: 100px;
     }
   }
 }

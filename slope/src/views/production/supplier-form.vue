@@ -19,7 +19,10 @@ const rules = reactive<FormRules>({
   address_detail: [{ required: true, message: '输入详细地址', trigger: 'blur' }],
   pcas: [{ required: true, message: '输入地址', trigger: 'change' }],
   linkman: [{ required: true, message: '输入联系人', trigger: 'blur' }],
-  linkman_phone: [{ required: true, message: '输入电话', trigger: 'blur' }],
+  linkman_phone: [
+    { required: true, message: '输入电话', trigger: 'blur' },
+    { min: 11, max: 11, message: '输入正确手机号', trigger: ['blur', 'change'] },
+  ],
   linkman_post: [{ required: true, message: '输入职务', trigger: 'blur' }],
   supplier_general: [{ required: true, message: '输入概况', trigger: 'blur' }],
 })
@@ -78,18 +81,20 @@ const rules = reactive<FormRules>({
             <el-form-item label="企业资质：">
               <el-input v-model="formData.enterprise_qualification" />
             </el-form-item>
-            <el-form-item label="附件上传：" prop="fileList">
-              <!-- eslint-disable-next-line -->
-              <el-upload v-model:file-list="formData.fileList as UploadUserFile[]" action="" accept=".jpg,.jpeg,.png"
-                         :http-request="handleUploadFile"
-                         :before-upload="() => beforeUploadFile(formData.attachment)"
-                         :on-remove="() => handleRemoveFile(formData, 'attachment')"
-              >
-                <el-button type="primary">
-                  上传
-                </el-button>
-              </el-upload>
-            </el-form-item>
+            <div>
+              <el-form-item label="附件上传：" prop="fileList">
+                <!-- eslint-disable-next-line -->
+                <el-upload v-model:file-list="formData.fileList as UploadUserFile[]" action="" accept=".jpg,.jpeg,.png"
+                           :http-request="handleUploadFile"
+                           :before-upload="() => beforeUploadFile(formData.attachment)"
+                           :on-remove="() => handleRemoveFile(formData, 'attachment')"
+                >
+                  <el-button type="primary">
+                    上传
+                  </el-button>
+                </el-upload>
+              </el-form-item>
+            </div>
             <el-form-item label="供应商概况：" prop="supplier_general">
               <el-input
                 v-model="formData.supplier_general" maxlength="800" type="textarea" :rows="3"

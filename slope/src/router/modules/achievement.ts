@@ -55,7 +55,7 @@ const Knowledge: RouteRecordRaw = {
   redirect: '/achievement-knowledge/knowledge',
   name: 'achievementKnowledge',
   meta: {
-    title: '知识管理',
+    title: '知产管理',
     icon: 'ep:star',
     auth: ['PM00303000'],
   },
@@ -65,7 +65,7 @@ const Knowledge: RouteRecordRaw = {
       name: 'achievementKnowledgeKnowledge',
       component: () => import('@/views/achievement/knowledge.vue'),
       meta: {
-        title: '知识管理',
+        title: '知产管理',
         sidebar: false,
         breadcrumb: false,
         activeMenu: '/achievement-knowledge',

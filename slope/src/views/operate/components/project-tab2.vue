@@ -91,10 +91,10 @@ const editItem = (id: string) => router.push(`/tracking-information/tracking?pro
             </el-descriptions-item>
           </el-descriptions>
           <div style="display: flex; justify-content: flex-end">
-            <el-button v-if="checkAuth('PM00101016')" @click="editItem((item as tailItemI).tail_id)">
+            <el-button v-if="checkAuth('PM00101016') && checkIsOwn((item as tailItemI).tail_user)" @click="editItem((item as tailItemI).tail_id)">
               编辑
             </el-button>
-            <el-button v-if="checkAuth('PM00101017')" @click="delItem((item as tailItemI).tail_id)">
+            <el-button v-if="checkAuth('PM00101017') && checkIsOwn((item as tailItemI).tail_user)" @click="delItem((item as tailItemI).tail_id)">
               删除
             </el-button>
           </div>

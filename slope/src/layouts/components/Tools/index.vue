@@ -12,7 +12,7 @@ const userStore = useUserStore()
 const mainPage = useMainPage()
 const { isFullscreen, toggle } = useFullscreen()
 
-function userCommand(command: 'home' | 'setting' | 'hotkeys' | 'logout') {
+function userCommand (command: 'home' | 'setting' | 'hotkeys' | 'logout') {
   switch (command) {
     case 'home':
       router.push({
@@ -29,9 +29,8 @@ function userCommand(command: 'home' | 'setting' | 'hotkeys' | 'logout') {
       break
     case 'logout':
       userStore.logout().then(() => {
-        router.push({
-          name: 'login',
-        })
+        // router.push({ name: 'login' })
+        window.open('https://manage.baijiagroup.com/api/weixin/', '_self')
       })
       break
   }

@@ -26,8 +26,7 @@ watch(() => settingsStore.settings.menu.subMenuCollapse, (val) => {
   if (settingsStore.mode === 'mobile') {
     if (!val) {
       document.body.classList.add('hidden')
-    }
-    else {
+    } else {
       document.body.classList.remove('hidden')
     }
   }
@@ -56,7 +55,7 @@ onMounted(() => {
       useMenu().switchTo(menuStore.actived + 1 < menuStore.allMenus.length ? menuStore.actived + 1 : 0)
     }
   })
-  waterMarkRemove = loadWatermark(`${userStore.account}\n12345678901`)
+  waterMarkRemove = loadWatermark(`${ userStore.account }\n${ userStore.phone }`)
 })
 onUnmounted(() => {
   hotkeys.unbind('f5')
@@ -70,13 +69,17 @@ onUnmounted(() => {
     <div id="app-main">
       <Header />
       <div class="wrapper">
-        <div class="sidebar-container" :class="{ show: settingsStore.mode === 'mobile' && !settingsStore.settings.menu.subMenuCollapse }">
+        <div class="sidebar-container"
+             :class="{ show: settingsStore.mode === 'mobile' && !settingsStore.settings.menu.subMenuCollapse }">
           <MainSidebar />
           <SubSidebar />
         </div>
-        <div class="sidebar-mask" :class="{ show: settingsStore.mode === 'mobile' && !settingsStore.settings.menu.subMenuCollapse }" @click="settingsStore.toggleSidebarCollapse()" />
+        <div class="sidebar-mask"
+             :class="{ show: settingsStore.mode === 'mobile' && !settingsStore.settings.menu.subMenuCollapse }"
+             @click="settingsStore.toggleSidebarCollapse()" />
         <div class="main-container" :style="{ 'padding-bottom': $route.meta.paddingBottom } as any">
-          <Topbar v-if="!(settingsStore.settings.menu.menuMode === 'head' && !settingsStore.settings.menu.enableSubMenuCollapseButton && !settingsStore.settings.breadcrumb.enable)" />
+          <Topbar
+            v-if="!(settingsStore.settings.menu.menuMode === 'head' && !settingsStore.settings.menu.enableSubMenuCollapseButton && !settingsStore.settings.breadcrumb.enable)" />
           <div class="main">
             <router-view v-slot="{ Component, route }">
               <transition name="main" mode="out-in" appear>

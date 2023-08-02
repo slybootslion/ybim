@@ -17,7 +17,10 @@ const rules = reactive<FormRules>({
   primary_business_list: [{ required: true, message: '输入主营业务', trigger: 'change' }],
   pcas: [{ required: true, message: '输入地址', trigger: 'change' }],
   linkman: [{ required: true, message: '输入联系人', trigger: 'blur' }],
-  linkman_phone: [{ required: true, message: '输入电话', trigger: 'blur' }],
+  linkman_phone: [
+    { required: true, message: '输入电话', trigger: 'blur' },
+    { min: 11, max: 11, message: '输入正确手机号', trigger: ['blur', 'change'] },
+  ],
   linkman_post: [{ required: true, message: '输入职务', trigger: 'blur' }],
   customer_general: [{ required: true, message: '输入客户概况', trigger: 'blur' }],
 })

@@ -2,7 +2,7 @@
 import type { getRecordTableListI, resRecordItemI } from '@/views/operate/record-method'
 import { delFiling, getFilingList, pageData } from '@/views/operate/record-method'
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
-import {checkAuth, delItemHandle, pageI, tableHeaderCellStyle} from '@/utils/tools'
+import { checkAuth, checkIsOwn, delItemHandle, pageI, tableHeaderCellStyle } from '@/utils/tools'
 import PermissionDeniedComp from "@/views/public-components/permission-denied-comp.vue";
 
 const tableLoading = ref(false)
@@ -51,13 +51,18 @@ const delItem = async (row: resRecordItemI) => {
   await delItemHandle(row.filing_platform, delFiling, row.filing_id)
   pageChange()
 }
+
+const checkEditAuth = (item: resRecordItemI) => {
+  const isOwn = checkIsOwn(item.registrant_user)
+  return isOwn && checkAuth('PM00103003')
+}
 </script>
 
 <template>
   <Auth :value="['PM00103002']">
     <div class="search-box">
       <el-form class="search-form" :model="searchData" inline>
-        <el-form-item label="客户名称：">
+        <el-form-item label="备案类型：">
           <el-select v-model="searchData.filing_type" clearable>
             <el-option label="本地备案" value="本地备案" />
             <el-option label="网络备案" value="网络备案" />
@@ -113,10 +118,10 @@ const delItem = async (row: resRecordItemI) => {
       </el-table-column>
       <el-table-column label="操作" width="130">
         <template #default="scope">
-          <el-button v-auth="['PM00103003']" link type="primary" size="small" @click.prevent="editItem(scope.row.filing_id)">
+          <el-button v-if="checkEditAuth(scope.row)" link type="primary" size="small" @click.prevent="editItem(scope.row.filing_id)">
             编辑
           </el-button>
-          <el-button link type="primary" size="small" @click.prevent="delItem(scope.row)">
+          <el-button v-if="checkIsOwn(scope.row.registrant_user)" link type="primary" size="small" @click.prevent="delItem(scope.row)">
             删除
           </el-button>
         </template>

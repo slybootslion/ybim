@@ -4,8 +4,9 @@ import {
   getAptitudeList, pageData, primaryAptitudeGradeOption, primaryAptitudeTypeOption,
 } from '@/views/achievement/qualification-method'
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
-import { delItemHandle, pageI, tableHeaderCellStyle } from '@/utils/tools'
+import { checkAuth, checkIsOwn, delItemHandle, pageI, tableHeaderCellStyle } from '@/utils/tools'
 import api from '@/api'
+import { resKnowledgeTableItemI } from "@/views/achievement/knowledge-method";
 
 const tableLoading = ref(false)
 let tableData = reactive<resQualificationTableItemI[]>([])
@@ -41,6 +42,18 @@ const delCb = async (id: string) => {
   pageChange()
 }
 const delItem = (row: resQualificationTableItemI) => delItemHandle(row.aptitude_name, delCb, row.aptitude_id)
+
+const checkEditAuth = (row: resQualificationTableItemI) => {
+  const isOwn = checkIsOwn(row.registrant_user)
+  const isAuth = checkAuth('PM00302003')
+  return isOwn && isAuth
+}
+
+const checkDelAuth = (row: resQualificationTableItemI) => {
+  const isOwn = checkIsOwn(row.registrant_user)
+  const isAuth = checkAuth('PM00302004')
+  return isOwn && isAuth
+}
 </script>
 
 <template>
@@ -90,10 +103,10 @@ const delItem = (row: resQualificationTableItemI) => delItemHandle(row.aptitude_
     <el-table-column property="principal_phone" label="联系电话" width="160" />
     <el-table-column v-auth="['PM00302003', 'PM00302004']" label="操作" width="130">
       <template #default="scope">
-        <el-button v-auth="['PM00302003']" link type="primary" size="small" @click.prevent="editItem(scope.row.aptitude_id)">
+        <el-button v-if="checkEditAuth(scope.row)" link type="primary" size="small" @click.prevent="editItem(scope.row.aptitude_id)">
           编辑
         </el-button>
-        <el-button v-auth="['PM00302004']" link type="primary" size="small" @click.prevent="delItem(scope.row)">
+        <el-button v-if="checkDelAuth(scope.row)" link type="primary" size="small" @click.prevent="delItem(scope.row)">
           删除
         </el-button>
       </template>

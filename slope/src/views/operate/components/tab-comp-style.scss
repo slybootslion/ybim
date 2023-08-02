@@ -25,3 +25,15 @@
 .red {
   color: red;
 }
+
+.block-text {
+  :deep(.el-descriptions__cell) {
+    display: flex;
+    .el-descriptions__label {
+      width: 100px;
+    }
+    .el-descriptions__content {
+      flex: 1;
+    }
+  }
+}

@@ -3,7 +3,7 @@ import { ElMessage } from 'element-plus'
 import { activeKnowledge, getIpr, loading, resKnowledgeI } from '@/views/achievement/knowledge-method'
 import { back, getDownloadUrl } from '@/views/scientific_research/project-method'
 import { baseURL } from '@/api'
-import PermissionDeniedComp from "@/views/public-components/permission-denied-comp.vue";
+import PermissionDeniedComp from '@/views/public-components/permission-denied-comp.vue'
 
 let ip_id = ''
 const route = useRoute()
@@ -19,7 +19,6 @@ const getDetail = async () => {
   }
   loading.value = true
   activeKnowledge.value = await getIpr(ip_id)
-  console.log(activeKnowledge.value)
   loading.value = false
 }
 getDetail()

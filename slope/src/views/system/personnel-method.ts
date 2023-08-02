@@ -42,7 +42,7 @@ export const getDepartmentList = async () => {
 
 export const getUserList = async (user_department_id = '') => {
   if (!checkAuth('PM00501001')) return
-  const res = await api.get(`/personnel/getUserList?user_department_id=${user_department_id}`)
+  const res = await api.get(`/personnel/getUserList?user_department_id=${ user_department_id }`)
   return res.data
 }
 
@@ -125,6 +125,7 @@ export const getTableData = async (user_department_id = '') => {
   tableLoading.value = false
 }
 export const tableSelect = async (val: string) => {
+  console.log(val)
   if (!val) await getTableData()
   else await getTableData(val)
 }
@@ -141,7 +142,7 @@ export const searchName = async (val: string) => {
 
 export const logoutTableItem = async (row: tableItem) => {
   ElMessageBox.confirm(
-    `将注销人员${row.user_name}，是否继续？`,
+    `将注销人员${ row.user_name }，是否继续？`,
     '注意',
     {
       confirmButtonText: '确定',
@@ -151,7 +152,7 @@ export const logoutTableItem = async (row: tableItem) => {
   ).then(() => {
     ElMessage({
       type: 'success',
-      message: `${row.user_name}已注销`,
+      message: `${ row.user_name }已注销`,
     })
   }).catch(console.log)
 }
@@ -168,6 +169,7 @@ export const drawerForm: Record<string, string | number> = reactive<addUserPar>(
   user_department_id: '',
 })
 export const drawerShow = ref(false)
+export const drawerTitle = ref('添加人员')
 export const ruleFormRef = ref<FormInstance>()
 export const addUserHandle = () => {
   editUserId.value = ''
@@ -183,6 +185,7 @@ export const addUserHandle = () => {
   delete drawerForm.user_id
   setTimeout(() => ruleFormRef.value!.clearValidate(), 0)
   drawerShow.value = true
+  drawerTitle.value = '添加人员'
 }
 export const editTableItem = async (row: tableItem) => {
   editUserId.value = row.user_id
@@ -192,10 +195,11 @@ export const editTableItem = async (row: tableItem) => {
   drawerForm.user_empno = row.user_empno
   drawerForm.user_department_id = row.user_department_id
   drawerForm.user_role_id = row.user_role_id
-  drawerForm.user_phone = row.user_phone
+  drawerForm.user_phone = row.user_phone.toString()
   drawerForm.user_email = row.user_email
   drawerForm.entry_time = row.entry_time
   drawerShow.value = true
+  drawerTitle.value = '编辑人员'
 }
 export const drawerRules: Partial<Record<string, Arrayable<any>>> = reactive<FormRules>({
   user_name: [{ required: true, message: '输入人员姓名', trigger: 'blur' }],
@@ -204,28 +208,36 @@ export const drawerRules: Partial<Record<string, Arrayable<any>>> = reactive<For
   user_brithday: [{ required: true, message: '选择生日', trigger: 'change' }],
   user_department_id: [{ required: true, message: '选择部门', trigger: 'change' }],
   user_role_id: [{ required: true, message: '选择权限', trigger: 'change' }],
-  user_phone: [{ required: true, message: '输入手机号', trigger: 'blur' }],
-  user_email: [{ required: true, message: '输入邮箱', trigger: 'blur' }],
+  user_phone: [
+    { required: true, message: '输入手机号', trigger: 'blur' },
+    { min: 11, max: 11, message: '输入正确手机号', trigger: ['blur', 'change'] },
+  ],
+  user_email: [
+    { required: true, message: '输入邮箱', trigger: 'blur' },
+    { type: 'email', message: '输入正确邮箱', trigger: ['blur', 'change'] },
+  ],
   entry_time: [{ required: true, message: '输入入职时间', trigger: 'blur' }],
 })
 export const submitUser = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
-  console.log(editUserId.value)
-  // new
-  if (!editUserId.value) {
-    await formEl.validate(async (valid: boolean) => {
-      if (valid) {
-        const res: any = await addUser(drawerForm as unknown as addUserPar)
+  await formEl.validate(async (valid) => {
+    if (valid) {
+      if (!editUserId.value) {
+        await formEl.validate(async (valid: boolean) => {
+          if (valid) {
+            const res: any = await addUser(drawerForm as unknown as addUserPar)
+            if (res.code === 0) drawerShow.value = false
+            await getTableData()
+          }
+        })
+      } else { // edit
+        drawerForm.user_id = editUserId.value
+        const res: any = await editUser(drawerForm as unknown as editUserPar)
         if (res.code === 0) drawerShow.value = false
         await getTableData()
       }
-    })
-  } else { // edit
-    drawerForm.user_id = editUserId.value
-    const res: any = await editUser(drawerForm as unknown as editUserPar)
-    if (res.code === 0) drawerShow.value = false
-    await getTableData()
-  }
+    }
+  })
 }
 
 export const rules: Partial<Record<string, Arrayable<any>>> = reactive<FormRules>({

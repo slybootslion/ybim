@@ -3,7 +3,7 @@ import type { UploadRequestOptions } from 'element-plus/lib/components'
 import type { fileItemI, projectFileListI } from '@/views/scientific_research/project-method'
 import { getDownloadUrl } from '@/views/scientific_research/project-method'
 import api, { baseURL } from '@/api'
-import {tableHeaderCellStyle} from "@/utils/tools";
+import { tableHeaderCellStyle } from '@/utils/tools'
 
 const props = defineProps<{
   detailFileList: projectFileListI
@@ -43,7 +43,7 @@ const upload3 = (obj: UploadRequestOptions) => uploadQuestsFile(obj, 3)
               上传资料
             </el-button>
           </el-upload>
-          <el-button>全部下载</el-button>
+          <!--          <el-button>全部下载</el-button> -->
         </el-descriptions-item>
         <el-descriptions-item>
           <el-table :data="detailFileList.prepare" border style="width: 100%" stripe :header-cell-style="tableHeaderCellStyle">
@@ -75,7 +75,7 @@ const upload3 = (obj: UploadRequestOptions) => uploadQuestsFile(obj, 3)
               上传资料
             </el-button>
           </el-upload>
-          <el-button>全部下载</el-button>
+          <!--          <el-button>全部下载</el-button> -->
         </el-descriptions-item>
         <el-descriptions-item>
           <el-table :data="detailFileList.development" border style="width: 100%" stripe :header-cell-style="tableHeaderCellStyle">
@@ -107,7 +107,7 @@ const upload3 = (obj: UploadRequestOptions) => uploadQuestsFile(obj, 3)
               上传资料
             </el-button>
           </el-upload>
-          <el-button>全部下载</el-button>
+          <!--          <el-button>全部下载</el-button> -->
         </el-descriptions-item>
         <el-descriptions-item>
           <el-table :data="detailFileList.inspection" border style="width: 100%" stripe :header-cell-style="tableHeaderCellStyle">
@@ -139,7 +139,7 @@ const upload3 = (obj: UploadRequestOptions) => uploadQuestsFile(obj, 3)
               上传资料
             </el-button>
           </el-upload>
-          <el-button>全部下载</el-button>
+          <!--          <el-button>全部下载</el-button> -->
         </el-descriptions-item>
         <el-descriptions-item>
           <el-table :data="detailFileList.promotion" border style="width: 100%" stripe :header-cell-style="tableHeaderCellStyle">

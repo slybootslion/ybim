@@ -12,6 +12,7 @@ import { selectBlur, selectChange } from '@/views/operate/bid-method'
 import { getTreeList, level2List } from '@/views/system/personnel-method'
 import { customerOptions, getCustomerHandle, searchLoading } from '@/views/operate/approval-method'
 import { beforeUploadFile, handleRemoveFile } from '@/utils/tools'
+import { getPersonData, personList } from "@/views/scientific_research/project-method";
 
 getTreeList()
 remoteMethod('', {})
@@ -52,6 +53,7 @@ if (query.project_id) {
   projectIdSelect(query.project_id as string)
   formData.project_id = query.project_id as string
 } else clearFormData()
+getPersonData()
 </script>
 
 <template>
@@ -120,7 +122,9 @@ if (query.project_id) {
             </el-select>
           </el-form-item>
           <el-form-item label="经办人：" prop="responsible_person">
-            <el-input v-model="formData.responsible_person" />
+            <el-select v-model="formData.responsible_person" placeholder="选择人员">
+              <el-option v-for="p in personList" :key="p.user_id" :label="p.user_name" :value="p.user_name" />
+            </el-select>
           </el-form-item>
           <el-form-item label="合同内容概述：" prop="contract_general">
             <el-input

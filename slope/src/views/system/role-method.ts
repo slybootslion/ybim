@@ -46,7 +46,7 @@ export const getRole = async () => {
 }
 export const editRoleId = ref('')
 export const dialogShow = ref(false)
-
+export const dialogTitle = ref('添加角色')
 export const dialogForm: Record<string, string> = reactive<userRole>({
   role_name: '',
 })
@@ -83,12 +83,14 @@ export const addNew = () => {
   dialogForm.role_name = ''
   editRoleId.value = ''
   dialogShow.value = true
+  dialogTitle.value = '添加角色'
 }
 
 export const editRoleHandle = (data: RoleItem) => {
   dialogForm.role_name = data.role_name
   editRoleId.value = data.role_id
   dialogShow.value = true
+  dialogTitle.value = '编辑角色'
 }
 
 export const removeRole = async (role_id: string) => {

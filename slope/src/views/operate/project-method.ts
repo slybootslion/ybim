@@ -104,11 +104,10 @@ export const projectStatusOptions = {
   1: '已立项',
   2: '招投标',
   3: '放弃',
-  4: '放弃',
-  5: '落标',
-  6: '中标',
-  7: '合同评审',
-  8: '结束',
+  4: '落标',
+  5: '中标',
+  6: '合同评审',
+  7: '结束',
 }
 
 export interface resProjectListI {

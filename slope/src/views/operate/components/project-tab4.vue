@@ -9,6 +9,8 @@ import {
 } from '@/views/operate/project-method'
 import api from '@/api'
 import { back } from '@/views/scientific_research/project-method'
+import { checkAuth, checkIsOwn } from '@/utils/tools'
+import ApproveList from "@/views/operate/components/approve-list.vue";
 
 const props = defineProps<{
   projectId: string
@@ -42,6 +44,10 @@ const cancel = () => {
     }
   }).catch(console.log)
 }
+const checkRecover = () => {
+  const isOwn = checkIsOwn(activeContractReviewData.value.responsible_person)
+  return isOwn && checkAuth('PM00101007')
+}
 </script>
 
 <template>
@@ -52,7 +58,7 @@ const cancel = () => {
           取消
         </el-button>
         <el-button
-          v-auth="['PM00101007']" type="primary"
+          v-if="checkRecover()" type="primary"
           @click="() => emit('goRouter', { projectId: props.projectId, url: '/contract-rating/contract-review' })"
         >
           重新发起
@@ -86,7 +92,7 @@ const cancel = () => {
       </el-descriptions>
       <el-descriptions title="" :column="1">
         <el-descriptions-item label="合同内容概述：">
-          {{ activeContractReviewData && (activeContractReviewData as resContractReviewI).responsible_person }}
+          {{ activeContractReviewData && (activeContractReviewData as resContractReviewI).contract_general }}
         </el-descriptions-item>
         <el-descriptions-item label="需要重点关注问题及其他必要情况说明：">
           {{ activeContractReviewData && (activeContractReviewData as resContractReviewI).attention }}
@@ -130,17 +136,7 @@ const cancel = () => {
           </el-descriptions-item>
         </el-descriptions>
       </el-form>
-      <el-descriptions style="margin-top: 20px;" title="审批意见" :column="1">
-        <el-descriptions-item
-          v-for="(item, index) in (activeContractReviewData && (activeContractReviewData as resContractReviewI).conre_approve)"
-          :key="index" label="审核人："
-        >
-          {{ item.approve_user }} <span :class="item.approve_result.includes('通过') ? 'blue' : 'red'">（{{ item.approve_result }}）</span>
-          <div style="margin: 10px 0;">
-            {{ item.approve_contents }}
-          </div>
-        </el-descriptions-item>
-      </el-descriptions>
+      <ApproveList v-if="activeContractReviewData.conre_approve.length" :conre-approve="activeContractReviewData.conre_approve" />
     </div>
     <el-empty v-else />
   </div>

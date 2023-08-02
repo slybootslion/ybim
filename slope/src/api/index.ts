@@ -88,6 +88,9 @@ api.interceptors.response.use(
     // }
     if (response.data.code !== 0) {
       ElMessage.error(response.data.msg)
+      if (response.data.code === 1000) {
+        window.open('https://manage.baijiagroup.com/api/weixin/', '_self')
+      }
     }
     return Promise.resolve(response.data)
   },

@@ -2,7 +2,7 @@
 import type { getSupplierTableListI, resSupplierTableItemI } from '@/views/production/supplier-method'
 import { getSupplierList, pageData, primarySupplierTypeOption } from '@/views/production/supplier-method'
 import PaginationComp from '@/views/public-components/pagination-comp.vue'
-import { checkAuth, delItemHandle, pageI, tableHeaderCellStyle } from '@/utils/tools'
+import { checkAuth, checkIsOwn, delItemHandle, pageI, tableHeaderCellStyle } from '@/utils/tools'
 import api from '@/api'
 import PermissionDeniedComp from '@/views/public-components/permission-denied-comp.vue'
 
@@ -95,10 +95,10 @@ const delItem = (row: resSupplierTableItemI) => delItemHandle(row.supplier_name,
       <el-table-column property="registration_time" label="登记时间" width="160" />
       <el-table-column label="操作" width="130">
         <template #default="scope">
-          <el-button link type="primary" size="small" @click.prevent="editItem(scope.row.supplier_id)">
+          <el-button v-if="checkIsOwn(scope.row.registrant_user)" link type="primary" size="small" @click.prevent="editItem(scope.row.supplier_id)">
             编辑
           </el-button>
-          <el-button link type="primary" size="small" @click.prevent="delItem(scope.row)">
+          <el-button v-if="checkIsOwn(scope.row.registrant_user)" link type="primary" size="small" @click.prevent="delItem(scope.row)">
             删除
           </el-button>
         </template>
