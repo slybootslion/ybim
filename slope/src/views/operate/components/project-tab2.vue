@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {
-  activeTailList, downloadItem,
+  activeTailList, downloadItem, activeProjectData,
   getTailList,
   tailItemI,
 } from '@/views/operate/project-method'
@@ -27,6 +27,8 @@ const del = async (tail_id: string) => {
 const delItem = (id: string) => delItemHandle('', del, id)
 const router = useRouter()
 const editItem = (id: string) => router.push(`/tracking-information/tracking?project_id=${props.projectId}&tail_id=${id}`)
+
+const checkTrack = computed(() => checkAuth('PM00101011') && activeProjectData.value.project_status !== 7)
 </script>
 
 <template>
@@ -34,17 +36,17 @@ const editItem = (id: string) => router.push(`/tracking-information/tracking?pro
     <div class="block">
       <div class="top-button">
         <el-button
-          v-auth="['PM00101011']" type="primary"
+          v-if="checkTrack" type="primary"
           @click="() => emit('goRouter', { projectId: props.projectId, url: '/tracking-information/tracking' })"
         >
           跟踪记录
         </el-button>
-        <el-button
-          v-auth="['PM00101004']" type="primary"
-          @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-bidding/bidding' })"
-        >
-          新建投标评审
-        </el-button>
+        <!--        <el-button -->
+        <!--          v-auth="['PM00101004']" type="primary" -->
+        <!--          @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-bidding/bidding' })" -->
+        <!--        > -->
+        <!--          新建投标评审 -->
+        <!--        </el-button> -->
       </div>
       <el-collapse v-if="activeTailList.length" v-model="activeNames">
         <el-collapse-item

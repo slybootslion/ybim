@@ -18,7 +18,7 @@ export interface pageI {
 }
 
 export const delItemHandle = (msg: string, cb: Function, params: any) => {
-  ElMessageBox.confirm(`确定删除 ${msg} 这条记录？`, '注意', {
+  ElMessageBox.confirm(`确定删除 ${ msg } 这条记录？`, '注意', {
     confirmButtonText: '确定',
     cancelButtonText: '取消',
     type: 'warning',
@@ -55,7 +55,7 @@ export class TimerSimulateInterval {
   private timer: number | undefined
   private countLimit: number
 
-  constructor() {
+  constructor () {
     this.timer = undefined
     this.clear = false
     this.countLimit = 0
@@ -67,7 +67,7 @@ export class TimerSimulateInterval {
   * 2参数：每次定时器执行间隔时长，默认1秒
   * 3参数：定时器执行次数，默认5次，可传Infinity不限制次数
   * */
-  simulateInterval({ callback, interval = 1000, countLimit = 5 }: {
+  simulateInterval ({ callback, interval = 1000, countLimit = 5 }: {
     callback: any
     interval?: any
     countLimit?: any
@@ -93,14 +93,14 @@ export class TimerSimulateInterval {
     setTimeout(fn, interval)
   }
 
-  simulateClearInterval(callback?: Function) {
+  simulateClearInterval (callback?: Function) {
     clearTimeout(this.timer)
     this.clear = true
     callback && callback()
   }
 }
 
-export function tableHeaderCellStyle({ row, column, rowIndex, columnIndex }: never) {
+export function tableHeaderCellStyle ({ row, column, rowIndex, columnIndex }: never) {
   return {
     // textAlign: 'center',
     color: '#004da5',
@@ -108,20 +108,19 @@ export function tableHeaderCellStyle({ row, column, rowIndex, columnIndex }: nev
   }
 }
 
-export function checkAuth(cStr: string): boolean {
+export function checkAuth (cStr: string): boolean {
   const userStore = useUserStore()
   const urArr = userStore.user_rights.split(',')
   return urArr.includes(cStr)
 }
 
-export function checkIsOwn(username: string) {
+export function checkIsOwn (username: string) {
   const userStore = useUserStore()
   const u = userStore.account
   return u === username
 }
 
-export function findLastAppItem(appList: approveItemI[]) {
-  if (!appList.length) return false
+export function findLastAppItem (appList: approveItemI[]): approveItemI {
   const len = appList.length
   return appList[len - 1]
 }

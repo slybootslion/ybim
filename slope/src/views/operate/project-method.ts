@@ -18,6 +18,7 @@ export interface approveItemI {
 
 export interface resProjectDataI {
   project_id: string
+  project_status: number
   project_name: string
   project_code: string
   project_type: string
@@ -53,6 +54,7 @@ export interface resProjectDataI {
 
 export const activeProjectData: Ref<resProjectDataI> = ref<resProjectDataI>({
   project_id: '',
+  project_status: 0,
   project_name: '',
   project_code: '',
   project_type: '',

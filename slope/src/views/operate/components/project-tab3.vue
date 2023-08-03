@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ElMessage, ElMessageBox, FormInstance, FormRules } from 'element-plus'
 import type {
-  approveFormDataI,
+  approveFormDataI, approveItemI,
 } from '@/views/operate/project-method'
 
 import { getTender } from '@/views/operate/bid-method'
@@ -12,6 +12,7 @@ import {
 import api from '@/api'
 import { back } from '@/views/scientific_research/project-method'
 import ApproveList from '@/views/operate/components/approve-list.vue'
+import { checkAuth, checkIsOwn, findLastAppItem } from '@/utils/tools'
 
 const props = defineProps<{
   projectId: string
@@ -23,14 +24,25 @@ const formData: approveFormDataI = reactive<approveFormDataI>({
   approve_contents: '',
   approve_id: '',
 })
+const status = ref(-Infinity)
+const isOwn = ref(false)
+const lastApprove = ref<approveItemI>({ approve_contents: '', approve_result: '', approve_time: '', approve_user: '' })
 const getDetail = async () => {
   loading.value = true
   const data = await getTender(props.projectId)
   activeTenderData.value = data as resTenderI
   if (data && data.approve_id) formData.approve_id = data.approve_id
+  if (data && data.tender_approve) {
+    lastApprove.value = findLastAppItem(data.tender_approve)
+    isOwn.value = checkIsOwn(data.applicant_user)
+  }
   loading.value = false
 }
 getDetail()
+
+watchEffect(() => {
+  status.value = activeProjectData.value.project_status
+})
 
 const cancel = async () => {
   ElMessageBox.confirm('点击确定后将无法恢复，是否继续？', '注意', {
@@ -45,23 +57,35 @@ const cancel = async () => {
     }
   }).catch(console.log)
 }
+
+const checkCancel = () => {
+  return isOwn.value && checkAuth('PM00101014') && (status.value === 2 && lastApprove.value?.approve_result !== '通过')
+}
+
+const checkRecreate = () => {
+  return isOwn.value && checkAuth('PM00101004') && (status.value === 2 && lastApprove.value?.approve_result !== '通过')
+}
+
+const checkRegisterResult = () => {
+  return isOwn.value && checkAuth('PM00101006') && (status.value === 2 && lastApprove.value?.approve_result === '通过')
+}
 </script>
 
 <template>
   <div v-loading="loading">
     <div v-if="activeTenderData.tender_id" class="block">
       <div class="top-button">
-        <el-button v-auth="['PM00101014']" type="primary" @click="cancel">
+        <el-button v-if="checkCancel()" type="primary" @click="cancel">
           取消投标
         </el-button>
         <el-button
-          v-auth="['PM00101014']" type="primary"
+          v-if="checkRecreate()" type="primary"
           @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-bidding/bidding', r: true })"
         >
           重新发起投标
         </el-button>
         <el-button
-          v-auth="['PM00101006']" type="primary"
+          v-if="checkRegisterResult()" type="primary"
           @click="() => emit('goRouter', { projectId: props.projectId, url: '/register-bid/bid' })"
         >
           登记投标结果

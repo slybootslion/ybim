@@ -3,7 +3,7 @@ import { ElMessage, ElMessageBox, FormInstance, FormRules } from 'element-plus'
 import { getProject } from '@/views/operate/bid-method'
 import type { approveFormDataI } from '@/views/operate/project-method'
 import {
-  activeProjectData, approveSubmit,
+  activeProjectData, activeTenderData, approveSubmit,
   downloadItem, resProjectDataI, rules,
 } from '@/views/operate/project-method'
 import api from '@/api'
@@ -21,10 +21,15 @@ const formData: approveFormDataI = reactive<approveFormDataI>({
   approve_contents: '',
   approve_id: '',
 })
+const status = ref(-Infinity)
+const isOwn = ref(false)
 const getDetail = async () => {
   loading.value = true
   const data = await getProject(props.projectId)
   activeProjectData.value = data as resProjectDataI
+  status.value = data.project_status
+  isOwn.value = checkIsOwn(data.registrant_user)
+  console.log(status.value)
   if (!data) {
     ElMessage.error('项目id不存在')
     setTimeout(() => location.reload(), 330)
@@ -75,21 +80,43 @@ const end = async () => {
 }
 
 const checkCancel = () => {
-  const isOwn = checkIsOwn(activeProjectData.value.registrant_user)
-  const last = findLastAppItem(activeProjectData.value.project_approve)
-  const isAuth = checkAuth('PM00101013')
-  return isOwn && last && isAuth && (last.approve_result === '等待审核' || last.approve_result === '驳回')
+  return isOwn.value && checkAuth('PM00101013')
+    && (status.value === 0 || status.value === -1)
 }
 
 const checkReStart = () => {
-  const isAuth = checkAuth('PM00101001')
-  const last = findLastAppItem(activeProjectData.value.project_approve)
-  return last && isAuth && (last.approve_result === '驳回' || last.approve_result !== '通过')
+  return isOwn.value && checkAuth('PM00101001')
+    && (status.value === 0 || status.value === -1)
 }
 
+const checkTrack = () => {
+  return checkAuth('PM00101011') && (isOwn.value || checkIsOwn(activeProjectData.value.operation_user))
+  && (status.value === 0 || status.value === -1 || status.value === 1 || status.value === 2 || status.value === 6)
+}
+
+const checkCreateNew = () => {
+  return isOwn.value && checkAuth('PM00101004')
+  && (status.value === 1)
+}
+
+// const checkContract = () => {
+//   return isOwn.value && checkAuth('PM00101007')
+//     && (status.value === 1
+//       || (status.value === 2 && findLastAppItem(activeTenderData.value.tender_approve).approve_result === '通过'))
+// }
+
+const checkContract = computed(() => {
+  if (!activeTenderData.value.tender_approve) return false
+  const last = findLastAppItem(activeTenderData.value.tender_approve)
+  if (!last) return false
+  return isOwn.value && checkAuth('PM00101007')
+    && (status.value === 1
+      || (status.value === 2 && last.approve_result === '通过'))
+})
+
 const checkFinish = () => {
-  const isOwn = checkIsOwn(activeProjectData.value.registrant_user)
-  return isOwn && checkAuth('PM00101012')
+  return isOwn.value && checkAuth('PM00101012')
+    && (status.value === 1 || status.value === 2 || status.value === 6)
 }
 </script>
 
@@ -107,19 +134,19 @@ const checkFinish = () => {
           重新发起
         </el-button>
         <el-button
-          v-auth="['PM00101011']" type="primary"
+          v-if="checkTrack()" type="primary"
           @click="() => emit('goRouter', { projectId: props.projectId, url: '/tracking-information/tracking' })"
         >
           跟踪记录
         </el-button>
         <el-button
-          v-auth="['PM00101004']" type="primary"
+          v-if="checkCreateNew()" type="primary"
           @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-bidding/bidding' })"
         >
           新建投标评审
         </el-button>
         <el-button
-          v-auth="['PM00101007']" type="primary"
+          v-if="checkContract" type="primary"
           @click="() => emit('goRouter', { projectId: props.projectId, url: '/contract-rating/contract-review' })"
         >
           合同评审

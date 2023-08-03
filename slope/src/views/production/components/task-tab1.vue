@@ -63,6 +63,13 @@ const checkCancel = () => {
   return isOwn && isAuth && last && (last.approve_result === '等待审核' || last.approve_result === '驳回')
 }
 
+const checkEdit = () => {
+  const isOwn = checkIsOwn(activeTaskData.value.registrant_user)
+  const last = findLastAppItem(activeTaskData.value.task_approve)
+  const isAuth = checkAuth('PM00201001')
+  return isOwn && isAuth && last && (last.approve_result === '等待审核' || last.approve_result === '驳回')
+}
+
 defineExpose({
   endProject,
 })
@@ -74,8 +81,8 @@ defineExpose({
       <el-button v-if="checkCancel()" type="primary" @click="cancel">
         取消
       </el-button>
-      <el-button v-if="checkCancel()" type="primary" @click="toEdit">
-        重新下单
+      <el-button v-if="checkEdit()" type="primary" @click="toEdit">
+        编辑
       </el-button>
     </div>
     <div class="block">

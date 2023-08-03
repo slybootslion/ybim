@@ -21,7 +21,6 @@ defineProps<{
         </el-tag>
       </div>
       <div
-        v-if="item.approve_contents"
         :style="index === conreApprove.length - 1 ? {} : { minHeight: '80px', borderLeft: '1px solid #ccc' }"
         style="margin: 5px 0 5px 120px; padding: 0 26px; position:relative;"
       >

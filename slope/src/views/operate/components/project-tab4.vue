@@ -2,6 +2,7 @@
 import { ElMessage, ElMessageBox, FormInstance, FormRules } from 'element-plus'
 import type {
   approveFormDataI,
+  approveItemI,
 } from '@/views/operate/project-method'
 import {
   activeContractReviewData, activeProjectData, approveSubmit, downloadItem, getContractReview,
@@ -9,8 +10,8 @@ import {
 } from '@/views/operate/project-method'
 import api from '@/api'
 import { back } from '@/views/scientific_research/project-method'
-import { checkAuth, checkIsOwn } from '@/utils/tools'
-import ApproveList from "@/views/operate/components/approve-list.vue";
+import { checkAuth, checkIsOwn, findLastAppItem } from '@/utils/tools'
+import ApproveList from '@/views/operate/components/approve-list.vue'
 
 const props = defineProps<{
   projectId: string
@@ -21,15 +22,25 @@ const formData: approveFormDataI = reactive<approveFormDataI>({
   approve_contents: '',
   approve_id: '',
 })
+const status = ref(-Infinity)
+const isOwn = ref(false)
+const lastApprove = ref<approveItemI>({ approve_contents: '', approve_result: '', approve_time: '', approve_user: '' })
 const getDetail = async () => {
   loading.value = true
   const data = await getContractReview(props.projectId)
   activeContractReviewData.value = data as resContractReviewI
   if (data && data.approve_id) formData.approve_id = data.approve_id
+  isOwn.value = checkIsOwn(data.responsible_person)
+  if (data.conre_approve) lastApprove.value = findLastAppItem(data.conre_approve)
   loading.value = false
 }
 getDetail()
+
 const ruleFormRef = ref<FormInstance>()
+
+watchEffect(() => {
+  status.value = activeProjectData.value.project_status
+})
 
 const cancel = () => {
   ElMessageBox.confirm('点击确定后将无法恢复，是否继续？', '注意', {
@@ -44,9 +55,15 @@ const cancel = () => {
     }
   }).catch(console.log)
 }
+
+const checkCancel = () => {
+  return isOwn.value && checkAuth('PM00101015')
+    && status.value === 6 && lastApprove.value?.approve_result !== '通过'
+}
+
 const checkRecover = () => {
-  const isOwn = checkIsOwn(activeContractReviewData.value.responsible_person)
-  return isOwn && checkAuth('PM00101007')
+  return isOwn.value && checkAuth('PM00101007')
+    && status.value === 6 && lastApprove.value?.approve_result !== '通过'
 }
 </script>
 
@@ -54,7 +71,7 @@ const checkRecover = () => {
   <div v-loading="loading">
     <div v-if="activeContractReviewData.conre_id" class="block">
       <div class="top-button">
-        <el-button v-auth="['PM00101015']" type="primary" @click="cancel">
+        <el-button v-if="checkCancel()" type="primary" @click="cancel">
           取消
         </el-button>
         <el-button
