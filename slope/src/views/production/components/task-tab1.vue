@@ -3,7 +3,7 @@ import dayjs from 'dayjs'
 import { ElMessage, ElMessageBox, FormInstance, FormRules } from 'element-plus'
 import { activeTaskData, getTask, resTaskDataI } from '@/views/production/task-method'
 import type { approveFormDataI } from '@/views/operate/project-method'
-import { approveSubmit, rules } from '@/views/operate/project-method'
+import { approveLoading, approveSubmit, rules } from '@/views/operate/project-method'
 import api from '@/api'
 import { checkAuth, checkIsOwn, findLastAppItem } from '@/utils/tools'
 import { back } from '@/views/scientific_research/project-method'
@@ -168,7 +168,7 @@ defineExpose({
         :rules="rules as FormRules" label-width="130px"
         style="margin-bottom: 20px;"
       >
-        <el-descriptions title="审核信息" :column="1">
+        <el-descriptions v-loading="approveLoading" title="审核信息" :column="1">
           <el-descriptions-item label="审核：">
             <el-form-item label="" prop="approve_result">
               <el-radio-group v-model="formData.approve_result">

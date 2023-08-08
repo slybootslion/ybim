@@ -206,18 +206,19 @@ export const rules = reactive<FormRules>({
   approve_contents: [{ required: true, message: '输入审核意见', trigger: 'blur' }],
 })
 
+export const approveLoading = ref(false)
 export const approveSubmit = async (formEl: FormInstance | undefined, formData: approveFormDataI, cb: Function) => {
   if (!formEl) return
   await formEl.validate(async (valid) => {
     if (valid) {
-      loading.value = true
+      approveLoading.value = true
       const res: any = await approveApi(formData)
       if (!res || res.code !== 0) {
-        loading.value = false
+        approveLoading.value = false
         return
       }
       await cb()
-      loading.value = false
+      approveLoading.value = false
       clearForm(formData)
     }
   })

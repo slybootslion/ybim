@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {
-  activeTailList, downloadItem, activeProjectData,
+  activeTailList, downloadItem,
   getTailList,
   tailItemI,
 } from '@/views/operate/project-method'
@@ -28,7 +28,10 @@ const delItem = (id: string) => delItemHandle('', del, id)
 const router = useRouter()
 const editItem = (id: string) => router.push(`/tracking-information/tracking?project_id=${props.projectId}&tail_id=${id}`)
 
-const checkTrack = computed(() => checkAuth('PM00101011') && activeProjectData.value.project_status !== 7)
+const checkTrack = computed(() => {
+  return checkAuth('PM00101011')
+  // && activeProjectData.value.project_status !== 7
+})
 </script>
 
 <template>

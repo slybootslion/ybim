@@ -8,6 +8,7 @@ import { tableHeaderCellStyle } from '@/utils/tools'
 const props = defineProps<{
   detailFileList: projectFileListI
   researchId: string
+  status: number
 }>()
 const emit = defineEmits(['uploadSuccess'])
 
@@ -23,7 +24,6 @@ const uploadQuestsFile = async (obj: UploadRequestOptions, research_file_type: n
   loading.value = true
   const research_id = props.researchId
   const res: any = await api.post('/science/uploadQuestsFile', { file: obj.file, research_id, research_file_type })
-  console.log(res)
   if (res.code === 0) emit('uploadSuccess')
   loading.value = false
 }
@@ -31,13 +31,15 @@ const upload0 = (obj: UploadRequestOptions) => uploadQuestsFile(obj, 0)
 const upload1 = (obj: UploadRequestOptions) => uploadQuestsFile(obj, 1)
 const upload2 = (obj: UploadRequestOptions) => uploadQuestsFile(obj, 2)
 const upload3 = (obj: UploadRequestOptions) => uploadQuestsFile(obj, 3)
+
+const checkUpload = computed(() => props.status !== 3)
 </script>
 
 <template>
   <div v-loading="loading">
     <div class="block">
       <el-descriptions title="研究准备阶段" :column="1">
-        <el-descriptions-item class-name="top">
+        <el-descriptions-item v-if="checkUpload" class-name="top">
           <el-upload :http-request="upload0" :show-file-list="false">
             <el-button type="primary">
               上传资料
@@ -69,7 +71,7 @@ const upload3 = (obj: UploadRequestOptions) => uploadQuestsFile(obj, 3)
     </div>
     <div class="block">
       <el-descriptions title="研究试验与开发" :column="1">
-        <el-descriptions-item class-name="top">
+        <el-descriptions-item v-if="checkUpload" class-name="top">
           <el-upload :http-request="upload1" :show-file-list="false">
             <el-button type="primary">
               上传资料
@@ -101,7 +103,7 @@ const upload3 = (obj: UploadRequestOptions) => uploadQuestsFile(obj, 3)
     </div>
     <div class="block">
       <el-descriptions title="验收阶段" :column="1">
-        <el-descriptions-item class-name="top">
+        <el-descriptions-item v-if="checkUpload" class-name="top">
           <el-upload :http-request="upload2" :show-file-list="false">
             <el-button type="primary">
               上传资料
@@ -133,7 +135,7 @@ const upload3 = (obj: UploadRequestOptions) => uploadQuestsFile(obj, 3)
     </div>
     <div class="block">
       <el-descriptions title="成果推广应用" :column="1">
-        <el-descriptions-item class-name="top">
+        <el-descriptions-item v-if="checkUpload" class-name="top">
           <el-upload :http-request="upload3" :show-file-list="false">
             <el-button type="primary">
               上传资料

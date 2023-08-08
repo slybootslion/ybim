@@ -73,7 +73,7 @@ const initForm = async (projectId: string) => {
   formData.applicant_time = res.applicant_time
   formData.specific_note = res.specific_note
   formData.authorized_person = res.authorized_person
-  formData.authorized_person_code = res.authorized_person_code
+  formData.authorized_person_code = res.authorized_person_code.toString()
   formData.authorized_end_time = res.authorized_end_time
   if (res.authorized_attachment) {
     formData.authorized_attachment = res.authorized_attachment

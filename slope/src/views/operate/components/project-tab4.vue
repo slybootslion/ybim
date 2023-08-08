@@ -5,7 +5,7 @@ import type {
   approveItemI,
 } from '@/views/operate/project-method'
 import {
-  activeContractReviewData, activeProjectData, approveSubmit, downloadItem, getContractReview,
+  activeContractReviewData, activeProjectData, approveLoading, approveSubmit, downloadItem, getContractReview,
   resContractReviewI, resProjectDataI, rules,
 } from '@/views/operate/project-method'
 import api from '@/api'
@@ -56,26 +56,26 @@ const cancel = () => {
   }).catch(console.log)
 }
 
-const checkCancel = () => {
+const checkCancel = computed(() => {
   return isOwn.value && checkAuth('PM00101015')
-    && status.value === 6 && lastApprove.value?.approve_result !== '通过'
-}
+    && (status.value === 9 || status.value === 10)
+})
 
-const checkRecover = () => {
+const checkRecover = computed(() => {
   return isOwn.value && checkAuth('PM00101007')
-    && status.value === 6 && lastApprove.value?.approve_result !== '通过'
-}
+    && (status.value === 9 || status.value === 10)
+})
 </script>
 
 <template>
   <div v-loading="loading">
     <div v-if="activeContractReviewData.conre_id" class="block">
       <div class="top-button">
-        <el-button v-if="checkCancel()" type="primary" @click="cancel">
+        <el-button v-if="checkCancel" type="primary" @click="cancel">
           取消
         </el-button>
         <el-button
-          v-if="checkRecover()" type="primary"
+          v-if="checkRecover" type="primary"
           @click="() => emit('goRouter', { projectId: props.projectId, url: '/contract-rating/contract-review' })"
         >
           重新发起
@@ -128,7 +128,7 @@ const checkRecover = () => {
         ref="ruleFormRef" inline :model="formData" :rules="rules as FormRules" label-width="130px"
         style="margin-bottom: 20px;"
       >
-        <el-descriptions title="审核信息" :column="1">
+        <el-descriptions v-loading="approveLoading" title="审核信息" :column="1">
           <el-descriptions-item label="审核：">
             <el-form-item label="" prop="approve_result">
               <el-radio-group v-model="formData.approve_result">

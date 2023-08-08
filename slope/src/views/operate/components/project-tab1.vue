@@ -3,12 +3,12 @@ import { ElMessage, ElMessageBox, FormInstance, FormRules } from 'element-plus'
 import { getProject } from '@/views/operate/bid-method'
 import type { approveFormDataI } from '@/views/operate/project-method'
 import {
-  activeProjectData, activeTenderData, approveSubmit,
+  activeProjectData, approveLoading, approveSubmit,
   downloadItem, resProjectDataI, rules,
 } from '@/views/operate/project-method'
 import api from '@/api'
 import { back } from '@/views/scientific_research/project-method'
-import { checkAuth, checkIsOwn, findLastAppItem } from '@/utils/tools'
+import { checkAuth, checkIsOwn } from '@/utils/tools'
 import ApproveList from '@/views/operate/components/approve-list.vue'
 
 const props = defineProps<{
@@ -79,68 +79,58 @@ const end = async () => {
   }).catch(console.log)
 }
 
-const checkCancel = () => {
+const checkCancel = computed(() => {
   return isOwn.value && checkAuth('PM00101013')
-    && (status.value === 0 || status.value === -1)
-}
-
-const checkReStart = () => {
-  return isOwn.value && checkAuth('PM00101001')
-    && (status.value === 0 || status.value === -1)
-}
-
-const checkTrack = () => {
-  return checkAuth('PM00101011') && (isOwn.value || checkIsOwn(activeProjectData.value.operation_user))
-  && (status.value === 0 || status.value === -1 || status.value === 1 || status.value === 2 || status.value === 6)
-}
-
-const checkCreateNew = () => {
-  return isOwn.value && checkAuth('PM00101004')
-  && (status.value === 1)
-}
-
-// const checkContract = () => {
-//   return isOwn.value && checkAuth('PM00101007')
-//     && (status.value === 1
-//       || (status.value === 2 && findLastAppItem(activeTenderData.value.tender_approve).approve_result === '通过'))
-// }
-
-const checkContract = computed(() => {
-  if (!activeTenderData.value.tender_approve) return false
-  const last = findLastAppItem(activeTenderData.value.tender_approve)
-  if (!last) return false
-  return isOwn.value && checkAuth('PM00101007')
-    && (status.value === 1
-      || (status.value === 2 && last.approve_result === '通过'))
+    && (status.value === 0 || status.value === 1)
 })
 
-const checkFinish = () => {
+const checkReStart = computed(() => {
+  return isOwn.value && checkAuth('PM00101001')
+    && (status.value === 0 || status.value === 1)
+})
+
+const checkTrack = computed(() => {
+  return checkAuth('PM00101011') && (isOwn.value || checkIsOwn(activeProjectData.value.operation_user))
+    && status.value !== 12
+})
+
+const checkCreateNew = computed(() => {
+  return isOwn.value && checkAuth('PM00101004')
+    && status.value === 2
+})
+
+const checkContract = computed(() => {
+  return isOwn.value && checkAuth('PM00101007')
+    && (status.value === 2 || status.value === 8)
+})
+
+const checkFinish = computed(() => {
   return isOwn.value && checkAuth('PM00101012')
-    && (status.value === 1 || status.value === 2 || status.value === 6)
-}
+    && (status.value !== 1 && status.value !== 12)
+})
 </script>
 
 <template>
   <div v-loading="loading">
     <div class="block">
       <div class="top-button">
-        <el-button v-if="checkCancel()" type="primary" @click="cancelActive">
+        <el-button v-if="checkCancel" type="primary" @click="cancelActive">
           取消
         </el-button>
         <el-button
-          v-if="checkReStart()" type="primary"
+          v-if="checkReStart" type="primary"
           @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-approval/approval' })"
         >
           重新发起
         </el-button>
         <el-button
-          v-if="checkTrack()" type="primary"
+          v-if="checkTrack" type="primary"
           @click="() => emit('goRouter', { projectId: props.projectId, url: '/tracking-information/tracking' })"
         >
           跟踪记录
         </el-button>
         <el-button
-          v-if="checkCreateNew()" type="primary"
+          v-if="checkCreateNew" type="primary"
           @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-bidding/bidding' })"
         >
           新建投标评审
@@ -151,7 +141,7 @@ const checkFinish = () => {
         >
           合同评审
         </el-button>
-        <el-button v-if="checkFinish()" type="primary" @click="end">
+        <el-button v-if="checkFinish" type="primary" @click="end">
           项目完结
         </el-button>
       </div>
@@ -234,7 +224,7 @@ const checkFinish = () => {
         v-if="activeProjectData && (activeProjectData as resProjectDataI).approve_id"
         ref="ruleFormRef" inline :model="formData" :rules="rules as FormRules" label-width="130px"
       >
-        <el-descriptions title="审核信息" :column="1">
+        <el-descriptions v-loading="approveLoading" title="审核信息" :column="1">
           <el-descriptions-item label="审核：">
             <el-form-item label="" prop="approve_result">
               <el-radio-group v-model="formData.approve_result">
