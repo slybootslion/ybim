@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { FormInstance, FormRules, UploadUserFile } from 'element-plus'
+import { ElMessage, FormInstance, FormRules, UploadUserFile } from 'element-plus'
 import {
   addTender, clearFormData,
   formData, handleUploadFile, loading, primaryPurchaseWayOptions,
@@ -7,7 +7,7 @@ import {
 import {projectIdSelect, projectOptions, projectSearchLoading, remoteMethod} from '@/views/production/task-method'
 import { getTreeList, level2List } from '@/views/system/personnel-method'
 import { beforeUploadFile, handleRemoveFile } from '@/utils/tools'
-import { getTender } from '@/views/operate/bid-method'
+import { getProject, getTender } from '@/views/operate/bid-method'
 import { baseURL } from '@/api'
 
 getTreeList()
@@ -83,13 +83,28 @@ const initForm = async (projectId: string) => {
     }]
   }
 }
-if (query.project_id) {
-  projectIdSelect(query.project_id as string)
-  formData.project_id = query.project_id as string
-  if (query.r === 'true') {
-    initForm(query.project_id as string)
+const selectProject = async (projectId: string) => {
+  const data = await getProject(projectId)
+  if (data.project_status !== 2 && data.project_status !== 3 && data.project_status !== 4) {
+    ElMessage.error('该项目不可发起投标申请')
+    clearFormData()
+    return false
   }
-} else clearFormData()
+  return true
+}
+const initData = async () => {
+  const id = query.project_id as string
+  if (id) {
+    const res = await selectProject(id)
+    if (!res) return
+    await projectIdSelect(id)
+    formData.project_id = id
+    if (query.r === 'true') {
+      await initForm(id)
+    }
+  } else clearFormData()
+}
+initData()
 </script>
 
 <template>
@@ -115,7 +130,8 @@ if (query.project_id) {
           <el-form-item label="项目名称：" prop="project_id">
             <el-select
               v-model="formData.project_id" filterable remote reserve-keyword placeholder="输入项目名称查找"
-              :remote-method="remoteMethod" :loading="projectSearchLoading"
+              disabled :remote-method="remoteMethod" :loading="projectSearchLoading"
+              @change="selectProject"
             >
               <el-option
                 v-for="p in projectOptions" :key="p.project_id" :label="p.project_name"

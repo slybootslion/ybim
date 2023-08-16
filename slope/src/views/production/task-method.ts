@@ -1,6 +1,6 @@
 import type { Ref } from 'vue'
 import api from '@/api'
-import type { approveItemI } from '@/views/operate/project-method'
+import type { approveItemI, resProjectDataI } from '@/views/operate/project-method'
 import { getProjectList } from '@/views/operate/project-method'
 import { getProject } from '@/views/operate/bid-method'
 
@@ -31,6 +31,7 @@ export interface resTaskDataI {
   allocation_ratio: string
   production_user_id: string
   deadline: string
+  status: number
   task_explain: string
   main_department: string
   production_user: string
@@ -40,7 +41,10 @@ export interface resTaskDataI {
   task_approve: approveItemI[]
 }
 
+export const taskStatus = ref(0)
+
 export const activeTaskData: Ref<resTaskDataI> = ref<resTaskDataI>({
+  status: 1,
   task_id: '',
   project_name: '',
   project_id: '',
@@ -115,9 +119,11 @@ export const remoteMethod = async (query: string, more: false | Object = false) 
   projectOptions.value = r.list
   projectSearchLoading.value = false
 }
-export const projectIdSelect = async (project_id: string) => {
+
+export const projectIdSelect = async (project_id: string): Promise<resProjectDataI> => {
   const res = await getProject(project_id)
   if (res && res.project_name) {
     await remoteMethod(res.project_name)
   }
+  return res
 }

@@ -46,10 +46,10 @@ const endPr = () => {
     <div class="bottom">
       <el-tabs v-model="activeName">
         <el-tab-pane label="基本信息" name="基本信息">
-          <TaskTab1 ref="tab1" :task-id="taskId as string" />
+          <TaskTab1 ref="tab1" :task-id="taskId" />
         </el-tab-pane>
         <el-tab-pane label="生产资料" name="生产资料">
-          <TaskTab2 :task-id="taskId as string" />
+          <TaskTab2 :task-id="taskId" />
         </el-tab-pane>
       </el-tabs>
     </div>

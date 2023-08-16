@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { FormInstance, FormRules } from 'element-plus'
+import { ElMessage, FormInstance, FormRules } from 'element-plus'
 import dayjs from 'dayjs'
 import type { projectFormDataI } from '@/views/production/project-method'
 import {
@@ -115,6 +115,11 @@ remoteMethod('')
 
 const projectSelected = async (id: string) => {
   const res: any = await getProject(id)
+  if (res.project_status <= 2 || res.project_status >= 12) {
+    ElMessage.error('该项目不可发起任务下单')
+    clearFormData()
+    return
+  }
   formData.project_type = res.project_type
   formData.industry_type = res.industry_type
 }

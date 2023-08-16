@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
 import { ElMessage, ElMessageBox, FormInstance, FormRules } from 'element-plus'
-import { activeTaskData, getTask, resTaskDataI } from '@/views/production/task-method'
+import { activeTaskData, getTask, resTaskDataI, taskStatus } from '@/views/production/task-method'
 import type { approveFormDataI } from '@/views/operate/project-method'
 import { approveLoading, approveSubmit, rules } from '@/views/operate/project-method'
 import api from '@/api'
-import { checkAuth, checkIsOwn, findLastAppItem } from '@/utils/tools'
+import { checkAuth, checkIsOwn } from '@/utils/tools'
 import { back } from '@/views/scientific_research/project-method'
 import ApproveList from '@/views/operate/components/approve-list.vue'
 
@@ -22,6 +22,7 @@ const formData: approveFormDataI = reactive<approveFormDataI>({
 const getDetail = async () => {
   const data = await getTask(props.taskId)
   activeTaskData.value = data as resTaskDataI
+  taskStatus.value = data.status
   if (data && data.approve_id) formData.approve_id = data.approve_id
   if (data && data.end_time && data.start_time) days.value = `${ dayjs(data.end_time).diff(data.start_time, 'day') }`
 }
@@ -56,19 +57,19 @@ const cancel = () => {
   }).catch(console.log)
 }
 
-const checkCancel = () => {
+const checkCancel = computed(() => {
   const isOwn = checkIsOwn(activeTaskData.value.registrant_user)
-  const last = findLastAppItem(activeTaskData.value.task_approve)
+  // const last = findLastAppItem(activeTaskData.value.task_approve)
   const isAuth = checkAuth('PM00201007')
-  return isOwn && isAuth && last && (last.approve_result === '等待审核' || last.approve_result === '驳回')
-}
+  return isOwn && isAuth && activeTaskData.value.status === 3
+})
 
-const checkEdit = () => {
+const checkEdit = computed(() => {
   const isOwn = checkIsOwn(activeTaskData.value.registrant_user)
-  const last = findLastAppItem(activeTaskData.value.task_approve)
+  // const last = findLastAppItem(activeTaskData.value.task_approve)
   const isAuth = checkAuth('PM00201001')
-  return isOwn && isAuth && last && (last.approve_result === '等待审核' || last.approve_result === '驳回')
-}
+  return isOwn && isAuth && activeTaskData.value.status === 3
+})
 
 defineExpose({
   endProject,
@@ -78,10 +79,10 @@ defineExpose({
 <template>
   <div v-loading="loading">
     <div class="btn-edit-box">
-      <el-button v-if="checkCancel()" type="primary" @click="cancel">
+      <el-button v-if="checkCancel" type="primary" @click="cancel">
         取消
       </el-button>
-      <el-button v-if="checkEdit()" type="primary" @click="toEdit">
+      <el-button v-if="checkEdit" type="primary" @click="toEdit">
         编辑
       </el-button>
     </div>
@@ -109,10 +110,10 @@ defineExpose({
           {{ days }}天
         </el-descriptions-item>
         <el-descriptions-item label="经办人：">
-          {{ activeTaskData.registrant_user }}天
+          {{ activeTaskData.registrant_user }}
         </el-descriptions-item>
       </el-descriptions>
-      <el-descriptions :column="2" style="margin-top: 40px;">
+      <el-descriptions :column="2" style="margin-top: 40px;" class="block-text label-140">
         <el-descriptions-item label="任务名称：">
           {{ activeTaskData.task_name }}
         </el-descriptions-item>
@@ -137,7 +138,7 @@ defineExpose({
       </el-descriptions>
       <el-descriptions
         v-for="op in activeTaskData.participating_organization" :key="op.taskCode" :column="2"
-        style="margin-top: 40px;"
+        style="margin-top: 40px;" class="block-text label-140"
       >
         <el-descriptions-item label="任务名称：">
           {{ op.task_name }}

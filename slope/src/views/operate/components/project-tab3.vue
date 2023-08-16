@@ -60,17 +60,17 @@ const cancel = async () => {
 
 const checkCancel = computed(() => {
   return isOwn.value && checkAuth('PM00101014')
-    && (status.value === 3 || status.value === 4)
+    && status.value === 4
 })
 
 const checkRecreate = computed(() => {
   return isOwn.value && checkAuth('PM00101004')
-    && (status.value === 3 || status.value === 4)
+    && status.value === 4
 })
 
 const checkRegisterResult = computed(() => {
   return isOwn.value && checkAuth('PM00101006')
-    && (status.value === 5)
+    && status.value === 5
 })
 </script>
 
@@ -83,7 +83,7 @@ const checkRegisterResult = computed(() => {
         </el-button>
         <el-button
           v-if="checkRecreate" type="primary"
-          @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-bidding/bidding', r: true })"
+          @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-initiation/bidding', r: true })"
         >
           重新发起投标
         </el-button>
@@ -116,12 +116,12 @@ const checkRegisterResult = computed(() => {
           {{ activeProjectData && (activeProjectData as resProjectDataI).project_dependency_city }}
         </el-descriptions-item>
       </el-descriptions>
-      <el-descriptions>
+      <el-descriptions class="block-text label-112">
         <el-descriptions-item label="项目等级与规模：">
           {{ activeProjectData && (activeProjectData as resProjectDataI).project_general }}
         </el-descriptions-item>
       </el-descriptions>
-      <el-descriptions>
+      <el-descriptions class="block-text">
         <el-descriptions-item label="项目实施方案：">
           {{ activeProjectData && (activeTenderData as resTenderI).implement_solution }}
         </el-descriptions-item>
@@ -134,7 +134,7 @@ const checkRegisterResult = computed(() => {
           {{ activeTenderData && (activeTenderData as resTenderI).purchase_way }}
         </el-descriptions-item>
         <el-descriptions-item label="招标主体单位：">
-          {{ activeTenderData && (activeTenderData as resTenderI).main_bidder }}
+          {{ activeTenderData && (activeTenderData as resTenderI).main_bidder_name }}
         </el-descriptions-item>
         <el-descriptions-item label="报名日期：">
           {{ activeTenderData && (activeTenderData as resTenderI).apply_time }}
@@ -175,30 +175,37 @@ const checkRegisterResult = computed(() => {
         <el-descriptions-item label="投标结果：">
           {{ activeTenderData && (activeTenderData as resTenderI).tender_result }}
         </el-descriptions-item>
-        <el-descriptions-item label="中标单位：">
-          {{ activeTenderData && (activeTenderData as resTenderI).win_bidder }}
-        </el-descriptions-item>
-        <el-descriptions-item label="中标日期：">
-          {{ activeTenderData && (activeTenderData as resTenderI).win_time }}
-        </el-descriptions-item>
-        <el-descriptions-item label="中标价格（万元）：">
-          {{ activeTenderData && (activeTenderData as resTenderI).tender_money }}
-        </el-descriptions-item>
-        <el-descriptions-item label="投标报价清单：">
-          <el-button
-            link type="primary"
-            @click="downloadItem((activeTenderData as resTenderI).tender_offer_url as string)"
-          >
-            {{ activeTenderData && (activeTenderData as resTenderI).tender_offer_name }}
-          </el-button>
-        </el-descriptions-item>
-        <el-descriptions-item label="中标通知书：">
-          <el-button
-            link type="primary"
-            @click="downloadItem((activeTenderData as resTenderI).win_tender_inform_url as string)"
-          >
-            {{ activeTenderData && (activeTenderData as resTenderI).win_tender_inform_name }}
-          </el-button>
+        <div v-if="(activeTenderData as resTenderI).tender_result === '中标'">
+          <el-descriptions-item label="中标单位：">
+            {{ activeTenderData && (activeTenderData as resTenderI).win_bidder }}
+          </el-descriptions-item>
+          <el-descriptions-item label="中标日期：">
+            {{ activeTenderData && (activeTenderData as resTenderI).win_time }}
+          </el-descriptions-item>
+          <el-descriptions-item label="中标价格（万元）：">
+            {{ activeTenderData && (activeTenderData as resTenderI).tender_money }}
+          </el-descriptions-item>
+          <el-descriptions-item label="投标报价清单：">
+            <el-button
+              link type="primary"
+              @click="downloadItem((activeTenderData as resTenderI).tender_offer_url as string)"
+            >
+              {{ activeTenderData && (activeTenderData as resTenderI).tender_offer_name }}
+            </el-button>
+          </el-descriptions-item>
+          <el-descriptions-item label="中标通知书：">
+            <el-button
+              link type="primary"
+              @click="downloadItem((activeTenderData as resTenderI).win_tender_inform_url as string)"
+            >
+              {{ activeTenderData && (activeTenderData as resTenderI).win_tender_inform_name }}
+            </el-button>
+          </el-descriptions-item>
+        </div>
+      </el-descriptions>
+      <el-descriptions v-if="(activeTenderData as resTenderI).tender_result !== '中标'" style="margin-top: -20px;" :column="1">
+        <el-descriptions-item label="放弃/落标原因：">
+          {{ activeTenderData && (activeTenderData as resTenderI).lost_tender_note }}
         </el-descriptions-item>
       </el-descriptions>
       <el-descriptions title="标书信息" :column="1" style="margin-bottom: 20px;" class="block-text">

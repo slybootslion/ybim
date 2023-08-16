@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import { FormInstance, FormRules, UploadUserFile } from 'element-plus'
+import { ElMessage, FormInstance, FormRules, UploadUserFile } from 'element-plus'
 import {
   addTail, clearFormData, editTail,
   formData, getDetail, handleUploadFile, loading,
 } from '@/views/operate/tracking-method'
 import { getTreeList } from '@/views/system/personnel-method'
 import { beforeUploadFile, handleRemoveFile } from '@/utils/tools'
-import { projectIdSelect, projectOptions, projectSearchLoading, remoteMethod } from '@/views/production/task-method'
+import {
+  projectIdSelect, projectOptions, projectSearchLoading, remoteMethod,
+} from '@/views/production/task-method'
+import { getProject } from "@/views/operate/bid-method";
 
 getTreeList()
 remoteMethod('')
@@ -38,7 +41,7 @@ const submit = async (formEl: FormInstance | undefined) => {
           return
         }
       }
-      await router.push(`/project-initiation/project-detail?project_id=${formData.project_id}&type=4`)
+      await router.push(`/project-initiation/project-detail?project_id=${ formData.project_id }&type=4`)
       clearFormData()
       loading.value = false
     }
@@ -56,13 +59,28 @@ const rules = reactive<FormRules>({
   subject: [{ required: true, message: '输入主题', trigger: 'blur' }],
   datePick: [{ required: true, message: '选择跟踪时间', trigger: 'change' }],
 })
-if (query.project_id) {
-  projectIdSelect(query.project_id as string)
-  formData.project_id = query.project_id as string
-  if (query.tail_id) {
-    getDetail(query.tail_id as string, query.project_id as string)
+const selectProject = async (projectId: string) => {
+  const data = await getProject(projectId)
+  if (data.project_status === 12) {
+    ElMessage.error('该项目不可发起项目信息录入')
+    clearFormData()
+    return false
   }
-} else clearFormData()
+  return true
+}
+const initData = async () => {
+  const id = query.project_id as string
+  if (query.project_id) {
+    const res = await selectProject(id)
+    if (!res) return
+    await projectIdSelect(id)
+    formData.project_id = id
+    if (query.tail_id) {
+      await getDetail(query.tail_id as string, query.project_id as string)
+    }
+  } else clearFormData()
+}
+initData()
 </script>
 
 <template>
@@ -87,6 +105,7 @@ if (query.project_id) {
               <el-select
                 v-model="formData.project_id" filterable remote reserve-keyword placeholder="输入项目名称查找"
                 :remote-method="remoteMethod" :loading="projectSearchLoading"
+                @change="selectProject"
               >
                 <el-option
                   v-for="p in projectOptions" :key="p.project_id" :label="p.project_name"

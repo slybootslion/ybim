@@ -35,6 +35,30 @@ const Initiation: RouteRecordRaw = {
         activeMenu: '/project-initiation',
       },
     },
+    {
+      path: 'bidding',
+      name: 'project-bidding-bidding',
+      component: () => import('@/views/operate/bidding.vue'),
+      meta: {
+        title: '项目投标申请',
+        sidebar: false,
+        breadcrumb: false,
+        activeMenu: '/project-bidding',
+        cache: false,
+      },
+    },
+    {
+      path: 'contract-review',
+      name: 'contract-rating-contract-review',
+      component: () => import('@/views/operate/contract-review.vue'),
+      meta: {
+        title: '合同评审',
+        sidebar: false,
+        breadcrumb: false,
+        activeMenu: '/contract-rating',
+        cache: false,
+      },
+    },
   ],
 }
 

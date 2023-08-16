@@ -4,6 +4,7 @@ import type { InputHTMLAttributes } from 'vue'
 import type { UploadRequestOptions } from 'element-plus/lib/components'
 import api from '@/api'
 import { uploadProjectAttach } from '@/views/operate/approval-method'
+import type { resProjectDataI } from '@/views/operate/project-method'
 
 export const loading = ref(false)
 export const editId = ref('')
@@ -49,7 +50,7 @@ export const getTender = async (project_id: string) => {
   return res.data
 }
 
-export const getProject = async (project_id: string) => {
+export const getProject = async (project_id: string): Promise<resProjectDataI> => {
   const res = await api.get(`/project/getProject?project_id=${project_id}`)
   return res.data
 }

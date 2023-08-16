@@ -3,7 +3,7 @@ import type { UploadRequestOptions } from 'element-plus/lib/components'
 import type { fileItemI, projectFileListI } from '@/views/scientific_research/project-method'
 import { getDownloadUrl } from '@/views/scientific_research/project-method'
 import api, { baseURL } from '@/api'
-import { tableHeaderCellStyle } from '@/utils/tools'
+import { checkIsOwn, delItemHandle, tableHeaderCellStyle } from '@/utils/tools'
 
 const props = defineProps<{
   detailFileList: projectFileListI
@@ -33,6 +33,11 @@ const upload2 = (obj: UploadRequestOptions) => uploadQuestsFile(obj, 2)
 const upload3 = (obj: UploadRequestOptions) => uploadQuestsFile(obj, 3)
 
 const checkUpload = computed(() => props.status !== 3)
+const delCB = async (file_id: string) => {
+  await api.post('/science/removeQuestsFile', { file_id })
+  emit('uploadSuccess')
+}
+const delItem = async (row: fileItemI) => delItemHandle(row.research_file_name, delCB, row.research_file_id)
 </script>
 
 <template>
@@ -40,7 +45,7 @@ const checkUpload = computed(() => props.status !== 3)
     <div class="block">
       <el-descriptions title="研究准备阶段" :column="1">
         <el-descriptions-item v-if="checkUpload" class-name="top">
-          <el-upload :http-request="upload0" :show-file-list="false">
+          <el-upload :http-request="upload0" multiple :show-file-list="false">
             <el-button type="primary">
               上传资料
             </el-button>
@@ -48,7 +53,10 @@ const checkUpload = computed(() => props.status !== 3)
           <!--          <el-button>全部下载</el-button> -->
         </el-descriptions-item>
         <el-descriptions-item>
-          <el-table :data="detailFileList.prepare" border style="width: 100%" stripe :header-cell-style="tableHeaderCellStyle">
+          <el-table
+            :data="detailFileList.prepare" border style="width: 100%" stripe
+            :header-cell-style="tableHeaderCellStyle"
+          >
             <el-table-column prop="research_file_name" label="文件">
               <template #default="scope">
                 <el-button link type="primary" @click="downloadItem(scope.row)">
@@ -60,8 +68,14 @@ const checkUpload = computed(() => props.status !== 3)
             <el-table-column prop="create_time" label="上传时间" width="260" />
             <el-table-column label="操作" width="160">
               <template #default="scope">
-                <el-button link type="primary" size="small" @click.prevent="downloadItem(scope.row)">
+                <el-button v-auth="['PM00401005']" link type="primary" size="small" @click.prevent="downloadItem(scope.row)">
                   下载
+                </el-button>
+                <el-button
+                  v-if="checkIsOwn(scope.row.upload_user)" v-auth="['PM00401004']" link type="primary" size="small"
+                  @click.prevent="delItem(scope.row)"
+                >
+                  删除
                 </el-button>
               </template>
             </el-table-column>
@@ -72,7 +86,7 @@ const checkUpload = computed(() => props.status !== 3)
     <div class="block">
       <el-descriptions title="研究试验与开发" :column="1">
         <el-descriptions-item v-if="checkUpload" class-name="top">
-          <el-upload :http-request="upload1" :show-file-list="false">
+          <el-upload :http-request="upload1" multiple :show-file-list="false">
             <el-button type="primary">
               上传资料
             </el-button>
@@ -80,7 +94,10 @@ const checkUpload = computed(() => props.status !== 3)
           <!--          <el-button>全部下载</el-button> -->
         </el-descriptions-item>
         <el-descriptions-item>
-          <el-table :data="detailFileList.development" border style="width: 100%" stripe :header-cell-style="tableHeaderCellStyle">
+          <el-table
+            :data="detailFileList.development" border style="width: 100%" stripe
+            :header-cell-style="tableHeaderCellStyle"
+          >
             <el-table-column prop="research_file_name" label="文件">
               <template #default="scope">
                 <el-button link type="primary" @click="downloadItem(scope.row)">
@@ -92,8 +109,14 @@ const checkUpload = computed(() => props.status !== 3)
             <el-table-column prop="create_time" label="上传时间" width="260" />
             <el-table-column label="操作" width="160">
               <template #default="scope">
-                <el-button link type="primary" size="small" @click.prevent="downloadItem(scope.row)">
+                <el-button v-auth="['PM00401005']" link type="primary" size="small" @click.prevent="downloadItem(scope.row)">
                   下载
+                </el-button>
+                <el-button
+                  v-if="checkIsOwn(scope.row.upload_user)" v-auth="['PM00401004']" link type="primary" size="small"
+                  @click.prevent="delItem(scope.row)"
+                >
+                  删除
                 </el-button>
               </template>
             </el-table-column>
@@ -104,7 +127,7 @@ const checkUpload = computed(() => props.status !== 3)
     <div class="block">
       <el-descriptions title="验收阶段" :column="1">
         <el-descriptions-item v-if="checkUpload" class-name="top">
-          <el-upload :http-request="upload2" :show-file-list="false">
+          <el-upload :http-request="upload2" multiple :show-file-list="false">
             <el-button type="primary">
               上传资料
             </el-button>
@@ -112,7 +135,10 @@ const checkUpload = computed(() => props.status !== 3)
           <!--          <el-button>全部下载</el-button> -->
         </el-descriptions-item>
         <el-descriptions-item>
-          <el-table :data="detailFileList.inspection" border style="width: 100%" stripe :header-cell-style="tableHeaderCellStyle">
+          <el-table
+            :data="detailFileList.inspection" border style="width: 100%" stripe
+            :header-cell-style="tableHeaderCellStyle"
+          >
             <el-table-column prop="research_file_name" label="文件">
               <template #default="scope">
                 <el-button link type="primary" @click="downloadItem(scope.row)">
@@ -124,8 +150,14 @@ const checkUpload = computed(() => props.status !== 3)
             <el-table-column prop="create_time" label="上传时间" width="260" />
             <el-table-column label="操作" width="160">
               <template #default="scope">
-                <el-button link type="primary" size="small" @click.prevent="downloadItem(scope.row)">
+                <el-button v-auth="['PM00401005']" link type="primary" size="small" @click.prevent="downloadItem(scope.row)">
                   下载
+                </el-button>
+                <el-button
+                  v-if="checkIsOwn(scope.row.upload_user)" v-auth="['PM00401004']" link type="primary" size="small"
+                  @click.prevent="delItem(scope.row)"
+                >
+                  删除
                 </el-button>
               </template>
             </el-table-column>
@@ -136,7 +168,7 @@ const checkUpload = computed(() => props.status !== 3)
     <div class="block">
       <el-descriptions title="成果推广应用" :column="1">
         <el-descriptions-item v-if="checkUpload" class-name="top">
-          <el-upload :http-request="upload3" :show-file-list="false">
+          <el-upload :http-request="upload3" multiple :show-file-list="false">
             <el-button type="primary">
               上传资料
             </el-button>
@@ -144,7 +176,10 @@ const checkUpload = computed(() => props.status !== 3)
           <!--          <el-button>全部下载</el-button> -->
         </el-descriptions-item>
         <el-descriptions-item>
-          <el-table :data="detailFileList.promotion" border style="width: 100%" stripe :header-cell-style="tableHeaderCellStyle">
+          <el-table
+            :data="detailFileList.promotion" border style="width: 100%" stripe
+            :header-cell-style="tableHeaderCellStyle"
+          >
             <el-table-column prop="research_file_name" label="文件">
               <template #default="scope">
                 <el-button link type="primary" @click="downloadItem(scope.row)">
@@ -156,8 +191,14 @@ const checkUpload = computed(() => props.status !== 3)
             <el-table-column prop="create_time" label="上传时间" width="260" />
             <el-table-column label="操作" width="160">
               <template #default="scope">
-                <el-button link type="primary" size="small" @click.prevent="downloadItem(scope.row)">
+                <el-button v-auth="['PM00401005']" link type="primary" size="small" @click.prevent="downloadItem(scope.row)">
                   下载
+                </el-button>
+                <el-button
+                  v-if="checkIsOwn(scope.row.upload_user)" v-auth="['PM00401004']" link type="primary" size="small"
+                  @click.prevent="delItem(scope.row)"
+                >
+                  删除
                 </el-button>
               </template>
             </el-table-column>

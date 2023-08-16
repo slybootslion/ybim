@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {
+  activeProjectData,
   activeTailList, downloadItem,
   getTailList,
   tailItemI,
@@ -26,11 +27,11 @@ const del = async (tail_id: string) => {
 }
 const delItem = (id: string) => delItemHandle('', del, id)
 const router = useRouter()
-const editItem = (id: string) => router.push(`/tracking-information/tracking?project_id=${props.projectId}&tail_id=${id}`)
+const editItem = (id: string) => router.push(`/tracking-information/tracking?project_id=${ props.projectId }&tail_id=${ id }`)
 
 const checkTrack = computed(() => {
   return checkAuth('PM00101011')
-  // && activeProjectData.value.project_status !== 7
+    && activeProjectData.value.project_status !== 12
 })
 </script>
 
@@ -58,7 +59,7 @@ const checkTrack = computed(() => {
           :name="index"
           :title="`跟踪人员/时间：${(item as tailItemI).tail_user} ${(item as tailItemI).tail_start_time} -- ${(item as tailItemI).tail_end_time}`"
         >
-          <el-descriptions :column="1">
+          <el-descriptions :column="1" class="block-text label-140">
             <el-descriptions-item label="拜访客户：">
               {{ (item as tailItemI).visiting_clients_company }}
             </el-descriptions-item>
@@ -96,10 +97,16 @@ const checkTrack = computed(() => {
             </el-descriptions-item>
           </el-descriptions>
           <div style="display: flex; justify-content: flex-end">
-            <el-button v-if="checkAuth('PM00101016') && checkIsOwn((item as tailItemI).tail_user)" @click="editItem((item as tailItemI).tail_id)">
+            <el-button
+              v-if="checkAuth('PM00101016') && checkIsOwn((item as tailItemI).tail_user)"
+              @click="editItem((item as tailItemI).tail_id)"
+            >
               编辑
             </el-button>
-            <el-button v-if="checkAuth('PM00101017') && checkIsOwn((item as tailItemI).tail_user)" @click="delItem((item as tailItemI).tail_id)">
+            <el-button
+              v-if="checkAuth('PM00101017') && checkIsOwn((item as tailItemI).tail_user)"
+              @click="delItem((item as tailItemI).tail_id)"
+            >
               删除
             </el-button>
           </div>

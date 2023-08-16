@@ -58,12 +58,12 @@ const cancel = () => {
 
 const checkCancel = computed(() => {
   return isOwn.value && checkAuth('PM00101015')
-    && (status.value === 9 || status.value === 10)
+    && status.value === 10
 })
 
 const checkRecover = computed(() => {
   return isOwn.value && checkAuth('PM00101007')
-    && (status.value === 9 || status.value === 10)
+    && status.value === 10
 })
 </script>
 
@@ -76,7 +76,7 @@ const checkRecover = computed(() => {
         </el-button>
         <el-button
           v-if="checkRecover" type="primary"
-          @click="() => emit('goRouter', { projectId: props.projectId, url: '/contract-rating/contract-review' })"
+          @click="() => emit('goRouter', { projectId: props.projectId, r: true, url: '/project-initiation/contract-review' })"
         >
           重新发起
         </el-button>
@@ -107,13 +107,17 @@ const checkRecover = computed(() => {
           {{ activeContractReviewData && (activeContractReviewData as resContractReviewI).responsible_person }}
         </el-descriptions-item>
       </el-descriptions>
-      <el-descriptions title="" :column="1">
+      <el-descriptions title="" :column="1" class="block-text">
         <el-descriptions-item label="合同内容概述：">
           {{ activeContractReviewData && (activeContractReviewData as resContractReviewI).contract_general }}
         </el-descriptions-item>
+      </el-descriptions>
+      <el-descriptions title="" :column="1" class="block-text label-160">
         <el-descriptions-item label="需要重点关注问题及其他必要情况说明：">
           {{ activeContractReviewData && (activeContractReviewData as resContractReviewI).attention }}
         </el-descriptions-item>
+      </el-descriptions>
+      <el-descriptions>
         <el-descriptions-item label="附件：">
           <el-button
             link type="primary"

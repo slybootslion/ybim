@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { FormInstance, FormRules, UploadUserFile } from 'element-plus'
+import { ElMessage, FormInstance, FormRules, UploadUserFile } from 'element-plus'
 import {
   addContractReview,
   clearFormData,
@@ -8,11 +8,12 @@ import {
   loading,
 } from '@/views/operate/contract-review-methods'
 import { projectIdSelect, projectOptions, projectSearchLoading, remoteMethod } from '@/views/production/task-method'
-import { selectBlur, selectChange } from '@/views/operate/bid-method'
+import { getProject, selectBlur, selectChange } from '@/views/operate/bid-method'
 import { getTreeList, level2List } from '@/views/system/personnel-method'
 import { customerOptions, getCustomerHandle, searchLoading } from '@/views/operate/approval-method'
 import { beforeUploadFile, handleRemoveFile } from '@/utils/tools'
-import { getPersonData, personList } from "@/views/scientific_research/project-method";
+import { getContractReview } from '@/views/operate/project-method'
+import { baseURL } from '@/api'
 
 getTreeList()
 remoteMethod('', {})
@@ -34,7 +35,7 @@ const submit = async (formEl: FormInstance | undefined) => {
         return
       }
       // formData.attachment = ''
-      await router.push(`/project-initiation/project-detail?project_id=${formData.project_id}&type=2`)
+      await router.push(`/project-initiation/project-detail?project_id=${ formData.project_id }&type=2`)
       clearFormData()
       // ruleFormRef.value!.clearValidate()
       loading.value = false
@@ -49,11 +50,51 @@ const rules = reactive<FormRules>({
   contract_number: [{ required: true, message: '输入编号', trigger: 'blur' }],
   contract_money: [{ required: true, message: '输入金额', trigger: 'blur' }],
 })
-if (query.project_id) {
-  projectIdSelect(query.project_id as string)
-  formData.project_id = query.project_id as string
-} else clearFormData()
-getPersonData()
+// getPersonData()
+const selectProject = async (projectId: string) => {
+  const data = await getProject(projectId)
+  console.log(data.project_status)
+  if (data.project_status !== 2 && data.project_status !== 8 && data.project_status !== 9 && data.project_status !== 10) {
+    ElMessage.error('该项目不可发起合同评审')
+    clearFormData()
+    return false
+  }
+  return true
+}
+
+const initForm = async (id: string) => {
+  const data = await getContractReview(id)
+  formData.contract_name = data.contract_name
+  formData.contract_number = data.contract_number
+  formData.first_party = data.first_party
+  formData.second_party = data.second_party
+  formData.contract_money = data.contract_money
+  formData.contract_type = data.contract_type
+  // formData.responsible_person = data.responsible_person
+  formData.contract_general = data.contract_general
+  formData.attention = data.attention
+  if (data.attachment) {
+    formData.attachment = data.attachment
+    formData.fileList = [{
+      name: data.attachment_name,
+      url: baseURL + data.attachment_url.slice(4),
+    }]
+  }
+}
+
+const initData = async () => {
+  const id = query.project_id as string
+  if (id) {
+    const check = await selectProject(id)
+    if (!check) return
+    await projectIdSelect(id)
+    formData.project_id = id
+    if (query.r === 'true') {
+      await initForm(id)
+    }
+  } else clearFormData()
+}
+initData()
 </script>
 
 <template>
@@ -76,7 +117,8 @@ getPersonData()
           <el-form-item label="项目名称：" prop="project_id">
             <el-select
               v-model="formData.project_id" filterable remote reserve-keyword placeholder="输入项目名称查找"
-              :remote-method="remoteMethod" :loading="projectSearchLoading"
+              disabled :remote-method="remoteMethod" :loading="projectSearchLoading"
+              @change="selectProject"
             >
               <el-option
                 v-for="p in projectOptions" :key="p.project_id" :label="p.project_name"
@@ -121,11 +163,11 @@ getPersonData()
               <el-option label="其他" value="其他" />
             </el-select>
           </el-form-item>
-          <el-form-item label="经办人：" prop="responsible_person">
+          <!--          <el-form-item label="经办人：" prop="responsible_person">
             <el-select v-model="formData.responsible_person" placeholder="选择人员">
               <el-option v-for="p in personList" :key="p.user_id" :label="p.user_name" :value="p.user_name" />
             </el-select>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item label="合同内容概述：" prop="contract_general">
             <el-input
               v-model="formData.contract_general" maxlength="200" type="textarea" :rows="3"

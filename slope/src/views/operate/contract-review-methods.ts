@@ -13,7 +13,7 @@ export interface contractReviewFormDataI {
   second_party: string
   contract_money: number
   contract_type: string
-  responsible_person: string
+  // responsible_person: string
   contract_general: string
   attention: string
   attachment: string
@@ -28,7 +28,7 @@ export const formData: contractReviewFormDataI = reactive<contractReviewFormData
   second_party: '',
   contract_money: 0,
   contract_type: '',
-  responsible_person: '',
+  // responsible_person: '',
   contract_general: '',
   attention: '',
   attachment: '',
@@ -56,7 +56,7 @@ export const clearFormData = () => {
   formData.second_party = ''
   formData.contract_money = 0
   formData.contract_type = ''
-  formData.responsible_person = ''
+  // formData.responsible_person = ''
   formData.contract_general = ''
   formData.attention = ''
   formData.attachment = ''

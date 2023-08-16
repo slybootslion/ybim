@@ -80,33 +80,34 @@ const end = async () => {
 }
 
 const checkCancel = computed(() => {
-  return isOwn.value && checkAuth('PM00101013')
-    && (status.value === 0 || status.value === 1)
+  return checkAuth('PM00101013')
+    && status.value === 1
 })
 
 const checkReStart = computed(() => {
-  return isOwn.value && checkAuth('PM00101001')
-    && (status.value === 0 || status.value === 1)
+  return checkAuth('PM00101001')
+    && status.value === 1
 })
 
+//  && (isOwn.value || checkIsOwn(activeProjectData.value.operation_user))
 const checkTrack = computed(() => {
-  return checkAuth('PM00101011') && (isOwn.value || checkIsOwn(activeProjectData.value.operation_user))
+  return checkAuth('PM00101011')
     && status.value !== 12
 })
 
 const checkCreateNew = computed(() => {
-  return isOwn.value && checkAuth('PM00101004')
+  return checkAuth('PM00101004')
     && status.value === 2
 })
 
 const checkContract = computed(() => {
-  return isOwn.value && checkAuth('PM00101007')
+  return checkAuth('PM00101007')
     && (status.value === 2 || status.value === 8)
 })
 
 const checkFinish = computed(() => {
-  return isOwn.value && checkAuth('PM00101012')
-    && (status.value !== 1 && status.value !== 12)
+  return checkAuth('PM00101012')
+    && (status.value !== 0 && status.value !== 1 && status.value !== 12)
 })
 </script>
 
@@ -131,13 +132,13 @@ const checkFinish = computed(() => {
         </el-button>
         <el-button
           v-if="checkCreateNew" type="primary"
-          @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-bidding/bidding' })"
+          @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-initiation/bidding' })"
         >
           新建投标评审
         </el-button>
         <el-button
           v-if="checkContract" type="primary"
-          @click="() => emit('goRouter', { projectId: props.projectId, url: '/contract-rating/contract-review' })"
+          @click="() => emit('goRouter', { projectId: props.projectId, url: '/project-initiation/contract-review' })"
         >
           合同评审
         </el-button>
@@ -200,12 +201,12 @@ const checkFinish = computed(() => {
           {{ activeProjectData && (activeProjectData as resProjectDataI).registration_time }}
         </el-descriptions-item>
       </el-descriptions>
-      <el-descriptions title="" :column="1">
+      <el-descriptions title="" :column="1" class="block-text">
         <el-descriptions-item label="项目概况：">
           {{ activeProjectData && (activeProjectData as resProjectDataI).project_general }}
         </el-descriptions-item>
       </el-descriptions>
-      <el-descriptions title="" :column="1">
+      <el-descriptions title="" :column="1" class="block-text">
         <el-descriptions-item label="其他事项说明：">
           {{ activeProjectData && (activeProjectData as resProjectDataI).others }}
         </el-descriptions-item>

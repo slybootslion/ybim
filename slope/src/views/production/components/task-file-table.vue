@@ -5,11 +5,13 @@ import type { taskFileI } from '@/views/production/task-method'
 import { getDownloadUrl } from '@/views/scientific_research/project-method'
 import api, { baseURL } from '@/api'
 import { checkAuth, checkIsOwn, tableHeaderCellStyle } from '@/utils/tools'
+import { taskStatus } from '@/views/production/task-method'
 
 const props = defineProps<{
   fileList: taskFileI[]
   taskId: string
   produceFileType: number
+  projectStatus: number
 }>()
 const emit = defineEmits(['uploadSuccess'])
 const loading = ref(false)
@@ -39,11 +41,15 @@ const delItem = async (file_id: string) => {
 }
 
 const checkDel = (item: taskFileI) => checkIsOwn(item.upload_user) && checkAuth('PM00201008')
+
+const checkUpload = computed(() => {
+  return checkAuth('PM00201003') && taskStatus.value === 2 && props.projectStatus !== 12
+})
 </script>
 
 <template>
   <el-upload :http-request="upload" :show-file-list="false" multiple style="margin-bottom: 20px;">
-    <el-button v-auth="['PM00201003']" type="primary">
+    <el-button v-if="checkUpload" type="primary">
       上传资料
     </el-button>
   </el-upload>
@@ -62,7 +68,7 @@ const checkDel = (item: taskFileI) => checkIsOwn(item.upload_user) && checkAuth(
     <el-table-column prop="create_time" label="上传时间" width="260" />
     <el-table-column label="操作" width="160">
       <template #default="scope">
-        <el-button link type="primary" size="small" @click.prevent="downloadItem(scope.row.file_url)">
+        <el-button v-auth="['PM00201009']" link type="primary" size="small" @click.prevent="downloadItem(scope.row.file_url)">
           下载
         </el-button>
         <el-button

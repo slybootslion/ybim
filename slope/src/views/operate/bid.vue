@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { ElMessage, FormInstance, FormRules, UploadUserFile } from 'element-plus'
-import { projectIdSelect, projectOptions, projectSearchLoading, remoteMethod } from '@/views/production/task-method'
+import { projectOptions, projectSearchLoading, remoteMethod } from '@/views/production/task-method'
 import {
-  clearFormData, formData, getProject, getTender, handleUploadFile1, handleUploadFile2, handleUploadFile3, loading,
-  projectHandle, registerTenderResult, selectBlur, selectChange,
+  clearFormData, formData, getProject, getTender, handleUploadFile1, handleUploadFile2, handleUploadFile3, loading, registerTenderResult, selectBlur, selectChange,
 } from '@/views/operate/bid-method'
 import { getTreeList, level2List } from '@/views/system/personnel-method'
-import { beforeUploadFile, handleRemoveFile } from '@/utils/tools'
+import { beforeUploadFile, checkIsOwn, handleRemoveFile } from '@/utils/tools'
 import { back } from '@/views/scientific_research/project-method'
 
 getTreeList()
@@ -42,27 +41,42 @@ const submit = async (formEl: FormInstance | undefined) => {
       // setTimeout(() => ruleFormRef.value!.clearValidate(), 300)
       await router.push(`/project-initiation/project-detail?project_id=${formData.project_id}&type=1`)
       clearFormData()
+      setTimeout(() => location.reload(), 700)
       loading.value = false
     }
   })
 }
+
 const initProject = async (id: string) => {
   const res = await getProject(id)
+  if (res.project_status !== 5) {
+    ElMessage.error('该项目不可登记投标结果')
+    clearFormData()
+    return false
+  }
   const tenderRes = await getTender(id)
   if (!tenderRes.tender_id) {
     ElMessage.error('投标id不存在')
     back()
     return
   }
+  if (!checkIsOwn(tenderRes.applicant_user)) {
+    ElMessage.error('无权限登记该项目投标结果')
+    clearFormData()
+    return false
+  }
   formData.tender_id = tenderRes.tender_id
-  formData.project_id = query.project_id as string
+  formData.project_id = id
   formData.project_general = res.project_general
 }
-if (query.project_id) {
-  projectIdSelect(query.project_id as string)
-  initProject(query.project_id as string)
+
+const initData = async () => {
+  if (query.project_id) {
+    await initProject(query.project_id as string)
+  }
+  else clearFormData()
 }
-else clearFormData()
+initData()
 </script>
 
 <template>
@@ -90,7 +104,7 @@ else clearFormData()
               <el-select
                 v-model="formData.project_id" filterable remote reserve-keyword placeholder="输入项目名称查找"
                 :remote-method="remoteMethod" :loading="projectSearchLoading"
-                @change="projectHandle"
+                @change="initProject"
               >
                 <el-option
                   v-for="p in projectOptions" :key="p.project_id" :label="p.project_name"

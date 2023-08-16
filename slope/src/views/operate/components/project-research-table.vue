@@ -124,10 +124,13 @@ function selectAnalysis(selection: resProjectDataI[]) {
         {{ scope.row.expect_amount }}万元
       </template>
     </el-table-column>
-    <el-table-column label="当前状态" width="110">
+    <el-table-column label="当前状态" width="140">
       <template #default="scope">
         <el-tag
-          :type="scope.row.project_status_name.includes('驳回') ? 'danger' : ''"
+          :type="scope.row.project_status_name.includes('驳回')
+            || scope.row.project_status_name.includes('放弃')
+            || scope.row.project_status_name.includes('结束')
+            || scope.row.project_status_name.includes('落标') ? 'danger' : ''"
           disable-transitions
         >
           {{ scope.row.project_status_name }}

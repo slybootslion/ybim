@@ -36,4 +36,22 @@
       flex: 1;
     }
   }
+
+  &.label-160 {
+    :deep(.el-descriptions__label) {
+      width: 160px !important;
+    }
+  }
+
+  &.label-112 {
+    :deep(.el-descriptions__label) {
+      width: 112px !important;
+    }
+  }
+
+  &.label-140 {
+    :deep(.el-descriptions__label) {
+      width: 140px !important;
+    }
+  }
 }

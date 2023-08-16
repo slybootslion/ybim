@@ -16,13 +16,13 @@ const leftQuickLink = [
     img2: '../assets/images/01项目备案立项-on.png',
     show: false,
   },
-  {
+  /*  {
     name: '投标评审',
     url: '/project-bidding/bidding',
     img1: '../assets/images/01项目备案立项-down.png',
     img2: '../assets/images/01项目备案立项-on.png',
     show: false,
-  },
+  }, */
   {
     name: '投标结果登记',
     url: '/register-bid/bid',
@@ -30,13 +30,13 @@ const leftQuickLink = [
     img2: '../assets/images/01项目备案立项-on.png',
     show: false,
   },
-  {
+  /*  {
     name: '合同评审',
     url: '/contract-rating/contract-review',
     img1: '../assets/images/01项目备案立项-down.png',
     img2: '../assets/images/01项目备案立项-on.png',
     show: false,
-  },
+  }, */
   {
     name: '备案登记',
     url: '/record-management/record-form',
@@ -266,8 +266,8 @@ const projectClick = (project_id: string) => router.push(`/project-initiation/pr
                   </div>
                   <div style="display: flex; justify-content: space-between; width: 100%;">
                     <span><span style="color: #409EFF">{{
-                        approveTypeDict[(item as todoListItemI).approve_type]
-                      }}</span><span>信息需要处理!</span></span>
+                      approveTypeDict[(item as todoListItemI).approve_type]
+                    }}</span><span>信息需要处理!</span></span>
                     <span style="margin-left: 30px;"> {{ (item as todoListItemI).create_time }}</span>
                   </div>
                 </div>
@@ -343,11 +343,11 @@ const projectClick = (project_id: string) => router.push(`/project-initiation/pr
           <div class="r-list-content">
             <div v-for="item in tableData" :key="item.project_id" class="list-item">
               <span class="project-hover" @click="projectClick(item.project_id)">{{
-                  (item as resProjectListI).project_name
-                }}</span>
+                (item as resProjectListI).project_name
+              }}</span>
               <span>{{
-                  (item as resProjectListI).project_dependency_province
-                }} {{ (item as resProjectListI).project_dependency_city }}</span>
+                (item as resProjectListI).project_dependency_province
+              }} {{ (item as resProjectListI).project_dependency_city }}</span>
               <span>{{ (item as resProjectListI).expect_amount }}万元</span>
               <span>{{ (item as resProjectListI).registration_time }}</span>
             </div>
