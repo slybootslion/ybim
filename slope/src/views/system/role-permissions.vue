@@ -2,8 +2,8 @@
 import { FormInstance } from 'element-plus'
 import {
   FunListData, SampleListData, UserListData, activeName, activeRoleId, activeRoleName, addNew, changeActive,
-  delRoleHandle, dialogForm, dialogShow, editRoleHandle, funItemI, getRole, ruleFormRef, rules, sampleItemI, submitForm,
-  tabLoading, tableItemI, dialogTitle,
+  delRoleHandle, dialogForm, dialogShow, dialogTitle, editRoleHandle, funItemI, getRole, ruleFormRef, rules, sampleItemI,
+  submitForm, tabLoading, tableItemI,
 } from '@/views/system/role-method'
 import { checkAuth, pageLoading } from '@/utils/tools'
 import { RoleItem, roleData } from '@/views/system/personnel-method'
@@ -44,10 +44,10 @@ getRole().then(() => {
                 {{ (item as RoleItem).role_name }}
               </div>
               <div class="item-right">
-                <el-icon class="right-icon" @click="delRoleHandle(item)">
+                <el-icon v-auth="['PM00502006']" class="right-icon" @click="delRoleHandle(item)">
                   <svg-icon name="ep:delete" />
                 </el-icon>
-                <el-icon class="right-icon" @click="editRoleHandle(item)">
+                <el-icon v-auth="['PM00502005']" class="right-icon" @click="editRoleHandle(item)">
                   <svg-icon name="ep:edit" />
                 </el-icon>
               </div>

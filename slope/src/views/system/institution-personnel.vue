@@ -356,6 +356,10 @@ const handleSelectionChange = (val: any[]) => {
 
     .right-bottom {
       flex: 1;
+
+      :deep(.el-table--fit) {
+        height: 700px;
+      }
     }
   }
 }

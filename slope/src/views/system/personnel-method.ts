@@ -148,11 +148,15 @@ export const logoutTableItem = async (row: tableItem) => {
       cancelButtonText: '取消',
       type: 'warning',
     },
-  ).then(() => {
-    ElMessage({
-      type: 'success',
-      message: `${ row.user_name }已注销`,
-    })
+  ).then(async () => {
+    const res: any = await api.post('/personnel/lockUser', { user_id: row.user_id })
+    await getTableData()
+    if (res.code === 0) {
+      ElMessage({
+        type: 'success',
+        message: `${ row.user_name }已注销`,
+      })
+    }
   }).catch(console.log)
 }
 const editUserId = ref('')
