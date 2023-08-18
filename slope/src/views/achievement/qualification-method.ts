@@ -149,7 +149,7 @@ export const getEditData = async (id: string) => {
   formData.cert_valid_time = res.cert_valid_time
   formData.aptitude_grade = res.aptitude_grade
   formData.principal = res.principal
-  formData.principal_phone = res.principal_phone
+  formData.principal_phone = res.principal_phone.toString()
   formData.original_keeper = res.original_keeper
   formData.original_amount = res.original_amount
   formData.extant_original_amount = res.extant_original_amount

@@ -22,7 +22,7 @@ const openDialog = () => {
     ElMessage.error('未选择项目')
     return
   }
-  console.log(form.user_id)
+  console.log(projectIds.value)
   dialogFormVisible.value = true
 }
 const router = useRouter()

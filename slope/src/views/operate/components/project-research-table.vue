@@ -11,6 +11,7 @@ import {
 import { primaryIndustryTypeOptions } from '@/views/production/project-method'
 import { primaryBusinessOptions } from '@/views/operate/customer-method'
 import { pageI, tableHeaderCellStyle } from '@/utils/tools'
+import { ElMessage } from "element-plus";
 
 const emit = defineEmits(['getSelectedProjectId'])
 getList(pageData)
@@ -42,9 +43,18 @@ const searchHandle = () => {
   pageChange()
 }
 const multipleTable = ref<TableInstance>()
-function selectAnalysis(selection: resProjectDataI[]) {
+function selectAnalysis(selection: resProjectListI[], item: resProjectListI) {
+  if (item && (item.project_status_name.includes('落标') || item.project_status_name.includes('结束') || item.project_status_name.includes('放弃'))) {
+    ElMessage.error('该项目不可转让/移交')
+    return
+  }
   const arr: string[] = []
-  selection.forEach(i => arr.push(i.project_id))
+  selection.forEach((item: resProjectListI) => {
+    if (item.project_status_name.includes('落标') || item.project_status_name.includes('结束') || item.project_status_name.includes('放弃')) {
+      return
+    }
+    arr.push(item.project_id)
+  })
   emit('getSelectedProjectId', arr.join(','))
 }
 </script>

@@ -63,12 +63,16 @@ getRole().then(() => {
               <el-tab-pane label="角色成员" name="角色成员">
                 <RoleMember :table-data="UserListData as tableItemI[]" />
               </el-tab-pane>
-              <el-tab-pane v-auth="['PM00502003']" label="功能权限" name="功能权限">
-                <FunComponent :table-data="FunListData as funItemI[]" :role-id="activeRoleId as string" />
-              </el-tab-pane>
-              <el-tab-pane v-auth="['PM00502004']" label="数据权限" name="数据权限">
-                <SampleComponent :table-data="SampleListData as sampleItemI[]" :role-id="activeRoleId as string" />
-              </el-tab-pane>
+              <div v-if="checkAuth('PM00502003')">
+                <el-tab-pane label="功能权限" name="功能权限">
+                  <FunComponent :table-data="FunListData as funItemI[]" :role-id="activeRoleId as string" />
+                </el-tab-pane>
+              </div>
+              <div v-if="checkAuth('PM00502004')">
+                <el-tab-pane label="数据权限" name="数据权限">
+                  <SampleComponent :table-data="SampleListData as sampleItemI[]" :role-id="activeRoleId as string" />
+                </el-tab-pane>
+              </div>
             </el-tabs>
           </div>
         </div>

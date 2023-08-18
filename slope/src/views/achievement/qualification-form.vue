@@ -143,7 +143,7 @@ const submit = async (formEl: FormInstance | undefined) => {
   }
 
   :deep(.el-textarea) {
-    width: 1260px;
+    width: 1160px;
   }
 }
 </style>

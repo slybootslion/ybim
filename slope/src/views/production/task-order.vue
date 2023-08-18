@@ -45,7 +45,7 @@ const subRules = reactive<FormRules>({
   allocation_ratio: [{ required: true, message: '输入任划分产值金额', trigger: 'blur' }],
   deadline: [{ required: true, message: '输入成果提交时间', trigger: 'change' }],
 })
-const computedDay = () => formData.days = `${ dayjs(formData.datePick![1]).diff(formData.datePick![0], 'day') }`
+const computedDay = () => formData.days = `${ dayjs(formData.datePick![1]).diff(formData.datePick![0], 'day') } 天`
 const addTask = async (data: projectFormDataI) => api.post('/produce/addTask', data)
 const isMore = ref(false)
 const submit = async (formEl: FormInstance | undefined) => {
@@ -115,6 +115,8 @@ remoteMethod('')
 
 const projectSelected = async (id: string) => {
   const res: any = await getProject(id)
+  await remoteMethod(res.project_name)
+  console.log(res)
   if (res.project_status <= 2 || res.project_status >= 12) {
     ElMessage.error('该项目不可发起任务下单')
     clearFormData()
@@ -123,10 +125,12 @@ const projectSelected = async (id: string) => {
   formData.project_type = res.project_type
   formData.industry_type = res.industry_type
 }
-
+const disSelect = ref(false)
 const initTask = async (task_id: string) => {
   const data = await getTask(task_id)
   formData.project_id = data.project_id
+  await projectSelected(data.project_id)
+  disSelect.value = true
   formData.industry_type = data.industry_type
   formData.project_type = data.project_type
   formData.majorArr = data.major.split(',')
@@ -172,7 +176,7 @@ else clearFormData()
           <el-form ref="ruleFormRef" inline :model="formData" :rules="rules as FormRules" label-width="180px">
             <el-form-item label="关联项目：" prop="project_id">
               <el-select
-                v-model="formData.project_id"
+                v-model="formData.project_id" :disabled="disSelect"
                 filterable remote reserve-keyword placeholder="输入项目名称查找" :remote-method="remoteMethod"
                 :loading="projectSearchLoading" @change="projectSelected"
               >

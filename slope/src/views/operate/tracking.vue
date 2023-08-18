@@ -55,7 +55,7 @@ const rules = reactive<FormRules>({
   visiting_clients_man_phone: [
     { min: 11, max: 11, message: '输入正确手机号', trigger: ['blur', 'change'] },
   ],
-  docking_content: [{ required: true, message: '输入人员', trigger: 'blur' }],
+  docking_content: [{ required: true, message: '输入对接内容', trigger: 'blur' }],
   subject: [{ required: true, message: '输入主题', trigger: 'blur' }],
   datePick: [{ required: true, message: '选择跟踪时间', trigger: 'change' }],
 })

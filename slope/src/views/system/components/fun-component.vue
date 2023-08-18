@@ -71,7 +71,6 @@ const findLineChecked = (line: tableLineItemI) => {
   if (l3) for (const l3el of l3!) if (l3el.checked) menu_ids.value.push(l3el.menu_id)
 }
 const changeRole = async (menu_name: string, menu_id: string) => {
-  console.log(menu_name, menu_id)
   menu_ids.value = []
   for (let i = 0; i < tableLineData.length; i++) {
     const line = tableLineData[i]
